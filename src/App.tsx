@@ -1,10 +1,18 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-// Custom CSS
-import 'styles/theme.scss';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <BrowserRouter>
+        <Header />
+        <Footer />
+      </BrowserRouter>
+    </>
+  );
 }
 
 export default App;
