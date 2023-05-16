@@ -5,7 +5,7 @@ import { EnterState } from 'types/home';
 
 import abmapImg from 'image/abmap.png';
 
-interface Props {
+interface AboutProps {
   enter: EnterState;
 }
 
@@ -16,7 +16,7 @@ type TabItem = {
   link: string;
 };
 
-const About = (props: Props) => {
+const About = (props: AboutProps) => {
   const { enter } = props;
 
   const tabList: TabItem[] = [

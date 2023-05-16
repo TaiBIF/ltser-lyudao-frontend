@@ -5,11 +5,11 @@ import { NewsItem, EnterState } from 'types/home';
 
 import { newsList, categoryList } from 'data/home';
 
-interface Props {
+interface NewsProps {
   enter: EnterState;
 }
 
-function News(props: Props) {
+function News(props: NewsProps) {
   const { enter } = props;
   const [active, setActive] = useState({
     category: 'all',

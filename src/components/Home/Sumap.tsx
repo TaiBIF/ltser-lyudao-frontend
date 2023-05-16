@@ -5,7 +5,7 @@ import { EnterState } from 'types/home';
 import mapImg from 'image/map.jpg';
 import chartImg from 'image/chart.jpg';
 
-interface Props {
+interface SumapProps {
   enter: EnterState;
 }
 
@@ -14,7 +14,7 @@ type ActiveState = {
   item: string;
 };
 
-const Sumap = (props: Props) => {
+const Sumap = (props: SumapProps) => {
   const { enter } = props;
   const [active, setActive] = useState<ActiveState>({
     year: '',
