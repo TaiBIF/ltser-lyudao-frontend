@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Leaflet
+import 'leaflet/dist/leaflet.css';
+
 // Custom CSS
 import 'styles/theme.scss';
 
