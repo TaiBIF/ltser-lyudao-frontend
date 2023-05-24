@@ -31,7 +31,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about/:contentId" element={<About />} />
+          <Route path="/about/:categoryId/:articleId" element={<About />} />
           <Route
             path="/dashboard/contact"
             element={<Dashboard content={<ContactContent />} />}

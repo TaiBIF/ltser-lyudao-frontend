@@ -160,7 +160,7 @@ const Header = () => {
                                           return (
                                             <Link
                                               key={`${item.id}-${subItem.id}-${finalItem.id}`}
-                                              to={link}
+                                              to={`/${link}`}
                                             >
                                               {title}
                                             </Link>
@@ -182,7 +182,7 @@ const Header = () => {
                       </>
                     ) : (
                       <>
-                        <Link to={`${item.link}`} className="big_title">
+                        <Link to={`/${item.link}`} className="big_title">
                           {title}
                           <span></span>
                         </Link>
@@ -206,7 +206,7 @@ const Header = () => {
                                             return (
                                               <Link
                                                 key={id}
-                                                to={`${item.link}${subItem.link}${link}`}
+                                                to={`/${item.link}/${subItem.link}/${link}`}
                                               >
                                                 {title}
                                               </Link>
@@ -224,7 +224,7 @@ const Header = () => {
                   </li>
                 ) : (
                   <li key={item.id}>
-                    <Link to={link} className="big_title">
+                    <Link to={`/${link}`} className="big_title">
                       {title}
                       <span></span>
                     </Link>

@@ -18,3 +18,10 @@ export type EnterState = {
   s3: boolean;
   s4: boolean;
 };
+
+export type TabItem = {
+  id: string;
+  title: string;
+  subtitle: [string, string];
+  link: string;
+};

@@ -1,6 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+
+import { routeList } from 'data/common';
+import { MenuItem } from 'types/common';
+import { aboutList } from 'data/about';
+import { tabList } from 'data/home';
+import { ArticleItem } from 'types/about';
 
 const About = () => {
+  const { pathname } = useLocation();
+  const paths = pathname.split('/').slice(1);
+  const { articleId } = useParams();
+  const [breadcrumb, setBreadcrumb] = useState<string[]>([]);
+  const [articleData, setArticleData] = useState<ArticleItem>({
+    id: '',
+    category: '',
+    title: '',
+    content: '',
+    img: '',
+    sections: [],
+  });
+
+  const hasArticleData = articleData.id !== '';
+
+  const handleMatchRoute = (routes: MenuItem[], path: string): string => {
+    for (const route of routes) {
+      if (route.link === path) {
+        return route.title;
+      } else if (route.list) {
+        const matchRoute = handleMatchRoute(route.list, path);
+        if (matchRoute) {
+          return matchRoute;
+        }
+      }
+    }
+    return '';
+  };
+
+  useEffect(() => {
+    let breadcrumbList: string[] = [];
+    paths.forEach((path) => {
+      breadcrumbList.push(handleMatchRoute(routeList, path));
+    });
+    setBreadcrumb([...breadcrumbList]);
+
+    const matchArticle = aboutList.find((v) => v.id === articleId);
+    if (matchArticle) {
+      setArticleData({ ...matchArticle });
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (hasArticleData) {
+      const matchCategory = tabList.find((v) => v.id === articleData.category);
+      if (matchCategory) {
+        setArticleData({ ...articleData, category: matchCategory.title });
+      }
+    }
+  }, [articleData]);
+
   return (
     <>
       <div className="innbox">
@@ -53,11 +111,14 @@ const About = () => {
                 </svg>
               </a>
               <span> &gt; </span>
-              <p>關於LTSER_綠島</p>
-              <span> &gt; </span>
-              <p>生態觀測</p>
-              <span> &gt; </span>
-              <p>珊瑚礁水下聲景調查</p>
+              {breadcrumb.map((v, i) => {
+                return (
+                  <React.Fragment key={i}>
+                    <p>{v}</p>
+                    {i !== breadcrumb.length - 1 && <span> &gt; </span>}
+                  </React.Fragment>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -66,19 +127,17 @@ const About = () => {
             <div className="about-mainbox">
               <div className="leftbox">
                 <div className="title-area">
-                  <div className="ab-category">生態觀測</div>
-                  <h2>珊瑚礁水下聲景調查</h2>
+                  <div className="ab-category">{articleData.category}</div>
+                  <h2>{articleData.title}</h2>
                 </div>
-                <p>
-                  珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。
-                </p>
+                <p>{articleData.content}</p>
               </div>
               <div className="rightbox">
                 <div className="pic-area">
                   {/*上背景圖*/}
                   <div
                     className="img-area"
-                    style={{ backgroundImage: 'url("image/abimg.png")' }}
+                    style={{ backgroundImage: articleData.img }}
                   />
                 </div>
               </div>
@@ -88,30 +147,30 @@ const About = () => {
         {/*有其他內容的才有下面這塊*/}
         <div className="ab-otherbox">
           <div className="main-box">
-            <div className="ab-item">
-              <div className="titlebox">船隻聲音</div>
-              <div className="editer-area">
-                <p className="center marb_20">
-                  綠島以獨特的島嶼生態系吸引大批觀光客前來，交通船是前往島上的唯二選擇。當航行經過時，船隻活動的噪音足以蓋過其他的聲音。
-                </p>
-                <div className="main-1280">
-                  <img className="marb_20" src="image/ab-demo1.png" />
-                  <img src="image/ab-demo2.png" />
-                </div>
-              </div>
-            </div>
-            <div className="ab-item">
-              <div className="titlebox">船隻聲音</div>
-              <div className="editer-area">
-                <p className="center marb_20">
-                  綠島以獨特的島嶼生態系吸引大批觀光客前來，交通船是前往島上的唯二選擇。當航行經過時，船隻活動的噪音足以蓋過其他的聲音。
-                </p>
-                <div className="main-1280">
-                  <img className="marb_20" src="image/ab-demo1.png" />
-                  <img src="image/ab-demo2.png" />
-                </div>
-              </div>
-            </div>
+            {articleData.sections &&
+              articleData.sections.map((v) => {
+                const { id, title, content, imgs } = v;
+                return (
+                  <div key={id} className="ab-item">
+                    <div className="titlebox">{title}</div>
+                    <div className="editer-area">
+                      <p className="center marb_20">{content}</p>
+                      <div className="main-1280">
+                        {imgs?.map((img, i) => {
+                          const isLastItem = i === imgs.length - 1;
+                          return (
+                            <img
+                              className={isLastItem ? '' : 'marb_20'}
+                              src={img}
+                              alt=""
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
@@ -120,3 +179,6 @@ const About = () => {
 };
 
 export default About;
+function handleMatchRoute(routeList: MenuItem[], pathname: any) {
+  throw new Error('Function not implemented.');
+}

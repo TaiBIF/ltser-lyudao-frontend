@@ -1,4 +1,4 @@
-import { NewsItem, CategoryItem } from 'types/home';
+import { NewsItem, CategoryItem, TabItem } from 'types/home';
 
 export const newsList: NewsItem[] = [
   {
@@ -77,5 +77,26 @@ export const categoryList: CategoryItem[] = [
     id: 'C',
     title: '類別CCC',
     colorClass: 'col-yel',
+  },
+];
+
+export const tabList: TabItem[] = [
+  {
+    id: 'ecological-observation',
+    title: '生態觀測',
+    subtitle: ['Ecological', 'Observation'],
+    link: 'ecological-observation',
+  },
+  {
+    id: 'environmental-observation',
+    title: '環境觀測',
+    subtitle: ['Environmental', 'Observation'],
+    link: 'environmental-observation',
+  },
+  {
+    id: 'social-observation',
+    title: '社會觀測',
+    subtitle: ['Social', 'Observation'],
+    link: 'social-observation',
   },
 ];
