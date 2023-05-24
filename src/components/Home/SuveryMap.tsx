@@ -7,7 +7,7 @@ import chartImg from 'image/chart.jpg';
 import Filter from 'components/Home/LeafletMap/Filter';
 import Content from 'components/Home/LeafletMap/Content';
 
-interface SumapProps {
+interface SurveyMapProps {
   enter: EnterState;
 }
 
@@ -16,7 +16,7 @@ type ActiveState = {
   item: string;
 };
 
-const Sumap = (props: SumapProps) => {
+const SurveyMap = (props: SurveyMapProps) => {
   const { enter } = props;
   const [active, setActive] = useState<ActiveState>({
     year: '',
@@ -44,4 +44,4 @@ const Sumap = (props: SumapProps) => {
   );
 };
 
-export default Sumap;
+export default SurveyMap;

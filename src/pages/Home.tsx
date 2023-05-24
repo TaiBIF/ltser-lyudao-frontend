@@ -4,7 +4,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import Kvbox from 'components/Home/Kvbox';
 import About from 'components/Home/About';
 import News from 'components/Home/News';
-import Sumap from 'components/Home/Sumap';
+import SurveyMap from 'components/Home/SuveryMap';
 
 import { EnterState } from 'types/home';
 
@@ -48,7 +48,7 @@ const Home = () => {
       <Kvbox />
       <About enter={enter} />
       <News enter={enter} />
-      <Sumap enter={enter} />
+      <SurveyMap enter={enter} />
     </>
   );
 };

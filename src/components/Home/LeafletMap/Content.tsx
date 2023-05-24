@@ -43,7 +43,7 @@ const Content = () => {
           <LayersControl.Overlay name="觀測項目AAA" checked>
             <LayerGroup>
               <Marker position={position} icon={icon}>
-                <Popup>
+                <Popup closeButton={false}>
                   <PopupLayout />
                 </Popup>
               </Marker>

@@ -119,51 +119,51 @@ h5,
 }
 .col-1 {
 	@extend %row_padd;
-	width: $grid/12 * 1;
+	width: calc($grid/12 * 1);
 }
 .col-2 {
 	@extend %row_padd;
-	width: $grid/12 * 2;
+	width: calc($grid/12 * 2);
 }
 .col-3 {
 	@extend %row_padd;
-	width: $grid/12 * 3;
+	width: calc($grid/12 * 3);
 }
 .col-4 {
 	@extend %row_padd;
-	width: $grid/12 * 4;
+	width: calc($grid/12 * 4);
 }
 .col-5 {
 	@extend %row_padd;
-	width: $grid/12 * 5;
+	width: calc($grid/12 * 5);
 }
 .col-6 {
 	@extend %row_padd;
-	width: $grid/12 * 6;
+	width: calc($grid/12 * 6);
 }
 .col-7 {
 	@extend %row_padd;
-	width: $grid/12 * 7;
+	width: calc($grid/12 * 7);
 }
 .col-8 {
 	@extend %row_padd;
-	width: $grid/12 * 8;
+	width: calc($grid/12 * 8);
 }
 .col-9 {
 	@extend %row_padd;
-	width: $grid/12 * 9;
+	width: calc($grid/12 * 9);
 }
 .col-10 {
 	@extend %row_padd;
-	width: $grid/12 * 10;
+	width: calc($grid/12 * 10);
 }
 .col-11 {
 	@extend %row_padd;
-	width: $grid/12 * 11;
+	width: calc($grid/12 * 11);
 }
 .col-12 {
 	@extend %row_padd;
-	width: $grid/12 * 12;
+	width: calc($grid/12 * 12);
 }
 @media #{$pad} {
 	.row-m {
@@ -173,62 +173,62 @@ h5,
 	.col-m-1 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 1;
+		width: calc($grid/12 * 1);
 	}
 	.col-m-2 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 2;
+		width: calc($grid/12 * 2);
 	}
 	.col-m-3 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 3;
+		width: calc($grid/12 * 3);
 	}
 	.col-m-4 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 4;
+		width: calc($grid/12 * 4);
 	}
 	.col-m-5 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 5;
+		width: calc($grid/12 * 5);
 	}
 	.col-m-6 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 6;
+		width: calc($grid/12 * 6);
 	}
 	.col-m-7 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 7;
+		width: calc($grid/12 * 7);
 	}
 	.col-m-8 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 8;
+		width: calc($grid/12 * 8);
 	}
 	.col-m-9 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 9;
+		width: calc($grid/12 * 9);
 	}
 	.col-m-10 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 10;
+		width: calc($grid/12 * 10);
 	}
 	.col-m-11 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 11;
+		width: calc($grid/12 * 11);
 	}
 	.col-m-12 {
 		padding-left: 10px;
 		padding-right: 10px;
-		width: $grid/12 * 12;
+		width: calc($grid/12 * 12);
 	}
 }
 @media #{$mobile} {
@@ -239,62 +239,62 @@ h5,
 	.col-s-1 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 1;
+		width: calc($grid/12 * 1);
 	}
 	.col-s-2 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 2;
+		width: calc($grid/12 * 2);
 	}
 	.col-s-3 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 3;
+		width: calc($grid/12 * 3);
 	}
 	.col-s-4 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 4;
+		width: calc($grid/12 * 4);
 	}
 	.col-s-5 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 5;
+		width: calc($grid/12 * 5);
 	}
 	.col-s-6 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 6;
+		width: calc($grid/12 * 6);
 	}
 	.col-s-7 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 7;
+		width: calc($grid/12 * 7);
 	}
 	.col-s-8 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 8;
+		width: calc($grid/12 * 8);
 	}
 	.col-s-9 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 9;
+		width: calc($grid/12 * 9);
 	}
 	.col-s-10 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 10;
+		width: calc($grid/12 * 10);
 	}
 	.col-s-11 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 11;
+		width: calc($grid/12 * 11);
 	}
 	.col-s-12 {
 		padding-left: 5px;
 		padding-right: 5px;
-		width: $grid/12 * 12;
+		width: calc($grid/12 * 12);
 	}
 }
 .main {
