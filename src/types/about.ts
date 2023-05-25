@@ -1,5 +1,5 @@
 export type SectionItem = {
-  id: string;
+  id: number;
   title: string;
   content: string;
   imgs?: string[];
@@ -7,9 +7,10 @@ export type SectionItem = {
 
 export type ArticleItem = {
   id: string;
-  category: string;
+  category: number;
   title: string;
   content: string;
   img: string;
   sections?: SectionItem[];
+  categoryTitle?: string;
 };

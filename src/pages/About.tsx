@@ -10,11 +10,12 @@ const About = () => {
   const { articleId } = useParams();
   const [articleData, setArticleData] = useState<ArticleItem>({
     id: '',
-    category: '',
+    category: 0,
     title: '',
     content: '',
     img: '',
     sections: [],
+    categoryTitle: '',
   });
 
   const hasArticleData = articleData.id !== '';
@@ -30,7 +31,7 @@ const About = () => {
     if (hasArticleData) {
       const matchCategory = tabList.find((v) => v.id === articleData.category);
       if (matchCategory) {
-        setArticleData({ ...articleData, category: matchCategory.title });
+        setArticleData({ ...articleData, categoryTitle: matchCategory.title });
       }
     }
   }, [articleData]);

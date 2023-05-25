@@ -8,7 +8,7 @@ import { newsValidationSchema } from 'data/validationSchema';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<NewsItem>({
-    id: '',
+    id: 0,
     type: [],
     userId: '',
     title: '',

@@ -50,20 +50,20 @@ const Contact = () => {
         <div className="contentbox gray-bg">
           <div className="main-box">
             {contactList
-              .filter((v) => v.type === '1')
+              .filter((v) => v.type === 1)
               .map((v) => (
                 <MainItem data={v} />
               ))}
             <div className="line-titlarea">
               <div className="peo-title">
                 <div className="line1" />
-                {contactTypeList.find((v) => v.id === '2')?.title}
+                {contactTypeList.find((v) => v.id === 2)?.title}
                 <div className="line2" />
               </div>
             </div>
             <ul className="team-list">
               {contactList
-                .filter((v) => v.type === '2')
+                .filter((v) => v.type === 2)
                 .map((v) => (
                   <SubItem data={v} />
                 ))}
@@ -71,13 +71,13 @@ const Contact = () => {
             <div className="line-titlarea">
               <div className="peo-title">
                 <div className="line1" />
-                {contactTypeList.find((v) => v.id === '3')?.title}
+                {contactTypeList.find((v) => v.id === 3)?.title}
                 <div className="line2" />
               </div>
             </div>
             <ul className="team-list">
               {contactList
-                .filter((v) => v.type === '3')
+                .filter((v) => v.type === 3)
                 .map((v) => (
                   <SubItem data={v} />
                 ))}

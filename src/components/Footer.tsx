@@ -15,69 +15,69 @@ type Props = {};
 
 const Footer = (props: Props) => {
   type Logo = {
-    id: string;
+    id: number;
     img: string;
     title: string;
     width?: string;
     link: string;
   };
   type SociIcon = {
-    id: string;
+    id: number;
     img: JSX.Element;
     link: string;
   };
   type MenuItem = {
-    id: string;
+    id: number;
     title?: string;
     subtitle?: string;
     link: string;
   };
   type MenuList = {
-    id: string;
+    id: number;
     title?: string;
     list: MenuItem[];
   };
 
   const logoList: Logo[] = [
     {
-      id: '1',
+      id: 1,
       img: ftlogoImg1,
       title: '',
       width: '348px',
       link: '/',
     },
     {
-      id: '2',
+      id: 2,
       img: ftlogoImg2,
       title: '',
       link: '/',
     },
     {
-      id: '3',
+      id: 3,
       img: ftlogoImg3,
       title: '',
       link: '/',
     },
     {
-      id: '4',
+      id: 4,
       img: ftlogoImg4,
       title: '',
       link: '/',
     },
     {
-      id: '5',
+      id: 5,
       img: ftlogoImg5,
       title: '',
       link: '/',
     },
     {
-      id: '6',
+      id: 6,
       img: ftlogoImg6,
       title: '',
       link: '/',
     },
     {
-      id: '7',
+      id: 7,
       img: ftlogoImg7,
       title: '',
       width: '100px',
@@ -86,7 +86,7 @@ const Footer = (props: Props) => {
   ];
   const sociIconList: SociIcon[] = [
     {
-      id: '1',
+      id: 1,
       img: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +106,7 @@ const Footer = (props: Props) => {
       link: '/',
     },
     {
-      id: '2',
+      id: 2,
       img: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +128,7 @@ const Footer = (props: Props) => {
       link: '/',
     },
     {
-      id: '3',
+      id: 3,
       img: (
         <svg
           id="Group_251"
@@ -166,62 +166,62 @@ const Footer = (props: Props) => {
   ];
   const menuList: MenuList[] = [
     {
-      id: '1',
+      id: 1,
       title: '關於LTSER_綠島',
       list: [
         {
-          id: '1',
+          id: 1,
           subtitle: '生態觀測',
           link: '/',
         },
         {
-          id: '2',
+          id: 2,
           subtitle: '環境觀測',
           link: '/',
         },
         {
-          id: '3',
+          id: 3,
           subtitle: '社會觀測',
           link: '/',
         },
       ],
     },
     {
-      id: '2',
+      id: 2,
       title: '觀測站資料',
       list: [
         {
-          id: '1',
+          id: 1,
           subtitle: '生態觀測',
           link: '/',
         },
         {
-          id: '2',
+          id: 2,
           subtitle: '環境觀測',
           link: '/',
         },
         {
-          id: '3',
+          id: 3,
           subtitle: '社會觀測',
           link: '/',
         },
       ],
     },
     {
-      id: '3',
+      id: 3,
       list: [
         {
-          id: '1',
+          id: 1,
           title: '最新消息',
           link: '/',
         },
         {
-          id: '2',
+          id: 2,
           title: '相關文獻',
           link: '/',
         },
         {
-          id: '3',
+          id: 3,
           title: '常見Q&A',
           link: '/',
         },

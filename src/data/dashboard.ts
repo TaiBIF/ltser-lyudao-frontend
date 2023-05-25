@@ -1,12 +1,6 @@
-import {
-  TabItem,
-  ColItem,
-  FieldItem,
-  QAItem,
-  TypeItem,
-  NewsItem,
-} from 'types/dashboard';
-import { ContactItem } from 'types/contact';
+import { TabItem, ColItem, FieldItem, QAItem, NewsItem } from 'types/dashboard';
+import { contactTypeList } from 'data/contact';
+import { TypeItem } from 'types/common';
 
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [
@@ -48,7 +42,7 @@ export const typeColList: ColItem[] = [
 
 export const typeFieldList: FieldItem[] = [
   {
-    id: '1',
+    id: 1,
     type: 'text',
     title: 'title',
     label: '類型',
@@ -59,30 +53,30 @@ export const typeFieldList: FieldItem[] = [
 
 export const qaTypeList: TypeItem[] = [
   {
-    id: '1',
+    id: 1,
     title: '類型DDD',
   },
   {
-    id: '2',
+    id: 2,
     title: '類型EEE',
   },
   {
-    id: '3',
+    id: 3,
     title: '類型FFF',
   },
 ];
 
 export const newsTypeList: TypeItem[] = [
   {
-    id: '1',
+    id: 1,
     title: '類型AAA',
   },
   {
-    id: '2',
+    id: 2,
     title: '類型BBB',
   },
   {
-    id: '3',
+    id: 3,
     title: '類型CCC',
   },
 ];
@@ -128,25 +122,16 @@ export const contactColList: ColItem[] = [
 
 export const contactAddFieldList: FieldItem[] = [
   {
-    id: '1',
+    id: 1,
     type: 'select',
     title: 'type',
     label: '類別',
     readonly: false,
     required: true,
-    options: [
-      {
-        id: '1',
-        title: '計畫總主持人',
-      },
-      {
-        id: '2',
-        title: '計畫執行人員',
-      },
-    ],
+    options: contactTypeList,
   },
   {
-    id: '2',
+    id: 2,
     type: 'text',
     title: 'name',
     label: '姓名',
@@ -154,7 +139,7 @@ export const contactAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: '3',
+    id: 3,
     type: 'text',
     title: 'unit',
     label: '單位',
@@ -162,7 +147,7 @@ export const contactAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: '4',
+    id: 4,
     type: 'text',
     title: 'content',
     label: '內容',
@@ -170,7 +155,7 @@ export const contactAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: '5',
+    id: 5,
     type: 'email',
     title: 'contact',
     label: '聯絡方式',
@@ -178,7 +163,7 @@ export const contactAddFieldList: FieldItem[] = [
     required: false,
   },
   {
-    id: '6',
+    id: 6,
     type: 'file',
     title: 'image',
     label: '照片',
@@ -189,25 +174,16 @@ export const contactAddFieldList: FieldItem[] = [
 
 export const contactEditFieldList: FieldItem[] = [
   {
-    id: '1',
+    id: 1,
     type: 'select',
     title: 'type',
     label: '類別',
     readonly: false,
     required: true,
-    options: [
-      {
-        id: '1',
-        title: '計畫總主持人',
-      },
-      {
-        id: '2',
-        title: '計畫執行人員',
-      },
-    ],
+    options: contactTypeList,
   },
   {
-    id: '2',
+    id: 2,
     type: 'text',
     title: 'name',
     label: '姓名',
@@ -215,7 +191,7 @@ export const contactEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: '3',
+    id: 3,
     type: 'text',
     title: 'unit',
     label: '單位',
@@ -223,7 +199,7 @@ export const contactEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: '4',
+    id: 4,
     type: 'text',
     title: 'content',
     label: '內容',
@@ -231,7 +207,7 @@ export const contactEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: '5',
+    id: 5,
     type: 'email',
     title: 'contact',
     label: '聯絡方式',
@@ -239,7 +215,7 @@ export const contactEditFieldList: FieldItem[] = [
     required: false,
   },
   {
-    id: '6',
+    id: 6,
     type: 'file',
     title: 'image',
     label: '照片',
@@ -282,8 +258,8 @@ export const qaColList: ColItem[] = [
 
 export const qaList: QAItem[] = [
   {
-    id: '1',
-    type: '1',
+    id: 1,
+    type: 1,
     question: '所有的子計畫項目是由誰規劃並統籌的呢？',
     answer: `所有的子所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？計畫項目是由誰規劃並統籌的呢？所有的子所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？計畫項目是由誰規劃並統籌的呢？所有的子所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？計畫項目是由誰規劃並統籌的呢？`,
   },
@@ -291,7 +267,7 @@ export const qaList: QAItem[] = [
 
 export const qaFieldList: FieldItem[] = [
   {
-    id: '1',
+    id: 1,
     type: 'select',
     title: 'type',
     label: '類型',
@@ -300,7 +276,7 @@ export const qaFieldList: FieldItem[] = [
     options: qaTypeList,
   },
   {
-    id: '2',
+    id: 2,
     type: 'text',
     title: 'question',
     label: '問題',
@@ -308,7 +284,7 @@ export const qaFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: '3',
+    id: 3,
     type: 'textarea',
     title: 'answer',
     label: '答案',
@@ -370,8 +346,8 @@ export const newsColList: ColItem[] = [
 
 export const newsList: NewsItem[] = [
   {
-    id: '1',
-    type: ['1', '2', '3'],
+    id: 1,
+    type: [1, 2, 3],
     userId: 'email@email.com',
     title: '2023年2月22日召開「長期社會生態核心觀測站規劃建議會」',
     content: `本次活動為聯合推廣國科會自然科學相關資料庫，促進跨領域各平台交流，以結合自然科學不同領域資料，進行學術研究...`,
@@ -391,7 +367,7 @@ export const newsList: NewsItem[] = [
 
 export const newsFieldList: FieldItem[] = [
   {
-    id: '1',
+    id: 1,
     type: 'checkbox',
     title: 'type',
     label: '消息類型',
@@ -400,7 +376,7 @@ export const newsFieldList: FieldItem[] = [
     options: newsTypeList,
   },
   {
-    id: '2',
+    id: 2,
     type: 'text',
     title: 'title',
     label: '主旨',
@@ -408,7 +384,7 @@ export const newsFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: '3',
+    id: 3,
     type: 'textarea',
     title: 'content',
     label: '內文',
@@ -416,7 +392,7 @@ export const newsFieldList: FieldItem[] = [
     required: false,
   },
   {
-    id: '4',
+    id: 4,
     type: 'file',
     title: 'image',
     label: '圖片連結',
@@ -426,7 +402,7 @@ export const newsFieldList: FieldItem[] = [
     cover: '',
   },
   {
-    id: '5',
+    id: 5,
     type: 'file',
     title: 'attachments',
     label: '附件檔案連結',
@@ -435,11 +411,37 @@ export const newsFieldList: FieldItem[] = [
     multiple: true,
   },
   {
-    id: '6',
+    id: 6,
     type: 'date',
     title: 'date',
     label: '建立日期',
     readonly: false,
     required: false,
+  },
+];
+
+// Literature 相關文獻
+
+export const literatureColList: ColItem[] = [
+  {
+    id: 'id',
+    title: '文獻id',
+    show: true,
+  },
+  {
+    id: 'name',
+    title: '文獻名稱',
+    show: true,
+  },
+];
+
+export const literatureFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'text',
+    title: 'name',
+    label: '文獻名稱',
+    readonly: false,
+    required: true,
   },
 ];

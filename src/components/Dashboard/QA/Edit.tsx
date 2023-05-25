@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import * as Yup from 'yup';
-
 import EditTemplate from 'components/Dashboard/Template/Edit';
 import { QAItem } from 'types/dashboard';
 import { qaFieldList, qaList } from 'data/dashboard';
@@ -10,8 +8,8 @@ import { qaValidationSchema } from 'data/validationSchema';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<QAItem>({
-    id: '',
-    type: '',
+    id: 0,
+    type: 0,
     question: '',
     answer: '',
   });

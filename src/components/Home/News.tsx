@@ -12,13 +12,13 @@ interface NewsProps {
 function News(props: NewsProps) {
   const { enter } = props;
   const [active, setActive] = useState({
-    category: 'all',
+    category: 0,
   });
   const [news, setNews] = useState<NewsItem[]>([]);
 
-  const isAllCategory = active.category === 'all';
+  const isAllCategory = active.category === 0;
 
-  const handleCategoryClick = (id: string) => {
+  const handleCategoryClick = (id: number) => {
     setActive({ ...active, category: id });
   };
 

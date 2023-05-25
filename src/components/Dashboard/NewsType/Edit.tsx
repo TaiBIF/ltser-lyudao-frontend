@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import * as Yup from 'yup';
-
 import EditTemplate from 'components/Dashboard/Template/Edit';
-import { TypeItem } from 'types/dashboard';
+
+import { TypeItem } from 'types/common';
+
 import { typeFieldList, newsTypeList } from 'data/dashboard';
 import { newsTypeValidationSchema } from 'data/validationSchema';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<TypeItem>({
-    id: '',
+    id: 0,
     title: '',
   });
   const { qaTypeId } = useParams();

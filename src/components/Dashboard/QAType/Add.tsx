@@ -2,12 +2,14 @@ import React from 'react';
 
 import AddTemplate from 'components/Dashboard/Template/Add';
 
+import { TypeItem } from 'types/common';
+
 import { typeFieldList } from 'data/dashboard';
 import { qaTypeValidationSchema } from 'data/validationSchema';
 
 const Add = () => {
-  const initialValues = {
-    id: '',
+  const initialValues: TypeItem = {
+    id: 0,
     title: '',
   };
   return (

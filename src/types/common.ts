@@ -1,27 +1,32 @@
 export type FinalItem = {
-  id: string;
+  id: number;
   title: string;
   link: string;
 };
 
 export type FinalMenuItem = {
-  id: string;
+  id: number;
   title: string;
   link: string;
   list?: FinalItem[];
 };
 
 export type SubMenuItem = {
-  id: string;
+  id: number;
   title: string;
   link: string;
   list?: FinalMenuItem[];
 };
 
 export type MenuItem = {
-  id: string;
+  id: number;
   title: string;
   type?: string;
   link: string;
   list?: SubMenuItem[];
+};
+
+export type TypeItem = {
+  id: number;
+  title: string;
 };

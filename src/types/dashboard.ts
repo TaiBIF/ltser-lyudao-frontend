@@ -1,4 +1,6 @@
 import { ContactItem } from 'types/contact';
+import { LiteratureItem } from 'types/literature';
+import { TypeItem } from 'types/common';
 
 export type TabItem = {
   id: string;
@@ -13,7 +15,7 @@ export type ColItem = {
 };
 
 export type FieldOptionItem = {
-  id: string;
+  id: number;
   title: string;
 };
 
@@ -23,7 +25,7 @@ export type FieldHintItem = {
 };
 
 export type FieldItem = {
-  id: string;
+  id: number;
   type: string;
   title: string;
   label: string;
@@ -36,33 +38,28 @@ export type FieldItem = {
 };
 
 export type QAItem = {
-  id?: string;
-  type: string;
+  id?: number;
+  type: number;
   question: string;
   answer: string;
 };
 
-export type TypeItem = {
-  id: string;
-  title: string;
-};
-
 type NewsAttachmentItem = {
-  id: string;
+  id: number;
   title: string;
   file: string;
 };
 
 type NewsImageItem = {
-  id: string;
+  id: number;
   title: string;
   link: string;
   cover: boolean;
 };
 
 export type NewsItem = {
-  id?: string;
-  type: string[];
+  id?: number;
+  type: number[];
   userId?: string;
   title: string;
   content: string;
@@ -73,4 +70,9 @@ export type NewsItem = {
   cover: string;
 };
 
-export type ItemTypes = ContactItem | QAItem | TypeItem | NewsItem;
+export type ItemTypes =
+  | ContactItem
+  | QAItem
+  | TypeItem
+  | NewsItem
+  | LiteratureItem;

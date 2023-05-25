@@ -24,6 +24,9 @@ import NewsEdit from 'components/Dashboard/News/Edit';
 import NewsTypeContent from 'components/Dashboard/NewsType/Content';
 import NewsTypeAdd from 'components/Dashboard/NewsType/Add';
 import NewsTypeEdit from 'components/Dashboard/NewsType/Edit';
+import LiteratureContent from 'components/Dashboard/Literature/Content';
+import LiteratureAdd from 'components/Dashboard/Literature/Add';
+import LiteratureEdit from 'components/Dashboard/Literature/Edit';
 
 function App() {
   return (
@@ -93,6 +96,18 @@ function App() {
           <Route
             path="/dashboard/news-type/edit/:qaTypeId"
             element={<Dashboard content={<NewsTypeEdit />} />}
+          />
+          <Route
+            path="/dashboard/related-literature"
+            element={<Dashboard content={<LiteratureContent />} />}
+          />
+          <Route
+            path="/dashboard/related-literature/add"
+            element={<Dashboard content={<LiteratureAdd />} />}
+          />
+          <Route
+            path="/dashboard/related-literature/edit/:literatureId"
+            element={<Dashboard content={<LiteratureEdit />} />}
           />
         </Routes>
         <Footer />

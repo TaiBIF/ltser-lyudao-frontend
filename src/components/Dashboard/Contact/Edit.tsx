@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import * as Yup from 'yup';
-
 import EditTemplate from 'components/Dashboard/Template/Edit';
 import { ContactItem } from 'types/contact';
 import { contactList } from 'data/contact';
@@ -11,8 +9,8 @@ import { contactValidationSchema } from 'data/validationSchema';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<ContactItem>({
-    id: '',
-    type: '',
+    id: 0,
+    type: 0,
     name: '',
     unit: '',
     content: '',

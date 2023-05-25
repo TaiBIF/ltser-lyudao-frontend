@@ -29,3 +29,7 @@ export const qaValidationSchema = Yup.object().shape({
 export const qaTypeValidationSchema = Yup.object().shape({
   title: Yup.string().required('此欄位為必填'),
 });
+
+export const literatureValidationSchema = Yup.object().shape({
+  name: Yup.string().required('此欄位為必填'),
+});

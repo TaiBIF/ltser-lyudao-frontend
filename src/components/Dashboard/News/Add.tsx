@@ -4,9 +4,10 @@ import AddTemplate from 'components/Dashboard/Template/Add';
 
 import { newsFieldList } from 'data/dashboard';
 import { newsValidationSchema } from 'data/validationSchema';
+import { NewsItem } from 'types/dashboard';
 
 const Add = () => {
-  const initialValues = {
+  const initialValues: NewsItem = {
     type: [],
     title: '',
     content: ``,

@@ -1,11 +1,6 @@
-export type ContactTypeItem = {
-  id: string;
-  title: string;
-};
-
 export type ContactItem = {
-  id?: string;
-  type: string;
+  id?: number;
+  type: number;
   name: string;
   unit: string;
   content: string;
