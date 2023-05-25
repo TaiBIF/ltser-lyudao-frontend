@@ -7,7 +7,7 @@ const Content = () => {
   return (
     <>
       <TableTemplate
-        page="literature"
+        page="related-literature"
         cols={literatureColList}
         data={literatureList}
       />

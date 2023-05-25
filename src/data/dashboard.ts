@@ -24,6 +24,10 @@ export const tabList: TabItem[] = [
     id: 'news-type',
     title: '最新消息類型',
   },
+  {
+    id: 'related-literature',
+    title: '相關文獻',
+  },
 ];
 
 // Types 類型

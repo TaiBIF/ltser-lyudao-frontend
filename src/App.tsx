@@ -7,6 +7,7 @@ import Footer from 'components/Footer';
 import Home from 'pages/Home';
 import About from 'pages/About';
 import Contact from 'pages/Contact';
+import RelatedLiterature from 'pages/RelatedLiterature';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import ContactContent from 'components/Dashboard/Contact/Content';
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about/:categoryId/:articleId" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/related-literature" element={<RelatedLiterature />} />
           <Route
             path="/dashboard/contact"
             element={<Dashboard content={<ContactContent />} />}

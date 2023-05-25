@@ -3,49 +3,25 @@ import React from 'react';
 import Breadcrumb from 'components/Breadcrumb';
 import MainItem from 'components/Contact/MainItem';
 import SubItem from 'components/Contact/SubItem';
+import Banner from 'components/Banner';
+
 import { contactList, contactTypeList } from 'data/contact';
 
+import { BannerData } from 'types/common';
+
+import contactBannerImg from 'image/contact_bn.png';
+
 const Contact = () => {
+  const bannerData: BannerData = {
+    title: '聯絡我們',
+    en: ['CONTACT'],
+    maskImg: true,
+    bgImg: contactBannerImg,
+  };
   return (
     <>
       <div className="innbox">
-        <div className="bn-area">
-          <div className="bntitleboxarea">
-            <div className="main-box">
-              <div className="bntitle">
-                <h2>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={18}
-                    height={18}
-                    viewBox="0 0 18 18"
-                  >
-                    <g
-                      id="Ellipse_201"
-                      data-name="Ellipse 201"
-                      fill="none"
-                      stroke="#e8d06a"
-                      strokeWidth={4}
-                    >
-                      <circle cx={9} cy={9} r={9} stroke="none" />
-                      <circle cx={9} cy={9} r={7} fill="none" />
-                    </g>
-                  </svg>
-                  CONTACT
-                </h2>
-                <h3>聯絡我們</h3>
-              </div>
-            </div>
-          </div>
-          <div className="mask-area">
-            <img src="image/maskgreen.png" alt="" />
-          </div>
-          {/*banner替換請用 background-image: url("");*/}
-          <div
-            className="pic-box"
-            style={{ backgroundImage: 'url("image/contact_bn.png")' }}
-          ></div>
-        </div>
+        <Banner data={bannerData} />
         <Breadcrumb />
         <div className="contentbox gray-bg">
           <div className="main-box">
