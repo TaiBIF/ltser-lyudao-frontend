@@ -2,7 +2,8 @@ import React from 'react';
 
 import TableTemplate from 'components/Dashboard/Template/Table';
 
-import { contactColList, contactList } from 'data/dashboard';
+import { contactColList } from 'data/dashboard';
+import { contactList } from 'data/contact';
 
 const Content = () => {
   return (

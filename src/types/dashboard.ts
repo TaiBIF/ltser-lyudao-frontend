@@ -1,3 +1,5 @@
+import { ContactItem } from 'types/contact';
+
 export type TabItem = {
   id: string;
   title: string;
@@ -8,16 +10,6 @@ export type ColItem = {
   title: string;
   show: boolean;
   textarea?: boolean;
-};
-
-export type ContactItem = {
-  id?: string;
-  type: string;
-  name: string;
-  unit: string;
-  content: string;
-  contact: string;
-  image: string;
 };
 
 export type FieldOptionItem = {

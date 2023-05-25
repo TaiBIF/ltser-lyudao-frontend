@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { gsap, Power1 } from 'gsap';
 
 import useWindowDimensions from 'hooks/useWindowDimensions';
@@ -16,6 +16,7 @@ type ActiveState = {
 
 const Header = () => {
   const { width } = useWindowDimensions();
+  const { pathname, hash, key } = useLocation();
 
   const m3titleRef = useRef<HTMLDivElement>(null);
   const menu3Ref = useRef<HTMLDivElement>(null);
@@ -81,6 +82,23 @@ const Header = () => {
       setActive({ ...active, mobile: false });
     }
   }, [width]);
+
+  useEffect(() => {
+    if (hash === '') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto',
+      });
+    } else {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        }
+      }, 0);
+    }
+  }, [pathname, hash, key]);
 
   return (
     <>

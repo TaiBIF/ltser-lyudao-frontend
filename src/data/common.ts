@@ -184,4 +184,9 @@ export const routeList: MenuItem[] = [
     title: '首頁',
     link: '',
   },
+  {
+    id: '7',
+    title: '聯絡我們',
+    link: 'contact',
+  },
 ];

@@ -1,12 +1,12 @@
 import {
   TabItem,
   ColItem,
-  ContactItem,
   FieldItem,
   QAItem,
   TypeItem,
   NewsItem,
 } from 'types/dashboard';
+import { ContactItem } from 'types/contact';
 
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [
@@ -123,36 +123,6 @@ export const contactColList: ColItem[] = [
     id: 'image',
     title: '人員照片連結',
     show: false,
-  },
-];
-
-export const contactList: ContactItem[] = [
-  {
-    id: '1',
-    type: '計畫總主持人',
-    name: '陳昭倫',
-    unit: '中央研究院',
-    content: '生物多樣性研究中心 研究員',
-    contact: 'email@email.com',
-    image: 'images/peo01.png',
-  },
-  {
-    id: '2',
-    type: '計畫執行人員',
-    name: '鍾國芳',
-    unit: '中央研究院',
-    content: '生物多樣性研究中心 副研究員',
-    contact: 'email@email.com',
-    image: 'images/peo01.png',
-  },
-  {
-    id: '3',
-    type: '計畫執行人員',
-    name: '楊松穎',
-    unit: '嘉義大學',
-    content: '水生生物科學系 助理教授',
-    contact: 'email@email.com',
-    image: 'images/peo01.png',
   },
 ];
 

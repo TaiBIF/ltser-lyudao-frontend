@@ -4,8 +4,9 @@ import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import EditTemplate from 'components/Dashboard/Template/Edit';
-import { ContactItem } from 'types/dashboard';
-import { contactEditFieldList, contactList } from 'data/dashboard';
+import { ContactItem } from 'types/contact';
+import { contactList } from 'data/contact';
+import { contactEditFieldList } from 'data/dashboard';
 import { contactValidationSchema } from 'data/validationSchema';
 
 const Edit = () => {
