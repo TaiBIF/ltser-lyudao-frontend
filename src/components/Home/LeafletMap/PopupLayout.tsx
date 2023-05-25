@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useMap } from 'react-leaflet';
 
 import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 
-const PopupLayout = () => {
+type PopupLayoutProps = {
+  setActive: Dispatch<SetStateAction<boolean>>;
+};
+
+const PopupLayout = (props: PopupLayoutProps) => {
+  const { setActive } = props;
   const map = useMap();
+
   const handleCloseClick = () => {
     map && map.closePopup();
+    setActive(false);
   };
   return (
     <>

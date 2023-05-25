@@ -1,9 +1,14 @@
 import React from 'react';
 
-const MarkerIconLayout = () => {
+type MarkerIconLayoutProps = {
+  active: boolean;
+};
+
+const MarkerIconLayout = (props: MarkerIconLayoutProps) => {
+  const { active } = props;
   return (
     <>
-      <div className="pin-icon c-map__marker">
+      <div className={`pin-icon c-map__marker ${active ? 'now' : ''}`}>
         <div className="rel">
           <svg
             className="iconpin"

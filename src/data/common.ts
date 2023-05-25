@@ -128,18 +128,18 @@ export const menuList: MenuItem[] = [
     list: [
       {
         id: '1',
-        title: '生態觀測2',
-        link: 'ecological-observation2',
+        title: '生態觀測',
+        link: 'ecological',
       },
       {
         id: '2',
-        title: '環境觀測2',
-        link: 'environmental-observation2',
+        title: '環境觀測',
+        link: 'environmental',
       },
       {
         id: '3',
-        title: '社會觀測2',
-        link: 'social-observation2',
+        title: '社會觀測',
+        link: 'social',
         list: [
           {
             id: '1',

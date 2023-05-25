@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { LatLngExpression, DivIcon } from 'leaflet';
 import {
@@ -18,15 +18,20 @@ import Filter from 'components/Home/LeafletMap/Filter';
 
 const Content = () => {
   const position: LatLngExpression = [22.6578661, 121.4676486];
+  const [active, setActive] = useState<boolean>(false);
 
   const mapIcon = () =>
     new DivIcon({
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [0, -41],
-      html: ReactDOMServer.renderToString(<MarkerIconLayout />),
+      html: ReactDOMServer.renderToString(<MarkerIconLayout active={active} />),
     });
   const icon = mapIcon();
+
+  const handleMarkerClick = () => {
+    setActive(true);
+  };
 
   return (
     <>
@@ -42,9 +47,13 @@ const Content = () => {
         <LayersControl>
           <LayersControl.Overlay name="觀測項目AAA" checked>
             <LayerGroup>
-              <Marker position={position} icon={icon}>
+              <Marker
+                position={position}
+                icon={icon}
+                eventHandlers={{ click: handleMarkerClick }}
+              >
                 <Popup closeButton={false}>
-                  <PopupLayout />
+                  <PopupLayout setActive={setActive} />
                 </Popup>
               </Marker>
             </LayerGroup>
