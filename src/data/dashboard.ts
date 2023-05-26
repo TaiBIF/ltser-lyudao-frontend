@@ -476,7 +476,6 @@ export const literatureFieldList: FieldItem[] = [
 ];
 
 // FormLink 常見表單與連結
-
 export const formLinkColList: ColItem[] = [
   {
     id: 'id',
@@ -530,7 +529,6 @@ export const formLinkFieldList: FieldItem[] = [
 ];
 
 // Download 資料下載申請資訊
-
 export const downloadStatusList: TypeItem[] = [
   {
     id: 1,

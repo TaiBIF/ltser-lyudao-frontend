@@ -1,16 +1,23 @@
-export type SectionItem = {
+export type AttachmentItem = {
   id: number | string;
-  title: string;
+  type: string;
   content: string;
-  imgs?: string[];
 };
 
-export type ArticleItem = {
-  id: string;
-  category: number | string;
-  title: string;
+export type SectionItem = {
+  id: number | string;
+  attachments_name: string;
+  attachments: AttachmentItem[];
+};
+
+export type AboutItem = {
+  id: number | string;
+  type: number | string;
+  name: string;
   content: string;
-  img: string;
+  image: string;
   sections?: SectionItem[];
-  categoryTitle?: string;
+  created?: string;
+  modified?: string;
+  typeTitle?: string;
 };

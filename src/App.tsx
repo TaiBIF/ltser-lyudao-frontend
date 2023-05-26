@@ -41,7 +41,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about/:categoryId/:articleId" element={<About />} />
+          <Route path="/about/:categoryId/:aboutId" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/related-literature" element={<RelatedLiterature />} />
           <Route path="/form-link" element={<FormLink />} />

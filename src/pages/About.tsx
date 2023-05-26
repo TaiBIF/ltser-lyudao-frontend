@@ -3,38 +3,41 @@ import { useLocation, useParams } from 'react-router-dom';
 
 import { aboutList } from 'data/about';
 import { tabList } from 'data/home';
-import { ArticleItem } from 'types/about';
+import { AboutItem } from 'types/about';
 
 const About = () => {
   const { pathname } = useLocation();
-  const { articleId } = useParams();
-  const [articleData, setArticleData] = useState<ArticleItem>({
-    id: '',
-    category: 0,
-    title: '',
+  const { aboutId } = useParams();
+  const [aboutData, setAboutData] = useState<AboutItem>({
+    id: 0,
+    type: 0,
+    name: '',
     content: '',
-    img: '',
+    image: '',
     sections: [],
-    categoryTitle: '',
+    created: '',
+    modified: '',
+    typeTitle: '',
   });
 
-  const hasArticleData = articleData.id !== '';
+  const hasArticleData = aboutData.id !== 0;
 
   useEffect(() => {
-    const matchArticle = aboutList.find((v) => v.id === articleId);
-    if (matchArticle) {
-      setArticleData({ ...matchArticle });
+    const matchAbout = aboutList.find((v) => v.id === aboutId);
+    console.log(matchAbout);
+    if (matchAbout) {
+      setAboutData({ ...matchAbout });
     }
   }, [pathname]);
 
   useEffect(() => {
     if (hasArticleData) {
-      const matchCategory = tabList.find((v) => v.id === articleData.category);
+      const matchCategory = tabList.find((v) => v.id === aboutData.type);
       if (matchCategory) {
-        setArticleData({ ...articleData, categoryTitle: matchCategory.title });
+        setAboutData({ ...aboutData, typeTitle: matchCategory.title });
       }
     }
-  }, [articleData]);
+  }, [aboutData]);
 
   return (
     <>
@@ -44,17 +47,17 @@ const About = () => {
             <div className="about-mainbox">
               <div className="leftbox">
                 <div className="title-area">
-                  <div className="ab-category">{articleData.categoryTitle}</div>
-                  <h2>{articleData.title}</h2>
+                  <div className="ab-category">{aboutData.typeTitle}</div>
+                  <h2>{aboutData.name}</h2>
                 </div>
-                <p>{articleData.content}</p>
+                <p>{aboutData.content}</p>
               </div>
               <div className="rightbox">
                 <div className="pic-area">
                   {/*上背景圖*/}
                   <div
                     className="img-area"
-                    style={{ backgroundImage: articleData.img }}
+                    style={{ backgroundImage: aboutData.image }}
                   />
                 </div>
               </div>
@@ -64,27 +67,37 @@ const About = () => {
         {/*有其他內容的才有下面這塊*/}
         <div className="ab-otherbox">
           <div className="main-box">
-            {articleData.sections &&
-              articleData.sections.map((v) => {
-                const { id, title, content, imgs } = v;
+            {aboutData.sections &&
+              aboutData.sections.map((section) => {
+                const { id, attachments_name, attachments } = section;
                 return (
                   <div key={id} className="ab-item">
-                    <div className="titlebox">{title}</div>
-                    <div className="editer-area">
-                      <p className="center marb_20">{content}</p>
-                      <div className="main-1280">
-                        {imgs?.map((img, i) => {
-                          const isLastItem = i === imgs.length - 1;
-                          return (
-                            <img
-                              className={isLastItem ? '' : 'marb_20'}
-                              src={img}
-                              alt=""
-                            />
-                          );
-                        })}
-                      </div>
-                    </div>
+                    <div className="titlebox">{attachments_name}</div>
+                    {attachments.map((attatchment, i) => {
+                      const { id, type, content } = attatchment;
+                      const isLastItem = i === attachments.length - 1;
+                      const renderContent = () => {
+                        switch (type) {
+                          case 'text':
+                            return <p className="center marb_20">{content}</p>;
+                          case 'image':
+                            return (
+                              <div className="main-1280">
+                                <img
+                                  className={isLastItem ? '' : 'marb_20'}
+                                  src={content}
+                                  alt=""
+                                />
+                              </div>
+                            );
+                        }
+                      };
+                      return (
+                        <div key={id} className="editer-area">
+                          {renderContent()}
+                        </div>
+                      );
+                    })}
                   </div>
                 );
               })}
