@@ -8,6 +8,7 @@ import Home from 'pages/Home';
 import About from 'pages/About';
 import Contact from 'pages/Contact';
 import RelatedLiterature from 'pages/RelatedLiterature';
+import FormLink from 'pages/FormLink';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import ContactContent from 'components/Dashboard/Contact/Content';
@@ -28,6 +29,9 @@ import NewsTypeEdit from 'components/Dashboard/NewsType/Edit';
 import LiteratureContent from 'components/Dashboard/Literature/Content';
 import LiteratureAdd from 'components/Dashboard/Literature/Add';
 import LiteratureEdit from 'components/Dashboard/Literature/Edit';
+import FormLinkContent from 'components/Dashboard/FormLink/Content';
+import FormLinkAdd from 'components/Dashboard/FormLink/Add';
+import FormLinkEdit from 'components/Dashboard/FormLink/Edit';
 
 function App() {
   return (
@@ -39,6 +43,7 @@ function App() {
           <Route path="/about/:categoryId/:articleId" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/related-literature" element={<RelatedLiterature />} />
+          <Route path="/form-link" element={<FormLink />} />
           <Route
             path="/dashboard/contact"
             element={<Dashboard content={<ContactContent />} />}
@@ -110,6 +115,18 @@ function App() {
           <Route
             path="/dashboard/related-literature/edit/:literatureId"
             element={<Dashboard content={<LiteratureEdit />} />}
+          />
+          <Route
+            path="/dashboard/form-link"
+            element={<Dashboard content={<FormLinkContent />} />}
+          />
+          <Route
+            path="/dashboard/form-link/add"
+            element={<Dashboard content={<FormLinkAdd />} />}
+          />
+          <Route
+            path="/dashboard/form-link/edit/:formLinkId"
+            element={<Dashboard content={<FormLinkEdit />} />}
           />
         </Routes>
         <Footer />

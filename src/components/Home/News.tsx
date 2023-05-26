@@ -9,16 +9,20 @@ interface NewsProps {
   enter: EnterState;
 }
 
+type ActiveState = {
+  category: number | string;
+};
+
 function News(props: NewsProps) {
   const { enter } = props;
-  const [active, setActive] = useState({
+  const [active, setActive] = useState<ActiveState>({
     category: 0,
   });
   const [news, setNews] = useState<NewsItem[]>([]);
 
   const isAllCategory = active.category === 0;
 
-  const handleCategoryClick = (id: number) => {
+  const handleCategoryClick = (id: number | string) => {
     setActive({ ...active, category: id });
   };
 

@@ -1,6 +1,6 @@
 export type ContactItem = {
-  id?: number;
-  type: number;
+  id?: number | string;
+  type: number | string;
   name: string;
   unit: string;
   content: string;

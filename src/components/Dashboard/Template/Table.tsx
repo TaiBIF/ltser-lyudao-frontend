@@ -59,9 +59,11 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                         <td key={key}>
                           <div
                             className={`${
-                              matchCol.textarea
+                              matchCol.space === 'text'
                                 ? 'c-table__td c-table__td--text'
                                 : 'c-table__td'
+                            } ${
+                              matchCol.space === 'date' ? 'text-nowrap' : ''
                             }`}
                           >
                             {Array.isArray(value) ? (

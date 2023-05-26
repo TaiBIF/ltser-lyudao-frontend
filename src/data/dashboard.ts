@@ -28,6 +28,10 @@ export const tabList: TabItem[] = [
     id: 'related-literature',
     title: '相關文獻',
   },
+  {
+    id: 'form-link',
+    title: '常見表單與連結',
+  },
 ];
 
 // Types 類型
@@ -250,13 +254,13 @@ export const qaColList: ColItem[] = [
     id: 'question',
     title: '問題',
     show: true,
-    textarea: true,
+    space: 'text',
   },
   {
     id: 'answer',
     title: '答案',
     show: true,
-    textarea: true,
+    space: 'text',
   },
 ];
 
@@ -318,13 +322,13 @@ export const newsColList: ColItem[] = [
     id: 'title',
     title: '主旨',
     show: true,
-    textarea: true,
+    space: 'text',
   },
   {
     id: 'content',
     title: '內文',
     show: true,
-    textarea: true,
+    space: 'text',
   },
   {
     id: 'cover',
@@ -345,6 +349,7 @@ export const newsColList: ColItem[] = [
     id: 'date',
     title: '消息日期',
     show: true,
+    space: 'date',
   },
 ];
 
@@ -445,6 +450,59 @@ export const literatureFieldList: FieldItem[] = [
     type: 'text',
     title: 'name',
     label: '文獻名稱',
+    readonly: false,
+    required: true,
+  },
+];
+
+// FormLink 常見表單與連結
+
+export const formLinkColList: ColItem[] = [
+  {
+    id: 'id',
+    title: '資源id',
+    show: true,
+  },
+  {
+    id: 'name',
+    title: '資源名稱',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'attachments',
+    title: '資源連結',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'created',
+    title: '建立日期',
+    show: true,
+    space: 'date',
+  },
+  {
+    id: 'modified',
+    title: '更新日期',
+    show: true,
+    space: 'date',
+  },
+];
+
+export const formLinkFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'text',
+    title: 'name',
+    label: '資源名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 1,
+    type: 'text',
+    title: 'attachments',
+    label: '資源連結',
     readonly: false,
     required: true,
   },

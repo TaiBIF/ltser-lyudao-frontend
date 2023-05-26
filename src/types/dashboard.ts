@@ -1,6 +1,7 @@
 import { ContactItem } from 'types/contact';
 import { LiteratureItem } from 'types/literature';
 import { TypeItem } from 'types/common';
+import { FormLinkItem } from 'types/formLink';
 
 export type TabItem = {
   id: string;
@@ -11,11 +12,11 @@ export type ColItem = {
   id: string;
   title: string;
   show: boolean;
-  textarea?: boolean;
+  space?: string;
 };
 
 export type FieldOptionItem = {
-  id: number;
+  id: string | number;
   title: string;
 };
 
@@ -25,7 +26,7 @@ export type FieldHintItem = {
 };
 
 export type FieldItem = {
-  id: number;
+  id: string | number;
   type: string;
   title: string;
   label: string;
@@ -38,27 +39,27 @@ export type FieldItem = {
 };
 
 export type QAItem = {
-  id?: number;
-  type: number;
+  id?: number | string;
+  type: number | string;
   question: string;
   answer: string;
 };
 
 type NewsAttachmentItem = {
-  id: number;
+  id: string | number;
   title: string;
   file: string;
 };
 
 type NewsImageItem = {
-  id: number;
+  id: string | number;
   title: string;
   link: string;
   cover: boolean;
 };
 
 export type NewsItem = {
-  id?: number;
+  id?: number | string;
   type: number[];
   userId?: string;
   title: string;
@@ -75,4 +76,5 @@ export type ItemTypes =
   | QAItem
   | TypeItem
   | NewsItem
-  | LiteratureItem;
+  | LiteratureItem
+  | FormLinkItem;

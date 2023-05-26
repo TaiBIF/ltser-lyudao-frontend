@@ -1,14 +1,14 @@
 export type NewsItem = {
-  id: number;
+  id: number | string;
   title: string;
   content: string;
-  category: number;
+  category: number | string;
   date: string;
   link: string;
 };
 
 export type CategoryItem = {
-  id: number;
+  id: number | string;
   title: string;
   colorClass: string;
 };
@@ -20,7 +20,7 @@ export type EnterState = {
 };
 
 export type TabItem = {
-  id: number;
+  id: number | string;
   title: string;
   subtitle: [string, string];
   link: string;

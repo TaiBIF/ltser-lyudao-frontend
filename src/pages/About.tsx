@@ -44,7 +44,7 @@ const About = () => {
             <div className="about-mainbox">
               <div className="leftbox">
                 <div className="title-area">
-                  <div className="ab-category">{articleData.category}</div>
+                  <div className="ab-category">{articleData.categoryTitle}</div>
                   <h2>{articleData.title}</h2>
                 </div>
                 <p>{articleData.content}</p>
