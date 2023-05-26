@@ -41,13 +41,13 @@ const Contact = () => {
               {contactList
                 .filter((v) => v.type === 2)
                 .map((v) => (
-                  <SubItem data={v} />
+                  <SubItem data={v} contact={false} />
                 ))}
             </ul>
             <div className="line-titlarea">
               <div className="peo-title">
                 <div className="line1" />
-                {contactTypeList.find((v) => v.id === 3)?.title}
+                聯絡方式
                 <div className="line2" />
               </div>
             </div>
@@ -55,7 +55,7 @@ const Contact = () => {
               {contactList
                 .filter((v) => v.type === 3)
                 .map((v) => (
-                  <SubItem data={v} />
+                  <SubItem data={v} contact={true} />
                 ))}
             </ul>
           </div>

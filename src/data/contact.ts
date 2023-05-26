@@ -27,7 +27,7 @@ export const contactTypeList: TypeItem[] = [
   },
   {
     id: 3,
-    title: '聯絡方式',
+    title: '其他人員',
   },
 ];
 

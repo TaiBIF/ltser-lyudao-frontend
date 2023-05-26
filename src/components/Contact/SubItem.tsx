@@ -6,10 +6,11 @@ import peoIconImg from 'image/peoicon2.svg';
 
 type SubItemProps = {
   data: ContactItem;
+  contact: boolean;
 };
 
 const SubItem = (props: SubItemProps) => {
-  const { data } = props;
+  const { data, contact } = props;
   const { name, unit, content, image } = data;
   return (
     <>
@@ -27,6 +28,7 @@ const SubItem = (props: SubItemProps) => {
             <div className="company">{unit}</div>
             <div className="job-unit">{content}</div>
             <h2 className="peo-name">{name}</h2>
+            {contact && <p className="mailtxt">信箱：{data.contact}</p>}
           </div>
         </div>
       </li>
