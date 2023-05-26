@@ -8,9 +8,14 @@ import {
 } from 'types/dashboard';
 import { contactTypeList } from 'data/contact';
 import { TypeItem } from 'types/common';
+import { aboutTypeList } from 'data/about';
 
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [
+  {
+    id: 'about',
+    title: '計畫介紹',
+  },
   {
     id: 'contact',
     title: '聯絡我們',
@@ -101,7 +106,99 @@ export const newsTypeList: TypeItem[] = [
   },
 ];
 
-// Contact 關於我們
+// About 計畫介紹
+export const aboutColList: ColItem[] = [
+  {
+    id: 'id',
+    title: '觀測項目id',
+    show: true,
+    param: true,
+  },
+  {
+    id: 'type',
+    title: '觀測類型',
+    show: true,
+    space: 'nowrap',
+    relate: aboutTypeList,
+  },
+  {
+    id: 'name',
+    title: '觀測項目名稱',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'content',
+    title: '觀測項目簡介',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'image',
+    title: '觀測項目介紹圖片連結',
+    show: true,
+  },
+  {
+    id: 'attachments_name',
+    title: '補充資訊名稱',
+    show: true,
+  },
+  {
+    id: 'attachments',
+    title: '補充資訊',
+    show: true,
+  },
+  {
+    id: 'created',
+    title: '建立日期',
+    show: true,
+    space: 'date',
+  },
+  {
+    id: 'modified',
+    title: '更新日期',
+    show: true,
+    space: 'date',
+  },
+];
+
+export const aboutFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'select',
+    title: 'type',
+    label: '觀測類型',
+    readonly: false,
+    required: true,
+    options: aboutTypeList,
+  },
+  {
+    id: 2,
+    type: 'text',
+    title: 'name',
+    label: '觀測項目名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 3,
+    type: 'text',
+    title: 'content',
+    label: '觀測項目簡介',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 5,
+    type: 'file',
+    title: 'image',
+    label: '觀測項目介紹圖片連結',
+    readonly: false,
+    required: true,
+  },
+];
+
+// Contact 聯絡我們
 export const contactColList: ColItem[] = [
   {
     id: 'id',

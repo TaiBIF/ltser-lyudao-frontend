@@ -38,3 +38,9 @@ export const formLinkValidationSchema = Yup.object().shape({
   name: Yup.string().required('此欄位為必填'),
   attachments: Yup.string().required('此欄位為必填'),
 });
+
+export const aboutValidationSchema = Yup.object().shape({
+  type: Yup.string().required('此欄位為必填'),
+  name: Yup.string().required('此欄位為必填'),
+  image: Yup.string().required('此欄位為必填'),
+});

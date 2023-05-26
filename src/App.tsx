@@ -11,6 +11,9 @@ import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
+import AboutContent from 'components/Dashboard/About/Content';
+import AboutAdd from 'components/Dashboard/About/Add';
+import AboutEdit from 'components/Dashboard/About/Edit';
 import ContactContent from 'components/Dashboard/Contact/Content';
 import ContactAdd from 'components/Dashboard/Contact/Add';
 import ContactEdit from 'components/Dashboard/Contact/Edit';
@@ -45,6 +48,18 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/related-literature" element={<RelatedLiterature />} />
           <Route path="/form-link" element={<FormLink />} />
+          <Route
+            path="/dashboard/about"
+            element={<Dashboard content={<AboutContent />} />}
+          />
+          <Route
+            path="/dashboard/about/add"
+            element={<Dashboard content={<AboutAdd />} />}
+          />
+          <Route
+            path="/dashboard/about/edit/:aboutId"
+            element={<Dashboard content={<AboutEdit />} />}
+          />
           <Route
             path="/dashboard/contact"
             element={<Dashboard content={<ContactContent />} />}

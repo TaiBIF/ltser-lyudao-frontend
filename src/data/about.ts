@@ -1,8 +1,24 @@
+import { TypeItem } from 'types/common';
 import { AboutItem } from 'types/about';
 
 import abImg from 'image/abimg.png';
 import abDemoImg1 from 'image/ab-demo1.png';
 import abDemoImg2 from 'image/ab-demo2.png';
+
+export const aboutTypeList: TypeItem[] = [
+  {
+    id: 1,
+    title: '生態觀測',
+  },
+  {
+    id: 2,
+    title: '環境觀測',
+  },
+  {
+    id: 3,
+    title: '社會觀測',
+  },
+];
 
 export const aboutList: AboutItem[] = [
   {

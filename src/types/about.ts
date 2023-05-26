@@ -11,7 +11,7 @@ export type SectionItem = {
 };
 
 export type AboutItem = {
-  id: number | string;
+  id?: number | string;
   type: number | string;
   name: string;
   content: string;
