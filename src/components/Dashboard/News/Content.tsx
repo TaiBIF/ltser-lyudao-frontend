@@ -1,13 +1,20 @@
 import React from 'react';
 
 import TableTemplate from 'components/Dashboard/Template/Table';
+import AddBtn from 'components/Dashboard/AddBtn';
 
 import { newsColList, newsList } from 'data/dashboard';
 
 const Content = () => {
+  const PAGE: string = 'news';
   return (
     <>
-      <TableTemplate page="news" cols={newsColList} data={newsList} />
+      <TableTemplate
+        page={PAGE}
+        cols={newsColList}
+        data={newsList}
+        renderAction={() => <AddBtn page={PAGE} />}
+      />
     </>
   );
 };

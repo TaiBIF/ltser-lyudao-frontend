@@ -32,6 +32,7 @@ import LiteratureEdit from 'components/Dashboard/Literature/Edit';
 import FormLinkContent from 'components/Dashboard/FormLink/Content';
 import FormLinkAdd from 'components/Dashboard/FormLink/Add';
 import FormLinkEdit from 'components/Dashboard/FormLink/Edit';
+import Download from 'components/Dashboard/Download';
 
 function App() {
   return (
@@ -127,6 +128,10 @@ function App() {
           <Route
             path="/dashboard/form-link/edit/:formLinkId"
             element={<Dashboard content={<FormLinkEdit />} />}
+          />
+          <Route
+            path="/dashboard/download"
+            element={<Dashboard content={<Download />} />}
           />
         </Routes>
         <Footer />

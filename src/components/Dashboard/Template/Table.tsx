@@ -7,18 +7,15 @@ interface TableTemplateProps<T> {
   page: string;
   cols: ColItem[];
   data: T[];
+  renderAction: () => React.ReactElement | null;
 }
 
 const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
-  const { page, cols, data } = props;
+  const { page, cols, data, renderAction } = props;
 
   return (
     <>
-      <div className="d-flex justify-content-end">
-        <Link className="btn btn-primary" to={`/dashboard/${page}/add`}>
-          新增
-        </Link>
-      </div>
+      {renderAction()}
       <div className="overflow-auto">
         <table className="table table-hover c-table">
           <thead>
@@ -42,43 +39,72 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                 <tr key={id}>
                   {Object.entries(v).map(([key, value]) => {
                     const matchCol = cols.find((col) => col.id === key);
-                    const isId = key === 'id';
-                    return (
-                      matchCol &&
-                      matchCol.show &&
-                      (isId ? (
-                        <td key={key}>
-                          <Link
-                            className="link-primary"
-                            to={`/dashboard/${page}/edit/${value}`}
-                          >
-                            {value}
-                          </Link>
-                        </td>
-                      ) : (
-                        <td key={key}>
-                          <div
-                            className={`${
-                              matchCol.space === 'text'
-                                ? 'c-table__td c-table__td--text'
-                                : 'c-table__td'
-                            } ${
-                              matchCol.space === 'date' ? 'text-nowrap' : ''
-                            }`}
-                          >
-                            {Array.isArray(value) ? (
+                    if (matchCol && matchCol.show) {
+                      if (matchCol.param) {
+                        return (
+                          <td key={key}>
+                            <div className="c-table__td">
+                              <Link
+                                className="link-primary"
+                                to={`/dashboard/${page}/edit/${value}`}
+                              >
+                                {value}
+                              </Link>
+                            </div>
+                          </td>
+                        );
+                      } else {
+                        const formatSpaceClass = () => {
+                          switch (matchCol.space) {
+                            case 'text':
+                              return 'c-table__td c-table__td--text';
+                            case 'date':
+                            case 'nowrap':
+                              return 'c-table__td text-nowrap';
+                            default:
+                              return 'c-table__td';
+                          }
+                        };
+                        const renderTd = () => {
+                          if (Array.isArray(value)) {
+                            return (
                               <ul className="list-unstyled">
                                 {value.map((v, i) => {
-                                  return <li key={i}>{v}</li>;
+                                  if (matchCol.relate) {
+                                    const matchRelate = matchCol.relate.find(
+                                      (relateV) => relateV.id === v
+                                    );
+                                    return (
+                                      matchRelate && (
+                                        <li key={i}>{matchRelate.title}</li>
+                                      )
+                                    );
+                                  } else {
+                                    return <li key={i}>{v}</li>;
+                                  }
                                 })}
                               </ul>
-                            ) : (
-                              value
-                            )}
-                          </div>
-                        </td>
-                      ))
-                    );
+                            );
+                          } else {
+                            if (matchCol.relate) {
+                              const matchRelate = matchCol.relate.find(
+                                (v) => v.id === value
+                              );
+                              return matchRelate && matchRelate.title;
+                            } else {
+                              return value;
+                            }
+                          }
+                        };
+                        return (
+                          <td key={key}>
+                            <div className={`${formatSpaceClass()}`}>
+                              {renderTd()}
+                            </div>
+                          </td>
+                        );
+                      }
+                    }
                   })}
                 </tr>
               );

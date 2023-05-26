@@ -12,7 +12,9 @@ export type ColItem = {
   id: string;
   title: string;
   show: boolean;
+  param?: boolean;
   space?: string;
+  relate?: TypeItem[];
 };
 
 export type FieldOptionItem = {
@@ -71,10 +73,22 @@ export type NewsItem = {
   cover: string;
 };
 
+export type DownloadItem = {
+  id: number | string;
+  file: string;
+  user_email: string;
+  unit_role: number | string;
+  purpose: string;
+  status: number | string;
+  submitted: string;
+  expired: string;
+};
+
 export type ItemTypes =
   | ContactItem
   | QAItem
   | TypeItem
   | NewsItem
   | LiteratureItem
-  | FormLinkItem;
+  | FormLinkItem
+  | DownloadItem;

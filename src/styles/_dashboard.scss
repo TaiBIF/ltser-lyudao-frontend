@@ -12,9 +12,11 @@
     min-height: 100vh;
   }
 }
+
 .c-table {
   &__td {
     min-width: 5rem;
+    line-height: 150%;
     &--text {
       min-width: 15rem;
       @include text-truncate(2);

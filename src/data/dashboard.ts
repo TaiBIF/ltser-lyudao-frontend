@@ -1,4 +1,11 @@
-import { TabItem, ColItem, FieldItem, QAItem, NewsItem } from 'types/dashboard';
+import {
+  TabItem,
+  ColItem,
+  FieldItem,
+  QAItem,
+  NewsItem,
+  DownloadItem,
+} from 'types/dashboard';
 import { contactTypeList } from 'data/contact';
 import { TypeItem } from 'types/common';
 
@@ -32,18 +39,23 @@ export const tabList: TabItem[] = [
     id: 'form-link',
     title: '常見表單與連結',
   },
+  {
+    id: 'download',
+    title: '資料下載申請資訊',
+  },
 ];
 
 // Types 類型
 export const typeColList: ColItem[] = [
   {
     id: 'id',
-    title: 'ID',
+    title: '類型id',
     show: true,
+    param: true,
   },
   {
     id: 'title',
-    title: '類型',
+    title: '類型名稱',
     show: true,
   },
 ];
@@ -95,11 +107,14 @@ export const contactColList: ColItem[] = [
     id: 'id',
     title: '人員id',
     show: true,
+    param: true,
   },
   {
     id: 'type',
     title: '人員類型',
     show: true,
+    space: 'nowrap',
+    relate: contactTypeList,
   },
   {
     id: 'name',
@@ -242,13 +257,15 @@ export const contactEditFieldList: FieldItem[] = [
 export const qaColList: ColItem[] = [
   {
     id: 'id',
-    title: 'ID',
+    title: '類型id',
     show: true,
+    param: true,
   },
   {
     id: 'type',
     title: '問題類型',
     show: true,
+    relate: qaTypeList,
   },
   {
     id: 'question',
@@ -307,11 +324,13 @@ export const newsColList: ColItem[] = [
     id: 'id',
     title: '消息id',
     show: true,
+    param: true,
   },
   {
     id: 'type',
     title: '消息類型',
     show: true,
+    relate: newsTypeList,
   },
   {
     id: 'userId',
@@ -436,6 +455,7 @@ export const literatureColList: ColItem[] = [
     id: 'id',
     title: '文獻id',
     show: true,
+    param: true,
   },
   {
     id: 'name',
@@ -462,6 +482,7 @@ export const formLinkColList: ColItem[] = [
     id: 'id',
     title: '資源id',
     show: true,
+    param: true,
   },
   {
     id: 'name',
@@ -505,5 +526,103 @@ export const formLinkFieldList: FieldItem[] = [
     label: '資源連結',
     readonly: false,
     required: true,
+  },
+];
+
+// Download 資料下載申請資訊
+
+export const downloadStatusList: TypeItem[] = [
+  {
+    id: 1,
+    title: '檔案處理中',
+  },
+  {
+    id: 2,
+    title: '檔案就緒',
+  },
+  {
+    id: 3,
+    title: '過期(檔案保存一年)',
+  },
+];
+
+export const downloadUnitRoleList: TypeItem[] = [
+  {
+    id: 1,
+    title: '研究人員',
+  },
+  {
+    id: 2,
+    title: '公家機關單位',
+  },
+  {
+    id: 3,
+    title: '教師',
+  },
+  {
+    id: 4,
+    title: '學生',
+  },
+  {
+    id: 5,
+    title: '一般大眾',
+  },
+];
+
+export const downloadColList: ColItem[] = [
+  {
+    id: 'id',
+    title: '申請id',
+    show: true,
+  },
+  {
+    id: 'file',
+    title: '下載檔案連結',
+    show: true,
+  },
+  {
+    id: 'user_email',
+    title: '下載者信箱',
+    show: true,
+  },
+  {
+    id: 'unit_role',
+    title: '下載者身份',
+    show: true,
+    relate: downloadUnitRoleList,
+  },
+  {
+    id: 'purpose',
+    title: '下載原因',
+    show: true,
+  },
+  {
+    id: 'status',
+    title: '狀態',
+    show: true,
+    relate: downloadStatusList,
+  },
+  {
+    id: 'submitted',
+    title: '請求日期',
+    show: true,
+  },
+  {
+    id: 'expired',
+    title: '過期日期',
+    show: true,
+  },
+];
+
+export const downloadList: DownloadItem[] = [
+  {
+    id: 1,
+    file: 'test.pdf',
+    user_email: 'email@email.com',
+    unit_role: 1,
+    purpose: '...',
+    status: 1,
+    submitted: '2023-05-26',
+    expired: '2023-05-26',
   },
 ];
