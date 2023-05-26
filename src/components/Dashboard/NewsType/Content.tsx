@@ -3,7 +3,8 @@ import React from 'react';
 import TableTemplate from 'components/Dashboard/Template/Table';
 import AddBtn from 'components/Dashboard/AddBtn';
 
-import { typeColList, newsTypeList } from 'data/dashboard';
+import { typeColList } from 'data/dashboard';
+import { newsTypeList } from 'data/news';
 
 const Content = () => {
   const PAGE: string = 'news-type';

@@ -5,8 +5,9 @@ import EditTemplate from 'components/Dashboard/Template/Edit';
 
 import { TypeItem } from 'types/common';
 
-import { typeFieldList, newsTypeList } from 'data/dashboard';
+import { typeFieldList } from 'data/dashboard';
 import { newsTypeValidationSchema } from 'data/validationSchema';
+import { newsTypeList } from 'data/news';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<TypeItem>({

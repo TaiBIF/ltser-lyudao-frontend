@@ -39,8 +39,13 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                 <tr key={id}>
                   {Object.entries(v).map(([key, value]) => {
                     const matchCol = cols.find((col) => col.id === key);
+                    console.log(matchCol);
+
                     if (matchCol && matchCol.show) {
-                      if (matchCol.param) {
+                      if (
+                        matchCol.param &&
+                        (typeof value === 'string' || typeof value === 'number')
+                      ) {
                         return (
                           <td key={key}>
                             <div className="c-table__td">
@@ -53,57 +58,61 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                             </div>
                           </td>
                         );
-                      } else {
-                        const formatSpaceClass = () => {
-                          switch (matchCol.space) {
-                            case 'text':
-                              return 'c-table__td c-table__td--text';
-                            case 'date':
-                            case 'nowrap':
-                              return 'c-table__td text-nowrap';
-                            default:
-                              return 'c-table__td';
-                          }
-                        };
-                        const renderTd = () => {
-                          if (Array.isArray(value)) {
-                            return (
-                              <ul className="list-unstyled">
-                                {value.map((v, i) => {
-                                  if (matchCol.relate) {
-                                    const matchRelate = matchCol.relate.find(
-                                      (relateV) => relateV.id === v
-                                    );
-                                    return (
-                                      matchRelate && (
-                                        <li key={i}>{matchRelate.title}</li>
-                                      )
-                                    );
-                                  } else {
-                                    return <li key={i}>{v}</li>;
-                                  }
-                                })}
-                              </ul>
-                            );
-                          } else {
-                            if (matchCol.relate) {
-                              const matchRelate = matchCol.relate.find(
-                                (v) => v.id === value
-                              );
-                              return matchRelate && matchRelate.title;
-                            } else {
-                              return value;
-                            }
-                          }
-                        };
-                        return (
-                          <td key={key}>
-                            <div className={`${formatSpaceClass()}`}>
-                              {renderTd()}
-                            </div>
-                          </td>
-                        );
                       }
+                      if (matchCol.id === 'cover') {
+                        console.log('cover');
+                        return <td key={key}></td>;
+                      }
+                      const formatSpaceClass = () => {
+                        switch (matchCol.space) {
+                          case 'text':
+                            return 'c-table__td c-table__td--text';
+                          case 'date':
+                          case 'nowrap':
+                            return 'c-table__td text-nowrap';
+                          default:
+                            return 'c-table__td';
+                        }
+                      };
+                      const renderTd = () => {
+                        if (Array.isArray(value)) {
+                          return (
+                            <ul className="list-unstyled">
+                              {value.map((v, i) => {
+                                const { id, name } = v;
+                                if (matchCol.relate) {
+                                  const matchRelate = matchCol.relate.find(
+                                    (relateV) => relateV.id === id
+                                  );
+                                  return (
+                                    matchRelate && (
+                                      <li key={i}>{matchRelate.title}</li>
+                                    )
+                                  );
+                                } else {
+                                  return <li key={i}>{name}</li>;
+                                }
+                              })}
+                            </ul>
+                          );
+                        } else {
+                          if (matchCol.relate) {
+                            const matchRelate = matchCol.relate.find(
+                              (v) => v.id === value
+                            );
+                            return matchRelate && matchRelate.title;
+                          } else {
+                            return value;
+                          }
+                        }
+                      };
+                      return (
+                        <td key={key}>
+                          <div className={`${formatSpaceClass()}`}>
+                            {renderTd()}
+                          </div>
+                        </td>
+                      );
                     }
                   })}
                 </tr>

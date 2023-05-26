@@ -2,21 +2,22 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import EditTemplate from 'components/Dashboard/Template/Edit';
-import { NewsItem } from 'types/dashboard';
-import { newsFieldList, newsList } from 'data/dashboard';
+import { NewsItem } from 'types/news';
+import { newsFieldList } from 'data/dashboard';
 import { newsValidationSchema } from 'data/validationSchema';
+import { newsList } from 'data/news';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<NewsItem>({
     id: 0,
-    type: [],
+    type: 0,
     userId: '',
     title: '',
     content: ``,
     image: [],
     attachments: [],
-    date: '',
-    cover: '',
+    created: '',
+    modified: '',
   });
   const { newsId } = useParams();
 

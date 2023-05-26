@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { NewsItem, EnterState } from 'types/home';
+import { EnterState } from 'types/home';
+import { NewsItem } from 'types/news';
 
-import { newsList, categoryList } from 'data/home';
+import { newsList, newsTypeList } from 'data/news';
 
 interface NewsProps {
   enter: EnterState;
 }
 
 type ActiveState = {
-  category: number | string;
+  type: number | string;
 };
 
 function News(props: NewsProps) {
   const { enter } = props;
   const [active, setActive] = useState<ActiveState>({
-    category: 0,
+    type: 0,
   });
   const [news, setNews] = useState<NewsItem[]>([]);
 
-  const isAllCategory = active.category === 0;
+  const isAllCategory = active.type === 0;
 
   const handleCategoryClick = (id: number | string) => {
-    setActive({ ...active, category: id });
+    setActive({ ...active, type: id });
   };
 
   useEffect(() => {
@@ -31,11 +32,11 @@ function News(props: NewsProps) {
       setNews([...newsList.slice(0, 3)]);
     } else {
       const matchActiveCategory = newsList.filter(
-        (v) => v.category === active.category
+        (v) => v.type === active.type
       );
       setNews([...matchActiveCategory]);
     }
-  }, [active.category]);
+  }, [active.type]);
 
   return (
     <>
@@ -47,13 +48,13 @@ function News(props: NewsProps) {
               <ul>
                 {/*目前選取的給class now*/}
                 {/*目前預設4種顏色 無限新增類別的話可能要開後台填顏色*/}
-                {categoryList.map((v) => {
+                {newsTypeList.map((v) => {
                   const { id, title, colorClass } = v;
                   return (
                     <li
                       key={id}
                       className={`${
-                        active.category === id ? 'now' : ''
+                        active.type === id ? 'now' : ''
                       } ${colorClass}`}
                       onClick={() => handleCategoryClick(id)}
                     >
@@ -66,20 +67,16 @@ function News(props: NewsProps) {
             <div className="news-list">
               <ul>
                 {news.map((v) => {
-                  const { id, title, content, category, date, link } = v;
-                  const matchCategory = categoryList.find(
-                    (v) => v.id === category
-                  );
+                  const { id, type, title, content, modified } = v;
+                  const matchType = newsTypeList.find((v) => v.id === type);
                   return (
                     <li key={id}>
-                      <Link to={link}>
+                      <Link to={`/news/${id}`}>
                         <div className="cat-date">
-                          <div
-                            className={`category ${matchCategory?.colorClass}`}
-                          >
-                            {matchCategory?.title}
+                          <div className={`category ${matchType?.colorClass}`}>
+                            {matchType?.title}
                           </div>
-                          <div className="date">{date}</div>
+                          <div className="date">{modified}</div>
                         </div>
                         <h3>{title}</h3>
                         <p>{content}</p>

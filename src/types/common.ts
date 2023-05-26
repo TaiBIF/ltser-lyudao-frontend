@@ -53,6 +53,7 @@ export type FooterMenuItem = {
 export type TypeItem = {
   id: number | string;
   title: string;
+  colorClass?: string;
 };
 
 export type BannerData = {

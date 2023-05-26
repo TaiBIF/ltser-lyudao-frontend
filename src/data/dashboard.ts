@@ -3,11 +3,11 @@ import {
   ColItem,
   FieldItem,
   QAItem,
-  NewsItem,
   DownloadItem,
 } from 'types/dashboard';
-import { contactTypeList } from 'data/contact';
 import { TypeItem } from 'types/common';
+import { contactTypeList } from 'data/contact';
+import { newsTypeList } from 'data/news';
 
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [
@@ -83,21 +83,6 @@ export const qaTypeList: TypeItem[] = [
   {
     id: 3,
     title: '類型FFF',
-  },
-];
-
-export const newsTypeList: TypeItem[] = [
-  {
-    id: 1,
-    title: '類型AAA',
-  },
-  {
-    id: 2,
-    title: '類型BBB',
-  },
-  {
-    id: 3,
-    title: '類型CCC',
   },
 ];
 
@@ -365,31 +350,10 @@ export const newsColList: ColItem[] = [
     show: true,
   },
   {
-    id: 'date',
+    id: 'modified',
     title: '消息日期',
     show: true,
     space: 'date',
-  },
-];
-
-export const newsList: NewsItem[] = [
-  {
-    id: 1,
-    type: [1, 2, 3],
-    userId: 'email@email.com',
-    title: '2023年2月22日召開「長期社會生態核心觀測站規劃建議會」',
-    content: `本次活動為聯合推廣國科會自然科學相關資料庫，促進跨領域各平台交流，以結合自然科學不同領域資料，進行學術研究...`,
-    cover: 'test1.jpg',
-    image: ['test1.jpg', 'test2.jpg'],
-    // attachments: [
-    //   {
-    //     id: '1',
-    //     title: 'XXX',
-    //     file: 'test.pdf',
-    //   },
-    // ],
-    attachments: ['test1.pdf', 'test2.pdf', 'test3.pdf'],
-    date: '2023-05-16',
   },
 ];
 
@@ -441,7 +405,7 @@ export const newsFieldList: FieldItem[] = [
   {
     id: 6,
     type: 'date',
-    title: 'date',
+    title: 'modified',
     label: '建立日期',
     readonly: false,
     required: false,
