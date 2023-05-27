@@ -9,6 +9,7 @@ import About from 'pages/About';
 import Contact from 'pages/Contact';
 import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
+import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import ContactContent from 'components/Dashboard/Contact/Content';
@@ -45,6 +46,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/related-literature" element={<RelatedLiterature />} />
           <Route path="/form-link" element={<FormLink />} />
+          <Route
+            path="/site-data/ecological-observation"
+            element={<EcologicalObservation />}
+          />
           <Route
             path="/dashboard/contact"
             element={<Dashboard content={<ContactContent />} />}

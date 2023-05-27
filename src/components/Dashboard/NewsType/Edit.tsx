@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import EditTemplate from 'components/Dashboard/Template/Edit';
 
-import { TypeItem } from 'types/common';
+import { TypeItem } from 'types/utils';
 
 import { typeFieldList, newsTypeList } from 'data/dashboard';
 import { newsTypeValidationSchema } from 'data/validationSchema';

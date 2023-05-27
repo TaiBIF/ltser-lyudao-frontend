@@ -2,7 +2,7 @@ import React from 'react';
 
 import AddTemplate from 'components/Dashboard/Template/Add';
 
-import { TypeItem } from 'types/common';
+import { TypeItem } from 'types/utils';
 
 import { typeFieldList } from 'data/dashboard';
 import { newsTypeValidationSchema } from 'data/validationSchema';

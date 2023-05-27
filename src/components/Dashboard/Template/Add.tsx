@@ -4,7 +4,8 @@ import { Form, Formik, FormikHelpers, FormikConfig } from 'formik';
 
 import FieldLayout from 'components/Dashboard/FieldLayout';
 
-import { ItemTypes, FieldItem } from 'types/dashboard';
+import { ItemTypes } from 'types/utils';
+import { FieldItem } from 'types/utils';
 
 interface AddTemplateProps {
   initialValues: ItemTypes;

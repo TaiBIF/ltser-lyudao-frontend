@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Field, ErrorMessage, useFormikContext } from 'formik';
 
-import { FieldItem } from 'types/dashboard';
+import { FieldItem } from 'types/utils';
 
 type FileValue = {
   image: string;

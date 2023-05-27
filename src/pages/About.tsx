@@ -4,7 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { aboutList } from 'data/about';
 import { tabList } from 'data/home';
 import { AboutItem } from 'types/about';
-import { RelateState } from 'types/common';
+import { RelateState } from 'types/utils';
 
 const About = () => {
   const { pathname } = useLocation();

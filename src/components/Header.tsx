@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { gsap, Power1 } from 'gsap';
+import { gsap } from 'gsap';
 
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import { gsapSlideToggle } from 'utils/animation';
 
 import logoImg from 'image/logo.png';
 
@@ -32,7 +33,7 @@ const Header = () => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.currentTarget as HTMLDivElement;
-    const key = target.getAttribute('data-toggle') as keyof ActiveState;
+    const key = target.getAttribute('data-target') as keyof ActiveState;
     setActive({ ...active, [key]: !active[key] });
   };
 
@@ -40,37 +41,22 @@ const Header = () => {
     setActive({ ...active, menu3: false });
   };
 
-  const gsapSlideToggle = (
-    height: string,
-    target: HTMLElement,
-    state: boolean
-  ) => {
-    gsap.set(target, {
-      duration: 0.3,
-      display: state ? 'none' : 'block',
-      height: state ? 0 : height,
-      ease: Power1.easeOut,
-    });
-    gsap.to(target, {
-      duration: 0.3,
-      display: state ? 'block' : 'none',
-      height: state ? height : 0,
-      ease: Power1.easeOut,
-    });
-  };
-
   useEffect(() => {
-    if (menu3Ref.current) {
-      gsapSlideToggle('6rem', menu3Ref.current, active.menu3);
+    const target = menu3Ref.current;
+    if (target) {
+      target.style.display = 'block';
+      gsapSlideToggle('6rem', target, active.menu3);
     }
   }, [active.menu3]);
 
   useEffect(() => {
-    if (mainMenuRef.current) {
+    const target = mainMenuRef.current;
+    if (target) {
       if (active.mobile) {
-        gsapSlideToggle('auto', mainMenuRef.current, active.mainMenu);
+        target.style.display = 'block';
+        gsapSlideToggle('auto', target, active.mainMenu);
       } else {
-        gsap.killTweensOf(mainMenuRef.current);
+        gsap.killTweensOf(target);
       }
     }
   }, [active.mobile, active.mainMenu]);
@@ -106,7 +92,7 @@ const Header = () => {
         <div
           className="mb-hambruger"
           onClick={handleClick}
-          data-toggle="mainMenu"
+          data-target="mainMenu"
         >
           <svg
             className={`ham hamRotate ham4 ${
@@ -143,7 +129,7 @@ const Header = () => {
               {menuList.map((item) => {
                 const isSec = item.type === 'sec';
                 return item.list ? (
-                  <li key={item.id} className={isSec ? 'secmenu' : ''}>
+                  <li key={`${item.id}`} className={isSec ? 'secmenu' : ''}>
                     {isSec ? (
                       <>
                         <p className="big_title">
@@ -165,7 +151,7 @@ const Header = () => {
                                       }`}
                                       ref={m3titleRef}
                                       onClick={handleClick}
-                                      data-toggle="menu3"
+                                      data-target="menu3"
                                     >
                                       {subItem.title}
                                     </div>
@@ -238,7 +224,7 @@ const Header = () => {
                     )}
                   </li>
                 ) : (
-                  <li key={item.id}>
+                  <li key={`${item.id}`}>
                     <Link to={`/${item.link}`} className="big_title">
                       {item.title}
                       <span></span>

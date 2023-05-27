@@ -249,17 +249,17 @@ export const menuList: MenuItem[] = [
       {
         id: 1,
         title: '生態觀測',
-        link: 'ecological',
+        link: 'ecological-observation',
       },
       {
         id: 2,
         title: '環境觀測',
-        link: 'environmental',
+        link: 'environmental-observation',
       },
       {
         id: 3,
         title: '社會觀測',
-        link: 'social',
+        link: 'social-observation',
         list: [
           {
             id: 1,

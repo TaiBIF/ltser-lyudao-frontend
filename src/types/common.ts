@@ -50,16 +50,9 @@ export type FooterMenuItem = {
   list: FooterSubMenuItem[];
 };
 
-export type TypeItem = {
-  id: number | string;
-  title: string;
-};
-
 export type BannerData = {
   title: string;
   en: string[];
   maskImg?: boolean;
   bgImg?: string;
 };
-
-export type RelateState = { type?: string };
