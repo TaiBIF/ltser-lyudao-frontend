@@ -61,3 +61,5 @@ export type BannerData = {
   maskImg?: boolean;
   bgImg?: string;
 };
+
+export type RelateState = { type?: string };

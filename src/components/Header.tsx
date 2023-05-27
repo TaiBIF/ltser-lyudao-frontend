@@ -141,22 +141,20 @@ const Header = () => {
           >
             <ul>
               {menuList.map((item) => {
-                const { title, type, list, link } = item;
-                const isSec = type === 'sec';
-                return list ? (
+                const isSec = item.type === 'sec';
+                return item.list ? (
                   <li key={item.id} className={isSec ? 'secmenu' : ''}>
                     {isSec ? (
                       <>
                         <p className="big_title">
-                          {title}
+                          {item.title}
                           <span></span>
                         </p>
                         <div className="menu_2" onMouseLeave={handleMouseLeave}>
                           <div className="w_bg">
                             {item.list &&
                               item.list.map((subItem) => {
-                                const { title, link, list } = subItem;
-                                return list ? (
+                                return subItem.list ? (
                                   <div
                                     key={`${item.id}-${subItem.id}`}
                                     className="m3titlebox"
@@ -169,18 +167,17 @@ const Header = () => {
                                       onClick={handleClick}
                                       data-toggle="menu3"
                                     >
-                                      {title}
+                                      {subItem.title}
                                     </div>
                                     <div className="menu_3" ref={menu3Ref}>
                                       {subItem.list &&
                                         subItem.list.map((finalItem) => {
-                                          const { id, title, link } = finalItem;
                                           return (
                                             <Link
                                               key={`${item.id}-${subItem.id}-${finalItem.id}`}
-                                              to={`/${link}`}
+                                              to={`/${item.link}/${subItem.link}/${finalItem.link}`}
                                             >
-                                              {title}
+                                              {finalItem.title}
                                             </Link>
                                           );
                                         })}
@@ -189,9 +186,9 @@ const Header = () => {
                                 ) : (
                                   <Link
                                     key={`${item.id}-${subItem.id}`}
-                                    to={link}
+                                    to={`/${item.link}/${subItem.link}`}
                                   >
-                                    {title}
+                                    {subItem.title}
                                   </Link>
                                 );
                               })}
@@ -200,33 +197,33 @@ const Header = () => {
                       </>
                     ) : (
                       <>
-                        <Link to={`/${item.link}`} className="big_title">
-                          {title}
+                        <div className="big_title">
+                          {item.title}
                           <span></span>
-                        </Link>
+                        </div>
                         <div className="menu_mega">
                           <div className="w_bg">
                             <div className="main-1240">
                               {item.list &&
                                 item.list.map((subItem) => {
-                                  const { id, title } = subItem;
                                   return (
-                                    <div key={id} className="item-set1">
+                                    <div
+                                      key={`${item.id}-${subItem.id}`}
+                                      className="item-set1"
+                                    >
                                       <div className="titlebox">
-                                        {title}
+                                        {subItem.title}
                                         <div className="mark"></div>
                                       </div>
                                       <div className="itembox">
                                         {subItem.list &&
                                           subItem.list.map((finalItem) => {
-                                            const { id, title, link } =
-                                              finalItem;
                                             return (
                                               <Link
-                                                key={id}
-                                                to={`/${item.link}/${subItem.link}/${link}`}
+                                                key={`${item.id}-${subItem.id}-${finalItem.id}`}
+                                                to={`/${item.link}/${subItem.link}/${finalItem.link}`}
                                               >
-                                                {title}
+                                                {finalItem.title}
                                               </Link>
                                             );
                                           })}
@@ -242,8 +239,8 @@ const Header = () => {
                   </li>
                 ) : (
                   <li key={item.id}>
-                    <Link to={`/${link}`} className="big_title">
-                      {title}
+                    <Link to={`/${item.link}`} className="big_title">
+                      {item.title}
                       <span></span>
                     </Link>
                   </li>

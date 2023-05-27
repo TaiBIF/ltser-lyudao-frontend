@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { aboutList } from 'data/about';
 import { tabList } from 'data/home';
 import { AboutItem } from 'types/about';
+import { RelateState } from 'types/common';
 
 const About = () => {
   const { pathname } = useLocation();
@@ -17,24 +18,25 @@ const About = () => {
     sections: [],
     created: '',
     modified: '',
-    typeTitle: '',
+  });
+  const [relate, setRelate] = useState<RelateState>({
+    type: '',
   });
 
-  const hasArticleData = aboutData.id !== 0;
+  const hasAboutData = aboutData.id !== 0;
 
   useEffect(() => {
     const matchAbout = aboutList.find((v) => v.id === aboutId);
-    console.log(matchAbout);
     if (matchAbout) {
       setAboutData({ ...matchAbout });
     }
   }, [pathname]);
 
   useEffect(() => {
-    if (hasArticleData) {
+    if (hasAboutData) {
       const matchCategory = tabList.find((v) => v.id === aboutData.type);
       if (matchCategory) {
-        setAboutData({ ...aboutData, typeTitle: matchCategory.title });
+        setRelate({ ...aboutData, type: matchCategory.title });
       }
     }
   }, [aboutData]);
@@ -47,7 +49,7 @@ const About = () => {
             <div className="about-mainbox">
               <div className="leftbox">
                 <div className="title-area">
-                  <div className="ab-category">{aboutData.typeTitle}</div>
+                  <div className="ab-category">{relate.type}</div>
                   <h2>{aboutData.name}</h2>
                 </div>
                 <p>{aboutData.content}</p>
@@ -69,12 +71,12 @@ const About = () => {
           <div className="main-box">
             {aboutData.sections &&
               aboutData.sections.map((section) => {
-                const { id, attachments_name, attachments } = section;
+                const { attachments_name, attachments } = section;
                 return (
-                  <div key={id} className="ab-item">
+                  <div key={section.id} className="ab-item">
                     <div className="titlebox">{attachments_name}</div>
                     {attachments.map((attatchment, i) => {
-                      const { id, type, content } = attatchment;
+                      const { type, content } = attatchment;
                       const isLastItem = i === attachments.length - 1;
                       const renderContent = () => {
                         switch (type) {
@@ -93,7 +95,10 @@ const About = () => {
                         }
                       };
                       return (
-                        <div key={id} className="editer-area">
+                        <div
+                          key={`${section.id}-${attatchment.id}`}
+                          className="editer-area"
+                        >
                           {renderContent()}
                         </div>
                       );
