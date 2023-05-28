@@ -4,10 +4,10 @@ export type AttachmentItem = {
   content: string;
 };
 
-export type SectionItem = {
+export type AttachmentNameItem = {
   id: number | string;
-  attachments_name: string;
-  attachments: AttachmentItem[];
+  title: string;
+  list?: (number | string)[];
 };
 
 export type AboutItem = {
@@ -16,7 +16,7 @@ export type AboutItem = {
   name: string;
   content: string;
   image: string;
-  sections?: SectionItem[];
+  attachmentName?: (number | string)[];
   created?: string;
   modified?: string;
   typeTitle?: string;

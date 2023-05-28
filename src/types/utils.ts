@@ -5,7 +5,7 @@ import { FormLinkItem } from 'types/formLink';
 import { EcoSearchItem } from 'types/siteData';
 
 export type TypeItem = {
-  id: number | string;
+  id?: number | string;
   title: string;
 };
 
@@ -19,7 +19,7 @@ export type ColItem = {
 };
 
 export type FieldOptionItem = {
-  id: string | number;
+  id?: string | number;
   title: string;
 };
 
@@ -39,6 +39,7 @@ export type FieldItem = {
   hints?: FieldHintItem[];
   multiple?: boolean;
   cover?: string;
+  fileType?: string;
 };
 
 export type RelateState = { type?: string };

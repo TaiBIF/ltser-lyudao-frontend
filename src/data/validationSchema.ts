@@ -13,7 +13,7 @@ export const newsValidationSchema = Yup.object().shape({
     .min(1, '至少需要選擇一項')
     .required('此欄位為必填'),
   title: Yup.string().required('此欄位為必填'),
-  cover: Yup.string().required('此欄位為必填'),
+  // cover: Yup.string().required('此欄位為必填'),
 });
 
 export const newsTypeValidationSchema = Yup.object().shape({
@@ -42,7 +42,7 @@ export const formLinkValidationSchema = Yup.object().shape({
 export const aboutValidationSchema = Yup.object().shape({
   type: Yup.string().required('此欄位為必填'),
   name: Yup.string().required('此欄位為必填'),
-  image: Yup.string().required('此欄位為必填'),
+  // image: Yup.string().required('此欄位為必填'),
 });
 
 export const searchValidationSchema = Yup.object().shape({});

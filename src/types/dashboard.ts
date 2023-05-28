@@ -30,7 +30,6 @@ export type NewsItem = {
   title: string;
   content: string;
   image: string[];
-  // attachments: NewsAttachmentItem[];
   attachments: string[];
   date: string;
   cover: string;

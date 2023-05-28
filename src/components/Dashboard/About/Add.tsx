@@ -12,6 +12,7 @@ const Add = () => {
     name: '',
     content: '',
     image: '',
+    attachmentName: [],
   };
   return (
     <>

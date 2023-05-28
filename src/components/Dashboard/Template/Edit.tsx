@@ -52,7 +52,7 @@ const EditTemplate = (props: EditTemplateProps) => {
   };
 
   useEffect(() => {
-    const matchTarget = targetList.find((v) => v.id === param);
+    const matchTarget = targetList.find((v) => v.id?.toString() === param);
     if (matchTarget) {
       setInitialValues({ ...matchTarget });
     }

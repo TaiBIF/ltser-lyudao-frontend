@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { aboutList } from 'data/about';
+import { aboutList, attachmentList, attachmentNameList } from 'data/about';
 import { tabList } from 'data/home';
 import { AboutItem } from 'types/about';
 import { RelateState } from 'types/utils';
+import AttachmentName from 'components/About/AttachmentName';
 
 const About = () => {
   const { pathname } = useLocation();
@@ -15,7 +16,7 @@ const About = () => {
     name: '',
     content: '',
     image: '',
-    sections: [],
+    attachmentName: [],
     created: '',
     modified: '',
   });
@@ -69,41 +70,15 @@ const About = () => {
         {/*有其他內容的才有下面這塊*/}
         <div className="ab-otherbox">
           <div className="main-box">
-            {aboutData.sections &&
-              aboutData.sections.map((section) => {
-                const { attachments_name, attachments } = section;
+            {aboutData.attachmentName &&
+              aboutData.attachmentName.map((item) => {
+                const matchNames = attachmentNameList.find(
+                  (v) => v.id === item
+                );
                 return (
-                  <div key={section.id} className="ab-item">
-                    <div className="titlebox">{attachments_name}</div>
-                    {attachments.map((attatchment, i) => {
-                      const { type, content } = attatchment;
-                      const isLastItem = i === attachments.length - 1;
-                      const renderContent = () => {
-                        switch (type) {
-                          case 'text':
-                            return <p className="center marb_20">{content}</p>;
-                          case 'image':
-                            return (
-                              <div className="main-1280">
-                                <img
-                                  className={isLastItem ? '' : 'marb_20'}
-                                  src={content}
-                                  alt=""
-                                />
-                              </div>
-                            );
-                        }
-                      };
-                      return (
-                        <div
-                          key={`${section.id}-${attatchment.id}`}
-                          className="editer-area"
-                        >
-                          {renderContent()}
-                        </div>
-                      );
-                    })}
-                  </div>
+                  matchNames && (
+                    <AttachmentName key={matchNames.id} data={matchNames} />
+                  )
                 );
               })}
           </div>

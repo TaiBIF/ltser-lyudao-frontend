@@ -9,7 +9,6 @@ import { newsTypeValidationSchema } from 'data/validationSchema';
 
 const Add = () => {
   const initialValues: TypeItem = {
-    id: 0,
     title: '',
   };
   return (

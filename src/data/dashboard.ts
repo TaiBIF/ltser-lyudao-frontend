@@ -1,6 +1,6 @@
 import { TabItem, QAItem, NewsItem, DownloadItem } from 'types/dashboard';
 import { contactTypeList } from 'data/contact';
-import { aboutTypeList } from 'data/about';
+import { aboutTypeList, attachmentNameList } from 'data/about';
 import { TypeItem, FieldItem, ColItem } from 'types/utils';
 
 // Tabs 左側邊欄頁籤
@@ -132,14 +132,14 @@ export const aboutColList: ColItem[] = [
     show: true,
   },
   {
-    id: 'attachments_name',
+    id: 'attachmentsName',
     title: '補充資訊名稱',
-    show: true,
+    show: false,
   },
   {
     id: 'attachments',
     title: '補充資訊',
-    show: true,
+    show: false,
   },
   {
     id: 'created',
@@ -188,6 +188,25 @@ export const aboutFieldList: FieldItem[] = [
     label: '觀測項目介紹圖片連結',
     readonly: false,
     required: true,
+  },
+  {
+    id: 6,
+    type: 'select',
+    title: 'attachmentName',
+    label: '補充資訊名稱',
+    readonly: false,
+    required: false,
+    options: attachmentNameList,
+    multiple: true,
+  },
+  {
+    id: 7,
+    type: 'file',
+    title: 'attachments',
+    label: '補充資訊',
+    readonly: false,
+    required: false,
+    multiple: true,
   },
 ];
 
@@ -518,6 +537,7 @@ export const newsFieldList: FieldItem[] = [
     required: false,
     multiple: true,
     cover: '',
+    fileType: 'image',
   },
   {
     id: 5,
