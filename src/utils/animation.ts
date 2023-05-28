@@ -21,16 +21,20 @@ export const gsapSlideToggle = (
   });
 };
 
-export const gsapFade = (type: string, target: HTMLElement) => {
+export const gsapFade = (
+  type: string,
+  target: HTMLElement,
+  duration: number = 0.5
+) => {
   if (type === 'in') {
     gsap.to(target, {
-      duration: 0.5,
+      duration: duration,
       opacity: 1,
       display: 'block',
     });
   } else {
     gsap.to(target, {
-      duration: 0.5,
+      duration: duration,
       opacity: 0,
       display: 'none',
     });

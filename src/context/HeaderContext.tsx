@@ -23,6 +23,7 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
     mainMenu: false,
     mobile: false,
     loginPopup: false,
+    loginContent: 'login',
   });
 
   const m3titleRef = useRef<HTMLDivElement>(null);
@@ -55,9 +56,9 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
     menu3Ref,
     mainMenuRef,
     loginPopupRef,
-    handleLoginClick,
     handleMenuClick,
     handleMenuMouseLeave,
+    handleLoginClick,
   };
 
   return (

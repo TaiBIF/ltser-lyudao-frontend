@@ -3,6 +3,12 @@ export type HeaderShowState = {
   mainMenu: boolean;
   mobile: boolean;
   loginPopup: boolean;
+  loginContent: string;
+};
+
+export type HeaderLoginContentState = {
+  class: string;
+  text: string;
 };
 
 export type HeaderMenuItem = {

@@ -6,7 +6,7 @@ import LanguageBtn from 'components/Header/LanguageBtn';
 import ContactLink from 'components/Header/ContactLink';
 import LoginBtn from 'components/Header/LoginBtn';
 import LogoLink from 'components/Header/LogoLink';
-import LoginPopup from 'components/Header/LoginPopup';
+import LoginPopup from 'components/Header/LoginPopup/Content';
 import MobileCollapseBtn from 'components/Header/MobileCollapseBtn';
 import SecMenu from 'components/Header/SecMenu';
 import MegaMenu from 'components/Header/MegaMenu';
