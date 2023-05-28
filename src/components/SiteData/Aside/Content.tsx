@@ -1,4 +1,4 @@
-import Arrow from 'components/SiteData/Aside/Arrow';
+import Arrow from 'components/SiteData/Aside/ArrowIcon';
 import Item from 'components/SiteData/Aside/Item';
 
 import { AsideItem } from 'types/siteData';

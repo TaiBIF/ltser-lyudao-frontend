@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import Pagination from 'components/Pagination';
 
 import { ecoResultList, ecoSearchColList } from 'data/siteData';
+import { ShowState } from 'types/siteData';
+import { useEcoContext } from 'context/EcoContext';
 
 const Result = () => {
+  const { show, handleDownloadShowClick } = useEcoContext();
   return (
     <>
       <div className="result-area">
         <div className="toptool">
           <div className="data-num">資料筆數：12345</div>
           <div className="btnr-box">
-            <button className="dowapply">資料下載</button>
+            <button
+              type="button"
+              className="dowapply"
+              onClick={handleDownloadShowClick}
+            >
+              資料下載
+            </button>
             <button>物種名錄下載</button>
           </div>
         </div>

@@ -13,3 +13,7 @@ export type EcoSearchItem = {
   cnName: string;
   number: number;
 };
+
+export type ShowState = {
+  download: boolean;
+};

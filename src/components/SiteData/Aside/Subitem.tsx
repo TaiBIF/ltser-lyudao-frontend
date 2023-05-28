@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import Arrow from 'components/SiteData/Aside/Arrow';
+import Arrow from 'components/SiteData/Aside/ArrowIcon';
 
 import { AsideItem } from 'types/siteData';
 
@@ -34,9 +34,9 @@ const SubItem = (props: SubItemProps) => {
 
   return (
     <>
-      <li key={`${parentId}-${data.id}`}>
-        {data.list ? (
-          <>
+      {data.list ? (
+        <>
+          <li key={`${parentId}-${data.id}`}>
             {/*給item-box now 並展開level-3*/}
             <div className="item-box2" onClick={handleClick}>
               <div className="paddborderb">
@@ -55,18 +55,18 @@ const SubItem = (props: SubItemProps) => {
                 );
               })}
             </ul>
-          </>
-        ) : (
-          <li>
-            <a href={data.link} className="item-box2 linkto">
-              <div className="paddborderb">
-                <p>{data.title}</p>
-                <Arrow />
-              </div>
-            </a>
           </li>
-        )}
-      </li>
+        </>
+      ) : (
+        <li key={`${parentId}-${data.id}`}>
+          <a href={data.link} className="item-box2 linkto">
+            <div className="paddborderb">
+              <p>{data.title}</p>
+              <Arrow />
+            </div>
+          </a>
+        </li>
+      )}
     </>
   );
 };

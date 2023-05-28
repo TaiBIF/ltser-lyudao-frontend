@@ -20,3 +20,19 @@ export const gsapSlideToggle = (
     ease: Power1.easeOut,
   });
 };
+
+export const gsapFade = (type: string, target: HTMLElement) => {
+  if (type === 'in') {
+    gsap.to(target, {
+      duration: 0.5,
+      opacity: 1,
+      display: 'block',
+    });
+  } else {
+    gsap.to(target, {
+      duration: 0.5,
+      opacity: 0,
+      display: 'none',
+    });
+  }
+};

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Breadcrumb from 'components/Breadcrumb';
 import Banner from 'components/Banner';
@@ -6,14 +6,18 @@ import Aside from 'components/SiteData/Aside/Content';
 import Title from 'components/SiteData/Title';
 import Chart from 'components/SiteData/Chart';
 import Search from 'components/SiteData/Search';
+import Result from 'components/SiteData/Result';
+import DownloadPopup from 'components/SiteData/DownloadPopup';
 
 import { BannerData } from 'types/common';
 
 import bannerImg from 'image/ecological_bn.png';
 import { ecoAsideList } from 'data/siteData';
-import Result from 'components/SiteData/Result';
+
+import { useEcoContext } from 'context/EcoContext';
 
 const EcologicalObservation = () => {
+  const { show, setShow } = useEcoContext();
   const bannerData: BannerData = {
     title: '聯絡我們',
     en: ['Ecological', 'observation'],
@@ -42,6 +46,7 @@ const EcologicalObservation = () => {
           </div>
         </div>
       </div>
+      <DownloadPopup />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Arrow = () => {
+const ArrowIcon = () => {
   return (
     <>
       <div className="arr">
@@ -44,4 +44,4 @@ const Arrow = () => {
   );
 };
 
-export default Arrow;
+export default ArrowIcon;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import Arrow from 'components/SiteData/Aside/Arrow';
+import Arrow from 'components/SiteData/Aside/ArrowIcon';
 import SubItem from 'components/SiteData/Aside/SubItem';
 
 import { AsideItem } from 'types/siteData';

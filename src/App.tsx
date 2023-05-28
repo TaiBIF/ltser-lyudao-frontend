@@ -35,6 +35,8 @@ import FormLinkAdd from 'components/Dashboard/FormLink/Add';
 import FormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import Download from 'components/Dashboard/Download';
 
+import { EcoProvider } from 'context/EcoContext';
+
 function App() {
   return (
     <>
@@ -48,7 +50,11 @@ function App() {
           <Route path="/form-link" element={<FormLink />} />
           <Route
             path="/site-data/ecological-observation"
-            element={<EcologicalObservation />}
+            element={
+              <EcoProvider>
+                <EcologicalObservation />
+              </EcoProvider>
+            }
           />
           <Route
             path="/dashboard/contact"
