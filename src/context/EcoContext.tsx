@@ -19,30 +19,22 @@ interface EcoProviderProps {
 
 export const EcoProvider = ({ children }: EcoProviderProps) => {
   const [show, setShow] = useState<ShowState>({
-    download: false,
+    downloadPopup: false,
   });
   const downloadPopupRef = useRef<HTMLDivElement>(null);
 
-  const handleDownloadShowClick = () => {
+  const handleLoginClick = (action: string) => {
     const target = downloadPopupRef.current;
     if (target) {
-      setShow({ ...show, download: true });
-      gsapFade('in', target);
-    }
-  };
-  const handleDownloadCloseClick = () => {
-    const target = downloadPopupRef.current;
-    if (target) {
-      setShow({ ...show, download: false });
-      gsapFade('out', target);
+      setShow({ ...show, downloadPopup: action === 'show' ? true : false });
+      gsapFade(action === 'show' ? 'in' : 'out', target);
     }
   };
 
   const contextData = {
     show,
     downloadPopupRef,
-    handleDownloadShowClick,
-    handleDownloadCloseClick,
+    handleLoginClick,
   };
 
   return (

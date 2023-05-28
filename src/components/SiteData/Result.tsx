@@ -7,7 +7,7 @@ import { ShowState } from 'types/siteData';
 import { useEcoContext } from 'context/EcoContext';
 
 const Result = () => {
-  const { show, handleDownloadShowClick } = useEcoContext();
+  const { show, handleLoginClick } = useEcoContext();
   return (
     <>
       <div className="result-area">
@@ -17,7 +17,9 @@ const Result = () => {
             <button
               type="button"
               className="dowapply"
-              onClick={handleDownloadShowClick}
+              onClick={() => {
+                handleLoginClick('show');
+              }}
             >
               資料下載
             </button>

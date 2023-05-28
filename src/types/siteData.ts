@@ -15,5 +15,5 @@ export type EcoSearchItem = {
 };
 
 export type ShowState = {
-  download: boolean;
+  downloadPopup: boolean;
 };

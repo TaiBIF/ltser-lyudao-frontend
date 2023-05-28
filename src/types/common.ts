@@ -1,39 +1,26 @@
-export type FinalItem = {
-  id: number | string;
-  title: string;
-  link: string;
+export type HeaderShowState = {
+  menu3: boolean;
+  mainMenu: boolean;
+  mobile: boolean;
+  loginPopup: boolean;
 };
 
-export type FinalMenuItem = {
-  id: number | string;
-  title: string;
-  link: string;
-  list?: FinalItem[];
-};
-
-export type SubMenuItem = {
-  id: number | string;
-  title: string;
-  link: string;
-  list?: FinalMenuItem[];
-};
-
-export type MenuItem = {
+export type HeaderMenuItem = {
   id: number | string;
   title: string;
   type?: string;
-  link: string;
-  list?: SubMenuItem[];
+  link?: string;
+  list?: HeaderMenuItem[];
 };
 
-export type LogoItem = {
+export type FooterLogoItem = {
   id: number | string;
   img: string;
   title: string;
   width?: string;
   link: string;
 };
-export type SociIconItem = {
+export type FooterSociIconItem = {
   id: number | string;
   img: JSX.Element;
   link: string;

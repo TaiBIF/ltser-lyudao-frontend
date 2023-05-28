@@ -1,4 +1,9 @@
-import { MenuItem, LogoItem, SociIconItem, FooterMenuItem } from 'types/common';
+import {
+  HeaderMenuItem,
+  FooterLogoItem,
+  FooterSociIconItem,
+  FooterMenuItem,
+} from 'types/common';
 
 import ftlogoImg1 from 'image/ftlogo1.png';
 import ftlogoImg2 from 'image/ftlogo2.png';
@@ -8,7 +13,7 @@ import ftlogoImg5 from 'image/ftlogo5.png';
 import ftlogoImg6 from 'image/ftlogo6.png';
 import ftlogoImg7 from 'image/ftlogo7.png';
 
-export const logoList: LogoItem[] = [
+export const logoList: FooterLogoItem[] = [
   {
     id: 1,
     img: ftlogoImg1,
@@ -120,7 +125,7 @@ export const footerMenuList: FooterMenuItem[] = [
   },
 ];
 
-export const menuList: MenuItem[] = [
+export const menuList: HeaderMenuItem[] = [
   {
     id: 1,
     title: '關於LTSER_綠島',
@@ -297,7 +302,7 @@ export const menuList: MenuItem[] = [
   },
 ];
 
-export const routeList: MenuItem[] = [
+export const routeList: HeaderMenuItem[] = [
   ...menuList,
   {
     id: 0,

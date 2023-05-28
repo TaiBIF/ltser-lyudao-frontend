@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import logowImg from 'image/logow.png';
 import ftlogoImg8 from 'image/ftlogo8.png';
 
-import { SociIconItem } from 'types/common';
+import { FooterSociIconItem } from 'types/common';
 import { logoList, footerMenuList } from 'data/common';
 
 const Footer = () => {
-  const sociIconList: SociIconItem[] = [
+  const sociIconList: FooterSociIconItem[] = [
     {
       id: 1,
       img: (

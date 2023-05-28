@@ -36,3 +36,5 @@ export const gsapFade = (type: string, target: HTMLElement) => {
     });
   }
 };
+
+export const fadeInitStyle = { opacity: 0, display: 'none' };

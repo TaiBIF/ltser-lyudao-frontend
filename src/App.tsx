@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Header from 'components/Header';
+import Header from 'components/Header/Content';
 import Footer from 'components/Footer';
 
 import Home from 'pages/Home';
@@ -35,13 +35,16 @@ import FormLinkAdd from 'components/Dashboard/FormLink/Add';
 import FormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import Download from 'components/Dashboard/Download';
 
+import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
+        <HeaderProvider>
+          <Header />
+        </HeaderProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about/:categoryId/:aboutId" element={<About />} />
