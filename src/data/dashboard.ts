@@ -1,14 +1,7 @@
-import {
-  TabItem,
-  ColItem,
-  FieldItem,
-  QAItem,
-  NewsItem,
-  DownloadItem,
-} from 'types/dashboard';
+import { TabItem, QAItem, NewsItem, DownloadItem } from 'types/dashboard';
 import { contactTypeList } from 'data/contact';
-import { TypeItem } from 'types/common';
 import { aboutTypeList } from 'data/about';
+import { TypeItem, FieldItem, ColItem } from 'types/utils';
 
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [

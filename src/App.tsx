@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Header from 'components/Header';
+import Header from 'components/Header/Content';
 import Footer from 'components/Footer';
 
 import Home from 'pages/Home';
@@ -9,6 +9,7 @@ import About from 'pages/About';
 import Contact from 'pages/Contact';
 import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
+import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import AboutContent from 'components/Dashboard/About/Content';
@@ -37,11 +38,16 @@ import FormLinkAdd from 'components/Dashboard/FormLink/Add';
 import FormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import Download from 'components/Dashboard/Download';
 
+import { HeaderProvider } from 'context/HeaderContext';
+import { EcoProvider } from 'context/EcoContext';
+
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
+        <HeaderProvider>
+          <Header />
+        </HeaderProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about/:categoryId/:aboutId" element={<About />} />
@@ -59,6 +65,14 @@ function App() {
           <Route
             path="/dashboard/about/edit/:aboutId"
             element={<Dashboard content={<AboutEdit />} />}
+          />
+          <Route
+            path="/site-data/ecological-observation"
+            element={
+              <EcoProvider>
+                <EcologicalObservation />
+              </EcoProvider>
+            }
           />
           <Route
             path="/dashboard/contact"

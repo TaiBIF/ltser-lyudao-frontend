@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { MenuItem } from 'types/common';
+import { HeaderMenuItem } from 'types/common';
 import { routeList } from 'data/common';
 
 const Breadcrumb = () => {
@@ -9,7 +9,7 @@ const Breadcrumb = () => {
   const paths = pathname.split('/').slice(1);
   const [breadcrumb, setBreadcrumb] = useState<string[]>([]);
 
-  const handleMatchRoute = (routes: MenuItem[], path: string): string => {
+  const handleMatchRoute = (routes: HeaderMenuItem[], path: string): string => {
     for (const route of routes) {
       if (route.link === path) {
         return route.title;

@@ -1,4 +1,4 @@
-import { TypeItem } from 'types/common';
+import { TypeItem } from 'types/utils';
 import { AboutItem } from 'types/about';
 
 import abImg from 'image/abimg.png';
@@ -50,7 +50,7 @@ export const aboutList: AboutItem[] = [
         ],
       },
       {
-        id: 1,
+        id: 2,
         attachments_name: '船隻聲音',
         attachments: [
           {
