@@ -10,7 +10,9 @@ import Contact from 'pages/Contact';
 import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
 import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
-import ForgotPsw from 'pages/ForgotPsw';
+import ForgotPsw from 'pages/Auth/ForgotPsw';
+import SignupSuccess from 'pages/Auth/SignupSuccess';
+import MailVerification from 'pages/Auth/MailVerification';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import AboutContent from 'components/Dashboard/About/Content';
@@ -56,18 +58,6 @@ function App() {
           <Route path="/related-literature" element={<RelatedLiterature />} />
           <Route path="/form-link" element={<FormLink />} />
           <Route
-            path="/dashboard/about"
-            element={<Dashboard content={<AboutContent />} />}
-          />
-          <Route
-            path="/dashboard/about/add"
-            element={<Dashboard content={<AboutAdd />} />}
-          />
-          <Route
-            path="/dashboard/about/edit/:aboutId"
-            element={<Dashboard content={<AboutEdit />} />}
-          />
-          <Route
             path="/site-data/ecological-observation"
             element={
               <EcoProvider>
@@ -84,6 +74,20 @@ function App() {
             }
           />
           <Route path="/forgot-password" element={<ForgotPsw />} />
+          <Route path="/mail-verification" element={<MailVerification />} />
+          <Route path="/signup-success" element={<SignupSuccess />} />
+          <Route
+            path="/dashboard/about"
+            element={<Dashboard content={<AboutContent />} />}
+          />
+          <Route
+            path="/dashboard/about/add"
+            element={<Dashboard content={<AboutAdd />} />}
+          />
+          <Route
+            path="/dashboard/about/edit/:aboutId"
+            element={<Dashboard content={<AboutEdit />} />}
+          />
           <Route
             path="/dashboard/contact"
             element={<Dashboard content={<ContactContent />} />}

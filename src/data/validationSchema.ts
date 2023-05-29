@@ -46,6 +46,7 @@ export const aboutValidationSchema = Yup.object().shape({
 });
 
 export const searchValidationSchema = Yup.object().shape({});
+
 export const resetPasswordValidationSchema = Yup.object().shape({
   password: Yup.string()
     .required('此欄位為必填')
