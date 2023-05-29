@@ -11,8 +11,8 @@ import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
 import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
 import ForgotPsw from 'pages/Auth/ForgotPsw';
-import SignupSuccess from 'pages/Auth/SignupSuccess';
 import MailVerification from 'pages/Auth/MailVerification';
+import MailVerificationSuccess from 'pages/Auth/MailVerificationSuccess';
 import Terms from 'pages/Terms';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
@@ -76,7 +76,10 @@ function App() {
           />
           <Route path="/forgot-password" element={<ForgotPsw />} />
           <Route path="/mail-verification" element={<MailVerification />} />
-          <Route path="/signup-success" element={<SignupSuccess />} />
+          <Route
+            path="/mail-verification-success"
+            element={<MailVerificationSuccess />}
+          />
           <Route path="/terms" element={<Terms />} />
           <Route
             path="/dashboard/about"
