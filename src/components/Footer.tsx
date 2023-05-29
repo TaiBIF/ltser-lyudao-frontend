@@ -152,7 +152,7 @@ const Footer = () => {
           <div className="linkbox">
             <a href="/">隱私權政策</a>
             <div className="line"> | </div>
-            <a href="/">使用者條款</a>
+            <Link to="/terms">使用者條款</Link>
           </div>
           <h6>©2022 LTSER 長期社會生態核心觀測綠島站</h6>
         </div>

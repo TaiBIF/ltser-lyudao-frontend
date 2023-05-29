@@ -319,4 +319,19 @@ export const routeList: HeaderMenuItem[] = [
     title: '忘記密碼',
     link: 'forgot-password',
   },
+  {
+    id: 9,
+    title: '會員註冊',
+    link: 'mail-verification',
+  },
+  {
+    id: 10,
+    title: '驗證成功',
+    link: 'signup-success',
+  },
+  {
+    id: 10,
+    title: '使用條款',
+    link: 'terms',
+  },
 ];

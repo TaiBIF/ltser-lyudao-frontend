@@ -13,6 +13,7 @@ import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
 import ForgotPsw from 'pages/Auth/ForgotPsw';
 import SignupSuccess from 'pages/Auth/SignupSuccess';
 import MailVerification from 'pages/Auth/MailVerification';
+import Terms from 'pages/Terms';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import AboutContent from 'components/Dashboard/About/Content';
@@ -76,6 +77,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPsw />} />
           <Route path="/mail-verification" element={<MailVerification />} />
           <Route path="/signup-success" element={<SignupSuccess />} />
+          <Route path="/terms" element={<Terms />} />
           <Route
             path="/dashboard/about"
             element={<Dashboard content={<AboutContent />} />}
