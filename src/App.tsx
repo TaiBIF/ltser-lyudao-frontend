@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Header from 'components/Header';
+import Header from 'components/Header/Content';
 import Footer from 'components/Footer';
 
 import Home from 'pages/Home';
@@ -9,8 +9,16 @@ import About from 'pages/About';
 import Contact from 'pages/Contact';
 import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
+import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
+import ForgotPsw from 'pages/Auth/ForgotPsw';
+import MailVerification from 'pages/Auth/MailVerification';
+import MailVerificationSuccess from 'pages/Auth/MailVerificationSuccess';
+import Terms from 'pages/Terms';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
+import AboutContent from 'components/Dashboard/About/Content';
+import AboutAdd from 'components/Dashboard/About/Add';
+import AboutEdit from 'components/Dashboard/About/Edit';
 import ContactContent from 'components/Dashboard/Contact/Content';
 import ContactAdd from 'components/Dashboard/Contact/Add';
 import ContactEdit from 'components/Dashboard/Contact/Edit';
@@ -34,17 +42,57 @@ import FormLinkAdd from 'components/Dashboard/FormLink/Add';
 import FormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import Download from 'components/Dashboard/Download';
 
+import { HeaderProvider } from 'context/HeaderContext';
+import { EcoProvider } from 'context/EcoContext';
+
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
+        <HeaderProvider>
+          <Header />
+        </HeaderProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about/:categoryId/:aboutId" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/related-literature" element={<RelatedLiterature />} />
           <Route path="/form-link" element={<FormLink />} />
+          <Route
+            path="/site-data/ecological-observation"
+            element={
+              <EcoProvider>
+                <EcologicalObservation />
+              </EcoProvider>
+            }
+          />
+          <Route
+            path="/site-data/environmental-observation"
+            element={
+              <EcoProvider>
+                <EcologicalObservation />
+              </EcoProvider>
+            }
+          />
+          <Route path="/forgot-password" element={<ForgotPsw />} />
+          <Route path="/mail-verification" element={<MailVerification />} />
+          <Route
+            path="/mail-verification-success"
+            element={<MailVerificationSuccess />}
+          />
+          <Route path="/terms" element={<Terms />} />
+          <Route
+            path="/dashboard/about"
+            element={<Dashboard content={<AboutContent />} />}
+          />
+          <Route
+            path="/dashboard/about/add"
+            element={<Dashboard content={<AboutAdd />} />}
+          />
+          <Route
+            path="/dashboard/about/edit/:aboutId"
+            element={<Dashboard content={<AboutEdit />} />}
+          />
           <Route
             path="/dashboard/contact"
             element={<Dashboard content={<ContactContent />} />}

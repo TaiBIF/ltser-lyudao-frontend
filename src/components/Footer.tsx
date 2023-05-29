@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import logowImg from 'image/logow.png';
 import ftlogoImg8 from 'image/ftlogo8.png';
 
-import { SociIconItem } from 'types/common';
+import { FooterSociIconItem } from 'types/common';
 import { logoList, footerMenuList } from 'data/common';
 
 const Footer = () => {
-  const sociIconList: SociIconItem[] = [
+  const sociIconList: FooterSociIconItem[] = [
     {
       id: 1,
       img: (
@@ -152,7 +152,7 @@ const Footer = () => {
           <div className="linkbox">
             <a href="/">隱私權政策</a>
             <div className="line"> | </div>
-            <a href="/">使用者條款</a>
+            <Link to="/terms">使用者條款</Link>
           </div>
           <h6>©2022 LTSER 長期社會生態核心觀測綠島站</h6>
         </div>

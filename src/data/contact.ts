@@ -1,5 +1,5 @@
 import { ContactItem } from 'types/contact';
-import { TypeItem } from 'types/common';
+import { TypeItem } from 'types/utils';
 
 import peo01Img from 'image/peo01.png';
 import peo02Img from 'image/peo02.png';

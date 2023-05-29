@@ -1,16 +1,15 @@
-import {
-  TabItem,
-  ColItem,
-  FieldItem,
-  QAItem,
-  DownloadItem,
-} from 'types/dashboard';
-import { TypeItem } from 'types/common';
-import { contactTypeList } from 'data/contact';
 import { newsTypeList } from 'data/news';
+import { TabItem, QAItem, DownloadItem } from 'types/dashboard';
+import { contactTypeList } from 'data/contact';
+import { aboutTypeList, attachmentNameList } from 'data/about';
+import { TypeItem, FieldItem, ColItem } from 'types/utils';
 
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [
+  {
+    id: 'about',
+    title: '計畫介紹',
+  },
   {
     id: 'contact',
     title: '聯絡我們',
@@ -86,7 +85,118 @@ export const qaTypeList: TypeItem[] = [
   },
 ];
 
-// Contact 關於我們
+// About 計畫介紹
+export const aboutColList: ColItem[] = [
+  {
+    id: 'id',
+    title: '觀測項目id',
+    show: true,
+    param: true,
+  },
+  {
+    id: 'type',
+    title: '觀測類型',
+    show: true,
+    space: 'nowrap',
+    relate: aboutTypeList,
+  },
+  {
+    id: 'name',
+    title: '觀測項目名稱',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'content',
+    title: '觀測項目簡介',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'image',
+    title: '觀測項目介紹圖片連結',
+    show: true,
+  },
+  {
+    id: 'attachmentsName',
+    title: '補充資訊名稱',
+    show: false,
+  },
+  {
+    id: 'attachments',
+    title: '補充資訊',
+    show: false,
+  },
+  {
+    id: 'created',
+    title: '建立日期',
+    show: true,
+    space: 'date',
+  },
+  {
+    id: 'modified',
+    title: '更新日期',
+    show: true,
+    space: 'date',
+  },
+];
+
+export const aboutFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'select',
+    title: 'type',
+    label: '觀測類型',
+    readonly: false,
+    required: true,
+    options: aboutTypeList,
+  },
+  {
+    id: 2,
+    type: 'text',
+    title: 'name',
+    label: '觀測項目名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 3,
+    type: 'text',
+    title: 'content',
+    label: '觀測項目簡介',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 5,
+    type: 'file',
+    title: 'image',
+    label: '觀測項目介紹圖片連結',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 6,
+    type: 'select',
+    title: 'attachmentName',
+    label: '補充資訊名稱',
+    readonly: false,
+    required: false,
+    options: attachmentNameList,
+    multiple: true,
+  },
+  {
+    id: 7,
+    type: 'file',
+    title: 'attachments',
+    label: '補充資訊',
+    readonly: false,
+    required: false,
+    multiple: true,
+  },
+];
+
+// Contact 聯絡我們
 export const contactColList: ColItem[] = [
   {
     id: 'id',
@@ -392,6 +502,7 @@ export const newsFieldList: FieldItem[] = [
     required: false,
     multiple: true,
     cover: '',
+    fileType: 'image',
   },
   {
     id: 5,

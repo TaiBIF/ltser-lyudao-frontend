@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ItemTypes, ColItem } from 'types/dashboard';
+import { ColItem } from 'types/utils';
+import { ItemTypes } from 'types/utils';
 
 interface TableTemplateProps<T> {
   page: string;

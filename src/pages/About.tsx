@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { aboutList } from 'data/about';
+import { aboutList, attachmentList, attachmentNameList } from 'data/about';
 import { tabList } from 'data/home';
 import { AboutItem } from 'types/about';
+import { RelateState } from 'types/utils';
+import AttachmentName from 'components/About/AttachmentName';
 
 const About = () => {
   const { pathname } = useLocation();
@@ -14,27 +16,28 @@ const About = () => {
     name: '',
     content: '',
     image: '',
-    sections: [],
+    attachmentName: [],
     created: '',
     modified: '',
-    typeTitle: '',
+  });
+  const [relate, setRelate] = useState<RelateState>({
+    type: '',
   });
 
-  const hasArticleData = aboutData.id !== 0;
+  const hasAboutData = aboutData.id !== 0;
 
   useEffect(() => {
     const matchAbout = aboutList.find((v) => v.id === aboutId);
-    console.log(matchAbout);
     if (matchAbout) {
       setAboutData({ ...matchAbout });
     }
   }, [pathname]);
 
   useEffect(() => {
-    if (hasArticleData) {
+    if (hasAboutData) {
       const matchCategory = tabList.find((v) => v.id === aboutData.type);
       if (matchCategory) {
-        setAboutData({ ...aboutData, typeTitle: matchCategory.title });
+        setRelate({ ...aboutData, type: matchCategory.title });
       }
     }
   }, [aboutData]);
@@ -47,7 +50,7 @@ const About = () => {
             <div className="about-mainbox">
               <div className="leftbox">
                 <div className="title-area">
-                  <div className="ab-category">{aboutData.typeTitle}</div>
+                  <div className="ab-category">{relate.type}</div>
                   <h2>{aboutData.name}</h2>
                 </div>
                 <p>{aboutData.content}</p>
@@ -67,38 +70,15 @@ const About = () => {
         {/*有其他內容的才有下面這塊*/}
         <div className="ab-otherbox">
           <div className="main-box">
-            {aboutData.sections &&
-              aboutData.sections.map((section) => {
-                const { id, attachments_name, attachments } = section;
+            {aboutData.attachmentName &&
+              aboutData.attachmentName.map((item) => {
+                const matchNames = attachmentNameList.find(
+                  (v) => v.id === item
+                );
                 return (
-                  <div key={id} className="ab-item">
-                    <div className="titlebox">{attachments_name}</div>
-                    {attachments.map((attatchment, i) => {
-                      const { id, type, content } = attatchment;
-                      const isLastItem = i === attachments.length - 1;
-                      const renderContent = () => {
-                        switch (type) {
-                          case 'text':
-                            return <p className="center marb_20">{content}</p>;
-                          case 'image':
-                            return (
-                              <div className="main-1280">
-                                <img
-                                  className={isLastItem ? '' : 'marb_20'}
-                                  src={content}
-                                  alt=""
-                                />
-                              </div>
-                            );
-                        }
-                      };
-                      return (
-                        <div key={id} className="editer-area">
-                          {renderContent()}
-                        </div>
-                      );
-                    })}
-                  </div>
+                  matchNames && (
+                    <AttachmentName key={matchNames.id} data={matchNames} />
+                  )
                 );
               })}
           </div>

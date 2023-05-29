@@ -5,7 +5,8 @@ import { Form, Formik, FormikHelpers, FormikConfig } from 'formik';
 
 import FieldLayout from 'components/Dashboard/FieldLayout';
 
-import { ItemTypes, FieldItem } from 'types/dashboard';
+import { ItemTypes } from 'types/utils';
+import { FieldItem } from 'types/utils';
 
 interface EditTemplateProps {
   param?: string;
@@ -51,7 +52,7 @@ const EditTemplate = (props: EditTemplateProps) => {
   };
 
   useEffect(() => {
-    const matchTarget = targetList.find((v) => v.id === param);
+    const matchTarget = targetList.find((v) => v.id?.toString() === param);
     if (matchTarget) {
       setInitialValues({ ...matchTarget });
     }

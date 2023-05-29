@@ -1,4 +1,9 @@
-import { MenuItem, LogoItem, SociIconItem, FooterMenuItem } from 'types/common';
+import {
+  HeaderMenuItem,
+  FooterLogoItem,
+  FooterSociIconItem,
+  FooterMenuItem,
+} from 'types/common';
 
 import ftlogoImg1 from 'image/ftlogo1.png';
 import ftlogoImg2 from 'image/ftlogo2.png';
@@ -8,7 +13,7 @@ import ftlogoImg5 from 'image/ftlogo5.png';
 import ftlogoImg6 from 'image/ftlogo6.png';
 import ftlogoImg7 from 'image/ftlogo7.png';
 
-export const logoList: LogoItem[] = [
+export const logoList: FooterLogoItem[] = [
   {
     id: 1,
     img: ftlogoImg1,
@@ -120,7 +125,7 @@ export const footerMenuList: FooterMenuItem[] = [
   },
 ];
 
-export const menuList: MenuItem[] = [
+export const menuList: HeaderMenuItem[] = [
   {
     id: 1,
     title: '關於LTSER_綠島',
@@ -249,17 +254,17 @@ export const menuList: MenuItem[] = [
       {
         id: 1,
         title: '生態觀測',
-        link: 'ecological',
+        link: 'ecological-observation',
       },
       {
         id: 2,
         title: '環境觀測',
-        link: 'environmental',
+        link: 'environmental-observation',
       },
       {
         id: 3,
         title: '社會觀測',
-        link: 'social',
+        link: 'social-observation',
         list: [
           {
             id: 1,
@@ -297,7 +302,7 @@ export const menuList: MenuItem[] = [
   },
 ];
 
-export const routeList: MenuItem[] = [
+export const routeList: HeaderMenuItem[] = [
   ...menuList,
   {
     id: 0,
@@ -308,5 +313,25 @@ export const routeList: MenuItem[] = [
     id: 7,
     title: '聯絡我們',
     link: 'contact',
+  },
+  {
+    id: 8,
+    title: '忘記密碼',
+    link: 'forgot-password',
+  },
+  {
+    id: 9,
+    title: '會員註冊',
+    link: 'mail-verification',
+  },
+  {
+    id: 10,
+    title: '驗證成功',
+    link: 'signup-success',
+  },
+  {
+    id: 10,
+    title: '使用條款',
+    link: 'terms',
   },
 ];

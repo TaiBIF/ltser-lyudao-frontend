@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Field, ErrorMessage, useFormikContext } from 'formik';
 
-import { FieldItem } from 'types/dashboard';
+import { FieldItem } from 'types/utils';
 
 type FileValue = {
   image: string;
@@ -31,12 +31,11 @@ const FieldLayout = (props: Props) => {
     options,
     multiple,
     cover,
+    fileType,
   } = data;
   const { values, setFieldValue } = useFormikContext();
   const [files, setFiles] = useState<FileItem[]>([]);
   const [fileName, setFileName] = useState('');
-
-  const hadCover = cover !== undefined;
 
   // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   if (e.currentTarget.files?.length) {
@@ -57,18 +56,27 @@ const FieldLayout = (props: Props) => {
     if (selectedFiles) {
       for (let i = 0; i < selectedFiles.length; i++) {
         const file = selectedFiles[i];
-        const reader = new FileReader();
-        reader.onload = () => {
-          const result = reader.result;
-          if (result instanceof ArrayBuffer) {
-            setFiles((prev) => [...prev, { file, result: '' }]);
-          } else {
-            setFiles((prev) => [...prev, { file, result: result as string }]);
-          }
-        };
-        reader.readAsDataURL(file);
+        if (file.type.includes('image/')) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = reader.result;
+            if (result instanceof ArrayBuffer) {
+              setFiles((prev) => [...prev, { file, result: '' }]);
+            } else {
+              setFiles((prev) => [...prev, { file, result: result as string }]);
+            }
+          };
+          reader.readAsDataURL(file);
+        } else {
+          setFiles((prev) => [...prev, { file, result: file.name }]);
+        }
       }
     }
+  };
+
+  const handleFileRemove = (index: number) => {
+    const remainFiles = files.filter((v, i) => i !== index);
+    setFiles([...remainFiles]);
   };
 
   const handleCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,6 +134,7 @@ const FieldLayout = (props: Props) => {
             className="form-select"
             readOnly={readonly}
             required={required}
+            multiple={multiple}
           >
             <option value="" disabled>
               請選擇{label}
@@ -161,6 +170,7 @@ const FieldLayout = (props: Props) => {
               onChange={handleFileChange}
               onClick={handleFileClick}
               multiple={multiple}
+              accept={`${fileType}/*`}
             />
             {hints &&
               hints.map((v) => {
@@ -182,52 +192,75 @@ const FieldLayout = (props: Props) => {
                 );
               })}
           </div>
-          {files && (
-            <div role="group" aria-labelledby="checkbox-group">
-              <div className="d-flex align-items-center mb-2">
+          {files &&
+            (fileType === 'image' ? (
+              <div role="group" aria-labelledby="checkbox-group">
+                <div className="d-flex align-items-center mb-2">
+                  {files.map((v, i) => {
+                    const { file, result } = v;
+                    return (
+                      typeof result === 'string' &&
+                      (cover ? (
+                        <div key={i} className="w-25">
+                          <label htmlFor={`cover${i}`} className="d-block">
+                            <div className="ratio ratio-1x1">
+                              <img
+                                src={result}
+                                alt="img"
+                                className="w-100 h-100 object-fit-contain"
+                              />
+                            </div>
+                          </label>
+                          <Field
+                            type="radio"
+                            id={`cover${i}`}
+                            name="cover"
+                            value={file.name}
+                            onChange={handleCoverChange}
+                            // required
+                          />
+                          <ErrorMessage
+                            name="cover"
+                            component="small"
+                            className="text-danger"
+                          />
+                        </div>
+                      ) : (
+                        <div key={i} className="ratio ratio-1x1 w-25">
+                          <img
+                            src={result}
+                            alt="img"
+                            className="w-100 h-100 object-fit-contain"
+                          />
+                        </div>
+                      ))
+                    );
+                  })}
+                </div>
+              </div>
+            ) : (
+              <ul className="list-unstyled">
                 {files.map((v, i) => {
-                  const { file, result } = v;
+                  const { result } = v;
                   return (
-                    typeof result === 'string' &&
-                    (hadCover ? (
-                      <div key={i} className="w-25">
-                        <label htmlFor={`cover${i}`} className="d-block">
-                          <div className="ratio ratio-1x1">
-                            <img
-                              src={result}
-                              alt="img"
-                              className="w-100 h-100 object-fit-contain"
-                            />
-                          </div>
-                        </label>
-                        <Field
-                          type="radio"
-                          id={`cover${i}`}
-                          name="cover"
-                          value={file.name}
-                          onChange={handleCoverChange}
-                          // required
-                        />
-                        <ErrorMessage
-                          name="cover"
-                          component="small"
-                          className="text-danger"
-                        />
-                      </div>
-                    ) : (
-                      <div key={i} className="ratio ratio-1x1 w-25">
-                        <img
-                          src={result}
-                          alt="img"
-                          className="w-100 h-100 object-fit-contain"
-                        />
-                      </div>
-                    ))
+                    typeof result === 'string' && (
+                      <li key={i} className="mb-2">
+                        <button
+                          type="button"
+                          className="btn btn-light d-flex align-items-center justify-content-between w-100"
+                          onClick={() => {
+                            handleFileRemove(i);
+                          }}
+                        >
+                          {result}
+                          <span className="btn-close btn-sm"></span>
+                        </button>
+                      </li>
+                    )
                   );
                 })}
-              </div>
-            </div>
-          )}
+              </ul>
+            ))}
         </>
       );
     case 'textarea':
