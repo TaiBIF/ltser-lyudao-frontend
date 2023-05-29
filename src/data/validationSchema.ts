@@ -46,3 +46,12 @@ export const aboutValidationSchema = Yup.object().shape({
 });
 
 export const searchValidationSchema = Yup.object().shape({});
+export const resetPasswordValidationSchema = Yup.object().shape({
+  password: Yup.string()
+    .required('此欄位為必填')
+    .min(8, '密碼須為8-12位含英文與數字')
+    .matches(/[a-zA-Z]/, '密碼須為8-12位含英文與數字'),
+  confirmPassword: Yup.string()
+    .required('此欄位為必填')
+    .oneOf([Yup.ref('password'), ''], '確認密碼不一致'),
+});

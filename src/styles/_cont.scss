@@ -1975,8 +1975,10 @@
           flex-direction: column;
           margin-bottom: 20px;
         }
-        input {
+        div {
           width: calc(50% - 10px);
+        }
+        input {
           border-radius: 10px;
           border: 1px solid #ddd;
           height: 50px;

@@ -10,6 +10,7 @@ import Contact from 'pages/Contact';
 import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
 import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
+import ForgotPsw from 'pages/ForgotPsw';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import AboutContent from 'components/Dashboard/About/Content';
@@ -74,6 +75,15 @@ function App() {
               </EcoProvider>
             }
           />
+          <Route
+            path="/site-data/environmental-observation"
+            element={
+              <EcoProvider>
+                <EcologicalObservation />
+              </EcoProvider>
+            }
+          />
+          <Route path="/forgot-password" element={<ForgotPsw />} />
           <Route
             path="/dashboard/contact"
             element={<Dashboard content={<ContactContent />} />}

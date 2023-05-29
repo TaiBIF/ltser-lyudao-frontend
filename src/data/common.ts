@@ -314,4 +314,9 @@ export const routeList: HeaderMenuItem[] = [
     title: '聯絡我們',
     link: 'contact',
   },
+  {
+    id: 8,
+    title: '忘記密碼',
+    link: 'forgot-password',
+  },
 ];

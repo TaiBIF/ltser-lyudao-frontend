@@ -3,6 +3,7 @@ import { LiteratureItem } from 'types/literature';
 import { QAItem, NewsItem, DownloadItem } from 'types/dashboard';
 import { FormLinkItem } from 'types/formLink';
 import { EcoSearchItem } from 'types/siteData';
+import { ResetPasswordItem } from 'types/auth';
 
 export type TypeItem = {
   id?: number | string;
