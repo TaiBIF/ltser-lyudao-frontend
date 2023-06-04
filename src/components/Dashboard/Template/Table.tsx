@@ -40,8 +40,6 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                 <tr key={id}>
                   {Object.entries(v).map(([key, value]) => {
                     const matchCol = cols.find((col) => col.id === key);
-                    console.log(matchCol);
-
                     if (matchCol && matchCol.show) {
                       if (
                         matchCol.param &&
@@ -80,10 +78,9 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                           return (
                             <ul className="list-unstyled">
                               {value.map((v, i) => {
-                                const { id, name } = v;
                                 if (matchCol.relate) {
                                   const matchRelate = matchCol.relate.find(
-                                    (relateV) => relateV.id === id
+                                    (relateV) => relateV.id === v
                                   );
                                   return (
                                     matchRelate && (
@@ -91,7 +88,7 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                                     )
                                   );
                                 } else {
-                                  return <li key={i}>{name}</li>;
+                                  return <li key={i}>{v}</li>;
                                 }
                               })}
                             </ul>

@@ -1,8 +1,8 @@
-import { newsTypeList } from 'data/news';
+import { TypeItem, FieldItem, ColItem } from 'types/utils';
 import { TabItem, QAItem, DownloadItem } from 'types/dashboard';
+import { newsTypeList, newsImageList, newsAttachmentList } from 'data/news';
 import { contactTypeList } from 'data/contact';
 import { aboutTypeList, attachmentNameList } from 'data/about';
-import { TypeItem, FieldItem, ColItem } from 'types/utils';
 
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [
@@ -444,20 +444,22 @@ export const newsColList: ColItem[] = [
     show: true,
     space: 'text',
   },
-  {
-    id: 'cover',
-    title: '封面圖片',
-    show: true,
-  },
+  // {
+  //   id: 'cover',
+  //   title: '封面圖片',
+  //   show: true,
+  // },
   {
     id: 'image',
     title: '圖片連結',
     show: true,
+    relate: newsImageList,
   },
   {
     id: 'attachments',
     title: '附件檔案連結',
     show: true,
+    relate: newsAttachmentList,
   },
   {
     id: 'modified',

@@ -1,11 +1,6 @@
-export type NewsAttachmentItem = {
-  id: string | number;
-  name: string;
-};
-
 export type NewsImageItem = {
   id: string | number;
-  name: string;
+  title: string;
   cover: boolean;
 };
 
@@ -15,8 +10,8 @@ export type NewsItem = {
   userId?: string;
   title: string;
   content: string;
-  image: NewsImageItem[];
-  attachments: NewsAttachmentItem[];
+  image: (number | string)[];
+  attachments?: (number | string)[];
   created?: string;
   modified?: string;
 };

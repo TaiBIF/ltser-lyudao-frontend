@@ -1,5 +1,6 @@
 import { TypeItem } from 'types/common';
-import { NewsItem } from 'types/news';
+import { NewsImageItem, NewsItem } from 'types/news';
+import { AttachmentItem } from 'types/utils';
 
 export const newsTypeList: TypeItem[] = [
   {
@@ -24,6 +25,37 @@ export const newsTypeList: TypeItem[] = [
   },
 ];
 
+export const newsImageList: NewsImageItem[] = [
+  {
+    id: 1,
+    title: 'test1.jpg',
+    cover: true,
+  },
+  {
+    id: 2,
+    title: 'test2.jpg',
+    cover: false,
+  },
+];
+
+export const newsAttachmentList: AttachmentItem[] = [
+  {
+    id: 1,
+    type: 'file',
+    title: 'test1.pdf',
+  },
+  {
+    id: 2,
+    type: 'file',
+    title: 'test2.pdf',
+  },
+  {
+    id: 3,
+    type: 'file',
+    title: 'test3.pdf',
+  },
+];
+
 export const newsList: NewsItem[] = [
   {
     id: 1,
@@ -32,32 +64,8 @@ export const newsList: NewsItem[] = [
     title: '2023年2月22日召開「長期社會生態核心觀測站規劃建議會」(1)',
     content:
       '本次活動為聯合推廣國科會自然科學相關資料庫，促進跨領域各平台交流，以結合自然科學不同領域資料，進行學術研究...',
-    image: [
-      {
-        id: 1,
-        name: 'test1.jpg',
-        cover: true,
-      },
-      {
-        id: 2,
-        name: 'test2.jpg',
-        cover: false,
-      },
-    ],
-    attachments: [
-      {
-        id: 1,
-        name: 'test1.pdf',
-      },
-      {
-        id: 2,
-        name: 'test2.pdf',
-      },
-      {
-        id: 3,
-        name: 'test3.pdf',
-      },
-    ],
+    image: [1, 2, 3],
+    attachments: [1, 2, 3],
     created: '2023-01-02',
     modified: '2023-01-02',
   },
@@ -68,32 +76,8 @@ export const newsList: NewsItem[] = [
     title: '2023年2月22日召開「長期社會生態核心觀測站規劃建議會」(1)',
     content:
       '本次活動為聯合推廣國科會自然科學相關資料庫，促進跨領域各平台交流，以結合自然科學不同領域資料，進行學術研究...',
-    image: [
-      {
-        id: 1,
-        name: 'test1.jpg',
-        cover: true,
-      },
-      {
-        id: 2,
-        name: 'test2.jpg',
-        cover: false,
-      },
-    ],
-    attachments: [
-      {
-        id: 1,
-        name: 'test1.pdf',
-      },
-      {
-        id: 2,
-        name: 'test2.pdf',
-      },
-      {
-        id: 3,
-        name: 'test3.pdf',
-      },
-    ],
+    image: [1, 2, 3],
+    attachments: [1, 2, 3],
     created: '2023-01-02',
     modified: '2023-01-02',
   },
@@ -104,32 +88,8 @@ export const newsList: NewsItem[] = [
     title: '2023年2月22日召開「長期社會生態核心觀測站規劃建議會」(1)',
     content:
       '本次活動為聯合推廣國科會自然科學相關資料庫，促進跨領域各平台交流，以結合自然科學不同領域資料，進行學術研究...',
-    image: [
-      {
-        id: 1,
-        name: 'test1.jpg',
-        cover: true,
-      },
-      {
-        id: 2,
-        name: 'test2.jpg',
-        cover: false,
-      },
-    ],
-    attachments: [
-      {
-        id: 1,
-        name: 'test1.pdf',
-      },
-      {
-        id: 2,
-        name: 'test2.pdf',
-      },
-      {
-        id: 3,
-        name: 'test3.pdf',
-      },
-    ],
+    image: [1, 2, 3],
+    attachments: [1, 2, 3],
     created: '2023-01-02',
     modified: '2023-01-02',
   },
@@ -140,32 +100,8 @@ export const newsList: NewsItem[] = [
     title: '2023年2月22日召開「長期社會生態核心觀測站規劃建議會」(1)',
     content:
       '本次活動為聯合推廣國科會自然科學相關資料庫，促進跨領域各平台交流，以結合自然科學不同領域資料，進行學術研究...',
-    image: [
-      {
-        id: 1,
-        name: 'test1.jpg',
-        cover: true,
-      },
-      {
-        id: 2,
-        name: 'test2.jpg',
-        cover: false,
-      },
-    ],
-    attachments: [
-      {
-        id: 1,
-        name: 'test1.pdf',
-      },
-      {
-        id: 2,
-        name: 'test2.pdf',
-      },
-      {
-        id: 3,
-        name: 'test3.pdf',
-      },
-    ],
+    image: [1, 2, 3],
+    attachments: [1, 2, 3],
     created: '2023-01-02',
     modified: '2023-01-02',
   },
@@ -176,32 +112,8 @@ export const newsList: NewsItem[] = [
     title: '2023年2月22日召開「長期社會生態核心觀測站規劃建議會」(1)',
     content:
       '本次活動為聯合推廣國科會自然科學相關資料庫，促進跨領域各平台交流，以結合自然科學不同領域資料，進行學術研究...',
-    image: [
-      {
-        id: 1,
-        name: 'test1.jpg',
-        cover: true,
-      },
-      {
-        id: 2,
-        name: 'test2.jpg',
-        cover: false,
-      },
-    ],
-    attachments: [
-      {
-        id: 1,
-        name: 'test1.pdf',
-      },
-      {
-        id: 2,
-        name: 'test2.pdf',
-      },
-      {
-        id: 3,
-        name: 'test3.pdf',
-      },
-    ],
+    image: [1, 2, 3],
+    attachments: [1, 2, 3],
     created: '2023-01-02',
     modified: '2023-01-02',
   },
@@ -212,32 +124,8 @@ export const newsList: NewsItem[] = [
     title: '2023年2月22日召開「長期社會生態核心觀測站規劃建議會」(1)',
     content:
       '本次活動為聯合推廣國科會自然科學相關資料庫，促進跨領域各平台交流，以結合自然科學不同領域資料，進行學術研究...',
-    image: [
-      {
-        id: 1,
-        name: 'test1.jpg',
-        cover: true,
-      },
-      {
-        id: 2,
-        name: 'test2.jpg',
-        cover: false,
-      },
-    ],
-    attachments: [
-      {
-        id: 1,
-        name: 'test1.pdf',
-      },
-      {
-        id: 2,
-        name: 'test2.pdf',
-      },
-      {
-        id: 3,
-        name: 'test3.pdf',
-      },
-    ],
+    image: [1, 2, 3],
+    attachments: [1, 2, 3],
     created: '2023-01-02',
     modified: '2023-01-02',
   },

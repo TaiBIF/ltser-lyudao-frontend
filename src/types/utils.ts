@@ -3,20 +3,11 @@ import { LiteratureItem } from 'types/literature';
 import { QAItem, DownloadItem } from 'types/dashboard';
 import { FormLinkItem } from 'types/formLink';
 import { EcoSearchItem } from 'types/siteData';
-import { NewsItem } from 'types/news';
+import { NewsImageItem, NewsItem } from 'types/news';
 
 export type TypeItem = {
   id?: number | string;
   title: string;
-};
-
-export type ColItem = {
-  id: string;
-  title: string;
-  show: boolean;
-  param?: boolean;
-  space?: string;
-  relate?: TypeItem[];
 };
 
 export type FieldOptionItem = {
@@ -39,11 +30,25 @@ export type FieldItem = {
   required?: boolean;
   hints?: FieldHintItem[];
   multiple?: boolean;
-  cover?: string;
+  cover?: number | string;
   fileType?: string;
 };
 
 export type RelateState = { type?: string };
+
+export type AttachmentItem = {
+  id: number;
+  type: string;
+  title?: string;
+  content?: string;
+};
+
+export interface FileItem {
+  id: number;
+  file: File;
+  result: string | ArrayBuffer | null;
+  cover: boolean;
+}
 
 export type ItemTypes =
   | ContactItem
@@ -54,3 +59,14 @@ export type ItemTypes =
   | FormLinkItem
   | DownloadItem
   | EcoSearchItem;
+
+export type RelateTypes = TypeItem | NewsImageItem | AttachmentItem;
+
+export type ColItem = {
+  id: string;
+  title: string;
+  show: boolean;
+  param?: boolean;
+  space?: string;
+  relate?: RelateTypes[];
+};

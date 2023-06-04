@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 import { Field, ErrorMessage, useFormikContext } from 'formik';
 
-import { FieldItem } from 'types/utils';
+import FileImgItem from 'components/FieldLayout/FileImgItem';
+import FileListItem from 'components/FieldLayout/FileListItem';
+
+import { FieldItem, FileItem } from 'types/utils';
 
 type FileValue = {
   image: string;
   type: string;
 };
-
-interface FileItem {
-  file: File;
-  result: string | ArrayBuffer | null;
-}
 
 type Props = {
   data: FieldItem;
@@ -30,12 +28,12 @@ const FieldLayout = (props: Props) => {
     hints,
     options,
     multiple,
-    cover,
     fileType,
   } = data;
   const { values, setFieldValue } = useFormikContext();
   const [files, setFiles] = useState<FileItem[]>([]);
   const [fileName, setFileName] = useState('');
+  const [cover, setCover] = useState('0');
 
   // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   if (e.currentTarget.files?.length) {
@@ -61,26 +59,31 @@ const FieldLayout = (props: Props) => {
           reader.onload = () => {
             const result = reader.result;
             if (result instanceof ArrayBuffer) {
-              setFiles((prev) => [...prev, { file, result: '' }]);
+              setFiles((prev) => [
+                ...prev,
+                { id: i, file, result: '', cover: false },
+              ]);
             } else {
-              setFiles((prev) => [...prev, { file, result: result as string }]);
+              setFiles((prev) => [
+                ...prev,
+                { id: i, file, result: result as string, cover: false },
+              ]);
             }
           };
           reader.readAsDataURL(file);
         } else {
-          setFiles((prev) => [...prev, { file, result: file.name }]);
+          setFiles((prev) => [
+            ...prev,
+            { id: i, file, result: file.name, cover: false },
+          ]);
         }
       }
     }
   };
 
   const handleFileRemove = (index: number) => {
-    const remainFiles = files.filter((v, i) => i !== index);
-    setFiles([...remainFiles]);
-  };
-
-  const handleCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldValue('cover', e.currentTarget.value);
+    // const remainFiles = files.filter((v, i) => i !== index);
+    setFiles((prevState) => prevState.filter((_, i) => i !== index));
   };
 
   useEffect(() => {
@@ -162,11 +165,14 @@ const FieldLayout = (props: Props) => {
             <label htmlFor={title} className="form-label">
               {label}
             </label>
+            <label htmlFor={title} className="c-form__file">
+              <span>選擇檔案</span>
+            </label>
             <input
               type="file"
               id={title}
               name={title}
-              className="form-control"
+              className="d-none"
               onChange={handleFileChange}
               onClick={handleFileClick}
               multiple={multiple}
@@ -194,69 +200,30 @@ const FieldLayout = (props: Props) => {
           </div>
           {files &&
             (fileType === 'image' ? (
-              <div role="group" aria-labelledby="checkbox-group">
-                <div className="d-flex align-items-center mb-2">
-                  {files.map((v, i) => {
-                    const { file, result } = v;
-                    return (
-                      typeof result === 'string' &&
-                      (cover ? (
-                        <div key={i} className="w-25">
-                          <label htmlFor={`cover${i}`} className="d-block">
-                            <div className="ratio ratio-1x1">
-                              <img
-                                src={result}
-                                alt="img"
-                                className="w-100 h-100 object-fit-contain"
-                              />
-                            </div>
-                          </label>
-                          <Field
-                            type="radio"
-                            id={`cover${i}`}
-                            name="cover"
-                            value={file.name}
-                            onChange={handleCoverChange}
-                            // required
-                          />
-                          <ErrorMessage
-                            name="cover"
-                            component="small"
-                            className="text-danger"
-                          />
-                        </div>
-                      ) : (
-                        <div key={i} className="ratio ratio-1x1 w-25">
-                          <img
-                            src={result}
-                            alt="img"
-                            className="w-100 h-100 object-fit-contain"
-                          />
-                        </div>
-                      ))
-                    );
-                  })}
-                </div>
-              </div>
+              files.map((v, i) => {
+                return (
+                  <FileImgItem
+                    key={v.id}
+                    files={files}
+                    setFiles={setFiles}
+                    cover={cover}
+                    setCover={setCover}
+                    data={v}
+                    index={i}
+                    handleFileRemove={handleFileRemove}
+                  />
+                );
+              })
             ) : (
               <ul className="list-unstyled">
                 {files.map((v, i) => {
-                  const { result } = v;
                   return (
-                    typeof result === 'string' && (
-                      <li key={i} className="mb-2">
-                        <button
-                          type="button"
-                          className="btn btn-light d-flex align-items-center justify-content-between w-100"
-                          onClick={() => {
-                            handleFileRemove(i);
-                          }}
-                        >
-                          {result}
-                          <span className="btn-close btn-sm"></span>
-                        </button>
-                      </li>
-                    )
+                    <FileListItem
+                      key={v.id}
+                      data={v}
+                      index={i}
+                      handleFileRemove={handleFileRemove}
+                    />
                   );
                 })}
               </ul>

@@ -1,9 +1,3 @@
-export type AttachmentItem = {
-  id: number | string;
-  type: string;
-  content: string;
-};
-
 export type AttachmentNameItem = {
   id: number | string;
   title: string;

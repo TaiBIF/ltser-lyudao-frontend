@@ -1,5 +1,6 @@
 import { TypeItem } from 'types/utils';
-import { AboutItem, AttachmentItem, AttachmentNameItem } from 'types/about';
+import { AboutItem, AttachmentNameItem } from 'types/about';
+import { AttachmentItem } from 'types/utils';
 
 import abImg from 'image/abimg.png';
 import abDemoImg1 from 'image/ab-demo1.png';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AttachmentItem } from 'types/about';
+import { AttachmentItem } from 'types/utils';
 
 interface AttachmentProps {
   parentId: string;
