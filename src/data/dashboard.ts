@@ -287,6 +287,7 @@ export const contactAddFieldList: FieldItem[] = [
     label: '照片',
     readonly: false,
     required: false,
+    fileType: 'image',
   },
 ];
 
@@ -339,6 +340,7 @@ export const contactEditFieldList: FieldItem[] = [
     label: '照片',
     readonly: false,
     required: false,
+    fileType: 'image',
     hints: [
       {
         id: 'link',
@@ -503,7 +505,6 @@ export const newsFieldList: FieldItem[] = [
     readonly: false,
     required: false,
     multiple: true,
-    cover: '',
     fileType: 'image',
   },
   {

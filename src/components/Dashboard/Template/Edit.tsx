@@ -14,35 +14,29 @@ interface EditTemplateProps {
   setInitialValues: any;
   validationSchema: any;
   fieldList: FieldItem[];
-  targetList: ItemTypes[];
+  targetItem: ItemTypes;
+  handleSubmit: (
+    values: ItemTypes,
+    formikHelpers: FormikHelpers<ItemTypes>
+  ) => void;
+  handleDeleteClick: () => void;
 }
 
 const EditTemplate = (props: EditTemplateProps) => {
   const {
-    param,
     initialValues,
     setInitialValues,
     fieldList,
-    targetList,
+    targetItem,
     validationSchema,
+    handleSubmit,
+    handleDeleteClick,
   } = props;
   const navigate = useNavigate();
 
   const handleCancelClick = () => {
     navigate(-1);
   };
-
-  const handleSubmit = (
-    values: ItemTypes,
-    { setSubmitting }: FormikHelpers<ItemTypes>
-  ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
-  };
-
-  const handleDeleteClick = () => {};
 
   const formikConfig: FormikConfig<ItemTypes> = {
     initialValues,
@@ -52,11 +46,10 @@ const EditTemplate = (props: EditTemplateProps) => {
   };
 
   useEffect(() => {
-    const matchTarget = targetList.find((v) => v.id?.toString() === param);
-    if (matchTarget) {
-      setInitialValues({ ...matchTarget });
+    if (targetItem) {
+      setInitialValues({ ...targetItem });
     }
-  }, [param]);
+  }, [targetItem]);
 
   return (
     <>

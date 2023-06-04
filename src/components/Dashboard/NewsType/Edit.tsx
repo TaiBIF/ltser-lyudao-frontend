@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { FormikHelpers } from 'formik';
 
 import EditTemplate from 'components/Dashboard/Template/Edit';
 
-import { TypeItem } from 'types/utils';
+import { TypeItem, ItemTypes } from 'types/utils';
 
 import { typeFieldList } from 'data/dashboard';
 import { newsTypeValidationSchema } from 'data/validationSchema';
@@ -15,6 +16,22 @@ const Edit = () => {
     title: '',
   });
   const { qaTypeId } = useParams();
+  const [newsTypeItem, setNewsTypeItem] = useState<TypeItem>({
+    id: 0,
+    title: '',
+  });
+
+  const handleEditSubmit = (
+    values: ItemTypes,
+    { setSubmitting }: FormikHelpers<ItemTypes>
+  ) => {
+    setTimeout(() => {
+      console.log(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 500);
+  };
+
+  const handleDeleteClick = () => {};
 
   return (
     <>
@@ -24,7 +41,9 @@ const Edit = () => {
         setInitialValues={setInitialValues}
         validationSchema={newsTypeValidationSchema}
         fieldList={typeFieldList}
-        targetList={newsTypeList}
+        targetItem={newsTypeItem}
+        handleSubmit={handleEditSubmit}
+        handleDeleteClick={handleDeleteClick}
       />
     </>
   );

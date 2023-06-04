@@ -34,7 +34,6 @@ const FieldLayout = (props: Props) => {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [fileName, setFileName] = useState('');
   const [cover, setCover] = useState('0');
-
   // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   if (e.currentTarget.files?.length) {
   //     if (multiple) {
@@ -210,6 +209,7 @@ const FieldLayout = (props: Props) => {
                     setCover={setCover}
                     data={v}
                     index={i}
+                    multiple={multiple}
                     handleFileRemove={handleFileRemove}
                   />
                 );

@@ -11,24 +11,18 @@ interface AddTemplateProps {
   initialValues: ItemTypes;
   fieldList: FieldItem[];
   validationSchema: any;
+  handleSubmit: (
+    values: ItemTypes,
+    formikHelpers: FormikHelpers<ItemTypes>
+  ) => void;
 }
 
 const Add = (props: AddTemplateProps) => {
-  const { initialValues, fieldList, validationSchema } = props;
+  const { initialValues, fieldList, validationSchema, handleSubmit } = props;
   const navigate = useNavigate();
 
   const handleCancelClick = () => {
     navigate(-1);
-  };
-
-  const handleSubmit = (
-    values: ItemTypes,
-    { setSubmitting }: FormikHelpers<ItemTypes>
-  ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
   };
 
   const formikConfig: FormikConfig<ItemTypes> = {

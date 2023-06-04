@@ -18,15 +18,15 @@ import peoIbImg from 'image/peoib-img.png';
 
 export const contactTypeList: TypeItem[] = [
   {
-    id: 1,
+    id: 'leader',
     title: '計畫總主持人',
   },
   {
-    id: 2,
+    id: 'executor',
     title: '計畫執行人員',
   },
   {
-    id: 3,
+    id: 'other',
     title: '其他人員',
   },
 ];

@@ -9,12 +9,21 @@ interface FileImgItemProps {
   setCover: Dispatch<SetStateAction<string>>;
   data: FileItem;
   index: number;
+  multiple: boolean | undefined;
   handleFileRemove: (index: number) => void;
 }
 
 const FileImgItem = (props: FileImgItemProps) => {
-  const { files, setFiles, cover, setCover, data, index, handleFileRemove } =
-    props;
+  const {
+    files,
+    setFiles,
+    cover,
+    setCover,
+    data,
+    index,
+    multiple = false,
+    handleFileRemove,
+  } = props;
   const { file, result } = data;
 
   const isResultString = typeof result === 'string';
@@ -50,19 +59,21 @@ const FileImgItem = (props: FileImgItemProps) => {
             <div className="c-form__text c-form__text--title">{file.name}</div>
             <div className="c-form__text">大小: {file.size / 1000} KB</div>
             <div className="c-form__text">最後修改: {fileLastModifiedTime}</div>
-            <div className="d-flex align-items-center mb-2">
-              <input
-                type="radio"
-                id={`cover${index}`}
-                name="cover"
-                value={index}
-                className="form-check-input m-0 me-2"
-                onChange={handleCoverChange}
-                defaultChecked={isDefaultCover}
-                checked={isCheckedCover}
-              />
-              <div className="c-form__text">設為封面</div>
-            </div>
+            {multiple && (
+              <div className="d-flex align-items-center mb-2">
+                <input
+                  type="radio"
+                  id={`cover${index}`}
+                  name="cover"
+                  value={index}
+                  className="form-check-input m-0 me-2"
+                  onChange={handleCoverChange}
+                  defaultChecked={isDefaultCover}
+                  checked={isCheckedCover}
+                />
+                <div className="c-form__text">設為封面</div>
+              </div>
+            )}
           </div>
         </div>
         <button

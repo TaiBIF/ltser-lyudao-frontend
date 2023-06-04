@@ -13,6 +13,7 @@ interface TableTemplateProps<T> {
 
 const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
   const { page, cols, data, renderAction } = props;
+  // console.log(data);
 
   return (
     <>

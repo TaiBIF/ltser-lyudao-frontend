@@ -1,10 +1,13 @@
 import React from 'react';
+import { FormikHelpers } from 'formik';
 
 import AddTemplate from 'components/Dashboard/Template/Add';
 
+import { ItemTypes } from 'types/utils';
+import { NewsItem } from 'types/news';
+
 import { newsFieldList } from 'data/dashboard';
 import { newsValidationSchema } from 'data/validationSchema';
-import { NewsItem } from 'types/news';
 
 const Add = () => {
   const initialValues: NewsItem = {
@@ -16,12 +19,23 @@ const Add = () => {
     modified: '',
   };
 
+  const handleAddSubmit = (
+    values: ItemTypes,
+    { setSubmitting }: FormikHelpers<ItemTypes>
+  ) => {
+    setTimeout(() => {
+      console.log(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 500);
+  };
+
   return (
     <>
       <AddTemplate
         initialValues={initialValues}
         fieldList={newsFieldList}
         validationSchema={newsValidationSchema}
+        handleSubmit={handleAddSubmit}
       />
     </>
   );
