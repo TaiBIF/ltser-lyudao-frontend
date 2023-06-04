@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import Banner from 'components/Banner';
 import Breadcrumb from 'components/Breadcrumb';
-import DateIcon from 'components/News/DateIcon';
-import NewsListItem from 'components/News/NewsListItem';
+import Item from 'components/News/Item';
+import Pagination from 'components/Pagination';
+import DateFilter from 'components/News/DateFilter';
 
 import bannerImg from 'image/newsbn.jpg';
 
@@ -12,9 +13,8 @@ import { BannerData } from 'types/common';
 import { NewsItem, NewsActiveState } from 'types/news';
 
 import { newsList, newsTypeList } from 'data/news';
-import Pagination from 'components/Pagination';
 
-const News = () => {
+const Content = () => {
   const [filter, setFilter] = useState<NewsActiveState>({
     type: 0,
   });
@@ -71,25 +71,12 @@ const News = () => {
                   })}
                 </ul>
               </div>
-              <div className="tool-select">
-                <p>篩選</p>
-                <div className="date-box">
-                  <div className="inp-item">
-                    <input type="text" placeholder="2020-02-02" />
-                    <DateIcon />
-                  </div>
-                  <span>~</span>
-                  <div className="inp-item">
-                    <input type="text" placeholder="2020-02-02" />
-                    <DateIcon />
-                  </div>
-                </div>
-              </div>
+              <DateFilter />
             </div>
             <div className="news-list">
               <ul>
                 {news.map((v) => {
-                  return <NewsListItem key={v.id} data={v} />;
+                  return <Item key={v.id} data={v} />;
                 })}
               </ul>
             </div>
@@ -101,4 +88,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Content;

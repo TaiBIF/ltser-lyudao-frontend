@@ -10,7 +10,7 @@ interface NewsListItemProps {
   data: NewsItem;
 }
 
-const NewsListItem = (props: NewsListItemProps) => {
+const Item = (props: NewsListItemProps) => {
   const { data } = props;
   const { id, type, title, content, modified } = data;
   const [typeData, setTypeData] = useState<TypeItem>({
@@ -44,4 +44,4 @@ const NewsListItem = (props: NewsListItemProps) => {
   );
 };
 
-export default NewsListItem;
+export default Item;

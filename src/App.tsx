@@ -14,34 +14,35 @@ import ForgotPsw from 'pages/Auth/ForgotPsw';
 import MailVerification from 'pages/Auth/MailVerification';
 import MailVerificationSuccess from 'pages/Auth/MailVerificationSuccess';
 import Terms from 'pages/Terms';
-import News from 'pages/News';
+import NewsContent from 'pages/News/Content';
+import NewsDetail from 'pages/News/Detail';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
-import AboutContent from 'components/Dashboard/About/Content';
-import AboutAdd from 'components/Dashboard/About/Add';
-import AboutEdit from 'components/Dashboard/About/Edit';
-import ContactContent from 'components/Dashboard/Contact/Content';
-import ContactAdd from 'components/Dashboard/Contact/Add';
-import ContactEdit from 'components/Dashboard/Contact/Edit';
-import QAContent from 'components/Dashboard/QA/Content';
-import QAAdd from 'components/Dashboard/QA/Add';
-import QAEdit from 'components/Dashboard/QA/Edit';
-import QATypeContent from 'components/Dashboard/QAType/Content';
-import QATypeAdd from 'components/Dashboard/QAType/Add';
-import QATypeEdit from 'components/Dashboard/QAType/Edit';
-import NewsContent from 'components/Dashboard/News/Content';
-import NewsAdd from 'components/Dashboard/News/Add';
-import NewsEdit from 'components/Dashboard/News/Edit';
-import NewsTypeContent from 'components/Dashboard/NewsType/Content';
-import NewsTypeAdd from 'components/Dashboard/NewsType/Add';
-import NewsTypeEdit from 'components/Dashboard/NewsType/Edit';
-import LiteratureContent from 'components/Dashboard/Literature/Content';
-import LiteratureAdd from 'components/Dashboard/Literature/Add';
-import LiteratureEdit from 'components/Dashboard/Literature/Edit';
-import FormLinkContent from 'components/Dashboard/FormLink/Content';
-import FormLinkAdd from 'components/Dashboard/FormLink/Add';
-import FormLinkEdit from 'components/Dashboard/FormLink/Edit';
-import Download from 'components/Dashboard/Download';
+import DashboardAboutContent from 'components/Dashboard/About/Content';
+import DashboardAboutAdd from 'components/Dashboard/About/Add';
+import DashboardAboutEdit from 'components/Dashboard/About/Edit';
+import DashboardContactContent from 'components/Dashboard/Contact/Content';
+import DashboardContactAdd from 'components/Dashboard/Contact/Add';
+import DashboardContactEdit from 'components/Dashboard/Contact/Edit';
+import DashboardQAContent from 'components/Dashboard/QA/Content';
+import DashboardQAAdd from 'components/Dashboard/QA/Add';
+import DashboardQAEdit from 'components/Dashboard/QA/Edit';
+import DashboardQATypeContent from 'components/Dashboard/QAType/Content';
+import DashboardQATypeAdd from 'components/Dashboard/QAType/Add';
+import DashboardQATypeEdit from 'components/Dashboard/QAType/Edit';
+import DashboardNewsContent from 'components/Dashboard/News/Content';
+import DashboardNewsAdd from 'components/Dashboard/News/Add';
+import DashboardNewsEdit from 'components/Dashboard/News/Edit';
+import DashboardNewsTypeContent from 'components/Dashboard/NewsType/Content';
+import DashboardNewsTypeAdd from 'components/Dashboard/NewsType/Add';
+import DashboardNewsTypeEdit from 'components/Dashboard/NewsType/Edit';
+import DashboardLiteratureContent from 'components/Dashboard/Literature/Content';
+import DashboardLiteratureAdd from 'components/Dashboard/Literature/Add';
+import DashboardLiteratureEdit from 'components/Dashboard/Literature/Edit';
+import DashboardFormLinkContent from 'components/Dashboard/FormLink/Content';
+import DashboardFormLinkAdd from 'components/Dashboard/FormLink/Add';
+import DashboardFormLinkEdit from 'components/Dashboard/FormLink/Edit';
+import DashboardDownload from 'components/Dashboard/Download';
 
 import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
@@ -59,7 +60,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/related-literature" element={<RelatedLiterature />} />
           <Route path="/form-link" element={<FormLink />} />
-          <Route path="/news" element={<News />} />
+          <Route path="/news" element={<NewsContent />} />
+          <Route path="/news/:newsId" element={<NewsDetail />} />
           <Route
             path="/site-data/ecological-observation"
             element={
@@ -85,103 +87,103 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route
             path="/dashboard/about"
-            element={<Dashboard content={<AboutContent />} />}
+            element={<Dashboard content={<DashboardAboutContent />} />}
           />
           <Route
             path="/dashboard/about/add"
-            element={<Dashboard content={<AboutAdd />} />}
+            element={<Dashboard content={<DashboardAboutAdd />} />}
           />
           <Route
             path="/dashboard/about/edit/:aboutId"
-            element={<Dashboard content={<AboutEdit />} />}
+            element={<Dashboard content={<DashboardAboutEdit />} />}
           />
           <Route
             path="/dashboard/contact"
-            element={<Dashboard content={<ContactContent />} />}
+            element={<Dashboard content={<DashboardContactContent />} />}
           />
           <Route
             path="/dashboard/contact/add"
-            element={<Dashboard content={<ContactAdd />} />}
+            element={<Dashboard content={<DashboardContactAdd />} />}
           />
           <Route
             path="/dashboard/contact/edit/:contactId"
-            element={<Dashboard content={<ContactEdit />} />}
+            element={<Dashboard content={<DashboardContactEdit />} />}
           />
           <Route
             path="/dashboard/qa"
-            element={<Dashboard content={<QAContent />} />}
+            element={<Dashboard content={<DashboardQAContent />} />}
           />
           <Route
             path="/dashboard/qa/add"
-            element={<Dashboard content={<QAAdd />} />}
+            element={<Dashboard content={<DashboardQAAdd />} />}
           />
           <Route
             path="/dashboard/qa/edit/:qaId"
-            element={<Dashboard content={<QAEdit />} />}
+            element={<Dashboard content={<DashboardQAEdit />} />}
           />
           <Route
             path="/dashboard/qa-type"
-            element={<Dashboard content={<QATypeContent />} />}
+            element={<Dashboard content={<DashboardQATypeContent />} />}
           />
           <Route
             path="/dashboard/qa-type/add"
-            element={<Dashboard content={<QATypeAdd />} />}
+            element={<Dashboard content={<DashboardQATypeAdd />} />}
           />
           <Route
             path="/dashboard/qa-type/edit/:qaTypeId"
-            element={<Dashboard content={<QATypeEdit />} />}
+            element={<Dashboard content={<DashboardQATypeEdit />} />}
           />
           <Route
             path="/dashboard/news"
-            element={<Dashboard content={<NewsContent />} />}
+            element={<Dashboard content={<DashboardNewsContent />} />}
           />
           <Route
             path="/dashboard/news/add"
-            element={<Dashboard content={<NewsAdd />} />}
+            element={<Dashboard content={<DashboardNewsAdd />} />}
           />
           <Route
             path="/dashboard/news/edit/:newsId"
-            element={<Dashboard content={<NewsEdit />} />}
+            element={<Dashboard content={<DashboardNewsEdit />} />}
           />
           <Route
             path="/dashboard/news-type"
-            element={<Dashboard content={<NewsTypeContent />} />}
+            element={<Dashboard content={<DashboardNewsTypeContent />} />}
           />
           <Route
             path="/dashboard/news-type/add"
-            element={<Dashboard content={<NewsTypeAdd />} />}
+            element={<Dashboard content={<DashboardNewsTypeAdd />} />}
           />
           <Route
             path="/dashboard/news-type/edit/:qaTypeId"
-            element={<Dashboard content={<NewsTypeEdit />} />}
+            element={<Dashboard content={<DashboardNewsTypeEdit />} />}
           />
           <Route
             path="/dashboard/related-literature"
-            element={<Dashboard content={<LiteratureContent />} />}
+            element={<Dashboard content={<DashboardLiteratureContent />} />}
           />
           <Route
             path="/dashboard/related-literature/add"
-            element={<Dashboard content={<LiteratureAdd />} />}
+            element={<Dashboard content={<DashboardLiteratureAdd />} />}
           />
           <Route
             path="/dashboard/related-literature/edit/:literatureId"
-            element={<Dashboard content={<LiteratureEdit />} />}
+            element={<Dashboard content={<DashboardLiteratureEdit />} />}
           />
           <Route
             path="/dashboard/form-link"
-            element={<Dashboard content={<FormLinkContent />} />}
+            element={<Dashboard content={<DashboardFormLinkContent />} />}
           />
           <Route
             path="/dashboard/form-link/add"
-            element={<Dashboard content={<FormLinkAdd />} />}
+            element={<Dashboard content={<DashboardFormLinkAdd />} />}
           />
           <Route
             path="/dashboard/form-link/edit/:formLinkId"
-            element={<Dashboard content={<FormLinkEdit />} />}
+            element={<Dashboard content={<DashboardFormLinkEdit />} />}
           />
           <Route
             path="/dashboard/download"
-            element={<Dashboard content={<Download />} />}
+            element={<Dashboard content={<DashboardDownload />} />}
           />
         </Routes>
         <Footer />
