@@ -14,6 +14,7 @@ import ForgotPsw from 'pages/Auth/ForgotPsw';
 import MailVerification from 'pages/Auth/MailVerification';
 import MailVerificationSuccess from 'pages/Auth/MailVerificationSuccess';
 import Terms from 'pages/Terms';
+import News from 'pages/News';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import AboutContent from 'components/Dashboard/About/Content';
@@ -58,6 +59,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/related-literature" element={<RelatedLiterature />} />
           <Route path="/form-link" element={<FormLink />} />
+          <Route path="/news" element={<News />} />
           <Route
             path="/site-data/ecological-observation"
             element={

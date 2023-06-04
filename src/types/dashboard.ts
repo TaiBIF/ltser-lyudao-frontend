@@ -1,9 +1,3 @@
-import { ContactItem } from 'types/contact';
-import { LiteratureItem } from 'types/literature';
-import { TypeItem } from 'types/common';
-import { FormLinkItem } from 'types/formLink';
-import { NewsItem } from 'types/news';
-
 export type TabItem = {
   id: string;
   title: string;

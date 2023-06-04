@@ -8,6 +8,7 @@ import { NewsImageItem, NewsItem } from 'types/news';
 export type TypeItem = {
   id?: number | string;
   title: string;
+  colorClass?: string;
 };
 
 export type FieldOptionItem = {

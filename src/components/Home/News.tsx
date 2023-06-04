@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { EnterState } from 'types/home';
-import { NewsItem } from 'types/news';
+import { NewsItem, NewsFilterState } from 'types/news';
 
 import { newsList, newsTypeList } from 'data/news';
 
@@ -10,31 +10,27 @@ interface NewsProps {
   enter: EnterState;
 }
 
-type ActiveState = {
-  type: number | string;
-};
-
 function News(props: NewsProps) {
   const { enter } = props;
-  const [active, setActive] = useState<ActiveState>({
+  const [active, setActive] = useState<NewsFilterState>({
     type: 0,
+    startDate: '',
+    endDate: '',
   });
   const [news, setNews] = useState<NewsItem[]>([]);
 
-  const isAllCategory = active.type === 0;
+  const isAllType = active.type === 0;
 
-  const handleCategoryClick = (id: number | string) => {
+  const handleTypeClick = (id: number | string) => {
     setActive({ ...active, type: id });
   };
 
   useEffect(() => {
-    if (isAllCategory) {
+    if (isAllType) {
       setNews([...newsList.slice(0, 3)]);
     } else {
-      const matchActiveCategory = newsList.filter(
-        (v) => v.type === active.type
-      );
-      setNews([...matchActiveCategory]);
+      const matchActiveType = newsList.filter((v) => v.type === active.type);
+      setNews([...matchActiveType]);
     }
   }, [active.type]);
 
@@ -56,7 +52,11 @@ function News(props: NewsProps) {
                       className={`${
                         active.type === id ? 'now' : ''
                       } ${colorClass}`}
-                      onClick={() => handleCategoryClick(id)}
+                      onClick={() => {
+                        if (id) {
+                          handleTypeClick(id);
+                        }
+                      }}
                     >
                       {title}
                     </li>

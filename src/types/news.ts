@@ -15,3 +15,15 @@ export type NewsItem = {
   created?: string;
   modified?: string;
 };
+
+export type NewsActiveState = {
+  type: number | string;
+  startDate?: string;
+  endDate?: string;
+};
+
+export type NewsFilterState = {
+  type: number | string;
+  startDate: string;
+  endDate: string;
+};

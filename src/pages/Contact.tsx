@@ -9,14 +9,14 @@ import { contactList, contactTypeList } from 'data/contact';
 
 import { BannerData } from 'types/common';
 
-import contactBannerImg from 'image/contact_bn.png';
+import bannerImg from 'image/contact_bn.png';
 
 const Contact = () => {
   const bannerData: BannerData = {
     title: '聯絡我們',
     en: ['CONTACT'],
     maskImg: true,
-    bgImg: contactBannerImg,
+    bgImg: bannerImg,
   };
   return (
     <>

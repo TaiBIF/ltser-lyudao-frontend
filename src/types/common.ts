@@ -43,12 +43,6 @@ export type FooterMenuItem = {
   list: FooterSubMenuItem[];
 };
 
-export type TypeItem = {
-  id: number | string;
-  title: string;
-  colorClass?: string;
-};
-
 export type BannerData = {
   title: string;
   en: string[];
