@@ -34,7 +34,7 @@ const Edit = () => {
       },
     });
     if (result) {
-      setLiteratureItem({ ...result.data[0] });
+      setLiteratureItem({ ...result.data });
     }
   };
 
@@ -42,9 +42,13 @@ const Edit = () => {
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
+    const data = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      data.append(key, value);
+    });
     getApiData({
       method: 'patch',
-      data: values,
+      data: data,
       params: {
         id: literatureId,
       },
@@ -68,10 +72,10 @@ const Edit = () => {
       handleActions({
         result: result,
         success: {
-          title: result.data.message,
+          title: '編輯成功',
         },
         error: {
-          title: result.data.message,
+          title: '發生錯誤，編輯失敗',
         },
       });
     }

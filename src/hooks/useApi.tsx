@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import { API_URL } from 'utils/config';
 import { swalToast } from 'helpers/customSwal';
@@ -9,6 +10,11 @@ import { ItemTypes } from 'types/utils';
 type ResultItem = {
   type?: string;
   title: string;
+};
+
+type ActionItem = {
+  type?: string;
+  path: string;
 };
 
 interface apiParamsProps {
@@ -23,11 +29,13 @@ interface actionParamsProps {
   result: any;
   success: ResultItem;
   error: ResultItem;
+  action?: ActionItem;
 }
 
 export const useApi = () => {
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const getApiData = async (apiParams: apiParamsProps) => {
     const { type = 'api', method, params, data, url } = apiParams;
@@ -63,10 +71,12 @@ export const useApi = () => {
   };
 
   const handleActions = (actionParams: actionParamsProps) => {
-    const { result, success, error } = actionParams;
+    const { result, success, error, action } = actionParams;
     const { status, data } = result;
     switch (status) {
       case 200:
+      case 201:
+      case 204:
         switch (success.type) {
           case 'default':
           default:
@@ -74,6 +84,13 @@ export const useApi = () => {
               icon: 'success',
               title: success.title,
             });
+            switch (action?.type) {
+              case 'redirect':
+                navigate(action?.path);
+                break;
+              default:
+                break;
+            }
             return;
         }
       default:

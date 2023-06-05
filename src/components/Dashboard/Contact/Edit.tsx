@@ -44,7 +44,7 @@ const Edit = () => {
       },
     });
     if (result) {
-      setContactItem({ ...result.data[0] });
+      setContactItem({ ...result.data });
     }
   };
 
@@ -52,9 +52,13 @@ const Edit = () => {
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
+    const data = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      data.append(key, value);
+    });
     getApiData({
       method: 'patch',
-      data: values,
+      data: data,
       params: {
         id: contactId,
       },
@@ -78,10 +82,10 @@ const Edit = () => {
       handleActions({
         result: result,
         success: {
-          title: result.data.message,
+          title: '編輯成功',
         },
         error: {
-          title: result.data.message,
+          title: '發生錯誤，編輯失敗',
         },
       });
     }

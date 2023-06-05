@@ -21,9 +21,13 @@ const Add = () => {
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
+    const data = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      data.append(key, value);
+    });
     getApiData({
       method: 'post',
-      data: values,
+      data: data,
       url: '/users/literatures/',
     });
     setSubmitting(false);
@@ -34,10 +38,10 @@ const Add = () => {
       handleActions({
         result: result,
         success: {
-          title: result.data.message,
+          title: '新增成功',
         },
         error: {
-          title: result.data.message,
+          title: '發生錯誤，新增失敗。',
         },
       });
     }
