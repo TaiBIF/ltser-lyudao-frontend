@@ -87,6 +87,10 @@ const Edit = () => {
         error: {
           title: '發生錯誤，編輯失敗',
         },
+        action: {
+          type: 'redirect',
+          path: '/dashboard/contact',
+        },
       });
     }
   }, [result]);

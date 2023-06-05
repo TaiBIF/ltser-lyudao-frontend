@@ -43,6 +43,10 @@ const Add = () => {
         error: {
           title: '發生錯誤，新增失敗。',
         },
+        action: {
+          type: 'redirect',
+          path: '/dashboard/literature',
+        },
       });
     }
   }, [result]);
