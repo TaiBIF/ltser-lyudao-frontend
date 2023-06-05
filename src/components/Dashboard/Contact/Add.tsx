@@ -32,7 +32,7 @@ const Add = () => {
     });
     getApiData({
       method: 'post',
-      data: values,
+      data: data,
       url: '/users/contacts/',
     });
     setSubmitting(false);
