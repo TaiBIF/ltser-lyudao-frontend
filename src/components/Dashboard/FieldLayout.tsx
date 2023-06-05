@@ -71,7 +71,7 @@ const FieldLayout = (props: Props) => {
     if (fileName) {
       setFieldValue(
         fileName,
-        files.map((v) => v.file)
+        files.length === 1 ? files[0].file : files.map((v) => v.file)
       );
     }
   }, [files]);
@@ -124,9 +124,9 @@ const FieldLayout = (props: Props) => {
               請選擇{label}
             </option>
             {options?.map((v) => {
-              const { title } = v;
+              const { id, title } = v;
               return (
-                <option key={`${id}-${v.id}`} value={title}>
+                <option key={`${id}-${v.id}`} value={id}>
                   {title}
                 </option>
               );
