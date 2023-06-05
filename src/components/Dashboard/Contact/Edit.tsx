@@ -54,6 +54,9 @@ const Edit = () => {
   ) => {
     const data = new FormData();
     Object.entries(values).forEach(([key, value]) => {
+      if (key === 'image' && typeof value === 'string') {
+        return;
+      }
       data.append(key, value);
     });
     getApiData({
