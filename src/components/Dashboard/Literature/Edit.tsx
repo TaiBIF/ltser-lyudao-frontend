@@ -82,7 +82,7 @@ const Edit = () => {
         },
         action: {
           type: 'redirect',
-          path: '/dashboard/literature',
+          path: '/dashboard/related-literature',
         },
       });
     }
