@@ -19,22 +19,8 @@ const Content = () => {
       method: 'get',
       url: '/users/literatures/',
     });
-    // setLiteratureList([
-    //   {
-    //     id: 1,
-    //     name: 'Kilkeary, R. (1975). The energy crisis and decision-making in the family. National Technical Information Service.',
-    //     created_at: '2023-06-04',
-    //     updated_at: '2023-06-04',
-    //   },
-    //   {
-    //     id: 2,
-    //     name: 'Kilkeary, R. (1975). The energy crisis and decision-making in the family. National Technical Information Service.',
-    //     created_at: '2023-06-04',
-    //     updated_at: '2023-06-04',
-    //   },
-    // ]);
     if (result) {
-      setLiteratureList(result);
+      setLiteratureList([...result.data]);
     }
   };
 

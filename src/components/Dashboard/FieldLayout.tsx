@@ -5,12 +5,7 @@ import { Field, ErrorMessage, useFormikContext } from 'formik';
 import FileImgItem from 'components/FieldLayout/FileImgItem';
 import FileListItem from 'components/FieldLayout/FileListItem';
 
-import { FieldItem, FileItem } from 'types/utils';
-
-type FileValue = {
-  image: string;
-  type: string;
-};
+import { FieldItem, FileItem, ItemTypes } from 'types/utils';
 
 type Props = {
   data: FieldItem;
@@ -30,23 +25,10 @@ const FieldLayout = (props: Props) => {
     multiple,
     fileType,
   } = data;
-  const { values, setFieldValue } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext<ItemTypes>();
   const [files, setFiles] = useState<FileItem[]>([]);
   const [fileName, setFileName] = useState('');
   const [cover, setCover] = useState('0');
-  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.currentTarget.files?.length) {
-  //     if (multiple) {
-  //       setFieldValue(
-  //         e.currentTarget.name,
-  //         Array.from(e.currentTarget.files).map((v) => v.name)
-  //       );
-  //     } else {
-  //       setFieldValue(e.currentTarget.name, e.currentTarget.files[0].name);
-  //     }
-  //   }
-  // };
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.currentTarget.files;
     setFileName(e.currentTarget.name);
@@ -89,7 +71,7 @@ const FieldLayout = (props: Props) => {
     if (fileName) {
       setFieldValue(
         fileName,
-        files.map((v) => v.file.name)
+        files.map((v) => v.file)
       );
     }
   }, [files]);
@@ -177,25 +159,28 @@ const FieldLayout = (props: Props) => {
               multiple={multiple}
               accept={`${fileType}/*`}
             />
-            {hints &&
+            {/* {hints &&
               hints.map((v) => {
                 const { id, title } = v;
                 const isLink = id === 'link';
                 return isLink ? (
                   <div key={id} className="form-text">
                     {title}
-                    <a
-                      href={(values as FileValue).image}
-                      target="blank"
-                      className="ms-2"
-                    >
-                      {(values as FileValue).image}
-                    </a>
+                    {values.image && values.image[0]?.name && (
+                      <a
+                        href={values.image[0].name}
+                        className="ms-2"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {values.image[0].name}
+                      </a>
+                    )}
                   </div>
                 ) : (
-                  <div className="form-text"></div>
+                  <div key={id} className="form-text"></div>
                 );
-              })}
+              })} */}
           </div>
           {files &&
             (fileType === 'image' ? (

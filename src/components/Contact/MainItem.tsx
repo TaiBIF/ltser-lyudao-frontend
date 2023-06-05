@@ -37,7 +37,10 @@ const MainItem = (props: MainItemProps) => {
           </div>
           <div className="picbox">
             <div className="peoimg">
-              <img src={image} alt={name} />
+              <img
+                src={typeof image === 'string' ? image : undefined}
+                alt={name}
+              />
             </div>
             <div className="iconbox">
               <img src={peoIconImg} alt="" />

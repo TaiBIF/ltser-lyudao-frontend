@@ -5,5 +5,5 @@ export type ContactItem = {
   unit: string;
   content: string;
   contact?: string;
-  image: string;
+  image: string | File;
 };

@@ -43,17 +43,8 @@ const Edit = () => {
         id: contactId,
       },
     });
-    // setContactItem({
-    //   id: 1,
-    //   type: 'leader',
-    //   name: '陳昭倫',
-    //   unit: '中央研究院',
-    //   content: '生物多樣性研究中心 研究員',
-    //   contact: 'cacgate.sinica.edu.tw',
-    //   image: '/media/images/contact1.jpeg',
-    // });
     if (result) {
-      setContactItem({ ...result });
+      setContactItem({ ...result.data[0] });
     }
   };
 
