@@ -11,7 +11,7 @@ import { contactList } from 'data/contact';
 import { contactEditFieldList } from 'data/dashboard';
 import { contactValidationSchema } from 'data/validationSchema';
 
-import { useApi } from 'hooks/useApi';
+import useDashboard from 'hooks/useDashboard';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<ContactItem>({
@@ -24,100 +24,36 @@ const Edit = () => {
     image: '',
   });
   const { contactId } = useParams();
-  const { loading, getApiData, handleActions } = useApi();
-
-  const getContactList = async () => {
-    // setContactItem({
-    //   type: 'executor',
-    //   name: '楊松穎',
-    //   unit: '嘉義大學',
-    //   content: '水生生物科學系 助理教授',
-    //   contact: 'syyang@mail.ncyu.edu.tw',
-    //   image: '/media/images/contact2.jpeg',
-    // });
-    const result = await getApiData({
-      method: 'get',
-      url: '/users/contacts/',
-      params: {
-        id: contactId,
-      },
-    });
-    if (result?.status === 'success') {
-      setInitialValues({ ...result.response.data });
-    } else {
-      handleActions({
-        result: result?.response,
-        error: {
-          title: '發生錯誤，id不存在',
-        },
-        action: {
-          type: 'redirect',
-          path: '/dashboard/contact',
-        },
-      });
-    }
-  };
+  const { getDetail, handleEdit, handleDelete } = useDashboard();
 
   const handleEditSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    const data = new FormData();
-    Object.entries(values).forEach(([key, value]) => {
-      if (key === 'image' && typeof value === 'string') {
-        return;
-      }
-      data.append(key, value);
-    });
-    const result = await getApiData({
-      method: 'patch',
-      data: data,
-      params: {
-        id: contactId,
-      },
-      url: '/users/contacts/',
-    });
-    handleActions({
-      result: result?.response,
-      success: {
-        title: '更新成功',
-      },
-      error: {
-        title: '發生錯誤，更新失敗',
-      },
-      action: {
-        type: 'redirect',
-        path: '/dashboard/contact',
-      },
+    handleEdit({
+      values,
+      id: contactId ?? '',
+      url: 'contact',
+      redirectPath: 'contact',
     });
     setSubmitting(false);
   };
 
   const handleDeleteClick = async () => {
-    const result = await getApiData({
-      method: 'delete',
-      params: {
-        id: contactId,
-      },
-      url: '/users/contacts/',
-    });
-    handleActions({
-      result: result?.response,
-      success: {
-        title: '刪除成功',
-      },
-      error: {
-        title: '發生錯誤，刪除失敗',
-      },
-      action: {
-        type: 'redirect',
-        path: '/dashboard/contact',
-      },
+    handleDelete({
+      id: contactId ?? '',
+      url: 'contact',
+      redirectPath: 'contact',
     });
   };
 
   useEffect(() => {
-    getContactList();
+    getDetail({
+      id: contactId ?? '',
+      url: 'contact',
+      setData: setInitialValues,
+      redirectPath: 'contact',
+    });
   }, []);
 
   return (
