@@ -81,13 +81,7 @@ export const useApi = () => {
               icon: 'success',
               title: success?.title,
             });
-            switch (action?.type) {
-              case 'redirect':
-                navigate(action?.path);
-                break;
-              default:
-                break;
-            }
+
             return;
         }
       default:
@@ -95,6 +89,13 @@ export const useApi = () => {
           icon: 'error',
           title: error?.title,
         });
+        break;
+    }
+    switch (action?.type) {
+      case 'redirect':
+        navigate(action?.path);
+        break;
+      default:
         break;
     }
   };
