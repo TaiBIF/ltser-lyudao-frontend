@@ -47,6 +47,7 @@ const Edit = () => {
       setContactItem({ ...result.response.data });
     } else {
       handleActions({
+        result: result?.response,
         error: {
           title: '發生錯誤，id不存在',
         },
