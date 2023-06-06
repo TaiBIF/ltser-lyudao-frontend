@@ -18,28 +18,28 @@ type ActionItem = {
 };
 
 interface apiParamsProps {
-  type: string;
+  type?: string;
   method: string;
-  params: ItemTypes;
-  data: ItemTypes;
+  params?: any;
+  data?: FormData;
   url: string;
 }
 
 interface actionParamsProps {
-  result: any;
-  success: ResultItem;
-  error: ResultItem;
+  result?: any;
+  success?: ResultItem;
+  error?: ResultItem;
   action?: ActionItem;
 }
 
 export const useApi = () => {
-  const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const getApiData = async (apiParams: apiParamsProps) => {
     const { type = 'api', method, params, data, url } = apiParams;
     setLoading(true);
+    let result;
     try {
       let baseUrl;
       let response;
@@ -56,17 +56,14 @@ export const useApi = () => {
         params: params,
         data: data,
       });
-      if (method !== 'get') {
-        setResult(response);
-      }
-      return response;
+      result = { status: 'success', response: response };
     } catch (err) {
       if ((err as any).response) {
-        setResult((err as any).response);
-        return (err as any).response;
+        result = { status: 'error', response: (err as any).response };
       }
     } finally {
       setLoading(false);
+      return result;
     }
   };
 
@@ -77,12 +74,12 @@ export const useApi = () => {
       case 200:
       case 201:
       case 204:
-        switch (success.type) {
+        switch (success?.type) {
           case 'default':
           default:
             swalToast.fire({
               icon: 'success',
-              title: success.title,
+              title: success?.title,
             });
             switch (action?.type) {
               case 'redirect':
@@ -96,11 +93,11 @@ export const useApi = () => {
       default:
         swalToast.fire({
           icon: 'error',
-          title: error.title,
+          title: error?.title,
         });
         break;
     }
   };
 
-  return [result, loading, getApiData, handleActions];
+  return { loading, getApiData, handleActions };
 };

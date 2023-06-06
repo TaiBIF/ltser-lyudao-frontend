@@ -11,7 +11,7 @@ import { ContactItem } from 'types/contact';
 
 const Content = () => {
   const PAGE: string = 'contact';
-  const [result, loading, getApiData, handleActions] = useApi();
+  const { loading, getApiData, handleActions } = useApi();
   const [contactList, setContactList] = useState<ContactItem[]>([]);
 
   const getContactList = async () => {
@@ -19,8 +19,8 @@ const Content = () => {
       method: 'get',
       url: '/users/contacts/',
     });
-    if (result) {
-      setContactList([...result.data]);
+    if (result?.status === 'success') {
+      setContactList([...result.response.data]);
     }
   };
 

@@ -19,7 +19,7 @@ const Edit = () => {
     name: '',
   });
   const { literatureId } = useParams();
-  const [result, loading, getApiData, handleActions] = useApi();
+  const { loading, getApiData, handleActions } = useApi();
   const [literatureItem, setLiteratureItem] = useState<LiteratureItem>({
     id: 0,
     name: '',
@@ -33,12 +33,22 @@ const Edit = () => {
         id: literatureId,
       },
     });
-    if (result) {
-      setLiteratureItem({ ...result.data });
+    if (result?.status === 'success') {
+      setLiteratureItem({ ...result.response.data });
+    } else {
+      handleActions({
+        error: {
+          title: '發生錯誤，id不存在',
+        },
+        action: {
+          type: 'redirect',
+          path: '/dashboard/related-literature',
+        },
+      });
     }
   };
 
-  const handleEditSubmit = (
+  const handleEditSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
@@ -49,7 +59,7 @@ const Edit = () => {
       }
       data.append(key, value);
     });
-    getApiData({
+    const result = await getApiData({
       method: 'patch',
       data: data,
       params: {
@@ -57,36 +67,44 @@ const Edit = () => {
       },
       url: '/users/literatures/',
     });
+    handleActions({
+      result: result,
+      success: {
+        title: '更新成功',
+      },
+      error: {
+        title: '發生錯誤，更新失敗',
+      },
+      action: {
+        type: 'redirect',
+        path: '/dashboard/related-literature',
+      },
+    });
     setSubmitting(false);
   };
 
-  const handleDeleteClick = () => {
-    getApiData({
+  const handleDeleteClick = async () => {
+    const result = await getApiData({
       method: 'delete',
       params: {
         id: literatureId,
       },
       url: '/users/literatures/',
     });
+    handleActions({
+      result: result,
+      success: {
+        title: '更新成功',
+      },
+      error: {
+        title: '發生錯誤，更新失敗',
+      },
+      action: {
+        type: 'redirect',
+        path: '/dashboard/related-literature',
+      },
+    });
   };
-
-  useEffect(() => {
-    if (result) {
-      handleActions({
-        result: result,
-        success: {
-          title: '編輯成功',
-        },
-        error: {
-          title: '發生錯誤，編輯失敗',
-        },
-        action: {
-          type: 'redirect',
-          path: '/dashboard/related-literature',
-        },
-      });
-    }
-  }, [result]);
 
   useEffect(() => {
     getLiteratureList();

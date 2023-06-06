@@ -11,7 +11,7 @@ import { useApi } from 'hooks/useApi';
 
 const Content = () => {
   const PAGE: string = 'related-literature';
-  const [result, loading, getApiData, handleActions] = useApi();
+  const { loading, getApiData, handleActions } = useApi();
   const [literatureList, setLiteratureList] = useState<LiteratureItem[]>([]);
 
   const getContactList = async () => {
@@ -19,8 +19,8 @@ const Content = () => {
       method: 'get',
       url: '/users/literatures/',
     });
-    if (result) {
-      setLiteratureList([...result.data]);
+    if (result?.status === 'success') {
+      setLiteratureList([...result.response.data]);
     }
   };
 

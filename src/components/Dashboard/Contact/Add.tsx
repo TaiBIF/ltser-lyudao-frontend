@@ -20,9 +20,9 @@ const Add = () => {
     contact: '',
     image: '',
   };
-  const [result, loading, getApiData, handleActions] = useApi();
+  const { loading, getApiData, handleActions } = useApi();
 
-  const handleAddSubmit = (
+  const handleAddSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
@@ -30,31 +30,26 @@ const Add = () => {
     Object.entries(values).forEach(([key, value]) => {
       data.append(key, value);
     });
-    getApiData({
+    const result = await getApiData({
       method: 'post',
       data: data,
       url: '/users/contacts/',
     });
+    handleActions({
+      result: result,
+      success: {
+        title: '新增成功',
+      },
+      error: {
+        title: '發生錯誤，新增失敗',
+      },
+      action: {
+        type: 'redirect',
+        path: '/dashboard/contact',
+      },
+    });
     setSubmitting(false);
   };
-
-  useEffect(() => {
-    if (result) {
-      handleActions({
-        result: result,
-        success: {
-          title: '新增成功',
-        },
-        error: {
-          title: '發生錯誤，新增失敗。',
-        },
-        action: {
-          type: 'redirect',
-          path: '/dashboard/contact',
-        },
-      });
-    }
-  }, [result]);
 
   return (
     <>

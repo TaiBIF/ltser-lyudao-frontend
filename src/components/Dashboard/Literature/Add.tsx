@@ -15,9 +15,9 @@ const Add = () => {
   const initialValues: LiteratureItem = {
     name: '',
   };
-  const [result, loading, getApiData, handleActions] = useApi();
+  const { loading, getApiData, handleActions } = useApi();
 
-  const handleAddSubmit = (
+  const handleAddSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
@@ -25,31 +25,26 @@ const Add = () => {
     Object.entries(values).forEach(([key, value]) => {
       data.append(key, value);
     });
-    getApiData({
+    const result = await getApiData({
       method: 'post',
       data: data,
       url: '/users/literatures/',
     });
+    handleActions({
+      result: result,
+      success: {
+        title: '新增成功',
+      },
+      error: {
+        title: '發生錯誤，新增失敗',
+      },
+      action: {
+        type: 'redirect',
+        path: '/dashboard/related-literature',
+      },
+    });
     setSubmitting(false);
   };
-
-  useEffect(() => {
-    if (result) {
-      handleActions({
-        result: result,
-        success: {
-          title: '新增成功',
-        },
-        error: {
-          title: '發生錯誤，新增失敗。',
-        },
-        action: {
-          type: 'redirect',
-          path: '/dashboard/related-literature',
-        },
-      });
-    }
-  }, [result]);
 
   return (
     <>

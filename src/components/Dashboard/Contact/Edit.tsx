@@ -24,7 +24,7 @@ const Edit = () => {
     image: '',
   });
   const { contactId } = useParams();
-  const [result, loading, getApiData, handleActions] = useApi();
+  const { loading, getApiData, handleActions } = useApi();
   const [contactItem, setContactItem] = useState<ContactItem>({
     id: 0,
     type: 0,
@@ -43,12 +43,22 @@ const Edit = () => {
         id: contactId,
       },
     });
-    if (result) {
-      setContactItem({ ...result.data });
+    if (result?.status === 'success') {
+      setContactItem({ ...result.response.data });
+    } else {
+      handleActions({
+        error: {
+          title: '發生錯誤，id不存在',
+        },
+        action: {
+          type: 'redirect',
+          path: '/dashboard/contact',
+        },
+      });
     }
   };
 
-  const handleEditSubmit = (
+  const handleEditSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
@@ -59,7 +69,7 @@ const Edit = () => {
       }
       data.append(key, value);
     });
-    getApiData({
+    const result = await getApiData({
       method: 'patch',
       data: data,
       params: {
@@ -67,36 +77,44 @@ const Edit = () => {
       },
       url: '/users/contacts/',
     });
+    handleActions({
+      result: result,
+      success: {
+        title: '更新成功',
+      },
+      error: {
+        title: '發生錯誤，更新失敗',
+      },
+      action: {
+        type: 'redirect',
+        path: '/dashboard/contact',
+      },
+    });
     setSubmitting(false);
   };
 
-  const handleDeleteClick = () => {
-    getApiData({
+  const handleDeleteClick = async () => {
+    const result = await getApiData({
       method: 'delete',
       params: {
         id: contactId,
       },
       url: '/users/contacts/',
     });
+    handleActions({
+      result: result,
+      success: {
+        title: '刪除成功',
+      },
+      error: {
+        title: '發生錯誤，刪除失敗',
+      },
+      action: {
+        type: 'redirect',
+        path: '/dashboard/contact',
+      },
+    });
   };
-
-  useEffect(() => {
-    if (result) {
-      handleActions({
-        result: result,
-        success: {
-          title: '編輯成功',
-        },
-        error: {
-          title: '發生錯誤，編輯失敗',
-        },
-        action: {
-          type: 'redirect',
-          path: '/dashboard/contact',
-        },
-      });
-    }
-  }, [result]);
 
   useEffect(() => {
     getContactList();
