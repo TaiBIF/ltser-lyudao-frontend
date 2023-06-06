@@ -16,7 +16,7 @@ const Content = () => {
 
   useEffect(() => {
     getList({
-      url: 'contacts',
+      url: 'literatures',
       setList: setLiteratureList,
     });
   }, []);

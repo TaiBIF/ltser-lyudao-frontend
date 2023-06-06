@@ -23,8 +23,8 @@ const Add = () => {
   ) => {
     handleAdd({
       values,
-      url: 'contacts',
-      redirectPath: 'contact',
+      url: 'literatures',
+      redirectPath: 'related-literature',
     });
     setSubmitting(false);
   };
