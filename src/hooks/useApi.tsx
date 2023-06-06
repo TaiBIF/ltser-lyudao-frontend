@@ -70,6 +70,15 @@ export const useApi = () => {
   const handleActions = (actionParams: actionParamsProps) => {
     const { result, success, error, action } = actionParams;
     const { status, data } = result;
+    const handleAction = () => {
+      switch (action?.type) {
+        case 'redirect':
+          navigate(action?.path);
+          break;
+        default:
+          break;
+      }
+    };
     switch (status) {
       case 200:
       case 201:
@@ -81,7 +90,7 @@ export const useApi = () => {
               icon: 'success',
               title: success?.title,
             });
-
+            handleAction();
             return;
         }
       default:
@@ -89,13 +98,7 @@ export const useApi = () => {
           icon: 'error',
           title: error?.title,
         });
-        break;
-    }
-    switch (action?.type) {
-      case 'redirect':
-        navigate(action?.path);
-        break;
-      default:
+        handleAction();
         break;
     }
   };
