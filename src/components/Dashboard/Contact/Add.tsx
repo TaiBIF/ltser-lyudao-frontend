@@ -36,7 +36,7 @@ const Add = () => {
       url: '/users/contacts/',
     });
     handleActions({
-      result: result,
+      result: result?.response,
       success: {
         title: '新增成功',
       },

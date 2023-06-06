@@ -78,7 +78,7 @@ const Edit = () => {
       url: '/users/contacts/',
     });
     handleActions({
-      result: result,
+      result: result?.response,
       success: {
         title: '更新成功',
       },
@@ -102,7 +102,7 @@ const Edit = () => {
       url: '/users/contacts/',
     });
     handleActions({
-      result: result,
+      result: result?.response,
       success: {
         title: '刪除成功',
       },

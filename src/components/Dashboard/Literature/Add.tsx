@@ -31,7 +31,7 @@ const Add = () => {
       url: '/users/literatures/',
     });
     handleActions({
-      result: result,
+      result: result?.response,
       success: {
         title: '新增成功',
       },
