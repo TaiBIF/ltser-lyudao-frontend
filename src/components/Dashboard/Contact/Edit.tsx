@@ -36,35 +36,35 @@ const Edit = () => {
   });
 
   const getContactList = async () => {
-    setContactItem({
-      type: 'executor',
-      name: '楊松穎',
-      unit: '嘉義大學',
-      content: '水生生物科學系 助理教授',
-      contact: 'syyang@mail.ncyu.edu.tw',
-      image: '/media/images/contact2.jpeg',
-    });
-    // const result = await getApiData({
-    //   method: 'get',
-    //   url: '/users/contacts/',
-    //   params: {
-    //     id: contactId,
-    //   },
+    // setContactItem({
+    //   type: 'executor',
+    //   name: '楊松穎',
+    //   unit: '嘉義大學',
+    //   content: '水生生物科學系 助理教授',
+    //   contact: 'syyang@mail.ncyu.edu.tw',
+    //   image: '/media/images/contact2.jpeg',
     // });
-    // if (result?.status === 'success') {
-    //   setContactItem({ ...result.response.data });
-    // } else {
-    //   handleActions({
-    //     result: result?.response,
-    //     error: {
-    //       title: '發生錯誤，id不存在',
-    //     },
-    //     action: {
-    //       type: 'redirect',
-    //       path: '/dashboard/contact',
-    //     },
-    //   });
-    // }
+    const result = await getApiData({
+      method: 'get',
+      url: '/users/contacts/',
+      params: {
+        id: contactId,
+      },
+    });
+    if (result?.status === 'success') {
+      setContactItem({ ...result.response.data });
+    } else {
+      handleActions({
+        result: result?.response,
+        error: {
+          title: '發生錯誤，id不存在',
+        },
+        action: {
+          type: 'redirect',
+          path: '/dashboard/contact',
+        },
+      });
+    }
   };
 
   const handleEditSubmit = async (
