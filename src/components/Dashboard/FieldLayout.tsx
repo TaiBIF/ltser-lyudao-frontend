@@ -8,6 +8,7 @@ import FileListItem from 'components/FieldLayout/FileListItem';
 import { FieldItem, FileItem, ItemTypes } from 'types/utils';
 import { hasImageProperty } from 'helpers/hasImageProperty';
 import { ContactItem } from 'types/contact';
+import { API_URL, BE_URL } from 'utils/config';
 
 interface FieldLayoutProps {
   data: FieldItem;
@@ -180,7 +181,7 @@ const FieldLayout = (props: FieldLayoutProps) => {
                       {hasImageProperty(values) &&
                         typeof values.image === 'string' && (
                           <a
-                            href={values.image}
+                            href={`${BE_URL}/${values.image}`}
                             className="ms-2"
                             target="_blank"
                             rel="noreferrer"
