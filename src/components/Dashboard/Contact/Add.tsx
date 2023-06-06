@@ -28,7 +28,7 @@ const Add = () => {
   ) => {
     handleAdd({
       values,
-      url: 'contact',
+      url: 'contacts',
       redirectPath: 'contact',
     });
     setSubmitting(false);

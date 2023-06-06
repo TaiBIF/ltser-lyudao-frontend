@@ -33,7 +33,7 @@ const Edit = () => {
     handleEdit({
       values,
       id: contactId ?? '',
-      url: 'contact',
+      url: 'contacts',
       redirectPath: 'contact',
     });
     setSubmitting(false);
@@ -42,7 +42,7 @@ const Edit = () => {
   const handleDeleteClick = async () => {
     handleDelete({
       id: contactId ?? '',
-      url: 'contact',
+      url: 'contacts',
       redirectPath: 'contact',
     });
   };
@@ -50,7 +50,7 @@ const Edit = () => {
   useEffect(() => {
     getDetail({
       id: contactId ?? '',
-      url: 'contact',
+      url: 'contacts',
       setData: setInitialValues,
       redirectPath: 'contact',
     });

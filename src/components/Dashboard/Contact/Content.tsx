@@ -17,7 +17,7 @@ const Content = () => {
 
   useEffect(() => {
     getList({
-      url: 'contact',
+      url: 'contacts',
       setList: setContactList,
     });
   }, []);
