@@ -9,39 +9,22 @@ import { LiteratureItem } from 'types/literature';
 import { literatureFieldList } from 'data/dashboard';
 import { literatureValidationSchema } from 'data/validationSchema';
 
-import { useApi } from 'hooks/useApi';
+import useDashboard from 'hooks/useDashboard';
 
 const Add = () => {
   const initialValues: LiteratureItem = {
     name: '',
   };
-  const { loading, getApiData, handleActions } = useApi();
+  const { handleAdd } = useDashboard();
 
   const handleAddSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    const data = new FormData();
-    Object.entries(values).forEach(([key, value]) => {
-      data.append(key, value);
-    });
-    const result = await getApiData({
-      method: 'post',
-      data: data,
-      url: '/users/literatures/',
-    });
-    handleActions({
-      result: result?.response,
-      success: {
-        title: '新增成功',
-      },
-      error: {
-        title: '發生錯誤，新增失敗',
-      },
-      action: {
-        type: 'redirect',
-        path: '/dashboard/related-literature',
-      },
+    handleAdd({
+      values,
+      url: 'contacts',
+      redirectPath: 'contact',
     });
     setSubmitting(false);
   };

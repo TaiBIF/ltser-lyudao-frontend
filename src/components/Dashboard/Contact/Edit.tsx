@@ -26,33 +26,37 @@ const Edit = () => {
   const { contactId } = useParams();
   const { getDetail, handleEdit, handleDelete } = useDashboard();
 
+  const ID = contactId ?? '';
+  const URL = 'contacts';
+  const REDIRECT_PATH = 'conatct';
+
   const handleEditSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
     handleEdit({
       values,
-      id: contactId ?? '',
-      url: 'contacts',
-      redirectPath: 'contact',
+      id: ID,
+      url: URL,
+      redirectPath: REDIRECT_PATH,
     });
     setSubmitting(false);
   };
 
   const handleDeleteClick = async () => {
     handleDelete({
-      id: contactId ?? '',
-      url: 'contacts',
-      redirectPath: 'contact',
+      id: ID,
+      url: URL,
+      redirectPath: REDIRECT_PATH,
     });
   };
 
   useEffect(() => {
     getDetail({
-      id: contactId ?? '',
-      url: 'contacts',
+      id: ID,
+      url: URL,
       setData: setInitialValues,
-      redirectPath: 'contact',
+      redirectPath: REDIRECT_PATH,
     });
   }, []);
 

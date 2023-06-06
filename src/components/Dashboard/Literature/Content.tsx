@@ -7,25 +7,18 @@ import { LiteratureItem } from 'types/literature';
 import { literatureColList } from 'data/dashboard';
 import { literatureList } from 'data/literature';
 
-import { useApi } from 'hooks/useApi';
+import useDashboard from 'hooks/useDashboard';
 
 const Content = () => {
   const PAGE: string = 'related-literature';
-  const { loading, getApiData, handleActions } = useApi();
   const [literatureList, setLiteratureList] = useState<LiteratureItem[]>([]);
-
-  const getContactList = async () => {
-    const result = await getApiData({
-      method: 'get',
-      url: '/users/literatures/',
-    });
-    if (result?.status === 'success') {
-      setLiteratureList([...result.response.data]);
-    }
-  };
+  const { getList } = useDashboard();
 
   useEffect(() => {
-    getContactList();
+    getList({
+      url: 'contacts',
+      setList: setLiteratureList,
+    });
   }, []);
 
   return (
