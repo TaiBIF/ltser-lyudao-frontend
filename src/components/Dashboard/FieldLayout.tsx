@@ -6,12 +6,14 @@ import FileImgItem from 'components/FieldLayout/FileImgItem';
 import FileListItem from 'components/FieldLayout/FileListItem';
 
 import { FieldItem, FileItem, ItemTypes } from 'types/utils';
+import { hasImageProperty } from 'helpers/hasImageProperty';
+import { ContactItem } from 'types/contact';
 
-type Props = {
+interface FieldLayoutProps {
   data: FieldItem;
-};
+}
 
-const FieldLayout = (props: Props) => {
+const FieldLayout = (props: FieldLayoutProps) => {
   const { data } = props;
   const {
     id,
@@ -29,6 +31,12 @@ const FieldLayout = (props: Props) => {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [fileName, setFileName] = useState('');
   const [cover, setCover] = useState('0');
+
+  const isNoFile = files.length === 0;
+
+  const checkImageType = () =>
+    hasImageProperty(values) && typeof values.image === 'string';
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.currentTarget.files;
     setFileName(e.currentTarget.name);
@@ -147,7 +155,7 @@ const FieldLayout = (props: Props) => {
               {label}
             </label>
             <label htmlFor={title} className="c-form__file">
-              <span>選擇檔案</span>
+              <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
             </label>
             <input
               type="file"
@@ -159,28 +167,33 @@ const FieldLayout = (props: Props) => {
               multiple={multiple}
               accept={`${fileType}/*`}
             />
-            {/* {hints &&
+            {hints &&
               hints.map((v) => {
                 const { id, title } = v;
                 const isLink = id === 'link';
                 return isLink ? (
-                  <div key={id} className="form-text">
-                    {title}
-                    {values.image && values.image[0]?.name && (
-                      <a
-                        href={values.image[0].name}
-                        className="ms-2"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {values.image[0].name}
-                      </a>
-                    )}
-                  </div>
+                  (!isNoFile ||
+                    (hasImageProperty(values) &&
+                      typeof values.image === 'string')) && (
+                    <div key={id} className="form-text">
+                      {title}
+                      {hasImageProperty(values) &&
+                        typeof values.image === 'string' && (
+                          <a
+                            href={values.image}
+                            className="ms-2"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {values.image}
+                          </a>
+                        )}
+                    </div>
+                  )
                 ) : (
                   <div key={id} className="form-text"></div>
                 );
-              })} */}
+              })}
           </div>
           {files &&
             (fileType === 'image' ? (

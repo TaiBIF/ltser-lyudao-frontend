@@ -30,6 +30,7 @@ const FileImgItem = (props: FileImgItemProps) => {
   const isDefaultCover = index === 0;
   const isCheckedCover = cover === String(index);
   const fileLastModifiedTime = new Date(file.lastModified).toString();
+  const isLastFile = files.length === 1;
 
   const handleCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const index = Number(e.currentTarget.value);
@@ -48,7 +49,7 @@ const FileImgItem = (props: FileImgItemProps) => {
     <>
       <label
         key={index}
-        className="c-form__list btn btn-light"
+        className={`c-form__list ${multiple ? 'btn btn-light' : ''}`}
         htmlFor={`cover${index}`}
       >
         <div className="d-flex align-items-center">
@@ -76,13 +77,15 @@ const FileImgItem = (props: FileImgItemProps) => {
             )}
           </div>
         </div>
-        <button
-          type="button"
-          className="btn-close"
-          onClick={() => {
-            handleFileRemove(index);
-          }}
-        ></button>
+        {!isLastFile && (
+          <button
+            type="button"
+            className="btn-close"
+            onClick={() => {
+              handleFileRemove(index);
+            }}
+          />
+        )}
       </label>
     </>
   ) : null;
