@@ -20,10 +20,6 @@ const Edit = () => {
   });
   const { literatureId } = useParams();
   const { loading, getApiData, handleActions } = useApi();
-  const [literatureItem, setLiteratureItem] = useState<LiteratureItem>({
-    id: 0,
-    name: '',
-  });
 
   const getLiteratureList = async () => {
     const result = await getApiData({
@@ -34,7 +30,7 @@ const Edit = () => {
       },
     });
     if (result?.status === 'success') {
-      setLiteratureItem({ ...result.response.data });
+      setInitialValues({ ...result.response.data });
     } else {
       handleActions({
         result: result?.response,
@@ -115,10 +111,8 @@ const Edit = () => {
     <>
       <EditTemplate
         initialValues={initialValues}
-        setInitialValues={setInitialValues}
         validationSchema={literatureValidationSchema}
         fieldList={literatureFieldList}
-        targetItem={literatureItem}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

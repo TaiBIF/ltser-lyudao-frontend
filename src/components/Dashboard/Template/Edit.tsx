@@ -11,10 +11,8 @@ import { FieldItem } from 'types/utils';
 interface EditTemplateProps {
   param?: string;
   initialValues: ItemTypes;
-  setInitialValues: any;
   validationSchema: any;
   fieldList: FieldItem[];
-  targetItem: ItemTypes;
   handleSubmit: (
     values: ItemTypes,
     formikHelpers: FormikHelpers<ItemTypes>
@@ -25,9 +23,7 @@ interface EditTemplateProps {
 const EditTemplate = (props: EditTemplateProps) => {
   const {
     initialValues,
-    setInitialValues,
     fieldList,
-    targetItem,
     validationSchema,
     handleSubmit,
     handleDeleteClick,
@@ -44,12 +40,6 @@ const EditTemplate = (props: EditTemplateProps) => {
     enableReinitialize: true,
     validationSchema: validationSchema,
   };
-
-  useEffect(() => {
-    if (targetItem) {
-      setInitialValues({ ...targetItem });
-    }
-  }, [targetItem]);
 
   return (
     <>

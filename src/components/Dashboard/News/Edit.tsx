@@ -24,17 +24,6 @@ const Edit = () => {
     modified: '',
   });
   const { newsId } = useParams();
-  const [newsItem, setNewsItem] = useState<NewsItem>({
-    id: 0,
-    type: 0,
-    userId: '',
-    title: '',
-    content: ``,
-    image: [],
-    attachments: [],
-    created: '',
-    modified: '',
-  });
 
   const handleEditSubmit = (
     values: ItemTypes,
@@ -51,12 +40,9 @@ const Edit = () => {
   return (
     <>
       <EditTemplate
-        param={newsId}
         initialValues={initialValues}
-        setInitialValues={setInitialValues}
         validationSchema={newsValidationSchema}
         fieldList={newsFieldList}
-        targetItem={newsItem}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

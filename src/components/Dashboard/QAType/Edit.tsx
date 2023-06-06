@@ -35,12 +35,9 @@ const Edit = () => {
   return (
     <>
       <EditTemplate
-        param={qaTypeId}
         initialValues={initialValues}
-        setInitialValues={setInitialValues}
         validationSchema={qaTypeValidationSchema}
         fieldList={typeFieldList}
-        targetItem={qaTypeItem}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

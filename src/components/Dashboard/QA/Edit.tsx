@@ -18,12 +18,6 @@ const Edit = () => {
     answer: '',
   });
   const { qaId } = useParams();
-  const [qaItem, setQaItem] = useState<QAItem>({
-    id: 0,
-    type: 0,
-    question: '',
-    answer: '',
-  });
 
   const handleEditSubmit = (
     values: ItemTypes,
@@ -40,12 +34,9 @@ const Edit = () => {
   return (
     <>
       <EditTemplate
-        param={qaId}
         initialValues={initialValues}
-        setInitialValues={setInitialValues}
         validationSchema={qaValidationSchema}
         fieldList={qaFieldList}
-        targetItem={qaItem}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

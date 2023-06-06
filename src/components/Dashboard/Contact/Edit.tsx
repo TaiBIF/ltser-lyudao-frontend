@@ -25,15 +25,6 @@ const Edit = () => {
   });
   const { contactId } = useParams();
   const { loading, getApiData, handleActions } = useApi();
-  const [contactItem, setContactItem] = useState<ContactItem>({
-    id: 0,
-    type: 0,
-    name: '',
-    unit: '',
-    content: '',
-    contact: '',
-    image: '',
-  });
 
   const getContactList = async () => {
     // setContactItem({
@@ -52,7 +43,7 @@ const Edit = () => {
       },
     });
     if (result?.status === 'success') {
-      setContactItem({ ...result.response.data });
+      setInitialValues({ ...result.response.data });
     } else {
       handleActions({
         result: result?.response,
@@ -133,10 +124,8 @@ const Edit = () => {
     <>
       <EditTemplate
         initialValues={initialValues}
-        setInitialValues={setInitialValues}
         validationSchema={contactValidationSchema}
         fieldList={contactEditFieldList}
-        targetItem={contactItem}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

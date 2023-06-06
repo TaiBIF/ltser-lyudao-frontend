@@ -16,10 +16,6 @@ const Edit = () => {
     title: '',
   });
   const { qaTypeId } = useParams();
-  const [newsTypeItem, setNewsTypeItem] = useState<TypeItem>({
-    id: 0,
-    title: '',
-  });
 
   const handleEditSubmit = (
     values: ItemTypes,
@@ -36,12 +32,9 @@ const Edit = () => {
   return (
     <>
       <EditTemplate
-        param={qaTypeId}
         initialValues={initialValues}
-        setInitialValues={setInitialValues}
         validationSchema={newsTypeValidationSchema}
         fieldList={typeFieldList}
-        targetItem={newsTypeItem}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

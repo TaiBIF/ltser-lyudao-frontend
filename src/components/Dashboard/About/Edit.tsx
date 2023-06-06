@@ -43,12 +43,9 @@ const Edit = () => {
   return (
     <>
       <EditTemplate
-        param={contactId}
         initialValues={initialValues}
-        setInitialValues={setInitialValues}
         validationSchema={aboutValidationSchema}
         fieldList={aboutFieldList}
-        targetItem={aboutItem}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

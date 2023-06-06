@@ -20,13 +20,6 @@ const Edit = () => {
     modified: '',
   });
   const { formLinkId } = useParams();
-  const [formLinkItem, setFormLinkItem] = useState<FormLinkItem>({
-    id: 0,
-    name: '',
-    attachments: '',
-    created: '',
-    modified: '',
-  });
 
   const handleEditSubmit = (
     values: ItemTypes,
@@ -43,12 +36,9 @@ const Edit = () => {
   return (
     <>
       <EditTemplate
-        param={formLinkId}
         initialValues={initialValues}
-        setInitialValues={setInitialValues}
         validationSchema={formLinkValidationSchema}
         fieldList={formLinkFieldList}
-        targetItem={formLinkItem}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />
