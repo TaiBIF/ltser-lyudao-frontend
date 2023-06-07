@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FormikHelpers } from 'formik';
 
@@ -6,8 +6,12 @@ import EditTemplate from 'components/Dashboard/Template/Edit';
 
 import { TypeItem, ItemTypes } from 'types/utils';
 
-import { typeFieldList, qaTypeList } from 'data/dashboard';
+import { typeFieldList } from 'data/dashboard';
+import { qaTypeList } from 'data/qa';
 import { qaTypeValidationSchema } from 'data/validationSchema';
+
+import useDashboard from 'hooks/useDashboard';
+import { QA_TYPE_DASHBOARD_API_URL, QA_TYPE_DASHBOARD_PATH } from 'data/api';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<TypeItem>({
@@ -15,22 +19,41 @@ const Edit = () => {
     title: '',
   });
   const { qaTypeId } = useParams();
-  const [qaTypeItem, setQaTypeItem] = useState<TypeItem>({
-    id: 0,
-    title: '',
-  });
+  const { getDetail, handleEdit, handleDelete } = useDashboard();
 
-  const handleEditSubmit = (
+  const ID = qaTypeId ?? '';
+  const URL = QA_TYPE_DASHBOARD_API_URL;
+  const REDIRECT_PATH = QA_TYPE_DASHBOARD_PATH;
+
+  const handleEditSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
+    handleEdit({
+      values,
+      id: ID,
+      url: URL,
+      redirectPath: REDIRECT_PATH,
+    });
+    setSubmitting(false);
   };
 
-  const handleDeleteClick = () => {};
+  const handleDeleteClick = async () => {
+    handleDelete({
+      id: ID,
+      url: URL,
+      redirectPath: REDIRECT_PATH,
+    });
+  };
+
+  useEffect(() => {
+    getDetail({
+      id: ID,
+      url: URL,
+      setData: setInitialValues,
+      redirectPath: REDIRECT_PATH,
+    });
+  }, []);
 
   return (
     <>

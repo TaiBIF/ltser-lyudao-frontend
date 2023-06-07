@@ -8,20 +8,26 @@ import { TypeItem, ItemTypes } from 'types/utils';
 import { typeFieldList } from 'data/dashboard';
 import { qaTypeValidationSchema } from 'data/validationSchema';
 
+import useDashboard from 'hooks/useDashboard';
+import { QA_DASHBOARD_API_URL, QA_DASHBOARD_PATH } from 'data/api';
+
 const Add = () => {
   const initialValues: TypeItem = {
     id: 0,
     title: '',
   };
+  const { handleAdd } = useDashboard();
 
-  const handleAddSubmit = (
+  const handleAddSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
+    handleAdd({
+      values,
+      url: QA_DASHBOARD_API_URL,
+      redirectPath: QA_DASHBOARD_PATH,
+    });
+    setSubmitting(false);
   };
 
   return (

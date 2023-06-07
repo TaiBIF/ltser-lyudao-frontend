@@ -3,13 +3,6 @@ export type TabItem = {
   title: string;
 };
 
-export type QAItem = {
-  id?: number | string;
-  type: number | string;
-  question: string;
-  answer: string;
-};
-
 export type DownloadItem = {
   id: number | string;
   file: string;

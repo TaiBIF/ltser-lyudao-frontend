@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import TableTemplate from 'components/Dashboard/Template/Table';
 import AddBtn from 'components/Dashboard/AddBtn';
 
-import { typeColList, qaTypeList } from 'data/dashboard';
+import { TypeItem } from 'types/utils';
+
+import { typeColList } from 'data/dashboard';
+
+import useDashboard from 'hooks/useDashboard';
+import { QA_TYPE_DASHBOARD_API_URL } from 'data/api';
 
 const Content = () => {
   const PAGE: string = 'qa-type';
+  const [qaTypeList, setQaTypeList] = useState<TypeItem[]>([]);
+  const { getList } = useDashboard();
+
+  useEffect(() => {
+    getList({
+      url: QA_TYPE_DASHBOARD_API_URL,
+      setList: setQaTypeList,
+    });
+  }, []);
+
   return (
     <>
       <TableTemplate

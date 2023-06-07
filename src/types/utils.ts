@@ -1,9 +1,10 @@
 import { ContactItem } from 'types/contact';
 import { LiteratureItem } from 'types/literature';
-import { QAItem, DownloadItem } from 'types/dashboard';
+import { DownloadItem } from 'types/dashboard';
 import { FormLinkItem } from 'types/formLink';
 import { EcoSearchItem } from 'types/siteData';
 import { NewsImageItem, NewsItem } from 'types/news';
+import { QAItem } from 'types/qa';
 
 export type TypeItem = {
   id?: number | string;

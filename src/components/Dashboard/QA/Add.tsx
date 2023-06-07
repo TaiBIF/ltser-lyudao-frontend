@@ -4,11 +4,13 @@ import { FormikHelpers } from 'formik';
 import AddTemplate from 'components/Dashboard/Template/Add';
 
 import { ItemTypes } from 'types/utils';
+import { QAItem } from 'types/qa';
 
 import { qaFieldList } from 'data/dashboard';
 import { qaValidationSchema } from 'data/validationSchema';
 
-import { QAItem } from 'types/dashboard';
+import useDashboard from 'hooks/useDashboard';
+import { QA_DASHBOARD_API_URL, QA_DASHBOARD_PATH } from 'data/api';
 
 const Add = () => {
   const initialValues: QAItem = {
@@ -17,15 +19,18 @@ const Add = () => {
     question: '',
     answer: '',
   };
+  const { handleAdd } = useDashboard();
 
-  const handleAddSubmit = (
+  const handleAddSubmit = async (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
+    handleAdd({
+      values,
+      url: QA_DASHBOARD_API_URL,
+      redirectPath: QA_DASHBOARD_PATH,
+    });
+    setSubmitting(false);
   };
 
   return (

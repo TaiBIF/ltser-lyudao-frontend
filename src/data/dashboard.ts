@@ -1,8 +1,9 @@
 import { TypeItem, FieldItem, ColItem } from 'types/utils';
-import { TabItem, QAItem, DownloadItem } from 'types/dashboard';
+import { TabItem, DownloadItem } from 'types/dashboard';
 import { newsTypeList, newsImageList, newsAttachmentList } from 'data/news';
 import { contactTypeList } from 'data/contact';
 import { aboutTypeList, attachmentNameList } from 'data/about';
+import { qaTypeList } from 'data/qa';
 
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [
@@ -67,21 +68,6 @@ export const typeFieldList: FieldItem[] = [
     label: '類型',
     readonly: false,
     required: true,
-  },
-];
-
-export const qaTypeList: TypeItem[] = [
-  {
-    id: 1,
-    title: '類型DDD',
-  },
-  {
-    id: 2,
-    title: '類型EEE',
-  },
-  {
-    id: 3,
-    title: '類型FFF',
   },
 ];
 
@@ -375,15 +361,6 @@ export const qaColList: ColItem[] = [
     title: '答案',
     show: true,
     space: 'text',
-  },
-];
-
-export const qaList: QAItem[] = [
-  {
-    id: 1,
-    type: 1,
-    question: '所有的子計畫項目是由誰規劃並統籌的呢？',
-    answer: `所有的子所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？計畫項目是由誰規劃並統籌的呢？所有的子所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？計畫項目是由誰規劃並統籌的呢？所有的子所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？所有的子計畫項目是由誰規劃並統籌的呢？計畫項目是由誰規劃並統籌的呢？`,
   },
 ];
 
