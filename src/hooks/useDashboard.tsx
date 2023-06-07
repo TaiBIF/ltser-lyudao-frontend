@@ -179,7 +179,7 @@ const useDashboard = () => {
       v[key as keyof RelateListTypes] === value
         ? {
             ...v,
-            relateKey: relate,
+            [relateKey]: relate,
           }
         : v
     );
