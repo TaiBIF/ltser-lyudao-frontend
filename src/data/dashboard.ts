@@ -345,7 +345,7 @@ export const qaColList: ColItem[] = [
     param: true,
   },
   {
-    id: 'type',
+    id: 'type_id',
     title: '問題類型',
     show: true,
   },
