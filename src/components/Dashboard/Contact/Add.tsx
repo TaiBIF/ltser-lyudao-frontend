@@ -8,7 +8,7 @@ import { ItemTypes } from 'types/utils';
 
 import { contactAddFieldList } from 'data/dashboard';
 import { contactValidationSchema } from 'data/validationSchema';
-import { CONTACT_DASHBOARD_API_URL, CONTACT_DASHBOARD_PATH } from 'data/api';
+import { CONTACT_API_URL, CONTACT_PATH } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -29,8 +29,8 @@ const Add = () => {
   ) => {
     handleAdd({
       values,
-      url: CONTACT_DASHBOARD_API_URL,
-      redirectPath: CONTACT_DASHBOARD_PATH,
+      url: CONTACT_API_URL,
+      redirectPath: CONTACT_PATH,
     });
     setSubmitting(false);
   };

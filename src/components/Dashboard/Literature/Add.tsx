@@ -8,10 +8,7 @@ import { LiteratureItem } from 'types/literature';
 
 import { literatureFieldList } from 'data/dashboard';
 import { literatureValidationSchema } from 'data/validationSchema';
-import {
-  LITERATURE_DASHBOARD_API_URL,
-  LITERATURE_DASHBOARD_PATH,
-} from 'data/api';
+import { LITERATURE_API_URL, LITERATURE_PATH } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -27,8 +24,8 @@ const Add = () => {
   ) => {
     handleAdd({
       values,
-      url: LITERATURE_DASHBOARD_API_URL,
-      redirectPath: LITERATURE_DASHBOARD_PATH,
+      url: LITERATURE_API_URL,
+      redirectPath: LITERATURE_PATH,
     });
     setSubmitting(false);
   };

@@ -9,10 +9,7 @@ import { LiteratureItem } from 'types/literature';
 
 import { literatureFieldList } from 'data/dashboard';
 import { literatureValidationSchema } from 'data/validationSchema';
-import {
-  LITERATURE_DASHBOARD_API_URL,
-  LITERATURE_DASHBOARD_PATH,
-} from 'data/api';
+import { LITERATURE_API_URL, LITERATURE_PATH } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -25,8 +22,8 @@ const Edit = () => {
   const { getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = literatureId ?? '';
-  const URL = LITERATURE_DASHBOARD_API_URL;
-  const REDIRECT_PATH = LITERATURE_DASHBOARD_PATH;
+  const URL = LITERATURE_API_URL;
+  const REDIRECT_PATH = LITERATURE_PATH;
 
   const handleEditSubmit = (
     values: ItemTypes,

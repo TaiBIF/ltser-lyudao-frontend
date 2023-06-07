@@ -1,23 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Breadcrumb from 'components/Breadcrumb';
 import MainItem from 'components/Contact/MainItem';
 import SubItem from 'components/Contact/SubItem';
 import Banner from 'components/Banner';
 
-import { contactList, contactTypeList } from 'data/contact';
+import { contactTypeList } from 'data/contact';
 
 import { BannerData } from 'types/common';
+import { ContactItem } from 'types/contact';
 
 import bannerImg from 'image/contact_bn.png';
 
+import useDashboard from 'hooks/useDashboard';
+
+import { CONTACT_API_URL } from 'data/api';
+
 const Contact = () => {
+  const { getList } = useDashboard();
+  const [contactList, setContactList] = useState<ContactItem[]>([]);
+
   const bannerData: BannerData = {
     title: '聯絡我們',
     en: ['CONTACT'],
     maskImg: true,
     bgImg: bannerImg,
   };
+
+  const isFetchingList = contactList.length === 0;
+
+  useEffect(() => {
+    getList({
+      url: CONTACT_API_URL,
+      setList: setContactList,
+    });
+  }, []);
+
   return (
     <>
       <div className="innbox">
@@ -25,11 +43,10 @@ const Contact = () => {
         <Breadcrumb />
         <div className="contentbox gray-bg">
           <div className="main-box">
-            {contactList
-              .filter((v) => v.type === 1)
-              .map((v) => (
-                <MainItem data={v} />
-              ))}
+            {!isFetchingList &&
+              contactList
+                .filter((v) => v.type === 'leader')
+                .map((v) => <MainItem data={v} />)}
             <div className="line-titlarea">
               <div className="peo-title">
                 <div className="line1" />
@@ -38,11 +55,10 @@ const Contact = () => {
               </div>
             </div>
             <ul className="team-list">
-              {contactList
-                .filter((v) => v.type === 2)
-                .map((v) => (
-                  <SubItem data={v} contact={false} />
-                ))}
+              {!isFetchingList &&
+                contactList
+                  .filter((v) => v.type === 'executor')
+                  .map((v) => <SubItem data={v} contact={false} />)}
             </ul>
             <div className="line-titlarea">
               <div className="peo-title">
@@ -52,11 +68,10 @@ const Contact = () => {
               </div>
             </div>
             <ul className="team-list">
-              {contactList
-                .filter((v) => v.type === 3)
-                .map((v) => (
-                  <SubItem data={v} contact={true} />
-                ))}
+              {!isFetchingList &&
+                contactList
+                  .filter((v) => v.type === 'others')
+                  .map((v) => <SubItem data={v} contact={true} />)}
             </ul>
           </div>
         </div>

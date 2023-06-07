@@ -10,11 +10,7 @@ import { ItemTypes, FieldItem } from 'types/utils';
 import { qaFieldList } from 'data/dashboard';
 import { qaList } from 'data/qa';
 import { qaValidationSchema } from 'data/validationSchema';
-import {
-  QA_DASHBOARD_API_URL,
-  QA_DASHBOARD_PATH,
-  QA_TYPE_DASHBOARD_API_URL,
-} from 'data/api';
+import { QA_API_URL, QA_PATH, QA_TYPE_API_URL } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -30,8 +26,8 @@ const Edit = () => {
   const { getDetail, handleEdit, handleDelete, handleRelate } = useDashboard();
 
   const ID = qaId ?? '';
-  const URL = QA_DASHBOARD_API_URL;
-  const REDIRECT_PATH = QA_DASHBOARD_PATH;
+  const URL = QA_API_URL;
+  const REDIRECT_PATH = QA_PATH;
 
   const handleEditSubmit = (
     values: ItemTypes,
@@ -64,7 +60,7 @@ const Edit = () => {
     handleRelate({
       key: 'title',
       value: 'type_id',
-      url: QA_TYPE_DASHBOARD_API_URL,
+      url: QA_TYPE_API_URL,
       prevList: qaFieldList,
       setList: setFieldList,
       relateKey: 'options',

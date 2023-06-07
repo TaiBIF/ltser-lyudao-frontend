@@ -8,7 +8,7 @@ import { TypeItem } from 'types/utils';
 import { typeColList } from 'data/dashboard';
 
 import useDashboard from 'hooks/useDashboard';
-import { QA_TYPE_DASHBOARD_API_URL } from 'data/api';
+import { QA_TYPE_API_URL } from 'data/api';
 
 const Content = () => {
   const PAGE: string = 'qa-type';
@@ -17,7 +17,7 @@ const Content = () => {
 
   useEffect(() => {
     getList({
-      url: QA_TYPE_DASHBOARD_API_URL,
+      url: QA_TYPE_API_URL,
       setList: setQaTypeList,
     });
   }, []);

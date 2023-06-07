@@ -9,7 +9,7 @@ import { ContactItem } from 'types/contact';
 
 import { contactEditFieldList } from 'data/dashboard';
 import { contactValidationSchema } from 'data/validationSchema';
-import { CONTACT_DASHBOARD_API_URL, CONTACT_DASHBOARD_PATH } from 'data/api';
+import { CONTACT_API_URL, CONTACT_PATH } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -27,8 +27,8 @@ const Edit = () => {
   const { getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = contactId ?? '';
-  const URL = CONTACT_DASHBOARD_API_URL;
-  const REDIRECT_PATH = CONTACT_DASHBOARD_PATH;
+  const URL = CONTACT_API_URL;
+  const REDIRECT_PATH = CONTACT_PATH;
 
   const handleEditSubmit = (
     values: ItemTypes,

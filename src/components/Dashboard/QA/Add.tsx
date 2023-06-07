@@ -8,11 +8,7 @@ import { QAItem } from 'types/qa';
 
 import { qaFieldList } from 'data/dashboard';
 import { qaValidationSchema } from 'data/validationSchema';
-import {
-  QA_DASHBOARD_API_URL,
-  QA_DASHBOARD_PATH,
-  QA_TYPE_DASHBOARD_API_URL,
-} from 'data/api';
+import { QA_API_URL, QA_PATH, QA_TYPE_API_URL } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -32,8 +28,8 @@ const Add = () => {
   ) => {
     handleAdd({
       values,
-      url: QA_DASHBOARD_API_URL,
-      redirectPath: QA_DASHBOARD_PATH,
+      url: QA_API_URL,
+      redirectPath: QA_PATH,
     });
     setSubmitting(false);
   };
@@ -42,7 +38,7 @@ const Add = () => {
     handleRelate({
       key: 'title',
       value: 'type_id',
-      url: QA_TYPE_DASHBOARD_API_URL,
+      url: QA_TYPE_API_URL,
       prevList: qaFieldList,
       setList: setFieldList,
       relateKey: 'options',

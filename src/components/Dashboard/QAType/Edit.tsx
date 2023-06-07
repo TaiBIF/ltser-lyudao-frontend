@@ -11,7 +11,7 @@ import { qaTypeList } from 'data/qa';
 import { qaTypeValidationSchema } from 'data/validationSchema';
 
 import useDashboard from 'hooks/useDashboard';
-import { QA_TYPE_DASHBOARD_API_URL, QA_TYPE_DASHBOARD_PATH } from 'data/api';
+import { QA_TYPE_API_URL, QA_TYPE_PATH } from 'data/api';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<TypeItem>({
@@ -22,8 +22,8 @@ const Edit = () => {
   const { getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = qaTypeId ?? '';
-  const URL = QA_TYPE_DASHBOARD_API_URL;
-  const REDIRECT_PATH = QA_TYPE_DASHBOARD_PATH;
+  const URL = QA_TYPE_API_URL;
+  const REDIRECT_PATH = QA_TYPE_PATH;
 
   const handleEditSubmit = (
     values: ItemTypes,
