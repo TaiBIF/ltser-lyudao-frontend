@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { To, useNavigate } from 'react-router-dom';
 
 import { API_URL } from 'utils/config';
 import { swalToast } from 'helpers/customSwal';
-
-import { ItemTypes } from 'types/utils';
 
 type ResultItem = {
   type?: string;
@@ -14,7 +12,7 @@ type ResultItem = {
 
 type ActionItem = {
   type?: string;
-  path: string;
+  path?: string;
 };
 
 interface apiParamsProps {
@@ -73,9 +71,7 @@ export const useApi = () => {
     const handleAction = () => {
       switch (action?.type) {
         case 'redirect':
-          navigate(action?.path);
-          break;
-        default:
+          navigate(action?.path as To);
           break;
       }
     };

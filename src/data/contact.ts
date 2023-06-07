@@ -34,7 +34,7 @@ export const contactTypeList: TypeItem[] = [
 export const contactList: ContactItem[] = [
   {
     id: 1,
-    type: 1,
+    type: 'leader',
     name: '陳昭倫',
     unit: '中央研究院',
     content: '生物多樣性研究中心 研究員',
@@ -43,7 +43,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 2,
-    type: 2,
+    type: 'executor',
     name: '鍾國芳',
     unit: '中央研究院',
     content: '生物多樣性研究中心 副研究員',
@@ -52,7 +52,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 3,
-    type: 2,
+    type: 'executor',
     name: '林子皓',
     unit: '中央研究院',
     content: '生物多樣性研究中心 助研究員',
@@ -61,7 +61,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 4,
-    type: 2,
+    type: 'executor',
     name: '端木茂甯',
     unit: '中央研究院',
     content: '生物多樣性研究中心 助研究員',
@@ -70,7 +70,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 5,
-    type: 2,
+    type: 'executor',
     name: '林千翔',
     unit: '中央研究院',
     content: '生物多樣性研究中心 助研究員',
@@ -79,7 +79,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 6,
-    type: 2,
+    type: 'executor',
     name: '何旻杰',
     unit: '中央研究院',
     content: '生物多樣性研究中心 研究助技師',
@@ -88,7 +88,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 7,
-    type: 2,
+    type: 'executor',
     name: '辛宜佳',
     unit: '中央研究院',
     content: '環境變遷研究中心 副研究員',
@@ -97,7 +97,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 8,
-    type: 2,
+    type: 'executor',
     name: '袁美華',
     unit: '中央研究院',
     content: '環境變遷研究中心 助研究員',
@@ -106,7 +106,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 9,
-    type: 2,
+    type: 'executor',
     name: '戴仁華',
     unit: '中央研究院',
     content: '環境變遷研究中心 研究副技師',
@@ -115,7 +115,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 10,
-    type: 2,
+    type: 'executor',
     name: '邱郁文',
     unit: '嘉義大學',
     content: '生物資源學系 副教授',
@@ -124,7 +124,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 11,
-    type: 2,
+    type: 'executor',
     name: '楊松穎',
     unit: '嘉義大學',
     content: '水生生物科學系 助理教授',
@@ -133,7 +133,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 12,
-    type: 2,
+    type: 'executor',
     name: '溫國彰',
     unit: '東海大學',
     content: '生態與環境研究中心 副教授',
@@ -142,7 +142,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 13,
-    type: 2,
+    type: 'executor',
     name: '潘述元',
     unit: '臺灣大學',
     content: '生物環境系統工程學系 助理教授',
@@ -151,7 +151,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 14,
-    type: 3,
+    type: 'other',
     name: '李坤璋',
     unit: '單位名稱',
     content: '環境變遷研究中心 博士後',
@@ -160,7 +160,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 15,
-    type: 3,
+    type: 'other',
     name: '李坤璋',
     unit: '單位名稱',
     content: '環境變遷研究中心 博士後',
@@ -169,7 +169,7 @@ export const contactList: ContactItem[] = [
   },
   {
     id: 16,
-    type: 3,
+    type: 'other',
     name: '李坤璋',
     unit: '單位名稱',
     content: '環境變遷研究中心 博士後',
