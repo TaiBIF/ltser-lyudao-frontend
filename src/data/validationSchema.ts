@@ -21,7 +21,7 @@ export const newsTypeValidationSchema = Yup.object().shape({
 });
 
 export const qaValidationSchema = Yup.object().shape({
-  type: Yup.string().required('此欄位為必填'),
+  type_id: Yup.string().required('此欄位為必填'),
   question: Yup.string().required('此欄位為必填'),
   answer: Yup.string().required('此欄位為必填'),
 });
