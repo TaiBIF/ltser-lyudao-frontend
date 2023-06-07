@@ -129,7 +129,7 @@ const FieldLayout = (props: FieldLayoutProps) => {
             required={required}
             multiple={multiple}
           >
-            <option value="" disabled>
+            <option value={0} disabled>
               請選擇{label}
             </option>
             {options?.map((v) => {

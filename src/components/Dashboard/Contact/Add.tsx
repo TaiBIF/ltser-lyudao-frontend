@@ -14,7 +14,7 @@ import useDashboard from 'hooks/useDashboard';
 
 const Add = () => {
   const initialValues: ContactItem = {
-    type: '',
+    type: 0,
     name: '',
     unit: '',
     content: '',
