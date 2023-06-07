@@ -372,7 +372,6 @@ export const qaFieldList: FieldItem[] = [
     label: '類型',
     readonly: false,
     required: true,
-    options: qaTypeList,
   },
   {
     id: 2,

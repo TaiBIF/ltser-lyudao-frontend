@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormikHelpers } from 'formik';
 
 import AddTemplate from 'components/Dashboard/Template/Add';
 
-import { ItemTypes } from 'types/utils';
+import { ColItem, FieldItem, ItemTypes, TypeItem } from 'types/utils';
 import { QAItem } from 'types/qa';
 
-import { qaFieldList } from 'data/dashboard';
+import { qaColList, qaFieldList } from 'data/dashboard';
 import { qaValidationSchema } from 'data/validationSchema';
 
 import useDashboard from 'hooks/useDashboard';
-import { QA_DASHBOARD_API_URL, QA_DASHBOARD_PATH } from 'data/api';
+import {
+  QA_DASHBOARD_API_URL,
+  QA_DASHBOARD_PATH,
+  QA_TYPE_DASHBOARD_API_URL,
+} from 'data/api';
 
 const Add = () => {
   const initialValues: QAItem = {
@@ -19,7 +23,8 @@ const Add = () => {
     question: '',
     answer: '',
   };
-  const { handleAdd } = useDashboard();
+  const { handleAdd, handleRelate } = useDashboard();
+  const [fieldList, setFieldList] = useState<FieldItem[]>([]);
 
   const handleAddSubmit = async (
     values: ItemTypes,
@@ -33,11 +38,19 @@ const Add = () => {
     setSubmitting(false);
   };
 
+  useEffect(() => {
+    handleRelate({
+      url: QA_TYPE_DASHBOARD_API_URL,
+      prevList: qaFieldList,
+      setList: setFieldList,
+    });
+  }, []);
+
   return (
     <>
       <AddTemplate
         initialValues={initialValues}
-        fieldList={qaFieldList}
+        fieldList={fieldList}
         validationSchema={qaValidationSchema}
         handleSubmit={handleAddSubmit}
       />

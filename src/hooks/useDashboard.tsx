@@ -1,6 +1,6 @@
 import { useApi } from 'hooks/useApi';
 
-import { ItemTypes } from 'types/utils';
+import { ItemTypes, RelateListTypes } from 'types/utils';
 
 const useDashboard = () => {
   const { loading, getApiData, handleActions } = useApi();
@@ -155,12 +155,38 @@ const useDashboard = () => {
     });
   };
 
+  const handleRelate = async ({
+    url,
+    prevList,
+    setList,
+  }: {
+    url: string;
+    prevList: RelateListTypes[];
+    setList: any;
+  }) => {
+    const result = await getApiData({
+      method: 'get',
+      url: `/users/${url}/`,
+    });
+    const relate = result?.response.data;
+    const newList = prevList.map((v) =>
+      v.title === 'type'
+        ? {
+            ...v,
+            options: relate,
+          }
+        : v
+    );
+    setList([...newList]);
+  };
+
   return {
     getList,
     getDetail,
     handleAdd,
     handleEdit,
     handleDelete,
+    handleRelate,
   };
 };
 

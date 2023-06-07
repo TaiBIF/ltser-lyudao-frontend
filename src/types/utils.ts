@@ -12,25 +12,15 @@ export type TypeItem = {
   colorClass?: string;
 };
 
-export type FieldOptionItem = {
-  id?: string | number;
-  title: string;
-};
-
-export type FieldHintItem = {
-  id: string;
-  title: string;
-};
-
 export type FieldItem = {
   id: string | number;
   type: string;
   title: string;
   label: string;
-  options?: FieldOptionItem[];
+  options?: RelateTypes[];
   readonly?: boolean;
   required?: boolean;
-  hints?: FieldHintItem[];
+  hints?: RelateTypes[];
   multiple?: boolean;
   cover?: number | string;
   fileType?: string;
@@ -52,6 +42,15 @@ export interface FileItem {
   cover: boolean;
 }
 
+export type ColItem = {
+  id: string;
+  title: string;
+  show: boolean;
+  param?: boolean;
+  space?: string;
+  relate?: RelateTypes[];
+};
+
 export type ItemTypes =
   | ContactItem
   | QAItem
@@ -64,11 +63,4 @@ export type ItemTypes =
 
 export type RelateTypes = TypeItem | NewsImageItem | AttachmentItem;
 
-export type ColItem = {
-  id: string;
-  title: string;
-  show: boolean;
-  param?: boolean;
-  space?: string;
-  relate?: RelateTypes[];
-};
+export type RelateListTypes = ColItem | FieldItem;
