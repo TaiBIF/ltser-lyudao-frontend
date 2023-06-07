@@ -7,9 +7,9 @@ import EditTemplate from 'components/Dashboard/Template/Edit';
 import { ItemTypes } from 'types/utils';
 import { ContactItem } from 'types/contact';
 
-import { contactList } from 'data/contact';
 import { contactEditFieldList } from 'data/dashboard';
 import { contactValidationSchema } from 'data/validationSchema';
+import { CONTACT_DASHBOARD_API_URL, CONTACT_DASHBOARD_PATH } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -27,10 +27,10 @@ const Edit = () => {
   const { getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = contactId ?? '';
-  const URL = 'contacts';
-  const REDIRECT_PATH = 'conatct';
+  const URL = CONTACT_DASHBOARD_API_URL;
+  const REDIRECT_PATH = CONTACT_DASHBOARD_PATH;
 
-  const handleEditSubmit = async (
+  const handleEditSubmit = (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
@@ -43,7 +43,7 @@ const Edit = () => {
     setSubmitting(false);
   };
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = () => {
     handleDelete({
       id: ID,
       url: URL,

@@ -5,7 +5,7 @@ import AddBtn from 'components/Dashboard/AddBtn';
 import { LiteratureItem } from 'types/literature';
 
 import { literatureColList } from 'data/dashboard';
-import { literatureList } from 'data/literature';
+import { LITERATURE_DASHBOARD_API_URL } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -16,7 +16,7 @@ const Content = () => {
 
   useEffect(() => {
     getList({
-      url: 'literatures',
+      url: LITERATURE_DASHBOARD_API_URL,
       setList: setLiteratureList,
     });
   }, []);

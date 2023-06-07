@@ -26,7 +26,7 @@ const Add = () => {
   const { handleAdd, handleRelate } = useDashboard();
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
 
-  const handleAddSubmit = async (
+  const handleAddSubmit = (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
@@ -41,7 +41,7 @@ const Add = () => {
   useEffect(() => {
     handleRelate({
       key: 'title',
-      value: 'type',
+      value: 'type_id',
       url: QA_TYPE_DASHBOARD_API_URL,
       prevList: qaFieldList,
       setList: setFieldList,

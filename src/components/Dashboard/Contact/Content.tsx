@@ -6,18 +6,18 @@ import AddBtn from 'components/Dashboard/AddBtn';
 import { ContactItem } from 'types/contact';
 
 import { contactColList } from 'data/dashboard';
-import { contactList } from 'data/contact';
+import { CONTACT_DASHBOARD_API_URL, CONTACT_DASHBOARD_PATH } from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
 const Content = () => {
-  const PAGE: string = 'contact';
+  const PAGE: string = CONTACT_DASHBOARD_PATH;
   const [contactList, setContactList] = useState<ContactItem[]>([]);
   const { getList } = useDashboard();
 
   useEffect(() => {
     getList({
-      url: 'contacts',
+      url: CONTACT_DASHBOARD_API_URL,
       setList: setContactList,
     });
   }, []);

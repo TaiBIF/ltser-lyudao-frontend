@@ -1,3 +1,9 @@
+export const CONTACT_DASHBOARD_API_URL = 'contacts';
+export const CONTACT_DASHBOARD_PATH = 'contact';
+
+export const LITERATURE_DASHBOARD_API_URL = 'literatures';
+export const LITERATURE_DASHBOARD_PATH = 'related-literature';
+
 export const QA_DASHBOARD_API_URL = 'question-answers';
 export const QA_DASHBOARD_PATH = 'qa';
 

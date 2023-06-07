@@ -29,7 +29,7 @@ const Content = () => {
     });
     handleRelate({
       key: 'id',
-      value: 'type',
+      value: 'type_id',
       url: QA_TYPE_DASHBOARD_API_URL,
       prevList: qaColList,
       setList: setColList,

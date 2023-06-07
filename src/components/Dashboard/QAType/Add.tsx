@@ -18,7 +18,7 @@ const Add = () => {
   };
   const { handleAdd } = useDashboard();
 
-  const handleAddSubmit = async (
+  const handleAddSubmit = (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {

@@ -8,6 +8,10 @@ import { LiteratureItem } from 'types/literature';
 
 import { literatureFieldList } from 'data/dashboard';
 import { literatureValidationSchema } from 'data/validationSchema';
+import {
+  LITERATURE_DASHBOARD_API_URL,
+  LITERATURE_DASHBOARD_PATH,
+} from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
 
@@ -17,14 +21,14 @@ const Add = () => {
   };
   const { handleAdd } = useDashboard();
 
-  const handleAddSubmit = async (
+  const handleAddSubmit = (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
     handleAdd({
       values,
-      url: 'literatures',
-      redirectPath: 'related-literature',
+      url: LITERATURE_DASHBOARD_API_URL,
+      redirectPath: LITERATURE_DASHBOARD_PATH,
     });
     setSubmitting(false);
   };

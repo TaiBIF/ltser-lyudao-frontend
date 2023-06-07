@@ -25,7 +25,7 @@ const Edit = () => {
   const URL = QA_TYPE_DASHBOARD_API_URL;
   const REDIRECT_PATH = QA_TYPE_DASHBOARD_PATH;
 
-  const handleEditSubmit = async (
+  const handleEditSubmit = (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
@@ -38,7 +38,7 @@ const Edit = () => {
     setSubmitting(false);
   };
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = () => {
     handleDelete({
       id: ID,
       url: URL,

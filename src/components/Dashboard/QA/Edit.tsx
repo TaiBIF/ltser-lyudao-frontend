@@ -37,7 +37,7 @@ const Edit = () => {
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    handleEdit({
+    await handleEdit({
       values,
       id: ID,
       url: URL,
@@ -63,7 +63,7 @@ const Edit = () => {
     });
     handleRelate({
       key: 'title',
-      value: 'type',
+      value: 'type_id',
       url: QA_TYPE_DASHBOARD_API_URL,
       prevList: qaFieldList,
       setList: setFieldList,

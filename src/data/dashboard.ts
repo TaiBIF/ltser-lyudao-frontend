@@ -367,7 +367,7 @@ export const qaFieldList: FieldItem[] = [
   {
     id: 1,
     type: 'select',
-    title: 'type',
+    title: 'type_id',
     label: '類型',
     readonly: false,
     required: true,
