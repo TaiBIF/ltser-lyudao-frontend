@@ -5,15 +5,18 @@ import { FormikHelpers } from 'formik';
 import EditTemplate from 'components/Dashboard/Template/Edit';
 
 import { QAItem } from 'types/qa';
-import { ItemTypes } from 'types/utils';
+import { ItemTypes, FieldItem } from 'types/utils';
 
 import { qaFieldList } from 'data/dashboard';
 import { qaList } from 'data/qa';
-
 import { qaValidationSchema } from 'data/validationSchema';
+import {
+  QA_DASHBOARD_API_URL,
+  QA_DASHBOARD_PATH,
+  QA_TYPE_DASHBOARD_API_URL,
+} from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
-import { QA_DASHBOARD_API_URL, QA_DASHBOARD_PATH } from 'data/api';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<QAItem>({
@@ -22,8 +25,9 @@ const Edit = () => {
     question: '',
     answer: '',
   });
+  const [fieldList, setFieldList] = useState<FieldItem[]>([]);
   const { qaId } = useParams();
-  const { getDetail, handleEdit, handleDelete } = useDashboard();
+  const { getDetail, handleEdit, handleDelete, handleRelate } = useDashboard();
 
   const ID = qaId ?? '';
   const URL = QA_DASHBOARD_API_URL;
@@ -57,13 +61,20 @@ const Edit = () => {
       setData: setInitialValues,
       redirectPath: REDIRECT_PATH,
     });
+    handleRelate({
+      key: 'title',
+      value: 'type',
+      url: QA_TYPE_DASHBOARD_API_URL,
+      prevList: qaFieldList,
+      setList: setFieldList,
+    });
   }, []);
   return (
     <>
       <EditTemplate
         initialValues={initialValues}
         validationSchema={qaValidationSchema}
-        fieldList={qaFieldList}
+        fieldList={fieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

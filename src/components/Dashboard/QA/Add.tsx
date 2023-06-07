@@ -3,18 +3,18 @@ import { FormikHelpers } from 'formik';
 
 import AddTemplate from 'components/Dashboard/Template/Add';
 
-import { ColItem, FieldItem, ItemTypes, TypeItem } from 'types/utils';
+import { FieldItem, ItemTypes } from 'types/utils';
 import { QAItem } from 'types/qa';
 
-import { qaColList, qaFieldList } from 'data/dashboard';
+import { qaFieldList } from 'data/dashboard';
 import { qaValidationSchema } from 'data/validationSchema';
-
-import useDashboard from 'hooks/useDashboard';
 import {
   QA_DASHBOARD_API_URL,
   QA_DASHBOARD_PATH,
   QA_TYPE_DASHBOARD_API_URL,
 } from 'data/api';
+
+import useDashboard from 'hooks/useDashboard';
 
 const Add = () => {
   const initialValues: QAItem = {
@@ -40,6 +40,8 @@ const Add = () => {
 
   useEffect(() => {
     handleRelate({
+      key: 'title',
+      value: 'type',
       url: QA_TYPE_DASHBOARD_API_URL,
       prevList: qaFieldList,
       setList: setFieldList,

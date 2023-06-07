@@ -4,22 +4,35 @@ import TableTemplate from 'components/Dashboard/Template/Table';
 import AddBtn from 'components/Dashboard/AddBtn';
 
 import { QAItem } from 'types/qa';
+import { ColItem } from 'types/utils';
 
 import { qaColList } from 'data/dashboard';
 import { qaList } from 'data/qa';
+import {
+  QA_DASHBOARD_API_URL,
+  QA_DASHBOARD_PATH,
+  QA_TYPE_DASHBOARD_API_URL,
+} from 'data/api';
 
 import useDashboard from 'hooks/useDashboard';
-import { QA_DASHBOARD_API_URL } from 'data/api';
 
 const Content = () => {
-  const PAGE: string = 'qa';
+  const PAGE: string = QA_DASHBOARD_PATH;
   const [qaList, setQaList] = useState<QAItem[]>([]);
-  const { getList } = useDashboard();
+  const [colList, setColList] = useState<ColItem[]>([]);
+  const { getList, handleRelate } = useDashboard();
 
   useEffect(() => {
     getList({
       url: QA_DASHBOARD_API_URL,
       setList: setQaList,
+    });
+    handleRelate({
+      key: 'id',
+      value: 'type',
+      url: QA_TYPE_DASHBOARD_API_URL,
+      prevList: qaColList,
+      setList: setColList,
     });
   }, []);
 
@@ -27,7 +40,7 @@ const Content = () => {
     <>
       <TableTemplate
         page={PAGE}
-        cols={qaColList}
+        cols={colList}
         data={qaList}
         renderAction={() => <AddBtn page={PAGE} />}
       />

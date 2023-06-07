@@ -156,10 +156,14 @@ const useDashboard = () => {
   };
 
   const handleRelate = async ({
+    key,
+    value,
     url,
     prevList,
     setList,
   }: {
+    key: string;
+    value: string;
     url: string;
     prevList: RelateListTypes[];
     setList: any;
@@ -170,7 +174,7 @@ const useDashboard = () => {
     });
     const relate = result?.response.data;
     const newList = prevList.map((v) =>
-      v.title === 'type'
+      v[key as keyof RelateListTypes] === value
         ? {
             ...v,
             options: relate,

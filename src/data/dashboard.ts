@@ -348,7 +348,6 @@ export const qaColList: ColItem[] = [
     id: 'type',
     title: '問題類型',
     show: true,
-    relate: qaTypeList,
   },
   {
     id: 'question',
