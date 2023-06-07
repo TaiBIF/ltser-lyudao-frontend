@@ -9,7 +9,7 @@ import { typeFieldList } from 'data/dashboard';
 import { qaTypeValidationSchema } from 'data/validationSchema';
 
 import useDashboard from 'hooks/useDashboard';
-import { QA_DASHBOARD_API_URL, QA_DASHBOARD_PATH } from 'data/api';
+import { QA_TYPE_DASHBOARD_API_URL, QA_TYPE_DASHBOARD_PATH } from 'data/api';
 
 const Add = () => {
   const initialValues: TypeItem = {
@@ -24,8 +24,8 @@ const Add = () => {
   ) => {
     handleAdd({
       values,
-      url: QA_DASHBOARD_API_URL,
-      redirectPath: QA_DASHBOARD_PATH,
+      url: QA_TYPE_DASHBOARD_API_URL,
+      redirectPath: QA_TYPE_DASHBOARD_PATH,
     });
     setSubmitting(false);
   };
