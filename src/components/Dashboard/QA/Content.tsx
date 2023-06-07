@@ -33,6 +33,7 @@ const Content = () => {
       url: QA_TYPE_DASHBOARD_API_URL,
       prevList: qaColList,
       setList: setColList,
+      relateKey: 'relate',
     });
   }, []);
 

@@ -161,12 +161,14 @@ const useDashboard = () => {
     url,
     prevList,
     setList,
+    relateKey,
   }: {
     key: string;
     value: string;
     url: string;
     prevList: RelateListTypes[];
     setList: any;
+    relateKey: string;
   }) => {
     const result = await getApiData({
       method: 'get',
@@ -177,7 +179,7 @@ const useDashboard = () => {
       v[key as keyof RelateListTypes] === value
         ? {
             ...v,
-            options: relate,
+            relateKey: relate,
           }
         : v
     );

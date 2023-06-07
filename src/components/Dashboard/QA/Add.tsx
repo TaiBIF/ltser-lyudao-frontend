@@ -45,6 +45,7 @@ const Add = () => {
       url: QA_TYPE_DASHBOARD_API_URL,
       prevList: qaFieldList,
       setList: setFieldList,
+      relateKey: 'options',
     });
   }, []);
 
