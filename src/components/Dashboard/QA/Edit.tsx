@@ -21,7 +21,7 @@ import useDashboard from 'hooks/useDashboard';
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<QAItem>({
     id: 0,
-    type: 0,
+    type_id: 0,
     question: '',
     answer: '',
   });

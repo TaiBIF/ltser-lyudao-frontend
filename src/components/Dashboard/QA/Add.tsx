@@ -19,7 +19,7 @@ import useDashboard from 'hooks/useDashboard';
 const Add = () => {
   const initialValues: QAItem = {
     id: 0,
-    type: 0,
+    type_id: 0,
     question: '',
     answer: '',
   };
