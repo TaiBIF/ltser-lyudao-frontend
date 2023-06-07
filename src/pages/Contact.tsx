@@ -27,7 +27,21 @@ const Contact = () => {
     bgImg: bannerImg,
   };
 
+  const SECTION_1_ID = 'leader';
+  const SECTION_2_ID = 'executor';
+  const SECTION_3_ID = 'other';
+
   const isFetchingList = contactList.length === 0;
+
+  const isNoType = (id: number | string) => {
+    if (!isFetchingList) {
+      if (contactList.filter((v) => v.type === id).length === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
 
   useEffect(() => {
     getList({
@@ -46,38 +60,49 @@ const Contact = () => {
           {!isFetchingList && (
             <div className="main-box">
               {contactList
-                .filter((v) => v.type === 'leader')
-                .map((v) => (
-                  <MainItem data={v} />
+                .filter((v) => v.type === SECTION_1_ID)
+                .map((v, i) => (
+                  <MainItem key={i} data={v} />
                 ))}
-              <div className="line-titlarea">
-                <div className="peo-title">
-                  <div className="line1" />
-                  {contactTypeList.find((v) => v.id === 'executor')?.title}
-                  <div className="line2" />
-                </div>
-              </div>
-              <ul className="team-list">
-                {contactList
-                  .filter((v) => v.type === 'executor')
-                  .map((v) => (
-                    <SubItem data={v} contact={false} />
-                  ))}
-              </ul>
-              <div className="line-titlarea">
-                <div className="peo-title">
-                  <div className="line1" />
-                  聯絡方式
-                  <div className="line2" />
-                </div>
-              </div>
-              <ul className="team-list">
-                {contactList
-                  .filter((v) => v.type === 'others')
-                  .map((v) => (
-                    <SubItem data={v} contact={true} />
-                  ))}
-              </ul>
+              {!isNoType(SECTION_2_ID) && (
+                <>
+                  <div className="line-titlarea">
+                    <div className="peo-title">
+                      <div className="line1" />
+                      {
+                        contactTypeList.find((v) => v.id === SECTION_2_ID)
+                          ?.title
+                      }
+                      <div className="line2" />
+                    </div>
+                  </div>
+                  <ul className="team-list">
+                    {contactList
+                      .filter((v) => v.type === SECTION_2_ID)
+                      .map((v, i) => (
+                        <SubItem key={i} data={v} contact={false} />
+                      ))}
+                  </ul>
+                </>
+              )}
+              {!isNoType(SECTION_3_ID) && (
+                <>
+                  <div className="line-titlarea">
+                    <div className="peo-title">
+                      <div className="line1" />
+                      聯絡方式
+                      <div className="line2" />
+                    </div>
+                  </div>
+                  <ul className="team-list">
+                    {contactList
+                      .filter((v) => v.type === SECTION_3_ID)
+                      .map((v, i) => (
+                        <SubItem key={i} data={v} contact={true} />
+                      ))}
+                  </ul>
+                </>
+              )}
             </div>
           )}
         </div>
