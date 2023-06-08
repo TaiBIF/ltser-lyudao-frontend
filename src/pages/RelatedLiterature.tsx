@@ -13,6 +13,7 @@ import { LiteratureItem } from 'types/literature';
 
 import useRender from 'hooks/useRender';
 import { LITERATURE_API_URL } from 'data/api';
+import { useLocation } from 'react-router-dom';
 
 const RelatedLiterature = () => {
   const [filter, setFilter] = useState({
@@ -21,6 +22,7 @@ const RelatedLiterature = () => {
   const [literatureList, setLiteratureList] = useState<LiteratureItem[]>([]);
   const [data, setData] = useState<LiteratureItem[]>([]);
   const { getList } = useRender();
+  const { pathname } = useLocation();
 
   const bannerData: BannerData = {
     title: '相關文獻',
@@ -30,7 +32,6 @@ const RelatedLiterature = () => {
   };
 
   const isFetchingList = literatureList.length === 0;
-  const isNoKeyword = filter.keyword === '';
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter({ ...filter, keyword: e.currentTarget.value });
@@ -42,20 +43,16 @@ const RelatedLiterature = () => {
       setList: setLiteratureList,
       defaultList: literatureList,
     });
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (!isFetchingList) {
-      if (!isNoKeyword) {
-        const matchKeyword = literatureList.filter((v) =>
-          v.name.includes(filter.keyword)
-        );
-        setData([...matchKeyword]);
-      } else {
-        setData([...literatureList]);
-      }
+      const matchKeyword = literatureList.filter((v) =>
+        v.name.includes(filter.keyword)
+      );
+      setData([...matchKeyword]);
     }
-  }, [filter.keyword]);
+  }, [literatureList, filter.keyword]);
 
   return (
     <>
