@@ -5,7 +5,7 @@ import MainItem from 'components/Contact/MainItem';
 import SubItem from 'components/Contact/SubItem';
 import Banner from 'components/Banner';
 
-import { contactTypeList } from 'data/contact';
+import { contactList, contactTypeList } from 'data/contact';
 
 import { BannerData } from 'types/common';
 import { ContactItem } from 'types/contact';
@@ -18,7 +18,7 @@ import { CONTACT_API_URL } from 'data/api';
 
 const Contact = () => {
   const { getList } = useRender();
-  const [contactList, setContactList] = useState<ContactItem[]>([]);
+  const [contacts, setContacts] = useState<ContactItem[]>([]);
 
   const bannerData: BannerData = {
     title: '聯絡我們',
@@ -31,11 +31,11 @@ const Contact = () => {
   const SECTION_2_ID = 'executor';
   const SECTION_3_ID = 'other';
 
-  const isFetchingList = contactList.length === 0;
+  const isFetchingList = contacts.length === 0;
 
   const isNoType = (id: number | string) => {
     if (!isFetchingList) {
-      if (contactList.filter((v) => v.type === id).length === 0) {
+      if (contacts.filter((v) => v.type === id).length === 0) {
         return true;
       } else {
         return false;
@@ -46,7 +46,7 @@ const Contact = () => {
   useEffect(() => {
     getList({
       url: CONTACT_API_URL,
-      setList: setContactList,
+      setList: setContacts,
       defaultList: contactList,
     });
   }, []);
@@ -59,7 +59,7 @@ const Contact = () => {
         <div className="contentbox gray-bg">
           {!isFetchingList && (
             <div className="main-box">
-              {contactList
+              {contacts
                 .filter((v) => v.type === SECTION_1_ID)
                 .map((v, i) => (
                   <MainItem key={i} data={v} />
@@ -77,7 +77,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <ul className="team-list">
-                    {contactList
+                    {contacts
                       .filter((v) => v.type === SECTION_2_ID)
                       .map((v, i) => (
                         <SubItem key={i} data={v} contact={false} />
@@ -95,7 +95,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <ul className="team-list">
-                    {contactList
+                    {contacts
                       .filter((v) => v.type === SECTION_3_ID)
                       .map((v, i) => (
                         <SubItem key={i} data={v} contact={true} />

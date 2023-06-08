@@ -21,6 +21,8 @@ export const gsapSlideToggle = (
   });
 };
 
+export const gsapSlideToggleStyle = { display: 'none', overflow: 'hidden' };
+
 export const gsapFade = (
   type: string,
   target: HTMLElement,

@@ -16,6 +16,7 @@ import MailVerificationSuccess from 'pages/Auth/MailVerificationSuccess';
 import Terms from 'pages/Terms';
 import NewsContent from 'pages/News/Content';
 import NewsDetail from 'pages/News/Detail';
+import QA from 'pages/QA';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import DashboardAboutContent from 'components/Dashboard/About/Content';
@@ -62,6 +63,7 @@ function App() {
           <Route path="/form-link" element={<FormLink />} />
           <Route path="/news" element={<NewsContent />} />
           <Route path="/news/:newsId" element={<NewsDetail />} />
+          <Route path="/qa" element={<QA />} />
           <Route
             path="/site-data/ecological-observation"
             element={

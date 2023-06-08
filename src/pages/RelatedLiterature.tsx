@@ -19,7 +19,7 @@ const RelatedLiterature = () => {
   const [filter, setFilter] = useState({
     keyword: '',
   });
-  const [literatureList, setLiteratureList] = useState<LiteratureItem[]>([]);
+  const [literatures, setLiteratures] = useState<LiteratureItem[]>([]);
   const [data, setData] = useState<LiteratureItem[]>([]);
   const { getList } = useRender();
   const { pathname } = useLocation();
@@ -31,7 +31,7 @@ const RelatedLiterature = () => {
     bgImg: literatureBannerImg,
   };
 
-  const isFetchingList = literatureList.length === 0;
+  const isFetchingList = literatures.length === 0;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter({ ...filter, keyword: e.currentTarget.value });
@@ -40,19 +40,19 @@ const RelatedLiterature = () => {
   useEffect(() => {
     getList({
       url: LITERATURE_API_URL,
-      setList: setLiteratureList,
+      setList: setLiteratures,
       defaultList: literatureList,
     });
   }, [pathname]);
 
   useEffect(() => {
     if (!isFetchingList) {
-      const matchKeyword = literatureList.filter((v) =>
+      const matchKeyword = literatures.filter((v) =>
         v.name.includes(filter.keyword)
       );
       setData([...matchKeyword]);
     }
-  }, [literatureList, filter.keyword]);
+  }, [literatures, filter.keyword]);
 
   return (
     <>
