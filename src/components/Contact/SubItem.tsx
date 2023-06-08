@@ -1,8 +1,10 @@
 import React from 'react';
 
+import peoIconImg from 'image/peoicon2.svg';
+
 import { ContactItem } from 'types/contact';
 
-import peoIconImg from 'image/peoicon2.svg';
+import { BE_URL } from 'utils/config';
 
 type SubItemProps = {
   data: ContactItem;
@@ -19,7 +21,9 @@ const SubItem = (props: SubItemProps) => {
           <div className="picbox">
             <div className="peoimg">
               <img
-                src={typeof image === 'string' ? image : undefined}
+                src={
+                  typeof image === 'string' ? `${BE_URL}${image}` : undefined
+                }
                 alt={name}
               />
             </div>
