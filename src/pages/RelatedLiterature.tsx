@@ -29,7 +29,8 @@ const RelatedLiterature = () => {
     bgImg: literatureBannerImg,
   };
 
-  const isFetchingList = setLiteratureList.length === 0;
+  const isFetchingList = literatureList.length === 0;
+  const isNoKeyword = filter.keyword === '';
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter({ ...filter, keyword: e.currentTarget.value });
@@ -45,10 +46,14 @@ const RelatedLiterature = () => {
 
   useEffect(() => {
     if (!isFetchingList) {
-      const matchKeyword = literatureList.filter((v) =>
-        v.name.includes(filter.keyword)
-      );
-      setData([...matchKeyword]);
+      if (!isNoKeyword) {
+        const matchKeyword = literatureList.filter((v) =>
+          v.name.includes(filter.keyword)
+        );
+        setData([...matchKeyword]);
+      } else {
+        setData([...literatureList]);
+      }
     }
   }, [filter.keyword]);
 
