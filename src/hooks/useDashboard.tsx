@@ -2,6 +2,8 @@ import { useApi } from 'hooks/useApi';
 
 import { ItemTypes, RelateListTypes } from 'types/utils';
 
+import placeholderImg from 'image/peoib-img.png';
+
 const useDashboard = () => {
   const { loading, getApiData, handleActions } = useApi();
 
@@ -58,14 +60,23 @@ const useDashboard = () => {
     values,
     url,
     redirectPath,
+    placeholder = false,
   }: {
     values: ItemTypes;
     url: string;
     redirectPath: string;
+    placeholder?: boolean;
   }) => {
     const data = new FormData();
     Object.entries(values).forEach(([key, value]) => {
-      data.append(key, value);
+      if (placeholder) {
+        if (key === 'image') {
+          const imageFile = new File([placeholderImg], 'placeholder.jpg');
+          data.append('image', imageFile);
+        } else {
+          data.append(key, value);
+        }
+      }
     });
     const result = await getApiData({
       method: 'post',

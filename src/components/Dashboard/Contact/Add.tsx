@@ -31,6 +31,7 @@ const Add = () => {
       values,
       url: CONTACT_API_URL,
       redirectPath: CONTACT_PATH,
+      placeholder: true,
     });
     setSubmitting(false);
   };

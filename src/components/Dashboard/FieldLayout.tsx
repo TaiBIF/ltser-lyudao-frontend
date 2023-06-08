@@ -35,9 +35,6 @@ const FieldLayout = (props: FieldLayoutProps) => {
 
   const isNoFile = files.length === 0;
 
-  const checkImageType = () =>
-    hasImageProperty(values) && typeof values.image === 'string';
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.currentTarget.files;
     setFileName(e.currentTarget.name);
