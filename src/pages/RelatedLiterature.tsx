@@ -44,7 +44,7 @@ const RelatedLiterature = () => {
   }, []);
 
   useEffect(() => {
-    if (!isFetchingList && filter.keyword) {
+    if (!isFetchingList) {
       const matchKeyword = literatureList.filter((v) =>
         v.name.includes(filter.keyword)
       );
