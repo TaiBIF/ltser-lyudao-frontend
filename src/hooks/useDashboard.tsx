@@ -69,14 +69,7 @@ const useDashboard = () => {
   }) => {
     const data = new FormData();
     Object.entries(values).forEach(([key, value]) => {
-      if (placeholder) {
-        if (key === 'image') {
-          const imageFile = new File([placeholderImg], 'placeholder.jpg');
-          data.append('image', imageFile);
-        } else {
-          data.append(key, value);
-        }
-      }
+      data.append(key, value);
     });
     const result = await getApiData({
       method: 'post',
