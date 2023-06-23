@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { aboutList, attachmentList, attachmentNameList } from 'data/about';
-import { tabList } from 'data/home';
+import { tabList } from 'data/home/content';
 import { AboutItem } from 'types/about';
 import { RelateState } from 'types/utils';
 import AttachmentName from 'components/About/AttachmentName';

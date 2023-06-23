@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import abmapImg from 'image/abmap.png';
 
 import { EnterState } from 'types/home';
-import { tabList } from 'data/home';
+import { tabList } from 'data/home/content';
 
 interface AboutProps {
   enter: EnterState;

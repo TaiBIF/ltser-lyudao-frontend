@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { Dictionary } from 'lodash';
 
 import { LatLngExpression, DivIcon } from 'leaflet';
 import {
@@ -10,52 +12,50 @@ import {
   Marker,
   Popup,
 } from 'react-leaflet';
-import ReactDOMServer from 'react-dom/server';
 
-import MarkerIconLayout from 'components/Home/LeafletMap/MarkerIconLayout';
-import PopupLayout from 'components/Home/LeafletMap/PopupLayout';
 import Filter from 'components/Home/LeafletMap/Filter';
+import MarkerLayout from 'components/Home/LeafletMap/MarkerLayout';
+
+import useRender from 'hooks/useRender';
+
+import { LocalityItem } from 'types/home';
+
+import { localityList, surveyMapParams } from 'data/home/content';
 
 const Content = () => {
-  const position: LatLngExpression = [22.6578661, 121.4676486];
-  const [active, setActive] = useState<boolean>(false);
+  const { getDepositarList } = useRender();
+  const [markers, setMarkers] = useState<
+    (Dictionary<number | string> | LocalityItem)[]
+  >([]);
 
-  const mapIcon = () =>
-    new DivIcon({
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [0, -41],
-      html: ReactDOMServer.renderToString(<MarkerIconLayout active={active} />),
+  const isFetchingList = markers.length === 0;
+
+  useEffect(() => {
+    getDepositarList({
+      setList: setMarkers,
+      resouceId: `8d4b3a7f-5a76-4406-9b19-0c709dbd7d68`,
+      defaultList: localityList,
     });
-  const icon = mapIcon();
-
-  const handleMarkerClick = () => {
-    setActive(true);
-  };
+  }, []);
 
   return (
     <>
       <MapContainer
         id="leafletmap"
         className="map-area"
-        center={position}
-        zoom={14}
-        scrollWheelZoom={false}
+        center={surveyMapParams.center}
+        zoom={surveyMapParams.zoom}
+        scrollWheelZoom={true}
         doubleClickZoom={false}
         zoomControl={false}
       >
         <LayersControl>
           <LayersControl.Overlay name="觀測項目AAA" checked>
             <LayerGroup>
-              <Marker
-                position={position}
-                icon={icon}
-                eventHandlers={{ click: handleMarkerClick }}
-              >
-                <Popup closeButton={false}>
-                  <PopupLayout setActive={setActive} />
-                </Popup>
-              </Marker>
+              {!isFetchingList &&
+                markers.map((v) => {
+                  return <MarkerLayout key={v['_id']} data={v} />;
+                })}
             </LayerGroup>
           </LayersControl.Overlay>
         </LayersControl>

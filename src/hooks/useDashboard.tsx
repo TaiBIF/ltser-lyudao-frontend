@@ -5,10 +5,10 @@ import { ItemTypes, RelateListTypes } from 'types/utils';
 import placeholderImg from 'image/peoib-img.png';
 
 const useDashboard = () => {
-  const { loading, getApiData, handleActions } = useApi();
+  const { loading, handleApi, handleActions } = useApi();
 
   const getList = async ({ url, setList }: { url: string; setList: any }) => {
-    const result = await getApiData({
+    const result = await handleApi({
       method: 'get',
       url: `/users/${url}/`,
     });
@@ -35,7 +35,7 @@ const useDashboard = () => {
     setData: any;
     redirectPath: string;
   }) => {
-    const result = await getApiData({
+    const result = await handleApi({
       method: 'get',
       url: `/users/${url}/`,
       params: { id },
@@ -71,7 +71,7 @@ const useDashboard = () => {
     Object.entries(values).forEach(([key, value]) => {
       data.append(key, value);
     });
-    const result = await getApiData({
+    const result = await handleApi({
       method: 'post',
       data,
       url: `/users/${url}/`,
@@ -109,7 +109,7 @@ const useDashboard = () => {
       }
       data.append(key, value);
     });
-    const result = await getApiData({
+    const result = await handleApi({
       method: 'patch',
       url: `/users/${url}/`,
       data,
@@ -139,7 +139,7 @@ const useDashboard = () => {
     url: string;
     redirectPath: string;
   }) => {
-    const result = await getApiData({
+    const result = await handleApi({
       method: 'delete',
       url: `/users/${url}/`,
       params: { id },
@@ -174,7 +174,7 @@ const useDashboard = () => {
     setList: any;
     relateKey: string;
   }) => {
-    const result = await getApiData({
+    const result = await handleApi({
       method: 'get',
       url: `/users/${url}/`,
     });

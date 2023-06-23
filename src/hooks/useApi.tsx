@@ -21,6 +21,7 @@ interface apiParamsProps {
   params?: any;
   data?: FormData;
   url: string;
+  headers?: any;
 }
 
 interface actionParamsProps {
@@ -34,8 +35,8 @@ export const useApi = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const getApiData = async (apiParams: apiParamsProps) => {
-    const { type = 'api', method, params, data, url } = apiParams;
+  const handleApi = async (apiParams: apiParamsProps) => {
+    const { type = 'api', method, params, data, url, headers } = apiParams;
     setLoading(true);
     let result;
     try {
@@ -48,11 +49,12 @@ export const useApi = () => {
           break;
       }
       response = await axios({
-        method: method,
+        method,
         baseURL: baseUrl,
-        url: url,
-        params: params,
-        data: data,
+        url,
+        params,
+        data,
+        headers,
       });
       result = { status: 'success', response: response };
     } catch (err) {
@@ -72,6 +74,8 @@ export const useApi = () => {
       switch (action?.type) {
         case 'redirect':
           navigate(action?.path as To);
+          break;
+        default:
           break;
       }
     };
@@ -99,5 +103,5 @@ export const useApi = () => {
     }
   };
 
-  return { loading, getApiData, handleActions };
+  return { loading, handleApi, handleActions };
 };

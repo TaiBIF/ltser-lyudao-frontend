@@ -1,26 +1,46 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+
+import { Dictionary } from 'lodash';
 import { useMap } from 'react-leaflet';
 
 import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 
+import {
+  surveyMapParams,
+  surveyMapColList,
+  weatherAllSites,
+} from 'data/home/content';
+import useRender from 'hooks/useRender';
+import useWeather from 'hooks/useWeather';
+
 type PopupLayoutProps = {
   setActive: Dispatch<SetStateAction<boolean>>;
+  data: Dictionary<number | string>;
 };
 
 const PopupLayout = (props: PopupLayoutProps) => {
-  const { setActive } = props;
+  const { setActive, data } = props;
+
   const map = useMap();
+  const { sites, timeRange, detail } = useWeather({
+    id: String(data.locationID),
+    year: '2023',
+  });
 
   const handleCloseClick = () => {
-    map && map.closePopup();
+    if (map) {
+      map.closePopup();
+      map.setView(surveyMapParams.center, surveyMapParams.zoom);
+    }
     setActive(false);
   };
+
   return (
     <>
       <div className="wbox-cont">
         <div className="rel">
           <CloseBtn onClick={handleCloseClick} />
-          <h3 className="item-title">屈尺站 - 實時觀測資料</h3>
+          <h3 className="item-title">{data.verbatimLocality} - 實時觀測資料</h3>
           <table
             className="map-tablestyle"
             border={0}
@@ -29,49 +49,30 @@ const PopupLayout = (props: PopupLayoutProps) => {
           >
             <tbody>
               <tr>
-                <td>調查月份</td>
-                <td>2022年12月</td>
+                <td>觀測項目</td>
+                <td></td>
               </tr>
-              <tr>
-                <td>水溫</td>
-                <td>18.800 °C</td>
-              </tr>
-              <tr>
-                <td>pH</td>
-                <td>7.810</td>
-              </tr>
-              <tr>
-                <td>pHmV</td>
-                <td>-61.000</td>
-              </tr>
-              <tr>
-                <td>氧化還原電位(ORPmV)</td>
-                <td>45.670</td>
-              </tr>
-              <tr>
-                <td>電導度</td>
-                <td>14.230 mS/cm</td>
-              </tr>
-              <tr>
-                <td>濁度(NTU)</td>
-                <td>134.330</td>
-              </tr>
-              <tr>
-                <td>溶氧</td>
-                <td>0.000 mg/L</td>
-              </tr>
-              <tr>
-                <td>總溶解固體物</td>
-                <td>8.840</td>
-              </tr>
-              <tr>
-                <td>鹽度</td>
-                <td>8.230 ng/L</td>
-              </tr>
-              <tr>
-                <td>Specific gravity</td>
-                <td>8.230 ng/L</td>
-              </tr>
+              {surveyMapColList.map((v) => {
+                const { id, planId, colId, title, unit } = v;
+                const matchValue = () => {
+                  if (!planId) {
+                    return data[colId];
+                  } else {
+                    switch (planId) {
+                      case 'weather':
+                        return detail.annual[colId];
+                      default:
+                        return;
+                    }
+                  }
+                };
+                return (
+                  <tr key={id}>
+                    <td>{title}</td>
+                    <td>{matchValue()}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
           <div className="align-center">

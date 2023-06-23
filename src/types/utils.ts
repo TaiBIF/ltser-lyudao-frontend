@@ -45,10 +45,18 @@ export interface FileItem {
 export type ColItem = {
   id: string;
   title: string;
-  show: boolean;
+  show?: boolean;
   param?: boolean;
   space?: string;
   relate?: RelateTypes[];
+};
+
+export type ObservationItem = {
+  id?: string;
+  planId?: string;
+  colId: string;
+  title: string;
+  unit?: string;
 };
 
 export type ItemTypes =
