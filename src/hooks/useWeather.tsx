@@ -37,7 +37,7 @@ const useWeather = (props: useWeatherProps) => {
 
   useEffect(() => {
     getSites({
-      url: `/getWeatherSites/`,
+      url: `getWeatherSites`,
       setList: setSites,
       defaultList: weatherAllSites.sites,
     });
@@ -46,7 +46,7 @@ const useWeather = (props: useWeatherProps) => {
   useEffect(() => {
     getTimeRange({
       id,
-      url: `/getWeatherTimeRange/`,
+      url: `getWeatherTimeRange`,
       setData: setTimeRange,
       defaultData: weatherTimeRangeById,
     });
@@ -56,7 +56,7 @@ const useWeather = (props: useWeatherProps) => {
     getData({
       id,
       year,
-      url: `/getWeatherData/`,
+      url: `getWeatherData`,
       setData: setDetail,
       defaultData: weatherDataById,
     });
