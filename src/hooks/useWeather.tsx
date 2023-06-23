@@ -56,7 +56,7 @@ const useWeather = (props: useWeatherProps) => {
     getData({
       id,
       year,
-      url: `getWeatherData`,
+      url: `getWeatherDetail`,
       setData: setDetail,
       defaultData: weatherDataById,
     });
