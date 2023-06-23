@@ -43,14 +43,14 @@ const useWeather = (props: useWeatherProps) => {
     });
   }, []);
 
-  useEffect(() => {
+  const getWeatherTimeRange = () => {
     getTimeRange({
       id,
       url: `getWeatherTimeRange`,
       setData: setTimeRange,
       defaultData: weatherTimeRangeById,
     });
-  }, [id]);
+  };
 
   useEffect(() => {
     getData({
@@ -62,7 +62,7 @@ const useWeather = (props: useWeatherProps) => {
     });
   }, [id, year]);
 
-  return { sites, timeRange, detail };
+  return { sites, timeRange, getWeatherTimeRange, detail };
 };
 
 export default useWeather;
