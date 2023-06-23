@@ -18,7 +18,7 @@ interface MarkerLayoutProps {
 const MarkerLayout = (props: MarkerLayoutProps) => {
   const { data } = props;
   const [active, setActive] = useState<boolean>(false);
-  const { sites, timeRange, getWeatherTimeRange, detail } = useWeather({
+  const { timeRange, getWeatherTimeRange } = useWeather({
     id: String(data.locationID),
     year: '2023',
   });

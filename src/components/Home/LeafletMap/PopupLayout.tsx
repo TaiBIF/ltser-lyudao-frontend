@@ -22,7 +22,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const { setActive, data } = props;
 
   const map = useMap();
-  const { sites, timeRange, detail } = useWeather({
+  const { detail, getWeatherDetail } = useWeather({
     id: String(data.locationID),
     year: '2023',
   });
@@ -34,6 +34,10 @@ const PopupLayout = (props: PopupLayoutProps) => {
     }
     setActive(false);
   };
+
+  useEffect(() => {
+    getWeatherDetail();
+  }, []);
 
   return (
     <>

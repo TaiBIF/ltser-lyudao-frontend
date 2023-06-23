@@ -47,7 +47,7 @@ const useSurveyMap = () => {
     }
   };
 
-  const getData = async ({
+  const getDetail = async ({
     id,
     year,
     url,
@@ -72,7 +72,7 @@ const useSurveyMap = () => {
     }
   };
 
-  return { getSites, getTimeRange, getData };
+  return { getSites, getTimeRange, getDetail };
 };
 
 export default useSurveyMap;

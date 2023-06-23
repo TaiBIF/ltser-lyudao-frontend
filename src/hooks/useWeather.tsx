@@ -17,7 +17,7 @@ interface useWeatherProps {
 
 const useWeather = (props: useWeatherProps) => {
   const { id, year } = props;
-  const { getSites, getTimeRange, getData } = useSurveyMap();
+  const { getSites, getTimeRange, getDetail } = useSurveyMap();
 
   const [sites, setSites] = useState<string[]>([]);
   const [timeRange, setTimeRange] = useState<TimeRangeItem>({
@@ -35,13 +35,13 @@ const useWeather = (props: useWeatherProps) => {
     seasonal: [],
   });
 
-  useEffect(() => {
+  const getWeatherSites = () => {
     getSites({
       url: `getWeatherSites`,
       setList: setSites,
       defaultList: weatherAllSites.sites,
     });
-  }, []);
+  };
 
   const getWeatherTimeRange = () => {
     getTimeRange({
@@ -52,17 +52,24 @@ const useWeather = (props: useWeatherProps) => {
     });
   };
 
-  useEffect(() => {
-    getData({
+  const getWeatherDetail = () => {
+    getDetail({
       id,
       year,
       url: `getWeatherDetail`,
       setData: setDetail,
       defaultData: weatherDataById,
     });
-  }, [id, year]);
+  };
 
-  return { sites, timeRange, getWeatherTimeRange, detail };
+  return {
+    sites,
+    timeRange,
+    detail,
+    getWeatherSites,
+    getWeatherTimeRange,
+    getWeatherDetail,
+  };
 };
 
 export default useWeather;
