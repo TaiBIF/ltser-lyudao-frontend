@@ -38,7 +38,7 @@ const useSurveyMap = () => {
     const result = await handleApi({
       method: 'get',
       url: `/${url}/`,
-      params: { id },
+      params: { locationID: id },
     });
     if (result?.status === 'success') {
       setData({ ...result.response.data });
@@ -63,7 +63,7 @@ const useSurveyMap = () => {
     const result = await handleApi({
       method: 'get',
       url: `/${url}/`,
-      params: { id, year },
+      params: { locationID: id, year },
     });
     if (result?.status === 'success') {
       setData({ ...result.response.data });
