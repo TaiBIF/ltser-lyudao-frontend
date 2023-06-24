@@ -9,6 +9,7 @@ import ReactDOMServer from 'react-dom/server';
 import MarkerIconLayout from 'components/Home/LeafletMap/MarkerIconLayout';
 import PopupLayout from 'components/Home/LeafletMap/PopupLayout';
 import TooltipLayout from 'components/Home/LeafletMap/TooltipLayout';
+import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 interface MarkerLayoutProps {
   data: Dictionary<number | string>;
@@ -16,6 +17,7 @@ interface MarkerLayoutProps {
 
 const MarkerLayout = (props: MarkerLayoutProps) => {
   const { data } = props;
+  const { filter, setFilter } = useSurveyMapContext();
   const [active, setActive] = useState<boolean>(false);
 
   const location: LatLngExpression = [
@@ -25,6 +27,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
 
   const handleMarkerClick = () => {
     setActive(true);
+    setFilter({ ...filter, id: String(data.locationID) });
   };
 
   const mapIcon = () =>
@@ -48,7 +51,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
         <Popup closeButton={false}>
           <PopupLayout setActive={setActive} data={data} />
         </Popup>
-        <Tooltip>
+        <Tooltip offset={[30, -16.5]}>
           <TooltipLayout data={data} />
         </Tooltip>
       </Marker>

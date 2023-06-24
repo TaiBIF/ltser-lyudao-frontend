@@ -6,12 +6,12 @@ import {
   defaultTimeRange,
   defaultSites,
   defaultIdTimeRange,
-  weatherDetail,
+  seaTemperatureDeatil,
 } from 'data/home/content';
 
 import useSurveyMapData from 'hooks/useSurveyMapData';
 
-const useWeather = () => {
+const useSeaTemperature = () => {
   const [sites, setSites] = useState<string[]>([]);
   const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
   const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
@@ -21,13 +21,12 @@ const useWeather = () => {
     site: '',
     year: '',
     annual: {
-      airTemperature: 0,
-      precipitation: 0,
+      seaTemperature: 0,
     },
     seasonal: [],
   });
 
-  const URL = `weather`;
+  const URL = `sea-temperature`;
 
   const {
     getDataSites,
@@ -39,7 +38,7 @@ const useWeather = () => {
     url: URL,
     defaultSites,
     defaultIdTimeRange,
-    defaultDetail: weatherDetail,
+    defaultDetail: seaTemperatureDeatil,
     setSites,
     allTimeRange,
     setAllTimeRange,
@@ -60,4 +59,4 @@ const useWeather = () => {
   };
 };
 
-export default useWeather;
+export default useSeaTemperature;

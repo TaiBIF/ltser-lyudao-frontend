@@ -1,6 +1,7 @@
 import { map, zipObject, Dictionary } from 'lodash';
+import { DateTime } from 'luxon';
 
-import { TabItem, SurveyMapParams } from 'types/home';
+import { TabItem, SurveyMapParams, TimeRangeItem } from 'types/home';
 import { ObservationItem } from 'types/utils';
 
 import localityData from 'data/home/locality.json';
@@ -82,24 +83,31 @@ export const surveyMapColList: ObservationItem[] = [
     title: '珊瑚礁種類數',
   },
   {
-    id: 'coralAddNumber',
-    planId: 'coralAdd',
+    id: 'coralRecNumber',
+    planId: 'coralRec',
     colId: 'individualCount',
     title: '珊瑚礁入添數量',
   },
 ];
 
-export const weatherAllSites = {
+export const defaultTimeRange: TimeRangeItem = {
+  site: '',
+  start: '',
+  end: '',
+};
+
+export const defaultSites = {
   sites: ['001', 'KZY', '032'],
 };
 
-export const weatherTimeRangeById = {
+export const defaultIdTimeRange = {
   site: 'A1',
-  start: '2023-01-01',
-  end: '2023-06-20',
+  // start: `${DateTime.now().toFormat('yyyy')}-01-01`,
+  start: '2010-01-01',
+  end: DateTime.now().toFormat('yyyy-MM-dd'),
 };
 
-export const weatherDataById = {
+export const weatherDetail = {
   site: 'A1',
   year: '2023',
   annual: {
@@ -130,36 +138,42 @@ export const weatherDataById = {
   ],
 };
 
-export const seaTemperature = {
+export const seaTemperatureDeatil = {
   site: 'CK',
   year: '2023',
   annual: {
-    seaTemperature: 20,
+    seaTemperature: 0,
   },
   seasonal: [
     {
       season: '1-3',
-      seaTemperature: 20,
+      seaTemperature: 0,
     },
     {
       season: '4-6',
-      seaTemperature: 20,
+      seaTemperature: 0,
     },
     {
       season: '7-9',
-      seaTemperature: 20,
+      seaTemperature: 0,
     },
     {
       season: '10-12',
-      seaTemperature: 20,
+      seaTemperature: 0,
     },
   ],
 };
 
-export const coralRec = {
+export const coralRecDetail = {
   site: 'GG',
   year: '2023',
-  count: 100,
+  count: 0,
+};
+
+export const coralDivDetail = {
+  site: 'GG',
+  year: '2023',
+  count: 0,
 };
 
 export const plant = {

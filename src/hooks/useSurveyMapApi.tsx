@@ -1,7 +1,7 @@
 import { useApi } from 'hooks/useApi';
-import { TimeRangeItem, DataItem } from 'types/home';
+import { TimeRangeItem, DetailItem } from 'types/home';
 
-const useSurveyMap = () => {
+const useSurveyMapApi = () => {
   const { loading, handleApi, handleActions } = useApi();
 
   const getSites = async ({
@@ -15,12 +15,29 @@ const useSurveyMap = () => {
   }) => {
     const result = await handleApi({
       method: 'get',
-      url: `/${url}/`,
+      url: `/data/${url}/sites/`,
     });
     if (result?.status === 'success') {
       setList([...result.response.data.sites]);
     } else {
       setList([...defaultList]);
+    }
+  };
+
+  const getAllTimeRange = async ({
+    url,
+    setList,
+  }: {
+    id?: string;
+    url: string;
+    setList: any;
+  }) => {
+    const result = await handleApi({
+      method: 'get',
+      url: `/data/${url}/time-range/`,
+    });
+    if (result?.status === 'success') {
+      setList([...result.response.data]);
     }
   };
 
@@ -37,7 +54,7 @@ const useSurveyMap = () => {
   }) => {
     const result = await handleApi({
       method: 'get',
-      url: `/${url}/`,
+      url: `/data/${url}/time-range/`,
       params: { locationID: id },
     });
     if (result?.status === 'success') {
@@ -58,11 +75,11 @@ const useSurveyMap = () => {
     year: string;
     url: string;
     setData: any;
-    defaultData: DataItem;
+    defaultData: DetailItem;
   }) => {
     const result = await handleApi({
       method: 'get',
-      url: `/${url}/`,
+      url: `/data/${url}/detail/`,
       params: { locationID: id, year },
     });
     if (result?.status === 'success') {
@@ -72,7 +89,7 @@ const useSurveyMap = () => {
     }
   };
 
-  return { getSites, getTimeRange, getDetail };
+  return { getSites, getAllTimeRange, getTimeRange, getDetail };
 };
 
-export default useSurveyMap;
+export default useSurveyMapApi;

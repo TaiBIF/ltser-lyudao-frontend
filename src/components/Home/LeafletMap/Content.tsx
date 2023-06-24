@@ -2,31 +2,32 @@ import React, { useState, useEffect } from 'react';
 
 import { Dictionary } from 'lodash';
 
-import { LatLngExpression, DivIcon } from 'leaflet';
 import {
   MapContainer,
   TileLayer,
   LayersControl,
   ScaleControl,
   LayerGroup,
-  Marker,
-  Popup,
 } from 'react-leaflet';
 
 import Filter from 'components/Home/LeafletMap/Filter';
 import MarkerLayout from 'components/Home/LeafletMap/MarkerLayout';
 
-import useRender from 'hooks/useRender';
-
 import { LocalityItem } from 'types/home';
 
 import { localityList, surveyMapParams } from 'data/home/content';
+
+import { useSurveyMapContext } from 'context/SurveyMapContext';
+import useRender from 'hooks/useRender';
+import useWeather from 'hooks/useWeather';
 
 const Content = () => {
   const { getDepositarList } = useRender();
   const [markers, setMarkers] = useState<
     (Dictionary<number | string> | LocalityItem)[]
   >([]);
+  const { filter, setFilter } = useSurveyMapContext();
+  const { getDataAllTimeRange } = useWeather();
 
   const isFetchingList = markers.length === 0;
 
@@ -36,6 +37,7 @@ const Content = () => {
       resouceId: `8d4b3a7f-5a76-4406-9b19-0c709dbd7d68`,
       defaultList: localityList,
     });
+    getDataAllTimeRange();
   }, []);
 
   return (
@@ -45,7 +47,7 @@ const Content = () => {
         className="map-area"
         center={surveyMapParams.center}
         zoom={surveyMapParams.zoom}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
         doubleClickZoom={false}
         zoomControl={false}
       >

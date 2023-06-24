@@ -6,12 +6,12 @@ import {
   defaultTimeRange,
   defaultSites,
   defaultIdTimeRange,
-  weatherDetail,
+  coralDivDetail,
 } from 'data/home/content';
 
 import useSurveyMapData from 'hooks/useSurveyMapData';
 
-const useWeather = () => {
+const useCoralRec = () => {
   const [sites, setSites] = useState<string[]>([]);
   const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
   const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
@@ -20,14 +20,10 @@ const useWeather = () => {
   const [detail, setDetail] = useState<DetailItem>({
     site: '',
     year: '',
-    annual: {
-      airTemperature: 0,
-      precipitation: 0,
-    },
-    seasonal: [],
+    count: 0,
   });
 
-  const URL = `weather`;
+  const URL = `coral-div`;
 
   const {
     getDataSites,
@@ -39,7 +35,7 @@ const useWeather = () => {
     url: URL,
     defaultSites,
     defaultIdTimeRange,
-    defaultDetail: weatherDetail,
+    defaultDetail: coralDivDetail,
     setSites,
     allTimeRange,
     setAllTimeRange,
@@ -60,4 +56,4 @@ const useWeather = () => {
   };
 };
 
-export default useWeather;
+export default useCoralRec;

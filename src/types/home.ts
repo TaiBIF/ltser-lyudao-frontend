@@ -31,6 +31,10 @@ export type LocalityItem = {
   municipality: string;
 };
 
+export type SiteItem = {
+  sites: string[];
+};
+
 export type TimeRangeItem = {
   site: string;
   start: string;
@@ -44,11 +48,31 @@ export type WeatherItem = {
   precipitation: number;
 };
 
-type SurveyMapItemTypes = WeatherItem;
+export type SeaTemperatureItem = {
+  [key: string]: any;
+  season?: string;
+  seaTemperature: number;
+};
 
-export type DataItem = {
+type SurveyMapItemTypes = WeatherItem | SeaTemperatureItem;
+
+export type AnnualSeasonalItem = {
   site: string;
   year: string;
   annual: SurveyMapItemTypes;
   seasonal: SurveyMapItemTypes[];
+};
+
+export type CountItem = {
+  site: string;
+  year: string;
+  count: number;
+};
+
+export type DetailItem = AnnualSeasonalItem | CountItem;
+
+export type FilterItem = {
+  id: string;
+  year: string;
+  item: string;
 };

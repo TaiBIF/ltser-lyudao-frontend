@@ -47,6 +47,7 @@ import DashboardDownload from 'components/Dashboard/Download';
 
 import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
+import { SurveyMapProvider } from 'context/SurveyMapContext';
 
 function App() {
   return (
@@ -56,7 +57,14 @@ function App() {
           <Header />
         </HeaderProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <SurveyMapProvider>
+                <Home />
+              </SurveyMapProvider>
+            }
+          />
           <Route path="/about/:categoryId/:aboutId" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/related-literature" element={<RelatedLiterature />} />

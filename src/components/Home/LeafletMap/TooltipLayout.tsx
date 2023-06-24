@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Dictionary } from 'lodash';
 
 import useWeather from 'hooks/useWeather';
+import { TimeRangeItem } from 'types/home';
+import { defaultTimeRange } from 'data/home/content';
 
 interface TooltipLayoutProps {
   data: Dictionary<number | string>;
@@ -10,17 +12,21 @@ interface TooltipLayoutProps {
 
 const TooltipLayout = (props: TooltipLayoutProps) => {
   const { data } = props;
-  const { timeRange, getWeatherTimeRange } = useWeather({
-    id: String(data.locationID),
-    year: '2023',
+  const { getDataHoverTimeRange } = useWeather();
+
+  const [timeRange, setTimeRange] = useState<TimeRangeItem>({
+    ...defaultTimeRange,
   });
+
   useEffect(() => {
-    getWeatherTimeRange();
+    const time = getDataHoverTimeRange(String(data.locationID));
+    setTimeRange({ ...defaultTimeRange, ...time });
   }, []);
+
   return (
     <>
-      {data.verbatimLocality}
-      {`${timeRange.start} - ${timeRange.end}`}
+      <div>{data.verbatimLocality}</div>
+      <div>{`${timeRange.start} - ${timeRange.end}`}</div>
     </>
   );
 };

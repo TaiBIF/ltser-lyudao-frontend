@@ -4,14 +4,16 @@ import { Dictionary } from 'lodash';
 import { useMap } from 'react-leaflet';
 
 import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
+import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
 
-import {
-  surveyMapParams,
-  surveyMapColList,
-  weatherAllSites,
-} from 'data/home/content';
-import useRender from 'hooks/useRender';
+import { AnnualSeasonalItem, CountItem } from 'types/home';
+
+import { surveyMapParams, surveyMapColList } from 'data/home/content';
+
 import useWeather from 'hooks/useWeather';
+import useSeaTemperature from 'hooks/useSeaTemperature';
+import useCoralDiv from 'hooks/useCoralDiv';
+import useCoralRec from 'hooks/useCoralRec';
 
 type PopupLayoutProps = {
   setActive: Dispatch<SetStateAction<boolean>>;
@@ -22,11 +24,16 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const { setActive, data } = props;
 
   const map = useMap();
-  const { detail, getWeatherDetail } = useWeather({
-    id: String(data.locationID),
-    year: '2023',
-  });
-
+  const { detail: weatherDetail, getDataDetail: getWeatherDataDetail } =
+    useWeather();
+  const {
+    detail: seaTemperatureDetail,
+    getDataDetail: getSeaTemperatureDataDetail,
+  } = useSeaTemperature();
+  const { detail: coralDivDetail, getDataDetail: getCoralDivDataDetail } =
+    useCoralDiv();
+  const { detail: coralRecDetail, getDataDetail: getCoralRecDataDetail } =
+    useCoralRec();
   const handleCloseClick = () => {
     if (map) {
       map.closePopup();
@@ -36,7 +43,10 @@ const PopupLayout = (props: PopupLayoutProps) => {
   };
 
   useEffect(() => {
-    getWeatherDetail();
+    getWeatherDataDetail();
+    getSeaTemperatureDataDetail();
+    getCoralDivDataDetail();
+    getCoralRecDataDetail();
   }, []);
 
   return (
@@ -62,12 +72,27 @@ const PopupLayout = (props: PopupLayoutProps) => {
                   if (!planId) {
                     return data[colId];
                   } else {
+                    let data;
                     switch (planId) {
                       case 'weather':
-                        return detail.annual[colId];
+                        data = (weatherDetail as AnnualSeasonalItem).annual[
+                          colId
+                        ];
+                        break;
+                      case 'seaTemperature':
+                        data = (seaTemperatureDetail as AnnualSeasonalItem)
+                          .annual[colId];
+                        break;
+                      case 'coralDiv':
+                        data = (coralDivDetail as CountItem).count;
+                        break;
+                      case 'coralRec':
+                        data = (coralRecDetail as CountItem).count;
+                        break;
                       default:
                         return;
                     }
+                    return data === null ? '-' : data;
                   }
                 };
                 return (
@@ -82,40 +107,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
           <div className="align-center">
             <a href="/" className="link-more">
               <p>查看圖表</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="31.207"
-                height="9.414"
-                viewBox="0 0 31.207 9.414"
-              >
-                <g
-                  id="Group_212"
-                  data-name="Group 212"
-                  transform="translate(-274 -1559.793)"
-                >
-                  <line
-                    id="Line_1"
-                    data-name="Line 1"
-                    x2={30}
-                    transform="translate(274.5 1568.5)"
-                    fill="none"
-                    stroke="#529A81"
-                    strokeLinecap="round"
-                    strokeWidth={1}
-                  />
-                  <line
-                    id="Line_2"
-                    data-name="Line 2"
-                    x2={8}
-                    y2={8}
-                    transform="translate(296.5 1560.5)"
-                    fill="none"
-                    stroke="#529A81"
-                    strokeLinecap="round"
-                    strokeWidth={1}
-                  />
-                </g>
-              </svg>
+              <ArrowIcon />
             </a>
           </div>
           <div className="arr">
