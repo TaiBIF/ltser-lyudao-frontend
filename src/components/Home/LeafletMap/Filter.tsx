@@ -10,6 +10,7 @@ const Filter = () => {
   const { idTimeRange, getDataIdTimeRange } = useWeather();
 
   const [yearRange, setYearRange] = useState<string[]>([]);
+  const [itemList, setItemList] = useState<string[]>(['airTemperature']);
 
   const hasId = filter.id !== '';
   const isFetchingTimeRange = idTimeRange.site === '';
@@ -66,6 +67,13 @@ const Filter = () => {
           <option value="" disabled>
             觀測項目
           </option>
+          {itemList.map((v) => {
+            return (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            );
+          })}
         </select>
       </div>
     </>

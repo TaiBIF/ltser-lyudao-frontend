@@ -10,10 +10,9 @@ import { AnnualSeasonalItem, CountItem } from 'types/home';
 
 import { surveyMapParams, surveyMapColList } from 'data/home/content';
 
-import useWeather from 'hooks/useWeather';
-import useSeaTemperature from 'hooks/useSeaTemperature';
-import useCoralDiv from 'hooks/useCoralDiv';
-import useCoralRec from 'hooks/useCoralRec';
+import { useSurveyMapContext } from 'context/SurveyMapContext';
+import { useNavigate } from 'react-router-dom';
+import { useDataContext } from 'context/DataContext';
 
 type PopupLayoutProps = {
   setActive: Dispatch<SetStateAction<boolean>>;
@@ -22,18 +21,24 @@ type PopupLayoutProps = {
 
 const PopupLayout = (props: PopupLayoutProps) => {
   const { setActive, data } = props;
-
+  const { setFilter } = useSurveyMapContext();
   const map = useMap();
-  const { detail: weatherDetail, getDataDetail: getWeatherDataDetail } =
-    useWeather();
+  const navigate = useNavigate();
+  const { filter } = useSurveyMapContext();
   const {
-    detail: seaTemperatureDetail,
-    getDataDetail: getSeaTemperatureDataDetail,
-  } = useSeaTemperature();
-  const { detail: coralDivDetail, getDataDetail: getCoralDivDataDetail } =
-    useCoralDiv();
-  const { detail: coralRecDetail, getDataDetail: getCoralRecDataDetail } =
-    useCoralRec();
+    weatherDetail,
+    seaTemperatureDetail,
+    coralDivDetail,
+    coralRecDetail,
+    getWeatherDataDetail,
+    getSeaTemperatureDataDetail,
+    getCoralDivDataDetail,
+    getCoralRecDataDetail,
+    getPlantDataDetail,
+    getBirdNetSoundDataDetail,
+    getFishDivDataDetail,
+  } = useDataContext();
+
   const handleCloseClick = () => {
     if (map) {
       map.closePopup();
@@ -42,12 +47,20 @@ const PopupLayout = (props: PopupLayoutProps) => {
     setActive(false);
   };
 
+  const handleMoreClick = () => {
+    setFilter({ ...filter, chart: true });
+    navigate('#chart');
+  };
+
   useEffect(() => {
     getWeatherDataDetail();
     getSeaTemperatureDataDetail();
     getCoralDivDataDetail();
     getCoralRecDataDetail();
-  }, []);
+    getPlantDataDetail();
+    getBirdNetSoundDataDetail();
+    getFishDivDataDetail();
+  }, [filter.id]);
 
   return (
     <>
@@ -67,21 +80,21 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 <td></td>
               </tr>
               {surveyMapColList.map((v) => {
-                const { id, planId, colId, title, unit } = v;
+                const { id, plan, col, title, unit } = v;
                 const matchValue = () => {
-                  if (!planId) {
-                    return data[colId];
+                  if (!plan) {
+                    return data[col];
                   } else {
                     let data;
-                    switch (planId) {
+                    switch (plan) {
                       case 'weather':
                         data = (weatherDetail as AnnualSeasonalItem).annual[
-                          colId
+                          col
                         ];
                         break;
                       case 'seaTemperature':
                         data = (seaTemperatureDetail as AnnualSeasonalItem)
-                          .annual[colId];
+                          .annual[col];
                         break;
                       case 'coralDiv':
                         data = (coralDivDetail as CountItem).count;
@@ -105,10 +118,14 @@ const PopupLayout = (props: PopupLayoutProps) => {
             </tbody>
           </table>
           <div className="align-center">
-            <a href="/" className="link-more">
+            <button
+              type="button"
+              className="link-more"
+              onClick={handleMoreClick}
+            >
               <p>查看圖表</p>
               <ArrowIcon />
-            </a>
+            </button>
           </div>
           <div className="arr">
             <svg

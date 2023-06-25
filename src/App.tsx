@@ -48,6 +48,7 @@ import DashboardDownload from 'components/Dashboard/Download';
 import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
 import { SurveyMapProvider } from 'context/SurveyMapContext';
+import { DataProvider } from 'context/DataContext';
 
 function App() {
   return (
@@ -61,7 +62,9 @@ function App() {
             path="/"
             element={
               <SurveyMapProvider>
-                <Home />
+                <DataProvider>
+                  <Home />
+                </DataProvider>
               </SurveyMapProvider>
             }
           />
@@ -72,22 +75,24 @@ function App() {
           <Route path="/news" element={<NewsContent />} />
           <Route path="/news/:newsId" element={<NewsDetail />} />
           <Route path="/qa" element={<QA />} />
-          <Route
-            path="/site-data/ecological-observation"
-            element={
-              <EcoProvider>
-                <EcologicalObservation />
-              </EcoProvider>
-            }
-          />
-          <Route
-            path="/site-data/environmental-observation"
-            element={
-              <EcoProvider>
-                <EcologicalObservation />
-              </EcoProvider>
-            }
-          />
+          <Route element={<DataProvider />}>
+            <Route
+              path="/site-data/ecological-observation"
+              element={
+                <EcoProvider>
+                  <EcologicalObservation />
+                </EcoProvider>
+              }
+            />
+            <Route
+              path="/site-data/environmental-observation"
+              element={
+                <EcoProvider>
+                  <EcologicalObservation />
+                </EcoProvider>
+              }
+            />
+          </Route>
           <Route path="/forgot-password" element={<ForgotPsw />} />
           <Route path="/mail-verification" element={<MailVerification />} />
           <Route

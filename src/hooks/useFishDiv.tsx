@@ -6,12 +6,12 @@ import {
   defaultTimeRange,
   defaultSites,
   defaultIdTimeRange,
-  coralDivDetail,
+  fishDivDetail,
 } from 'data/home/content';
 
 import useSurveyMapData from 'hooks/useSurveyMapData';
 
-const useCoralDiv = () => {
+const useFishDiv = () => {
   const [sites, setSites] = useState<string[]>([]);
   const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
   const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
@@ -20,10 +20,10 @@ const useCoralDiv = () => {
   const [detail, setDetail] = useState<DetailItem>({
     site: '',
     year: '',
-    count: 0,
+    seasonal: [],
   });
 
-  const URL = `coral-div`;
+  const URL = `fish-div`;
 
   const {
     getDataSites,
@@ -35,7 +35,7 @@ const useCoralDiv = () => {
     url: URL,
     defaultSites,
     defaultIdTimeRange,
-    defaultDetail: coralDivDetail,
+    defaultDetail: fishDivDetail,
     setSites,
     allTimeRange,
     setAllTimeRange,
@@ -56,4 +56,4 @@ const useCoralDiv = () => {
   };
 };
 
-export default useCoralDiv;
+export default useFishDiv;

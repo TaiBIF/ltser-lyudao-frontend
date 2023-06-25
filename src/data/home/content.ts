@@ -40,52 +40,52 @@ export const localityList: Dictionary<string | number>[] = map(
 export const surveyMapColList: ObservationItem[] = [
   {
     id: 'year',
-    colId: 'eventDate',
+    col: 'eventDate',
     title: '年份',
   },
   {
     id: 'locality',
-    colId: 'verbatimLocality',
+    col: 'verbatimLocality',
     title: '地點名稱',
   },
   {
     id: 'latitude',
-    colId: 'decimalLatitude',
+    col: 'decimalLatitude',
     title: '地點經度',
   },
   {
     id: 'longitude',
-    colId: 'decimalLongitude',
+    col: 'decimalLongitude',
     title: '地點緯度',
   },
   {
     id: 'annualAirTemperature',
-    planId: 'weather',
-    colId: 'airTemperature',
+    plan: 'weather',
+    col: 'airTemperature',
     title: '年均溫',
   },
   {
     id: 'annualPrecipitation',
-    planId: 'weather',
-    colId: 'precipitation',
+    plan: 'weather',
+    col: 'precipitation',
     title: '年雨量',
   },
   {
     id: 'annualSeaTemperature',
-    planId: 'seaTemperature',
-    colId: 'seaTemperature',
+    plan: 'seaTemperature',
+    col: 'seaTemperature',
     title: '年均海溫',
   },
   {
     id: 'coralNumber',
-    planId: 'coralDiv',
-    colId: 'scientificName',
+    plan: 'coralDiv',
+    col: 'scientificName',
     title: '珊瑚礁種類數',
   },
   {
     id: 'coralRecNumber',
-    planId: 'coralRec',
-    colId: 'individualCount',
+    plan: 'coralRec',
+    col: 'individualCount',
     title: '珊瑚礁入添數量',
   },
 ];
@@ -176,71 +176,71 @@ export const coralDivDetail = {
   count: 0,
 };
 
-export const plant = {
+export const plantDetail = {
   site: '001',
   year: '2023',
   seasonal: [
     {
       season: '1-3',
-      count: 50,
+      count: 0,
     },
     {
       season: '4-6',
-      count: 50,
+      count: 0,
     },
     {
       season: '7-9',
-      count: 50,
+      count: 0,
     },
     {
       season: '10-12',
-      count: 50,
+      count: 0,
     },
   ],
 };
 
-export const birdNetSound = {
+export const birdNetSoundDetail = {
   site: 'YZH',
   year: '2023',
   seasonal: [
     {
       season: '1-3',
-      count: 50,
+      count: 0,
     },
     {
       season: '4-6',
-      count: 50,
+      count: 0,
     },
     {
       season: '7-9',
-      count: 50,
+      count: 0,
     },
     {
       season: '10-12',
-      count: 50,
+      count: 0,
     },
   ],
 };
 
-export const fishDiv = {
+export const fishDivDetail = {
   site: 'KZY',
   year: '2023',
   seasonal: [
     {
       season: '1-3',
-      count: 50,
+      count: 0,
     },
     {
       season: '4-6',
-      count: 50,
+      count: 0,
     },
     {
       season: '7-9',
-      count: 50,
+      count: 0,
     },
     {
       season: '10-12',
-      count: 50,
+      count: 0,
     },
   ],
 };

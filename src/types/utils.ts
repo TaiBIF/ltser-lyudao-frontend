@@ -52,11 +52,13 @@ export type ColItem = {
 };
 
 export type ObservationItem = {
+  [key: string]: any;
   id?: string;
-  planId?: string;
-  colId: string;
+  plan?: string;
+  col: string;
   title: string;
   unit?: string;
+  data?: any;
 };
 
 export type ItemTypes =

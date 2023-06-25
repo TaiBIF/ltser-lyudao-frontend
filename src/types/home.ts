@@ -54,12 +54,24 @@ export type SeaTemperatureItem = {
   seaTemperature: number;
 };
 
-type SurveyMapItemTypes = WeatherItem | SeaTemperatureItem;
+export type SeasonalCountItem = {
+  [key: string]: any;
+  season?: string;
+  count: number;
+};
+
+type SurveyMapItemTypes = WeatherItem | SeaTemperatureItem | SeasonalCountItem;
 
 export type AnnualSeasonalItem = {
   site: string;
   year: string;
   annual: SurveyMapItemTypes;
+  seasonal: SurveyMapItemTypes[];
+};
+
+export type SeasonalItem = {
+  site: string;
+  year: string;
   seasonal: SurveyMapItemTypes[];
 };
 
@@ -69,7 +81,7 @@ export type CountItem = {
   count: number;
 };
 
-export type DetailItem = AnnualSeasonalItem | CountItem;
+export type DetailItem = AnnualSeasonalItem | SeasonalItem | CountItem;
 
 export type FilterItem = {
   id: string;
