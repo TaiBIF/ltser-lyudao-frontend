@@ -86,7 +86,7 @@ const Content = () => {
     ...commonOptions,
     color: chartsColor.legend.multiple,
     title: {
-      text: `牡蠣養殖申報(調查)總戶數`,
+      text: ``,
     },
     dataZoom: [
       ...commonOptions.dataZoom,
