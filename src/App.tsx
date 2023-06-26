@@ -75,24 +75,30 @@ function App() {
           <Route path="/news" element={<NewsContent />} />
           <Route path="/news/:newsId" element={<NewsDetail />} />
           <Route path="/qa" element={<QA />} />
-          <Route element={<DataProvider />}>
-            <Route
-              path="/site-data/ecological-observation"
-              element={
-                <EcoProvider>
-                  <EcologicalObservation />
-                </EcoProvider>
-              }
-            />
-            <Route
-              path="/site-data/environmental-observation"
-              element={
-                <EcoProvider>
-                  <EcologicalObservation />
-                </EcoProvider>
-              }
-            />
-          </Route>
+          <Route
+            path="/site-data/ecological-observation"
+            element={
+              <SurveyMapProvider>
+                <DataProvider>
+                  <EcoProvider>
+                    <EcologicalObservation />
+                  </EcoProvider>
+                </DataProvider>
+              </SurveyMapProvider>
+            }
+          />
+          <Route
+            path="/site-data/environmental-observation"
+            element={
+              <SurveyMapProvider>
+                <DataProvider>
+                  <EcoProvider>
+                    <EcologicalObservation />
+                  </EcoProvider>
+                </DataProvider>
+              </SurveyMapProvider>
+            }
+          />
           <Route path="/forgot-password" element={<ForgotPsw />} />
           <Route path="/mail-verification" element={<MailVerification />} />
           <Route
