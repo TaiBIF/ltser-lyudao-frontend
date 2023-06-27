@@ -76,6 +76,18 @@ function App() {
           <Route path="/news/:newsId" element={<NewsDetail />} />
           <Route path="/qa" element={<QA />} />
           <Route
+            path="/site-data/ecological-observation/:dataId"
+            element={
+              <SurveyMapProvider>
+                <DataProvider>
+                  <EcoProvider>
+                    <EcologicalObservation />
+                  </EcoProvider>
+                </DataProvider>
+              </SurveyMapProvider>
+            }
+          />
+          <Route
             path="/site-data/environmental-observation"
             element={
               <SurveyMapProvider>
