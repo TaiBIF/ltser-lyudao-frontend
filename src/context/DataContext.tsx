@@ -3,7 +3,7 @@ import React, { createContext, useContext, ReactNode } from 'react';
 import useWeather from 'hooks/useWeather';
 import useSeaTemperature from 'hooks/useSeaTemperature';
 import useCoralDiv from 'hooks/useCoralDiv';
-import useCoralRec from 'hooks/useCoralDiv';
+import useCoralRec from 'hooks/useCoralRec';
 import useFishDiv from 'hooks/useFishDiv';
 import usePlant from 'hooks/usePlant';
 import useBirdNetSound from 'hooks/useBirdNetSound';

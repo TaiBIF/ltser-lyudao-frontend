@@ -53,13 +53,15 @@ const PopupLayout = (props: PopupLayoutProps) => {
   };
 
   useEffect(() => {
-    getWeatherDataDetail();
-    getSeaTemperatureDataDetail();
-    getCoralDivDataDetail();
-    getCoralRecDataDetail();
-    getPlantDataDetail();
-    getBirdNetSoundDataDetail();
-    getFishDivDataDetail();
+    return () => {
+      getWeatherDataDetail();
+      getSeaTemperatureDataDetail();
+      getCoralDivDataDetail();
+      getCoralRecDataDetail();
+      getPlantDataDetail();
+      getBirdNetSoundDataDetail();
+      getFishDivDataDetail();
+    };
   }, [filter.id]);
 
   return (
