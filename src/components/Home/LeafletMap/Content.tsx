@@ -47,7 +47,7 @@ const Content = () => {
         className="map-area"
         center={surveyMapParams.center}
         zoom={surveyMapParams.zoom}
-        scrollWheelZoom={true}
+        scrollWheelZoom={false}
         doubleClickZoom={false}
         zoomControl={false}
       >

@@ -11,6 +11,7 @@ import {
 } from 'helpers/customEcharts';
 
 import { useDataContext } from 'context/DataContext';
+import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 type SeriesItem = {
   data: number[];
@@ -28,6 +29,7 @@ const Content = () => {
     birdNetSoundDetail,
     fishDivDetail,
   } = useDataContext();
+  const { idData } = useSurveyMapContext();
 
   const isFetchingDeatil =
     weatherDetail.site === '' ||
@@ -95,7 +97,7 @@ const Content = () => {
     ...commonOptions,
     color: chartsColor.legend.multiple,
     title: {
-      text: ``,
+      text: `${idData.verbatimLocality} - 視覺化統計圖`,
     },
     dataZoom: [
       ...commonOptions.dataZoom,
@@ -105,6 +107,17 @@ const Content = () => {
         zoomOnMouseWheel: false,
       },
     ],
+    legend: {
+      top: '30%',
+      right: '2%',
+      type: 'scroll',
+      orient: 'vertical',
+    },
+    grid: {
+      width: '78%',
+      left: '5%',
+      height: '60%',
+    },
     tooltip: {
       trigger: 'axis',
       axisPointer: {

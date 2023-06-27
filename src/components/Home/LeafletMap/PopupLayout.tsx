@@ -21,7 +21,7 @@ type PopupLayoutProps = {
 
 const PopupLayout = (props: PopupLayoutProps) => {
   const { setActive, data } = props;
-  const { setFilter } = useSurveyMapContext();
+  const { setFilter, setIdData } = useSurveyMapContext();
   const map = useMap();
   const navigate = useNavigate();
   const { filter } = useSurveyMapContext();
@@ -55,6 +55,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
 
   useEffect(() => {
     return () => {
+      setIdData({ ...data });
       getWeatherDataDetail();
       getSeaTemperatureDataDetail();
       getCoralDivDataDetail();

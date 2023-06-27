@@ -1,5 +1,7 @@
 import React, { createContext, useContext, ReactNode, useState } from 'react';
 
+import { Dictionary } from 'lodash';
+
 interface SurveyMapProviderProps {
   children: ReactNode;
 }
@@ -15,9 +17,13 @@ export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
     chart: false,
   });
 
+  const [idData, setIdData] = useState<Dictionary<number | string>>({});
+
   const contextData = {
     filter,
     setFilter,
+    idData,
+    setIdData,
   };
 
   return (
