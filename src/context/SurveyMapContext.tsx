@@ -10,7 +10,7 @@ export const useSurveyMapContext = () => useContext(SurveyMapContext);
 export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
   const [filter, setFilter] = useState({
     id: '',
-    year: '',
+    year: '2022',
     item: '',
     chart: false,
   });

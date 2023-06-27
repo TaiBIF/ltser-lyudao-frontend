@@ -29,9 +29,10 @@ const TooltipLayout = (props: TooltipLayoutProps) => {
       {/* <div>{`${timeRange.start} - ${timeRange.end}`}</div> */}
       <div>2022-01-01 - 2023-06-27</div>
       <div>
-        {surveyMapItemList.map((v) => (
-          <div>{v.title}</div>
-        ))}
+        {surveyMapItemList.map((v) => {
+          const { id, title } = v;
+          return <div key={id}>{title}</div>;
+        })}
       </div>
     </>
   );
