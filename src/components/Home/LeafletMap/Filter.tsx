@@ -4,13 +4,13 @@ import { DateTime } from 'luxon';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import useWeather from 'hooks/useWeather';
+import { surveyMapItemList } from 'data/home/content';
 
 const Filter = () => {
   const { filter, setFilter } = useSurveyMapContext();
   const { idTimeRange, getDataIdTimeRange } = useWeather();
 
-  const [yearRange, setYearRange] = useState<string[]>([]);
-  const [itemList, setItemList] = useState<string[]>(['airTemperature']);
+  const [yearRange, setYearRange] = useState<string[]>(['2022', '2023']);
 
   const hasId = filter.id !== '';
   const isFetchingTimeRange = idTimeRange.site === '';
@@ -23,28 +23,28 @@ const Filter = () => {
     setFilter({ ...filter, [target.name]: target.value });
   };
 
-  const handleYearRange = () => {
-    let start = DateTime.fromISO(idTimeRange.start).year;
-    const end = DateTime.fromISO(idTimeRange.end).year;
-    const years = [];
-    while (start <= end) {
-      years.push(String(start));
-      start++;
-    }
-    setYearRange([...years]);
-  };
+  // const handleYearRange = () => {
+  //   let start = DateTime.fromISO(idTimeRange.start).year;
+  //   const end = DateTime.fromISO(idTimeRange.end).year;
+  //   const years = [];
+  //   while (start <= end) {
+  //     years.push(String(start));
+  //     start++;
+  //   }
+  //   setYearRange([...years]);
+  // };
 
-  useEffect(() => {
-    if (hasId) {
-      getDataIdTimeRange();
-    }
-  }, [filter.id]);
+  // useEffect(() => {
+  //   if (hasId) {
+  //     getDataIdTimeRange();
+  //   }
+  // }, [filter.id]);
 
-  useEffect(() => {
-    if (!isFetchingTimeRange) {
-      handleYearRange();
-    }
-  }, [idTimeRange]);
+  // useEffect(() => {
+  //   if (!isFetchingTimeRange) {
+  //     handleYearRange();
+  //   }
+  // }, [idTimeRange]);
 
   return (
     <>
@@ -67,10 +67,11 @@ const Filter = () => {
           <option value="" disabled>
             觀測項目
           </option>
-          {itemList.map((v) => {
+          {surveyMapItemList.map((v) => {
+            const { id, title } = v;
             return (
-              <option key={v} value={v}>
-                {v}
+              <option key={id} value={id}>
+                {title}
               </option>
             );
           })}

@@ -61,6 +61,11 @@ export type ObservationItem = {
   data?: any;
 };
 
+export type SelectItem = {
+  id: string;
+  title: string;
+};
+
 export type ItemTypes =
   | ContactItem
   | QAItem

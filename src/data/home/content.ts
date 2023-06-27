@@ -2,7 +2,7 @@ import { map, zipObject, Dictionary } from 'lodash';
 import { DateTime } from 'luxon';
 
 import { TabItem, SurveyMapParams, TimeRangeItem } from 'types/home';
-import { ObservationItem } from 'types/utils';
+import { ObservationItem, SelectItem } from 'types/utils';
 
 import localityData from 'data/home/locality.json';
 
@@ -90,6 +90,57 @@ export const surveyMapColList: ObservationItem[] = [
   },
 ];
 
+export const surveyMapItemList: SelectItem[] = [
+  {
+    id: 'annualAirTemperature',
+    title: '年均溫',
+  },
+  {
+    id: 'seasonalAirTemperature',
+    title: '季均溫',
+  },
+  {
+    id: 'annualPrecipitation',
+    title: '年雨量',
+  },
+  {
+    id: 'seasonalPrecipitation',
+    title: '季雨量',
+  },
+  {
+    id: 'annualSeaTemperature',
+    title: '年均海溫',
+  },
+  {
+    id: 'seasonalSeaTemperature',
+    title: '季均海溫',
+  },
+  {
+    id: 'coralDiv',
+    title: '珊瑚礁種類數',
+  },
+  {
+    id: 'coralRec',
+    title: '珊瑚礁入添數量',
+  },
+  {
+    id: 'zoobenthos',
+    title: '底棲動物種類數',
+  },
+  {
+    id: 'plant',
+    title: '陸域植物種類數',
+  },
+  {
+    id: 'birdNetSound',
+    title: '鳥種數(鳥音)',
+  },
+  {
+    id: 'fishDiv',
+    title: '魚種數',
+  },
+];
+
 export const defaultTimeRange: TimeRangeItem = {
   site: '',
   start: '',
@@ -103,7 +154,7 @@ export const defaultSites = {
 export const defaultIdTimeRange = {
   site: 'A1',
   // start: `${DateTime.now().toFormat('yyyy')}-01-01`,
-  start: '2010-01-01',
+  start: '2022-01-01',
   end: DateTime.now().toFormat('yyyy-MM-dd'),
 };
 
