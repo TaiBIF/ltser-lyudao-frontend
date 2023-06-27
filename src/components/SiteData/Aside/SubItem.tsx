@@ -59,7 +59,10 @@ const SubItem = (props: SubItemProps) => {
         </>
       ) : (
         <li key={`${parentId}-${data.id}`}>
-          <a href={data.link} className="item-box2 linkto">
+          <a
+            href={`/site-data/ecological-observation/${data.link}`}
+            className="item-box2 linkto"
+          >
             <div className="paddborderb">
               <p>{data.title}</p>
               <Arrow />

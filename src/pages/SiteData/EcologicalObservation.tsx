@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Breadcrumb from 'components/Breadcrumb';
 import Banner from 'components/Banner';
@@ -18,12 +19,19 @@ import { useEcoContext } from 'context/EcoContext';
 
 const EcologicalObservation = () => {
   const { show, setShow } = useEcoContext();
+  const { dataId } = useParams();
+  const navigate = useNavigate();
   const bannerData: BannerData = {
     title: '聯絡我們',
     en: ['Ecological', 'observation'],
     maskImg: true,
     bgImg: bannerImg,
   };
+  useEffect(() => {
+    if (!dataId) {
+      navigate('/site-data/ecological-observation/otolith');
+    }
+  }, []);
 
   return (
     <>

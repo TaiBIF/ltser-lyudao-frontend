@@ -59,7 +59,10 @@ const Content = (props: ContentProps) => {
             ) : (
               <li key={`${item.id}`}>
                 {/*本身就是連結的給item-box linkto*/}
-                <a href={`${item.link}`} className="item-box linkto">
+                <a
+                  href={`/site-data/ecological-observation/${item.link}`}
+                  className="item-box linkto"
+                >
                   <p>{item.title}</p>
                   <Arrow />
                 </a>
