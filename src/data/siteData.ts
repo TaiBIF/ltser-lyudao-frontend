@@ -73,7 +73,7 @@ export const ecoAsideList: AsideItem[] = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     title: '陸域聲景調查',
     list: [
       {
@@ -94,7 +94,7 @@ export const ecoAsideList: AsideItem[] = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     title: '珊瑚礁水下聲景調查',
     list: [
       {

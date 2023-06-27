@@ -27,11 +27,12 @@ const EcologicalObservation = () => {
     maskImg: true,
     bgImg: bannerImg,
   };
+
   useEffect(() => {
     if (!dataId) {
       navigate('/site-data/ecological-observation/otolith');
     }
-  }, []);
+  }, [dataId]);
 
   return (
     <>
