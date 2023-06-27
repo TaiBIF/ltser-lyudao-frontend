@@ -5,6 +5,7 @@ import useSeaTemperature from 'hooks/useSeaTemperature';
 import useCoralDiv from 'hooks/useCoralDiv';
 import useCoralRec from 'hooks/useCoralRec';
 import useFishDiv from 'hooks/useFishDiv';
+import useZoobenthos from 'hooks/useZoobenthos';
 import usePlant from 'hooks/usePlant';
 import useBirdNetSound from 'hooks/useBirdNetSound';
 
@@ -26,6 +27,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     useCoralDiv();
   const { detail: coralRecDetail, getDataDetail: getCoralRecDataDetail } =
     useCoralRec();
+  const { detail: zoobenthosDetail, getDataDetail: getZoobenthosDataDetail } =
+    useZoobenthos();
   const { detail: plantDetail, getDataDetail: getPlantDataDetail } = usePlant();
   const {
     detail: birdNetSoundDetail,
@@ -42,6 +45,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     plantDetail,
     birdNetSoundDetail,
     fishDivDetail,
+    zoobenthosDetail,
     getWeatherDataDetail,
     getSeaTemperatureDataDetail,
     getCoralDivDataDetail,
@@ -49,6 +53,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     getPlantDataDetail,
     getBirdNetSoundDataDetail,
     getFishDivDataDetail,
+    getZoobenthosDataDetail,
   };
 
   return (

@@ -34,6 +34,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
     getSeaTemperatureDataDetail,
     getCoralDivDataDetail,
     getCoralRecDataDetail,
+    getZoobenthosDataDetail,
     getPlantDataDetail,
     getBirdNetSoundDataDetail,
     getFishDivDataDetail,
@@ -58,6 +59,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
       getSeaTemperatureDataDetail();
       getCoralDivDataDetail();
       getCoralRecDataDetail();
+      getZoobenthosDataDetail();
       getPlantDataDetail();
       getBirdNetSoundDataDetail();
       getFishDivDataDetail();

@@ -23,6 +23,7 @@ const Content = () => {
   const {
     weatherDetail,
     seaTemperatureDetail,
+    zoobenthosDetail,
     plantDetail,
     birdNetSoundDetail,
     fishDivDetail,
@@ -31,6 +32,7 @@ const Content = () => {
   const isFetchingDeatil =
     weatherDetail.site === '' ||
     seaTemperatureDetail.site === '' ||
+    zoobenthosDetail.site === '' ||
     plantDetail.site === '' ||
     birdNetSoundDetail.site === '' ||
     fishDivDetail.site === '';
@@ -57,6 +59,13 @@ const Content = () => {
       title: '季海溫',
       data: seaTemperatureDetail,
       col: 'seaTemperature',
+      unit: '',
+    },
+    {
+      id: 'zoobenthos',
+      title: '底棲動物種類數',
+      data: zoobenthosDetail,
+      col: 'count',
       unit: '',
     },
     {
@@ -133,6 +142,7 @@ const Content = () => {
   }, [
     weatherDetail,
     seaTemperatureDetail,
+    zoobenthosDetail,
     plantDetail,
     birdNetSoundDetail,
     fishDivDetail,

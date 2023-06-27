@@ -295,3 +295,26 @@ export const fishDivDetail = {
     },
   ],
 };
+
+export const zoobenthosDetail = {
+  site: 'KZY',
+  year: '2023',
+  seasonal: [
+    {
+      season: '1-3',
+      count: 0,
+    },
+    {
+      season: '4-6',
+      count: 0,
+    },
+    {
+      season: '7-9',
+      count: 0,
+    },
+    {
+      season: '10-12',
+      count: 0,
+    },
+  ],
+};
