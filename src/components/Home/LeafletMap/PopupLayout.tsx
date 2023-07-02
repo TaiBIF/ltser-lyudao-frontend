@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Dictionary } from 'lodash';
 import { useMap } from 'react-leaflet';
@@ -6,19 +7,17 @@ import { useMap } from 'react-leaflet';
 import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
 
-import { AnnualSeasonalItem, CountItem } from 'types/detail';
+import { ContextItem, SiteObservationItem } from 'types/utils';
 
 import { surveyMapParams, surveyMapColList } from 'data/home/content';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
-import { useNavigate } from 'react-router-dom';
 import { useDataContext } from 'context/DataContext';
-import { ContextItem } from 'types/utils';
 
 type PopupLayoutProps = {
   setActive: Dispatch<SetStateAction<boolean>>;
   data: Dictionary<number | string>;
-  items: string[];
+  items: SiteObservationItem[];
 };
 
 const PopupLayout = (props: PopupLayoutProps) => {
@@ -98,7 +97,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                         </tr>
                       );
                     } else {
-                      if (items.includes(plan)) {
+                      if (items.find((v) => v.plan === plan)) {
                         let data;
                         const matchContext = contextData.find(
                           (v: ContextItem) => v.id === plan

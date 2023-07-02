@@ -65,6 +65,12 @@ export type ObservationItem = {
   data?: any;
 };
 
+export type SiteObservationItem = {
+  id: string;
+  plan: string;
+  title: string;
+};
+
 export type SelectItem = {
   id: string;
   title: string;

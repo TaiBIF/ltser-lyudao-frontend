@@ -11,6 +11,8 @@ import PopupLayout from 'components/Home/LeafletMap/PopupLayout';
 import TooltipLayout from 'components/Home/LeafletMap/TooltipLayout';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
+import { SiteObservationItem } from 'types/utils';
+
 import itemList from 'data/home/items.json';
 import { surveyMapItemList } from 'data/home/content';
 
@@ -22,7 +24,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
   const { data } = props;
   const { filter, setFilter } = useSurveyMapContext();
   const [active, setActive] = useState<boolean>(false);
-  const [items, setItems] = useState<string[]>([]);
+  const [items, setItems] = useState<SiteObservationItem[]>([]);
 
   const location: LatLngExpression = [
     Number(data.decimalLatitude),
@@ -48,9 +50,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
     if (matchSite) {
       const matchItem = matchSite.items
         .map((item) => {
-          return surveyMapItemList
-            .filter((v) => v.plan === item)
-            .map((v) => v.title);
+          return surveyMapItemList.filter((v) => v.plan === item);
         })
         .flat();
       setItems([...matchItem]);
