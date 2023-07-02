@@ -1,71 +1,40 @@
-import Arrow from 'components/SiteData/Aside/ArrowIcon';
+import { Link } from 'react-router-dom';
+
 import Item from 'components/SiteData/Aside/Item';
+import Arrow from 'components/SiteData/Aside/ArrowIcon';
+import ArrowUpIcon from 'components/SiteData/Aside/ArrowUpIcon';
 
 import { AsideItem } from 'types/siteData';
 
 type ContentProps = {
   data: AsideItem[];
+  page: string;
 };
 
 const Content = (props: ContentProps) => {
-  const { data } = props;
+  const { data, page } = props;
 
   return (
     <>
-      <div className="left-mainmenu">
+      <div className="left-mainmenu" style={{ overflow: 'visible' }}>
         <div className="btn-mb">
           <p>觀測項目選擇</p>
-          <svg
-            className="arrup"
-            xmlns="http://www.w3.org/2000/svg"
-            width="18.121"
-            height="10.121"
-            viewBox="0 0 18.121 10.121"
-          >
-            <g
-              id="Group_691"
-              data-name="Group 691"
-              transform="translate(-499.439 -647.439)"
-            >
-              <line
-                id="Line_36"
-                data-name="Line 36"
-                y1={8}
-                x2={8}
-                transform="translate(500.5 648.5)"
-                fill="none"
-                stroke="#fff"
-                strokeLinecap="round"
-                strokeWidth="1.5"
-              />
-              <line
-                id="Line_37"
-                data-name="Line 37"
-                x1={8}
-                y1={8}
-                transform="translate(508.5 648.5)"
-                fill="none"
-                stroke="#fff"
-                strokeLinecap="round"
-                strokeWidth="1.5"
-              />
-            </g>
-          </svg>
+          <ArrowUpIcon />
         </div>
         <ul className="level-1">
           {data.map((item) => {
             return item.list ? (
-              <Item key={item.id} data={item} />
+              <Item key={item.id} data={item} page={page} />
             ) : (
               <li key={`${item.id}`}>
                 {/*本身就是連結的給item-box linkto*/}
-                <a
-                  href={`/site-data/ecological-observation/${item.link}`}
+                <Link
+                  to={`/site-data/${page}/${item.link}`}
                   className="item-box linkto"
                 >
                   <p>{item.title}</p>
                   <Arrow />
-                </a>
+                </Link>
               </li>
             );
           })}

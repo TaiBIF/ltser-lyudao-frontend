@@ -1,5 +1,9 @@
-import { useApi } from 'hooks/useApi';
-import { TimeRangeItem, DetailItem } from 'types/home';
+import { TimeRangeItem } from 'types/home';
+import { DetailItemTypes } from 'types/detail';
+
+import { surveyMapItemList } from 'data/home/content';
+
+import { useApi } from 'hooks/api/useApi';
 
 const useSurveyMapApi = () => {
   const { loading, handleApi, handleActions } = useApi();
@@ -75,7 +79,7 @@ const useSurveyMapApi = () => {
     year: string;
     url: string;
     setData: any;
-    defaultData: DetailItem;
+    defaultData: DetailItemTypes;
   }) => {
     const result = await handleApi({
       method: 'get',
@@ -89,7 +93,27 @@ const useSurveyMapApi = () => {
     }
   };
 
-  return { getSites, getAllTimeRange, getTimeRange, getDetail };
+  const getItems = async ({
+    id,
+    setList,
+  }: {
+    id: string;
+    url: string;
+    setList: any;
+  }) => {
+    const result = await handleApi({
+      method: 'get',
+      url: `/data/items/`,
+      params: { locationID: id },
+    });
+    if (result?.status === 'success') {
+      setList([...result.response.data.items]);
+    } else {
+      setList([...surveyMapItemList]);
+    }
+  };
+
+  return { getSites, getAllTimeRange, getTimeRange, getDetail, getItems };
 };
 
 export default useSurveyMapApi;

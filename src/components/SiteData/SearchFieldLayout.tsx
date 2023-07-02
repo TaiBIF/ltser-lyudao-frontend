@@ -1,23 +1,23 @@
 import React from 'react';
 
 import { Field, ErrorMessage } from 'formik';
-import { FieldItem, ItemTypes } from 'types/utils';
+import { RawFieldItem } from 'types/field';
 
 interface SearchFieldLayoutProps {
-  data: FieldItem;
+  data: RawFieldItem;
 }
 
 const SearchFieldLayout = (props: SearchFieldLayoutProps) => {
   const { data } = props;
-  const { id, type, title, label } = data;
+  const { id, type } = data;
   switch (type) {
     case 'text':
     case 'number':
       return (
         <li key={id}>
-          <p>{label}</p>
-          <Field type={type} id={title} name={title} />
-          <ErrorMessage name={title} component="small" />
+          <p>{id}</p>
+          <Field type={type} id={id} name={id} />
+          <ErrorMessage name={id} component="small" />
         </li>
       );
     default:

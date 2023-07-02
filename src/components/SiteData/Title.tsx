@@ -1,12 +1,31 @@
+import { ecoAsideList, envAsideList } from 'data/siteData';
 import React from 'react';
 
-const Title = () => {
+const Title = ({ paths }: { paths: string[] }) => {
+  let asideList;
+  const observation = paths[paths.length - 2].split('-')[0];
+  const item = paths[paths.length - 1];
+
+  switch (observation) {
+    case 'ecological':
+      asideList = ecoAsideList;
+      break;
+    case 'environmental':
+    default:
+      asideList = envAsideList;
+      break;
+  }
+  const title = asideList
+    .map((v) => v.list)
+    .flat()
+    .find((v) => v?.link === item)?.title;
+
   return (
     <>
       <div className="infbox-title">
         <div className="titlearea">
           <h2>
-            辨識出的鳥類紀錄
+            {title}
             <div className="mark-cir">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

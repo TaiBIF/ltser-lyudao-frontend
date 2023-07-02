@@ -72,19 +72,19 @@ export const surveyMapColList: ObservationItem[] = [
   },
   {
     id: 'annualSeaTemperature',
-    plan: 'seaTemperature',
+    plan: 'sea-temperature',
     col: 'seaTemperature',
     title: '年均海溫',
   },
   {
     id: 'coralNumber',
-    plan: 'coralDiv',
+    plan: 'coral-div',
     col: 'scientificName',
     title: '珊瑚礁種類數',
   },
   {
     id: 'coralRecNumber',
-    plan: 'coralRec',
+    plan: 'coral-rec',
     col: 'individualCount',
     title: '珊瑚礁入添數量',
   },
@@ -93,50 +93,62 @@ export const surveyMapColList: ObservationItem[] = [
 export const surveyMapItemList: SelectItem[] = [
   {
     id: 'annualAirTemperature',
+    plan: 'weather',
     title: '年均溫',
   },
   {
     id: 'seasonalAirTemperature',
+    plan: 'weather',
     title: '季均溫',
   },
   {
     id: 'annualPrecipitation',
+    plan: 'weather',
     title: '年雨量',
   },
   {
     id: 'seasonalPrecipitation',
+    plan: 'weather',
     title: '季雨量',
   },
   {
     id: 'annualSeaTemperature',
+    plan: 'sea-temperature',
     title: '年均海溫',
   },
   {
     id: 'seasonalSeaTemperature',
+    plan: 'sea-temperature',
     title: '季均海溫',
   },
   {
     id: 'coralDiv',
+    plan: 'coral-div',
     title: '珊瑚礁種類數',
   },
   {
     id: 'coralRec',
+    plan: 'coral-rec',
     title: '珊瑚礁入添數量',
   },
   {
     id: 'zoobenthos',
+    plan: 'zoobenthos',
     title: '底棲動物種類數',
   },
   {
     id: 'plant',
+    plan: 'plant',
     title: '陸域植物種類數',
   },
   {
     id: 'birdNetSound',
+    plan: 'bird-net-sound',
     title: '鳥種數(鳥音)',
   },
   {
     id: 'fishDiv',
+    plan: 'fish-div',
     title: '魚種數',
   },
 ];
@@ -318,3 +330,13 @@ export const zoobenthosDetail = {
     },
   ],
 };
+
+export const time = [
+  {
+    time: '',
+    windSpeed: '',
+    windDirection: '',
+    precipitation: '',
+    airTemperature: '',
+  },
+];

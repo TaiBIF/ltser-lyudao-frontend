@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Dictionary } from 'lodash';
 
@@ -11,6 +11,9 @@ import PopupLayout from 'components/Home/LeafletMap/PopupLayout';
 import TooltipLayout from 'components/Home/LeafletMap/TooltipLayout';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
+import itemList from 'data/home/items.json';
+import { surveyMapItemList } from 'data/home/content';
+
 interface MarkerLayoutProps {
   data: Dictionary<number | string>;
 }
@@ -19,6 +22,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
   const { data } = props;
   const { filter, setFilter } = useSurveyMapContext();
   const [active, setActive] = useState<boolean>(false);
+  const [items, setItems] = useState<string[]>([]);
 
   const location: LatLngExpression = [
     Number(data.decimalLatitude),
@@ -39,6 +43,20 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
     });
   const icon = mapIcon();
 
+  useEffect(() => {
+    const matchSite = itemList.find((v) => v.site === data.locationID);
+    if (matchSite) {
+      const matchItem = matchSite.items
+        .map((item) => {
+          return surveyMapItemList
+            .filter((v) => v.plan === item)
+            .map((v) => v.title);
+        })
+        .flat();
+      setItems([...matchItem]);
+    }
+  }, []);
+
   return (
     <>
       <Marker
@@ -49,10 +67,10 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
         }}
       >
         <Popup closeButton={false}>
-          <PopupLayout setActive={setActive} data={data} />
+          <PopupLayout setActive={setActive} data={data} items={items} />
         </Popup>
         <Tooltip offset={[30, -16.5]}>
-          <TooltipLayout data={data} />
+          <TooltipLayout data={data} items={items} />
         </Tooltip>
       </Marker>
     </>

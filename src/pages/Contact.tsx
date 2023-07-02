@@ -12,7 +12,7 @@ import { ContactItem } from 'types/contact';
 
 import bannerImg from 'image/contact_bn.png';
 
-import useRender from 'hooks/useRender';
+import useRender from 'hooks/page/useRender';
 
 import { CONTACT_API_URL } from 'data/api';
 

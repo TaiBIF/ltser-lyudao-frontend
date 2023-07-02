@@ -10,7 +10,7 @@ import { typeFieldList } from 'data/dashboard';
 import { qaTypeList } from 'data/qa';
 import { qaTypeValidationSchema } from 'data/validationSchema';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 import { QA_TYPE_API_URL, QA_TYPE_PATH } from 'data/api';
 
 const Edit = () => {

@@ -7,7 +7,7 @@ import { LiteratureItem } from 'types/literature';
 import { literatureColList } from 'data/dashboard';
 import { LITERATURE_API_URL } from 'data/api';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 
 const Content = () => {
   const PAGE: string = 'related-literature';

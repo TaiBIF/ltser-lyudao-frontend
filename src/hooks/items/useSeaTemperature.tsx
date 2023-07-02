@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-import { TimeRangeItem, DetailItem } from 'types/home';
+import { TimeRangeItem } from 'types/home';
+import { DetailItemTypes } from 'types/detail';
+import { RawFieldItem } from 'types/field';
 
 import {
   defaultTimeRange,
@@ -9,7 +11,13 @@ import {
   seaTemperatureDeatil,
 } from 'data/home/content';
 
-import useSurveyMapData from 'hooks/useSurveyMapData';
+import { seaTemperatureRaws } from 'data/rawData';
+
+import useSurveyMapData from 'hooks/page/useSurveyMapData';
+import useSiteData from 'hooks/page/useSiteData';
+
+import { RawItemTypes } from 'types/rawData';
+import { seaTemperatureFields } from 'data/field';
 
 const useSeaTemperature = () => {
   const [sites, setSites] = useState<string[]>([]);
@@ -17,7 +25,7 @@ const useSeaTemperature = () => {
   const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
     ...defaultTimeRange,
   });
-  const [detail, setDetail] = useState<DetailItem>({
+  const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
     annual: {
@@ -25,6 +33,8 @@ const useSeaTemperature = () => {
     },
     seasonal: [],
   });
+  const [raws, setRaws] = useState<RawItemTypes[]>([]);
+  const [fields, setFields] = useState<RawFieldItem[]>([]);
 
   const URL = `sea-temperature`;
 
@@ -46,16 +56,28 @@ const useSeaTemperature = () => {
     setDetail,
   });
 
+  const { getDataRaws, getDataFields } = useSiteData({
+    url: URL,
+    defaultRaws: seaTemperatureRaws,
+    setRaws,
+    defaultFields: seaTemperatureFields,
+    setFields,
+  });
+
   return {
     sites,
     allTimeRange,
     idTimeRange,
     detail,
+    raws,
+    fields,
     getDataSites,
     getDataAllTimeRange,
     getDataHoverTimeRange,
     getDataIdTimeRange,
     getDataDetail,
+    getDataRaws,
+    getDataFields,
   };
 };
 

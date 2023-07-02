@@ -11,7 +11,7 @@ import { BannerData } from 'types/common';
 import { literatureList } from 'data/literature';
 import { LiteratureItem } from 'types/literature';
 
-import useRender from 'hooks/useRender';
+import useRender from 'hooks/page/useRender';
 import { LITERATURE_API_URL } from 'data/api';
 import { useLocation } from 'react-router-dom';
 

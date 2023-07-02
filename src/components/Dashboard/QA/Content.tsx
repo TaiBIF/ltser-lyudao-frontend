@@ -10,7 +10,7 @@ import { qaColList } from 'data/dashboard';
 import { qaList } from 'data/qa';
 import { QA_API_URL, QA_PATH, QA_TYPE_API_URL } from 'data/api';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 
 const Content = () => {
   const PAGE: string = QA_PATH;

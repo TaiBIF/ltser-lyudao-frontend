@@ -7,7 +7,7 @@ import { TypeItem } from 'types/utils';
 
 import { typeColList } from 'data/dashboard';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 import { QA_TYPE_API_URL } from 'data/api';
 
 const Content = () => {

@@ -1,18 +1,33 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { useEffect } from 'react';
 
 import Pagination from 'components/Pagination';
 
-import { ecoResultList, ecoSearchColList } from 'data/siteData';
-import { ShowState } from 'types/siteData';
 import { useEcoContext } from 'context/EcoContext';
+import { useDataContext } from 'context/DataContext';
 
-const Result = () => {
+import { ShowState } from 'types/siteData';
+import { ContextItem } from 'types/utils';
+
+import { RawFieldItem } from 'types/field';
+import { RawItemTypes } from 'types/rawData';
+import { useLocation } from 'react-router-dom';
+
+const Result = ({ item }: { item: string }) => {
   const { show, handleLoginClick } = useEcoContext();
+  const { pathname } = useLocation();
+  const contextData = useDataContext().find((v: ContextItem) => v.id === item);
+
+  useEffect(() => {
+    if (contextData.raws) {
+      contextData.getRaws();
+    }
+  }, [pathname]);
+
   return (
     <>
       <div className="result-area">
         <div className="toptool">
-          <div className="data-num">資料筆數：12345</div>
+          <div className="data-num">資料筆數：{contextData.raws.length}</div>
           <div className="btnr-box">
             <button
               type="button"
@@ -26,7 +41,7 @@ const Result = () => {
             <button>物種名錄下載</button>
           </div>
         </div>
-        <div className="ovhbox">
+        <div className="ovhbox" style={{ overflowX: 'scroll' }}>
           <table
             border={0}
             cellSpacing={0}
@@ -35,21 +50,16 @@ const Result = () => {
           >
             <tbody>
               <tr>
-                {ecoSearchColList.map((v) => {
-                  const { id, title, show } = v;
-                  return show && <td key={id}>{title}</td>;
+                {contextData.fields.map((v: RawFieldItem) => {
+                  const { id } = v;
+                  return <td key={id}>{id}</td>;
                 })}
               </tr>
-              {ecoResultList.map((v) => {
+              {contextData.raws.map((v: RawItemTypes, index: number) => {
                 return (
-                  <tr key={`${v.id}`}>
+                  <tr key={`${index}`}>
                     {Object.entries(v).map(([key, value], i) => {
-                      const matchCol = ecoSearchColList.find(
-                        (col) => col.id === key
-                      );
-                      return (
-                        matchCol?.show && <td key={`${v.id}-${i}`}>{value}</td>
-                      );
+                      return <td key={`${index}-${i}`}>{value}</td>;
                     })}
                   </tr>
                 );

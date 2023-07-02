@@ -4,24 +4,24 @@ import { Form, Formik, FormikHelpers, FormikConfig } from 'formik';
 
 import SearchFieldLayout from 'components/SiteData/SearchFieldLayout';
 
-import { searchFieldList } from 'data/siteData';
-import { EcoSearchItem } from 'types/siteData';
+import { ContextItem, ItemTypes } from 'types/utils';
+import { RawFieldItem } from 'types/field';
+
 import { searchValidationSchema } from 'data/validationSchema';
 
-import { ItemTypes } from 'types/utils';
+import { useDataContext } from 'context/DataContext';
+import { RawItemTypes } from 'types/rawData';
 
-const Search = () => {
-  const initialValues: EcoSearchItem = {
-    site: '',
-    researcher: '',
-    scientificName: '',
-    cnName: '',
-    number: 0,
-  };
+const Search = ({ item }: { item: string }) => {
+  const contextData = useDataContext().find((v: ContextItem) => v.id === item);
+  const initialValues = Object.fromEntries(
+    contextData.fields.map((v: RawFieldItem) => [v.id, ''])
+  );
+  const searchFieldList = contextData.fields;
 
   const handleSubmit = (
-    values: ItemTypes,
-    { setSubmitting }: FormikHelpers<ItemTypes>
+    values: RawItemTypes,
+    { setSubmitting }: FormikHelpers<RawItemTypes>
   ) => {
     setTimeout(() => {
       console.log(JSON.stringify(values, null, 2));
@@ -29,7 +29,7 @@ const Search = () => {
     }, 500);
   };
 
-  const formikConfig: FormikConfig<ItemTypes> = {
+  const formikConfig: FormikConfig<RawItemTypes> = {
     initialValues,
     onSubmit: handleSubmit,
     validationSchema: searchValidationSchema,
@@ -41,7 +41,7 @@ const Search = () => {
         <Formik {...formikConfig}>
           <Form>
             <ul className="set-li">
-              {searchFieldList.map((v) => {
+              {searchFieldList.map((v: RawFieldItem) => {
                 return <SearchFieldLayout key={v.id} data={v} />;
               })}
             </ul>

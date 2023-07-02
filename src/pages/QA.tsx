@@ -14,7 +14,7 @@ import { QAItem } from 'types/qa';
 import { QA_API_URL } from 'data/api';
 import { qaList } from 'data/qa';
 
-import useRender from 'hooks/useRender';
+import useRender from 'hooks/page/useRender';
 
 const QA = () => {
   const { getList } = useRender();

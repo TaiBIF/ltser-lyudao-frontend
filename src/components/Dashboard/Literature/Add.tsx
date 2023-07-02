@@ -10,7 +10,7 @@ import { literatureFieldList } from 'data/dashboard';
 import { literatureValidationSchema } from 'data/validationSchema';
 import { LITERATURE_API_URL, LITERATURE_PATH } from 'data/api';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 
 const Add = () => {
   const initialValues: LiteratureItem = {

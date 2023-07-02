@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
-import useWeather from 'hooks/useWeather';
+import useWeather from 'hooks/items/useWeather';
 import { surveyMapItemList } from 'data/home/content';
 
 const Filter = () => {

@@ -3,7 +3,7 @@ import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { TypeItem } from 'types/utils';
 import { QA_TYPE_API_URL } from 'data/api';
 import { qaTypeList } from 'data/qa';
-import useRender from 'hooks/useRender';
+import useRender from 'hooks/page/useRender';
 
 interface TabProps {
   active: number | string;

@@ -11,7 +11,7 @@ import { contactEditFieldList } from 'data/dashboard';
 import { contactValidationSchema } from 'data/validationSchema';
 import { CONTACT_API_URL, CONTACT_PATH } from 'data/api';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<ContactItem>({

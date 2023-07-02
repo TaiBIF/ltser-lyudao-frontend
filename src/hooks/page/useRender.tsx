@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Dictionary } from 'lodash';
 
-import { useApi } from 'hooks/useApi';
+import { useApi } from 'hooks/api/useApi';
 import { ItemTypes } from 'types/utils';
 
 import { DEPOSITAR_API_URL } from 'utils/config';

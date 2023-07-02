@@ -6,6 +6,10 @@ import { EcoSearchItem } from 'types/siteData';
 import { NewsImageItem, NewsItem } from 'types/news';
 import { QAItem } from 'types/qa';
 
+import { RawItemTypes } from 'types/rawData';
+import { RawFieldItem } from 'types/field';
+import { SeriesItem } from 'types/series';
+
 export type TypeItem = {
   id?: number | string;
   title: string;
@@ -64,6 +68,23 @@ export type ObservationItem = {
 export type SelectItem = {
   id: string;
   title: string;
+  plan: string;
+};
+
+export type RelateTypes = TypeItem | NewsImageItem | AttachmentItem;
+
+export type RelateListTypes = ColItem | FieldItem;
+
+export type ContextItem = {
+  id: string;
+  detail?: any;
+  getDetail?: any;
+  raws?: RawItemTypes[];
+  getRaws?: any;
+  fields?: RawFieldItem[];
+  getFields?: any;
+  series?: SeriesItem[];
+  getSeries?: any;
 };
 
 export type ItemTypes =
@@ -73,9 +94,4 @@ export type ItemTypes =
   | NewsItem
   | LiteratureItem
   | FormLinkItem
-  | DownloadItem
-  | EcoSearchItem;
-
-export type RelateTypes = TypeItem | NewsImageItem | AttachmentItem;
-
-export type RelateListTypes = ColItem | FieldItem;
+  | DownloadItem;

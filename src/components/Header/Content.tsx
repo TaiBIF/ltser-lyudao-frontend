@@ -15,7 +15,7 @@ import Item from 'components/Header/Item';
 import { menuList } from 'data/common';
 
 import { useHeaderContext } from 'context/HeaderContext';
-import useWindowDimensions from 'hooks/useWindowDimensions';
+import useWindowDimensions from 'hooks/utils/useWindowDimensions';
 import { gsapSlideToggle } from 'utils/animation';
 
 const Content = () => {

@@ -8,7 +8,7 @@ import { ContactItem } from 'types/contact';
 import { contactColList } from 'data/dashboard';
 import { CONTACT_API_URL, CONTACT_PATH } from 'data/api';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 
 const Content = () => {
   const PAGE: string = CONTACT_PATH;

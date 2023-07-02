@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  Dispatch,
+  SetStateAction,
+} from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import Arrow from 'components/SiteData/Aside/ArrowIcon';
 
@@ -9,14 +16,19 @@ import { gsapSlideToggle } from 'utils/animation';
 interface SubItemProps {
   parentId: number;
   data: AsideItem;
+  setParentActive: Dispatch<SetStateAction<boolean>>;
+  page: string;
 }
 
 const SubItem = (props: SubItemProps) => {
-  const { parentId, data } = props;
+  const { parentId, data, setParentActive, page } = props;
   const [active, setActive] = useState(false);
   const targetRef = useRef<HTMLUListElement>(null);
+  const { dataId } = useParams();
 
-  const handleClick = () => {
+  const isActiveLink = dataId === data.link;
+
+  const handleMenuClick = () => {
     setActive(!active);
   };
 
@@ -32,13 +44,19 @@ const SubItem = (props: SubItemProps) => {
     }
   }, [active]);
 
+  useEffect(() => {
+    if (isActiveLink) {
+      setParentActive(true);
+    }
+  }, [dataId]);
+
   return (
     <>
       {data.list ? (
         <>
           <li key={`${parentId}-${data.id}`}>
             {/*給item-box now 並展開level-3*/}
-            <div className="item-box2" onClick={handleClick}>
+            <div className="item-box2" onClick={handleMenuClick}>
               <div className="paddborderb">
                 <p>{data.title}</p>
                 <Arrow />
@@ -48,9 +66,11 @@ const SubItem = (props: SubItemProps) => {
               {data.list.map((finalItem) => {
                 return (
                   <li key={`${parentId}-${data.id}-${finalItem.id}`}>
-                    <a href={finalItem.link} className="linkto">
-                      - {finalItem.title}
-                    </a>
+                    {finalItem.link && (
+                      <Link to={finalItem.link} className="linkto">
+                        - {finalItem.title}
+                      </Link>
+                    )}
                   </li>
                 );
               })}
@@ -59,15 +79,15 @@ const SubItem = (props: SubItemProps) => {
         </>
       ) : (
         <li key={`${parentId}-${data.id}`}>
-          <a
-            href={`/site-data/ecological-observation/${data.link}`}
-            className="item-box2 linkto"
+          <Link
+            to={`/site-data/${page}/${data.link}`}
+            className={`item-box2 linkto ${isActiveLink ? 'now' : ''}`}
           >
             <div className="paddborderb">
               <p>{data.title}</p>
               <Arrow />
             </div>
-          </a>
+          </Link>
         </li>
       )}
     </>

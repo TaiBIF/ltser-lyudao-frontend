@@ -6,39 +6,28 @@ import { useMap } from 'react-leaflet';
 import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
 
-import { AnnualSeasonalItem, CountItem } from 'types/home';
+import { AnnualSeasonalItem, CountItem } from 'types/detail';
 
 import { surveyMapParams, surveyMapColList } from 'data/home/content';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useNavigate } from 'react-router-dom';
 import { useDataContext } from 'context/DataContext';
+import { ContextItem } from 'types/utils';
 
 type PopupLayoutProps = {
   setActive: Dispatch<SetStateAction<boolean>>;
   data: Dictionary<number | string>;
+  items: string[];
 };
 
 const PopupLayout = (props: PopupLayoutProps) => {
-  const { setActive, data } = props;
+  const { setActive, data, items } = props;
   const { setFilter, setIdData } = useSurveyMapContext();
   const map = useMap();
   const navigate = useNavigate();
   const { filter } = useSurveyMapContext();
-  const {
-    weatherDetail,
-    seaTemperatureDetail,
-    coralDivDetail,
-    coralRecDetail,
-    getWeatherDataDetail,
-    getSeaTemperatureDataDetail,
-    getCoralDivDataDetail,
-    getCoralRecDataDetail,
-    getZoobenthosDataDetail,
-    getPlantDataDetail,
-    getBirdNetSoundDataDetail,
-    getFishDivDataDetail,
-  } = useDataContext();
+  const contextData = useDataContext();
 
   const handleCloseClick = () => {
     if (map) {
@@ -53,17 +42,23 @@ const PopupLayout = (props: PopupLayoutProps) => {
     navigate('#chart');
   };
 
+  const itemList = [
+    'weather',
+    'sea-temperature',
+    'coral-div',
+    'coral-rec',
+    'zoobenthos',
+    'plant',
+    'bird-net-sound',
+    'fish-div',
+  ];
+
   useEffect(() => {
     return () => {
       setIdData({ ...data });
-      getWeatherDataDetail();
-      getSeaTemperatureDataDetail();
-      getCoralDivDataDetail();
-      getCoralRecDataDetail();
-      getZoobenthosDataDetail();
-      getPlantDataDetail();
-      getBirdNetSoundDataDetail();
-      getFishDivDataDetail();
+      itemList.forEach((item) => {
+        contextData.find((v: ContextItem) => v.id === item).getDetail();
+      });
     };
   }, [filter.id]);
 
@@ -85,40 +80,54 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 <td></td>
               </tr>
               {surveyMapColList.map((v) => {
-                const { id, plan, col, title, unit } = v;
-                const matchValue = () => {
-                  if (!plan) {
-                    return data[col];
+                const { id, plan, col, title } = v;
+                const renderRow = () => {
+                  if (id === 'year') {
+                    return (
+                      <tr key={id}>
+                        <td>{title}</td>
+                        <td>{filter.year}</td>
+                      </tr>
+                    );
                   } else {
-                    let data;
-                    switch (plan) {
-                      case 'weather':
-                        data = (weatherDetail as AnnualSeasonalItem).annual[
-                          col
-                        ];
-                        break;
-                      case 'seaTemperature':
-                        data = (seaTemperatureDetail as AnnualSeasonalItem)
-                          .annual[col];
-                        break;
-                      case 'coralDiv':
-                        data = (coralDivDetail as CountItem).count;
-                        break;
-                      case 'coralRec':
-                        data = (coralRecDetail as CountItem).count;
-                        break;
-                      default:
-                        return;
+                    if (!plan) {
+                      return (
+                        <tr key={id}>
+                          <td>{title}</td>
+                          <td>{data[col]}</td>
+                        </tr>
+                      );
+                    } else {
+                      if (items.includes(plan)) {
+                        let data;
+                        const matchContext = contextData.find(
+                          (v: ContextItem) => v.id === plan
+                        ).detail;
+                        switch (plan) {
+                          case 'weather':
+                          case 'sea-temperature':
+                            data = matchContext.annual[col];
+                            break;
+                          case 'coral-div':
+                          case 'coral-rec':
+                            data = matchContext.count;
+                            break;
+                          default:
+                            return;
+                        }
+                        return (
+                          <tr key={id}>
+                            <td>{title}</td>
+                            <td>{data === null ? '-' : data}</td>
+                          </tr>
+                        );
+                      } else {
+                        return <></>;
+                      }
                     }
-                    return data === null ? '-' : data;
                   }
                 };
-                return (
-                  <tr key={id}>
-                    <td>{title}</td>
-                    <td>{matchValue()}</td>
-                  </tr>
-                );
+                return renderRow();
               })}
             </tbody>
           </table>

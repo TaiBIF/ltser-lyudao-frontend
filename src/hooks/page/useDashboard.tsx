@@ -1,4 +1,4 @@
-import { useApi } from 'hooks/useApi';
+import { useApi } from 'hooks/api/useApi';
 
 import { ItemTypes, RelateListTypes } from 'types/utils';
 

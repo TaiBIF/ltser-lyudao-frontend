@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import Arrow from 'components/SiteData/Aside/ArrowIcon';
 import SubItem from 'components/SiteData/Aside/SubItem';
@@ -9,14 +10,18 @@ import { gsapSlideToggle } from 'utils/animation';
 
 interface ItemProps {
   data: AsideItem;
+  page: string;
 }
 
 const Item = (props: ItemProps) => {
-  const { data } = props;
+  const { data, page } = props;
   const [active, setActive] = useState(false);
   const targetRef = useRef<HTMLUListElement>(null);
+  const { dataId } = useParams();
 
-  const handleClick = () => {
+  const isActiveLink = dataId === data.link;
+
+  const handleMenuClick = () => {
     setActive(!active);
   };
 
@@ -40,7 +45,7 @@ const Item = (props: ItemProps) => {
             {/*給item-box now 並展開level-2*/}
             <div
               className={`item-box ${active ? 'now' : ''}`}
-              onClick={handleClick}
+              onClick={handleMenuClick}
             >
               <p>{data.title}</p>
               <Arrow />
@@ -48,22 +53,28 @@ const Item = (props: ItemProps) => {
             <ul className="level-2" ref={targetRef}>
               {data.list.map((subItem) => {
                 return (
-                  <SubItem key={subItem.id} parentId={data.id} data={subItem} />
+                  <SubItem
+                    key={subItem.id}
+                    parentId={data.id}
+                    data={subItem}
+                    setParentActive={setActive}
+                    page={page}
+                  />
                 );
               })}
             </ul>
           </>
         ) : (
           <li key={`${data.id}`}>
-            <a
-              href={`/site-data/ecological-observation/${data.link}`}
-              className="item-box2 linkto"
+            <Link
+              to={`/site-data/${page}/${data.link}`}
+              className={`item-box2 linkto ${isActiveLink ? 'now' : ''}`}
             >
               <div className="paddborderb">
                 <p>{data.title}</p>
                 <Arrow />
               </div>
-            </a>
+            </Link>
           </li>
         )}
       </li>

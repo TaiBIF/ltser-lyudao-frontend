@@ -10,6 +10,7 @@ import Contact from 'pages/Contact';
 import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
 import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
+import EnvironmentalObservation from 'pages/SiteData/EnvironmentalObservation';
 import ForgotPsw from 'pages/Auth/ForgotPsw';
 import MailVerification from 'pages/Auth/MailVerification';
 import MailVerificationSuccess from 'pages/Auth/MailVerificationSuccess';
@@ -100,12 +101,24 @@ function App() {
             }
           />
           <Route
-            path="/site-data/environmental-observation"
+            path="/site-data/environmental-observation/"
             element={
               <SurveyMapProvider>
                 <DataProvider>
                   <EcoProvider>
-                    <EcologicalObservation />
+                    <EnvironmentalObservation />
+                  </EcoProvider>
+                </DataProvider>
+              </SurveyMapProvider>
+            }
+          />
+          <Route
+            path="/site-data/environmental-observation/:dataId"
+            element={
+              <SurveyMapProvider>
+                <DataProvider>
+                  <EcoProvider>
+                    <EnvironmentalObservation />
                   </EcoProvider>
                 </DataProvider>
               </SurveyMapProvider>

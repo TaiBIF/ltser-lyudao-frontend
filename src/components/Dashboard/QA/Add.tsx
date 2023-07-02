@@ -10,7 +10,7 @@ import { qaFieldList } from 'data/dashboard';
 import { qaValidationSchema } from 'data/validationSchema';
 import { QA_API_URL, QA_PATH, QA_TYPE_API_URL } from 'data/api';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 
 const Add = () => {
   const initialValues: QAItem = {

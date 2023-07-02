@@ -10,7 +10,7 @@ import { contactAddFieldList } from 'data/dashboard';
 import { contactValidationSchema } from 'data/validationSchema';
 import { CONTACT_API_URL, CONTACT_PATH } from 'data/api';
 
-import useDashboard from 'hooks/useDashboard';
+import useDashboard from 'hooks/page/useDashboard';
 
 const Add = () => {
   const initialValues: ContactItem = {

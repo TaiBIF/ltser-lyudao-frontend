@@ -1,23 +1,24 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { TimeRangeItem, DetailItem, SiteItem } from 'types/home';
+import { TimeRangeItem, SiteItem } from 'types/home';
+import { DetailItemTypes } from 'types/detail';
 
 import { defaultTimeRange } from 'data/home/content';
 
-import useSurveyMap from 'hooks/useSurveyMapApi';
+import useSurveyMap from 'hooks/api/useSurveyMapApi';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 interface useSurveyMapDataProps {
   url: string;
   defaultSites: SiteItem;
-  defaultDetail: DetailItem;
+  defaultDetail: DetailItemTypes;
   defaultIdTimeRange: TimeRangeItem;
   setSites: Dispatch<SetStateAction<string[]>>;
   allTimeRange: TimeRangeItem[];
   setAllTimeRange: Dispatch<SetStateAction<TimeRangeItem[]>>;
   setIdTimeRange: Dispatch<SetStateAction<TimeRangeItem>>;
-  setDetail: Dispatch<SetStateAction<DetailItem>>;
+  setDetail: Dispatch<SetStateAction<DetailItemTypes>>;
 }
 
 const useSurveyMapData = (props: useSurveyMapDataProps) => {

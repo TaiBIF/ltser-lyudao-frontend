@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
-import { TimeRangeItem, DetailItem } from 'types/home';
+import { TimeRangeItem } from 'types/home';
+import { DetailItemTypes } from 'types/detail';
+import { RawFieldItem } from 'types/field';
+import { RawItemTypes } from 'types/rawData';
 
 import {
   defaultTimeRange,
@@ -9,7 +12,12 @@ import {
   weatherDetail,
 } from 'data/home/content';
 
-import useSurveyMapData from 'hooks/useSurveyMapData';
+import { weatherRaws } from 'data/rawData';
+
+import useSurveyMapData from 'hooks/page/useSurveyMapData';
+import useSiteData from 'hooks/page/useSiteData';
+
+import { weatherFields } from 'data/field';
 
 const useWeather = () => {
   const [sites, setSites] = useState<string[]>([]);
@@ -17,7 +25,7 @@ const useWeather = () => {
   const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
     ...defaultTimeRange,
   });
-  const [detail, setDetail] = useState<DetailItem>({
+  const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
     annual: {
@@ -26,6 +34,8 @@ const useWeather = () => {
     },
     seasonal: [],
   });
+  const [raws, setRaws] = useState<RawItemTypes[]>([]);
+  const [fields, setFields] = useState<RawFieldItem[]>([]);
 
   const URL = `weather`;
 
@@ -47,16 +57,28 @@ const useWeather = () => {
     setDetail,
   });
 
+  const { getDataRaws, getDataFields } = useSiteData({
+    url: URL,
+    defaultRaws: weatherRaws,
+    setRaws,
+    defaultFields: weatherFields,
+    setFields,
+  });
+
   return {
     sites,
     allTimeRange,
     idTimeRange,
     detail,
+    raws,
+    fields,
     getDataSites,
     getDataAllTimeRange,
     getDataHoverTimeRange,
     getDataIdTimeRange,
     getDataDetail,
+    getDataRaws,
+    getDataFields,
   };
 };
 

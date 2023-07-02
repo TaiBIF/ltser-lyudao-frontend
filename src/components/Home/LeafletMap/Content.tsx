@@ -18,8 +18,8 @@ import { LocalityItem } from 'types/home';
 import { localityList, surveyMapParams } from 'data/home/content';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
-import useRender from 'hooks/useRender';
-import useWeather from 'hooks/useWeather';
+import useRender from 'hooks/page/useRender';
+import useWeather from 'hooks/items/useWeather';
 
 const Content = () => {
   const { getDepositarList } = useRender();

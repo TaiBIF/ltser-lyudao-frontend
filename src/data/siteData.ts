@@ -106,6 +106,41 @@ export const ecoAsideList: AsideItem[] = [
   },
 ];
 
+export const envAsideList: AsideItem[] = [
+  {
+    id: 1,
+    title: '綠島海洋水域以及珊瑚健康指標觀測',
+    list: [
+      {
+        id: 1,
+        title: '水質/海洋健康指標',
+        link: 'water',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: '陸域與海域環境觀測',
+    list: [
+      {
+        id: 1,
+        title: '氣象觀測',
+        link: 'weather',
+      },
+      {
+        id: 2,
+        title: '海洋觀測',
+        link: 'sea-temperature',
+      },
+      {
+        id: 3,
+        title: '棲地評估',
+        link: 'habitat',
+      },
+    ],
+  },
+];
+
 export const searchFieldList: FieldItem[] = [
   {
     id: 1,
