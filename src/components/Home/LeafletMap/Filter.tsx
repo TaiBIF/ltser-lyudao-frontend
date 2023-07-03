@@ -24,6 +24,10 @@ const Filter = () => {
     setFilter({ ...filter, [target.name]: target.value });
   };
 
+  useEffect(() => {
+    setFilter({ ...filter, id: '' });
+  }, [filter.year, filter.item]);
+
   // const handleYearRange = () => {
   //   let start = DateTime.fromISO(idTimeRange.start).year;
   //   const end = DateTime.fromISO(idTimeRange.end).year;
