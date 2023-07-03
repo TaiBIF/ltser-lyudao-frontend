@@ -28,29 +28,6 @@ const Filter = () => {
     setFilter({ ...filter, id: '' });
   }, [filter.year, filter.item]);
 
-  // const handleYearRange = () => {
-  //   let start = DateTime.fromISO(idTimeRange.start).year;
-  //   const end = DateTime.fromISO(idTimeRange.end).year;
-  //   const years = [];
-  //   while (start <= end) {
-  //     years.push(String(start));
-  //     start++;
-  //   }
-  //   setYearRange([...years]);
-  // };
-
-  // useEffect(() => {
-  //   if (hasId) {
-  //     getDataIdTimeRange();
-  //   }
-  // }, [filter.id]);
-
-  // useEffect(() => {
-  //   if (!isFetchingTimeRange) {
-  //     handleYearRange();
-  //   }
-  // }, [idTimeRange]);
-
   return (
     <>
       <div className="select-area c-map__filter">
@@ -69,11 +46,9 @@ const Filter = () => {
             })}
         </select>
         <select name="item" value={filter.item} onChange={handleSelectChange}>
-          <option value="" disabled>
-            觀測項目
-          </option>
+          <option value="">觀測項目</option>
           {surveyMapItemList.map((v) => {
-            const { id, title, plan } = v;
+            const { id, title } = v;
             return (
               <option key={id} value={id}>
                 {title}
