@@ -4,6 +4,7 @@ import { DateTime } from 'luxon';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import useWeather from 'hooks/items/useWeather';
+
 import { surveyMapItemList } from 'data/home/content';
 
 const Filter = () => {
@@ -68,7 +69,7 @@ const Filter = () => {
             觀測項目
           </option>
           {surveyMapItemList.map((v) => {
-            const { id, title } = v;
+            const { id, title, plan } = v;
             return (
               <option key={id} value={id}>
                 {title}

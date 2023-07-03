@@ -15,25 +15,58 @@ import MarkerLayout from 'components/Home/LeafletMap/MarkerLayout';
 
 import { LocalityItem } from 'types/home';
 
-import { localityList, surveyMapParams } from 'data/home/content';
+import {
+  localityList,
+  surveyMapItemList,
+  surveyMapParams,
+} from 'data/home/content';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import useRender from 'hooks/page/useRender';
 import useWeather from 'hooks/items/useWeather';
 
+import itemList from 'data/home/items.json';
+
 const Content = () => {
   const { getDepositarList } = useRender();
+  const [localities, setLocalities] = useState<
+    (Dictionary<number | string> | LocalityItem)[]
+  >([]);
   const [markers, setMarkers] = useState<
     (Dictionary<number | string> | LocalityItem)[]
   >([]);
   const { filter, setFilter } = useSurveyMapContext();
   const { getDataAllTimeRange } = useWeather();
 
-  const isFetchingList = markers.length === 0;
+  const isFetchingLocalities = localities.length === 0;
+
+  const handleSiteFilter = () => {
+    if (filter.item !== '') {
+      const matchPlan = surveyMapItemList.find(
+        (v) => v.id === filter.item
+      )!.plan;
+      const matchSite = itemList
+        .filter((v) => v.items.includes(matchPlan))
+        .map((v) => v.site)
+        .flat();
+      const matchMarker = localities.filter((v) =>
+        matchSite.includes(String(v.locationID))
+      );
+      setMarkers([...matchMarker]);
+    } else {
+      setMarkers([...localities]);
+    }
+  };
+
+  useEffect(() => {
+    if (!isFetchingLocalities) {
+      handleSiteFilter();
+    }
+  }, [localities, filter.item]);
 
   useEffect(() => {
     getDepositarList({
-      setList: setMarkers,
+      setList: setLocalities,
       resouceId: `8d4b3a7f-5a76-4406-9b19-0c709dbd7d68`,
       defaultList: localityList,
     });
@@ -54,7 +87,7 @@ const Content = () => {
         <LayersControl>
           <LayersControl.Overlay name="觀測項目AAA" checked>
             <LayerGroup>
-              {!isFetchingList &&
+              {!isFetchingLocalities &&
                 markers.map((v) => {
                   return <MarkerLayout key={v['_id']} data={v} />;
                 })}
