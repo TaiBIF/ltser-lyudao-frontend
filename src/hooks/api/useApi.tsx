@@ -22,6 +22,7 @@ interface apiParamsProps {
   data?: FormData;
   url: string;
   headers?: any;
+  responseType?: any;
 }
 
 interface actionParamsProps {
@@ -36,7 +37,15 @@ export const useApi = () => {
   const navigate = useNavigate();
 
   const handleApi = async (apiParams: apiParamsProps) => {
-    const { type = 'api', method, params, data, url, headers } = apiParams;
+    const {
+      type = 'api',
+      method,
+      params,
+      data,
+      url,
+      headers,
+      responseType,
+    } = apiParams;
     setLoading(true);
     let result;
     try {
@@ -55,6 +64,7 @@ export const useApi = () => {
         params,
         data,
         headers,
+        responseType,
       });
       result = { status: 'success', response: response };
     } catch (err) {

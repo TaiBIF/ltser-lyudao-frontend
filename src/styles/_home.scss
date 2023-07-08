@@ -18,3 +18,34 @@
     z-index: 1200;
   }
 }
+
+.e-btn {
+  &--outline {
+    margin-left: 0.5rem;
+  }
+}
+
+.c-progress {
+  &__bar {
+    overflow: hidden;
+
+    position: relative;
+    &:hover {
+      background: transparent !important;
+    }
+  }
+  &__text {
+    color: #529a81 !important;
+  }
+  &__deco {
+    width: 0;
+    height: 100%;
+    background-color: #529a81;
+    transition: width 0.3s ease-in-out;
+    opacity: 0.2;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

@@ -6,6 +6,7 @@ import { useMap } from 'react-leaflet';
 
 import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
+import PopupArrow from 'components/Home/LeafletMap/PopupArrow';
 
 import { ContextItem, SiteObservationItem } from 'types/utils';
 
@@ -13,6 +14,8 @@ import { surveyMapParams, surveyMapColList } from 'data/home/content';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDataContext } from 'context/DataContext';
+import { useDownload } from 'hooks/api/useDownload';
+import ProgressBar from './ProgressBar';
 
 type PopupLayoutProps = {
   setActive: Dispatch<SetStateAction<boolean>>;
@@ -27,6 +30,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const navigate = useNavigate();
   const { filter } = useSurveyMapContext();
   const contextData = useDataContext();
+  const [downloading, setDownloading] = useState(false);
 
   const handleCloseClick = () => {
     if (map) {
@@ -121,7 +125,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                           </tr>
                         );
                       } else {
-                        return <></>;
+                        return <React.Fragment key={id}></React.Fragment>;
                       }
                     }
                   }
@@ -139,23 +143,21 @@ const PopupLayout = (props: PopupLayoutProps) => {
               <p>查看圖表</p>
               <ArrowIcon />
             </button>
+            {!downloading ? (
+              <button
+                type="button"
+                className="link-more e-btn e-btn--outline"
+                onClick={() => {
+                  setDownloading(true);
+                }}
+              >
+                <p>下載樣區資料</p>
+              </button>
+            ) : (
+              <ProgressBar downloading={downloading} />
+            )}
           </div>
-          <div className="arr">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="11.804"
-              height="8.934"
-              viewBox="0 0 11.804 8.934"
-            >
-              <path
-                id="Polygon_9"
-                data-name="Polygon 9"
-                d="M5.9,0l5.9,8.934H0Z"
-                transform="translate(11.804 8.934) rotate(180)"
-                fill="#fff"
-              />
-            </svg>
-          </div>
+          <PopupArrow />
         </div>
       </div>
     </>

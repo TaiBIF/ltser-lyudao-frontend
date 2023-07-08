@@ -66,7 +66,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
           click: handleMarkerClick,
         }}
       >
-        <Popup closeButton={false}>
+        <Popup closeButton={false} closeOnClick={false}>
           <PopupLayout setActive={setActive} data={data} items={items} />
         </Popup>
         <Tooltip offset={[30, -16.5]}>
