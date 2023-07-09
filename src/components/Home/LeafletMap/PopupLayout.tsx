@@ -15,6 +15,7 @@ import { surveyMapParams, surveyMapColList } from 'data/home/content';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDataContext } from 'context/DataContext';
 import ProgressBar from './ProgressBar';
+import { useDownload } from 'hooks/api/useDownload';
 
 type PopupLayoutProps = {
   setActive: Dispatch<SetStateAction<boolean>>;
@@ -30,6 +31,12 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const { filter } = useSurveyMapContext();
   const contextData = useDataContext();
   const [downloading, setDownloading] = useState(false);
+  const { handleDownload } = useDownload();
+
+  const handleDownloadClick = () => {
+    setDownloading(true);
+    handleDownload({ url: 'site', id: filter.id });
+  };
 
   const handleCloseClick = () => {
     if (map) {
@@ -146,14 +153,12 @@ const PopupLayout = (props: PopupLayoutProps) => {
               <button
                 type="button"
                 className="link-more e-btn e-btn--outline"
-                onClick={() => {
-                  setDownloading(true);
-                }}
+                onClick={handleDownloadClick}
               >
                 <p>下載樣區資料</p>
               </button>
             ) : (
-              <ProgressBar downloading={downloading} id={filter.id} />
+              <ProgressBar downloading={downloading} />
             )}
           </div>
           <PopupArrow />

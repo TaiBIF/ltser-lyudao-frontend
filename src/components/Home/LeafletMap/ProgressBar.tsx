@@ -4,19 +4,13 @@ import { useDownload } from 'hooks/api/useDownload';
 
 interface ProgressBarProps {
   downloading: boolean;
-  id: string;
 }
 
 const ProgressBar = (props: ProgressBarProps) => {
-  const { downloading, id } = props;
+  const { downloading } = props;
   const [progressWidth, setProgressWidth] = useState(0);
-  const { handleDownload } = useDownload();
 
   const isDownloaded = progressWidth === 100;
-
-  const handleDownloadStart = () => {
-    handleDownload({ url: 'site', id });
-  };
 
   useEffect(() => {
     return () => {
@@ -32,10 +26,7 @@ const ProgressBar = (props: ProgressBarProps) => {
   return (
     <>
       <div className="c-progress">
-        <div
-          className="link-more e-btn e-btn--outline c-progress__bar"
-          onClick={handleDownloadStart}
-        >
+        <div className="link-more e-btn e-btn--outline c-progress__bar">
           <div
             className="c-progress__deco"
             style={{ width: `${progressWidth}%` }}
