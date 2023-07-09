@@ -52,10 +52,13 @@ export const useDownload = () => {
   //   }
   // };
 
-  const getDownloadFile = async ({ url }: { url: string }) => {
+  const getDownloadFile = async ({ url, id }: { url: string; id: string }) => {
     const result = await handleApi({
       method: 'get',
       url: `/download/${url}`,
+      params: {
+        locationID: id,
+      },
     });
     if (result?.status === 'success') {
       // handleVerifyReaptcha({ token: '', result });
@@ -70,8 +73,8 @@ export const useDownload = () => {
     }
   };
 
-  const handleDownload = ({ url }: { url: string }) => {
-    getDownloadFile({ url });
+  const handleDownload = ({ url, id }: { url: string; id: string }) => {
+    getDownloadFile({ url, id });
   };
 
   return { handleDownload };

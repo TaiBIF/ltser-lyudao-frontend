@@ -14,7 +14,6 @@ import { surveyMapParams, surveyMapColList } from 'data/home/content';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDataContext } from 'context/DataContext';
-import { useDownload } from 'hooks/api/useDownload';
 import ProgressBar from './ProgressBar';
 
 type PopupLayoutProps = {
@@ -154,7 +153,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 <p>下載樣區資料</p>
               </button>
             ) : (
-              <ProgressBar downloading={downloading} />
+              <ProgressBar downloading={downloading} id={filter.id} />
             )}
           </div>
           <PopupArrow />
