@@ -7,12 +7,19 @@ import { useApi } from './useApi';
 export const useDownload = () => {
   const { handleApi, handleActions } = useApi();
 
-  const handleDownloadAction = ({ result }: { result: any }) => {
-    const { data } = result;
-    const url = window.URL.createObjectURL(new Blob([data.response.data]));
+  const handleDownloadAction = ({
+    result,
+    id,
+    year,
+  }: {
+    result: any;
+    id: string;
+    year: string;
+  }) => {
+    const url = window.URL.createObjectURL(new Blob([result.response.data]));
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'file.zip';
+    link.download = `${id}-${year}.zip`;
     link.click();
     window.URL.revokeObjectURL(url);
   };
@@ -71,7 +78,7 @@ export const useDownload = () => {
     });
     if (result?.status === 'success') {
       // handleVerifyReaptcha({ token: '', result });
-      handleDownloadAction({ result });
+      handleDownloadAction({ result, id, year });
     } else {
       handleActions({
         result: result?.response,
