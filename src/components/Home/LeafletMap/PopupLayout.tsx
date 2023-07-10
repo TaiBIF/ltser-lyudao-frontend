@@ -35,7 +35,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
 
   const handleDownloadClick = () => {
     setDownloading(true);
-    handleDownload({ url: 'site', id: filter.id });
+    handleDownload({ url: 'site', id: filter.id, year: filter.year });
   };
 
   const handleCloseClick = () => {

@@ -52,12 +52,21 @@ export const useDownload = () => {
   //   }
   // };
 
-  const getDownloadFile = async ({ url, id }: { url: string; id: string }) => {
+  const getDownloadFile = async ({
+    url,
+    id,
+    year,
+  }: {
+    url: string;
+    id: string;
+    year: string;
+  }) => {
     const result = await handleApi({
       method: 'get',
-      url: `/download/${url}`,
+      url: `/download/${url}/`,
       params: {
         locationID: id,
+        year,
       },
     });
     if (result?.status === 'success') {
@@ -73,8 +82,16 @@ export const useDownload = () => {
     }
   };
 
-  const handleDownload = ({ url, id }: { url: string; id: string }) => {
-    getDownloadFile({ url, id });
+  const handleDownload = ({
+    url,
+    id,
+    year,
+  }: {
+    url: string;
+    id: string;
+    year: string;
+  }) => {
+    getDownloadFile({ url, id, year });
   };
 
   return { handleDownload };
