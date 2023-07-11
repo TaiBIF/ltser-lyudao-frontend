@@ -7,6 +7,7 @@ import { useMap } from 'react-leaflet';
 import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
 import PopupArrow from 'components/Home/LeafletMap/PopupArrow';
+import ProgressBar from 'components/Home/LeafletMap/ProgressBar';
 
 import { ContextItem, SiteObservationItem } from 'types/utils';
 
@@ -14,7 +15,6 @@ import { surveyMapParams, surveyMapColList } from 'data/home/content';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDataContext } from 'context/DataContext';
-import ProgressBar from './ProgressBar';
 import { useDownload } from 'hooks/api/useDownload';
 
 type PopupLayoutProps = {
@@ -51,7 +51,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
     navigate('#chart');
   };
 
-  const itemList = [
+  const planList = [
     'weather',
     'sea-temperature',
     'coral-div',
@@ -65,8 +65,8 @@ const PopupLayout = (props: PopupLayoutProps) => {
   useEffect(() => {
     return () => {
       setIdData({ ...data });
-      itemList.forEach((item) => {
-        contextData.find((v: ContextItem) => v.id === item).getDetail();
+      planList.forEach((plan) => {
+        contextData.find((v: ContextItem) => v.id === plan).getDetail();
       });
     };
   }, [filter.id]);

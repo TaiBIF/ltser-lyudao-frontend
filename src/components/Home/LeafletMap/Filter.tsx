@@ -2,20 +2,28 @@ import React, { useState, useEffect } from 'react';
 
 import { DateTime } from 'luxon';
 
-import { useSurveyMapContext } from 'context/SurveyMapContext';
-import useWeather from 'hooks/items/useWeather';
+import { SiteYearItem } from 'types/home';
 
 import { surveyMapItemList } from 'data/home/content';
+import itemList from 'data/home/items.json';
+
+import { useSurveyMapContext } from 'context/SurveyMapContext';
+import useWeather from 'hooks/items/useWeather';
 
 const Filter = () => {
   const { filter, setFilter } = useSurveyMapContext();
   const { idTimeRange, getDataIdTimeRange } = useWeather();
 
-  const [yearRange, setYearRange] = useState<string[]>(['2022', '2023']);
+  const [yearRange, setYearRange] = useState<string[]>([]);
+
+  const [years, setYears] = useState<string[]>([]);
+  const [items, setItems] = useState<string[]>([]);
 
   const hasId = filter.id !== '';
   const isFetchingTimeRange = idTimeRange.site === '';
-  const isFetchingYearRange = yearRange.length === 0;
+  const isFetchingYears = years.length === 0;
+  const hasYear = years.length !== 0;
+  const isFetchingItems = items.length === 0;
 
   const handleSelectChange: React.ChangeEventHandler<HTMLSelectElement> = (
     e
@@ -28,6 +36,41 @@ const Filter = () => {
     setFilter({ ...filter, id: '' });
   }, [filter.year, filter.item]);
 
+  useEffect(() => {
+    let yearList: string[] = [];
+    itemList.forEach((site: SiteYearItem) => {
+      site.years.forEach((v) => {
+        if (!yearList.includes(v.year)) {
+          yearList.push(v.year);
+        }
+      });
+    });
+    setYears([...yearList]);
+  }, []);
+
+  useEffect(() => {
+    if (hasYear) {
+      let yearItemList: string[] = [];
+      itemList.forEach((site: SiteYearItem) => {
+        site.years
+          .find((v) => v.year === filter.year)
+          ?.items.forEach((v) => {
+            if (!yearItemList.includes(v)) {
+              yearItemList.push(v);
+            }
+          });
+      });
+      const matchItem = yearItemList
+        .map((v) =>
+          surveyMapItemList
+            .filter((item) => item.plan === v)
+            .map((v) => v.title)
+        )
+        .reduce((target, arr) => [...target, ...arr], []);
+      setItems([...matchItem]);
+    }
+  }, [years]);
+
   return (
     <>
       <div className="select-area c-map__filter">
@@ -36,8 +79,8 @@ const Filter = () => {
           <option value="" disabled>
             年份
           </option>
-          {!isFetchingYearRange &&
-            yearRange.map((v) => {
+          {!isFetchingYears &&
+            years.map((v) => {
               return (
                 <option key={v} value={v}>
                   {v}
@@ -47,14 +90,14 @@ const Filter = () => {
         </select>
         <select name="item" value={filter.item} onChange={handleSelectChange}>
           <option value="">觀測項目</option>
-          {surveyMapItemList.map((v) => {
-            const { id, title } = v;
-            return (
-              <option key={id} value={id}>
-                {title}
-              </option>
-            );
-          })}
+          {!isFetchingItems &&
+            items.map((v) => {
+              return (
+                <option key={v} value={v}>
+                  {v}
+                </option>
+              );
+            })}
         </select>
       </div>
     </>

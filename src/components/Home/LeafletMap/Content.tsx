@@ -43,12 +43,15 @@ const Content = () => {
   const handleSiteFilter = () => {
     if (filter.item !== '') {
       const matchPlan = surveyMapItemList.find(
-        (v) => v.id === filter.item
+        (v) => v.title === filter.item
       )!.plan;
       const matchSite = itemList
-        .filter((v) => v.items.includes(matchPlan))
-        .map((v) => v.site)
-        .flat();
+        .filter((item) =>
+          item.years.some(
+            (v) => v.year === filter.year && v.items.includes(matchPlan)
+          )
+        )
+        .map((v) => v.site);
       const matchMarker = localities.filter((v) =>
         matchSite.includes(String(v.locationID))
       );

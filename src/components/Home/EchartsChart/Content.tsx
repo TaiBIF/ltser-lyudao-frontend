@@ -140,19 +140,19 @@ const Content = () => {
 
   const isFetchingItems = items.length === 0;
 
-  useEffect(() => {
-    const matchSite = itemList.find((v) => v.site === idData.locationID);
-    if (matchSite) {
-      const matchItem = matchSite.items
-        .map((item) => {
-          return surveyMapItemList
-            .filter((v) => v.plan === item)
-            .map((v) => v.plan);
-        })
-        .flat();
-      setItems([...matchItem]);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const matchSite = itemList
+  //     .find((v) => v.site === idData.locationID)
+  //     ?.years.find((v) => v.year === filter.year);
+  //   if (matchSite) {
+  //     const matchItem = matchSite.items
+  //       .map((item) => {
+  //         return surveyMapItemList.filter((v) => v.plan === item);
+  //       })
+  //       .flat();
+  //     setItems([...matchItem]);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (!isFetchingItems) {

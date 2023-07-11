@@ -31,6 +31,16 @@ export type LocalityItem = {
   municipality: string;
 };
 
+type YearItem = {
+  year: string;
+  items: string[];
+};
+
+export type SiteYearItem = {
+  site: string;
+  years: YearItem[];
+};
+
 export type SiteItem = {
   sites: string[];
 };
