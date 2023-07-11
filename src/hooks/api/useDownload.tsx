@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { saveAs } from 'file-saver';
 
 import { swalToast } from 'helpers/customSwal';
 import { useApi } from './useApi';
@@ -16,12 +16,7 @@ export const useDownload = () => {
     id: string;
     year: string;
   }) => {
-    const url = window.URL.createObjectURL(new Blob([result.response.data]));
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${id}-${year}.zip`;
-    link.click();
-    window.URL.revokeObjectURL(url);
+    saveAs(result.response.data, `${id}_${year}.zip`);
   };
 
   // const handleVerifyReaptcha = async ({
@@ -75,6 +70,7 @@ export const useDownload = () => {
         locationID: id,
         year,
       },
+      responseType: 'blob',
     });
     if (result?.status === 'success') {
       // handleVerifyReaptcha({ token: '', result });
