@@ -4,14 +4,35 @@ import { Dictionary } from 'lodash';
 
 import { SiteObservationItem } from 'types/utils';
 
+import { useSurveyMapContext } from 'context/SurveyMapContext';
+
+import itemList from 'data/home/items.json';
+import { surveyMapItemList } from 'data/home/content';
+
 interface TooltipLayoutProps {
   data: Dictionary<number | string>;
-  items: SiteObservationItem[];
 }
 
 const TooltipLayout = (props: TooltipLayoutProps) => {
-  const { data, items } = props;
-  useEffect(() => {}, []);
+  const { data } = props;
+
+  const { filter } = useSurveyMapContext();
+
+  const [items, setItems] = useState<SiteObservationItem[]>([]);
+
+  useEffect(() => {
+    const matchFilter = itemList
+      .find((v) => v.site === data.locationID)
+      ?.years.find((v) => v.year === filter.year)?.items;
+    if (matchFilter) {
+      const matchItem = matchFilter
+        .map((item) => {
+          return surveyMapItemList.filter((v) => v.plan === item);
+        })
+        .flat();
+      setItems([...matchItem]);
+    }
+  }, []);
 
   return (
     <>

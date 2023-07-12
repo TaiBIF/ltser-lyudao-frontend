@@ -23,6 +23,7 @@ interface apiParamsProps {
   url: string;
   headers?: any;
   responseType?: any;
+  onDownloadProgress?: any;
 }
 
 interface actionParamsProps {
@@ -45,6 +46,7 @@ export const useApi = () => {
       url,
       headers,
       responseType,
+      onDownloadProgress,
     } = apiParams;
     setLoading(true);
     let result;
@@ -65,6 +67,7 @@ export const useApi = () => {
         data,
         headers,
         responseType,
+        onDownloadProgress,
       });
       result = { status: 'success', response: response };
     } catch (err) {

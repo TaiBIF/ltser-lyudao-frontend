@@ -1,33 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 interface ProgressBarProps {
-  downloading: boolean;
+  progress: number;
 }
 
 const ProgressBar = (props: ProgressBarProps) => {
-  const { downloading } = props;
-  const [progressWidth, setProgressWidth] = useState(0);
+  const { progress } = props;
 
-  const isDownloaded = progressWidth === 100;
+  const isDownloaded = progress === 100;
 
-  useEffect(() => {
-    return () => {
-      let progressWidth = 0;
-      setInterval(() => {
-        progressWidth += 10;
-        if (progressWidth <= 100) {
-          setProgressWidth(progressWidth);
-        }
-      }, 1000);
-    };
-  }, [downloading]);
   return (
     <>
       <div className="c-progress">
         <div className="link-more e-btn e-btn--outline c-progress__bar">
           <div
             className="c-progress__deco"
-            style={{ width: `${progressWidth}%` }}
+            style={{ width: `${progress}%` }}
           ></div>
           <p className="c-progress__text">
             {isDownloaded ? '下載完成' : '下載中'}

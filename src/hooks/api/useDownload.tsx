@@ -6,6 +6,7 @@ import { useApi } from './useApi';
 
 export const useDownload = () => {
   const { handleApi, handleActions } = useApi();
+  const [progress, setProgress] = useState<number>(0);
 
   const handleDownloadAction = ({
     result,
@@ -16,7 +17,10 @@ export const useDownload = () => {
     id: string;
     year: string;
   }) => {
-    saveAs(result.response.data, `${id}_${year}.zip`);
+    const blob = new Blob([result.response.data], {
+      type: 'application/octet-stream',
+    });
+    saveAs(blob, `${id}_${year}.zip`);
   };
 
   // const handleVerifyReaptcha = async ({
@@ -70,7 +74,12 @@ export const useDownload = () => {
         locationID: id,
         year,
       },
-      responseType: 'blob',
+      responseType: 'arraybuffer',
+      onDownloadProgress: (e: ProgressEvent) => {
+        const percentage = Math.round((e.loaded * 100) / e.total);
+        console.log(`下載進度：${percentage}%`);
+        setProgress(percentage);
+      },
     });
     if (result?.status === 'success') {
       // handleVerifyReaptcha({ token: '', result });
@@ -97,5 +106,5 @@ export const useDownload = () => {
     getDownloadFile({ url, id, year });
   };
 
-  return { handleDownload };
+  return { handleDownload, progress };
 };

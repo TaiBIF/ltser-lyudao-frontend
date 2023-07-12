@@ -69,7 +69,7 @@ const Filter = () => {
         .reduce((target, arr) => [...target, ...arr], []);
       setItems([...matchItem]);
     }
-  }, [years]);
+  }, [years, filter.year]);
 
   return (
     <>

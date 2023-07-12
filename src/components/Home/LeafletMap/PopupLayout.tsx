@@ -11,7 +11,12 @@ import ProgressBar from 'components/Home/LeafletMap/ProgressBar';
 
 import { ContextItem, SiteObservationItem } from 'types/utils';
 
-import { surveyMapParams, surveyMapColList } from 'data/home/content';
+import {
+  surveyMapParams,
+  surveyMapColList,
+  surveyMapItemList,
+} from 'data/home/content';
+import itemList from 'data/home/items.json';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDataContext } from 'context/DataContext';
@@ -20,18 +25,21 @@ import { useDownload } from 'hooks/api/useDownload';
 type PopupLayoutProps = {
   setActive: Dispatch<SetStateAction<boolean>>;
   data: Dictionary<number | string>;
-  items: SiteObservationItem[];
 };
 
 const PopupLayout = (props: PopupLayoutProps) => {
-  const { setActive, data, items } = props;
-  const { setFilter, setIdData } = useSurveyMapContext();
+  const { setActive, data } = props;
+
   const map = useMap();
   const navigate = useNavigate();
+
+  const { setFilter, setIdData } = useSurveyMapContext();
   const { filter } = useSurveyMapContext();
   const contextData = useDataContext();
+  const { handleDownload, progress } = useDownload();
+
   const [downloading, setDownloading] = useState(false);
-  const { handleDownload } = useDownload();
+  const [items, setItems] = useState<SiteObservationItem[]>([]);
 
   const handleDownloadClick = () => {
     setDownloading(true);
@@ -61,6 +69,20 @@ const PopupLayout = (props: PopupLayoutProps) => {
     'bird-net-sound',
     'fish-div',
   ];
+
+  useEffect(() => {
+    const matchFilter = itemList
+      .find((v) => v.site === filter.id)
+      ?.years.find((v) => v.year === filter.year)?.items;
+    if (matchFilter) {
+      const matchItem = matchFilter
+        .map((item) => {
+          return surveyMapItemList.filter((v) => v.plan === item);
+        })
+        .flat();
+      setItems([...matchItem]);
+    }
+  }, [filter.id]);
 
   useEffect(() => {
     return () => {
@@ -158,7 +180,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 <p>下載樣區資料</p>
               </button>
             ) : (
-              <ProgressBar downloading={downloading} />
+              <ProgressBar progress={progress} />
             )}
           </div>
           <PopupArrow />

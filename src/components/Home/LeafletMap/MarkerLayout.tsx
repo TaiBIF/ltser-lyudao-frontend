@@ -13,9 +13,6 @@ import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 import { SiteObservationItem } from 'types/utils';
 
-import itemList from 'data/home/items.json';
-import { surveyMapItemList } from 'data/home/content';
-
 interface MarkerLayoutProps {
   data: Dictionary<number | string>;
 }
@@ -24,7 +21,6 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
   const { data } = props;
   const { filter, setFilter } = useSurveyMapContext();
   const [active, setActive] = useState<boolean>(false);
-  const [items, setItems] = useState<SiteObservationItem[]>([]);
 
   const location: LatLngExpression = [
     Number(data.decimalLatitude),
@@ -45,20 +41,6 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
     });
   const icon = mapIcon();
 
-  useEffect(() => {
-    const matchFilter = itemList
-      .find((v) => v.site === filter.id)
-      ?.years.find((v) => v.year === filter.year)?.items;
-    if (matchFilter) {
-      const matchItem = matchFilter
-        .map((item) => {
-          return surveyMapItemList.filter((v) => v.plan === item);
-        })
-        .flat();
-      setItems([...matchItem]);
-    }
-  }, [filter.id]);
-
   return (
     <>
       <Marker
@@ -69,10 +51,10 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
         }}
       >
         <Popup closeButton={false} closeOnClick={false}>
-          <PopupLayout setActive={setActive} data={data} items={items} />
+          <PopupLayout setActive={setActive} data={data} />
         </Popup>
         <Tooltip offset={[30, -16.5]}>
-          <TooltipLayout data={data} items={items} />
+          <TooltipLayout data={data} />
         </Tooltip>
       </Marker>
     </>
