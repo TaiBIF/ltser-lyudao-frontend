@@ -26,6 +26,7 @@ const Content = () => {
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const [items, setItems] = useState<string[]>([]);
+  const { filter } = useSurveyMapContext();
 
   const contextData = useDataContext();
   const { idData } = useSurveyMapContext();
@@ -140,19 +141,17 @@ const Content = () => {
 
   const isFetchingItems = items.length === 0;
 
-  // useEffect(() => {
-  //   const matchSite = itemList
-  //     .find((v) => v.site === idData.locationID)
-  //     ?.years.find((v) => v.year === filter.year);
-  //   if (matchSite) {
-  //     const matchItem = matchSite.items
-  //       .map((item) => {
-  //         return surveyMapItemList.filter((v) => v.plan === item);
-  //       })
-  //       .flat();
-  //     setItems([...matchItem]);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const matchFilter = itemList
+      .find((v) => v.site === filter.id)
+      ?.years.find((v) => v.year === filter.year)?.items;
+    if (matchFilter) {
+      const matchItem = matchFilter
+        .flatMap((item) => surveyMapItemList.filter((v) => v.plan === item))
+        .map((v) => v.plan);
+      setItems([...matchItem]);
+    }
+  }, [filter.id]);
 
   useEffect(() => {
     if (!isFetchingItems) {

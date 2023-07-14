@@ -75,11 +75,9 @@ const PopupLayout = (props: PopupLayoutProps) => {
       .find((v) => v.site === filter.id)
       ?.years.find((v) => v.year === filter.year)?.items;
     if (matchFilter) {
-      const matchItem = matchFilter
-        .map((item) => {
-          return surveyMapItemList.filter((v) => v.plan === item);
-        })
-        .flat();
+      const matchItem = matchFilter.flatMap((item) =>
+        surveyMapItemList.filter((v) => v.plan === item)
+      );
       setItems([...matchItem]);
     }
   }, [filter.id]);

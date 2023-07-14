@@ -49,6 +49,7 @@ const Filter = () => {
   }, []);
 
   useEffect(() => {
+    setFilter({ ...filter, item: '' });
     if (hasYear) {
       let yearItemList: string[] = [];
       itemList.forEach((site: SiteYearItem) => {
