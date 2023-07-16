@@ -8,7 +8,7 @@ import { QAItem } from 'types/qa';
 
 import { RawItemTypes } from 'types/rawData';
 import { RawFieldItem } from 'types/field';
-import { SeriesItem } from 'types/series';
+import { SeriesItemTypes } from 'types/series';
 
 export type TypeItem = {
   id?: number | string;
@@ -83,13 +83,15 @@ export type RelateListTypes = ColItem | FieldItem;
 
 export type ContextItem = {
   id: string;
+  sites: string[];
+  getSites?: any;
   detail?: any;
   getDetail?: any;
   raws?: RawItemTypes[];
   getRaws?: any;
   fields?: RawFieldItem[];
   getFields?: any;
-  series?: SeriesItem[];
+  series?: SeriesItemTypes[];
   getSeries?: any;
 };
 

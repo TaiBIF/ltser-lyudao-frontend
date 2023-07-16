@@ -11,11 +11,13 @@ import { ContextItem } from 'types/utils';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 import { useLocation } from 'react-router-dom';
+import { useSiteDataContext } from 'context/SiteDataContext';
 
 const Result = ({ item }: { item: string }) => {
   const { show, handleLoginClick } = useEcoContext();
   const { pathname } = useLocation();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
+  const { filter } = useSiteDataContext();
 
   useEffect(() => {
     if (contextData.raws) {

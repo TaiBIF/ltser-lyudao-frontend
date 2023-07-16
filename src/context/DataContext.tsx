@@ -27,24 +27,34 @@ export const useDataContext = () => useContext(DataContext);
 
 export const DataProvider = ({ children }: DataProviderProps) => {
   const {
+    sites: weatherSites,
+    getDataSites: getWeatherSites,
     detail: weatherDetail,
     getDataDetail: getWeatherDetail,
     raws: weatherRaws,
     getDataRaws: getWeatherRaws,
     fields: weatherFields,
     getDataFields: getWeatherFields,
+    series: weatherSeries,
+    getDataSeries: getWeatherSeries,
   } = useWeather();
 
   const {
+    sites: seaTemperatureSites,
+    getDataSites: getSeaTemperatureSites,
     detail: seaTemperatureDetail,
     getDataDetail: getSeaTemperatureDetail,
     raws: seaTemperatureRaws,
     getDataRaws: getSeaTemperatureRaws,
     fields: seaTemperatureFields,
     getDataFields: getSeaTemperatureFields,
+    series: seaTemperatureSeries,
+    getDataSeries: getSeaTemperatureSeries,
   } = useSeaTemperature();
 
   const {
+    sites: coralDivSites,
+    getDataSites: getCoralDivSites,
     detail: coralDivDetail,
     getDataDetail: getCoralDivDetail,
     raws: coralDivRaws,
@@ -56,6 +66,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useCoralDiv();
 
   const {
+    sites: coralRecSites,
+    getDataSites: getCoralRecSites,
     detail: coralRecDetail,
     getDataDetail: getCoralRecDetail,
     raws: coralRecRaws,
@@ -67,6 +79,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useCoralRec();
 
   const {
+    sites: coralBleachSites,
+    getDataSites: getCoralBleachSites,
     raws: coralBleachRaws,
     getDataRaws: getCoralBleachRaws,
     series: coralBleachSeries,
@@ -76,6 +90,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useCoralBleach();
 
   const {
+    sites: coralCommSites,
+    getDataSites: getCoralCommSites,
     raws: coralCommRaws,
     getDataRaws: getCoralCommRaws,
     series: coralCommSeries,
@@ -85,6 +101,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useCoralComm();
 
   const {
+    sites: zoobenthosSites,
+    getDataSites: getZoobenthosSites,
     raws: zoobenthosRaws,
     getDataRaws: getZoobenthosRaws,
     detail: zoobenthosDetail,
@@ -96,6 +114,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useZoobenthos();
 
   const {
+    sites: plantSites,
+    getDataSites: getPlantSites,
     raws: plantRaws,
     getDataRaws: getPlantRaws,
     detail: plantDetail,
@@ -107,6 +127,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = usePlant();
 
   const {
+    sites: birdNetSoundSites,
+    getDataSites: getBirdNetSoundSites,
     detail: birdNetSoundDetail,
     getDataDetail: getBirdNetSoundDetail,
     raws: birdNetSoundRaws,
@@ -118,6 +140,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useBirdNetSound();
 
   const {
+    sites: fishDivSites,
+    getDataSites: getFishDivSites,
     detail: fishDivDetail,
     getDataDetail: getFishDivDetail,
     raws: fishDivRaws,
@@ -129,27 +153,41 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useFishDiv();
 
   const {
+    sites: waterSites,
+    getDataSites: getWaterSites,
     raws: waterRaws,
     getDataRaws: getWaterRaws,
     fields: waterFields,
     getDataFields: getWaterFields,
+    series: waterSeries,
+    getDataSeries: getWaterSeries,
   } = useWater();
 
   const {
+    sites: terreSoundIndexSites,
+    getDataSites: getTerreSoundIndexSites,
     raws: terreSoundIndexRaws,
     getDataRaws: getTerreSoundIndexRaws,
     fields: terreSoundIndexFields,
     getDataFields: getTerreSoundIndexFields,
+    series: terreSoundIndexSeries,
+    getDataSeries: getTerreSoundIndexSeries,
   } = useTerreSoundIndex();
 
   const {
+    sites: oceanSoundIndexSites,
+    getDataSites: getOceanSoundIndexSites,
     raws: oceanSoundIndexRaws,
     getDataRaws: getOceanSoundIndexRaws,
     fields: oceanSoundIndexFields,
     getDataFields: getOceanSoundIndexFields,
+    series: oceanSoundIndexSeries,
+    getDataSeries: getOceanSoundIndexSeries,
   } = useOceanSoundIndex();
 
   const {
+    sites: bioSoundSites,
+    getDataSites: getBioSoundSites,
     raws: bioSoundRaws,
     getDataRaws: getBioSoundRaws,
     series: bioSoundSeries,
@@ -159,6 +197,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useBioSound();
 
   const {
+    sites: otolithSites,
+    getDataSites: getOtolithSites,
     raws: otolithRaws,
     getDataRaws: getOtolithRaws,
     series: otolithSeries,
@@ -170,24 +210,34 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const contextData: ContextItem[] = [
     {
       id: 'weather',
+      sites: weatherSites,
+      getSites: getWeatherSites,
       detail: weatherDetail,
       getDetail: getWeatherDetail,
       raws: weatherRaws,
       getRaws: getWeatherRaws,
       fields: weatherFields,
       getFields: getWeatherFields,
+      series: weatherSeries,
+      getSeries: getWeatherSeries,
     },
     {
       id: 'sea-temperature',
+      sites: seaTemperatureSites,
+      getSites: getSeaTemperatureSites,
       detail: seaTemperatureDetail,
       getDetail: getSeaTemperatureDetail,
       raws: seaTemperatureRaws,
       getRaws: getSeaTemperatureRaws,
       fields: seaTemperatureFields,
       getFields: getSeaTemperatureFields,
+      series: seaTemperatureSeries,
+      getSeries: getSeaTemperatureSeries,
     },
     {
       id: 'coral-div',
+      sites: coralDivSites,
+      getSites: getCoralDivSites,
       detail: coralDivDetail,
       getDetail: getCoralDivDetail,
       raws: coralDivRaws,
@@ -199,6 +249,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'coral-rec',
+      sites: coralRecSites,
+      getSites: getCoralRecSites,
       detail: coralRecDetail,
       getDetail: getCoralRecDetail,
       raws: coralRecRaws,
@@ -210,6 +262,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'coral-bleach',
+      sites: coralBleachSites,
+      getSites: getCoralBleachSites,
       raws: coralBleachRaws,
       getRaws: getCoralBleachRaws,
       series: coralBleachSeries,
@@ -219,6 +273,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'coral-comm',
+      sites: coralCommSites,
+      getSites: getCoralCommSites,
       raws: coralCommRaws,
       getRaws: getCoralCommRaws,
       series: coralCommSeries,
@@ -228,6 +284,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'zoobenthos',
+      sites: zoobenthosSites,
+      getSites: getZoobenthosSites,
       raws: zoobenthosRaws,
       getRaws: getZoobenthosRaws,
       detail: zoobenthosDetail,
@@ -239,6 +297,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'plant',
+      sites: plantSites,
+      getSites: getPlantSites,
       raws: plantRaws,
       getRaws: getPlantRaws,
       detail: plantDetail,
@@ -250,6 +310,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'bird-net-sound',
+      sites: birdNetSoundSites,
+      getSites: getBirdNetSoundSites,
       raws: birdNetSoundRaws,
       getRaws: getBirdNetSoundRaws,
       detail: birdNetSoundDetail,
@@ -261,6 +323,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'fish-div',
+      sites: fishDivSites,
+      getSites: getFishDivSites,
       raws: fishDivRaws,
       getRaws: getFishDivRaws,
       detail: fishDivDetail,
@@ -272,27 +336,41 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'water',
+      sites: waterSites,
+      getSites: getWaterSites,
       raws: waterRaws,
       getRaws: getWaterRaws,
       fields: waterFields,
       getFields: getWaterFields,
+      series: waterSeries,
+      getSeries: getWaterSeries,
     },
     {
       id: 'terre-sound-index',
+      sites: terreSoundIndexSites,
+      getSites: getTerreSoundIndexSites,
       raws: terreSoundIndexRaws,
       getRaws: getTerreSoundIndexRaws,
       fields: terreSoundIndexFields,
       getFields: getTerreSoundIndexFields,
+      series: terreSoundIndexSeries,
+      getSeries: getTerreSoundIndexSeries,
     },
     {
       id: 'ocean-sound-index',
+      sites: oceanSoundIndexSites,
+      getSites: getOceanSoundIndexSites,
       raws: oceanSoundIndexRaws,
       getRaws: getOceanSoundIndexRaws,
       fields: oceanSoundIndexFields,
       getFields: getOceanSoundIndexFields,
+      series: oceanSoundIndexSeries,
+      getSeries: getOceanSoundIndexSeries,
     },
     {
       id: 'bio-sound',
+      sites: bioSoundSites,
+      getSites: getBioSoundSites,
       raws: bioSoundRaws,
       getRaws: getBioSoundRaws,
       series: bioSoundSeries,
@@ -302,6 +380,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'otolith',
+      sites: otolithSites,
+      getSites: getOtolithSites,
       raws: otolithRaws,
       getRaws: getOtolithRaws,
       series: otolithSeries,

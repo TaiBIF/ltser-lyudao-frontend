@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { ObservationItem } from 'types/utils';
+import { ContextItem } from 'types/utils';
 
 import {
   commonOptions,
@@ -10,11 +11,9 @@ import {
   chartsHeight,
 } from 'helpers/customEcharts';
 
-import { WeatherChartItem } from 'types/chart';
-
-import { weatherChartList } from 'data/chart';
-
-import { useApi } from 'hooks/api/useApi';
+import { useDataContext } from 'context/DataContext';
+import { useLocation } from 'react-router-dom';
+import { SeriesItemTypes } from 'types/series';
 
 type SeriesItem = {
   name?: string;
@@ -22,31 +21,25 @@ type SeriesItem = {
   type: string;
 };
 
-const Content = () => {
+const Content = ({ item }: { item: string }) => {
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
-  const [weatherChart, setWeatherChart] = useState<WeatherChartItem[]>([]);
-  const { handleApi } = useApi();
+  const contextData = useDataContext().find((v: ContextItem) => v.id === item);
+  const { pathname } = useLocation();
 
-  const getChart = async () => {
-    const result = await handleApi({
-      method: 'get',
-      url: `/data/weather/chart/`,
-    });
-    if (result?.status === 'success') {
-      setWeatherChart([...result.response.data]);
-    } else {
-      setWeatherChart([...weatherChartList]);
+  const isFetchingWeatherChart = contextData.series.length === 0;
+
+  useEffect(() => {
+    if (contextData.series) {
+      contextData.getSeries();
     }
-  };
-
-  const isFetchingWeatherChart = weatherChart.length === 0;
+  }, [pathname]);
 
   useEffect(() => {
     if (!isFetchingWeatherChart) {
-      const xAxis = weatherChart.map((v) => v.time);
+      const xAxis = contextData.series.map((v: SeriesItemTypes) => v.time);
       setXAxisList([...xAxis]);
-      const series = Object.entries(weatherChart[0])
+      const series = Object.entries(contextData.series[0])
         .map(([key]) => {
           switch (key) {
             case 'time':
@@ -55,13 +48,13 @@ const Content = () => {
               return {
                 name: key,
                 type: 'line',
-                data: weatherChart.map((v) => v[key]),
+                data: contextData.series.map((v: SeriesItemTypes) => v[key]),
               };
             default:
               return {
                 name: key,
                 type: 'line',
-                data: weatherChart.map((v) => v[key]),
+                data: contextData.series.map((v: SeriesItemTypes) => v[key]),
                 show: false,
               };
           }
@@ -69,11 +62,7 @@ const Content = () => {
         .filter((v) => v !== null) as SeriesItem[];
       setSeriesList([...series]);
     }
-  }, [weatherChart]);
-
-  useEffect(() => {
-    getChart();
-  }, []);
+  }, [contextData.series]);
 
   const option = {
     ...commonOptions,

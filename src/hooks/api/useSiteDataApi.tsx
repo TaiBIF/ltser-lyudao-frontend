@@ -2,12 +2,12 @@ import { useApi } from 'hooks/api/useApi';
 
 import { RawItemTypes } from 'types/rawData';
 import { RawFieldItem } from 'types/field';
-import { SeriesItem } from 'types/series';
+import { SeriesItemTypes } from 'types/series';
 
 const useSiteDataApi = () => {
   const { loading, handleApi, handleActions } = useApi();
 
-  const getData = async ({
+  const getRaws = async ({
     url,
     setList,
     defaultList,
@@ -48,17 +48,22 @@ const useSiteDataApi = () => {
   };
 
   const getSeries = async ({
+    id,
     url,
     setList,
     defaultList,
   }: {
+    id: string;
     url: string;
     setList: any;
-    defaultList: SeriesItem[];
+    defaultList: SeriesItemTypes[];
   }) => {
     const result = await handleApi({
       method: 'get',
       url: `/data/${url}/series/`,
+      params: {
+        locationID: id,
+      },
     });
     if (result?.status === 'success') {
       setList([...result.response.data]);
@@ -67,7 +72,7 @@ const useSiteDataApi = () => {
     }
   };
 
-  return { getData, getFields, getSeries };
+  return { getRaws, getFields, getSeries };
 };
 
 export default useSiteDataApi;

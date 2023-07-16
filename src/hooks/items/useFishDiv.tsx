@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { TimeRangeItem } from 'types/home';
-import { SeriesItem } from 'types/series';
+import { SeriesItemTypes } from 'types/series';
 import { DetailItemTypes } from 'types/detail';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
@@ -12,12 +12,13 @@ import {
   defaultIdTimeRange,
   fishDivDetail,
 } from 'data/home/content';
-import { defaultSeries } from 'data/series';
+import { countSeries } from 'data/series';
 import { fishDivFields } from 'data/field';
 import { fishDivRaws } from 'data/rawData';
 
 import useSurveyMapData from 'hooks/page/useSurveyMapData';
 import useSiteData from 'hooks/page/useSiteData';
+import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useFishDiv = () => {
   const [sites, setSites] = useState<string[]>([]);
@@ -31,8 +32,9 @@ const useFishDiv = () => {
     seasonal: [],
   });
   const [raws, setRaws] = useState<RawItemTypes[]>([]);
-  const [series, setSeries] = useState<SeriesItem[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
+  const { filter } = useSiteDataContext();
 
   const URL = `fish-div`;
 
@@ -55,11 +57,12 @@ const useFishDiv = () => {
   });
 
   const { getDataRaws, getDataSeries, getDataFields } = useSiteData({
+    id: filter.site,
     url: URL,
     defaultRaws: fishDivRaws,
     setRaws,
     setSeries,
-    defaultSeries,
+    defaultSeries: countSeries,
     defaultFields: fishDivFields,
     setFields,
   });

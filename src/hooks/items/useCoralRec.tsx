@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { TimeRangeItem } from 'types/home';
-import { SeriesItem } from 'types/series';
+import { SeriesItemTypes } from 'types/series';
 import { DetailItemTypes } from 'types/detail';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
@@ -12,11 +12,12 @@ import {
   defaultIdTimeRange,
   coralRecDetail,
 } from 'data/home/content';
-import { defaultSeries } from 'data/series';
+import { countSeries } from 'data/series';
 import { coralRecFields } from 'data/field';
 
 import useSurveyMapData from 'hooks/page/useSurveyMapData';
 import useSiteData from 'hooks/page/useSiteData';
+import { useSiteDataContext } from 'context/SiteDataContext';
 
 import { weatherRaws } from 'data/rawData';
 
@@ -32,8 +33,9 @@ const useCoralRec = () => {
     count: 0,
   });
   const [raws, setRaws] = useState<RawItemTypes[]>([]);
-  const [series, setSeries] = useState<SeriesItem[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
+  const { filter } = useSiteDataContext();
 
   const URL = `coral-rec`;
 
@@ -56,10 +58,11 @@ const useCoralRec = () => {
   });
 
   const { getDataRaws, getDataSeries, getDataFields } = useSiteData({
+    id: filter.site,
     url: URL,
     defaultRaws: weatherRaws,
     setRaws,
-    defaultSeries,
+    defaultSeries: countSeries,
     setSeries,
     defaultFields: coralRecFields,
     setFields,

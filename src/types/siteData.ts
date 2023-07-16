@@ -17,3 +17,7 @@ export type EcoSearchItem = {
 export type ShowState = {
   downloadPopup: boolean;
 };
+
+export type FilterItem = {
+  site: string;
+};

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { TimeRangeItem } from 'types/home';
 import { DetailItemTypes } from 'types/detail';
-import { SeriesItem } from 'types/series';
+import { SeriesItemTypes } from 'types/series';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 
@@ -12,12 +12,13 @@ import {
   defaultIdTimeRange,
   plantDetail,
 } from 'data/home/content';
-import { defaultSeries } from 'data/series';
+import { countSeries } from 'data/series';
 import { plantFields } from 'data/field';
 import { plantRaws } from 'data/rawData';
 
 import useSurveyMapData from 'hooks/page/useSurveyMapData';
 import useSiteData from 'hooks/page/useSiteData';
+import { useSiteDataContext } from 'context/SiteDataContext';
 
 const usePlant = () => {
   const [sites, setSites] = useState<string[]>([]);
@@ -31,8 +32,9 @@ const usePlant = () => {
     seasonal: [],
   });
   const [raws, setRaws] = useState<RawItemTypes[]>([]);
-  const [series, setSeries] = useState<SeriesItem[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
+  const { filter } = useSiteDataContext();
 
   const URL = `plant`;
 
@@ -55,11 +57,12 @@ const usePlant = () => {
   });
 
   const { getDataRaws, getDataSeries, getDataFields } = useSiteData({
+    id: filter.site,
     url: URL,
     defaultRaws: plantRaws,
     setRaws,
     setSeries,
-    defaultSeries,
+    defaultSeries: countSeries,
     defaultFields: plantFields,
     setFields,
   });

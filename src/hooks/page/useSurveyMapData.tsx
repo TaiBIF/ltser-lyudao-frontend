@@ -11,14 +11,14 @@ import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 interface useSurveyMapDataProps {
   url: string;
-  defaultSites: SiteItem;
-  defaultDetail: DetailItemTypes;
-  defaultIdTimeRange: TimeRangeItem;
-  setSites: Dispatch<SetStateAction<string[]>>;
-  allTimeRange: TimeRangeItem[];
-  setAllTimeRange: Dispatch<SetStateAction<TimeRangeItem[]>>;
-  setIdTimeRange: Dispatch<SetStateAction<TimeRangeItem>>;
-  setDetail: Dispatch<SetStateAction<DetailItemTypes>>;
+  defaultSites?: SiteItem;
+  defaultDetail?: DetailItemTypes;
+  defaultIdTimeRange?: TimeRangeItem;
+  setSites?: Dispatch<SetStateAction<string[]>>;
+  allTimeRange?: TimeRangeItem[];
+  setAllTimeRange?: Dispatch<SetStateAction<TimeRangeItem[]>>;
+  setIdTimeRange?: Dispatch<SetStateAction<TimeRangeItem>>;
+  setDetail?: Dispatch<SetStateAction<DetailItemTypes>>;
 }
 
 const useSurveyMapData = (props: useSurveyMapDataProps) => {
@@ -37,13 +37,13 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
   const { id, year } = filter;
   const { getSites, getAllTimeRange, getTimeRange, getDetail } = useSurveyMap();
 
-  const isFetchingAllTimeRange = allTimeRange.length === 0;
+  const isFetchingAllTimeRange = allTimeRange?.length === 0;
 
   const getDataSites = () => {
     getSites({
       url,
       setList: setSites,
-      defaultList: defaultSites.sites,
+      defaultList: defaultSites?.sites || [],
     });
   };
 
@@ -56,7 +56,7 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
 
   const getDataHoverTimeRange = (hoverId: string) =>
     !isFetchingAllTimeRange
-      ? allTimeRange.find((v) => v.site === hoverId)
+      ? allTimeRange?.find((v) => v.site === hoverId)
       : { ...defaultTimeRange };
 
   const getDataIdTimeRange = () => {

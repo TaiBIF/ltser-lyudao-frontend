@@ -50,6 +50,7 @@ import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
 import { SurveyMapProvider } from 'context/SurveyMapContext';
 import { DataProvider } from 'context/DataContext';
+import { SiteDataProvider } from 'context/SiteDataContext';
 
 function App() {
   return (
@@ -79,49 +80,57 @@ function App() {
           <Route
             path="/site-data/ecological-observation/"
             element={
-              <SurveyMapProvider>
-                <DataProvider>
-                  <EcoProvider>
-                    <EcologicalObservation />
-                  </EcoProvider>
-                </DataProvider>
-              </SurveyMapProvider>
+              <SiteDataProvider>
+                <SurveyMapProvider>
+                  <DataProvider>
+                    <EcoProvider>
+                      <EcologicalObservation />
+                    </EcoProvider>
+                  </DataProvider>
+                </SurveyMapProvider>
+              </SiteDataProvider>
             }
           />
           <Route
             path="/site-data/ecological-observation/:dataId"
             element={
-              <SurveyMapProvider>
-                <DataProvider>
-                  <EcoProvider>
-                    <EcologicalObservation />
-                  </EcoProvider>
-                </DataProvider>
-              </SurveyMapProvider>
+              <SiteDataProvider>
+                <SurveyMapProvider>
+                  <DataProvider>
+                    <EcoProvider>
+                      <EcologicalObservation />
+                    </EcoProvider>
+                  </DataProvider>
+                </SurveyMapProvider>
+              </SiteDataProvider>
             }
           />
           <Route
             path="/site-data/environmental-observation/"
             element={
-              <SurveyMapProvider>
-                <DataProvider>
-                  <EcoProvider>
-                    <EnvironmentalObservation />
-                  </EcoProvider>
-                </DataProvider>
-              </SurveyMapProvider>
+              <SiteDataProvider>
+                <SurveyMapProvider>
+                  <DataProvider>
+                    <EcoProvider>
+                      <EnvironmentalObservation />
+                    </EcoProvider>
+                  </DataProvider>
+                </SurveyMapProvider>
+              </SiteDataProvider>
             }
           />
           <Route
             path="/site-data/environmental-observation/:dataId"
             element={
-              <SurveyMapProvider>
-                <DataProvider>
-                  <EcoProvider>
-                    <EnvironmentalObservation />
-                  </EcoProvider>
-                </DataProvider>
-              </SurveyMapProvider>
+              <SiteDataProvider>
+                <SurveyMapProvider>
+                  <DataProvider>
+                    <EcoProvider>
+                      <EnvironmentalObservation />
+                    </EcoProvider>
+                  </DataProvider>
+                </SurveyMapProvider>
+              </SiteDataProvider>
             }
           />
           <Route path="/forgot-password" element={<ForgotPsw />} />

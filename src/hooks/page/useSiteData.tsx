@@ -4,20 +4,22 @@ import { RawItemTypes } from 'types/rawData';
 import { RawFieldItem } from 'types/field';
 
 import useSiteDataApi from 'hooks/api/useSiteDataApi';
-import { SeriesItem } from 'types/series';
+import { SeriesItemTypes } from 'types/series';
 
 interface useSiteDataProps {
+  id: string;
   url: string;
   defaultRaws?: RawItemTypes[];
   defaultFields?: RawFieldItem[];
-  defaultSeries?: SeriesItem[];
+  defaultSeries?: SeriesItemTypes[];
   setRaws?: Dispatch<SetStateAction<RawItemTypes[]>>;
   setFields?: Dispatch<SetStateAction<RawFieldItem[]>>;
-  setSeries?: Dispatch<SetStateAction<SeriesItem[]>>;
+  setSeries?: Dispatch<SetStateAction<SeriesItemTypes[]>>;
 }
 
 const useSiteData = (props: useSiteDataProps) => {
   const {
+    id,
     url,
     defaultRaws,
     defaultFields,
@@ -26,10 +28,10 @@ const useSiteData = (props: useSiteDataProps) => {
     setFields,
     setSeries,
   } = props;
-  const { getData, getFields, getSeries } = useSiteDataApi();
+  const { getRaws, getFields, getSeries } = useSiteDataApi();
 
   const getDataRaws = () => {
-    getData({
+    getRaws({
       url,
       setList: setRaws,
       defaultList: defaultRaws || [],
@@ -46,6 +48,7 @@ const useSiteData = (props: useSiteDataProps) => {
 
   const getDataSeries = () => {
     getSeries({
+      id,
       url,
       setList: setSeries,
       defaultList: defaultSeries || [],

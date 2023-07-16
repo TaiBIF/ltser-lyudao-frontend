@@ -54,7 +54,7 @@ const useSurveyMapApi = () => {
     id: string;
     url: string;
     setData: any;
-    defaultData: TimeRangeItem;
+    defaultData: any;
   }) => {
     const result = await handleApi({
       method: 'get',
@@ -79,7 +79,7 @@ const useSurveyMapApi = () => {
     year: string;
     url: string;
     setData: any;
-    defaultData: DetailItemTypes;
+    defaultData: any;
   }) => {
     const result = await handleApi({
       method: 'get',
