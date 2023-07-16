@@ -103,3 +103,10 @@ export type ItemTypes =
   | LiteratureItem
   | FormLinkItem
   | DownloadItem;
+
+export type PageDataItem = {
+  currentPage: number;
+  recordsPerPage: number;
+  totalPages: number;
+  totalRecords: number;
+};

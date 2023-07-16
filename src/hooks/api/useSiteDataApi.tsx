@@ -12,19 +12,30 @@ const useSiteDataApi = () => {
     setList,
     defaultList,
     params,
+    setPageData,
   }: {
     url: string;
     setList: any;
     defaultList: RawItemTypes[];
     params: any;
+    setPageData: any;
   }) => {
     const result = await handleApi({
       method: 'get',
-      url: `/data/${url}/`,
+      url: `/data/${url}/raws/`,
       params,
     });
     if (result?.status === 'success') {
-      setList([...result.response.data]);
+      setList([...result.response.data.records]);
+      if (setPageData) {
+        setPageData({
+          ...Object.fromEntries(
+            Object.entries(result.response.data).filter(
+              ([key]) => key !== 'records'
+            )
+          ),
+        });
+      }
     } else {
       setList([...defaultList]);
     }

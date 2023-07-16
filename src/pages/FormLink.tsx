@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Breadcrumb from 'components/Breadcrumb';
 import Item from 'components/FormLink/Item';
-
-import { formLinkList } from 'data/formLink';
 import Pagination from 'components/Pagination';
 
+import { formLinkList } from 'data/formLink';
+import { FORM_LINK_API_URL } from 'data/api';
+
+import useRender from 'hooks/page/useRender';
+import usePage from 'hooks/utils/usePage';
+
 const FormLink = () => {
+  const [formLinks, setFormLinks] = useState([]);
+  const { getList } = useRender();
+  const { pathname, page, pageData, setPageData } = usePage();
+
+  const isFetchingList = formLinks.length === 0;
+
+  useEffect(() => {
+    getList({
+      url: FORM_LINK_API_URL,
+      setList: setFormLinks,
+      defaultList: formLinkList,
+      params: { page },
+      setPageData,
+    });
+  }, [pathname, page]);
+
   return (
     <>
       <div className="innbox">
@@ -21,12 +41,13 @@ const FormLink = () => {
               </div>
             </div>
             <ul className="link-list">
-              {formLinkList.map((v) => {
-                const { id } = v;
-                return <Item key={id} data={v} />;
-              })}
+              {!isFetchingList &&
+                formLinks.map((v) => {
+                  const { id } = v;
+                  return <Item key={id} data={v} />;
+                })}
             </ul>
-            <Pagination />
+            <Pagination page={page} pageData={pageData} />
           </div>
         </div>
       </div>

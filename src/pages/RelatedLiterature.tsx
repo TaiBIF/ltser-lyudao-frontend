@@ -8,12 +8,13 @@ import SearchIcon from 'components/RelatedLiterature/SearchIcon';
 import literatureBannerImg from 'image/literature_bn.png';
 
 import { BannerData } from 'types/common';
-import { literatureList } from 'data/literature';
 import { LiteratureItem } from 'types/literature';
 
-import useRender from 'hooks/page/useRender';
 import { LITERATURE_API_URL } from 'data/api';
-import { useLocation } from 'react-router-dom';
+import { literatureList } from 'data/literature';
+
+import useRender from 'hooks/page/useRender';
+import usePage from 'hooks/utils/usePage';
 
 const RelatedLiterature = () => {
   const [filter, setFilter] = useState({
@@ -22,7 +23,7 @@ const RelatedLiterature = () => {
   const [literatures, setLiteratures] = useState<LiteratureItem[]>([]);
   const [data, setData] = useState<LiteratureItem[]>([]);
   const { getList } = useRender();
-  const { pathname } = useLocation();
+  const { pathname, page, pageData, setPageData } = usePage();
 
   const bannerData: BannerData = {
     title: '相關文獻',
@@ -42,8 +43,10 @@ const RelatedLiterature = () => {
       url: LITERATURE_API_URL,
       setList: setLiteratures,
       defaultList: literatureList,
+      params: { page },
+      setPageData,
     });
-  }, [pathname]);
+  }, [pathname, page]);
 
   useEffect(() => {
     if (!isFetchingList) {
@@ -82,7 +85,7 @@ const RelatedLiterature = () => {
                 })}
               </ul>
             )}
-            <Pagination />
+            <Pagination page={page} pageData={pageData} />
           </div>
         </div>
       </div>

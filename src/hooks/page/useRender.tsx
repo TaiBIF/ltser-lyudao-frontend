@@ -14,17 +14,31 @@ const useRender = () => {
     url,
     setList,
     defaultList,
+    params,
+    setPageData,
   }: {
     url: string;
     setList: any;
     defaultList: ItemTypes[];
+    params?: any;
+    setPageData?: any;
   }) => {
     const result = await handleApi({
       method: 'get',
       url: `/users/${url}/`,
+      params,
     });
     if (result?.status === 'success') {
-      setList([...result.response.data]);
+      setList([...result.response.data.records]);
+      if (setPageData) {
+        setPageData({
+          ...Object.fromEntries(
+            Object.entries(result.response.data).filter(
+              ([key]) => key !== 'records'
+            )
+          ),
+        });
+      }
     } else {
       setList([...defaultList]);
     }

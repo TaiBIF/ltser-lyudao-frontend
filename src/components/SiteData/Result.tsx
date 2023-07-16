@@ -10,24 +10,31 @@ import { ContextItem } from 'types/utils';
 
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
-import { useLocation } from 'react-router-dom';
+
+import usePage from 'hooks/utils/usePage';
+import { useSiteDataContext } from 'context/SiteDataContext';
 
 const Result = ({ item }: { item: string }) => {
   const { show, handleLoginClick } = useEcoContext();
-  const { pathname } = useLocation();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
+  const { pathname, page, pageData, setPageData } = usePage();
+  const { query, setQuery } = useSiteDataContext();
+
+  useEffect(() => {
+    setQuery({});
+  }, [item]);
 
   useEffect(() => {
     if (contextData.raws) {
-      contextData.getRaws();
+      contextData.getRaws({ params: { ...query, page }, setPageData });
     }
-  }, [pathname]);
+  }, [pathname, page]);
 
   return (
     <>
       <div className="result-area">
         <div className="toptool">
-          <div className="data-num">資料筆數：{contextData.raws.length}</div>
+          <div className="data-num">資料筆數：{pageData.totalRecords}</div>
           <div className="btnr-box">
             <button
               type="button"
@@ -67,7 +74,7 @@ const Result = ({ item }: { item: string }) => {
             </tbody>
           </table>
         </div>
-        <Pagination />
+        <Pagination page={page} pageData={pageData} />
       </div>
     </>
   );

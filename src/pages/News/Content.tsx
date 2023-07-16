@@ -14,26 +14,21 @@ import { NewsItem, NewsActiveState } from 'types/news';
 
 import { newsList, newsTypeList } from 'data/news';
 
+import usePage from 'hooks/utils/usePage';
+import useRender from 'hooks/page/useRender';
+import { NEWS_API_URL } from 'data/api';
+
 const Content = () => {
   const [filter, setFilter] = useState<NewsActiveState>({
     type: 0,
   });
   const [news, setNews] = useState<NewsItem[]>([]);
+  const [data, setData] = useState<NewsItem[]>([]);
+  const { getList } = useRender();
+  const { pathname, page, pageData, setPageData } = usePage();
 
   const isAllType = filter.type === 0;
-
-  const handleTypeClick = (id: number | string) => {
-    setFilter({ ...filter, type: id });
-  };
-
-  useEffect(() => {
-    if (isAllType) {
-      setNews([...newsList]);
-    } else {
-      const matchType = newsList.filter((v) => v.type === filter.type);
-      setNews([...matchType]);
-    }
-  }, [filter.type]);
+  const isFetchingList = news.length === 0;
 
   const bannerData: BannerData = {
     title: '最新消息',
@@ -41,6 +36,31 @@ const Content = () => {
     maskImg: true,
     bgImg: bannerImg,
   };
+
+  const handleTypeClick = (id: number | string) => {
+    setFilter({ ...filter, type: id });
+  };
+
+  useEffect(() => {
+    if (!isFetchingList) {
+      if (isAllType) {
+        setData([...news]);
+      } else {
+        const matchType = news.filter((v) => v.type === filter.type);
+        setData([...matchType]);
+      }
+    }
+  }, [filter.type, news]);
+
+  useEffect(() => {
+    getList({
+      url: NEWS_API_URL,
+      setList: setNews,
+      defaultList: newsList,
+      params: { page },
+      setPageData,
+    });
+  }, [pathname, page]);
 
   return (
     <>
@@ -75,12 +95,13 @@ const Content = () => {
             </div>
             <div className="news-list">
               <ul>
-                {news.map((v) => {
-                  return <Item key={v.id} data={v} />;
-                })}
+                {!isFetchingList &&
+                  data.map((v) => {
+                    return <Item key={v.id} data={v} />;
+                  })}
               </ul>
             </div>
-            <Pagination />
+            <Pagination page={page} pageData={pageData} />
           </div>
         </div>
       </div>

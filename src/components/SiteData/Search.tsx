@@ -14,6 +14,7 @@ import { useDataContext } from 'context/DataContext';
 import { RawItemTypes } from 'types/rawData';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import { useLocation } from 'react-router-dom';
+import usePage from 'hooks/utils/usePage';
 
 const Search = ({ item }: { item: string }) => {
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
@@ -23,13 +24,14 @@ const Search = ({ item }: { item: string }) => {
   const searchFieldList = contextData.fields;
   const { query, setQuery } = useSiteDataContext();
   const { pathname } = useLocation();
+  const { page } = usePage();
 
   const handleSubmit = (
     values: RawItemTypes,
     { setSubmitting }: FormikHelpers<RawItemTypes>
   ) => {
     setQuery({ ...values });
-    contextData.getRaws(values);
+    contextData.getRaws({ params: { ...values, page } });
     setSubmitting(false);
   };
 

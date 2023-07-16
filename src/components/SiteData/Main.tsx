@@ -24,8 +24,6 @@ const Main = () => {
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { filter, setFilter } = useSiteDataContext();
 
-  const isWeather = item === 'weather';
-
   const isFetchingSites = contextData.sites.length === 0;
 
   useEffect(() => {
