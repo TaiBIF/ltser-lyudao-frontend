@@ -24,7 +24,11 @@ const Select = (props: SelectProps) => {
             請選擇{title}
           </option>
           {options.map((v: string) => {
-            return <option value={v}>{v}</option>;
+            return (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            );
           })}
         </select>
       </div>

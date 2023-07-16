@@ -11,14 +11,17 @@ const useSiteDataApi = () => {
     url,
     setList,
     defaultList,
+    params,
   }: {
     url: string;
     setList: any;
     defaultList: RawItemTypes[];
+    params: any;
   }) => {
     const result = await handleApi({
       method: 'get',
       url: `/data/${url}/`,
+      params,
     });
     if (result?.status === 'success') {
       setList([...result.response.data]);

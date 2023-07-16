@@ -30,11 +30,12 @@ const useSiteData = (props: useSiteDataProps) => {
   } = props;
   const { getRaws, getFields, getSeries } = useSiteDataApi();
 
-  const getDataRaws = () => {
+  const getDataRaws = (params: any) => {
     getRaws({
       url,
       setList: setRaws,
       defaultList: defaultRaws || [],
+      params,
     });
   };
 

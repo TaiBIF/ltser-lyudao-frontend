@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Form, Formik, FormikHelpers, FormikConfig } from 'formik';
+import qs from 'qs';
 
 import SearchFieldLayout from 'components/SiteData/SearchFieldLayout';
 
@@ -11,6 +12,8 @@ import { searchValidationSchema } from 'data/validationSchema';
 
 import { useDataContext } from 'context/DataContext';
 import { RawItemTypes } from 'types/rawData';
+import { useSiteDataContext } from 'context/SiteDataContext';
+import { useLocation } from 'react-router-dom';
 
 const Search = ({ item }: { item: string }) => {
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
@@ -18,15 +21,16 @@ const Search = ({ item }: { item: string }) => {
     contextData.fields.map((v: RawFieldItem) => [v.id, ''])
   );
   const searchFieldList = contextData.fields;
+  const { query, setQuery } = useSiteDataContext();
+  const { pathname } = useLocation();
 
   const handleSubmit = (
     values: RawItemTypes,
     { setSubmitting }: FormikHelpers<RawItemTypes>
   ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
+    setQuery({ ...values });
+    contextData.getRaws(values);
+    setSubmitting(false);
   };
 
   const formikConfig: FormikConfig<RawItemTypes> = {
@@ -34,6 +38,11 @@ const Search = ({ item }: { item: string }) => {
     onSubmit: handleSubmit,
     validationSchema: searchValidationSchema,
   };
+
+  useEffect(() => {
+    setQuery({});
+  }, [pathname]);
+
   return (
     <>
       <div className="center-title">資料列表搜尋</div>
