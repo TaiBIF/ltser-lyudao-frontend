@@ -4,6 +4,8 @@ import Breadcrumb from 'components/Breadcrumb';
 import Item from 'components/FormLink/Item';
 import Pagination from 'components/Pagination';
 
+import { FormLinkItem } from 'types/formLink';
+
 import { formLinkList } from 'data/formLink';
 import { FORM_LINK_API_URL } from 'data/api';
 
@@ -11,7 +13,7 @@ import useRender from 'hooks/page/useRender';
 import usePage from 'hooks/utils/usePage';
 
 const FormLink = () => {
-  const [formLinks, setFormLinks] = useState([]);
+  const [formLinks, setFormLinks] = useState<FormLinkItem[]>([]);
   const { getList } = useRender();
   const { pathname, page, pageData, setPageData } = usePage();
 

@@ -26,10 +26,8 @@ const Content = () => {
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const [items, setItems] = useState<string[]>([]);
-  const { filter } = useSurveyMapContext();
-
+  const { filter, idData } = useSurveyMapContext();
   const contextData = useDataContext();
-  const { idData } = useSurveyMapContext();
 
   const seasonList: string[] = ['1-3', '4-6', '7-9', '10-12'];
 

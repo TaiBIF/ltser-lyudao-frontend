@@ -63,11 +63,13 @@ function App() {
           <Route
             path="/"
             element={
-              <SurveyMapProvider>
-                <DataProvider>
-                  <Home />
-                </DataProvider>
-              </SurveyMapProvider>
+              <SiteDataProvider>
+                <SurveyMapProvider>
+                  <DataProvider>
+                    <Home />
+                  </DataProvider>
+                </SurveyMapProvider>
+              </SiteDataProvider>
             }
           />
           <Route path="/about/:categoryId/:aboutId" element={<About />} />
