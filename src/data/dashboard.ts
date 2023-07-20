@@ -537,7 +537,7 @@ export const formLinkColList: ColItem[] = [
     param: true,
   },
   {
-    id: 'name',
+    id: 'title',
     title: '資源名稱',
     show: true,
     space: 'text',
@@ -549,7 +549,7 @@ export const formLinkColList: ColItem[] = [
     space: 'text',
   },
   {
-    id: 'attachments',
+    id: 'formLinkAttachments',
     title: '資源附件檔案',
     show: true,
     space: 'text',
@@ -557,12 +557,6 @@ export const formLinkColList: ColItem[] = [
   {
     id: 'created',
     title: '建立日期',
-    show: true,
-    space: 'date',
-  },
-  {
-    id: 'modified',
-    title: '更新日期',
     show: true,
     space: 'date',
   },
@@ -588,7 +582,7 @@ export const formLinkFieldList: FieldItem[] = [
   {
     id: 3,
     type: 'file',
-    title: 'attachments',
+    title: 'files',
     label: '資源附件檔案',
     readonly: false,
     required: false,
