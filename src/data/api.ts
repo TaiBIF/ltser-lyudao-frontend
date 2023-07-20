@@ -1,3 +1,6 @@
+export const ABOUT_API_URL = 'about';
+export const ABOUT_PATH = 'about';
+
 export const CONTACT_API_URL = 'contacts';
 export const CONTACT_PATH = 'contact';
 
@@ -15,3 +18,6 @@ export const FORM_LINK_PATH = 'form-link';
 
 export const NEWS_API_URL = 'news';
 export const NEWS_PATH = 'news';
+
+export const DOWNLOAD_API_URL = 'download';
+export const DOWNLOAD_PATH = 'download';

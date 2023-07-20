@@ -12,13 +12,13 @@ const useSiteDataApi = () => {
     setList,
     defaultList,
     params,
-    setPageData,
+    setPaginationData,
   }: {
     url: string;
     setList: any;
     defaultList: RawItemTypes[];
     params: any;
-    setPageData: any;
+    setPaginationData: any;
   }) => {
     const result = await handleApi({
       method: 'get',
@@ -27,8 +27,8 @@ const useSiteDataApi = () => {
     });
     if (result?.status === 'success') {
       setList([...result.response.data.records]);
-      if (setPageData) {
-        setPageData({
+      if (setPaginationData) {
+        setPaginationData({
           ...Object.fromEntries(
             Object.entries(result.response.data).filter(
               ([key]) => key !== 'records'

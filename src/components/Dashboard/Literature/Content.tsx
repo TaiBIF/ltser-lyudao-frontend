@@ -8,18 +8,23 @@ import { literatureColList } from 'data/dashboard';
 import { LITERATURE_API_URL } from 'data/api';
 
 import useDashboard from 'hooks/page/useDashboard';
+import usePage from 'hooks/utils/usePage';
 
 const Content = () => {
   const PAGE: string = 'related-literature';
   const [literatureList, setLiteratureList] = useState<LiteratureItem[]>([]);
   const { getList } = useDashboard();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
 
   useEffect(() => {
     getList({
       url: LITERATURE_API_URL,
       setList: setLiteratureList,
+      params: { page: currentPage },
+      setPaginationData,
     });
-  }, []);
+  }, [currentPage]);
 
   return (
     <>
@@ -28,6 +33,9 @@ const Content = () => {
         cols={literatureColList}
         data={literatureList}
         renderAction={() => <AddBtn page={PAGE} />}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        paginationData={paginationData}
       />
     </>
   );

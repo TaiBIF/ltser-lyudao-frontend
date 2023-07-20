@@ -23,7 +23,8 @@ const RelatedLiterature = () => {
   const [literatures, setLiteratures] = useState<LiteratureItem[]>([]);
   const [data, setData] = useState<LiteratureItem[]>([]);
   const { getList } = useRender();
-  const { pathname, page, pageData, setPageData } = usePage();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
 
   const bannerData: BannerData = {
     title: '相關文獻',
@@ -43,10 +44,10 @@ const RelatedLiterature = () => {
       url: LITERATURE_API_URL,
       setList: setLiteratures,
       defaultList: literatureList,
-      params: { page },
-      setPageData,
+      params: { page: currentPage },
+      setPaginationData,
     });
-  }, [pathname, page]);
+  }, [currentPage]);
 
   useEffect(() => {
     if (!isFetchingList) {
@@ -85,7 +86,11 @@ const RelatedLiterature = () => {
                 })}
               </ul>
             )}
-            <Pagination page={page} pageData={pageData} />
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              paginationData={paginationData}
+            />
           </div>
         </div>
       </div>

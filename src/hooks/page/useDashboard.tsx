@@ -7,13 +7,33 @@ import placeholderImg from 'image/peoib-img.png';
 const useDashboard = () => {
   const { loading, handleApi, handleActions } = useApi();
 
-  const getList = async ({ url, setList }: { url: string; setList: any }) => {
+  const getList = async ({
+    url,
+    setList,
+    params,
+    setPaginationData,
+  }: {
+    url: string;
+    setList: any;
+    params?: any;
+    setPaginationData?: any;
+  }) => {
     const result = await handleApi({
       method: 'get',
       url: `/users/${url}/`,
+      params,
     });
     if (result?.status === 'success') {
-      setList([...result.response.data]);
+      setList([...result.response.data.records]);
+      if (setPaginationData) {
+        setPaginationData({
+          ...Object.fromEntries(
+            Object.entries(result.response.data).filter(
+              ([key]) => key !== 'records'
+            )
+          ),
+        });
+      }
     } else {
       handleActions({
         result: result?.response,

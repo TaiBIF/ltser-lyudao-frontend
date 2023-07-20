@@ -104,7 +104,7 @@ export type ItemTypes =
   | FormLinkItem
   | DownloadItem;
 
-export type PageDataItem = {
+export type PaginationDataItem = {
   currentPage: number;
   recordsPerPage: number;
   totalPages: number;

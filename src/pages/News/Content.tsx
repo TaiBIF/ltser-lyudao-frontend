@@ -25,7 +25,8 @@ const Content = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [data, setData] = useState<NewsItem[]>([]);
   const { getList } = useRender();
-  const { pathname, page, pageData, setPageData } = usePage();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
 
   const isAllType = filter.type === 0;
   const isFetchingList = news.length === 0;
@@ -57,10 +58,10 @@ const Content = () => {
       url: NEWS_API_URL,
       setList: setNews,
       defaultList: newsList,
-      params: { page },
-      setPageData,
+      params: { page: currentPage },
+      setPaginationData,
     });
-  }, [pathname, page]);
+  }, [currentPage]);
 
   return (
     <>
@@ -101,7 +102,11 @@ const Content = () => {
                   })}
               </ul>
             </div>
-            <Pagination page={page} pageData={pageData} />
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              paginationData={paginationData}
+            />
           </div>
         </div>
       </div>

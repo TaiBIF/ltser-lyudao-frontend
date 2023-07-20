@@ -1,7 +1,8 @@
-import React from 'react';
+import Pagination from 'components/Pagination';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ColItem } from 'types/utils';
+import { ColItem, PaginationDataItem } from 'types/utils';
 import { ItemTypes } from 'types/utils';
 
 interface TableTemplateProps<T> {
@@ -9,10 +10,21 @@ interface TableTemplateProps<T> {
   cols: ColItem[];
   data: T[];
   renderAction: () => React.ReactElement | null;
+  currentPage?: number;
+  setCurrentPage?: Dispatch<SetStateAction<number>>;
+  paginationData?: PaginationDataItem;
 }
 
 const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
-  const { page, cols, data, renderAction } = props;
+  const {
+    page,
+    cols,
+    data,
+    renderAction,
+    currentPage,
+    setCurrentPage,
+    paginationData,
+  } = props;
   const isFetchingData = data.length === 0;
 
   return (
@@ -122,6 +134,13 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
           </tbody>
         </table>
       </div>
+      {currentPage && setCurrentPage && paginationData && (
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          paginationData={paginationData}
+        />
+      )}
     </>
   );
 };

@@ -24,14 +24,14 @@ const Search = ({ item }: { item: string }) => {
   const searchFieldList = contextData.fields;
   const { query, setQuery } = useSiteDataContext();
   const { pathname } = useLocation();
-  const { page } = usePage();
+  const { currentPage } = usePage();
 
   const handleSubmit = (
     values: RawItemTypes,
     { setSubmitting }: FormikHelpers<RawItemTypes>
   ) => {
     setQuery({ ...values });
-    contextData.getRaws({ params: { ...values, page } });
+    contextData.getRaws({ params: { ...values, page: currentPage } });
     setSubmitting(false);
   };
 

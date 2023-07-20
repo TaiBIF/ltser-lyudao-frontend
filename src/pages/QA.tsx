@@ -22,7 +22,8 @@ const QA = () => {
   const [active, setActive] = useState<number | string>(0);
   const [qas, setQas] = useState<QAItem[]>([]);
   const [data, setData] = useState<QAItem[]>([]);
-  const { pathname, page, pageData, setPageData } = usePage();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
 
   const bannerData: BannerData = {
     title: '常見Q&A',
@@ -39,10 +40,10 @@ const QA = () => {
       url: QA_API_URL,
       setList: setQas,
       defaultList: qaList,
-      params: { page },
-      setPageData,
+      params: { page: currentPage },
+      setPaginationData,
     });
-  }, [pathname, page]);
+  }, [currentPage]);
 
   useEffect(() => {
     if (!isFetchingList) {
@@ -70,7 +71,11 @@ const QA = () => {
                 })}
               </ul>
             )}
-            <Pagination page={page} pageData={pageData} />
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              paginationData={paginationData}
+            />
           </div>
         </div>
       </div>

@@ -1,46 +1,61 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { PageDataItem } from 'types/utils';
+import { PaginationDataItem } from 'types/utils';
 
 interface PaginationProps {
-  page: number;
-  pageData: PageDataItem;
+  currentPage: number;
+  paginationData: PaginationDataItem;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
 const Pagination = (props: PaginationProps) => {
-  const { page, pageData } = props;
-  const { totalPages, totalRecords } = pageData;
+  const { currentPage, setCurrentPage, paginationData } = props;
+  const { totalPages, totalRecords } = paginationData;
   const pageList = () => {
     let pageArr = [];
     for (let i = 1; i <= totalPages; i++) {
-      if (i < page + 2 && i > page - 2) {
+      if (i < currentPage + 2 && i > currentPage - 2) {
         pageArr.push(i);
       }
     }
     return pageArr;
   };
 
-  const prevs = page - 2;
-  const nexts = page + 2;
+  const prevs = currentPage - 2;
+  const nexts = currentPage + 2;
 
-  const hasPrev = page > 1;
-  const hasNext = page < totalPages;
+  const hasPrev = currentPage > 1;
+  const hasNext = currentPage < totalPages;
 
-  const isFirstPage = page === 1 || prevs <= 1;
-  const isLastPage = page === totalPages || nexts >= totalPages;
+  const isFirstPage = currentPage === 1 || prevs <= 1;
+  const isLastPage = currentPage === totalPages || nexts >= totalPages;
+
+  const handlePage = (page: number) => {
+    setCurrentPage(page);
+  };
   return (
     <>
       <div className="page-num">
         {/*現在位置加now*/}
         {!isFirstPage && (
-          <Link to={`?page=1`} className="num">
+          <div
+            onClick={() => {
+              handlePage(1);
+            }}
+            className="num"
+          >
             1
-          </Link>
+          </div>
         )}
         {hasPrev && (
-          <Link to={`?page=${page - 1}`} className="back">
+          <div
+            onClick={() => {
+              handlePage(currentPage - 1);
+            }}
+            className="back"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="9.187"
@@ -64,21 +79,28 @@ const Pagination = (props: PaginationProps) => {
               </g>
             </svg>
             <p>上一頁</p>
-          </Link>
+          </div>
         )}
         {pageList().map((v) => {
           return (
-            <Link
+            <div
               key={v}
-              to={`?page=${v}`}
-              className={`num ${page === v ? 'now' : ''}`}
+              className={`num ${currentPage === v ? 'now' : ''}`}
+              onClick={() => {
+                handlePage(v);
+              }}
             >
               {v}
-            </Link>
+            </div>
           );
         })}
         {hasNext && (
-          <Link to={`?page=${page + 1}`} className="next">
+          <div
+            className="next"
+            onClick={() => {
+              handlePage(currentPage + 1);
+            }}
+          >
             <p>下一頁</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,12 +124,17 @@ const Pagination = (props: PaginationProps) => {
                 </g>
               </g>
             </svg>
-          </Link>
+          </div>
         )}
         {!isLastPage && (
-          <Link to={`?page=${totalPages}`} className="num">
+          <div
+            className="num"
+            onClick={() => {
+              handlePage(totalPages);
+            }}
+          >
             {totalPages}
-          </Link>
+          </div>
         )}
       </div>
     </>

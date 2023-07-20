@@ -17,7 +17,8 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 const Result = ({ item }: { item: string }) => {
   const { show, handleLoginClick } = useEcoContext();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
-  const { pathname, page, pageData, setPageData } = usePage();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
   const { query, setQuery } = useSiteDataContext();
 
   useEffect(() => {
@@ -26,15 +27,20 @@ const Result = ({ item }: { item: string }) => {
 
   useEffect(() => {
     if (contextData.raws) {
-      contextData.getRaws({ params: { ...query, page }, setPageData });
+      contextData.getRaws({
+        params: { ...query, page: currentPage },
+        setPaginationData,
+      });
     }
-  }, [pathname, page]);
+  }, [currentPage]);
 
   return (
     <>
       <div className="result-area">
         <div className="toptool">
-          <div className="data-num">資料筆數：{pageData.totalRecords}</div>
+          <div className="data-num">
+            資料筆數：{paginationData.totalRecords}
+          </div>
           <div className="btnr-box">
             <button
               type="button"
@@ -74,7 +80,11 @@ const Result = ({ item }: { item: string }) => {
             </tbody>
           </table>
         </div>
-        <Pagination page={page} pageData={pageData} />
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          paginationData={paginationData}
+        />
       </div>
     </>
   );

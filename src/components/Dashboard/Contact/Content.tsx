@@ -9,16 +9,21 @@ import { contactColList } from 'data/dashboard';
 import { CONTACT_API_URL, CONTACT_PATH } from 'data/api';
 
 import useDashboard from 'hooks/page/useDashboard';
+import usePage from 'hooks/utils/usePage';
 
 const Content = () => {
   const PAGE: string = CONTACT_PATH;
   const [contactList, setContactList] = useState<ContactItem[]>([]);
   const { getList } = useDashboard();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
 
   useEffect(() => {
     getList({
       url: CONTACT_API_URL,
       setList: setContactList,
+      params: { page: currentPage },
+      setPaginationData,
     });
   }, []);
 
@@ -29,6 +34,9 @@ const Content = () => {
         cols={contactColList}
         data={contactList}
         renderAction={() => <AddBtn page={PAGE} />}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        paginationData={paginationData}
       />
     </>
   );

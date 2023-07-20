@@ -1,4 +1,4 @@
-export const defaultPageData = {
+export const defaultPaginationData = {
   currentPage: 1,
   recordsPerPage: 1,
   totalPages: 1,

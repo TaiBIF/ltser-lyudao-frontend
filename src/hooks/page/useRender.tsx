@@ -15,13 +15,13 @@ const useRender = () => {
     setList,
     defaultList,
     params,
-    setPageData,
+    setPaginationData,
   }: {
     url: string;
     setList: any;
     defaultList: ItemTypes[];
     params?: any;
-    setPageData?: any;
+    setPaginationData?: any;
   }) => {
     const result = await handleApi({
       method: 'get',
@@ -30,8 +30,8 @@ const useRender = () => {
     });
     if (result?.status === 'success') {
       setList([...result.response.data.records]);
-      if (setPageData) {
-        setPageData({
+      if (setPaginationData) {
+        setPaginationData({
           ...Object.fromEntries(
             Object.entries(result.response.data).filter(
               ([key]) => key !== 'records'

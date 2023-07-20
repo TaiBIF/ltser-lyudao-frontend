@@ -15,7 +15,8 @@ import usePage from 'hooks/utils/usePage';
 const FormLink = () => {
   const [formLinks, setFormLinks] = useState<FormLinkItem[]>([]);
   const { getList } = useRender();
-  const { pathname, page, pageData, setPageData } = usePage();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
 
   const isFetchingList = formLinks.length === 0;
 
@@ -24,10 +25,10 @@ const FormLink = () => {
       url: FORM_LINK_API_URL,
       setList: setFormLinks,
       defaultList: formLinkList,
-      params: { page },
-      setPageData,
+      params: { page: currentPage },
+      setPaginationData,
     });
-  }, [pathname, page]);
+  }, [currentPage]);
 
   return (
     <>
@@ -49,7 +50,11 @@ const FormLink = () => {
                   return <Item key={id} data={v} />;
                 })}
             </ul>
-            <Pagination page={page} pageData={pageData} />
+            <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              paginationData={paginationData}
+            />
           </div>
         </div>
       </div>
