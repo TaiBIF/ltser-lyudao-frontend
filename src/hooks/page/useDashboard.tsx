@@ -133,7 +133,13 @@ const useDashboard = () => {
       if (key === 'image' && typeof value === 'string') {
         return;
       }
-      data.append(key, value);
+      if (key === 'files') {
+        value.forEach((v: any) => {
+          data.append(key, v);
+        });
+      } else {
+        data.append(key, value);
+      }
     });
     const result = await handleApi({
       method: 'patch',

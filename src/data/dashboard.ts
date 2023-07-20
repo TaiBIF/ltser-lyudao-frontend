@@ -555,7 +555,7 @@ export const formLinkColList: ColItem[] = [
     space: 'text',
   },
   {
-    id: 'created',
+    id: 'created_at',
     title: '建立日期',
     show: true,
     space: 'date',
@@ -566,7 +566,7 @@ export const formLinkFieldList: FieldItem[] = [
   {
     id: 1,
     type: 'text',
-    title: 'name',
+    title: 'title',
     label: '資源名稱',
     readonly: false,
     required: true,
