@@ -8,6 +8,8 @@ import { FormLinkItem } from 'types/formLink';
 
 import { formLinkFieldList } from 'data/dashboard';
 import { formLinkValidationSchema } from 'data/validationSchema';
+import useDashboard from 'hooks/page/useDashboard';
+import { FORM_LINK_API_URL, FORM_LINK_PATH } from 'data/api';
 
 const Add = () => {
   const initialValues: FormLinkItem = {
@@ -15,14 +17,19 @@ const Add = () => {
     attachments: '',
   };
 
+  const { handleAdd } = useDashboard();
+
   const handleAddSubmit = (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
+    handleAdd({
+      values,
+      url: FORM_LINK_API_URL,
+      redirectPath: FORM_LINK_PATH,
+      placeholder: true,
+    });
+    setSubmitting(false);
   };
 
   return (

@@ -543,8 +543,14 @@ export const formLinkColList: ColItem[] = [
     space: 'text',
   },
   {
-    id: 'attachments',
+    id: 'link',
     title: '資源連結',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'attachments',
+    title: '資源附件檔案',
     show: true,
     space: 'text',
   },
@@ -572,12 +578,21 @@ export const formLinkFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 1,
+    id: 2,
     type: 'text',
-    title: 'attachments',
+    title: 'link',
     label: '資源連結',
     readonly: false,
-    required: true,
+    required: false,
+  },
+  {
+    id: 3,
+    type: 'file',
+    title: 'attachments',
+    label: '資源附件檔案',
+    readonly: false,
+    required: false,
+    multiple: true,
   },
 ];
 
