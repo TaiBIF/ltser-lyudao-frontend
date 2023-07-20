@@ -551,7 +551,7 @@ export const formLinkColList: ColItem[] = [
   {
     id: 'formLinkAttachments',
     title: '資源附件檔案',
-    show: true,
+    show: false,
     space: 'text',
   },
   {
