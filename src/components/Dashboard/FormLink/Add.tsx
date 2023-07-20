@@ -13,7 +13,7 @@ import { FORM_LINK_API_URL, FORM_LINK_PATH } from 'data/api';
 
 const Add = () => {
   const initialValues: FormLinkFormItem = {
-    title: '',
+    name: '',
     link: '',
     files: [],
   };

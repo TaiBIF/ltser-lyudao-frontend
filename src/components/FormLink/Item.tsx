@@ -7,7 +7,7 @@ interface ItemProps {
 
 const Item = (props: ItemProps) => {
   const { data } = props;
-  const { title, link, formLinkAttachments, created_at } = data;
+  const { name, link, formLinkAttachments, created_at } = data;
 
   const isLink = formLinkAttachments.length === 0;
   return (
@@ -15,7 +15,7 @@ const Item = (props: ItemProps) => {
       <li>
         <div className="leftbox">
           <div className="date">{created_at}</div>
-          <p>{title}</p>
+          <p>{name}</p>
         </div>
         {isLink ? (
           <a href={link} className="right-icob">

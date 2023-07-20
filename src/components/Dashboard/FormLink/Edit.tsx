@@ -17,7 +17,7 @@ import useDashboard from 'hooks/page/useDashboard';
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<FormLinkFormItem>({
     id: 0,
-    title: '',
+    name: '',
     files: [],
     created_at: '',
   });
