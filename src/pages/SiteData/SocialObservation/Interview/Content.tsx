@@ -9,7 +9,7 @@ import bannerImg from 'image/social_bn.png';
 
 import { BannerData } from 'types/common';
 
-import { interviewList } from 'data/siteData';
+import { interviewList, interviewTypeList } from 'data/siteData';
 
 import usePage from 'hooks/utils/usePage';
 
@@ -41,7 +41,7 @@ const Content = () => {
                 </div>
                 <div className="input-item">
                   <div className="title">
-                    選擇類別
+                    受訪對象
                     <div className="line" />
                   </div>
                   <select>
@@ -51,7 +51,7 @@ const Content = () => {
               </div>
               <div className="check-itembox">
                 <div className="title">
-                  可勾選的項目
+                  議題分類
                   <div className="line" />
                 </div>
                 <div className="itembox">
@@ -84,12 +84,23 @@ const Content = () => {
             </div>
             <ul className="soci-list">
               {interviewList.map((v) => {
-                const { id, date, title, tags } = v;
+                const { id, year, target, type, title, tags } = v;
+                const matchType = interviewTypeList.find(
+                  (v) => v.id === type
+                )?.title;
                 return (
-                  <li key={id}>
+                  <li key={id} style={{ width: '100%' }}>
                     <div className="datebox">
-                      {date}
+                      {year}
                       <div className="line" />
+                    </div>
+                    <div className="mb-1">
+                      <small className="d-block text-muted">
+                        受訪對象: {target}
+                      </small>
+                      <small className="d-block text-muted">
+                        議題分類: {matchType}
+                      </small>
                     </div>
                     <Link
                       to={`/site-data/social-observation/social-interview-data/${id}`}

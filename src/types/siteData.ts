@@ -24,7 +24,7 @@ export type FilterItem = {
 
 export type InterviewItem = {
   id?: number | string;
-  date?: string;
+  year: string;
   title: string;
   content: string;
   target: string;

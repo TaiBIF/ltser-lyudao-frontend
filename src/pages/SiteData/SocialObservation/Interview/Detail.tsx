@@ -23,7 +23,7 @@ const Detail = () => {
   const { interviewId } = useParams();
   const [interviewData, setInterviewData] = useState<InterviewItem>({
     id: 0,
-    date: '',
+    year: '',
     title: '',
     content: '',
     target: '',
@@ -50,7 +50,7 @@ const Detail = () => {
             <div className="news-de soci-de">
               <div className="title-area">
                 <div className="cat-date">
-                  <div className="date">{interviewData.date}</div>
+                  <div className="date">{interviewData.year}</div>
                 </div>
                 <div className="news-title">
                   <h2>{interviewData.title}</h2>

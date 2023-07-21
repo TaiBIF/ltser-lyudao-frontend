@@ -1,5 +1,5 @@
 import { AsideItem, EcoSearchItem, InterviewItem } from 'types/siteData';
-import { FieldItem, ColItem } from 'types/utils';
+import { FieldItem, ColItem, TypeItem } from 'types/utils';
 
 import newsImg from 'image/newsubb.jpg';
 
@@ -377,14 +377,21 @@ export const ecoResultList: EcoSearchItem[] = [
 export const interviewList: InterviewItem[] = [
   {
     id: 1,
-    date: '2023-01-02',
+    year: '2023',
     title: '向海致敬募集綠島減塑生力軍',
     content: `交通部觀光局東部海岸國家風景區管理處(以下簡稱東管處)為落實「向海致敬」政策海廢去化及減量目標，促進資源永續利用，委託臺灣德福公司(Taiwanderful)在綠島設立洄塑工作站推廣一系列減塑行動。112年3月29日(星期三)下午於該處綠島遊客中心辦理營運說明會及工作站導覽，號召在地環境友善店家成為減塑生力軍，共同為綠島環境永續盡一份心力。
     <br />
     綠島擁有豐富海洋遊憩資源，每年吸引近30萬人到訪，也帶來可觀垃圾量。離島垃圾去化不易，不論一般垃圾或寶特瓶、塑膠餐盒等可回收資源均需運回本島，增加再利用門檻，降低業者處理意願。東管處今(112)年以位於朝日旅服的洄塑工作站為中心，搭配綠島國中、綠島國小、公館國小、朝日溫泉、綠島遊客中心等5處社區回收站，及若干環境友善店家，進行飲料瓶清潔回收，再將處理乾淨並完成分類之飲料瓶粉碎成塑膠粒，製成紀念品或生活物品再利用，達到島內循環之減塑計畫。站，及若干環境友善店家，進行飲料瓶清潔回收，再將處理乾淨並完成分類之飲料瓶粉碎成塑膠粒，製成紀念品或生活物品再利用，達到島內循環之減塑計畫。`,
-    target: '',
+    target: '對象一',
     type: 0,
     image: newsImg,
     tags: ['標籤標籤', 'TAG11'],
+  },
+];
+
+export const interviewTypeList: TypeItem[] = [
+  {
+    id: 0,
+    title: '項目一',
   },
 ];
