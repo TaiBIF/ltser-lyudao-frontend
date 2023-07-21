@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PrevIcon from './PrevIcon';
-import NextIcon from './NextIcon';
+import PrevIcon from 'components/PrevIcon';
+import NextIcon from 'components/NextIcon';
 
 import { newsList } from 'data/news';
 

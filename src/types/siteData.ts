@@ -21,3 +21,14 @@ export type ShowState = {
 export type FilterItem = {
   site: string;
 };
+
+export type InterviewItem = {
+  id?: number | string;
+  date?: string;
+  title: string;
+  content: string;
+  target: string;
+  type: number | string;
+  image: string;
+  tags: string[];
+};

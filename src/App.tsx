@@ -18,6 +18,9 @@ import Terms from 'pages/Terms';
 import NewsContent from 'pages/News/Content';
 import NewsDetail from 'pages/News/Detail';
 import QA from 'pages/QA';
+import InterviewContent from 'pages/SiteData/SocialObservation/Interview/Content';
+import InterviewDetail from 'pages/SiteData/SocialObservation/Interview/Detail';
+import Economy from 'pages/SiteData/SocialObservation/Economy';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import DashboardAboutContent from 'components/Dashboard/About/Content';
@@ -134,6 +137,18 @@ function App() {
                 </SurveyMapProvider>
               </SiteDataProvider>
             }
+          />
+          <Route
+            path="/site-data/social-observation/social-interview-data"
+            element={<InterviewContent />}
+          />
+          <Route
+            path="/site-data/social-observation/social-interview-data/:interviewId"
+            element={<InterviewDetail />}
+          />
+          <Route
+            path="/site-data/social-observation/social-economy-data"
+            element={<Economy />}
           />
           <Route path="/forgot-password" element={<ForgotPsw />} />
           <Route path="/mail-verification" element={<MailVerification />} />

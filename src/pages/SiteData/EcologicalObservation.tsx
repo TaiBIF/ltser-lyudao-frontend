@@ -4,12 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Breadcrumb from 'components/Breadcrumb';
 import Banner from 'components/Banner';
 import Aside from 'components/SiteData/Aside/Content';
-
 import DownloadPopup from 'components/SiteData/DownloadPopup';
+
+import bannerImg from 'image/ecological_bn.png';
 
 import { BannerData } from 'types/common';
 
-import bannerImg from 'image/ecological_bn.png';
 import { ecoAsideList } from 'data/siteData';
 import Main from 'components/SiteData/Main';
 
