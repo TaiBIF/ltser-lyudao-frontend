@@ -146,19 +146,6 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
             <label htmlFor={title} className="form-label">
               {label}
             </label>
-            <label htmlFor={title} className="c-form__file">
-              <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
-            </label>
-            <input
-              type="file"
-              id={title}
-              name={title}
-              className="d-none"
-              onChange={handleFileChange}
-              onClick={handleFileClick}
-              multiple={multiple}
-              accept={`${fileType}/*`}
-            />
             {hints &&
               hints.map((v) => {
                 const { id, title } = v;
@@ -187,18 +174,33 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                   case 'files':
                     const value = (values as FormLinkItem).formLinkAttachments;
                     return (
-                      <div key={id} className="form-text d-flex">
+                      <div key={id} className="form-text">
                         {title}
-                        <div>
-                          {value &&
-                            value.map((v: AttachmentsItem, i: number) => {
-                              return <div key={i}>{v.file}</div>;
-                            })}
-                        </div>
+                        {value &&
+                          value.map((v: AttachmentsItem, i: number) => {
+                            return (
+                              <div key={i} className="form-text">
+                                {v.file}
+                              </div>
+                            );
+                          })}
                       </div>
                     );
                 }
               })}
+            <label htmlFor={title} className="c-form__file">
+              <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
+            </label>
+            <input
+              type="file"
+              id={title}
+              name={title}
+              className="d-none"
+              onChange={handleFileChange}
+              onClick={handleFileClick}
+              multiple={multiple}
+              accept={`${fileType}/*`}
+            />
           </div>
           {files &&
             (fileType === 'image' ? (
