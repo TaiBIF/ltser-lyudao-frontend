@@ -25,14 +25,14 @@ function News(props: NewsProps) {
     setActive({ ...active, type: id });
   };
 
-  useEffect(() => {
-    if (isAllType) {
-      setNews([...newsList.slice(0, 3)]);
-    } else {
-      const matchActiveType = newsList.filter((v) => v.type === active.type);
-      setNews([...matchActiveType]);
-    }
-  }, [active.type]);
+  // useEffect(() => {
+  //   if (isAllType) {
+  //     setNews([...newsList.slice(0, 3)]);
+  //   } else {
+  //     const matchActiveType = newsList.filter((v) => v.type === active.type);
+  //     setNews([...matchActiveType]);
+  //   }
+  // }, [active.type]);
 
   return (
     <>
@@ -66,7 +66,7 @@ function News(props: NewsProps) {
             </div>
             <div className="news-list">
               <ul>
-                {news.map((v) => {
+                {/* {news.map((v) => {
                   const { id, type, title, content, modified } = v;
                   const matchType = newsTypeList.find((v) => v.id === type);
                   return (
@@ -83,7 +83,7 @@ function News(props: NewsProps) {
                       </Link>
                     </li>
                   );
-                })}
+                })} */}
               </ul>
             </div>
             <div className="align-right">

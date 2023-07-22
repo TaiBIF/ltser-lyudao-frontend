@@ -80,7 +80,7 @@ export const useDownload = () => {
       handleDownloadAction({ result, fileName });
     } else {
       handleActions({
-        result: result?.response,
+        result,
         error: {
           title: '發生錯誤，檔案讀取失敗',
         },

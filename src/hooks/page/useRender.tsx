@@ -3,7 +3,7 @@ import React from 'react';
 import { Dictionary } from 'lodash';
 
 import { useApi } from 'hooks/api/useApi';
-import { ItemTypes } from 'types/utils';
+import { ItemTypes, TypeItem } from 'types/utils';
 
 import { DEPOSITAR_API_URL } from 'utils/config';
 
@@ -15,12 +15,14 @@ const useRender = () => {
     setList,
     defaultList,
     params,
+    setTypes,
     setPaginationData,
   }: {
     url: string;
-    setList: any;
-    defaultList: ItemTypes[];
+    setList?: any;
+    defaultList?: ItemTypes[];
     params?: any;
+    setTypes?: any;
     setPaginationData?: any;
   }) => {
     const result = await handleApi({
@@ -29,7 +31,9 @@ const useRender = () => {
       params,
     });
     if (result?.status === 'success') {
-      setList([...result.response.data.records]);
+      if (setList) {
+        setList([...result.response.data.records]);
+      }
       if (setPaginationData) {
         setPaginationData({
           ...Object.fromEntries(
@@ -39,8 +43,45 @@ const useRender = () => {
           ),
         });
       }
+      if (setTypes) {
+        setTypes([...result.response.data.types]);
+      }
     } else {
-      setList([...defaultList]);
+      if (setList && defaultList) {
+        setList([...defaultList]);
+      }
+    }
+  };
+
+  const getDetail = async ({
+    id,
+    url,
+    setData,
+    redirectPath,
+  }: {
+    id: number | string;
+    url: string;
+    setData: any;
+    redirectPath: string;
+  }) => {
+    const result = await handleApi({
+      method: 'get',
+      url: `/users/${url}/`,
+      params: { id },
+    });
+    if (result?.status === 'success') {
+      setData({ ...result.response.data });
+    } else {
+      handleActions({
+        result,
+        error: {
+          title: '發生錯誤，id不存在',
+        },
+        action: {
+          type: 'redirect',
+          path: `/${redirectPath}`,
+        },
+      });
     }
   };
 
@@ -67,7 +108,7 @@ const useRender = () => {
     }
   };
 
-  return { getList, getDepositarList };
+  return { getList, getDetail, getDepositarList };
 };
 
 export default useRender;

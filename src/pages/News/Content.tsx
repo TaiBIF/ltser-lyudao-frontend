@@ -17,20 +17,9 @@ import { newsList, newsTypeList } from 'data/news';
 import usePage from 'hooks/utils/usePage';
 import useRender from 'hooks/page/useRender';
 import { NEWS_API_URL } from 'data/api';
+import { TypeItem } from 'types/utils';
 
 const Content = () => {
-  const [filter, setFilter] = useState<NewsActiveState>({
-    type: 0,
-  });
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [data, setData] = useState<NewsItem[]>([]);
-  const { getList } = useRender();
-  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
-    usePage();
-
-  const isAllType = filter.type === 0;
-  const isFetchingList = news.length === 0;
-
   const bannerData: BannerData = {
     title: '最新消息',
     en: ['News'],
@@ -38,30 +27,33 @@ const Content = () => {
     bgImg: bannerImg,
   };
 
+  const [filter, setFilter] = useState<NewsActiveState>({
+    type: 0,
+  });
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [typeList, setTypeList] = useState<TypeItem[]>([]);
+
+  const { getList } = useRender();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
+
+  const isAllType = filter.type === 0;
+  const isFetchingList = news.length === 0;
+
   const handleTypeClick = (id: number | string) => {
     setFilter({ ...filter, type: id });
   };
-
-  useEffect(() => {
-    if (!isFetchingList) {
-      if (isAllType) {
-        setData([...news]);
-      } else {
-        const matchType = news.filter((v) => v.type === filter.type);
-        setData([...matchType]);
-      }
-    }
-  }, [filter.type, news]);
 
   useEffect(() => {
     getList({
       url: NEWS_API_URL,
       setList: setNews,
       defaultList: newsList,
-      params: { page: currentPage },
+      params: { page: currentPage, filter: !isAllType ? filter.type : null },
+      setTypes: setTypeList,
       setPaginationData,
     });
-  }, [currentPage]);
+  }, [currentPage, filter.type]);
 
   return (
     <>
@@ -74,7 +66,7 @@ const Content = () => {
               <div className="category-box">
                 <ul>
                   {/*目前位置給now*/}
-                  {newsTypeList.map((v) => {
+                  {typeList.map((v) => {
                     const { id, title } = v;
                     return (
                       <li
@@ -97,8 +89,8 @@ const Content = () => {
             <div className="news-list">
               <ul>
                 {!isFetchingList &&
-                  data.map((v) => {
-                    return <Item key={v.id} data={v} />;
+                  news.map((v) => {
+                    return <Item key={v.id} data={v} typeList={typeList} />;
                   })}
               </ul>
             </div>

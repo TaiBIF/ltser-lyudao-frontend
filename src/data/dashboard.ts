@@ -1,6 +1,6 @@
 import { TypeItem, FieldItem, ColItem } from 'types/utils';
 import { TabItem, DownloadItem } from 'types/dashboard';
-import { newsTypeList, newsImageList, newsAttachmentList } from 'data/news';
+import { newsTypeList, newsAttachmentList } from 'data/news';
 import { contactTypeList } from 'data/contact';
 import { aboutTypeList, attachmentNameList } from 'data/about';
 import { qaTypeList } from 'data/qa';
@@ -402,7 +402,7 @@ export const newsColList: ColItem[] = [
     id: 'type',
     title: '消息類型',
     show: true,
-    relate: newsTypeList,
+    // relate: newsTypeList,
   },
   {
     id: 'userId',
@@ -421,28 +421,37 @@ export const newsColList: ColItem[] = [
     show: true,
     space: 'text',
   },
+  {
+    id: 'newsDate',
+    title: '消息日期',
+    show: true,
+    space: 'date',
+  },
+  {
+    id: 'user',
+    title: '上傳者',
+    show: true,
+  },
+  {
+    id: 'user_email',
+    title: '上傳者帳號',
+    show: true,
+  },
   // {
   //   id: 'cover',
   //   title: '封面圖片',
   //   show: true,
   // },
   {
-    id: 'image',
+    id: 'images',
     title: '圖片連結',
     show: true,
-    relate: newsImageList,
   },
   {
     id: 'attachments',
     title: '附件檔案連結',
     show: true,
-    relate: newsAttachmentList,
-  },
-  {
-    id: 'modified',
-    title: '消息日期',
-    show: true,
-    space: 'date',
+    // relate: newsAttachmentList,
   },
 ];
 
@@ -453,8 +462,7 @@ export const newsFieldList: FieldItem[] = [
     title: 'type',
     label: '消息類型',
     readonly: false,
-    required: true,
-    options: newsTypeList,
+    required: false,
   },
   {
     id: 2,
@@ -475,7 +483,7 @@ export const newsFieldList: FieldItem[] = [
   {
     id: 4,
     type: 'file',
-    title: 'image',
+    title: 'images',
     label: '圖片連結',
     readonly: false,
     required: false,
@@ -494,7 +502,7 @@ export const newsFieldList: FieldItem[] = [
   {
     id: 6,
     type: 'date',
-    title: 'modified',
+    title: 'newsDate',
     label: '建立日期',
     readonly: false,
     required: false,
@@ -549,7 +557,7 @@ export const formLinkColList: ColItem[] = [
     space: 'text',
   },
   {
-    id: 'formLinkAttachments',
+    id: 'attachments',
     title: '資源附件檔案',
     show: false,
     space: 'text',

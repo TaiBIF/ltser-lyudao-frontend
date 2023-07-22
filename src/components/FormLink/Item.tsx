@@ -7,9 +7,9 @@ import { useDownload } from 'hooks/api/useDownload';
 import { FORM_LINK_API_URL } from 'data/api';
 
 const Item = ({ data }: { data: FormLinkItem }) => {
-  const { id, name, link, formLinkAttachments, created_at } = data;
+  const { id, name, link, attachments, created_at } = data;
 
-  const isLink = formLinkAttachments.length === 0;
+  const isLink = attachments.length === 0;
   const { handleDownload } = useDownload();
 
   const handleDownloadClick = () => {

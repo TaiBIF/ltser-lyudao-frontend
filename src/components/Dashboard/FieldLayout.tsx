@@ -9,6 +9,7 @@ import { AttachmentsItem, FieldItem, FileItem, ItemTypes } from 'types/utils';
 import { hasImageProperty } from 'helpers/hasImageProperty';
 import { BE_URL } from 'utils/config';
 import { FormLinkItem } from 'types/formLink';
+import { NewsItem } from 'types/news';
 
 const FieldLayout = ({ data }: { data: FieldItem }) => {
   const {
@@ -146,6 +147,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
             <label htmlFor={title} className="form-label">
               {label}
             </label>
+
             <label htmlFor={title} className="c-form__file">
               <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
             </label>
@@ -185,7 +187,9 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                         ))
                     );
                   case 'files':
-                    const value = (values as FormLinkItem).formLinkAttachments;
+                    const value = (
+                      (values as FormLinkItem) || (values as NewsItem)
+                    ).attachments;
                     return (
                       <div key={id} className="form-text">
                         {title}

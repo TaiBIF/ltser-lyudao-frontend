@@ -77,7 +77,7 @@ export type SelectItem = {
   plan: string;
 };
 
-export type RelateTypes = TypeItem | NewsImageItem | AttachmentItem;
+export type RelateTypes = TypeItem | AttachmentItem;
 
 export type RelateListTypes = ColItem | FieldItem;
 

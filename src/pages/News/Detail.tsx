@@ -9,75 +9,65 @@ import { BannerData } from 'types/common';
 import { TypeItem } from 'types/utils';
 import { NewsImageItem, NewsItem } from 'types/news';
 
-import { newsImageList, newsList, newsTypeList } from 'data/news';
+import { newsList, newsTypeList } from 'data/news';
 
 import bannerImg from 'image/newsbn.jpg';
+import useRender from 'hooks/page/useRender';
+import { NEWS_API_URL, NEWS_PATH } from 'data/api';
 
 const Detail = () => {
-  const { newsId } = useParams();
-  const [typeData, setTypeData] = useState<TypeItem>({
-    id: '',
-    title: '',
-    colorClass: '',
-  });
-  const [newsData, setNewsData] = useState<NewsItem>({
-    id: 0,
-    type: 0,
-    userId: '',
-    title: '',
-    content: '',
-    image: [],
-    attachments: [],
-    created: '',
-    modified: '',
-  });
-  const [imageData, setImageData] = useState<NewsImageItem[]>([]);
-  const [coverImage, setCoverImage] = useState<NewsImageItem>({
-    id: 0,
-    title: '',
-    cover: true,
-  });
-
-  const isFetchingNews = newsData.id === 0;
-  const isFetchingImage = imageData.length === 0;
-
-  useEffect(() => {
-    const matchNews = newsId && newsList.find((v) => v.id === Number(newsId));
-    if (matchNews) {
-      setNewsData({ ...matchNews });
-    }
-  }, [newsId]);
-
-  useEffect(() => {
-    if (!isFetchingNews) {
-      const matchType = newsTypeList.find((v) => v.id === newsData.type);
-      if (matchType) {
-        setTypeData({ ...matchType });
-      }
-      const matchImage = newsImageList.filter((v) =>
-        newsData.image.includes(v.id)
-      );
-      if (matchImage) {
-        setImageData([...matchImage]);
-      }
-    }
-  }, [newsData]);
-
-  useEffect(() => {
-    if (!isFetchingImage) {
-      const matchCover = imageData.find((v) => v.cover);
-      if (matchCover) {
-        setCoverImage({ ...matchCover });
-      }
-    }
-  }, [imageData]);
-
   const bannerData: BannerData = {
     title: '最新消息',
     en: ['News'],
     maskImg: true,
     bgImg: bannerImg,
   };
+
+  const { newsId } = useParams();
+  const { getList, getDetail } = useRender();
+
+  const [newsData, setNewsData] = useState<NewsItem>({
+    id: 0,
+    type: [],
+    title: '',
+    content: ``,
+    newsDate: '',
+    user: 0,
+    images: [],
+    attachments: [],
+  });
+  const [typeList, setTypeList] = useState<TypeItem[]>([]);
+  const [types, setTypes] = useState<any[]>([]);
+
+  const isFetchingTypeList = typeList.length === 0;
+  const isFetchingDetail = newsData.id === 0;
+  const hasImages = newsData.images?.length !== 0;
+
+  useEffect(() => {
+    getList({
+      url: NEWS_API_URL,
+      setTypes: setTypeList,
+    });
+  }, []);
+
+  useEffect(() => {
+    getDetail({
+      id: Number(newsId),
+      url: NEWS_API_URL,
+      setData: setNewsData,
+      redirectPath: NEWS_PATH,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isFetchingTypeList && !isFetchingDetail) {
+      const matchType = newsData.type.map((item) =>
+        typeList.find((v) => v.id === item)
+      );
+      setTypes([...matchType]);
+    }
+  }, [newsData, typeList]);
+
   return (
     <>
       <div className="innbox">
@@ -88,10 +78,14 @@ const Detail = () => {
             <div className="news-de">
               <div className="title-area">
                 <div className="cat-date">
-                  <div className={`category ${typeData.colorClass}`}>
-                    {typeData.title}
-                  </div>
-                  <div className="date">{newsData.modified}</div>
+                  {types.map((v, i) => {
+                    return (
+                      <div key={i} className="category e-tag" data-color={v.id}>
+                        {v.title}
+                      </div>
+                    );
+                  })}
+                  <div className="date">{newsData.newsDate}</div>
                 </div>
                 <div className="news-title">
                   <h2>{newsData.title}</h2>
@@ -100,9 +94,10 @@ const Detail = () => {
               </div>
               <div className="editer">
                 {/*圖置中*/}
-                <div className="center">
+                {hasImages}
+                {/* <div className="center">
                   <img src={coverImage.title} alt={coverImage.title} />
-                </div>
+                </div> */}
                 <br />
                 <p style={{ whiteSpace: 'pre-line' }}>{newsData.content}</p>
                 <br />
@@ -110,12 +105,12 @@ const Detail = () => {
                 {/*左右圖文*/}
                 <div className="flex-box">
                   <p style={{ whiteSpace: 'pre-line' }}>{newsData.content}</p>
-                  {imageData
+                  {/* {imageData
                     .filter((v) => !v.cover)
                     .map((v) => {
                       const { id, title } = v;
                       return <img key={id} src={title} alt={title} />;
-                    })}
+                    })} */}
                 </div>
               </div>
               <ActionBtns id={Number(newsId)} />

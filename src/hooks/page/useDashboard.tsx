@@ -10,12 +10,16 @@ const useDashboard = () => {
   const getList = async ({
     url,
     setList,
+    defaultList,
     params,
+    setTypes,
     setPaginationData,
   }: {
     url: string;
-    setList: any;
+    setList?: any;
+    defaultList?: ItemTypes[];
     params?: any;
+    setTypes?: any;
     setPaginationData?: any;
   }) => {
     const result = await handleApi({
@@ -24,7 +28,9 @@ const useDashboard = () => {
       params,
     });
     if (result?.status === 'success') {
-      setList([...result.response.data.records]);
+      if (setList) {
+        setList([...result.response.data.records]);
+      }
       if (setPaginationData) {
         setPaginationData({
           ...Object.fromEntries(
@@ -34,13 +40,13 @@ const useDashboard = () => {
           ),
         });
       }
+      if (setTypes) {
+        setTypes([...result.response.data.types]);
+      }
     } else {
-      handleActions({
-        result: result?.response,
-        error: {
-          title: '發生錯誤，列表讀取失敗',
-        },
-      });
+      if (setList && defaultList) {
+        setList([...defaultList]);
+      }
     }
   };
 
@@ -64,7 +70,7 @@ const useDashboard = () => {
       setData({ ...result.response.data });
     } else {
       handleActions({
-        result: result?.response,
+        result,
         error: {
           title: '發生錯誤，id不存在',
         },
@@ -89,7 +95,7 @@ const useDashboard = () => {
   }) => {
     const data = new FormData();
     Object.entries(values).forEach(([key, value]) => {
-      if (key === 'files') {
+      if (key === 'files' || key === 'attachments' || key === 'images') {
         value.forEach((v: any) => {
           data.append(key, v);
         });
@@ -103,7 +109,7 @@ const useDashboard = () => {
       url: `/users/${url}/`,
     });
     handleActions({
-      result: result?.response,
+      result,
       success: {
         title: '新增成功',
       },
@@ -133,7 +139,7 @@ const useDashboard = () => {
       if (key === 'image' && typeof value === 'string') {
         return;
       }
-      if (key === 'files') {
+      if (key === 'files' || key === 'attachments' || key === 'images') {
         value.forEach((v: any) => {
           data.append(key, v);
         });
@@ -148,7 +154,7 @@ const useDashboard = () => {
       params: { id },
     });
     handleActions({
-      result: result?.response,
+      result,
       success: {
         title: '更新成功',
       },
@@ -177,7 +183,7 @@ const useDashboard = () => {
       params: { id },
     });
     handleActions({
-      result: result?.response,
+      result,
       success: {
         title: '刪除成功',
       },

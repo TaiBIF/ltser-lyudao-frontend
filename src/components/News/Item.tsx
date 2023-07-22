@@ -3,38 +3,34 @@ import { Link } from 'react-router-dom';
 
 import { NewsItem } from 'types/news';
 
-import { newsTypeList } from 'data/news';
 import { TypeItem } from 'types/utils';
 
-interface NewsListItemProps {
-  data: NewsItem;
-}
+const Item = ({ data, typeList }: { data: NewsItem; typeList: TypeItem[] }) => {
+  const { id, type, title, content, newsDate } = data;
+  const [types, setTypes] = useState<any[]>([]);
 
-const Item = (props: NewsListItemProps) => {
-  const { data } = props;
-  const { id, type, title, content, modified } = data;
-  const [typeData, setTypeData] = useState<TypeItem>({
-    id: '',
-    title: '',
-    colorClass: '',
-  });
+  const isFetchingTypeList = typeList.length === 0;
 
   useEffect(() => {
-    const matchType = newsTypeList.find((v) => v.id === type);
-    if (matchType) {
-      setTypeData({ ...matchType });
+    if (!isFetchingTypeList) {
+      const matchType = type.map((item) => typeList.find((v) => v.id === item));
+      setTypes([...matchType]);
     }
-  }, []);
+  }, [typeList]);
 
   return (
     <>
       <li>
         <Link to={`/news/${id}`}>
           <div className="cat-date">
-            <div className={`category ${typeData.colorClass}`}>
-              {typeData.title}
-            </div>
-            <div className="date">{modified}</div>
+            {types.map((v, i) => {
+              return (
+                <div key={i} className="category e-tag" data-color={v.id}>
+                  {v.title}
+                </div>
+              );
+            })}
+            <div className="date">{newsDate}</div>
           </div>
           <h3>{title}</h3>
           <p>{content}</p>

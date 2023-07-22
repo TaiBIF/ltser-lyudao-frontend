@@ -1,19 +1,21 @@
 export type NewsImageItem = {
-  id: string | number;
-  title: string;
-  cover: boolean;
+  image: string;
+};
+
+export type NewsAttachmentItem = {
+  file: string;
 };
 
 export type NewsItem = {
   id?: number | string;
-  type: number | string;
-  userId?: string;
+  type: (number | string)[];
   title: string;
   content: string;
-  image: (number | string)[];
-  attachments?: (number | string)[];
-  created?: string;
-  modified?: string;
+  newsDate: string;
+  user?: number;
+  user_email?: string;
+  images?: NewsImageItem[];
+  attachments?: NewsAttachmentItem[];
 };
 
 export type NewsActiveState = {

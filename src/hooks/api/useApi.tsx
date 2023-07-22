@@ -69,11 +69,9 @@ export const useApi = () => {
         responseType,
         onDownloadProgress,
       });
-      result = { status: 'success', response: response };
+      result = { status: 'success', response };
     } catch (err) {
-      if ((err as any).response) {
-        result = { status: 'error', response: (err as any).response };
-      }
+      result = { status: 'error', response: (err as any).response };
     } finally {
       setLoading(false);
       return result;
@@ -82,7 +80,6 @@ export const useApi = () => {
 
   const handleActions = (actionParams: actionParamsProps) => {
     const { result, success, error, action } = actionParams;
-    const { status, data } = result;
     const handleAction = () => {
       switch (action?.type) {
         case 'redirect':
@@ -92,27 +89,35 @@ export const useApi = () => {
           break;
       }
     };
-    switch (status) {
-      case 200:
-      case 201:
-      case 204:
-        switch (success?.type) {
-          case 'default':
-          default:
-            swalToast.fire({
-              icon: 'success',
-              title: success?.title,
-            });
-            handleAction();
-            return;
-        }
-      default:
-        swalToast.fire({
-          icon: 'error',
-          title: error?.title,
-        });
-        handleAction();
-        break;
+    if (result.response) {
+      switch (result.response.status) {
+        case 200:
+        case 201:
+        case 204:
+          switch (success?.type) {
+            case 'default':
+            default:
+              swalToast.fire({
+                icon: 'success',
+                title: success?.title,
+              });
+              handleAction();
+              return;
+          }
+        default:
+          swalToast.fire({
+            icon: 'error',
+            title: error?.title,
+          });
+          handleAction();
+          break;
+      }
+    } else {
+      swalToast.fire({
+        icon: 'error',
+        title: error?.title,
+      });
+      handleAction();
     }
   };
 

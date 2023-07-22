@@ -4,7 +4,7 @@ export type FormLinkItem = {
   id?: string | number;
   name: string;
   link?: string;
-  formLinkAttachments: AttachmentsItem[];
+  attachments: AttachmentsItem[];
   created_at?: string;
 };
 
