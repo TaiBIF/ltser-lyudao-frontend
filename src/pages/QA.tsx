@@ -44,7 +44,7 @@ const QA = () => {
       params: { page: currentPage, tag: !isAllType ? filter.type : null },
       setPaginationData,
     });
-  }, [currentPage]);
+  }, [currentPage, filter.type]);
 
   return (
     <>
