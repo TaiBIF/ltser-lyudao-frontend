@@ -25,7 +25,7 @@ const Content = () => {
       params: { page: currentPage },
       setPaginationData,
     });
-  }, []);
+  }, [currentPage]);
 
   return (
     <>

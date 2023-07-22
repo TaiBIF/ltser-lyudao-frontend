@@ -1,32 +1,33 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
 import { TypeItem } from 'types/utils';
+import { FilterItem } from 'types/qa';
+
 import { QA_TYPE_API_URL } from 'data/api';
-import { qaTypeList } from 'data/qa';
+
 import useRender from 'hooks/page/useRender';
 
 interface TabProps {
-  active: number | string;
-  setActive: Dispatch<SetStateAction<number | string>>;
+  filter: FilterItem;
+  setFilter: Dispatch<SetStateAction<FilterItem>>;
 }
 
 const Tabs = (props: TabProps) => {
-  const { active, setActive } = props;
+  const { filter, setFilter } = props;
   const { getList } = useRender();
   const [qaTypes, setQaTypes] = useState<TypeItem[]>([]);
   const [data, setData] = useState<TypeItem[]>([]);
 
   const isFetchingList = qaTypes.length === 0;
 
-  const handleActiveTab = (id: number | string) => {
-    setActive(id);
+  const handleTypeClick = (id: number | string) => {
+    setFilter({ ...filter, type: id });
   };
 
   useEffect(() => {
     getList({
       url: QA_TYPE_API_URL,
       setList: setQaTypes,
-      defaultList: qaTypeList,
     });
   }, []);
 
@@ -38,19 +39,19 @@ const Tabs = (props: TabProps) => {
 
   return (
     <>
-      {!isFetchingList && (
-        <div className="qa-tab">
-          <ul>
-            {/*現在位置加now*/}
-            {data.map((v) => {
+      <div className="qa-tab">
+        <ul>
+          {/*現在位置加now*/}
+          {!isFetchingList &&
+            data.map((v) => {
               const { id, title } = v;
               return (
                 <li
                   key={id}
-                  className={`${id === active ? 'now' : ''}`}
+                  className={`${id === filter.type ? 'now' : ''}`}
                   onClick={() => {
                     if (id !== undefined) {
-                      handleActiveTab(id);
+                      handleTypeClick(id);
                     }
                   }}
                 >
@@ -58,9 +59,8 @@ const Tabs = (props: TabProps) => {
                 </li>
               );
             })}
-          </ul>
-        </div>
-      )}
+        </ul>
+      </div>
     </>
   );
 };

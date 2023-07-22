@@ -4,3 +4,7 @@ export type QAItem = {
   question: string;
   answer: string;
 };
+
+export type FilterItem = {
+  type: number | string;
+};

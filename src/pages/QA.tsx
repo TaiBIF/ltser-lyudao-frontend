@@ -9,7 +9,7 @@ import Pagination from 'components/Pagination';
 import bannerImg from 'image/qa_bn.png';
 
 import { BannerData } from 'types/common';
-import { QAItem } from 'types/qa';
+import { FilterItem, QAItem } from 'types/qa';
 
 import { QA_API_URL } from 'data/api';
 import { qaList } from 'data/qa';
@@ -19,9 +19,10 @@ import usePage from 'hooks/utils/usePage';
 
 const QA = () => {
   const { getList } = useRender();
-  const [active, setActive] = useState<number | string>(0);
+  const [filter, setFilter] = useState<FilterItem>({
+    type: 0,
+  });
   const [qas, setQas] = useState<QAItem[]>([]);
-  const [data, setData] = useState<QAItem[]>([]);
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();
 
@@ -33,28 +34,17 @@ const QA = () => {
   };
 
   const isFetchingList = qas.length === 0;
-  const isAllType = active === 0;
+  const isAllType = filter.type === 0;
 
   useEffect(() => {
     getList({
       url: QA_API_URL,
       setList: setQas,
       defaultList: qaList,
-      params: { page: currentPage },
+      params: { page: currentPage, tag: !isAllType ? filter.type : null },
       setPaginationData,
     });
   }, [currentPage]);
-
-  useEffect(() => {
-    if (!isFetchingList) {
-      if (isAllType) {
-        setData([...qas]);
-      } else {
-        const matchType = qas.filter((v) => v.type_id === active);
-        setData([...matchType]);
-      }
-    }
-  }, [qas, active]);
 
   return (
     <>
@@ -63,10 +53,10 @@ const QA = () => {
         <Breadcrumb />
         <div className="contentbox">
           <div className="main-box">
-            <Tabs active={active} setActive={setActive} />
+            <Tabs filter={filter} setFilter={setFilter} />
             {!isFetchingList && (
               <ul className="qa-list">
-                {data.map((v) => {
+                {qas.map((v) => {
                   return <Item key={v.id} data={v} />;
                 })}
               </ul>
