@@ -114,3 +114,7 @@ export type PaginationDataItem = {
 export type AttachmentsItem = {
   file: string;
 };
+
+export type ImagesItem = {
+  image: string;
+};

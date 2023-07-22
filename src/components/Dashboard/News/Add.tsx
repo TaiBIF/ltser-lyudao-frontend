@@ -4,23 +4,23 @@ import { FormikHelpers } from 'formik';
 import AddTemplate from 'components/Dashboard/Template/Add';
 
 import { FieldItem, ItemTypes, TypeItem } from 'types/utils';
-import { NewsItem } from 'types/news';
+import { NewsFormItem, NewsItem } from 'types/news';
 
-import { newsFieldList } from 'data/dashboard';
+import { newsAddFieldList } from 'data/dashboard';
 import { newsValidationSchema } from 'data/validationSchema';
 import { NEWS_API_URL, NEWS_PATH, NEWS_TYPE_API_URL } from 'data/api';
 
 import useDashboard from 'hooks/page/useDashboard';
 
 const Add = () => {
-  const initialValues: NewsItem = {
+  const initialValues: NewsFormItem = {
     type: [],
     title: '',
     content: ``,
+    cover: '',
     newsDate: '',
-    user: 0,
     images: [],
-    attachments: [],
+    files: [],
   };
   const [typeList, setTypeList] = useState<TypeItem[]>([]);
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
@@ -38,7 +38,7 @@ const Add = () => {
 
   useEffect(() => {
     if (!isFetchingTypeList) {
-      const typeFieldList = newsFieldList.map((v) => {
+      const typeFieldList = newsAddFieldList.map((v) => {
         if (v.title === 'type') {
           return {
             ...v,

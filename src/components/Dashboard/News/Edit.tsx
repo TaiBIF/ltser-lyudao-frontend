@@ -5,23 +5,23 @@ import { FormikHelpers } from 'formik';
 import EditTemplate from 'components/Dashboard/Template/Edit';
 
 import { FieldItem, ItemTypes, TypeItem } from 'types/utils';
-import { NewsItem } from 'types/news';
+import { NewsFormItem, NewsItem } from 'types/news';
 
-import { newsFieldList } from 'data/dashboard';
+import { newsEditFieldList } from 'data/dashboard';
 import { newsValidationSchema } from 'data/validationSchema';
 import { NEWS_API_URL, NEWS_PATH, NEWS_TYPE_API_URL } from 'data/api';
 
 import useDashboard from 'hooks/page/useDashboard';
 
 const Edit = () => {
-  const [initialValues, setInitialValues] = useState<NewsItem>({
+  const [initialValues, setInitialValues] = useState<NewsFormItem>({
     type: [],
     title: '',
     content: ``,
+    cover: '',
     newsDate: '',
-    user: 0,
     images: [],
-    attachments: [],
+    files: [],
   });
   const [typeList, setTypeList] = useState<TypeItem[]>([]);
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
@@ -37,7 +37,7 @@ const Edit = () => {
 
   useEffect(() => {
     if (!isFetchingTypeList) {
-      const typeFieldList = newsFieldList.map((v) => {
+      const typeFieldList = newsEditFieldList.map((v) => {
         if (v.title === 'type') {
           return {
             ...v,
@@ -89,7 +89,7 @@ const Edit = () => {
       <EditTemplate
         initialValues={initialValues}
         validationSchema={newsValidationSchema}
-        fieldList={newsFieldList}
+        fieldList={fieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

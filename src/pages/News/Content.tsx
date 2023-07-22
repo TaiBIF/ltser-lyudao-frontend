@@ -39,6 +39,7 @@ const Content = () => {
 
   const isAllType = filter.type === 0;
   const isFetchingList = news.length === 0;
+  const isFetchingTypeList = typeList.length === 0;
 
   const handleTypeClick = (id: number | string) => {
     setFilter({ ...filter, type: id });
@@ -50,6 +51,12 @@ const Content = () => {
       setList: setTypeList,
     });
   }, []);
+
+  useEffect(() => {
+    if (!isFetchingTypeList) {
+      setTypeList([{ id: 0, title: '全部' }, ...typeList]);
+    }
+  }, [typeList]);
 
   useEffect(() => {
     getList({
@@ -72,22 +79,23 @@ const Content = () => {
               <div className="category-box">
                 <ul>
                   {/*目前位置給now*/}
-                  {typeList.map((v) => {
-                    const { id, title } = v;
-                    return (
-                      <li
-                        key={id}
-                        className={`${filter.type === id ? 'now' : ''}`}
-                        onClick={() => {
-                          if (id !== undefined) {
-                            handleTypeClick(id);
-                          }
-                        }}
-                      >
-                        {title}
-                      </li>
-                    );
-                  })}
+                  {!isFetchingTypeList &&
+                    typeList.map((v) => {
+                      const { id, title } = v;
+                      return (
+                        <li
+                          key={id}
+                          className={`${filter.type === id ? 'now' : ''}`}
+                          onClick={() => {
+                            if (id !== undefined) {
+                              handleTypeClick(id);
+                            }
+                          }}
+                        >
+                          {title}
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
               <DateFilter />

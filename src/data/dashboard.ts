@@ -405,11 +405,6 @@ export const newsColList: ColItem[] = [
     // relate: newsTypeList,
   },
   {
-    id: 'userId',
-    title: '建立者',
-    show: true,
-  },
-  {
     id: 'title',
     title: '主旨',
     show: true,
@@ -429,33 +424,32 @@ export const newsColList: ColItem[] = [
   },
   {
     id: 'user',
-    title: '上傳者',
+    title: '建立者',
     show: true,
   },
   {
     id: 'user_email',
-    title: '上傳者帳號',
-    show: true,
+    title: '建立者帳號',
+    show: false,
   },
   // {
   //   id: 'cover',
   //   title: '封面圖片',
   //   show: true,
   // },
-  {
-    id: 'images',
-    title: '圖片連結',
-    show: true,
-  },
-  {
-    id: 'attachments',
-    title: '附件檔案連結',
-    show: true,
-    // relate: newsAttachmentList,
-  },
+  // {
+  //   id: 'images',
+  //   title: '圖片連結',
+  //   show: true,
+  // },
+  // {
+  //   id: 'attachments',
+  //   title: '附件檔案連結',
+  //   show: true,
+  // },
 ];
 
-export const newsFieldList: FieldItem[] = [
+export const newsAddFieldList: FieldItem[] = [
   {
     id: 1,
     type: 'checkbox',
@@ -483,6 +477,15 @@ export const newsFieldList: FieldItem[] = [
   {
     id: 4,
     type: 'file',
+    title: 'cover',
+    label: '封面圖片',
+    readonly: false,
+    required: true,
+    fileType: 'image',
+  },
+  {
+    id: 4,
+    type: 'file',
     title: 'images',
     label: '圖片連結',
     readonly: false,
@@ -493,11 +496,86 @@ export const newsFieldList: FieldItem[] = [
   {
     id: 5,
     type: 'file',
-    title: 'attachments',
+    title: 'files',
     label: '附件檔案連結',
     readonly: false,
     required: false,
     multiple: true,
+  },
+  {
+    id: 6,
+    type: 'date',
+    title: 'newsDate',
+    label: '建立日期',
+    readonly: false,
+    required: false,
+  },
+];
+
+export const newsEditFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'checkbox',
+    title: 'type',
+    label: '消息類型',
+    readonly: false,
+    required: false,
+  },
+  {
+    id: 2,
+    type: 'text',
+    title: 'title',
+    label: '主旨',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 3,
+    type: 'textarea',
+    title: 'content',
+    label: '內文',
+    readonly: false,
+    required: false,
+  },
+  {
+    id: 4,
+    type: 'file',
+    title: 'cover',
+    label: '封面圖片',
+    readonly: false,
+    required: true,
+    fileType: 'image',
+  },
+  {
+    id: 4,
+    type: 'file',
+    title: 'images',
+    label: '圖片連結',
+    readonly: false,
+    required: false,
+    multiple: true,
+    fileType: 'image',
+    hints: [
+      {
+        id: 'images',
+        title: '目前檔案:',
+      },
+    ],
+  },
+  {
+    id: 5,
+    type: 'file',
+    title: 'files',
+    label: '附件檔案連結',
+    readonly: false,
+    required: false,
+    multiple: true,
+    hints: [
+      {
+        id: 'files',
+        title: '目前檔案:',
+      },
+    ],
   },
   {
     id: 6,

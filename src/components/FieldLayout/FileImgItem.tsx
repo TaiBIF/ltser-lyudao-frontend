@@ -60,7 +60,7 @@ const FileImgItem = (props: FileImgItemProps) => {
             <div className="c-form__text c-form__text--title">{file.name}</div>
             <div className="c-form__text">大小: {file.size / 1000} KB</div>
             <div className="c-form__text">最後修改: {fileLastModifiedTime}</div>
-            {multiple && (
+            {/* {multiple && (
               <div className="d-flex align-items-center mb-2">
                 <input
                   type="radio"
@@ -74,7 +74,7 @@ const FileImgItem = (props: FileImgItemProps) => {
                 />
                 <div className="c-form__text">設為封面</div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
         {!isLastFile && (

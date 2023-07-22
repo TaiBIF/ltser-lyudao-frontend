@@ -5,7 +5,13 @@ import { Field, ErrorMessage, useFormikContext } from 'formik';
 import FileImgItem from 'components/FieldLayout/FileImgItem';
 import FileListItem from 'components/FieldLayout/FileListItem';
 
-import { AttachmentsItem, FieldItem, FileItem, ItemTypes } from 'types/utils';
+import {
+  AttachmentsItem,
+  FieldItem,
+  FileItem,
+  ImagesItem,
+  ItemTypes,
+} from 'types/utils';
 import { hasImageProperty } from 'helpers/hasImageProperty';
 import { BE_URL } from 'utils/config';
 import { FormLinkItem } from 'types/formLink';
@@ -164,6 +170,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
             {hints &&
               hints.map((v) => {
                 const { id, title } = v;
+                let value;
                 switch (id) {
                   case 'link':
                     return (
@@ -187,9 +194,8 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                         ))
                     );
                   case 'files':
-                    const value = (
-                      (values as FormLinkItem) || (values as NewsItem)
-                    ).attachments;
+                    value = ((values as FormLinkItem) || (values as NewsItem))
+                      .attachments;
                     return (
                       <div key={id} className="form-text">
                         {title}
@@ -198,6 +204,21 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                             return (
                               <div key={i} className="form-text">
                                 {v.file}
+                              </div>
+                            );
+                          })}
+                      </div>
+                    );
+                  case 'images':
+                    value = (values as NewsItem).images;
+                    return (
+                      <div key={id} className="form-text">
+                        {title}
+                        {value &&
+                          value.map((v: ImagesItem, i: number) => {
+                            return (
+                              <div key={i} className="form-text">
+                                {v.image}
                               </div>
                             );
                           })}
