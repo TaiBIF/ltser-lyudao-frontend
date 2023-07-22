@@ -1,7 +1,7 @@
 import { ContactItem } from 'types/contact';
 import { LiteratureItem } from 'types/literature';
 import { DownloadItem } from 'types/dashboard';
-import { FormLinkItem } from 'types/formLink';
+import { FormLinkFormItem, FormLinkItem } from 'types/formLink';
 import { EcoSearchItem } from 'types/siteData';
 import { NewsImageItem, NewsItem } from 'types/news';
 import { QAItem } from 'types/qa';
@@ -102,6 +102,7 @@ export type ItemTypes =
   | NewsItem
   | LiteratureItem
   | FormLinkItem
+  | FormLinkFormItem
   | DownloadItem;
 
 export type PaginationDataItem = {

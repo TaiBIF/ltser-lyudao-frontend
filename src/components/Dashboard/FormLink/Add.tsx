@@ -6,7 +6,7 @@ import AddTemplate from 'components/Dashboard/Template/Add';
 import { ItemTypes } from 'types/utils';
 import { FormLinkFormItem } from 'types/formLink';
 
-import { formLinkFieldList } from 'data/dashboard';
+import { formLinkAddFieldList } from 'data/dashboard';
 import { formLinkValidationSchema } from 'data/validationSchema';
 import useDashboard from 'hooks/page/useDashboard';
 import { FORM_LINK_API_URL, FORM_LINK_PATH } from 'data/api';
@@ -37,7 +37,7 @@ const Add = () => {
     <>
       <AddTemplate
         initialValues={initialValues}
-        fieldList={formLinkFieldList}
+        fieldList={formLinkAddFieldList}
         validationSchema={formLinkValidationSchema}
         handleSubmit={handleAddSubmit}
       />

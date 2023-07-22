@@ -7,15 +7,10 @@ import FileListItem from 'components/FieldLayout/FileListItem';
 
 import { FieldItem, FileItem, ItemTypes } from 'types/utils';
 import { hasImageProperty } from 'helpers/hasImageProperty';
-import { ContactItem } from 'types/contact';
-import { API_URL, BE_URL } from 'utils/config';
+import { BE_URL } from 'utils/config';
+import { FormLinkFormItem } from 'types/formLink';
 
-interface FieldLayoutProps {
-  data: FieldItem;
-}
-
-const FieldLayout = (props: FieldLayoutProps) => {
-  const { data } = props;
+const FieldLayout = ({ data }: { data: FieldItem }) => {
   const {
     id,
     type,
@@ -69,8 +64,11 @@ const FieldLayout = (props: FieldLayoutProps) => {
   };
 
   const handleFileRemove = (index: number) => {
-    // const remainFiles = files.filter((v, i) => i !== index);
     setFiles((prevState) => prevState.filter((_, i) => i !== index));
+  };
+
+  const handleFileClick = () => {
+    setFiles([]);
   };
 
   useEffect(() => {
@@ -81,10 +79,6 @@ const FieldLayout = (props: FieldLayoutProps) => {
       );
     }
   }, [files]);
-
-  const handleFileClick = () => {
-    setFiles([]);
-  };
 
   switch (type) {
     case 'text':
@@ -168,29 +162,43 @@ const FieldLayout = (props: FieldLayoutProps) => {
             {hints &&
               hints.map((v) => {
                 const { id, title } = v;
-                const isLink = id === 'link';
-                return isLink ? (
-                  (!isNoFile ||
-                    (hasImageProperty(values) &&
-                      typeof values.image === 'string')) && (
-                    <div key={id} className="form-text">
-                      {title}
-                      {hasImageProperty(values) &&
+                switch (id) {
+                  case 'link':
+                    return (
+                      !isNoFile ||
+                      (hasImageProperty(values) &&
                         typeof values.image === 'string' && (
-                          <a
-                            href={`${BE_URL}/${values.image}`}
-                            className="ms-2"
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {values.image}
-                          </a>
-                        )}
-                    </div>
-                  )
-                ) : (
-                  <div key={id} className="form-text"></div>
-                );
+                          <div key={id} className="form-text">
+                            {title}
+                            {hasImageProperty(values) &&
+                              typeof values.image === 'string' && (
+                                <a
+                                  href={`${BE_URL}/${values.image}`}
+                                  className="ms-2"
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {values.image}
+                                </a>
+                              )}
+                          </div>
+                        ))
+                    );
+                  case 'files':
+                    return (
+                      <div key={id} className="form-text d-flex">
+                        {title}
+                        <div>
+                          {!isNoFile &&
+                            (values as FormLinkFormItem).files.map(
+                              (v: string, i: number) => {
+                                return <div key={i}>{v}</div>;
+                              }
+                            )}
+                        </div>
+                      </div>
+                    );
+                }
               })}
           </div>
           {files &&

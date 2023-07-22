@@ -8,7 +8,7 @@ import { ItemTypes } from 'types/utils';
 import { FormLinkFormItem } from 'types/formLink';
 
 import { formLinkList } from 'data/formLink';
-import { formLinkFieldList } from 'data/dashboard';
+import { formLinkEditFieldList } from 'data/dashboard';
 import { formLinkValidationSchema } from 'data/validationSchema';
 import { FORM_LINK_API_URL, FORM_LINK_PATH } from 'data/api';
 
@@ -63,7 +63,7 @@ const Edit = () => {
       <EditTemplate
         initialValues={initialValues}
         validationSchema={formLinkValidationSchema}
-        fieldList={formLinkFieldList}
+        fieldList={formLinkEditFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />

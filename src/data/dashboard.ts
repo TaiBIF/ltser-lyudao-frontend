@@ -562,7 +562,7 @@ export const formLinkColList: ColItem[] = [
   },
 ];
 
-export const formLinkFieldList: FieldItem[] = [
+export const formLinkAddFieldList: FieldItem[] = [
   {
     id: 1,
     type: 'text',
@@ -587,6 +587,40 @@ export const formLinkFieldList: FieldItem[] = [
     readonly: false,
     required: false,
     multiple: true,
+  },
+];
+
+export const formLinkEditFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'text',
+    title: 'name',
+    label: '資源名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 2,
+    type: 'text',
+    title: 'link',
+    label: '資源連結',
+    readonly: false,
+    required: false,
+  },
+  {
+    id: 3,
+    type: 'file',
+    title: 'files',
+    label: '資源附件檔案',
+    readonly: false,
+    required: false,
+    multiple: true,
+    hints: [
+      {
+        id: 'files',
+        title: '目前檔案:',
+      },
+    ],
   },
 ];
 
