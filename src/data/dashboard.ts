@@ -417,6 +417,11 @@ export const newsColList: ColItem[] = [
     space: 'text',
   },
   {
+    id: 'cover',
+    title: '封面圖片',
+    show: true,
+  },
+  {
     id: 'newsDate',
     title: '消息日期',
     show: true,
@@ -425,28 +430,23 @@ export const newsColList: ColItem[] = [
   {
     id: 'user',
     title: '建立者',
-    show: true,
+    show: false,
   },
   {
     id: 'user_email',
     title: '建立者帳號',
     show: false,
   },
-  // {
-  //   id: 'cover',
-  //   title: '封面圖片',
-  //   show: true,
-  // },
-  // {
-  //   id: 'images',
-  //   title: '圖片連結',
-  //   show: true,
-  // },
-  // {
-  //   id: 'attachments',
-  //   title: '附件檔案連結',
-  //   show: true,
-  // },
+  {
+    id: 'images',
+    title: '圖片連結',
+    show: false,
+  },
+  {
+    id: 'attachments',
+    title: '附件檔案連結',
+    show: false,
+  },
 ];
 
 export const newsAddFieldList: FieldItem[] = [

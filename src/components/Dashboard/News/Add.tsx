@@ -18,6 +18,7 @@ const Add = () => {
     title: '',
     content: ``,
     cover: '',
+    user: 1,
     newsDate: '',
     images: [],
     files: [],

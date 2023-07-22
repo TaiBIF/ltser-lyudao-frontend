@@ -18,6 +18,7 @@ const Edit = () => {
     type: [],
     title: '',
     content: ``,
+    user: 1,
     cover: '',
     newsDate: '',
     images: [],

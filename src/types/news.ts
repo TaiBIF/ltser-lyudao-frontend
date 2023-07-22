@@ -25,6 +25,7 @@ export type NewsFormItem = {
   content: string;
   cover: string;
   newsDate: string;
+  user: number;
   images?: NewsImageItem[];
   files?: NewsAttachmentItem[];
 };
