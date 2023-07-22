@@ -102,7 +102,6 @@ export type ItemTypes =
   | NewsItem
   | LiteratureItem
   | FormLinkItem
-  | FormLinkFormItem
   | DownloadItem;
 
 export type PaginationDataItem = {

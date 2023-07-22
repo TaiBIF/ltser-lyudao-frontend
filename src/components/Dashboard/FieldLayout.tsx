@@ -8,7 +8,7 @@ import FileListItem from 'components/FieldLayout/FileListItem';
 import { FieldItem, FileItem, ItemTypes } from 'types/utils';
 import { hasImageProperty } from 'helpers/hasImageProperty';
 import { BE_URL } from 'utils/config';
-import { FormLinkFormItem } from 'types/formLink';
+import { FormLinkItem } from 'types/formLink';
 
 const FieldLayout = ({ data }: { data: FieldItem }) => {
   const {
@@ -185,12 +185,13 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                         ))
                     );
                   case 'files':
+                    const value = values as FormLinkItem;
                     return (
                       <div key={id} className="form-text d-flex">
                         {title}
                         <div>
-                          {!isNoFile &&
-                            (values as FormLinkFormItem).files.map(
+                          {value &&
+                            value.formLinkAttachments.map(
                               (v: string, i: number) => {
                                 return <div key={i}>{v}</div>;
                               }
