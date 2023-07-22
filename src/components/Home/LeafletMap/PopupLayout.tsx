@@ -42,8 +42,16 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const [items, setItems] = useState<SiteObservationItem[]>([]);
 
   const handleDownloadClick = () => {
+    const fileName = `${filter.id}_${filter.year}`;
     setDownloading(true);
-    handleDownload({ url: 'site', id: filter.id, year: filter.year });
+    handleDownload({
+      url: 'site',
+      fileName,
+      params: {
+        locationID: filter.id,
+        year: filter.year,
+      },
+    });
   };
 
   const handleCloseClick = () => {

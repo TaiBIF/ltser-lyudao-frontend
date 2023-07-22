@@ -10,17 +10,15 @@ export const useDownload = () => {
 
   const handleDownloadAction = ({
     result,
-    id,
-    year,
+    fileName,
   }: {
     result: any;
-    id: string;
-    year: string;
+    fileName: string;
   }) => {
     const blob = new Blob([result.response.data], {
       type: 'application/octet-stream',
     });
-    saveAs(blob, `${id}_${year}.zip`);
+    saveAs(blob, `${fileName}.zip`);
   };
 
   // const handleVerifyReaptcha = async ({
@@ -60,30 +58,26 @@ export const useDownload = () => {
 
   const getDownloadFile = async ({
     url,
-    id,
-    year,
+    fileName,
+    params,
   }: {
     url: string;
-    id: string;
-    year: string;
+    fileName: string;
+    params?: any;
   }) => {
     const result = await handleApi({
       method: 'get',
       url: `/download/${url}/`,
-      params: {
-        locationID: id,
-        year,
-      },
+      params,
       responseType: 'arraybuffer',
       onDownloadProgress: (e: ProgressEvent) => {
         const percentage = Math.round((e.loaded * 100) / e.total);
-        console.log(`下載進度：${percentage}%`);
         setProgress(percentage);
       },
     });
     if (result?.status === 'success') {
       // handleVerifyReaptcha({ token: '', result });
-      handleDownloadAction({ result, id, year });
+      handleDownloadAction({ result, fileName });
     } else {
       handleActions({
         result: result?.response,
@@ -96,14 +90,14 @@ export const useDownload = () => {
 
   const handleDownload = ({
     url,
-    id,
-    year,
+    fileName,
+    params,
   }: {
     url: string;
-    id: string;
-    year: string;
+    fileName: string;
+    params?: any;
   }) => {
-    getDownloadFile({ url, id, year });
+    getDownloadFile({ url, fileName, params });
   };
 
   return { handleDownload, progress };
