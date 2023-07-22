@@ -185,17 +185,15 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                         ))
                     );
                   case 'files':
-                    const value = values as FormLinkItem;
+                    const value = (values as FormLinkItem).formLinkAttachments;
                     return (
                       <div key={id} className="form-text d-flex">
                         {title}
                         <div>
                           {value &&
-                            value.formLinkAttachments.map(
-                              (v: string, i: number) => {
-                                return <div key={i}>{v}</div>;
-                              }
-                            )}
+                            value.map((v: string, i: number) => {
+                              return <div key={i}>{v}</div>;
+                            })}
                         </div>
                       </div>
                     );
