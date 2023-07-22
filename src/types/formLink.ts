@@ -1,8 +1,10 @@
+import { AttachmentsItem } from './utils';
+
 export type FormLinkItem = {
   id?: string | number;
   name: string;
   link?: string;
-  formLinkAttachments?: any;
+  formLinkAttachments: AttachmentsItem[];
   created_at?: string;
 };
 

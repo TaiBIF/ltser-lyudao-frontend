@@ -110,3 +110,7 @@ export type PaginationDataItem = {
   totalPages: number;
   totalRecords: number;
 };
+
+export type AttachmentsItem = {
+  file: string;
+};

@@ -1,12 +1,7 @@
 import React from 'react';
 import { FormLinkItem } from 'types/formLink';
 
-interface ItemProps {
-  data: FormLinkItem;
-}
-
-const Item = (props: ItemProps) => {
-  const { data } = props;
+const Item = ({ data }: { data: FormLinkItem }) => {
   const { name, link, formLinkAttachments, created_at } = data;
 
   const isLink = formLinkAttachments.length === 0;

@@ -5,7 +5,7 @@ import { Field, ErrorMessage, useFormikContext } from 'formik';
 import FileImgItem from 'components/FieldLayout/FileImgItem';
 import FileListItem from 'components/FieldLayout/FileListItem';
 
-import { FieldItem, FileItem, ItemTypes } from 'types/utils';
+import { AttachmentsItem, FieldItem, FileItem, ItemTypes } from 'types/utils';
 import { hasImageProperty } from 'helpers/hasImageProperty';
 import { BE_URL } from 'utils/config';
 import { FormLinkItem } from 'types/formLink';
@@ -191,8 +191,8 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                         {title}
                         <div>
                           {value &&
-                            value.map((v: string, i: number) => {
-                              return <div key={i}>{v}</div>;
+                            value.map((v: AttachmentsItem, i: number) => {
+                              return <div key={i}>{v.file}</div>;
                             })}
                         </div>
                       </div>
