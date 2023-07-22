@@ -33,7 +33,7 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
     setIdTimeRange,
     setDetail,
   } = props;
-  const { filter } = useSurveyMapContext();
+  const { filter, setFilter } = useSurveyMapContext();
   const { id, year } = filter;
   const { getSites, getAllTimeRange, getTimeRange, getDetail } = useSurveyMap();
 
@@ -43,6 +43,7 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
     getSites({
       url,
       setList: setSites,
+      setFilter,
       defaultList: defaultSites?.sites || [],
     });
   };

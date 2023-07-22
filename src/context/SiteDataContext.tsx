@@ -11,7 +11,7 @@ export const useSiteDataContext = () => useContext(SiteDataContext);
 
 export const SiteDataProvider = ({ children }: SiteDataProviderProps) => {
   const [filter, setFilter] = useState<FilterItem>({
-    site: 'A1',
+    site: '',
   });
   const [query, setQuery] = useState<any>({});
   const contextData = { filter, setFilter, query, setQuery };

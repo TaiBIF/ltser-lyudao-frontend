@@ -12,10 +12,12 @@ const useSurveyMapApi = () => {
     url,
     setList,
     defaultList,
+    setFilter,
   }: {
     url: string;
     setList: any;
     defaultList: string[];
+    setFilter?: any;
   }) => {
     const result = await handleApi({
       method: 'get',
@@ -23,6 +25,7 @@ const useSurveyMapApi = () => {
     });
     if (result?.status === 'success') {
       setList([...result.response.data.sites]);
+      setFilter(result.response.data.sites[0].id);
     } else {
       setList([...defaultList]);
     }
