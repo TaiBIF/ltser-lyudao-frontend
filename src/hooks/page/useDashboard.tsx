@@ -12,14 +12,12 @@ const useDashboard = () => {
     setList,
     defaultList,
     params,
-    setTypes,
     setPaginationData,
   }: {
     url: string;
-    setList?: any;
+    setList: any;
     defaultList?: ItemTypes[];
     params?: any;
-    setTypes?: any;
     setPaginationData?: any;
   }) => {
     const result = await handleApi({
@@ -28,9 +26,7 @@ const useDashboard = () => {
       params,
     });
     if (result?.status === 'success') {
-      if (setList) {
-        setList([...result.response.data.records]);
-      }
+      setList([...result.response.data.records]);
       if (setPaginationData) {
         setPaginationData({
           ...Object.fromEntries(
@@ -40,11 +36,8 @@ const useDashboard = () => {
           ),
         });
       }
-      if (setTypes) {
-        setTypes([...result.response.data.types]);
-      }
     } else {
-      if (setList && defaultList) {
+      if (defaultList) {
         setList([...defaultList]);
       }
     }
@@ -216,7 +209,7 @@ const useDashboard = () => {
       method: 'get',
       url: `/users/${url}/`,
     });
-    const relate = result?.response.data;
+    const relate = result?.response.data.records;
     const newList = prevList.map((v) =>
       v[key as keyof RelateListTypes] === value
         ? {

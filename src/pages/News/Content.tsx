@@ -16,7 +16,7 @@ import { newsList, newsTypeList } from 'data/news';
 
 import usePage from 'hooks/utils/usePage';
 import useRender from 'hooks/page/useRender';
-import { NEWS_API_URL } from 'data/api';
+import { NEWS_API_URL, NEWS_TYPE_API_URL } from 'data/api';
 import { TypeItem } from 'types/utils';
 
 const Content = () => {
@@ -46,14 +46,20 @@ const Content = () => {
 
   useEffect(() => {
     getList({
+      url: NEWS_TYPE_API_URL,
+      setList: setTypeList,
+    });
+  }, []);
+
+  useEffect(() => {
+    getList({
       url: NEWS_API_URL,
       setList: setNews,
       defaultList: newsList,
       params: { page: currentPage, filter: !isAllType ? filter.type : null },
-      setTypes: setTypeList,
       setPaginationData,
     });
-  }, [currentPage, filter.type]);
+  }, [currentPage]);
 
   return (
     <>

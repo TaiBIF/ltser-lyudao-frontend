@@ -15,14 +15,12 @@ const useRender = () => {
     setList,
     defaultList,
     params,
-    setTypes,
     setPaginationData,
   }: {
     url: string;
-    setList?: any;
+    setList: any;
     defaultList?: ItemTypes[];
     params?: any;
-    setTypes?: any;
     setPaginationData?: any;
   }) => {
     const result = await handleApi({
@@ -31,9 +29,7 @@ const useRender = () => {
       params,
     });
     if (result?.status === 'success') {
-      if (setList) {
-        setList([...result.response.data.records]);
-      }
+      setList([...result.response.data.records]);
       if (setPaginationData) {
         setPaginationData({
           ...Object.fromEntries(
@@ -43,11 +39,8 @@ const useRender = () => {
           ),
         });
       }
-      if (setTypes) {
-        setTypes([...result.response.data.types]);
-      }
     } else {
-      if (setList && defaultList) {
+      if (defaultList) {
         setList([...defaultList]);
       }
     }

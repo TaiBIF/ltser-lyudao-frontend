@@ -13,7 +13,7 @@ import { newsList, newsTypeList } from 'data/news';
 
 import bannerImg from 'image/newsbn.jpg';
 import useRender from 'hooks/page/useRender';
-import { NEWS_API_URL, NEWS_PATH } from 'data/api';
+import { NEWS_API_URL, NEWS_PATH, NEWS_TYPE_API_URL } from 'data/api';
 
 const Detail = () => {
   const bannerData: BannerData = {
@@ -44,18 +44,15 @@ const Detail = () => {
   const hasImages = newsData.images?.length !== 0;
 
   useEffect(() => {
-    getList({
-      url: NEWS_API_URL,
-      setTypes: setTypeList,
-    });
-  }, []);
-
-  useEffect(() => {
     getDetail({
       id: Number(newsId),
       url: NEWS_API_URL,
       setData: setNewsData,
       redirectPath: NEWS_PATH,
+    });
+    getList({
+      url: NEWS_TYPE_API_URL,
+      setList: setTypeList,
     });
   }, []);
 

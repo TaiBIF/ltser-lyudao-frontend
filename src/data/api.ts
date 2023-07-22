@@ -19,5 +19,8 @@ export const FORM_LINK_PATH = 'form-link';
 export const NEWS_API_URL = 'news';
 export const NEWS_PATH = 'news';
 
+export const NEWS_TYPE_API_URL = 'newstags';
+export const NEWS_TYPE_PATH = 'news-type';
+
 export const DOWNLOAD_API_URL = 'download';
 export const DOWNLOAD_PATH = 'download';

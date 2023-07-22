@@ -7,17 +7,27 @@ import { NewsItem } from 'types/news';
 
 import { newsColList } from 'data/dashboard';
 import { newsList } from 'data/news';
-import { NEWS_API_URL } from 'data/api';
+import { NEWS_API_URL, NEWS_TYPE_API_URL } from 'data/api';
 
 import usePage from 'hooks/utils/usePage';
 import useDashboard from 'hooks/page/useDashboard';
+import { TypeItem } from 'types/utils';
 
 const Content = () => {
   const PAGE: string = 'news';
   const [newsList, setNewsList] = useState<NewsItem[]>([]);
+  const [typeList, setTypeList] = useState<TypeItem[]>([]);
+
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();
   const { getList } = useDashboard();
+
+  useEffect(() => {
+    getList({
+      url: NEWS_TYPE_API_URL,
+      setList: setTypeList,
+    });
+  }, []);
 
   useEffect(() => {
     getList({

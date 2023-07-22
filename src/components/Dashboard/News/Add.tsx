@@ -8,7 +8,7 @@ import { NewsItem } from 'types/news';
 
 import { newsFieldList } from 'data/dashboard';
 import { newsValidationSchema } from 'data/validationSchema';
-import { NEWS_API_URL, NEWS_PATH } from 'data/api';
+import { NEWS_API_URL, NEWS_PATH, NEWS_TYPE_API_URL } from 'data/api';
 
 import useDashboard from 'hooks/page/useDashboard';
 
@@ -31,8 +31,8 @@ const Add = () => {
 
   useEffect(() => {
     getList({
-      url: NEWS_API_URL,
-      setTypes: setTypeList,
+      url: NEWS_TYPE_API_URL,
+      setList: setTypeList,
     });
   }, []);
 
