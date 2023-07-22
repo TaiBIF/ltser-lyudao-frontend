@@ -8,19 +8,26 @@ import { TypeItem, ItemTypes } from 'types/utils';
 import { typeFieldList } from 'data/dashboard';
 import { newsTypeValidationSchema } from 'data/validationSchema';
 
+import useDashboard from 'hooks/page/useDashboard';
+import { NEWS_TYPE_API_URL, NEWS_TYPE_PATH } from 'data/api';
+
 const Add = () => {
   const initialValues: TypeItem = {
+    id: 0,
     title: '',
   };
+  const { handleAdd } = useDashboard();
 
   const handleAddSubmit = (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
+    handleAdd({
+      values,
+      url: NEWS_TYPE_API_URL,
+      redirectPath: NEWS_TYPE_PATH,
+    });
+    setSubmitting(false);
   };
 
   return (

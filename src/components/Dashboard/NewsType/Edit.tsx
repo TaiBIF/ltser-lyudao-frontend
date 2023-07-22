@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FormikHelpers } from 'formik';
 
@@ -9,25 +9,51 @@ import { TypeItem, ItemTypes } from 'types/utils';
 import { typeFieldList } from 'data/dashboard';
 import { newsTypeValidationSchema } from 'data/validationSchema';
 import { newsTypeList } from 'data/news';
+import { NEWS_TYPE_API_URL, NEWS_TYPE_PATH } from 'data/api';
+import useDashboard from 'hooks/page/useDashboard';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<TypeItem>({
     id: 0,
     title: '',
   });
-  const { qaTypeId } = useParams();
+
+  const { newsTypeId } = useParams();
+  const { getDetail, handleEdit, handleDelete } = useDashboard();
+
+  const ID = newsTypeId ?? '';
+  const URL = NEWS_TYPE_API_URL;
+  const REDIRECT_PATH = NEWS_TYPE_PATH;
+
+  useEffect(() => {
+    getDetail({
+      id: ID,
+      url: URL,
+      setData: setInitialValues,
+      redirectPath: REDIRECT_PATH,
+    });
+  }, []);
 
   const handleEditSubmit = (
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
-    setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 500);
+    handleEdit({
+      values,
+      id: ID,
+      url: URL,
+      redirectPath: REDIRECT_PATH,
+    });
+    setSubmitting(false);
   };
 
-  const handleDeleteClick = () => {};
+  const handleDeleteClick = () => {
+    handleDelete({
+      id: ID,
+      url: URL,
+      redirectPath: REDIRECT_PATH,
+    });
+  };
 
   return (
     <>
