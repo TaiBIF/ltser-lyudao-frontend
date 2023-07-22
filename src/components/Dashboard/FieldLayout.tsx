@@ -146,6 +146,19 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
             <label htmlFor={title} className="form-label">
               {label}
             </label>
+            <label htmlFor={title} className="c-form__file">
+              <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
+            </label>
+            <input
+              type="file"
+              id={title}
+              name={title}
+              className="d-none"
+              onChange={handleFileChange}
+              onClick={handleFileClick}
+              multiple={multiple}
+              accept={`${fileType}/*`}
+            />
             {hints &&
               hints.map((v) => {
                 const { id, title } = v;
@@ -188,19 +201,6 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                     );
                 }
               })}
-            <label htmlFor={title} className="c-form__file">
-              <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
-            </label>
-            <input
-              type="file"
-              id={title}
-              name={title}
-              className="d-none"
-              onChange={handleFileChange}
-              onClick={handleFileClick}
-              multiple={multiple}
-              accept={`${fileType}/*`}
-            />
           </div>
           {files &&
             (fileType === 'image' ? (
