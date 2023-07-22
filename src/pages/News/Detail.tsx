@@ -65,6 +65,16 @@ const Detail = () => {
     }
   }, [newsData, typeList]);
 
+  const renderImages = () =>
+    hasImages &&
+    newsData.images?.map((v) => {
+      return (
+        <div className="center">
+          <img src={v.image} alt="" />
+        </div>
+      );
+    });
+
   return (
     <>
       <div className="innbox">
@@ -91,10 +101,7 @@ const Detail = () => {
               </div>
               <div className="editer">
                 {/*圖置中*/}
-                {hasImages}
-                {/* <div className="center">
-                  <img src={coverImage.title} alt={coverImage.title} />
-                </div> */}
+                {renderImages()}
                 <br />
                 <p style={{ whiteSpace: 'pre-line' }}>{newsData.content}</p>
                 <br />
@@ -102,12 +109,7 @@ const Detail = () => {
                 {/*左右圖文*/}
                 <div className="flex-box">
                   <p style={{ whiteSpace: 'pre-line' }}>{newsData.content}</p>
-                  {/* {imageData
-                    .filter((v) => !v.cover)
-                    .map((v) => {
-                      const { id, title } = v;
-                      return <img key={id} src={title} alt={title} />;
-                    })} */}
+                  {renderImages()}
                 </div>
               </div>
               <ActionBtns id={Number(newsId)} />

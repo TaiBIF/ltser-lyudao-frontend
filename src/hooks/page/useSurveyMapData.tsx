@@ -8,6 +8,7 @@ import { defaultTimeRange } from 'data/home/content';
 import useSurveyMap from 'hooks/api/useSurveyMapApi';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
+import { useSiteDataContext } from 'context/SiteDataContext';
 
 interface useSurveyMapDataProps {
   url: string;
@@ -33,7 +34,7 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
     setIdTimeRange,
     setDetail,
   } = props;
-  const { filter, setFilter } = useSurveyMapContext();
+  const { filter, setFilter } = useSiteDataContext();
   const { id, year } = filter;
   const { getSites, getAllTimeRange, getTimeRange, getDetail } = useSurveyMap();
 

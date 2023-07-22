@@ -134,11 +134,11 @@ export const envAsideList: AsideItem[] = [
         title: '海洋觀測',
         link: 'sea-temperature',
       },
-      {
-        id: 3,
-        title: '棲地評估',
-        link: 'habitat',
-      },
+      // {
+      //   id: 3,
+      //   title: '棲地評估',
+      //   link: 'habitat',
+      // },
     ],
   },
 ];
