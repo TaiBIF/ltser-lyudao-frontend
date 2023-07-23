@@ -35,6 +35,7 @@ const Edit = () => {
   const ID = newsId ?? '';
   const URL = NEWS_API_URL;
   const REDIRECT_PATH = NEWS_PATH;
+  const isFetchingDetail = initialValues.title === '';
 
   useEffect(() => {
     if (!isFetchingTypeList) {
@@ -63,6 +64,16 @@ const Edit = () => {
       setList: setTypeList,
     });
   }, []);
+
+  useEffect(() => {
+    if (!isFetchingDetail) {
+      const values = {
+        ...initialValues,
+        type: initialValues.type.map(Number),
+      };
+      setInitialValues({ ...values });
+    }
+  }, [initialValues]);
 
   const handleEditSubmit = (
     values: ItemTypes,

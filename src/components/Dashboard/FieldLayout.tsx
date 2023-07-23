@@ -197,23 +197,22 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                     value = (values as NewsItem).cover;
                     return (
                       !isNoFile ||
-                      (hasImageProperty(values) &&
-                        typeof value === 'string' && (
-                          <div key={id} className="form-text">
-                            {title}
-                            {hasImageProperty(values) &&
-                              typeof value === 'string' && (
-                                <a
-                                  href={`${BE_URL}/${value}`}
-                                  className="ms-2"
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  {value}
-                                </a>
-                              )}
-                          </div>
-                        ))
+                      (hasImageProperty(value) && typeof value === 'string' && (
+                        <div key={id} className="form-text">
+                          {title}
+                          {hasImageProperty(value) &&
+                            typeof value === 'string' && (
+                              <a
+                                href={`${BE_URL}/${value}`}
+                                className="ms-2"
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                {value}
+                              </a>
+                            )}
+                        </div>
+                      ))
                     );
                   case 'files':
                     value = ((values as FormLinkItem) || (values as NewsItem))
