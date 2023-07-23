@@ -484,7 +484,7 @@ export const newsAddFieldList: FieldItem[] = [
     fileType: 'image',
   },
   {
-    id: 4,
+    id: 5,
     type: 'file',
     title: 'images',
     label: '圖片連結',
@@ -494,7 +494,7 @@ export const newsAddFieldList: FieldItem[] = [
     fileType: 'image',
   },
   {
-    id: 5,
+    id: 6,
     type: 'file',
     title: 'files',
     label: '附件檔案連結',
@@ -503,7 +503,7 @@ export const newsAddFieldList: FieldItem[] = [
     multiple: true,
   },
   {
-    id: 6,
+    id: 7,
     type: 'date',
     title: 'newsDate',
     label: '建立日期',
@@ -553,7 +553,7 @@ export const newsEditFieldList: FieldItem[] = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     type: 'file',
     title: 'images',
     label: '圖片連結',
@@ -569,7 +569,7 @@ export const newsEditFieldList: FieldItem[] = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     type: 'file',
     title: 'files',
     label: '附件檔案連結',
@@ -584,7 +584,7 @@ export const newsEditFieldList: FieldItem[] = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     type: 'date',
     title: 'newsDate',
     label: '建立日期',
