@@ -1,4 +1,5 @@
 export type ContactItem = {
+  [key: string]: any;
   id?: number | string;
   type: number | string;
   name: string;

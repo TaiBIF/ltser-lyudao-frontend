@@ -1,4 +1,5 @@
 export type QAItem = {
+  [key: string]: any;
   id?: number | string;
   type_id: number | string;
   question: string;

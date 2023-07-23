@@ -1,6 +1,7 @@
-import { AttachmentsItem } from './utils';
+import { AttachmentsItem } from 'types/utils';
 
 export type FormLinkItem = {
+  [key: string]: any;
   id?: string | number;
   name: string;
   link?: string;

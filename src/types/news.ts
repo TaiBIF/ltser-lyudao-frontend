@@ -7,6 +7,7 @@ export type NewsAttachmentItem = {
 };
 
 export type NewsItem = {
+  [key: string]: any;
   id?: number | string;
   type: (number | string)[];
   title: string;

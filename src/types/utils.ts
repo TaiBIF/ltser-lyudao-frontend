@@ -11,6 +11,7 @@ import { RawFieldItem } from 'types/field';
 import { SeriesItemTypes } from 'types/series';
 
 export type TypeItem = {
+  [key: string]: any;
   id?: number | string;
   title: string;
   colorClass?: string;

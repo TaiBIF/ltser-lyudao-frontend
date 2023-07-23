@@ -4,6 +4,7 @@ export type TabItem = {
 };
 
 export type DownloadItem = {
+  [key: string]: any;
   id: number | string;
   file: string;
   user_email: string;
