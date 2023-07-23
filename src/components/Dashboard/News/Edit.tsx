@@ -52,28 +52,27 @@ const Edit = () => {
     }
   }, [typeList]);
 
-  useEffect(() => {
-    getDetail({
+  const handleInitialValue = async () => {
+    await getDetail({
       id: ID,
       url: URL,
       setData: setInitialValues,
       redirectPath: REDIRECT_PATH,
     });
+    const values = {
+      ...initialValues,
+      type: initialValues.type.map(Number),
+    };
+    setInitialValues({ ...values });
+  };
+
+  useEffect(() => {
+    handleInitialValue();
     getList({
       url: NEWS_TYPE_API_URL,
       setList: setTypeList,
     });
   }, []);
-
-  useEffect(() => {
-    if (!isFetchingDetail) {
-      const values = {
-        ...initialValues,
-        type: initialValues.type.map(Number),
-      };
-      setInitialValues({ ...values });
-    }
-  }, [initialValues]);
 
   const handleEditSubmit = (
     values: ItemTypes,
