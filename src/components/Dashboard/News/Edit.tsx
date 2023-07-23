@@ -79,7 +79,7 @@ const Edit = () => {
     if (!isFetchingDetail) {
       const values = {
         ...detail,
-        type: detail.type.map(Number),
+        type: detail.type.map(String),
       };
       setInitialValues({ ...values });
     }
