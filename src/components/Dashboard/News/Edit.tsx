@@ -24,6 +24,16 @@ const Edit = () => {
     images: [],
     files: [],
   });
+  const [detail, setDetail] = useState<NewsFormItem>({
+    type: [],
+    title: '',
+    content: ``,
+    user: 1,
+    cover: '',
+    newsDate: '',
+    images: [],
+    files: [],
+  });
   const [typeList, setTypeList] = useState<TypeItem[]>([]);
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
 
@@ -52,27 +62,28 @@ const Edit = () => {
     }
   }, [typeList]);
 
-  const handleInitialValue = async () => {
-    await getDetail({
+  useEffect(() => {
+    getDetail({
       id: ID,
       url: URL,
-      setData: setInitialValues,
+      setData: setDetail,
       redirectPath: REDIRECT_PATH,
     });
-    const values = {
-      ...initialValues,
-      type: initialValues.type.map(Number),
-    };
-    setInitialValues({ ...values });
-  };
-
-  useEffect(() => {
-    handleInitialValue();
     getList({
       url: NEWS_TYPE_API_URL,
       setList: setTypeList,
     });
   }, []);
+
+  useEffect(() => {
+    if (!isFetchingDetail) {
+      const values = {
+        ...detail,
+        type: detail.type.map(Number),
+      };
+      setInitialValues({ ...values });
+    }
+  }, [detail]);
 
   const handleEditSubmit = (
     values: ItemTypes,
