@@ -89,9 +89,15 @@ const Edit = () => {
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
+    const isObjectOrEmpty = (key: string) => {
+      return typeof values[key][0] === 'object' || values[key].length === 0;
+    };
     values = {
       ...values,
       type: values.type.map(Number),
+      attachments: null,
+      images: isObjectOrEmpty('images') ? null : values.images,
+      files: isObjectOrEmpty('attachments') ? null : values.files,
     };
     handleEdit({
       values,
