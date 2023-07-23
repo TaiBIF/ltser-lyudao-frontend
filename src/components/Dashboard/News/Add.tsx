@@ -56,6 +56,10 @@ const Add = () => {
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
+    values = {
+      ...values,
+      type: values.type.map(Number),
+    };
     handleAdd({
       values,
       url: NEWS_API_URL,

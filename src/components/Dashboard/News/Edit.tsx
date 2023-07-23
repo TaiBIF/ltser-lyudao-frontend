@@ -68,6 +68,10 @@ const Edit = () => {
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
+    values = {
+      ...values,
+      type: values.type.map(Number),
+    };
     handleEdit({
       values,
       id: ID,
