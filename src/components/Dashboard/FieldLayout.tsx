@@ -320,7 +320,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                         type="checkbox"
                         id={title}
                         name={data.title}
-                        value={String(v.id)}
+                        value={Number(v.id)}
                         className="form-check-input"
                         checked={values[data.title].includes(v.id)}
                       />

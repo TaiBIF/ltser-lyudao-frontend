@@ -545,6 +545,12 @@ export const newsEditFieldList: FieldItem[] = [
     readonly: false,
     required: true,
     fileType: 'image',
+    hints: [
+      {
+        id: 'cover',
+        title: '目前檔案:',
+      },
+    ],
   },
   {
     id: 4,
