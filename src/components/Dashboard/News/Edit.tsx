@@ -45,7 +45,7 @@ const Edit = () => {
   const ID = newsId ?? '';
   const URL = NEWS_API_URL;
   const REDIRECT_PATH = NEWS_PATH;
-  const isFetchingDetail = initialValues.title === '';
+  const isFetchingDetail = detail.title === '';
 
   useEffect(() => {
     if (!isFetchingTypeList) {
