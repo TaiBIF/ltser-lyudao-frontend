@@ -21,6 +21,7 @@ export type NewsItem = {
 };
 
 export type NewsFormItem = {
+  [key: string]: any;
   type: (number | string)[];
   title: string;
   content: string;

@@ -419,7 +419,7 @@ export const newsColList: ColItem[] = [
   {
     id: 'cover',
     title: '封面圖片',
-    show: true,
+    show: false,
   },
   {
     id: 'newsDate',

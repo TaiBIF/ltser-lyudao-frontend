@@ -11,23 +11,16 @@ import { NEWS_API_URL, NEWS_TYPE_API_URL } from 'data/api';
 
 import usePage from 'hooks/utils/usePage';
 import useDashboard from 'hooks/page/useDashboard';
-import { TypeItem } from 'types/utils';
+import { ColItem, TypeItem } from 'types/utils';
 
 const Content = () => {
   const PAGE: string = 'news';
   const [newsList, setNewsList] = useState<NewsItem[]>([]);
-  const [typeList, setTypeList] = useState<TypeItem[]>([]);
+  const [colList, setColList] = useState<ColItem[]>([]);
 
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();
-  const { getList } = useDashboard();
-
-  useEffect(() => {
-    getList({
-      url: NEWS_TYPE_API_URL,
-      setList: setTypeList,
-    });
-  }, []);
+  const { getList, handleRelate } = useDashboard();
 
   useEffect(() => {
     getList({
@@ -38,11 +31,22 @@ const Content = () => {
     });
   }, [currentPage]);
 
+  useEffect(() => {
+    handleRelate({
+      key: 'id',
+      value: 'type',
+      url: NEWS_TYPE_API_URL,
+      prevList: newsColList,
+      setList: setColList,
+      relateKey: 'relate',
+    });
+  }, []);
+
   return (
     <>
       <TableTemplate
         page={PAGE}
-        cols={newsColList}
+        cols={colList}
         data={newsList}
         renderAction={() => <AddBtn page={PAGE} />}
         currentPage={currentPage}

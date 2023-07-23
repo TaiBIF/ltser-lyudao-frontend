@@ -3,7 +3,7 @@ import { LiteratureItem } from 'types/literature';
 import { DownloadItem } from 'types/dashboard';
 import { FormLinkFormItem, FormLinkItem } from 'types/formLink';
 import { EcoSearchItem } from 'types/siteData';
-import { NewsImageItem, NewsItem } from 'types/news';
+import { NewsFormItem, NewsImageItem, NewsItem } from 'types/news';
 import { QAItem } from 'types/qa';
 
 import { RawItemTypes } from 'types/rawData';
@@ -101,6 +101,7 @@ export type ItemTypes =
   | QAItem
   | TypeItem
   | NewsItem
+  | NewsFormItem
   | LiteratureItem
   | FormLinkItem
   | DownloadItem;

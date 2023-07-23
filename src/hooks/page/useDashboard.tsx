@@ -129,7 +129,7 @@ const useDashboard = () => {
   }) => {
     const data = new FormData();
     Object.entries(values).forEach(([key, value]) => {
-      if (value !== null) {
+      if (value) {
         if ((key === 'image' || key === 'cover') && typeof value === 'string') {
           return;
         }

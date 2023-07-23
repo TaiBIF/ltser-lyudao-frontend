@@ -92,15 +92,15 @@ const Edit = () => {
     const isObjectOrEmpty = (key: string) => {
       return typeof values[key][0] === 'object' || values[key].length === 0;
     };
-    values = {
-      ...values,
+    const { user_email, attachments, ...rest } = values;
+    const data: any = {
+      ...rest,
       type: values.type.map(Number),
-      attachments: null,
-      images: isObjectOrEmpty('images') ? null : values.images,
-      files: isObjectOrEmpty('attachments') ? null : values.files,
+      images: isObjectOrEmpty('images') ? undefined : values.images,
+      files: isObjectOrEmpty('attachments') ? undefined : values.files,
     };
     handleEdit({
-      values,
+      values: data,
       id: ID,
       url: URL,
       redirectPath: REDIRECT_PATH,
