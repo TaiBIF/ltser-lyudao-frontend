@@ -129,15 +129,17 @@ const useDashboard = () => {
   }) => {
     const data = new FormData();
     Object.entries(values).forEach(([key, value]) => {
-      if ((key === 'image' || key === 'cover') && typeof value === 'string') {
-        return;
-      }
-      if (key === 'files' || key === 'attachments' || key === 'images') {
-        value.forEach((v: any) => {
-          data.append(key, v);
-        });
-      } else {
-        data.append(key, value);
+      if (value !== null) {
+        if ((key === 'image' || key === 'cover') && typeof value === 'string') {
+          return;
+        }
+        if (key === 'files' || key === 'attachments' || key === 'images') {
+          value.forEach((v: any) => {
+            data.append(key, v);
+          });
+        } else {
+          data.append(key, value);
+        }
       }
     });
     const result = await handleApi({
