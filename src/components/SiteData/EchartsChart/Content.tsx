@@ -14,6 +14,7 @@ import {
 import { useDataContext } from 'context/DataContext';
 import { useLocation } from 'react-router-dom';
 import { SeriesItemTypes } from 'types/series';
+import { useSiteDataContext } from 'context/SiteDataContext';
 
 type SeriesItem = {
   name?: string;
@@ -26,14 +27,16 @@ const Content = ({ item }: { item: string }) => {
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { pathname } = useLocation();
+  const { filter } = useSiteDataContext();
 
   const isFetchingWeatherChart = contextData.series.length === 0;
+  const hasSite = filter.site !== '';
 
   useEffect(() => {
-    if (contextData.series) {
+    if (contextData.series && hasSite) {
       contextData.getSeries();
     }
-  }, [pathname]);
+  }, [pathname, filter.site]);
 
   useEffect(() => {
     if (!isFetchingWeatherChart) {
