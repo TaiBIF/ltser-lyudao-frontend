@@ -34,8 +34,8 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
     setIdTimeRange,
     setDetail,
   } = props;
-  const { filter, setFilter } = useSiteDataContext();
-  const { id, year } = filter;
+  const { id, year } = useSurveyMapContext().filter;
+  const { setFilter } = useSiteDataContext();
   const { getSites, getAllTimeRange, getTimeRange, getDetail } = useSurveyMap();
 
   const isFetchingAllTimeRange = allTimeRange?.length === 0;
