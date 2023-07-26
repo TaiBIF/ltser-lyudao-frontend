@@ -1341,12 +1341,19 @@
   .observation-box {
     display: flex;
     align-items: flex-start;
+    @media #{$pad} {
+      display: block;
+    }
     .left-mainmenu {
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
       width: 300px;
       background: #fff;
+      flex: 0 0 300px;
+      @media #{$pc_m} {
+        flex: 0 0 250px;
+      }
       @media #{$pad} {
         width: 100%;
         position: fixed;

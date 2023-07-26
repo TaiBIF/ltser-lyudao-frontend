@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AttachmentIcon from 'components/FormLink/AttachmentIcon';
+import LinkIcon from 'components/FormLink/LinkIcon';
 
 import { FormLinkItem } from 'types/formLink';
 import { useDownload } from 'hooks/api/useDownload';
@@ -28,7 +29,7 @@ const Item = ({ data }: { data: FormLinkItem }) => {
         </div>
         {isLink ? (
           <a href={link} className="right-icob">
-            連結
+            <LinkIcon />
           </a>
         ) : (
           <div className="right-icob" onClick={handleDownloadClick}>
