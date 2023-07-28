@@ -93,10 +93,9 @@ const PopupLayout = (props: PopupLayoutProps) => {
       setIdData({ ...data });
       planList.forEach((plan, i) => {
         const matchData = contextData.find((v: ContextItem) => v.id === plan);
-        console.log(matchData);
-        setTimeout(() => {
+        if (i === 0) {
           matchData.getDetail();
-        }, i * 100);
+        }
       });
     };
   }, []);
