@@ -20,7 +20,7 @@ interface MarkerLayoutProps {
 const MarkerLayout = (props: MarkerLayoutProps) => {
   const { data } = props;
   const { filter, setFilter } = useSurveyMapContext();
-  const [active, setActive] = useState<boolean>(false);
+  const [active, setActive] = useState<string>('');
 
   const location: LatLngExpression = [
     Number(data.decimalLatitude),
@@ -28,7 +28,6 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
   ];
 
   const handleMarkerClick = () => {
-    setActive(true);
     setFilter({ ...filter, id: String(data.locationID) });
   };
 
@@ -37,7 +36,9 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [0, -41],
-      html: ReactDOMServer.renderToString(<MarkerIconLayout active={active} />),
+      html: ReactDOMServer.renderToString(
+        <MarkerIconLayout filter={filter} id={String(data.locationID)} />
+      ),
     });
   const icon = mapIcon();
 
@@ -51,7 +52,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
         }}
       >
         <Popup closeButton={false} closeOnClick={false}>
-          <PopupLayout setActive={setActive} data={data} />
+          <PopupLayout data={data} />
         </Popup>
         <Tooltip offset={[30, -16.5]}>
           <TooltipLayout data={data} />

@@ -1,14 +1,19 @@
 import React from 'react';
+import { SurveyMapFilterItem } from 'types/home';
 
 type MarkerIconLayoutProps = {
-  active: boolean;
+  filter: SurveyMapFilterItem;
+  id: string;
 };
 
 const MarkerIconLayout = (props: MarkerIconLayoutProps) => {
-  const { active } = props;
+  const { filter, id } = props;
+
+  const isActive = filter.id === id;
+
   return (
     <>
-      <div className={`pin-icon c-map__marker ${active ? 'now' : ''}`}>
+      <div className={`pin-icon c-map__marker ${isActive ? 'now' : ''}`}>
         <div className="rel">
           <svg
             className="iconpin"

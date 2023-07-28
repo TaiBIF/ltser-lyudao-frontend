@@ -23,18 +23,16 @@ import { useDataContext } from 'context/DataContext';
 import { useDownload } from 'hooks/api/useDownload';
 
 type PopupLayoutProps = {
-  setActive: Dispatch<SetStateAction<boolean>>;
   data: Dictionary<number | string>;
 };
 
 const PopupLayout = (props: PopupLayoutProps) => {
-  const { setActive, data } = props;
+  const { data } = props;
 
   const map = useMap();
   const navigate = useNavigate();
 
-  const { setFilter, setIdData } = useSurveyMapContext();
-  const { filter } = useSurveyMapContext();
+  const { filter, setFilter, setIdData } = useSurveyMapContext();
   const contextData = useDataContext();
   const { handleDownload, progress } = useDownload();
 
@@ -59,7 +57,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
       map.closePopup();
       map.setView(surveyMapParams.center, surveyMapParams.zoom);
     }
-    setActive(false);
+    setFilter({ ...filter, id: '' });
   };
 
   const handleMoreClick = () => {
@@ -97,7 +95,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
         contextData.find((v: ContextItem) => v.id === plan).getDetail();
       });
     };
-  }, [filter.id]);
+  }, []);
 
   return (
     <>

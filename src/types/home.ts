@@ -51,8 +51,9 @@ export type TimeRangeItem = {
   end: string;
 };
 
-export type FilterItem = {
+export type SurveyMapFilterItem = {
   id: string;
   year: string;
   item: string;
+  chart: boolean;
 };

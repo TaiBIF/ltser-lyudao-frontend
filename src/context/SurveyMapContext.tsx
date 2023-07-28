@@ -1,6 +1,7 @@
 import React, { createContext, useContext, ReactNode, useState } from 'react';
 
 import { Dictionary } from 'lodash';
+import { SurveyMapFilterItem } from 'types/home';
 
 interface SurveyMapProviderProps {
   children: ReactNode;
@@ -10,7 +11,7 @@ const SurveyMapContext = createContext<any>(null);
 export const useSurveyMapContext = () => useContext(SurveyMapContext);
 
 export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
-  const [filter, setFilter] = useState({
+  const [filter, setFilter] = useState<SurveyMapFilterItem>({
     id: '',
     year: '2023',
     item: '',
