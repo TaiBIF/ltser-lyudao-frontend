@@ -43,3 +43,8 @@ export type NewsFilterState = {
   startDate: string;
   endDate: string;
 };
+
+export type DateFilterItem = {
+  startDate: string | null;
+  endDate: string | null;
+};

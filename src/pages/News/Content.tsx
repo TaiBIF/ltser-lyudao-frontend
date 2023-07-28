@@ -31,7 +31,9 @@ const Content = () => {
     type: 0,
   });
   const [news, setNews] = useState<NewsItem[]>([]);
-  const [typeList, setTypeList] = useState<TypeItem[]>([]);
+  const [typeList, setTypeList] = useState<TypeItem[]>([
+    { id: 1, title: 'type1' },
+  ]);
 
   const { getList } = useRender();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
@@ -51,12 +53,6 @@ const Content = () => {
       setList: setTypeList,
     });
   }, []);
-
-  useEffect(() => {
-    if (!isFetchingTypeList) {
-      setTypeList([{ id: 0, title: '全部' }, ...typeList]);
-    }
-  }, [typeList]);
 
   useEffect(() => {
     getList({
@@ -80,7 +76,7 @@ const Content = () => {
                 <ul>
                   {/*目前位置給now*/}
                   {!isFetchingTypeList &&
-                    typeList.map((v) => {
+                    [{ id: 0, title: '全部' }, ...typeList].map((v) => {
                       const { id, title } = v;
                       return (
                         <li

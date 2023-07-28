@@ -289,6 +289,10 @@
           @media #{$mobile} {
             font-size: calc(14 / 375 * 100vw);
           }
+          &[type="date"]::-webkit-calendar-picker-indicator {
+            // display: none;
+            opacity: 0;
+          }
         }
       }
     }

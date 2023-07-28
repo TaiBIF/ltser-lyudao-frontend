@@ -25,9 +25,11 @@ const Item = ({ data, typeList }: { data: NewsItem; typeList: TypeItem[] }) => {
           <div className="cat-date">
             {types.map((v, i) => {
               return (
-                <div key={i} className="category e-tag" data-color={v.id}>
-                  {v.title}
-                </div>
+                v && (
+                  <div key={i} className="category e-tag" data-color={v.id}>
+                    {v.title}
+                  </div>
+                )
               );
             })}
             <div className="date">{newsDate}</div>
