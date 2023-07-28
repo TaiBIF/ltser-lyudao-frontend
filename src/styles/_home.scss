@@ -49,17 +49,3 @@
     left: 0;
   }
 }
-
-.c-form {
-  &__set {
-    position: relative;
-  }
-  &__date {
-    width: calc(100% + 1rem) !important;
-  }
-  &__icon {
-    position: absolute;
-    right: 1rem;
-    z-index: -1;
-  }
-}

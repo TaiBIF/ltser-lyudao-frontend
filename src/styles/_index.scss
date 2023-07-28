@@ -51,7 +51,9 @@ body {
 		}
 		.line {
 			fill: none;
-			transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+			transition:
+				stroke-dasharray 400ms,
+				stroke-dashoffset 400ms;
 			stroke: $col-green;
 			stroke-width: 4;
 			stroke-linecap: round;
@@ -1024,15 +1026,7 @@ body {
 							padding: 5px 10px;
 							border-radius: 20px;
 							background: $col-green;
-							&.col-red {
-								background: #e29292;
-							}
-							&.col-yel {
-								background: $col-yel;
-							}
-							&.col-blue {
-								background: #61b8bf;
-							}
+							@include category();
 						}
 						.date {
 							margin-left: 10px;

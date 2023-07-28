@@ -1,53 +1,48 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, FormikConfig, ErrorMessage } from 'formik';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import DateIcon from 'components/News/DateIcon';
+import { NewsFilterItem } from 'types/news';
 
-import { DateFilterItem } from 'types/news';
+interface DateFilterProps {
+  filter: NewsFilterItem;
+  setFilter: Dispatch<SetStateAction<NewsFilterItem>>;
+}
 
-const DateFilter = () => {
-  const initialValues = {
-    startDate: null,
-    endDate: null,
-  };
-
-  const handleSubmit = () => {};
-
-  const formikConfig: FormikConfig<DateFilterItem> = {
-    initialValues,
-    onSubmit: handleSubmit,
-    enableReinitialize: true,
+const DateFilter = (props: DateFilterProps) => {
+  const { filter, setFilter } = props;
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter({ ...filter, [e.currentTarget.name]: e.currentTarget.value });
   };
   return (
     <>
-      <Formik {...formikConfig}>
-        {() => (
-          <Form>
-            <div className="tool-select c-form">
-              <p>篩選</p>
-              <div className="date-box">
-                <div className="inp-item c-form__set">
-                  <Field
-                    type="date"
-                    name="startDate"
-                    className="c-form__date"
-                  />
-                  <div className="c-form__icon">
-                    <DateIcon />
-                  </div>
-                </div>
-                <span>~</span>
-                <div className="inp-item c-form__set">
-                  <Field type="date" name="endDate" className="c-form__date" />
-                  <div className="c-form__icon">
-                    <DateIcon />
-                  </div>
-                </div>
-              </div>
+      <div className="tool-select c-form">
+        <p>篩選</p>
+        <div className="date-box">
+          <div className="inp-item c-form__set">
+            <input
+              type="date"
+              name="startDate"
+              className="c-form__date"
+              onChange={handleInputChange}
+            />
+            <div className="c-form__icon">
+              <DateIcon />
             </div>
-          </Form>
-        )}
-      </Formik>
+          </div>
+          <span>~</span>
+          <div className="inp-item c-form__set">
+            <input
+              type="date"
+              name="endDate"
+              className="c-form__date"
+              onChange={handleInputChange}
+            />
+            <div className="c-form__icon">
+              <DateIcon />
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

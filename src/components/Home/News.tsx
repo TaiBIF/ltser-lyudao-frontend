@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { EnterState } from 'types/home';
-import { NewsItem, NewsFilterState } from 'types/news';
+import { NewsItem, NewsFilterItem, HomeNewsFilterItem } from 'types/news';
 
 import { newsList, newsTypeList } from 'data/news';
+
+import useRender from 'hooks/page/useRender';
+import { NEWS_API_URL, NEWS_TYPE_API_URL } from 'data/api';
+import { TypeItem } from 'types/utils';
 
 interface NewsProps {
   enter: EnterState;
@@ -12,27 +16,36 @@ interface NewsProps {
 
 function News(props: NewsProps) {
   const { enter } = props;
-  const [active, setActive] = useState<NewsFilterState>({
-    type: 0,
-    startDate: '',
-    endDate: '',
+  const [filter, setFilter] = useState<HomeNewsFilterItem>({
+    type: '',
   });
+  const [typeList, setTypeList] = useState<TypeItem[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
 
-  const isAllType = active.type === 0;
+  const { getList } = useRender();
 
+  const isAllType = filter.type === 0;
   const handleTypeClick = (id: number | string) => {
-    setActive({ ...active, type: id });
+    setFilter({ ...filter, type: id });
   };
 
-  // useEffect(() => {
-  //   if (isAllType) {
-  //     setNews([...newsList.slice(0, 3)]);
-  //   } else {
-  //     const matchActiveType = newsList.filter((v) => v.type === active.type);
-  //     setNews([...matchActiveType]);
-  //   }
-  // }, [active.type]);
+  useEffect(() => {
+    getList({
+      url: NEWS_TYPE_API_URL,
+      setList: setTypeList,
+    });
+  }, []);
+
+  useEffect(() => {
+    getList({
+      url: NEWS_API_URL,
+      setList: setNews,
+      defaultList: newsList,
+      params: {
+        filter: !isAllType ? filter.type : null,
+      },
+    });
+  }, [filter]);
 
   return (
     <>
@@ -44,18 +57,17 @@ function News(props: NewsProps) {
               <ul>
                 {/*目前選取的給class now*/}
                 {/*目前預設4種顏色 無限新增類別的話可能要開後台填顏色*/}
-                {newsTypeList.map((v) => {
-                  const { id, title, colorClass } = v;
+                {[{ id: 0, title: '全部' }, ...typeList].map((v) => {
+                  const { id, title } = v;
                   return (
                     <li
                       key={id}
                       className={`${
-                        active.type === id ? 'now' : ''
-                      } ${colorClass}`}
+                        filter.type === id ? 'now' : ''
+                      } e-tag e-tag--news`}
+                      data-color={Number(id) === 0 ? 'all' : Number(id) % 3}
                       onClick={() => {
-                        if (id) {
-                          handleTypeClick(id);
-                        }
+                        handleTypeClick(Number(id));
                       }}
                     >
                       {title}
@@ -66,24 +78,36 @@ function News(props: NewsProps) {
             </div>
             <div className="news-list">
               <ul>
-                {/* {news.map((v) => {
-                  const { id, type, title, content, modified } = v;
-                  const matchType = newsTypeList.find((v) => v.id === type);
+                {news.slice(0, 3).map((v) => {
+                  const { id, type, title, content, newsDate } = v;
+                  const matchType = type.map((item) =>
+                    typeList.find((v: TypeItem) => v.id === item)
+                  );
                   return (
                     <li key={id}>
                       <Link to={`/news/${id}`}>
                         <div className="cat-date">
-                          <div className={`category ${matchType?.colorClass}`}>
-                            {matchType?.title}
-                          </div>
-                          <div className="date">{modified}</div>
+                          {matchType.map((v) => {
+                            return (
+                              v && (
+                                <div
+                                  key={v.id}
+                                  className="category e-tag e-tag--news"
+                                  data-color={Number(v.id) % 4}
+                                >
+                                  {v.title}
+                                </div>
+                              )
+                            );
+                          })}
+                          <div className="date">{newsDate}</div>
                         </div>
                         <h3>{title}</h3>
                         <p>{content}</p>
                       </Link>
                     </li>
                   );
-                })} */}
+                })}
               </ul>
             </div>
             <div className="align-right">

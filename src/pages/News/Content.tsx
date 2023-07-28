@@ -10,7 +10,7 @@ import bannerImg from 'image/newsbn.jpg';
 
 import { BannerData } from 'types/common';
 
-import { NewsItem, NewsActiveState } from 'types/news';
+import { NewsItem, NewsFilterItem } from 'types/news';
 
 import { newsList, newsTypeList } from 'data/news';
 
@@ -27,12 +27,30 @@ const Content = () => {
     bgImg: bannerImg,
   };
 
-  const [filter, setFilter] = useState<NewsActiveState>({
+  const [filter, setFilter] = useState<NewsFilterItem>({
     type: 0,
+    startDate: '',
+    endDate: '',
   });
+
   const [news, setNews] = useState<NewsItem[]>([]);
   const [typeList, setTypeList] = useState<TypeItem[]>([
-    { id: 1, title: 'type1' },
+    {
+      id: 1,
+      title: '類別1',
+    },
+    {
+      id: 2,
+      title: '類別2',
+    },
+    {
+      id: 3,
+      title: '類別3',
+    },
+    {
+      id: 4,
+      title: '類別4',
+    },
   ]);
 
   const { getList } = useRender();
@@ -42,6 +60,8 @@ const Content = () => {
   const isAllType = filter.type === 0;
   const isFetchingList = news.length === 0;
   const isFetchingTypeList = typeList.length === 0;
+  const hasStartDate = filter.startDate !== '';
+  const hasEndDate = filter.endDate !== '';
 
   const handleTypeClick = (id: number | string) => {
     setFilter({ ...filter, type: id });
@@ -59,10 +79,15 @@ const Content = () => {
       url: NEWS_API_URL,
       setList: setNews,
       defaultList: newsList,
-      params: { page: currentPage, filter: !isAllType ? filter.type : null },
+      params: {
+        page: currentPage,
+        filter: !isAllType ? filter.type : null,
+        startDate: hasStartDate ? filter.startDate : null,
+        endDate: hasEndDate ? filter.endDate : null,
+      },
       setPaginationData,
     });
-  }, [currentPage]);
+  }, [currentPage, filter]);
 
   return (
     <>
@@ -94,7 +119,7 @@ const Content = () => {
                     })}
                 </ul>
               </div>
-              <DateFilter />
+              <DateFilter filter={filter} setFilter={setFilter} />
             </div>
             <div className="news-list">
               <ul>

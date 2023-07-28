@@ -32,19 +32,17 @@ export type NewsFormItem = {
   files?: NewsAttachmentItem[];
 };
 
-export type NewsActiveState = {
+export type NewsFilterItem = {
   type: number | string;
   startDate?: string;
   endDate?: string;
 };
 
-export type NewsFilterState = {
+export type HomeNewsFilterItem = {
   type: number | string;
-  startDate: string;
-  endDate: string;
 };
 
 export type DateFilterItem = {
-  startDate: string | null;
-  endDate: string | null;
+  startDate: string | undefined;
+  endDate: string | undefined;
 };

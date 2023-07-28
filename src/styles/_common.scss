@@ -1,0 +1,50 @@
+@mixin category() {
+  $col-red: #e29292;
+  $col-yel: #d5b943;
+  $col-blue: #61b8bf;
+  $col-green: #529a81;
+  &[data-color="all"] {
+    background: $col-green;
+    border: 1px solid $col-green;
+    color: #fff !important;
+  }
+  &[data-color="1"] {
+    background: $col-red;
+    border: 1px solid $col-red;
+  }
+  &[data-color="2"] {
+    background: #d5b943;
+    border: 1px solid $col-yel;
+  }
+  &[data-color="0"] {
+    background: #61b8bf;
+    border: 1px solid $col-blue;
+  }
+}
+
+.e-tag {
+  &--news {
+    margin-right: 0.5rem;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    &:hover,
+    &.now {
+      @include category();
+    }
+  }
+}
+
+.c-form {
+  &__set {
+    position: relative;
+  }
+  &__date {
+    width: calc(100% + 1rem) !important;
+  }
+  &__icon {
+    position: absolute;
+    right: 1rem;
+    z-index: -1;
+  }
+}
