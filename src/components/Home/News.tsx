@@ -17,7 +17,7 @@ interface NewsProps {
 function News(props: NewsProps) {
   const { enter } = props;
   const [filter, setFilter] = useState<HomeNewsFilterItem>({
-    type: '',
+    type: 0,
   });
   const [typeList, setTypeList] = useState<TypeItem[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -42,7 +42,7 @@ function News(props: NewsProps) {
       setList: setNews,
       defaultList: newsList,
       params: {
-        filter: !isAllType ? filter.type : null,
+        tag: !isAllType ? filter.type : null,
       },
     });
   }, [filter]);

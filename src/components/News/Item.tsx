@@ -29,7 +29,7 @@ const Item = ({ data, typeList }: { data: NewsItem; typeList: TypeItem[] }) => {
                   <div
                     key={i}
                     className="category e-tag e-tag--news"
-                    data-color={Number(v.id)}
+                    data-color={Number(v.id) % 4}
                   >
                     {v.title}
                   </div>

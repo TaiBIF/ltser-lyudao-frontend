@@ -34,24 +34,7 @@ const Content = () => {
   });
 
   const [news, setNews] = useState<NewsItem[]>([]);
-  const [typeList, setTypeList] = useState<TypeItem[]>([
-    {
-      id: 1,
-      title: '類別1',
-    },
-    {
-      id: 2,
-      title: '類別2',
-    },
-    {
-      id: 3,
-      title: '類別3',
-    },
-    {
-      id: 4,
-      title: '類別4',
-    },
-  ]);
+  const [typeList, setTypeList] = useState<TypeItem[]>([]);
 
   const { getList } = useRender();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
@@ -81,7 +64,7 @@ const Content = () => {
       defaultList: newsList,
       params: {
         page: currentPage,
-        filter: !isAllType ? filter.type : null,
+        tag: !isAllType ? filter.type : null,
         startDate: hasStartDate ? filter.startDate : null,
         endDate: hasEndDate ? filter.endDate : null,
       },
@@ -108,9 +91,7 @@ const Content = () => {
                           key={id}
                           className={`${filter.type === id ? 'now' : ''}`}
                           onClick={() => {
-                            if (id !== undefined) {
-                              handleTypeClick(id);
-                            }
+                            handleTypeClick(Number(id));
                           }}
                         >
                           {title}
