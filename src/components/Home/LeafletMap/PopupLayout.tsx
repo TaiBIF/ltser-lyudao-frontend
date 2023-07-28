@@ -76,6 +76,8 @@ const PopupLayout = (props: PopupLayoutProps) => {
     'fish-div',
   ];
 
+  const isFetchingItems = items.length === 0;
+
   useEffect(() => {
     const matchFilter = itemList
       .find((v) => v.site === filter.id)
@@ -89,16 +91,18 @@ const PopupLayout = (props: PopupLayoutProps) => {
   }, [filter.id]);
 
   useEffect(() => {
-    return () => {
+    if (!isFetchingItems) {
       setIdData({ ...data });
-      planList.forEach((plan, i) => {
-        const matchData = contextData.find((v: ContextItem) => v.id === plan);
+      items.forEach((item, i) => {
+        const matchData = contextData.find(
+          (v: ContextItem) => v.id === item.plan
+        );
         if (i === 0) {
           matchData.getDetail();
         }
       });
-    };
-  }, []);
+    }
+  }, [items]);
 
   return (
     <>
