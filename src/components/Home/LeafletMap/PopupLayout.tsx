@@ -91,8 +91,12 @@ const PopupLayout = (props: PopupLayoutProps) => {
   useEffect(() => {
     return () => {
       setIdData({ ...data });
-      planList.forEach((plan) => {
-        contextData.find((v: ContextItem) => v.id === plan).getDetail();
+      planList.forEach((plan, i) => {
+        const matchData = contextData.find((v: ContextItem) => v.id === plan);
+        console.log(matchData);
+        setTimeout(() => {
+          matchData.getDetail();
+        }, i * 100);
       });
     };
   }, []);
