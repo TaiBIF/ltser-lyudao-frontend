@@ -12,8 +12,8 @@ import FormLink from 'pages/FormLink';
 import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
 import EnvironmentalObservation from 'pages/SiteData/EnvironmentalObservation';
 import ForgotPsw from 'pages/Auth/ForgotPsw';
-import MailVerification from 'pages/Auth/MailVerification';
-import MailVerificationSuccess from 'pages/Auth/MailVerificationSuccess';
+import VerifyEmailSuccess from 'pages/Auth/VerifyEmailSuccess';
+import VerifyEmail from 'pages/Auth/VerifyEmail';
 import Terms from 'pages/Terms';
 import NewsContent from 'pages/News/Content';
 import NewsDetail from 'pages/News/Detail';
@@ -49,216 +49,228 @@ import DashboardFormLinkAdd from 'components/Dashboard/FormLink/Add';
 import DashboardFormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import DashboardDownload from 'components/Dashboard/Download';
 
+import ProtectedRoute from 'utils/ProtectedRoute';
+
 import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
 import { SurveyMapProvider } from 'context/SurveyMapContext';
 import { DataProvider } from 'context/DataContext';
 import { SiteDataProvider } from 'context/SiteDataContext';
+import { AuthProvider } from 'context/AuthContext';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <HeaderProvider>
-          <Header />
+          <AuthProvider>
+            <Header />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <SiteDataProvider>
+                    <SurveyMapProvider>
+                      <DataProvider>
+                        <Home />
+                      </DataProvider>
+                    </SurveyMapProvider>
+                  </SiteDataProvider>
+                }
+              />
+              <Route path="/about/:categoryId/:aboutId" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route
+                path="/related-literature"
+                element={<RelatedLiterature />}
+              />
+              <Route path="/form-link" element={<FormLink />} />
+              <Route path="/news" element={<NewsContent />} />
+              <Route path="/news/:newsId" element={<NewsDetail />} />
+              <Route path="/qa" element={<QA />} />
+              <Route
+                path="/site-data/ecological-observation/"
+                element={
+                  <SiteDataProvider>
+                    <SurveyMapProvider>
+                      <DataProvider>
+                        <EcoProvider>
+                          <EcologicalObservation />
+                        </EcoProvider>
+                      </DataProvider>
+                    </SurveyMapProvider>
+                  </SiteDataProvider>
+                }
+              />
+              <Route
+                path="/site-data/ecological-observation/:dataId"
+                element={
+                  <SiteDataProvider>
+                    <SurveyMapProvider>
+                      <DataProvider>
+                        <EcoProvider>
+                          <EcologicalObservation />
+                        </EcoProvider>
+                      </DataProvider>
+                    </SurveyMapProvider>
+                  </SiteDataProvider>
+                }
+              />
+              <Route
+                path="/site-data/environmental-observation/"
+                element={
+                  <SiteDataProvider>
+                    <SurveyMapProvider>
+                      <DataProvider>
+                        <EcoProvider>
+                          <EnvironmentalObservation />
+                        </EcoProvider>
+                      </DataProvider>
+                    </SurveyMapProvider>
+                  </SiteDataProvider>
+                }
+              />
+              <Route
+                path="/site-data/environmental-observation/:dataId"
+                element={
+                  <SiteDataProvider>
+                    <SurveyMapProvider>
+                      <DataProvider>
+                        <EcoProvider>
+                          <EnvironmentalObservation />
+                        </EcoProvider>
+                      </DataProvider>
+                    </SurveyMapProvider>
+                  </SiteDataProvider>
+                }
+              />
+              <Route
+                path="/site-data/social-observation/social-interview-data"
+                element={<InterviewContent />}
+              />
+              <Route
+                path="/site-data/social-observation/social-interview-data/:interviewId"
+                element={<InterviewDetail />}
+              />
+              <Route
+                path="/site-data/social-observation/social-economy-data"
+                element={<Economy />}
+              />
+              <Route path="/forgot-password" element={<ForgotPsw />} />
+              <Route path="/verify-email" element={<VerifyEmail />} />
+              <Route
+                path="/verift-email-success"
+                element={<VerifyEmailSuccess />}
+              />
+              <Route path="/terms" element={<Terms />} />
+              <Route element={<ProtectedRoute />}>
+                <Route
+                  path="/dashboard/about"
+                  element={<Dashboard content={<DashboardAboutContent />} />}
+                />
+                <Route
+                  path="/dashboard/about/add"
+                  element={<Dashboard content={<DashboardAboutAdd />} />}
+                />
+                <Route
+                  path="/dashboard/about/edit/:aboutId"
+                  element={<Dashboard content={<DashboardAboutEdit />} />}
+                />
+                <Route
+                  path="/dashboard/contact"
+                  element={<Dashboard content={<DashboardContactContent />} />}
+                />
+                <Route
+                  path="/dashboard/contact/add"
+                  element={<Dashboard content={<DashboardContactAdd />} />}
+                />
+                <Route
+                  path="/dashboard/contact/edit/:contactId"
+                  element={<Dashboard content={<DashboardContactEdit />} />}
+                />
+                <Route
+                  path="/dashboard/qa"
+                  element={<Dashboard content={<DashboardQAContent />} />}
+                />
+                <Route
+                  path="/dashboard/qa/add"
+                  element={<Dashboard content={<DashboardQAAdd />} />}
+                />
+                <Route
+                  path="/dashboard/qa/edit/:qaId"
+                  element={<Dashboard content={<DashboardQAEdit />} />}
+                />
+                <Route
+                  path="/dashboard/qa-type"
+                  element={<Dashboard content={<DashboardQATypeContent />} />}
+                />
+                <Route
+                  path="/dashboard/qa-type/add"
+                  element={<Dashboard content={<DashboardQATypeAdd />} />}
+                />
+                <Route
+                  path="/dashboard/qa-type/edit/:qaTypeId"
+                  element={<Dashboard content={<DashboardQATypeEdit />} />}
+                />
+                <Route
+                  path="/dashboard/news"
+                  element={<Dashboard content={<DashboardNewsContent />} />}
+                />
+                <Route
+                  path="/dashboard/news/add"
+                  element={<Dashboard content={<DashboardNewsAdd />} />}
+                />
+                <Route
+                  path="/dashboard/news/edit/:newsId"
+                  element={<Dashboard content={<DashboardNewsEdit />} />}
+                />
+                <Route
+                  path="/dashboard/news-type"
+                  element={<Dashboard content={<DashboardNewsTypeContent />} />}
+                />
+                <Route
+                  path="/dashboard/news-type/add"
+                  element={<Dashboard content={<DashboardNewsTypeAdd />} />}
+                />
+                <Route
+                  path="/dashboard/news-type/edit/:qaTypeId"
+                  element={<Dashboard content={<DashboardNewsTypeEdit />} />}
+                />
+                <Route
+                  path="/dashboard/related-literature"
+                  element={
+                    <Dashboard content={<DashboardLiteratureContent />} />
+                  }
+                />
+                <Route
+                  path="/dashboard/related-literature/add"
+                  element={<Dashboard content={<DashboardLiteratureAdd />} />}
+                />
+                <Route
+                  path="/dashboard/related-literature/edit/:literatureId"
+                  element={<Dashboard content={<DashboardLiteratureEdit />} />}
+                />
+                <Route
+                  path="/dashboard/form-link"
+                  element={<Dashboard content={<DashboardFormLinkContent />} />}
+                />
+                <Route
+                  path="/dashboard/form-link/add"
+                  element={<Dashboard content={<DashboardFormLinkAdd />} />}
+                />
+                <Route
+                  path="/dashboard/form-link/edit/:formLinkId"
+                  element={<Dashboard content={<DashboardFormLinkEdit />} />}
+                />
+                <Route
+                  path="/dashboard/download"
+                  element={<Dashboard content={<DashboardDownload />} />}
+                />
+              </Route>
+            </Routes>
+            <Footer />
+          </AuthProvider>
         </HeaderProvider>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <SiteDataProvider>
-                <SurveyMapProvider>
-                  <DataProvider>
-                    <Home />
-                  </DataProvider>
-                </SurveyMapProvider>
-              </SiteDataProvider>
-            }
-          />
-          <Route path="/about/:categoryId/:aboutId" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/related-literature" element={<RelatedLiterature />} />
-          <Route path="/form-link" element={<FormLink />} />
-          <Route path="/news" element={<NewsContent />} />
-          <Route path="/news/:newsId" element={<NewsDetail />} />
-          <Route path="/qa" element={<QA />} />
-          <Route
-            path="/site-data/ecological-observation/"
-            element={
-              <SiteDataProvider>
-                <SurveyMapProvider>
-                  <DataProvider>
-                    <EcoProvider>
-                      <EcologicalObservation />
-                    </EcoProvider>
-                  </DataProvider>
-                </SurveyMapProvider>
-              </SiteDataProvider>
-            }
-          />
-          <Route
-            path="/site-data/ecological-observation/:dataId"
-            element={
-              <SiteDataProvider>
-                <SurveyMapProvider>
-                  <DataProvider>
-                    <EcoProvider>
-                      <EcologicalObservation />
-                    </EcoProvider>
-                  </DataProvider>
-                </SurveyMapProvider>
-              </SiteDataProvider>
-            }
-          />
-          <Route
-            path="/site-data/environmental-observation/"
-            element={
-              <SiteDataProvider>
-                <SurveyMapProvider>
-                  <DataProvider>
-                    <EcoProvider>
-                      <EnvironmentalObservation />
-                    </EcoProvider>
-                  </DataProvider>
-                </SurveyMapProvider>
-              </SiteDataProvider>
-            }
-          />
-          <Route
-            path="/site-data/environmental-observation/:dataId"
-            element={
-              <SiteDataProvider>
-                <SurveyMapProvider>
-                  <DataProvider>
-                    <EcoProvider>
-                      <EnvironmentalObservation />
-                    </EcoProvider>
-                  </DataProvider>
-                </SurveyMapProvider>
-              </SiteDataProvider>
-            }
-          />
-          <Route
-            path="/site-data/social-observation/social-interview-data"
-            element={<InterviewContent />}
-          />
-          <Route
-            path="/site-data/social-observation/social-interview-data/:interviewId"
-            element={<InterviewDetail />}
-          />
-          <Route
-            path="/site-data/social-observation/social-economy-data"
-            element={<Economy />}
-          />
-          <Route path="/forgot-password" element={<ForgotPsw />} />
-          <Route path="/mail-verification" element={<MailVerification />} />
-          <Route
-            path="/mail-verification-success"
-            element={<MailVerificationSuccess />}
-          />
-          <Route path="/terms" element={<Terms />} />
-          <Route
-            path="/dashboard/about"
-            element={<Dashboard content={<DashboardAboutContent />} />}
-          />
-          <Route
-            path="/dashboard/about/add"
-            element={<Dashboard content={<DashboardAboutAdd />} />}
-          />
-          <Route
-            path="/dashboard/about/edit/:aboutId"
-            element={<Dashboard content={<DashboardAboutEdit />} />}
-          />
-          <Route
-            path="/dashboard/contact"
-            element={<Dashboard content={<DashboardContactContent />} />}
-          />
-          <Route
-            path="/dashboard/contact/add"
-            element={<Dashboard content={<DashboardContactAdd />} />}
-          />
-          <Route
-            path="/dashboard/contact/edit/:contactId"
-            element={<Dashboard content={<DashboardContactEdit />} />}
-          />
-          <Route
-            path="/dashboard/qa"
-            element={<Dashboard content={<DashboardQAContent />} />}
-          />
-          <Route
-            path="/dashboard/qa/add"
-            element={<Dashboard content={<DashboardQAAdd />} />}
-          />
-          <Route
-            path="/dashboard/qa/edit/:qaId"
-            element={<Dashboard content={<DashboardQAEdit />} />}
-          />
-          <Route
-            path="/dashboard/qa-type"
-            element={<Dashboard content={<DashboardQATypeContent />} />}
-          />
-          <Route
-            path="/dashboard/qa-type/add"
-            element={<Dashboard content={<DashboardQATypeAdd />} />}
-          />
-          <Route
-            path="/dashboard/qa-type/edit/:qaTypeId"
-            element={<Dashboard content={<DashboardQATypeEdit />} />}
-          />
-          <Route
-            path="/dashboard/news"
-            element={<Dashboard content={<DashboardNewsContent />} />}
-          />
-          <Route
-            path="/dashboard/news/add"
-            element={<Dashboard content={<DashboardNewsAdd />} />}
-          />
-          <Route
-            path="/dashboard/news/edit/:newsId"
-            element={<Dashboard content={<DashboardNewsEdit />} />}
-          />
-          <Route
-            path="/dashboard/news-type"
-            element={<Dashboard content={<DashboardNewsTypeContent />} />}
-          />
-          <Route
-            path="/dashboard/news-type/add"
-            element={<Dashboard content={<DashboardNewsTypeAdd />} />}
-          />
-          <Route
-            path="/dashboard/news-type/edit/:qaTypeId"
-            element={<Dashboard content={<DashboardNewsTypeEdit />} />}
-          />
-          <Route
-            path="/dashboard/related-literature"
-            element={<Dashboard content={<DashboardLiteratureContent />} />}
-          />
-          <Route
-            path="/dashboard/related-literature/add"
-            element={<Dashboard content={<DashboardLiteratureAdd />} />}
-          />
-          <Route
-            path="/dashboard/related-literature/edit/:literatureId"
-            element={<Dashboard content={<DashboardLiteratureEdit />} />}
-          />
-          <Route
-            path="/dashboard/form-link"
-            element={<Dashboard content={<DashboardFormLinkContent />} />}
-          />
-          <Route
-            path="/dashboard/form-link/add"
-            element={<Dashboard content={<DashboardFormLinkAdd />} />}
-          />
-          <Route
-            path="/dashboard/form-link/edit/:formLinkId"
-            element={<Dashboard content={<DashboardFormLinkEdit />} />}
-          />
-          <Route
-            path="/dashboard/download"
-            element={<Dashboard content={<DashboardDownload />} />}
-          />
-        </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   );

@@ -38,7 +38,7 @@ const Content = () => {
     if (!show.loginPopup) {
       setTimeout(() => {
         setShow({ ...show, loginContent: 'login' });
-      }, 5000);
+      }, 400);
     }
   }, [show.loginPopup]);
 

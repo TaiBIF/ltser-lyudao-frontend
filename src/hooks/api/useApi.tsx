@@ -2,24 +2,26 @@ import { useState } from 'react';
 import axios from 'axios';
 import { To, useNavigate } from 'react-router-dom';
 
-import { API_URL } from 'utils/config';
+import { API_URL, AUTH_URL } from 'utils/config';
 import { swalToast } from 'helpers/customSwal';
 
 type ResultItem = {
   type?: string;
-  title: string;
+  title?: string;
+  action?: any;
 };
 
 type ActionItem = {
   type?: string;
   path?: string;
+  action?: any;
 };
 
 interface apiParamsProps {
   type?: string;
   method: string;
   params?: any;
-  data?: FormData;
+  data?: FormData | any;
   url: string;
   headers?: any;
   responseType?: any;
@@ -54,6 +56,9 @@ export const useApi = () => {
       let baseUrl;
       let response;
       switch (type) {
+        case 'auth':
+          baseUrl = AUTH_URL;
+          break;
         case 'api':
         default:
           baseUrl = API_URL;
@@ -85,6 +90,9 @@ export const useApi = () => {
         case 'redirect':
           navigate(action?.path as To);
           break;
+        case 'custom':
+          action.action();
+          break;
         default:
           break;
       }
@@ -94,21 +102,25 @@ export const useApi = () => {
         case 200:
         case 201:
         case 204:
-          switch (success?.type) {
-            case 'default':
-            default:
-              swalToast.fire({
-                icon: 'success',
-                title: success?.title,
-              });
-              handleAction();
-              return;
+          if (success?.title) {
+            swalToast.fire({
+              icon: 'success',
+              title: success.title,
+            });
           }
+          if (success?.action) {
+            success.action();
+          }
+          handleAction();
+          break;
         default:
           swalToast.fire({
             icon: 'error',
             title: error?.title,
           });
+          if (error?.action) {
+            error?.action();
+          }
           handleAction();
           break;
       }
@@ -121,5 +133,5 @@ export const useApi = () => {
     }
   };
 
-  return { loading, handleApi, handleActions };
+  return { loading, setLoading, handleApi, handleActions };
 };

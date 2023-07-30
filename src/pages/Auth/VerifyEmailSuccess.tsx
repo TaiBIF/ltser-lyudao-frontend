@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Breadcrumb from 'components/Breadcrumb';
 
-const MailVerificaitionSuccess = () => {
+const VerifyEmailSuccess = () => {
   return (
     <>
       <div className="innbox">
@@ -32,4 +32,4 @@ const MailVerificaitionSuccess = () => {
   );
 };
 
-export default MailVerificaitionSuccess;
+export default VerifyEmailSuccess;
