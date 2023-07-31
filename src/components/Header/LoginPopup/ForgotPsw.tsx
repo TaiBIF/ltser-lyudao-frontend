@@ -13,13 +13,14 @@ import ActionBtn from 'components/Header/LoginPopup/ActionBtn';
 import { resetPswEmailValidationSchema } from 'data/validationSchema';
 
 import { useAuthContext } from 'context/AuthContext';
+import Spinner from 'components/Spinner';
 
 const ForgotPsw = () => {
   const initialValues = {
     email: '',
   };
 
-  const { handleResetPswEmail } = useAuthContext();
+  const { loading, handleResetPswEmail } = useAuthContext();
 
   const handleSubmit = (
     values: Record<string, any>,
@@ -58,16 +59,16 @@ const ForgotPsw = () => {
               </div>
               <div className="btn-area">
                 <button className="login" type="submit" disabled={isSubmitting}>
-                  確認送出
+                  {!loading ? '確認送出' : <Spinner />}
                 </button>
+              </div>
+              <div className="btn-area2">
+                <ActionBtn type="signup" loading={loading} />
+                <ActionBtn type="login" loading={loading} />
               </div>
             </Form>
           )}
         </Formik>
-        <div className="btn-area2">
-          <ActionBtn type="signup" />
-          <ActionBtn type="login" />
-        </div>
       </div>
     </>
   );

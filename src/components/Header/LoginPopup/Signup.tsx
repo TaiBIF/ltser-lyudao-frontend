@@ -9,10 +9,12 @@ import {
 } from 'formik';
 
 import ActionBtn from 'components/Header/LoginPopup/ActionBtn';
+import Spinner from 'components/Spinner';
 
 import { useAuthContext } from 'context/AuthContext';
 
 import { signupValidationSchema } from 'data/validationSchema';
+import { useHeaderContext } from 'context/HeaderContext';
 
 const Signup = () => {
   const initialValues = {
@@ -23,13 +25,14 @@ const Signup = () => {
     password2: '',
   };
 
-  const { handleSignup } = useAuthContext();
+  const { loading, handleSignup } = useAuthContext();
+  const { setShow } = useHeaderContext();
 
   const handleSubmit = (
     values: Record<string, any>,
     { setSubmitting }: FormikHelpers<Record<string, any>>
   ) => {
-    handleSignup(values);
+    handleSignup({ values, setShow });
     setSubmitting(false);
   };
 
@@ -100,11 +103,11 @@ const Signup = () => {
               </div>
               <div className="btn-area">
                 <button type="submit" className="login" disabled={isSubmitting}>
-                  註冊
+                  {!loading ? '註冊' : <Spinner />}
                 </button>
               </div>
               <div className="btn-area2">
-                <ActionBtn type="login" />
+                <ActionBtn type="login" loading={loading} />
                 <div className="link">
                   <span className="col-red">*註冊即同意</span>{' '}
                   <a href="/">使用者條款</a>

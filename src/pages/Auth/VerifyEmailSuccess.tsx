@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Breadcrumb from 'components/Breadcrumb';
+import { spinnerBtnStyle } from 'utils/style';
 
 const VerifyEmailSuccess = () => {
   return (
@@ -21,7 +22,7 @@ const VerifyEmailSuccess = () => {
               <div className="mailbox">
                 ※ 您的電子信箱驗證成功，歡迎加入LTSER_LYUDAO網站會員！
               </div>
-              <Link to="/" className="send">
+              <Link to="/" className="send" style={spinnerBtnStyle}>
                 回首頁
               </Link>
             </div>

@@ -15,15 +15,12 @@ import Item from 'components/Header/Item';
 import { menuList } from 'data/common';
 
 import { useHeaderContext } from 'context/HeaderContext';
-import useWindowDimensions from 'hooks/utils/useWindowDimensions';
+
 import { gsapSlideToggle } from 'utils/animation';
 
 const Content = () => {
-  const { width } = useWindowDimensions();
   const { pathname, hash, key } = useLocation();
-  const { show, setShow, menu3Ref, mainMenuRef } = useHeaderContext();
-
-  const isMobile = width && width < 1279;
+  const { show, menu3Ref, mainMenuRef } = useHeaderContext();
 
   useEffect(() => {
     const target = menu3Ref.current;
@@ -44,14 +41,6 @@ const Content = () => {
       }
     }
   }, [show.mobile, show.mainMenu]);
-
-  useEffect(() => {
-    if (isMobile) {
-      setShow({ ...show, mobile: true });
-    } else {
-      setShow({ ...show, mobile: false });
-    }
-  }, [width]);
 
   useEffect(() => {
     if (hash === '') {

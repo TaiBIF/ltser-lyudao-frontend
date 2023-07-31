@@ -4,12 +4,15 @@ import {
   useEffect,
   useContext,
   ReactNode,
+  SetStateAction,
+  Dispatch,
 } from 'react';
 
 import { useApi } from 'hooks/api/useApi';
 import { useNavigate } from 'react-router-dom';
 import { swalToast } from 'helpers/customSwal';
 import { useHeaderContext } from './HeaderContext';
+import { HeaderShowState } from 'types/common';
 
 interface AuthTokens {
   access: string;
@@ -18,8 +21,21 @@ interface AuthTokens {
 
 interface AuthContextData {
   auth: boolean;
-  handleLogin: (values: Record<string, any>) => Promise<void>;
-  handleSignup: (values: Record<string, any>) => Promise<void>;
+  loading: boolean;
+  handleLogin: ({
+    values,
+    setShow,
+  }: {
+    values: Record<string, any>;
+    setShow: Dispatch<SetStateAction<HeaderShowState>>;
+  }) => Promise<void>;
+  handleSignup: ({
+    values,
+    setShow,
+  }: {
+    values: Record<string, any>;
+    setShow: Dispatch<SetStateAction<HeaderShowState>>;
+  }) => Promise<void>;
   handleResendEmail: (values: Record<string, any>) => Promise<void>;
   handleVerifyEmail: (token: string) => Promise<void>;
   handleLogout: () => void;
@@ -29,8 +45,8 @@ interface AuthContextData {
     token,
     values,
   }: {
-    uidb64: string;
-    token: string;
+    uidb64: string | null;
+    token: string | null;
     values: Record<string, any>;
   }) => Promise<void>;
 }
@@ -52,13 +68,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [init, setInit] = useState<boolean>(false);
   const [auth, setAuth] = useState<boolean>(true);
 
-  const { setLoading, handleApi, handleActions } = useApi();
+  const { loading, setLoading, handleApi, handleActions } = useApi();
   const navigate = useNavigate();
   const { show, setShow } = useHeaderContext();
 
   const isExistTokens = authTokens.access !== '';
 
-  const handleLogin = async (values: Record<string, any>) => {
+  const handleLogin = async ({
+    values,
+    setShow,
+  }: {
+    values: Record<string, any>;
+    setShow: Dispatch<SetStateAction<HeaderShowState>>;
+  }) => {
     const result = await handleApi({
       type: 'auth',
       method: 'post',
@@ -66,6 +88,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       url: `/login/`,
     });
     const handleSuccessAction = (data: AuthTokens) => {
+      setShow({
+        menu3: false,
+        mainMenu: false,
+        mobile: false,
+        loginPopup: false,
+        loginContent: 'login',
+      });
       setAuthTokens({ ...data });
       localStorage.setItem('authTokens', JSON.stringify(data));
       navigate('/');
@@ -130,7 +159,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const handleSignup = async (values: Record<string, any>) => {
+  const handleSignup = async ({
+    values,
+    setShow,
+  }: {
+    values: Record<string, any>;
+    setShow: Dispatch<SetStateAction<HeaderShowState>>;
+  }) => {
     const result = await handleApi({
       type: 'auth',
       method: 'post',
@@ -140,11 +175,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const handleSuccessAction = () => {
       localStorage.setItem('email', values['email']);
       navigate('/verify-email');
+      setShow({
+        menu3: false,
+        mainMenu: false,
+        mobile: false,
+        loginPopup: false,
+        loginContent: 'login',
+      });
     };
     handleActions({
       result,
       success: {
-        title: '登入成功',
+        title: '註冊成功',
         action: handleSuccessAction,
       },
       error: {
@@ -220,12 +262,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     token,
     values,
   }: {
-    uidb64: string;
-    token: string;
+    uidb64: string | null;
+    token: string | null;
     values: Record<string, any>;
   }) => {
     const data = {
-      password: values.newPassword,
+      password: values.password,
       uidb64: uidb64,
       token: token,
     };
@@ -235,20 +277,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       data,
       url: `/password-reset-complete/`,
     });
-    const handleAction = () => {
-      setShow({ ...show, loginPopup: true, loginContent: 'login' });
+    const handleSuccessAction = () => {
+      setTimeout(() => {
+        setShow({ ...show, loginPopup: true, loginContent: 'login' });
+      }, 3000);
     };
     handleActions({
       result,
       success: {
-        title: '更改成功',
+        title: '更改成功，請重新登入',
+        action: handleSuccessAction,
       },
       error: {
         title: '發生錯誤，更改失敗',
-      },
-      action: {
-        type: 'custom',
-        action: handleAction,
       },
     });
   };
@@ -279,6 +320,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const contextData: AuthContextData = {
     auth,
+    loading,
     handleLogin,
     handleSignup,
     handleResendEmail,

@@ -6,10 +6,11 @@ import { useHeaderContext } from 'context/HeaderContext';
 
 interface ActionBtnProps {
   type: string;
+  loading: boolean;
 }
 
 const ActionBtn = (props: ActionBtnProps) => {
-  const { type } = props;
+  const { type, loading } = props;
   const { show, setShow } = useHeaderContext();
   const [content, setContent] = useState<HeaderLoginContentState>({
     class: '',
@@ -38,7 +39,12 @@ const ActionBtn = (props: ActionBtnProps) => {
 
   return (
     <>
-      <button type="button" className={content.class} onClick={handleBtnClick}>
+      <button
+        type="button"
+        className={content.class}
+        onClick={handleBtnClick}
+        disabled={loading}
+      >
         {content.text}
       </button>
     </>

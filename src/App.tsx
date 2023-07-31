@@ -11,7 +11,7 @@ import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
 import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
 import EnvironmentalObservation from 'pages/SiteData/EnvironmentalObservation';
-import ForgotPsw from 'pages/Auth/ForgotPsw';
+import ResetPsw from 'pages/Auth/ResetPsw';
 import VerifyEmailSuccess from 'pages/Auth/VerifyEmailSuccess';
 import VerifyEmail from 'pages/Auth/VerifyEmail';
 import Terms from 'pages/Terms';
@@ -156,10 +156,10 @@ function App() {
                 path="/site-data/social-observation/social-economy-data"
                 element={<Economy />}
               />
-              <Route path="/forgot-password" element={<ForgotPsw />} />
+              <Route path="/reset-password" element={<ResetPsw />} />
               <Route path="/verify-email" element={<VerifyEmail />} />
               <Route
-                path="/verift-email-success"
+                path="/verify-email-success"
                 element={<VerifyEmailSuccess />}
               />
               <Route path="/terms" element={<Terms />} />

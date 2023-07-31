@@ -14,6 +14,8 @@ import Breadcrumb from 'components/Breadcrumb';
 import { resendEmailValidationSchema } from 'data/validationSchema';
 
 import { useAuthContext } from 'context/AuthContext';
+import Spinner from 'components/Spinner';
+import { spinnerBtnStyle } from 'utils/style';
 
 const VerifyEmail = () => {
   const mail = localStorage.getItem('email');
@@ -23,7 +25,7 @@ const VerifyEmail = () => {
   const location = useLocation();
   const token = new URLSearchParams(location.search).get('token');
 
-  const { handleResendEmail, handleVerifyEmail } = useAuthContext();
+  const { loading, handleResendEmail, handleVerifyEmail } = useAuthContext();
 
   const handleSubmit = (
     values: Record<string, any>,
@@ -80,9 +82,10 @@ const VerifyEmail = () => {
                     <button
                       type="submit"
                       className="send"
+                      style={spinnerBtnStyle}
                       disabled={isSubmitting}
                     >
-                      重新寄送
+                      {!loading ? '重新寄送' : <Spinner />}
                     </button>
                   </Form>
                 )}

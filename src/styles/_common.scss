@@ -50,3 +50,16 @@
     z-index: -1;
   }
 }
+
+.c-spinner {
+  height: 2rem;
+  aspect-ratio: 1 / 1;
+}
+
+.c-alert {
+  &__toast {
+    width: calc(100% - 0.5rem) !important;
+    top: 5.5rem;
+    left: 0.5rem;
+  }
+}

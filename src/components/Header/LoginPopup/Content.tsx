@@ -8,8 +8,10 @@ import Signup from 'components/Header/LoginPopup/Signup';
 import loginPicImg from 'image/loginpic.png';
 
 import { useHeaderContext } from 'context/HeaderContext';
-import { fadeInitStyle } from 'utils/animation';
+import { fadeInitStyle, gsapFade } from 'utils/animation';
 import { handleStopPropagation } from 'helpers/stopPropagation';
+import { useLocation } from 'react-router-dom';
+import useWindowDimensions from 'hooks/utils/useWindowDimensions';
 
 type loginContentItem = {
   id: number | string;
@@ -18,6 +20,10 @@ type loginContentItem = {
 
 const Content = () => {
   const { show, setShow, loginPopupRef, handleLoginClick } = useHeaderContext();
+  const { pathname } = useLocation();
+  const { width } = useWindowDimensions();
+
+  const isMobile = width && width < 1279;
 
   const loginContentList: loginContentItem[] = [
     {
@@ -41,6 +47,31 @@ const Content = () => {
       }, 400);
     }
   }, [show.loginPopup]);
+
+  useEffect(() => {
+    const target = loginPopupRef.current;
+    if (target) {
+      gsapFade(show.loginPopup ? 'in' : 'out', target);
+    }
+  }, [show.loginPopup]);
+
+  useEffect(() => {
+    setShow({
+      menu3: false,
+      mainMenu: false,
+      mobile: false,
+      loginPopup: false,
+      loginContent: 'login',
+    });
+  }, [pathname]);
+
+  useEffect(() => {
+    if (isMobile) {
+      setShow({ ...show, mobile: true });
+    } else {
+      setShow({ ...show, mobile: false });
+    }
+  }, [width]);
 
   return (
     <>

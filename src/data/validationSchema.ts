@@ -86,3 +86,10 @@ export const resetPswEmailValidationSchema = Yup.object().shape({
     .email('請輸入有效的Email地址')
     .required('Email為必填項目'),
 });
+
+export const resetPswValidationSchema = Yup.object().shape({
+  password: Yup.string().required('密碼為必填項目'),
+  password2: Yup.string()
+    .oneOf([Yup.ref('password')], '密碼不一致')
+    .required('確認密碼為必填項目'),
+});

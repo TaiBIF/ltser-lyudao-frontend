@@ -9,9 +9,14 @@ import {
 } from 'formik';
 
 import ActionBtn from 'components/Header/LoginPopup/ActionBtn';
+import Spinner from 'components/Spinner';
+
 import { FieldItem } from 'types/utils';
+
 import { loginValidationSchema } from 'data/validationSchema';
+
 import { useAuthContext } from 'context/AuthContext';
+import { useHeaderContext } from 'context/HeaderContext';
 
 const Login = () => {
   const initialValues = {
@@ -20,13 +25,14 @@ const Login = () => {
     // rememberMe: false,
   };
 
-  const { handleLogin } = useAuthContext();
+  const { loading, handleLogin } = useAuthContext();
+  const { setShow } = useHeaderContext();
 
   const handleSubmit = (
     values: Record<string, any>,
     { setSubmitting }: FormikHelpers<Record<string, any>>
   ) => {
-    handleLogin(values);
+    handleLogin({ values, setShow });
     setSubmitting(false);
   };
 
@@ -77,13 +83,13 @@ const Login = () => {
             </div> */}
               <div className="btn-area">
                 <button type="submit" className="login" disabled={isSubmitting}>
-                  登入
+                  {!loading ? '登入' : <Spinner />}
                 </button>
                 <button className="logingoogle">使用GOOGLE登入</button>
               </div>
               <div className="btn-area2">
-                <ActionBtn type="signup" />
-                <ActionBtn type="forgotPsw" />
+                <ActionBtn type="signup" loading={loading} />
+                <ActionBtn type="forgotPsw" loading={loading} />
               </div>
             </Form>
           )}
