@@ -24,7 +24,7 @@ const Images = ({ data }: { data: NewsImageItem[] }) => {
         {data.map((v, i) => {
           const { image } = v;
           return (
-            <SwiperSlide key={i}>
+            <SwiperSlide key={i} className="d-flex justify-content-center">
               <img
                 className="e-img e-img--cover"
                 src={`${IMAGE_URL}${image}`}
