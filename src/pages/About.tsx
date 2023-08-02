@@ -1,46 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { aboutList, attachmentList, attachmentNameList } from 'data/about';
-import { tabList } from 'data/home/content';
+import Item from 'components/About/Item';
+
 import { AboutItem } from 'types/about';
+import { AttachmentItem } from 'types/about';
 import { RelateState } from 'types/utils';
-import AttachmentName from 'components/About/AttachmentName';
+
+import { tabList } from 'data/home/content';
+import { ABOUT_API_URL } from 'data/api';
+
+import useRender from 'hooks/page/useRender';
 
 const About = () => {
-  const { pathname } = useLocation();
   const { aboutId } = useParams();
-  const [aboutData, setAboutData] = useState<AboutItem>({
+  const { getDetail } = useRender();
+  const { pathname } = useLocation();
+
+  const [data, setData] = useState<AboutItem>({
     id: 0,
-    type: 0,
+    type: '',
     name: '',
     content: '',
     image: '',
-    attachmentName: [],
-    created: '',
-    modified: '',
+    created_at: '',
+    updated_at: '',
+    attachments: [],
   });
   const [relate, setRelate] = useState<RelateState>({
     type: '',
   });
 
-  const hasAboutData = aboutData.id !== 0;
+  const hasData = data.id !== 0;
 
   useEffect(() => {
-    const matchAbout = aboutList.find((v) => v.id === aboutId);
-    if (matchAbout) {
-      setAboutData({ ...matchAbout });
-    }
+    getDetail({
+      id: aboutId,
+      url: ABOUT_API_URL,
+      setData,
+    });
   }, [pathname]);
 
   useEffect(() => {
-    if (hasAboutData) {
-      const matchCategory = tabList.find((v) => v.id === aboutData.type);
+    if (hasData) {
+      const matchCategory = tabList.find((v) => v.id === data.type);
       if (matchCategory) {
-        setRelate({ ...aboutData, type: matchCategory.title });
+        setRelate({ ...data, type: matchCategory.title });
       }
     }
-  }, [aboutData]);
+  }, [data]);
 
   return (
     <>
@@ -51,16 +59,16 @@ const About = () => {
               <div className="leftbox">
                 <div className="title-area">
                   <div className="ab-category">{relate.type}</div>
-                  <h2>{aboutData.name}</h2>
+                  <h2>{data.name}</h2>
                 </div>
-                <p>{aboutData.content}</p>
+                <p>{data.content}</p>
               </div>
               <div className="rightbox">
                 <div className="pic-area">
                   {/*上背景圖*/}
                   <div
                     className="img-area"
-                    style={{ backgroundImage: aboutData.image }}
+                    style={{ backgroundImage: data.image }}
                   />
                 </div>
               </div>
@@ -70,17 +78,9 @@ const About = () => {
         {/*有其他內容的才有下面這塊*/}
         <div className="ab-otherbox">
           <div className="main-box">
-            {aboutData.attachmentName &&
-              aboutData.attachmentName.map((item) => {
-                const matchNames = attachmentNameList.find(
-                  (v) => v.id === item
-                );
-                return (
-                  matchNames && (
-                    <AttachmentName key={matchNames.id} data={matchNames} />
-                  )
-                );
-              })}
+            {data.attachments?.map((v) => {
+              return <Item key={v.id} data={v} />;
+            })}
           </div>
         </div>
       </div>

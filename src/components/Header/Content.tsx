@@ -17,10 +17,20 @@ import { menuList } from 'data/common';
 import { useHeaderContext } from 'context/HeaderContext';
 
 import { gsapSlideToggle } from 'utils/animation';
+import useRender from 'hooks/page/useRender';
+import { ABOUT_API_URL } from 'data/api';
+import { HeaderMenuItem } from 'types/common';
 
 const Content = () => {
   const { pathname, hash, key } = useLocation();
   const { show, menu3Ref, mainMenuRef } = useHeaderContext();
+  const { getDetail } = useRender();
+
+  const [about, setAbout] = useState<any>({});
+  const [menu, setMenu] = useState<HeaderMenuItem[]>([]);
+
+  const isFetchingAbout = Object.keys(about).length === 0;
+  const isFetchingMenu = false;
 
   useEffect(() => {
     const target = menu3Ref.current;
@@ -59,6 +69,34 @@ const Content = () => {
     }
   }, [pathname, hash, key]);
 
+  useEffect(() => {
+    getDetail({
+      url: ABOUT_API_URL,
+      setData: setAbout,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isFetchingAbout) {
+      const originalMenu = menuList;
+      Object.entries(about).forEach(([key, value]) => {
+        const aboutItem = originalMenu
+          .find((v) => v.link === 'about')
+          ?.list?.find((v) => {
+            const formatLink = `${v.link?.split('-')[0]}${v.link
+              ?.split('-')[1]
+              .slice(0, 1)
+              .toUpperCase()}${v.link?.split('-')[1].slice(1)}`;
+            return formatLink === key;
+          });
+        if (aboutItem) {
+          aboutItem.list = about[key];
+        }
+      });
+      setMenu([...originalMenu]);
+    }
+  }, [about]);
+
   return (
     <>
       <div className="header">
@@ -71,16 +109,21 @@ const Content = () => {
             style={{ display: show.mobile ? '' : 'flex' }}
           >
             <ul>
-              {menuList.map((item) => {
-                const isSec = item.type === 'sec';
-                return item.list ? (
-                  <li key={`${item.id}`} className={isSec ? 'secmenu' : ''}>
-                    {isSec ? <SecMenu data={item} /> : <MegaMenu data={item} />}
-                  </li>
-                ) : (
-                  <Item key={`${item.id}`} data={item} />
-                );
-              })}
+              {!isFetchingMenu &&
+                menu.map((item) => {
+                  const isSec = item.type === 'sec';
+                  return item.list ? (
+                    <li key={`${item.id}`} className={isSec ? 'secmenu' : ''}>
+                      {isSec ? (
+                        <SecMenu data={item} />
+                      ) : (
+                        <MegaMenu data={item} />
+                      )}
+                    </li>
+                  ) : (
+                    <Item key={`${item.id}`} data={item} />
+                  );
+                })}
             </ul>
             <div className="header-iconbox">
               <LanguageBtn />

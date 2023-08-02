@@ -25,6 +25,7 @@ const MegaMenuSubItem = (props: MegaMenuSubItemProps) => {
               return (
                 <FinalItem
                   key={`${parentId}-${data.id}-${finalItem.id}`}
+                  about={true}
                   parentId={`${parentId}-${data.id}`}
                   parentLink={`/${parentLink}/${data.link}`}
                   data={finalItem}

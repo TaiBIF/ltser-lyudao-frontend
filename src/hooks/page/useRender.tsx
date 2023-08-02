@@ -52,10 +52,10 @@ const useRender = () => {
     setData,
     redirectPath,
   }: {
-    id: number | string;
+    id?: number | string;
     url: string;
     setData: any;
-    redirectPath: string;
+    redirectPath?: string;
   }) => {
     const result = await handleApi({
       method: 'get',

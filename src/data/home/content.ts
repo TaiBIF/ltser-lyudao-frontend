@@ -13,19 +13,19 @@ export const surveyMapParams: SurveyMapParams = {
 
 export const tabList: TabItem[] = [
   {
-    id: 1,
+    id: 'ecologicalObservation',
     title: '生態觀測',
     subtitle: ['Ecological', 'Observation'],
     link: 'ecological-observation',
   },
   {
-    id: 2,
+    id: 'environmentalObservation',
     title: '環境觀測',
     subtitle: ['Environmental', 'Observation'],
     link: 'environmental-observation',
   },
   {
-    id: 3,
+    id: 'socialObservation',
     title: '社會觀測',
     subtitle: ['Social', 'Observation'],
     link: 'social-observation',

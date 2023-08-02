@@ -1,10 +1,5 @@
 import { TypeItem } from 'types/utils';
-import { AboutItem, AttachmentNameItem } from 'types/about';
-import { AttachmentItem } from 'types/utils';
-
-import abImg from 'image/abimg.png';
-import abDemoImg1 from 'image/ab-demo1.png';
-import abDemoImg2 from 'image/ab-demo2.png';
+import { AboutItem } from 'types/about';
 
 export const aboutTypeList: TypeItem[] = [
   {
@@ -21,224 +16,36 @@ export const aboutTypeList: TypeItem[] = [
   },
 ];
 
-export const attachmentList: AttachmentItem[] = [
-  {
-    id: 1,
-    type: 'text',
-    content: `綠島以獨特的島嶼生態系吸引大批觀光客前來，交通船是前往島上的唯二選擇。當航行經過時，船隻活動的噪音足以蓋過其他的聲音。`,
-  },
-  {
-    id: 2,
-    type: 'image',
-    content: abDemoImg1,
-  },
-  {
-    id: 3,
-    type: 'image',
-    content: abDemoImg2,
-  },
-  {
-    id: 4,
-    type: 'text',
-    content: `綠島以獨特的島嶼生態系吸引大批觀光客前來，交通船是前往島上的唯二選擇。當航行經過時，船隻活動的噪音足以蓋過其他的聲音。`,
-  },
-  {
-    id: 5,
-    type: 'image',
-    content: abDemoImg1,
-  },
-  {
-    id: 6,
-    type: 'image',
-    content: abDemoImg2,
-  },
-];
-
-export const attachmentNameList: AttachmentNameItem[] = [
-  {
-    id: 1,
-    title: '船隻聲音1',
-    list: [1, 2, 3],
-  },
-  {
-    id: 2,
-    title: '船隻聲音2',
-    list: [4, 5, 6],
-  },
-  {
-    id: 3,
-    title: '船隻聲音3',
-    list: [4],
-  },
-  {
-    id: 4,
-    title: '船隻聲音4',
-    list: [1, 6],
-  },
-];
-
 export const aboutList: AboutItem[] = [
   {
-    id: 'ecological-observation-article1-name',
-    type: 1,
-    name: '陸域維管束植物社會監測',
-    content: `珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。`,
-    image: abImg,
-    attachmentName: [1, 2],
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'ecological-observation-article2-name',
-    type: 1,
-    name: '珊瑚多樣性、珊瑚礁群聚、入添與白化觀測',
-    content: `珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'ecological-observation-article3-name',
-    type: 1,
-    name: '綠島海洋水域以及珊瑚健康指標觀測',
-    content: `珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'ecological-observation-article4-name',
-    type: 1,
-    name: '珊瑚礁魚類多樣性與群聚',
-    content: `珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'ecological-observation-article5-name',
-    type: 1,
-    name: '珊瑚礁魚類時空變化',
-    content: `珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'ecological-observation-article6-name',
-    type: 1,
-    name: '珊瑚礁水下聲景調查',
-    content: `珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'ecological-observation-article7-name',
-    type: 1,
-    name: '陸域聲景調查',
-    content: `珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'ecological-observation-article8-name',
-    type: 1,
-    name: '潮間帶貝類多樣性與群聚特性',
-    content: `珊瑚礁生態系經常被喻為海洋中的熱帶雨林，其豐富的生物多樣性是支持漁業、遊憩觀光等生態系服務的關鍵。然而受限於環境、天候、人為等影響，傳統以潛水觀測的方法，往往難以呈現海洋生物多樣性的動態變化。運用錄音設備自動化監測水下聲景，將可收集到大量的甲殼類與魚類聲音，了解發聲動物在珊瑚礁生態系的活動趨勢；也能偵測到隨氣候而變的環境聲音以及人為活動所產生的水下噪音，協助我們探索珊瑚礁生態系面對氣候變遷與人為開發的潛在衝擊。本項目將透過聲音視覺化技術，長期觀測綠島海域的珊瑚礁聲景，作為了解珊瑚礁社會生態系統變遷的基礎生態聲學資料。`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'environmental-observation-article1-name',
-    type: 2,
-    name: '休閒漁業調查',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'environmental-observation-article2-name',
-    type: 2,
-    name: '土地利用',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'environmental-observation-article3-name',
-    type: 2,
-    name: '海域利用',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'environmental-observation-article4-name',
-    type: 2,
-    name: '經濟活動',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'environmental-observation-article5-name',
-    type: 2,
-    name: '議題盤點',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'social-observation-article1-name',
-    type: 3,
-    name: '休閒漁業調查',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'social-observation-article2-name',
-    type: 3,
-    name: '土地利用',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'social-observation-article3-name',
-    type: 3,
-    name: '海域利用',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'social-observation-article4-name',
-    type: 3,
-    name: '經濟活動',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
-  },
-  {
-    id: 'social-observation-article5-name',
-    type: 3,
-    name: '議題盤點',
-    content: `...`,
-    image: abImg,
-    created: '2023-05-26',
-    modified: '2023-05-26',
+    id: 1,
+    type: 'ecologicalObservation',
+    name: '珊瑚礁水下景觀',
+    content:
+      '珊瑚礁生態系多位於熱帶與亞熱帶淺水海域，被稱為「海中的熱帶雨林」。珊瑚礁區不僅生物多樣性高，同時也由於珊瑚礁大多發育於大陸或是島嶼的邊緣，因此提供我們一個能夠同時親近海洋、又能學習海洋生物多樣性與生態知識的寶庫。由於自然環境使然，想接近珊瑚礁最好具備浮潛或是水肺潛水等基本技術，才能在確保自身安全的同時不對珊瑚礁與珊瑚礁生物造成傷害。雖然娛樂型的水肺潛水(recreational diving) 在台灣已推行多年，也成為大眾水下觀光育樂的熱門運動，但是要能利用水肺潛水進行學術研究，必須先經過科學潛水(scientific diving)的訓練與認證，並同時具備相關的潛水生理、醫學、海洋物理、化學、生物等知識，才能進行珊瑚礁生物的採集和生態調查。具有科學潛水認證，不僅可以確保水中作業的安全，在調查施行過程中不會造成珊瑚礁的破壞，同時可以應用正確的海洋科學知識來進行海洋生態環境的研究。 \r\n\r\n      本中心於2015-2020年間已舉辦六屆研習會，共培訓出83位學員，對於推廣海洋生物多樣性教育，培育未來台灣研究、保育、管理等海洋相關人才等，目前已有相當成果。本研習會的目標是希望所有學員在完成課程後，都具備科學潛水調查技術與珊瑚礁生物知識，故安排了國內各類珊瑚礁生物專家來進行授課，並聘請國際潛水教練協會的課程總監與教練來到綠島海洋研究站教授科學潛水。',
+    image: '/media/aboutImage/210303.png',
+    created_at: '2023-08-01',
+    updated_at: '2023-08-01',
+    attachments: [
+      {
+        id: 1,
+        name: '船隻的聲音',
+        content: '綠島以獨特的島嶼生態系吸引大觀光客前來',
+        file: '/media/aboutAttachments/leetcode.pdf',
+        image: '/media/aboutAttachments/homepage_1.jpg',
+        created_at: '2023-08-01',
+        updated_at: '2023-08-01',
+      },
+      {
+        id: 2,
+        name: '生物的聲音',
+        content:
+          '生物獨特生物獨特生物獨特生物獨特生物獨特生物獨特生物獨特生物獨特生物獨特\r\n生物獨特生物獨特生物獨特生物獨特生物獨特',
+        file: '/media/aboutAttachments/leetcode-cpp.pdf',
+        image: '/media/aboutAttachments/homepage_3.jpg',
+        created_at: '2023-08-01',
+        updated_at: '2023-08-01',
+      },
+    ],
   },
 ];

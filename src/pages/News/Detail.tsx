@@ -29,7 +29,7 @@ const Detail = () => {
   const { newsId } = useParams();
   const { getList, getDetail } = useRender();
 
-  const [newsData, setNewsData] = useState<NewsItem>({
+  const [data, setData] = useState<NewsItem>({
     id: 0,
     type: [],
     title: '',
@@ -45,14 +45,14 @@ const Detail = () => {
   const [types, setTypes] = useState<any[]>([]);
 
   const isFetchingTypeList = typeList.length === 0;
-  const isFetchingDetail = newsData.id === 0;
-  const hasImages = newsData.images?.length !== 0;
+  const isFetchingDetail = data.id === 0;
+  const hasImages = data.images?.length !== 0;
 
   useEffect(() => {
     getDetail({
       id: Number(newsId),
       url: NEWS_API_URL,
-      setData: setNewsData,
+      setData: setData,
       redirectPath: NEWS_PATH,
     });
     getList({
@@ -63,12 +63,12 @@ const Detail = () => {
 
   useEffect(() => {
     if (!isFetchingTypeList && !isFetchingDetail) {
-      const matchType = newsData.type.map((item) =>
+      const matchType = data.type.map((item) =>
         typeList.find((v) => v.id === item)
       );
       setTypes([...matchType]);
     }
-  }, [newsData, typeList]);
+  }, [data, typeList]);
 
   return (
     <>
@@ -87,10 +87,10 @@ const Detail = () => {
                       </div>
                     );
                   })}
-                  <div className="date">{newsData.newsDate}</div>
+                  <div className="date">{data.newsDate}</div>
                 </div>
                 <div className="news-title">
-                  <h2>{newsData.title}</h2>
+                  <h2>{data.title}</h2>
                   <div className="greenline" />
                 </div>
               </div>
@@ -98,18 +98,17 @@ const Detail = () => {
                 {/*圖置中*/}
                 {hasImages && (
                   <div className="center">
-                    <img src={`${IMAGE_URL}${newsData.cover}`} alt="" />
+                    <img src={`${IMAGE_URL}${data.cover}`} alt="" />
                   </div>
                 )}
                 <br />
-                <p style={{ whiteSpace: 'pre-line' }}>{newsData.content}</p>
+                <p style={{ whiteSpace: 'pre-line' }}>{data.content}</p>
                 <br />
                 <br />
-                {newsData.images && <Images data={newsData.images} />}
-                {newsData.attachments &&
-                  newsData.attachments.map((v) => {
-                    return <AttachmentItem data={v} />;
-                  })}
+                {data.images && <Images data={data.images} />}
+                {data.attachments?.map((v, i) => {
+                  return <AttachmentItem data={v} i={i} />;
+                })}
               </div>
               <ActionBtns id={Number(newsId)} />
             </div>

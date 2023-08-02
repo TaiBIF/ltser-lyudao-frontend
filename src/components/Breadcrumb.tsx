@@ -12,7 +12,7 @@ const Breadcrumb = () => {
   const handleMatchRoute = (routes: HeaderMenuItem[], path: string): string => {
     for (const route of routes) {
       if (route.link === path) {
-        return route.title;
+        return String(route.title);
       } else if (route.list) {
         const matchRoute = handleMatchRoute(route.list, path);
         if (matchRoute) {

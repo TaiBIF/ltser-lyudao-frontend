@@ -13,7 +13,8 @@ export type HeaderLoginContentState = {
 
 export type HeaderMenuItem = {
   id: number | string;
-  title: string;
+  title?: string;
+  name?: string;
   type?: string;
   link?: string;
   list?: HeaderMenuItem[];

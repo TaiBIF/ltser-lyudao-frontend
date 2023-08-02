@@ -2,7 +2,7 @@ import { TypeItem, FieldItem, ColItem } from 'types/utils';
 import { TabItem, DownloadItem } from 'types/dashboard';
 import { newsTypeList, newsAttachmentList } from 'data/news';
 import { contactTypeList } from 'data/contact';
-import { aboutTypeList, attachmentNameList } from 'data/about';
+import { aboutTypeList } from 'data/about';
 import { qaTypeList } from 'data/qa';
 
 // Tabs 左側邊欄頁籤
@@ -168,7 +168,6 @@ export const aboutFieldList: FieldItem[] = [
     label: '補充資訊名稱',
     readonly: false,
     required: false,
-    options: attachmentNameList,
     multiple: true,
   },
   {
