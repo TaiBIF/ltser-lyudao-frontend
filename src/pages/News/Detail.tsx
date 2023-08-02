@@ -15,6 +15,8 @@ import bannerImg from 'image/newsbn.jpg';
 import useRender from 'hooks/page/useRender';
 import { NEWS_API_URL, NEWS_PATH, NEWS_TYPE_API_URL } from 'data/api';
 import { IMAGE_URL } from 'utils/config';
+import Images from 'components/News/Images';
+import AttachmentItem from 'components/News/AttachmentItem';
 
 const Detail = () => {
   const bannerData: BannerData = {
@@ -103,13 +105,11 @@ const Detail = () => {
                 <p style={{ whiteSpace: 'pre-line' }}>{newsData.content}</p>
                 <br />
                 <br />
-                {/*左右圖文*/}
-                <div className="flex-box">
-                  <p style={{ whiteSpace: 'pre-line' }}>{newsData.content}</p>
-                  {hasImages && (
-                    <img src={`${IMAGE_URL}${newsData.cover}`} alt="" />
-                  )}
-                </div>
+                {newsData.images && <Images data={newsData.images} />}
+                {newsData.attachments &&
+                  newsData.attachments.map((v) => {
+                    return <AttachmentItem data={v} />;
+                  })}
               </div>
               <ActionBtns id={Number(newsId)} />
             </div>
