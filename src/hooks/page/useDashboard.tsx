@@ -88,7 +88,7 @@ const useDashboard = () => {
   }) => {
     const data = new FormData();
     Object.entries(values).forEach(([key, value]) => {
-      if (key === 'files' || key === 'attachments' || key === 'images') {
+      if (Array.isArray(value)) {
         value.forEach((v: any) => {
           data.append(key, v);
         });
@@ -133,7 +133,7 @@ const useDashboard = () => {
         if ((key === 'image' || key === 'cover') && typeof value === 'string') {
           return;
         }
-        if (key === 'files' || key === 'attachments' || key === 'images') {
+        if (Array.isArray(value)) {
           value.forEach((v: any) => {
             data.append(key, v);
           });
