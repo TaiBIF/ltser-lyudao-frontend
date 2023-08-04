@@ -109,17 +109,17 @@ export const footerMenuList: FooterMenuItem[] = [
       {
         id: 1,
         title: '最新消息',
-        link: '/',
+        link: '/news',
       },
       {
         id: 2,
         title: '相關文獻',
-        link: '/',
+        link: '/related-literature',
       },
       {
         id: 3,
         title: '常見Q&A',
-        link: '/',
+        link: '/qa',
       },
     ],
   },

@@ -153,6 +153,10 @@ function App() {
                 element={<InterviewDetail />}
               />
               <Route
+                path="/site-data/social-observation/social-economy-data/:dataId"
+                element={<Economy />}
+              />
+              <Route
                 path="/site-data/social-observation/social-economy-data"
                 element={<Economy />}
               />

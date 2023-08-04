@@ -88,7 +88,7 @@ const Content = () => {
         zoomControl={false}
       >
         <LayersControl>
-          <LayersControl.Overlay name="觀測項目AAA" checked>
+          <LayersControl.Overlay name="" checked>
             <LayerGroup>
               {!isFetchingLocalities &&
                 markers.map((v) => {

@@ -1,10 +1,15 @@
-.leaflet-div-icon {
-  width: 50px !important;
-  height: 50px !important;
-  margin-left: 0 !important;
+.leaflet {
+  &-control-layers {
+    display: none;
+  }
+  &-div-icon {
+    width: 50px !important;
+    height: 50px !important;
+    margin-left: 0 !important;
 
-  background: transparent;
-  border: none;
+    background: transparent;
+    border: none;
+  }
 }
 
 .c-map {
