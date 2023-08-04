@@ -12,21 +12,22 @@ import SecMenu from 'components/Header/SecMenu';
 import MegaMenu from 'components/Header/MegaMenu';
 import Item from 'components/Header/Item';
 
+import { HeaderMenuItem } from 'types/common';
+
 import { menuList } from 'data/common';
+import { ABOUT_API_URL } from 'data/api';
+import { headerAboutData } from 'data/about';
 
 import { useHeaderContext } from 'context/HeaderContext';
-
 import { gsapSlideToggle } from 'utils/animation';
 import useRender from 'hooks/page/useRender';
-import { ABOUT_API_URL } from 'data/api';
-import { HeaderMenuItem } from 'types/common';
 
 const Content = () => {
   const { pathname, hash, key } = useLocation();
   const { show, menu3Ref, mainMenuRef } = useHeaderContext();
   const { getDetail } = useRender();
+  const { about, setAbout } = useHeaderContext();
 
-  const [about, setAbout] = useState<any>({});
   const [menu, setMenu] = useState<HeaderMenuItem[]>([]);
 
   const isFetchingAbout = Object.keys(about).length === 0;
@@ -73,6 +74,7 @@ const Content = () => {
     getDetail({
       url: ABOUT_API_URL,
       setData: setAbout,
+      defaultData: headerAboutData,
     });
   }, []);
 

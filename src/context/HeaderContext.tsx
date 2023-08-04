@@ -6,7 +6,7 @@ import React, {
   useRef,
 } from 'react';
 
-import { HeaderShowState } from 'types/common';
+import { HeaderMenuItem, HeaderShowState } from 'types/common';
 
 import { gsapFade } from 'utils/animation';
 
@@ -25,6 +25,7 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
     loginPopup: false,
     loginContent: 'login',
   });
+  const [about, setAbout] = useState<any>({});
 
   const m3titleRef = useRef<HTMLDivElement>(null);
   const menu3Ref = useRef<HTMLDivElement>(null);
@@ -59,6 +60,8 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
     handleMenuClick,
     handleMenuMouseLeave,
     handleLoginClick,
+    about,
+    setAbout,
   };
 
   return (

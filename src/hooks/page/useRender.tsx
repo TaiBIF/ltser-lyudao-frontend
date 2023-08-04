@@ -50,11 +50,13 @@ const useRender = () => {
     id,
     url,
     setData,
+    defaultData,
     redirectPath,
   }: {
     id?: number | string;
     url: string;
     setData: any;
+    defaultData?: any;
     redirectPath?: string;
   }) => {
     const result = await handleApi({
@@ -65,6 +67,9 @@ const useRender = () => {
     if (result?.status === 'success') {
       setData({ ...result.response.data });
     } else {
+      if (defaultData) {
+        setData({ ...defaultData });
+      }
       handleActions({
         result,
         error: {

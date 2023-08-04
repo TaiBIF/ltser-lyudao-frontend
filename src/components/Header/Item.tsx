@@ -1,3 +1,4 @@
+import { useAuthContext } from 'context/AuthContext';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,14 +10,29 @@ interface ItemProps {
 
 const Item = (props: ItemProps) => {
   const { data } = props;
+  const { auth } = useAuthContext();
+
   return (
     <>
-      <li>
-        <Link to={`/${data.link}`} className="big_title">
-          {data.title}
-          <span></span>
-        </Link>
-      </li>
+      {data.show === 'auth' ? (
+        auth ? (
+          <li>
+            <Link to={`/${data.link}`} className="big_title">
+              {data.title}
+              <span></span>
+            </Link>
+          </li>
+        ) : (
+          <></>
+        )
+      ) : (
+        <li>
+          <Link to={`/${data.link}`} className="big_title">
+            {data.title}
+            <span></span>
+          </Link>
+        </li>
+      )}
     </>
   );
 };

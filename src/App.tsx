@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from 'components/Header/Content';
-import Footer from 'components/Footer';
+import Footer from 'components/Footer/Content';
 
 import Home from 'pages/Home';
 import About from 'pages/About';
@@ -78,13 +78,14 @@ function App() {
                   </SiteDataProvider>
                 }
               />
+              <Route path="/about/:categoryId" element={<About />} />
               <Route path="/about/:categoryId/:aboutId" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route
                 path="/related-literature"
                 element={<RelatedLiterature />}
               />
-              <Route path="/form-link" element={<FormLink />} />
+
               <Route path="/news" element={<NewsContent />} />
               <Route path="/news/:newsId" element={<NewsDetail />} />
               <Route path="/qa" element={<QA />} />
@@ -168,6 +169,7 @@ function App() {
               />
               <Route path="/terms" element={<Terms />} />
               <Route element={<ProtectedRoute />}>
+                <Route path="/form-link" element={<FormLink />} />
                 <Route
                   path="/dashboard/about"
                   element={<Dashboard content={<DashboardAboutContent />} />}

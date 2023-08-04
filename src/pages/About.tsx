@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Item from 'components/About/Item';
 
@@ -11,11 +11,15 @@ import { tabList } from 'data/home/content';
 import { ABOUT_API_URL } from 'data/api';
 
 import useRender from 'hooks/page/useRender';
+import { aboutList } from 'data/about';
+import { useHeaderContext } from 'context/HeaderContext';
 
 const About = () => {
-  const { aboutId } = useParams();
+  const { categoryId, aboutId } = useParams();
   const { getDetail } = useRender();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { about } = useHeaderContext();
 
   const [data, setData] = useState<AboutItem>({
     id: 0,
@@ -38,6 +42,7 @@ const About = () => {
       id: aboutId,
       url: ABOUT_API_URL,
       setData,
+      defaultData: aboutList[0],
     });
   }, [pathname]);
 
@@ -49,6 +54,19 @@ const About = () => {
       }
     }
   }, [data]);
+
+  useEffect(() => {
+    if (!aboutId) {
+      const id = `${categoryId?.split('-')[0]}${categoryId
+        ?.split('-')[1]
+        .slice(0, 1)
+        .toUpperCase()}${categoryId?.split('-')[1].slice(1)}`;
+      const aboutById: any = Object.entries(about).find(([key]) => key === id);
+      if (aboutById) {
+        navigate(`/about/${categoryId}/${aboutById[1][0].id}`);
+      }
+    }
+  }, [aboutId]);
 
   return (
     <>

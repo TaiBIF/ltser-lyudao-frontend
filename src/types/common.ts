@@ -18,6 +18,7 @@ export type HeaderMenuItem = {
   type?: string;
   link?: string;
   list?: HeaderMenuItem[];
+  show?: string;
 };
 
 export type FooterLogoItem = {
@@ -41,7 +42,8 @@ export type FooterSubMenuItem = {
 export type FooterMenuItem = {
   id: number | string;
   title?: string;
-  list: FooterSubMenuItem[];
+  list?: FooterSubMenuItem[];
+  link?: string;
 };
 
 export type BannerData = {

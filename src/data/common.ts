@@ -68,17 +68,17 @@ export const footerMenuList: FooterMenuItem[] = [
       {
         id: 1,
         subtitle: '生態觀測',
-        link: '/',
+        link: '/about/ecological-observation',
       },
       {
         id: 2,
         subtitle: '環境觀測',
-        link: '/',
+        link: '/about/environmental-observation',
       },
       {
         id: 3,
         subtitle: '社會觀測',
-        link: '/',
+        link: '/about/social-observation',
       },
     ],
   },
@@ -89,17 +89,17 @@ export const footerMenuList: FooterMenuItem[] = [
       {
         id: 1,
         subtitle: '生態觀測',
-        link: '/',
+        link: '/site-data/ecological-observation',
       },
       {
         id: 2,
         subtitle: '環境觀測',
-        link: '/',
+        link: '/site-data/environmental-observation',
       },
       {
         id: 3,
         subtitle: '社會觀測',
-        link: '/',
+        link: '/site-data/social-observation',
       },
     ],
   },
@@ -206,6 +206,7 @@ export const menuList: HeaderMenuItem[] = [
     id: 6,
     title: '常用表單與連結',
     link: 'form-link',
+    show: 'auth',
   },
 ];
 
