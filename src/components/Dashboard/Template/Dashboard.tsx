@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { tabList } from 'data/dashboard';
+import { useAuthContext } from 'context/AuthContext';
 
 interface DashboardTemplateProps {
   content: React.ReactNode;
@@ -11,6 +12,7 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = (props) => {
   const { content } = props;
   const { pathname } = useLocation();
   const paths = pathname.split('/');
+  const { group } = useAuthContext();
 
   return (
     <>
@@ -20,17 +22,19 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = (props) => {
             <div className="col-3">
               <div className="d-flex flex-column">
                 {tabList.map((v) => {
-                  const { id, title } = v;
+                  const { id, title, auth } = v;
                   return (
-                    <Link
-                      key={id}
-                      className={`btn btn-${
-                        paths.includes(id) ? 'primary' : 'light'
-                      } mb-2`}
-                      to={`/dashboard/${id}`}
-                    >
-                      {title}
-                    </Link>
+                    auth?.includes(group) && (
+                      <Link
+                        key={id}
+                        className={`btn btn-${
+                          paths.includes(id) ? 'primary' : 'light'
+                        } mb-2`}
+                        to={`/dashboard/${id}`}
+                      >
+                        {title}
+                      </Link>
+                    )
                   );
                 })}
               </div>

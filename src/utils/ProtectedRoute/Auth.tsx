@@ -2,15 +2,12 @@ import { Outlet, Navigate } from 'react-router-dom';
 import { useAuthContext } from 'context/AuthContext';
 import { swalToast } from 'helpers/customSwal';
 
-interface ProtectedRouteProps {
+interface AuthProps {
   redirectPath?: string;
   children?: any;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
-  redirectPath = '/',
-  children,
-}) => {
+const Auth: React.FC<AuthProps> = ({ redirectPath = '/', children }) => {
   const { auth } = useAuthContext();
 
   if (!auth) {
@@ -20,7 +17,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     });
     return <Navigate to={redirectPath} replace />;
   }
+
   return children ?? <Outlet />;
 };
 
-export default ProtectedRoute;
+export default Auth;

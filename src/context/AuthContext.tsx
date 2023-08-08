@@ -19,8 +19,14 @@ interface AuthTokens {
   refresh: string;
 }
 
+export type GroupItem = {
+  group: string;
+};
+
 interface AuthContextData {
   auth: boolean;
+  group: string;
+  isInternalUser: boolean;
   loading: boolean;
   handleLogin: ({
     values,
@@ -67,12 +73,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
   const [init, setInit] = useState<boolean>(false);
   const [auth, setAuth] = useState<boolean>(true);
+  const [group, setGroup] = useState<string>('');
 
   const { loading, setLoading, handleApi, handleActions } = useApi();
   const navigate = useNavigate();
   const { show, setShow } = useHeaderContext();
 
   const isExistTokens = authTokens.access !== '';
+  const internalGroupList: string[] = ['staff', 'superuser'];
+  const isInternalUser = internalGroupList.includes(group);
+
+  const headers = {
+    Authorization: `Bearer ${authTokens.access}`,
+  };
 
   const handleLogin = async ({
     values,
@@ -155,6 +168,29 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       error: {
         title: '更新權限發生錯誤，即將登出',
         action: handleErrorAction,
+      },
+    });
+  };
+
+  const getGroup = async () => {
+    const result = await handleApi({
+      type: 'auth',
+      method: 'get',
+      url: `/identity/`,
+      headers,
+    });
+    const handleSuccessAction = (data: GroupItem) => {
+      setGroup(data.group);
+    };
+    handleActions({
+      result,
+      success: {
+        action: () => {
+          handleSuccessAction(result?.response.data);
+        },
+      },
+      error: {
+        title: '發生錯誤，讀取身份失敗。',
       },
     });
   };
@@ -297,6 +333,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (isExistTokens) {
       setAuth(true);
+      getGroup();
     } else {
       setAuth(false);
     }
@@ -320,6 +357,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const contextData: AuthContextData = {
     auth,
+    group,
+    isInternalUser,
     loading,
     handleLogin,
     handleSignup,

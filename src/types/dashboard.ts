@@ -1,6 +1,7 @@
 export type TabItem = {
   id: string;
   title: string;
+  auth?: string[];
 };
 
 export type DownloadItem = {

@@ -10,38 +10,47 @@ export const tabList: TabItem[] = [
   {
     id: 'about',
     title: '計畫介紹',
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'contact',
     title: '聯絡我們',
+    auth: ['superuser'],
   },
   {
     id: 'qa',
     title: '常見Q&A',
+    auth: ['superuser'],
   },
   {
     id: 'qa-type',
     title: '常見Q&A類型',
+    auth: ['superuser'],
   },
   {
     id: 'news',
     title: '最新消息',
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'news-type',
     title: '最新消息類型',
+    auth: ['superuser'],
   },
   {
     id: 'related-literature',
     title: '相關文獻',
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'form-link',
     title: '常見表單與連結',
+    auth: ['superuser'],
   },
   {
     id: 'download',
     title: '資料下載申請資訊',
+    auth: ['superuser'],
   },
 ];
 
