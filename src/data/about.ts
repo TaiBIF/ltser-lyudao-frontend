@@ -3,15 +3,15 @@ import { AboutItem } from 'types/about';
 
 export const aboutTypeList: TypeItem[] = [
   {
-    id: 1,
+    id: 'ecologicalObservation',
     title: '生態觀測',
   },
   {
-    id: 2,
+    id: 'environmentalObservation',
     title: '環境觀測',
   },
   {
-    id: 3,
+    id: 'socialObservation',
     title: '社會觀測',
   },
 ];

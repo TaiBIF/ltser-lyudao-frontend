@@ -101,39 +101,39 @@ export const aboutColList: ColItem[] = [
     show: true,
     space: 'text',
   },
-  {
-    id: 'content',
-    title: '觀測項目簡介',
-    show: true,
-    space: 'text',
-  },
+  // {
+  //   id: 'content',
+  //   title: '觀測項目簡介',
+  //   show: true,
+  //   space: 'text',
+  // },
   {
     id: 'image',
     title: '觀測項目介紹圖片連結',
     show: true,
   },
-  {
-    id: 'attachmentsName',
-    title: '補充資訊名稱',
-    show: false,
-  },
-  {
-    id: 'attachments',
-    title: '補充資訊',
-    show: false,
-  },
-  {
-    id: 'created',
-    title: '建立日期',
-    show: true,
-    space: 'date',
-  },
-  {
-    id: 'modified',
-    title: '更新日期',
-    show: true,
-    space: 'date',
-  },
+  // {
+  //   id: 'attachmentsName',
+  //   title: '補充資訊名稱',
+  //   show: false,
+  // },
+  // {
+  //   id: 'attachments',
+  //   title: '補充資訊',
+  //   show: false,
+  // },
+  // {
+  //   id: 'created',
+  //   title: '建立日期',
+  //   show: true,
+  //   space: 'date',
+  // },
+  // {
+  //   id: 'modified',
+  //   title: '更新日期',
+  //   show: true,
+  //   space: 'date',
+  // },
 ];
 
 export const aboutFieldList: FieldItem[] = [
@@ -166,28 +166,34 @@ export const aboutFieldList: FieldItem[] = [
     id: 5,
     type: 'file',
     title: 'image',
-    label: '觀測項目介紹圖片連結',
+    label: '觀測項目介紹圖片',
     readonly: false,
     required: true,
+    hints: [
+      {
+        id: 'link',
+        title: '目前檔案:',
+      },
+    ],
   },
-  {
-    id: 6,
-    type: 'select',
-    title: 'attachmentName',
-    label: '補充資訊名稱',
-    readonly: false,
-    required: false,
-    multiple: true,
-  },
-  {
-    id: 7,
-    type: 'file',
-    title: 'attachments',
-    label: '補充資訊',
-    readonly: false,
-    required: false,
-    multiple: true,
-  },
+  // {
+  //   id: 6,
+  //   type: 'select',
+  //   title: 'attachmentName',
+  //   label: '補充資訊名稱',
+  //   readonly: false,
+  //   required: false,
+  //   multiple: true,
+  // },
+  // {
+  //   id: 7,
+  //   type: 'file',
+  //   title: 'attachments',
+  //   label: '補充資訊',
+  //   readonly: false,
+  //   required: false,
+  //   multiple: true,
+  // },
 ];
 
 // Contact 聯絡我們

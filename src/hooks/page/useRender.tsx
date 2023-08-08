@@ -46,6 +46,31 @@ const useRender = () => {
     }
   };
 
+  const getAllList = async ({
+    url,
+    setList,
+    defaultList,
+    params,
+  }: {
+    url: string;
+    setList: any;
+    defaultList?: ItemTypes[];
+    params?: any;
+  }) => {
+    const result = await handleApi({
+      method: 'get',
+      url: `/users/${url}/`,
+      params,
+    });
+    if (result?.status === 'success') {
+      setList([...result.response.data]);
+    } else {
+      if (defaultList) {
+        setList([...defaultList]);
+      }
+    }
+  };
+
   const getDetail = async ({
     id,
     url,
@@ -106,7 +131,7 @@ const useRender = () => {
     }
   };
 
-  return { getList, getDetail, getDepositarList };
+  return { getList, getAllList, getDetail, getDepositarList };
 };
 
 export default useRender;

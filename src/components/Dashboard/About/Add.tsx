@@ -8,34 +8,39 @@ import { AboutItem } from 'types/about';
 
 import { aboutFieldList } from 'data/dashboard';
 import { aboutValidationSchema } from 'data/validationSchema';
+import useDashboard from 'hooks/page/useDashboard';
+import { ABOUT_API_URL, ABOUT_PATH } from 'data/api';
 
 const Add = () => {
-  // const initialValues: AboutItem = {
-  //   type: 0,
-  //   name: '',
-  //   content: '',
-  //   image: '',
-  //   attachmentName: [],
-  // };
+  const initialValues: AboutItem = {
+    type: '',
+    name: '',
+    content: '',
+    image: '',
+  };
 
-  // const handleAddSubmit = (
-  //   values: ItemTypes,
-  //   { setSubmitting }: FormikHelpers<ItemTypes>
-  // ) => {
-  //   setTimeout(() => {
-  //     console.log(JSON.stringify(values, null, 2));
-  //     setSubmitting(false);
-  //   }, 500);
-  // };
+  const { handleAdd } = useDashboard();
 
+  const handleAddSubmit = (
+    values: ItemTypes,
+    { setSubmitting }: FormikHelpers<ItemTypes>
+  ) => {
+    handleAdd({
+      values,
+      url: ABOUT_API_URL,
+      redirectPath: ABOUT_PATH,
+      placeholder: true,
+    });
+    setSubmitting(false);
+  };
   return (
     <>
-      {/* <AddTemplate
+      <AddTemplate
         initialValues={initialValues}
         fieldList={aboutFieldList}
         validationSchema={aboutValidationSchema}
         handleSubmit={handleAddSubmit}
-      /> */}
+      />
     </>
   );
 };

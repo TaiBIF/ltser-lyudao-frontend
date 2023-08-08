@@ -1,8 +1,11 @@
+export const HEADER_ABOUT_API_URL = 'about-outline';
+
 export const ABOUT_API_URL = 'about';
 export const ABOUT_PATH = 'about';
 
 export const CONTACT_API_URL = 'contacts';
 export const CONTACT_PATH = 'contact';
+export const CONTACT_ALL_API_URL = 'contacts-all';
 
 export const LITERATURE_API_URL = 'literatures';
 export const LITERATURE_PATH = 'related-literature';

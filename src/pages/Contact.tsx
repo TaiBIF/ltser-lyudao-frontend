@@ -14,10 +14,10 @@ import bannerImg from 'image/contact_bn.png';
 
 import useRender from 'hooks/page/useRender';
 
-import { CONTACT_API_URL } from 'data/api';
+import { CONTACT_ALL_API_URL } from 'data/api';
 
 const Contact = () => {
-  const { getList } = useRender();
+  const { getAllList } = useRender();
   const [contacts, setContacts] = useState<ContactItem[]>([]);
 
   const bannerData: BannerData = {
@@ -44,8 +44,8 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    getList({
-      url: CONTACT_API_URL,
+    getAllList({
+      url: CONTACT_ALL_API_URL,
       setList: setContacts,
       defaultList: contactList,
     });
