@@ -10,7 +10,7 @@ export const tabList: TabItem[] = [
   {
     id: 'about',
     title: '計畫介紹',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'staff', 'none'],
   },
   {
     id: 'contact',
@@ -30,7 +30,7 @@ export const tabList: TabItem[] = [
   {
     id: 'news',
     title: '最新消息',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'staff', 'none'],
   },
   {
     id: 'news-type',
@@ -40,7 +40,7 @@ export const tabList: TabItem[] = [
   {
     id: 'related-literature',
     title: '相關文獻',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'staff', 'none'],
   },
   {
     id: 'form-link',
