@@ -13,6 +13,11 @@ export const tabList: TabItem[] = [
     auth: ['superuser', 'staff', 'none'],
   },
   {
+    id: 'about-attachment',
+    title: '計畫介紹補充資訊',
+    auth: ['superuser', 'staff', 'none'],
+  },
+  {
     id: 'contact',
     title: '聯絡我們',
     auth: ['superuser'],
@@ -101,39 +106,11 @@ export const aboutColList: ColItem[] = [
     show: true,
     space: 'text',
   },
-  // {
-  //   id: 'content',
-  //   title: '觀測項目簡介',
-  //   show: true,
-  //   space: 'text',
-  // },
   {
     id: 'image',
     title: '觀測項目介紹圖片連結',
     show: true,
   },
-  // {
-  //   id: 'attachmentsName',
-  //   title: '補充資訊名稱',
-  //   show: false,
-  // },
-  // {
-  //   id: 'attachments',
-  //   title: '補充資訊',
-  //   show: false,
-  // },
-  // {
-  //   id: 'created',
-  //   title: '建立日期',
-  //   show: true,
-  //   space: 'date',
-  // },
-  // {
-  //   id: 'modified',
-  //   title: '更新日期',
-  //   show: true,
-  //   space: 'date',
-  // },
 ];
 
 export const aboutFieldList: FieldItem[] = [
@@ -194,6 +171,160 @@ export const aboutFieldList: FieldItem[] = [
   //   required: false,
   //   multiple: true,
   // },
+];
+
+export const aboutAttachmentColList: ColItem[] = [
+  {
+    id: 'id',
+    title: '補充資訊id',
+    show: true,
+    param: true,
+  },
+  {
+    id: 'aboutId',
+    title: '觀測項目名稱',
+    show: true,
+  },
+  {
+    id: 'name',
+    title: '補充資訊名稱',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'content',
+    title: '補充資訊簡介',
+    show: true,
+    space: 'text',
+  },
+  {
+    id: 'file',
+    title: '補充資訊檔案連結',
+    show: true,
+  },
+  {
+    id: 'image',
+    title: '補充資訊圖片連結',
+    show: true,
+  },
+];
+
+export const aboutAttachmentAddFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'select',
+    title: 'type',
+    label: '補充資訊類型',
+    readonly: false,
+    required: true,
+    options: aboutTypeList,
+  },
+  {
+    id: 2,
+    type: 'select',
+    title: 'aboutId',
+    label: '觀測項目名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 3,
+    type: 'text',
+    title: 'name',
+    label: '補充資訊名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 4,
+    type: 'text',
+    title: 'content',
+    label: '補充資訊簡介',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 5,
+    type: 'file',
+    title: 'file',
+    label: '補充資訊檔案連結',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 6,
+    type: 'file',
+    title: 'image',
+    label: '補充資訊檔案圖片',
+    readonly: false,
+    required: true,
+    fileType: 'image',
+  },
+];
+
+export const aboutAttachmentEditFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'select',
+    title: 'type',
+    label: '補充資訊類型',
+    readonly: false,
+    required: true,
+    options: aboutTypeList,
+  },
+  {
+    id: 2,
+    type: 'select',
+    title: 'aboutId',
+    label: '觀測項目名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 3,
+    type: 'text',
+    title: 'name',
+    label: '補充資訊名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 3,
+    type: 'text',
+    title: 'content',
+    label: '補充資訊簡介',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 4,
+    type: 'file',
+    title: 'file',
+    label: '補充資訊檔案連結',
+    readonly: false,
+    required: true,
+    hints: [
+      {
+        id: 'link',
+        title: '目前檔案:',
+      },
+    ],
+  },
+  {
+    id: 5,
+    type: 'file',
+    title: 'image',
+    label: '補充資訊檔案圖片',
+    readonly: false,
+    required: true,
+    fileType: 'image',
+    hints: [
+      {
+        id: 'link',
+        title: '目前檔案:',
+      },
+    ],
+  },
 ];
 
 // Contact 聯絡我們

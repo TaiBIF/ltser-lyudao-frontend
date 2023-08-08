@@ -26,6 +26,9 @@ import Dashboard from 'components/Dashboard/Template/Dashboard';
 import DashboardAboutContent from 'components/Dashboard/About/Content';
 import DashboardAboutAdd from 'components/Dashboard/About/Add';
 import DashboardAboutEdit from 'components/Dashboard/About/Edit';
+import DashboardAboutAttachmentContent from 'components/Dashboard/AboutAttachment/Content';
+import DashboardAboutAttachmentAdd from 'components/Dashboard/AboutAttachment/Add';
+import DashboardAboutAttachmentEdit from 'components/Dashboard/AboutAttachment/Edit';
 import DashboardContactContent from 'components/Dashboard/Contact/Content';
 import DashboardContactAdd from 'components/Dashboard/Contact/Add';
 import DashboardContactEdit from 'components/Dashboard/Contact/Edit';
@@ -183,6 +186,24 @@ function App() {
                 <Route
                   path="/dashboard/about/edit/:aboutId"
                   element={<Dashboard content={<DashboardAboutEdit />} />}
+                />
+                <Route
+                  path="/dashboard/about-attachment"
+                  element={
+                    <Dashboard content={<DashboardAboutAttachmentContent />} />
+                  }
+                />
+                <Route
+                  path="/dashboard/about-attachment/add"
+                  element={
+                    <Dashboard content={<DashboardAboutAttachmentAdd />} />
+                  }
+                />
+                <Route
+                  path="/dashboard/about-attachment/edit/:aboutAttachmentId"
+                  element={
+                    <Dashboard content={<DashboardAboutAttachmentEdit />} />
+                  }
                 />
                 <Route
                   path="/dashboard/news"

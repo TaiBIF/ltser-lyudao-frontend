@@ -131,10 +131,10 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
               請選擇{label}
             </option>
             {options?.map((v) => {
-              const { id, title } = v;
+              const { id, title, name } = v;
               return (
                 <option key={`${id}-${v.id}`} value={id}>
-                  {title}
+                  {title ? title : name}
                 </option>
               );
             })}

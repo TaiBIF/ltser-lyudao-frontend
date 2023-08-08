@@ -28,9 +28,6 @@ const About = () => {
     name: '',
     content: '',
     image: '',
-    created_at: '',
-    updated_at: '',
-    attachments: [],
   });
   const [relate, setRelate] = useState<RelateState>({
     type: '',
@@ -100,9 +97,9 @@ const About = () => {
         {/*有其他內容的才有下面這塊*/}
         <div className="ab-otherbox">
           <div className="main-box">
-            {data.attachments?.map((v) => {
+            {/* {data.attachments?.map((v) => {
               return <Item key={v.id} data={v} />;
-            })}
+            })} */}
           </div>
         </div>
       </div>

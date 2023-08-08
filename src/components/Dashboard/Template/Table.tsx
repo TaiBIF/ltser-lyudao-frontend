@@ -74,7 +74,6 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                           );
                         }
                         if (matchCol.id === 'cover') {
-                          console.log('cover');
                           return <td key={key}></td>;
                         }
                         const formatSpaceClass = () => {
@@ -113,7 +112,12 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
                               const matchRelate = matchCol.relate.find(
                                 (v) => v.id === value
                               );
-                              return matchRelate && matchRelate.title;
+                              return (
+                                matchRelate &&
+                                (matchRelate.title
+                                  ? matchRelate.title
+                                  : matchRelate.name)
+                              );
                             } else {
                               return value;
                             }

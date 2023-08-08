@@ -10,13 +10,10 @@ export type AttachmentItem = {
 
 export type AboutItem = {
   id?: number | string;
+  aboutId?: number;
   type: number | string;
   name: string;
   content: string;
-  image: string;
-  attachments?: AttachmentItem[];
+  image?: string;
   file?: string;
-  created_at?: string;
-  updated_at?: string;
-  typeTitle?: string;
 };
