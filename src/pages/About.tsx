@@ -13,6 +13,7 @@ import { ABOUT_API_URL } from 'data/api';
 import useRender from 'hooks/page/useRender';
 import { aboutList } from 'data/about';
 import { useHeaderContext } from 'context/HeaderContext';
+import { IMAGE_URL } from 'utils/config';
 
 const About = () => {
   const { categoryId, aboutId } = useParams();
@@ -48,6 +49,7 @@ const About = () => {
 
   useEffect(() => {
     if (hasData) {
+      console.log(data.image);
       const matchCategory = tabList.find((v) => v.id === data.type);
       if (matchCategory) {
         setRelate({ ...data, type: matchCategory.title });
@@ -86,7 +88,9 @@ const About = () => {
                   {/*上背景圖*/}
                   <div
                     className="img-area"
-                    style={{ backgroundImage: data.image }}
+                    style={{
+                      backgroundImage: `url(${IMAGE_URL}${data.image})`,
+                    }}
                   />
                 </div>
               </div>
