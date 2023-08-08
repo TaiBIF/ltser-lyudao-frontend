@@ -113,7 +113,7 @@ export const aboutColList: ColItem[] = [
   },
 ];
 
-export const aboutFieldList: FieldItem[] = [
+export const aboutAddFieldList: FieldItem[] = [
   {
     id: 1,
     type: 'select',
@@ -146,6 +146,44 @@ export const aboutFieldList: FieldItem[] = [
     label: '觀測項目介紹圖片',
     readonly: false,
     required: true,
+    fileType: 'image',
+  },
+];
+
+export const aboutEditFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'select',
+    title: 'type',
+    label: '觀測類型',
+    readonly: false,
+    required: true,
+    options: aboutTypeList,
+  },
+  {
+    id: 2,
+    type: 'text',
+    title: 'name',
+    label: '觀測項目名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 3,
+    type: 'text',
+    title: 'content',
+    label: '觀測項目簡介',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 5,
+    type: 'file',
+    title: 'image',
+    label: '觀測項目介紹圖片',
+    readonly: false,
+    required: true,
+    fileType: 'image',
     hints: [
       {
         id: 'link',
@@ -153,24 +191,6 @@ export const aboutFieldList: FieldItem[] = [
       },
     ],
   },
-  // {
-  //   id: 6,
-  //   type: 'select',
-  //   title: 'attachmentName',
-  //   label: '補充資訊名稱',
-  //   readonly: false,
-  //   required: false,
-  //   multiple: true,
-  // },
-  // {
-  //   id: 7,
-  //   type: 'file',
-  //   title: 'attachments',
-  //   label: '補充資訊',
-  //   readonly: false,
-  //   required: false,
-  //   multiple: true,
-  // },
 ];
 
 export const aboutAttachmentColList: ColItem[] = [

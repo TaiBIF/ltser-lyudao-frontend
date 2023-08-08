@@ -40,13 +40,11 @@ const About = () => {
       id: aboutId,
       url: ABOUT_API_URL,
       setData,
-      defaultData: aboutList[0],
     });
   }, [pathname]);
 
   useEffect(() => {
     if (hasData) {
-      console.log(data.image);
       const matchCategory = tabList.find((v) => v.id === data.type);
       if (matchCategory) {
         setRelate({ ...data, type: matchCategory.title });
@@ -97,9 +95,9 @@ const About = () => {
         {/*有其他內容的才有下面這塊*/}
         <div className="ab-otherbox">
           <div className="main-box">
-            {/* {data.attachments?.map((v) => {
+            {data.attachments?.map((v) => {
               return <Item key={v.id} data={v} />;
-            })} */}
+            })}
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ import Item from 'components/Header/Item';
 import { HeaderMenuItem } from 'types/common';
 
 import { menuList } from 'data/common';
-import { ABOUT_API_URL, HEADER_ABOUT_API_URL } from 'data/api';
+import { HEADER_ABOUT_API_URL } from 'data/api';
 import { headerAboutData } from 'data/about';
 
 import { useHeaderContext } from 'context/HeaderContext';

@@ -16,4 +16,5 @@ export type AboutItem = {
   content: string;
   image?: string;
   file?: string;
+  attachments?: AttachmentItem[];
 };

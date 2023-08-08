@@ -7,7 +7,7 @@ import EditTemplate from 'components/Dashboard/Template/Edit';
 import { ItemTypes } from 'types/utils';
 import { AboutItem } from 'types/about';
 
-import { aboutFieldList } from 'data/dashboard';
+import { aboutEditFieldList } from 'data/dashboard';
 import { aboutValidationSchema } from 'data/validationSchema';
 import { ABOUT_API_URL, ABOUT_PATH } from 'data/api';
 
@@ -16,7 +16,7 @@ import useDashboard from 'hooks/page/useDashboard';
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<AboutItem>({
     id: 0,
-    type: '',
+    type: 0,
     name: '',
     content: '',
     image: '',
@@ -63,7 +63,7 @@ const Edit = () => {
       <EditTemplate
         initialValues={initialValues}
         validationSchema={aboutValidationSchema}
-        fieldList={aboutFieldList}
+        fieldList={aboutEditFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
       />
