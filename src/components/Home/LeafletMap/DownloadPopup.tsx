@@ -15,6 +15,7 @@ import {
 } from 'formik';
 import { useDownload } from 'hooks/api/useDownload';
 import DownloadPopupLayout from './DownloadPopupLayout';
+import { applyDownloadValidationSchema } from 'data/validationSchema';
 
 const DownloadPopup = () => {
   const { filter, show, downloadPopupRef, handleDownloadPopup } =
@@ -49,7 +50,7 @@ const DownloadPopup = () => {
   const formikConfig: FormikConfig<Record<string, any>> = {
     initialValues,
     onSubmit: handleSubmit,
-    // validationSchema: applyDownloadValidationSchema,
+    validationSchema: applyDownloadValidationSchema,
   };
 
   return (

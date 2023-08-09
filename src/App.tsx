@@ -53,15 +53,14 @@ import DashboardFormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import DashboardDownload from 'components/Dashboard/Download';
 import DashboardDownloadRecord from 'components/Dashboard/DownloadRecord';
 
-import AuthProtectedRoute from 'utils/ProtectedRoute/Auth';
-import SuperuserProtectedRoute from 'utils/ProtectedRoute/Superuser';
-
 import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
 import { SurveyMapProvider } from 'context/SurveyMapContext';
 import { DataProvider } from 'context/DataContext';
 import { SiteDataProvider } from 'context/SiteDataContext';
 import { AuthProvider } from 'context/AuthContext';
+
+import RouteGuard from 'utils/RouteGuard';
 
 function App() {
   return (
@@ -90,7 +89,6 @@ function App() {
                 path="/related-literature"
                 element={<RelatedLiterature />}
               />
-
               <Route path="/news" element={<NewsContent />} />
               <Route path="/news/:newsId" element={<NewsDetail />} />
               <Route path="/qa" element={<QA />} />
@@ -193,132 +191,96 @@ function App() {
                 element={<VerifyEmailSuccess />}
               />
               <Route path="/terms" element={<Terms />} />
-              <Route element={<AuthProtectedRoute />}>
+              <Route
+                element={
+                  <RouteGuard
+                    roles={['none', 'staff', 'superuser']}
+                    redirectPath={`/`}
+                  />
+                }
+              >
                 <Route path="/form-link" element={<FormLink />} />
                 <Route
-                  path="/dashboard/about"
-                  element={<Dashboard content={<DashboardAboutContent />} />}
-                />
-                <Route
-                  path="/dashboard/about/add"
-                  element={<Dashboard content={<DashboardAboutAdd />} />}
-                />
-                <Route
-                  path="/dashboard/about/edit/:aboutId"
-                  element={<Dashboard content={<DashboardAboutEdit />} />}
-                />
-                <Route
-                  path="/dashboard/about-attachment"
                   element={
-                    <Dashboard content={<DashboardAboutAttachmentContent />} />
+                    <RouteGuard
+                      roles={['staff', 'superuser']}
+                      redirectPath={`/dashboard/about`}
+                    />
                   }
-                />
-                <Route
-                  path="/dashboard/about-attachment/add"
-                  element={
-                    <Dashboard content={<DashboardAboutAttachmentAdd />} />
-                  }
-                />
-                <Route
-                  path="/dashboard/about-attachment/edit/:aboutAttachmentId"
-                  element={
-                    <Dashboard content={<DashboardAboutAttachmentEdit />} />
-                  }
-                />
-                <Route
-                  path="/dashboard/news"
-                  element={<Dashboard content={<DashboardNewsContent />} />}
-                />
-                <Route
-                  path="/dashboard/news/add"
-                  element={<Dashboard content={<DashboardNewsAdd />} />}
-                />
-                <Route
-                  path="/dashboard/news/edit/:newsId"
-                  element={<Dashboard content={<DashboardNewsEdit />} />}
-                />
-                <Route
-                  path="/dashboard/news-type"
-                  element={<Dashboard content={<DashboardNewsTypeContent />} />}
-                />
-                <Route
-                  path="/dashboard/news-type/add"
-                  element={<Dashboard content={<DashboardNewsTypeAdd />} />}
-                />
-                <Route
-                  path="/dashboard/news-type/edit/:newsTypeId"
-                  element={<Dashboard content={<DashboardNewsTypeEdit />} />}
-                />
-                <Route
-                  path="/dashboard/related-literature"
-                  element={
-                    <Dashboard content={<DashboardLiteratureContent />} />
-                  }
-                />
-                <Route
-                  path="/dashboard/related-literature/add"
-                  element={<Dashboard content={<DashboardLiteratureAdd />} />}
-                />
-                <Route
-                  path="/dashboard/related-literature/edit/:literatureId"
-                  element={<Dashboard content={<DashboardLiteratureEdit />} />}
-                />
-                <Route element={<SuperuserProtectedRoute />}>
+                >
                   <Route
-                    path="/dashboard/contact"
+                    path="/dashboard/about"
+                    element={<Dashboard content={<DashboardAboutContent />} />}
+                  />
+                  <Route
+                    path="/dashboard/about/add"
+                    element={<Dashboard content={<DashboardAboutAdd />} />}
+                  />
+                  <Route
+                    path="/dashboard/about/edit/:aboutId"
+                    element={<Dashboard content={<DashboardAboutEdit />} />}
+                  />
+                  <Route
+                    path="/dashboard/about-attachment"
                     element={
-                      <Dashboard content={<DashboardContactContent />} />
+                      <Dashboard
+                        content={<DashboardAboutAttachmentContent />}
+                      />
                     }
                   />
                   <Route
-                    path="/dashboard/contact/add"
-                    element={<Dashboard content={<DashboardContactAdd />} />}
-                  />
-                  <Route
-                    path="/dashboard/contact/edit/:contactId"
-                    element={<Dashboard content={<DashboardContactEdit />} />}
-                  />
-                  <Route
-                    path="/dashboard/qa"
-                    element={<Dashboard content={<DashboardQAContent />} />}
-                  />
-                  <Route
-                    path="/dashboard/qa/add"
-                    element={<Dashboard content={<DashboardQAAdd />} />}
-                  />
-                  <Route
-                    path="/dashboard/qa/edit/:qaId"
-                    element={<Dashboard content={<DashboardQAEdit />} />}
-                  />
-                  <Route
-                    path="/dashboard/qa-type"
-                    element={<Dashboard content={<DashboardQATypeContent />} />}
-                  />
-                  <Route
-                    path="/dashboard/qa-type/add"
-                    element={<Dashboard content={<DashboardQATypeAdd />} />}
-                  />
-                  <Route
-                    path="/dashboard/qa-type/edit/:qaTypeId"
-                    element={<Dashboard content={<DashboardQATypeEdit />} />}
-                  />
-                  <Route
-                    path="/dashboard/form-link"
+                    path="/dashboard/about-attachment/add"
                     element={
-                      <Dashboard content={<DashboardFormLinkContent />} />
+                      <Dashboard content={<DashboardAboutAttachmentAdd />} />
                     }
                   />
                   <Route
-                    path="/dashboard/form-link/add"
-                    element={<Dashboard content={<DashboardFormLinkAdd />} />}
+                    path="/dashboard/about-attachment/edit/:aboutAttachmentId"
+                    element={
+                      <Dashboard content={<DashboardAboutAttachmentEdit />} />
+                    }
                   />
                   <Route
-                    path="/dashboard/form-link/edit/:formLinkId"
-                    element={<Dashboard content={<DashboardFormLinkEdit />} />}
+                    path="/dashboard/news"
+                    element={<Dashboard content={<DashboardNewsContent />} />}
                   />
                   <Route
-                    path="/dashboard/download"
-                    element={<Dashboard content={<DashboardDownload />} />}
+                    path="/dashboard/news/add"
+                    element={<Dashboard content={<DashboardNewsAdd />} />}
+                  />
+                  <Route
+                    path="/dashboard/news/edit/:newsId"
+                    element={<Dashboard content={<DashboardNewsEdit />} />}
+                  />
+                  <Route
+                    path="/dashboard/news-type"
+                    element={
+                      <Dashboard content={<DashboardNewsTypeContent />} />
+                    }
+                  />
+                  <Route
+                    path="/dashboard/news-type/add"
+                    element={<Dashboard content={<DashboardNewsTypeAdd />} />}
+                  />
+                  <Route
+                    path="/dashboard/news-type/edit/:newsTypeId"
+                    element={<Dashboard content={<DashboardNewsTypeEdit />} />}
+                  />
+                  <Route
+                    path="/dashboard/related-literature"
+                    element={
+                      <Dashboard content={<DashboardLiteratureContent />} />
+                    }
+                  />
+                  <Route
+                    path="/dashboard/related-literature/add"
+                    element={<Dashboard content={<DashboardLiteratureAdd />} />}
+                  />
+                  <Route
+                    path="/dashboard/related-literature/edit/:literatureId"
+                    element={
+                      <Dashboard content={<DashboardLiteratureEdit />} />
+                    }
                   />
                   <Route
                     path="/dashboard/download-record"
@@ -326,6 +288,75 @@ function App() {
                       <Dashboard content={<DashboardDownloadRecord />} />
                     }
                   />
+                  <Route
+                    element={
+                      <RouteGuard
+                        roles={['superuser']}
+                        redirectPath={`/dashboard/about`}
+                      />
+                    }
+                  >
+                    <Route
+                      path="/dashboard/contact"
+                      element={
+                        <Dashboard content={<DashboardContactContent />} />
+                      }
+                    />
+                    <Route
+                      path="/dashboard/contact/add"
+                      element={<Dashboard content={<DashboardContactAdd />} />}
+                    />
+                    <Route
+                      path="/dashboard/contact/edit/:contactId"
+                      element={<Dashboard content={<DashboardContactEdit />} />}
+                    />
+                    <Route
+                      path="/dashboard/qa"
+                      element={<Dashboard content={<DashboardQAContent />} />}
+                    />
+                    <Route
+                      path="/dashboard/qa/add"
+                      element={<Dashboard content={<DashboardQAAdd />} />}
+                    />
+                    <Route
+                      path="/dashboard/qa/edit/:qaId"
+                      element={<Dashboard content={<DashboardQAEdit />} />}
+                    />
+                    <Route
+                      path="/dashboard/qa-type"
+                      element={
+                        <Dashboard content={<DashboardQATypeContent />} />
+                      }
+                    />
+                    <Route
+                      path="/dashboard/qa-type/add"
+                      element={<Dashboard content={<DashboardQATypeAdd />} />}
+                    />
+                    <Route
+                      path="/dashboard/qa-type/edit/:qaTypeId"
+                      element={<Dashboard content={<DashboardQATypeEdit />} />}
+                    />
+                    <Route
+                      path="/dashboard/form-link"
+                      element={
+                        <Dashboard content={<DashboardFormLinkContent />} />
+                      }
+                    />
+                    <Route
+                      path="/dashboard/form-link/add"
+                      element={<Dashboard content={<DashboardFormLinkAdd />} />}
+                    />
+                    <Route
+                      path="/dashboard/form-link/edit/:formLinkId"
+                      element={
+                        <Dashboard content={<DashboardFormLinkEdit />} />
+                      }
+                    />
+                    <Route
+                      path="/dashboard/download"
+                      element={<Dashboard content={<DashboardDownload />} />}
+                    />
+                  </Route>
                 </Route>
               </Route>
             </Routes>

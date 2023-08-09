@@ -13,7 +13,7 @@ export const newsValidationSchema = Yup.object().shape({
     .min(1, '至少需要選擇一項')
     .required('此欄位為必填'),
   title: Yup.string().required('此欄位為必填'),
-  // cover: Yup.string().required('此欄位為必填'),
+  newsDate: Yup.string().required('此欄位為必填'),
 });
 
 export const newsTypeValidationSchema = Yup.object().shape({
@@ -49,16 +49,12 @@ export const aboutAttachmentAddValidationSchema = Yup.object().shape({
   type: Yup.string().required('此欄位為必填'),
   name: Yup.string().required('此欄位為必填'),
   content: Yup.string().required('此欄位為必填'),
-  // file: Yup.string().required('此欄位為必填'),
-  // image: Yup.string().required('此欄位為必填'),
 });
 
 export const aboutAttachmentEditValidationSchema = Yup.object().shape({
   type: Yup.string().required('此欄位為必填'),
   name: Yup.string().required('此欄位為必填'),
   content: Yup.string().required('此欄位為必填'),
-  // file: Yup.string().required('此欄位為必填'),
-  // image: Yup.string().required('此欄位為必填'),
 });
 
 export const searchValidationSchema = Yup.object().shape({});
@@ -109,4 +105,12 @@ export const resetPswValidationSchema = Yup.object().shape({
   password2: Yup.string()
     .oneOf([Yup.ref('password')], '密碼不一致')
     .required('確認密碼為必填項目'),
+});
+
+export const applyDownloadValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('請輸入有效的Email地址')
+    .required('Email為必填項目'),
+  role: Yup.string().required('為必填項目'),
+  content: Yup.string().required('為必填項目'),
 });

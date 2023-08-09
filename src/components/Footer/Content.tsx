@@ -48,7 +48,7 @@ const Content = () => {
             <div className="logow">
               <img src={logowImg} alt="" />
             </div>
-            {/* <div className="soci-icon">
+            <div className="soci-icon">
               {sociIconList.map((v) => {
                 const { id, img, link } = v;
                 return (
@@ -57,7 +57,7 @@ const Content = () => {
                   </Link>
                 );
               })}
-            </div> */}
+            </div>
             <ul className="footer-menu">
               {footerMenuList.map((item) => {
                 const { id, title, list } = item;
