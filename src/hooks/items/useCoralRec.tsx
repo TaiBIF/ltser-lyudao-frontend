@@ -23,7 +23,7 @@ const useCoralRec = () => {
     year: '',
     count: 0,
   });
-  const [raws, setRaws] = useState<RawItemTypes[]>([]);
+  const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [series, setSeries] = useState<SeriesItemTypes[]>([]);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
   const { filter } = useSiteDataContext();

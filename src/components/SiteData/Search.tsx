@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 
 import { Form, Formik, FormikHelpers, FormikConfig } from 'formik';
 import { useLocation } from 'react-router-dom';
@@ -7,7 +7,7 @@ import qs from 'qs';
 import SearchFieldLayout from 'components/SiteData/SearchFieldLayout';
 import Placeholder from 'components/Placeholder';
 
-import { ContextItem, ItemTypes } from 'types/utils';
+import { ContextItem, PaginationDataItem } from 'types/utils';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 
@@ -20,10 +20,11 @@ import usePage from 'hooks/utils/usePage';
 interface SearchProps {
   item: string;
   isDoneFetching: boolean;
+  setPaginationData: Dispatch<SetStateAction<PaginationDataItem>>;
 }
 
 const Search = (props: SearchProps) => {
-  const { item, isDoneFetching } = props;
+  const { item, isDoneFetching, setPaginationData } = props;
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const initialValues = Object.fromEntries(
     contextData.fields.map((v: RawFieldItem) => [v.id, ''])
@@ -37,8 +38,14 @@ const Search = (props: SearchProps) => {
     values: RawItemTypes,
     { setSubmitting }: FormikHelpers<RawItemTypes>
   ) => {
-    setQuery({ ...values });
-    contextData.getRaws({ params: { ...values, page: currentPage } });
+    const filterValue = Object.fromEntries(
+      Object.entries(values).filter(([key, value]) => value !== '')
+    );
+    setQuery({ ...filterValue });
+    contextData.getRaws({
+      params: { ...filterValue, page: currentPage },
+      setPaginationData,
+    });
     setSubmitting(false);
   };
 

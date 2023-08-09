@@ -13,7 +13,7 @@ interface useSiteDataProps {
   defaultRaws?: RawItemTypes[];
   defaultFields?: RawFieldItem[];
   defaultSeries?: SeriesItemTypes[];
-  setRaws?: Dispatch<SetStateAction<RawItemTypes[]>>;
+  setRaws?: Dispatch<SetStateAction<RawItemTypes[] | null>>;
   setFields?: Dispatch<SetStateAction<RawFieldItem[]>>;
   setSeries?: Dispatch<SetStateAction<SeriesItemTypes[]>>;
   setPageData?: Dispatch<SetStateAction<PaginationDataItem[]>>;

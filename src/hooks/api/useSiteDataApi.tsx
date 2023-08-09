@@ -26,7 +26,7 @@ const useSiteDataApi = () => {
       params,
     });
     if (result?.status === 'success') {
-      setList([...result.response.data.records]);
+      setList(result.response.data.records);
       if (setPaginationData) {
         setPaginationData({
           ...Object.fromEntries(
@@ -36,8 +36,6 @@ const useSiteDataApi = () => {
           ),
         });
       }
-    } else {
-      setList([...defaultList]);
     }
   };
 

@@ -88,7 +88,7 @@ export type ContextItem = {
   getSites?: any;
   detail?: any;
   getDetail?: any;
-  raws?: RawItemTypes[];
+  raws?: RawItemTypes[] | null;
   getRaws?: any;
   fields?: RawFieldItem[];
   getFields?: any;

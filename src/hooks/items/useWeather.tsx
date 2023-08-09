@@ -18,7 +18,6 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useWeather = () => {
   const [sites, setSites] = useState<string[]>([]);
-  // const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -28,7 +27,7 @@ const useWeather = () => {
     },
     seasonal: [],
   });
-  const [raws, setRaws] = useState<RawItemTypes[]>([]);
+  const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
   const [series, setSeries] = useState<SeriesItemTypes[]>([]);
   const { filter } = useSiteDataContext();

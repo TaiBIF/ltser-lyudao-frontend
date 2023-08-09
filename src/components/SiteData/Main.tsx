@@ -13,6 +13,7 @@ import { ContextItem, SelectItem } from 'types/utils';
 import { useDataContext } from 'context/DataContext';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import Placeholder from 'components/Placeholder';
+import usePage from 'hooks/utils/usePage';
 
 const Main = () => {
   const location = useLocation();
@@ -23,12 +24,13 @@ const Main = () => {
   const item = paths[paths.length - 1];
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { filter, setFilter } = useSiteDataContext();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
 
   const isFetchingSites = contextData.sites.length === 0;
   const isFetchingFields = contextData.fields.length === 0;
-  const isFetchingRaws = contextData.raws.length === 0;
+  const isFetchingRaws = contextData.raws === null;
   const isDoneFetching = !isFetchingFields && !isFetchingRaws;
-
   useEffect(() => {
     contextData.getFields();
     contextData.getSites();
@@ -52,8 +54,19 @@ const Main = () => {
           <EchartsChart item={item} />
         </div>
         <div className="data-searchbox">
-          <Search item={item} isDoneFetching={isDoneFetching} />
-          <Result item={item} isDoneFetching={isDoneFetching} />
+          <Search
+            item={item}
+            isDoneFetching={isDoneFetching}
+            setPaginationData={setPaginationData}
+          />
+          <Result
+            item={item}
+            isDoneFetching={isDoneFetching}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            paginationData={paginationData}
+            setPaginationData={setPaginationData}
+          />
         </div>
       </div>
     </>

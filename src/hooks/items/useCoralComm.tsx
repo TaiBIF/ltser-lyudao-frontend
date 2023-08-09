@@ -15,7 +15,7 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useCoralComm = () => {
   const [sites, setSites] = useState<string[]>([]);
-  const [raws, setRaws] = useState<RawItemTypes[]>([]);
+  const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
   const [series, setSeries] = useState<SeriesItemTypes[]>([]);
   const { filter } = useSiteDataContext();

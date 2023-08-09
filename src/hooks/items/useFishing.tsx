@@ -8,7 +8,7 @@ import useSiteData from 'hooks/page/useSiteData';
 import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useFishing = () => {
-  const [raws, setRaws] = useState<RawItemTypes[]>([]);
+  const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
   const { filter } = useSiteDataContext();
 

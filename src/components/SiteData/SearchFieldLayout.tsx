@@ -13,6 +13,7 @@ const SearchFieldLayout = (props: SearchFieldLayoutProps) => {
   switch (type) {
     case 'text':
     case 'number':
+    case 'date':
       return (
         <li key={id}>
           <p>{id}</p>

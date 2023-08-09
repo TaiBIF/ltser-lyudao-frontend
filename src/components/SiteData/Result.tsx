@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import Pagination from 'components/Pagination';
 
 import { useEcoContext } from 'context/EcoContext';
 import { useDataContext } from 'context/DataContext';
 
-import { ShowState, ContextItem } from 'types/utils';
+import { ShowState, ContextItem, PaginationDataItem } from 'types/utils';
 
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
@@ -18,24 +18,36 @@ import { useLocation } from 'react-router-dom';
 interface ResultProps {
   item: string;
   isDoneFetching: boolean;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+  paginationData: PaginationDataItem;
+  setPaginationData: Dispatch<SetStateAction<PaginationDataItem>>;
 }
 
 const Result = (props: ResultProps) => {
-  const { item, isDoneFetching } = props;
+  const {
+    item,
+    isDoneFetching,
+    currentPage,
+    setCurrentPage,
+    paginationData,
+    setPaginationData,
+  } = props;
   const { show, handleDownloadPopup } = useEcoContext();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
-  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
-    usePage();
+
   const { query, setQuery } = useSiteDataContext();
   const { pathname } = useLocation();
   const scrollTargetRef = useRef(null);
+
+  const hasNoRaws = isDoneFetching && contextData.raws.length === 0;
 
   useEffect(() => {
     setQuery({});
   }, [item]);
 
   useEffect(() => {
-    if (contextData.raws) {
+    if (contextData.raws !== undefined) {
       contextData.getRaws({
         params: { ...query, page: currentPage },
         setPaginationData,
@@ -50,7 +62,7 @@ const Result = (props: ResultProps) => {
           <>
             <div className="toptool">
               <div className="data-num">
-                資料筆數：{paginationData.totalRecords}
+                資料筆數：{paginationData?.totalRecords}
               </div>
               <div className="btnr-box">
                 <button
@@ -89,15 +101,23 @@ const Result = (props: ResultProps) => {
                       return <td key={id}>{id}</td>;
                     })}
                   </tr>
-                  {contextData.raws.map((v: RawItemTypes, index: number) => {
-                    return (
-                      <tr key={`${index}`}>
-                        {Object.entries(v).map(([key, value], i) => {
-                          return <td key={`${index}-${i}`}>{value}</td>;
-                        })}
-                      </tr>
-                    );
-                  })}
+                  {!hasNoRaws ? (
+                    contextData.raws.map((v: RawItemTypes, index: number) => {
+                      return (
+                        <tr key={`${index}`}>
+                          {Object.entries(v).map(([key, value], i) => {
+                            return <td key={`${index}-${i}`}>{value}</td>;
+                          })}
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td colSpan={contextData.fields.length}>
+                        目前沒有資料。
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
