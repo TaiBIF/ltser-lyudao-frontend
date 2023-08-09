@@ -1,22 +1,30 @@
 import React, { useEffect } from 'react';
 
 import { Form, Formik, FormikHelpers, FormikConfig } from 'formik';
+import { useLocation } from 'react-router-dom';
 import qs from 'qs';
 
 import SearchFieldLayout from 'components/SiteData/SearchFieldLayout';
+import Placeholder from 'components/Placeholder';
 
 import { ContextItem, ItemTypes } from 'types/utils';
 import { RawFieldItem } from 'types/field';
+import { RawItemTypes } from 'types/rawData';
 
 import { searchValidationSchema } from 'data/validationSchema';
 
 import { useDataContext } from 'context/DataContext';
-import { RawItemTypes } from 'types/rawData';
 import { useSiteDataContext } from 'context/SiteDataContext';
-import { useLocation } from 'react-router-dom';
 import usePage from 'hooks/utils/usePage';
 
-const Search = ({ item }: { item: string }) => {
+interface SearchProps {
+  item: string;
+  isFetchingFields: boolean;
+  isFetchingRaws: boolean;
+}
+
+const Search = (props: SearchProps) => {
+  const { item, isFetchingFields, isFetchingRaws } = props;
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const initialValues = Object.fromEntries(
     contextData.fields.map((v: RawFieldItem) => [v.id, ''])
@@ -25,6 +33,8 @@ const Search = ({ item }: { item: string }) => {
   const { query, setQuery } = useSiteDataContext();
   const { pathname } = useLocation();
   const { currentPage } = usePage();
+
+  const isDoneFetching = !isFetchingFields && !isFetchingRaws;
 
   const handleSubmit = (
     values: RawItemTypes,
@@ -49,23 +59,31 @@ const Search = ({ item }: { item: string }) => {
     <>
       <div className="center-title">資料列表搜尋</div>
       <div className="input-box">
-        <Formik {...formikConfig}>
-          <Form>
-            <ul className="set-li">
-              {searchFieldList.map((v: RawFieldItem) => {
-                return <SearchFieldLayout key={v.id} data={v} />;
-              })}
-            </ul>
-            <div className="send-btnarea">
-              <button type="reset" className="clearall">
-                清除
-              </button>
-              <button type="submit" className="searchall">
-                搜尋
-              </button>
-            </div>
-          </Form>
-        </Formik>
+        {isDoneFetching ? (
+          <Formik {...formikConfig}>
+            <Form>
+              <ul className="set-li">
+                {searchFieldList.map((v: RawFieldItem) => {
+                  return <SearchFieldLayout key={v.id} data={v} />;
+                })}
+              </ul>
+              <div className="send-btnarea">
+                <button type="reset" className="clearall">
+                  清除
+                </button>
+                <button type="submit" className="searchall">
+                  搜尋
+                </button>
+              </div>
+            </Form>
+          </Formik>
+        ) : (
+          <>
+            <Placeholder layout="line" />
+            <Placeholder layout="line" />
+            <Placeholder layout="line" />
+          </>
+        )}
       </div>
     </>
   );

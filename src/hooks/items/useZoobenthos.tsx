@@ -6,12 +6,7 @@ import { SeriesItemTypes } from 'types/series';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 
-import {
-  defaultTimeRange,
-  defaultSites,
-  defaultIdTimeRange,
-  zoobenthosDetail,
-} from 'data/home/content';
+import { defaultSites, zoobenthosDetail } from 'data/home/content';
 import { countSeries } from 'data/series';
 import { zoobenthosFields } from 'data/field';
 import { zoobenthosRaws } from 'data/rawData';
@@ -22,10 +17,6 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useZoobenthos = () => {
   const [sites, setSites] = useState<string[]>([]);
-  const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
-  const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
-    ...defaultTimeRange,
-  });
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -38,47 +29,32 @@ const useZoobenthos = () => {
 
   const URL = `zoobenthos`;
 
-  const {
-    getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
-    getDataDetail,
-  } = useSurveyMapData({
+  const { getDataSites, getDataDetail } = useSurveyMapData({
     url: URL,
-    defaultSites,
-    defaultIdTimeRange,
-    defaultDetail: zoobenthosDetail,
+    // defaultSites,
+    // defaultDetail: zoobenthosDetail,
     setSites,
-    allTimeRange,
-    setAllTimeRange,
-    setIdTimeRange,
     setDetail,
   });
 
   const { getDataRaws, getDataSeries, getDataFields } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: zoobenthosRaws,
+    // defaultRaws: zoobenthosRaws,
     setRaws,
-    defaultSeries: countSeries,
+    // defaultSeries: countSeries,
     setSeries,
-    defaultFields: zoobenthosFields,
+    // defaultFields: zoobenthosFields,
     setFields,
   });
 
   return {
     sites,
-    allTimeRange,
-    idTimeRange,
     detail,
     raws,
     series,
     fields,
     getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
     getDataDetail,
     getDataRaws,
     getDataSeries,

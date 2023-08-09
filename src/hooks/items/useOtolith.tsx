@@ -25,18 +25,18 @@ const useOtolith = () => {
 
   const { getDataSites } = useSurveyMapData({
     url: URL,
-    defaultSites,
+    // defaultSites,
     setSites,
   });
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: otolithRaws,
+    // defaultRaws: otolithRaws,
     setRaws,
-    defaultFields: otolithFields,
+    // defaultFields: otolithFields,
     setFields,
-    defaultSeries: countSeries,
+    // defaultSeries: countSeries,
     setSeries,
   });
 

@@ -14,11 +14,9 @@ interface useSurveyMapDataProps {
   url: string;
   defaultSites?: SiteItem;
   defaultDetail?: DetailItemTypes;
-  defaultIdTimeRange?: TimeRangeItem;
   setSites?: Dispatch<SetStateAction<string[]>>;
   allTimeRange?: TimeRangeItem[];
   setAllTimeRange?: Dispatch<SetStateAction<TimeRangeItem[]>>;
-  setIdTimeRange?: Dispatch<SetStateAction<TimeRangeItem>>;
   setDetail?: Dispatch<SetStateAction<DetailItemTypes>>;
 }
 
@@ -27,18 +25,13 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
     url,
     defaultSites,
     defaultDetail,
-    defaultIdTimeRange,
     setSites,
-    allTimeRange,
-    setAllTimeRange,
-    setIdTimeRange,
     setDetail,
+    setAllTimeRange,
   } = props;
   const { id, year } = useSurveyMapContext().filter;
   const { filter, setFilter } = useSiteDataContext();
   const { getSites, getAllTimeRange, getTimeRange, getDetail } = useSurveyMap();
-
-  const isFetchingAllTimeRange = allTimeRange?.length === 0;
 
   const getDataSites = () => {
     getSites({
@@ -57,20 +50,6 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
     });
   };
 
-  const getDataHoverTimeRange = (hoverId: string) =>
-    !isFetchingAllTimeRange
-      ? allTimeRange?.find((v) => v.site === hoverId)
-      : { ...defaultTimeRange };
-
-  const getDataIdTimeRange = () => {
-    getTimeRange({
-      id,
-      url,
-      setData: setIdTimeRange,
-      defaultData: defaultIdTimeRange,
-    });
-  };
-
   const getDataDetail = () => {
     getDetail({
       id,
@@ -84,8 +63,6 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
   return {
     getDataSites,
     getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
     getDataDetail,
   };
 };

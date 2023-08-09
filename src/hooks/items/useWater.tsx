@@ -24,18 +24,18 @@ const useWater = () => {
 
   const { getDataSites } = useSurveyMapData({
     url: URL,
-    defaultSites,
+    // defaultSites,
     setSites,
   });
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: waterRaws,
+    // defaultRaws: waterRaws,
     setRaws,
-    defaultFields: waterFields,
+    // defaultFields: waterFields,
     setFields,
-    defaultSeries: waterSeries,
+    // defaultSeries: waterSeries,
     setSeries,
   });
 

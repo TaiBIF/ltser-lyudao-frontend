@@ -1,8 +1,9 @@
-import { ecoAsideList, envAsideList } from 'data/siteData';
+import { ecoAsideList, economyAsideList, envAsideList } from 'data/siteData';
 import React from 'react';
 
 const Title = ({ paths }: { paths: string[] }) => {
   let asideList;
+  let title;
   const observation = paths[paths.length - 2].split('-')[0];
   const item = paths[paths.length - 1];
 
@@ -10,15 +11,24 @@ const Title = ({ paths }: { paths: string[] }) => {
     case 'ecological':
       asideList = ecoAsideList;
       break;
+    case 'social':
+      asideList = economyAsideList;
+      break;
     case 'environmental':
     default:
       asideList = envAsideList;
       break;
   }
-  const title = asideList
+
+  title = asideList
     .map((v) => v.list)
     .flat()
-    .find((v) => v?.link === item)?.title;
+    .find((v) => v?.link === item)?.title
+    ? asideList
+        .map((v) => v.list)
+        .flat()
+        .find((v) => v?.link === item)?.title
+    : asideList.find((v) => v?.link?.split('/')[1] === item)?.title;
 
   return (
     <>

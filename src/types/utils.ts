@@ -84,7 +84,7 @@ export type RelateListTypes = ColItem | FieldItem;
 
 export type ContextItem = {
   id: string;
-  sites: string[];
+  sites?: string[];
   getSites?: any;
   detail?: any;
   getDetail?: any;

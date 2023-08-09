@@ -1,19 +1,23 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Breadcrumb from 'components/Breadcrumb';
 import Banner from 'components/Banner';
 import Aside from 'components/SiteData/Aside/Content';
 
 import { BannerData } from 'types/common';
+import { ContextItem } from 'types/utils';
 
 import bannerImg from 'image/social_bn.png';
-import chartImg from 'image/chart-demo.png';
 
 import { economyAsideList } from 'data/siteData';
 
+import { useDataContext } from 'context/DataContext';
+import Content from 'components/SiteData/Economy/Content';
+
 const Economy = () => {
   const { dataId } = useParams();
+
   const navigate = useNavigate();
   const bannerData: BannerData = {
     title: '社會觀測',
@@ -41,6 +45,7 @@ const Economy = () => {
           <div className="main-box">
             <div className="observation-box">
               <Aside data={economyAsideList} page={page} />
+              {dataId && <Content />}
             </div>
           </div>
         </div>

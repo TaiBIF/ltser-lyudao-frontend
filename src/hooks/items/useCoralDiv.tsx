@@ -6,12 +6,7 @@ import { DetailItemTypes } from 'types/detail';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 
-import {
-  defaultTimeRange,
-  defaultSites,
-  defaultIdTimeRange,
-  coralDivDetail,
-} from 'data/home/content';
+import { defaultSites, coralDivDetail } from 'data/home/content';
 import { countSeries } from 'data/series';
 import { coralDivFields } from 'data/field';
 
@@ -23,10 +18,6 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useCoralDiv = () => {
   const [sites, setSites] = useState<string[]>([]);
-  const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
-  const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
-    ...defaultTimeRange,
-  });
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -39,47 +30,32 @@ const useCoralDiv = () => {
 
   const URL = `coral-div`;
 
-  const {
-    getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
-    getDataDetail,
-  } = useSurveyMapData({
+  const { getDataSites, getDataDetail } = useSurveyMapData({
     url: URL,
-    defaultSites,
-    defaultIdTimeRange,
-    defaultDetail: coralDivDetail,
+    // defaultSites,
+    // defaultDetail: coralDivDetail,
     setSites,
-    allTimeRange,
-    setAllTimeRange,
-    setIdTimeRange,
     setDetail,
   });
 
   const { getDataRaws, getDataSeries, getDataFields } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: coralDivRaws,
+    // defaultRaws: coralDivRaws,
     setRaws,
     setSeries,
-    defaultSeries: countSeries,
-    defaultFields: coralDivFields,
+    // defaultSeries: countSeries,
+    // defaultFields: coralDivFields,
     setFields,
   });
 
   return {
     sites,
-    allTimeRange,
-    idTimeRange,
     detail,
     raws,
     series,
     fields,
     getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
     getDataDetail,
     getDataRaws,
     getDataSeries,

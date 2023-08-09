@@ -3,7 +3,6 @@ import { useLocation, useParams } from 'react-router-dom';
 import queryString from 'query-string';
 
 import Title from 'components/SiteData/Title';
-import Chart from 'components/SiteData/Chart';
 import Search from 'components/SiteData/Search';
 import Result from 'components/SiteData/Result';
 import Select from 'components/SiteData/Select';
@@ -13,6 +12,7 @@ import { ContextItem, SelectItem } from 'types/utils';
 
 import { useDataContext } from 'context/DataContext';
 import { useSiteDataContext } from 'context/SiteDataContext';
+import Placeholder from 'components/Placeholder';
 
 const Main = () => {
   const location = useLocation();
@@ -25,6 +25,8 @@ const Main = () => {
   const { filter, setFilter } = useSiteDataContext();
 
   const isFetchingSites = contextData.sites.length === 0;
+  const isFetchingFields = contextData.fields.length === 0;
+  const isFetchingRaws = contextData.raws.length === 0;
 
   useEffect(() => {
     contextData.getFields();
@@ -35,18 +37,30 @@ const Main = () => {
     <>
       <div className="right-infbox">
         <Title paths={paths} />
-        {!isFetchingSites && (
-          <Select
-            title="測站/樣區"
-            options={contextData.sites}
-            filter={filter}
-            setFilter={setFilter}
-          />
-        )}
-        <EchartsChart item={item} />
+        <div className="u-section">
+          {!isFetchingSites ? (
+            <Select
+              title="測站/樣區"
+              options={contextData.sites}
+              filter={filter}
+              setFilter={setFilter}
+            />
+          ) : (
+            <Placeholder layout="inline" />
+          )}
+          <EchartsChart item={item} />
+        </div>
         <div className="data-searchbox">
-          <Search item={item} />
-          <Result item={item} />
+          <Search
+            item={item}
+            isFetchingFields={isFetchingFields}
+            isFetchingRaws={isFetchingRaws}
+          />
+          <Result
+            item={item}
+            isFetchingFields={isFetchingFields}
+            isFetchingRaws={isFetchingRaws}
+          />
         </div>
       </div>
     </>

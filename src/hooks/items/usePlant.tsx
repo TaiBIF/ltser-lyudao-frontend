@@ -6,12 +6,7 @@ import { SeriesItemTypes } from 'types/series';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 
-import {
-  defaultTimeRange,
-  defaultSites,
-  defaultIdTimeRange,
-  plantDetail,
-} from 'data/home/content';
+import { defaultSites, plantDetail } from 'data/home/content';
 import { countSeries } from 'data/series';
 import { plantFields } from 'data/field';
 import { plantRaws } from 'data/rawData';
@@ -22,10 +17,6 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 
 const usePlant = () => {
   const [sites, setSites] = useState<string[]>([]);
-  const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
-  const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
-    ...defaultTimeRange,
-  });
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -38,21 +29,11 @@ const usePlant = () => {
 
   const URL = `plant`;
 
-  const {
-    getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
-    getDataDetail,
-  } = useSurveyMapData({
+  const { getDataSites, getDataDetail } = useSurveyMapData({
     url: URL,
-    defaultSites,
-    defaultIdTimeRange,
-    defaultDetail: plantDetail,
+    // defaultSites,
+    // defaultDetail: plantDetail,
     setSites,
-    allTimeRange,
-    setAllTimeRange,
-    setIdTimeRange,
     setDetail,
   });
 
@@ -69,16 +50,11 @@ const usePlant = () => {
 
   return {
     sites,
-    allTimeRange,
-    idTimeRange,
     detail,
     raws,
     series,
     fields,
     getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
     getDataDetail,
     getDataRaws,
     getDataSeries,

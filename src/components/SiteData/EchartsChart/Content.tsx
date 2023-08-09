@@ -15,6 +15,7 @@ import { useDataContext } from 'context/DataContext';
 import { useLocation } from 'react-router-dom';
 import { SeriesItemTypes } from 'types/series';
 import { useSiteDataContext } from 'context/SiteDataContext';
+import Placeholder from 'components/Placeholder';
 
 type SeriesItem = {
   name?: string;
@@ -29,7 +30,7 @@ const Content = ({ item }: { item: string }) => {
   const { pathname } = useLocation();
   const { filter } = useSiteDataContext();
 
-  const isFetchingWeatherChart = contextData.series.length === 0;
+  const isFetchingSeries = contextData.series.length === 0;
   const hasSite = filter.site !== '';
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const Content = ({ item }: { item: string }) => {
   }, [pathname, filter.site]);
 
   useEffect(() => {
-    if (!isFetchingWeatherChart) {
+    if (!isFetchingSeries) {
       const xAxis = contextData.series.map((v: SeriesItemTypes) => v.time);
       setXAxisList([...xAxis]);
       const series = Object.entries(contextData.series[0])
@@ -111,16 +112,20 @@ const Content = ({ item }: { item: string }) => {
 
   return (
     <>
-      <ReactECharts
-        option={option}
-        notMerge={true}
-        lazyUpdate={true}
-        opts={{ renderer: 'canvas', height: chartsHeight.default }}
-        style={{
-          height: '100%',
-          width: '100%',
-        }}
-      />
+      {!isFetchingSeries ? (
+        <ReactECharts
+          option={option}
+          notMerge={true}
+          lazyUpdate={true}
+          opts={{ renderer: 'canvas', height: chartsHeight.default }}
+          style={{
+            height: '100%',
+            width: '100%',
+          }}
+        />
+      ) : (
+        <Placeholder text="讀取中，請稍候" layout="block" />
+      )}
     </>
   );
 };

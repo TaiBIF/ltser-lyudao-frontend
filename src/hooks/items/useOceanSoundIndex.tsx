@@ -26,18 +26,18 @@ const useOceanSoundIndex = () => {
 
   const { getDataSites } = useSurveyMapData({
     url: URL,
-    defaultSites,
+    // defaultSites,
     setSites,
   });
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: oceanSoundIndexRaws,
+    // defaultRaws: oceanSoundIndexRaws,
     setRaws,
-    defaultFields: oceanSoundIndexFields,
+    // defaultFields: oceanSoundIndexFields,
     setFields,
-    defaultSeries: oceanSoundIndexSeries,
+    // defaultSeries: oceanSoundIndexSeries,
     setSeries,
   });
 

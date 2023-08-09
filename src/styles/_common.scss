@@ -24,6 +24,30 @@
   }
 }
 
+@keyframes slideRight {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.u-section {
+  margin: 3rem 0;
+}
+
+.e-img {
+  width: 100%;
+  height: 100%;
+  &--contain {
+    object-fit: contain;
+  }
+  &--cover {
+    object-fit: cover;
+  }
+}
+
 .e-tag {
   &--news {
     margin-right: 0.5rem;
@@ -52,8 +76,17 @@
 }
 
 .c-spinner {
+  $_: &;
   height: 2rem;
   aspect-ratio: 1 / 1;
+  &__circle {
+    stroke: #fff;
+  }
+  &--placeholder {
+    #{$_}__circle {
+      stroke: #828282;
+    }
+  }
 }
 
 .c-alert {
@@ -61,5 +94,77 @@
     width: calc(100% - 0.5rem) !important;
     top: 5.5rem;
     left: 0.5rem;
+  }
+}
+
+.c-placeholder {
+  $_: &;
+
+  background: #e0e0e0;
+
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    animation: slideRight 1.6s linear 0.5s infinite;
+    -webkit-animation: slideRight 1.6s linear 0.5s infinite;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.06), transparent);
+    transform: translateX(-100%);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &--block {
+    width: 100%;
+    height: 20rem;
+    margin: 1rem 0;
+
+    border-radius: 1.5rem;
+    #{$_}__icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #{$_}__img {
+      width: 3rem;
+      height: 3rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #{$_}__text {
+      color: #828282;
+      font-size: 1rem;
+    }
+  }
+  &--line {
+    width: 100%;
+    height: 2.75rem;
+    margin-bottom: 1rem;
+
+    border-radius: 0.75rem;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  &--inline {
+    width: 25%;
+    height: 2.75rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+
+    border-radius: 0.75rem;
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 }

@@ -5,12 +5,7 @@ import { TimeRangeItem } from 'types/home';
 import { DetailItemTypes } from 'types/detail';
 import { RawFieldItem } from 'types/field';
 
-import {
-  defaultTimeRange,
-  defaultSites,
-  defaultIdTimeRange,
-  seaTemperatureDeatil,
-} from 'data/home/content';
+import { defaultSites, seaTemperatureDeatil } from 'data/home/content';
 
 import { seaTemperatureRaws } from 'data/rawData';
 
@@ -24,10 +19,6 @@ import { seaTemperatureSeries } from 'data/series';
 
 const useSeaTemperature = () => {
   const [sites, setSites] = useState<string[]>([]);
-  const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
-  const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
-    ...defaultTimeRange,
-  });
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -43,47 +34,32 @@ const useSeaTemperature = () => {
 
   const URL = `sea-temperature`;
 
-  const {
-    getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
-    getDataDetail,
-  } = useSurveyMapData({
+  const { getDataSites, getDataDetail } = useSurveyMapData({
     url: URL,
-    defaultSites,
-    defaultIdTimeRange,
-    defaultDetail: seaTemperatureDeatil,
+    // defaultSites,
+    // defaultDetail: seaTemperatureDeatil,
     setSites,
-    allTimeRange,
-    setAllTimeRange,
-    setIdTimeRange,
     setDetail,
   });
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: seaTemperatureRaws,
+    // defaultRaws: seaTemperatureRaws,
     setRaws,
-    defaultFields: seaTemperatureFields,
+    // defaultFields: seaTemperatureFields,
     setFields,
-    defaultSeries: seaTemperatureSeries,
+    // defaultSeries: seaTemperatureSeries,
     setSeries,
   });
 
   return {
     sites,
-    allTimeRange,
-    idTimeRange,
     detail,
     raws,
     fields,
     series,
     getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
     getDataDetail,
     getDataRaws,
     getDataFields,

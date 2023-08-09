@@ -25,18 +25,18 @@ const useBioSound = () => {
 
   const { getDataSites } = useSurveyMapData({
     url: URL,
-    defaultSites,
+    // defaultSites,
     setSites,
   });
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: bioSoundRaws,
+    // defaultRaws: bioSoundRaws,
     setRaws,
-    defaultFields: bioSoundFields,
+    // defaultFields: bioSoundFields,
     setFields,
-    defaultSeries: countSeries,
+    // defaultSeries: countSeries,
     setSeries,
   });
 

@@ -159,12 +159,32 @@ function App() {
                 element={<InterviewDetail />}
               />
               <Route
-                path="/site-data/social-observation/social-economy-data/:dataId"
-                element={<Economy />}
+                path="/site-data/social-observation/social-economy-data"
+                element={
+                  <SiteDataProvider>
+                    <SurveyMapProvider>
+                      <DataProvider>
+                        <EcoProvider>
+                          <Economy />
+                        </EcoProvider>
+                      </DataProvider>
+                    </SurveyMapProvider>
+                  </SiteDataProvider>
+                }
               />
               <Route
-                path="/site-data/social-observation/social-economy-data"
-                element={<Economy />}
+                path="/site-data/social-observation/social-economy-data/:dataId"
+                element={
+                  <SiteDataProvider>
+                    <SurveyMapProvider>
+                      <DataProvider>
+                        <EcoProvider>
+                          <Economy />
+                        </EcoProvider>
+                      </DataProvider>
+                    </SurveyMapProvider>
+                  </SiteDataProvider>
+                }
               />
               <Route path="/reset-password" element={<ResetPsw />} />
               <Route path="/verify-email" element={<VerifyEmail />} />

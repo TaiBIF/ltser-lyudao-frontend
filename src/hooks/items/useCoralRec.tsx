@@ -6,12 +6,7 @@ import { DetailItemTypes } from 'types/detail';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 
-import {
-  defaultTimeRange,
-  defaultSites,
-  defaultIdTimeRange,
-  coralRecDetail,
-} from 'data/home/content';
+import { defaultSites, coralRecDetail } from 'data/home/content';
 import { countSeries } from 'data/series';
 import { coralRecFields } from 'data/field';
 
@@ -23,10 +18,6 @@ import { weatherRaws } from 'data/rawData';
 
 const useCoralRec = () => {
   const [sites, setSites] = useState<string[]>([]);
-  const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
-  const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
-    ...defaultTimeRange,
-  });
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -39,47 +30,32 @@ const useCoralRec = () => {
 
   const URL = `coral-rec`;
 
-  const {
-    getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
-    getDataDetail,
-  } = useSurveyMapData({
+  const { getDataSites, getDataDetail } = useSurveyMapData({
     url: URL,
-    defaultSites,
-    defaultIdTimeRange,
-    defaultDetail: coralRecDetail,
+    // defaultSites,
+    // defaultDetail: coralRecDetail,
     setSites,
-    allTimeRange,
-    setAllTimeRange,
-    setIdTimeRange,
     setDetail,
   });
 
   const { getDataRaws, getDataSeries, getDataFields } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: weatherRaws,
+    // defaultRaws: weatherRaws,
     setRaws,
-    defaultSeries: countSeries,
+    // defaultSeries: countSeries,
     setSeries,
-    defaultFields: coralRecFields,
+    // defaultFields: coralRecFields,
     setFields,
   });
 
   return {
     sites,
-    allTimeRange,
-    idTimeRange,
     detail,
     raws,
     series,
     fields,
     getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
     getDataDetail,
     getDataRaws,
     getDataSeries,

@@ -1,5 +1,7 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
+import { ContextItem } from 'types/utils';
+
 import useWeather from 'hooks/items/useWeather';
 import useSeaTemperature from 'hooks/items/useSeaTemperature';
 import useCoralDiv from 'hooks/items/useCoralDiv';
@@ -15,8 +17,8 @@ import useTerreSoundIndex from 'hooks/items/useTerreSoundIndex';
 import useOceanSoundIndex from 'hooks/items/useOceanSoundIndex';
 import useBioSound from 'hooks/items/useBioSound';
 import useOtolith from 'hooks/items/useOtolith';
-
-import { ContextItem } from 'types/utils';
+import useHabitat from 'hooks/items/useHabitat';
+import useFishing from 'hooks/items/useFishing';
 
 interface DataProviderProps {
   children?: ReactNode;
@@ -164,6 +166,17 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   } = useWater();
 
   const {
+    sites: habitatSites,
+    getDataSites: getHabitatSites,
+    raws: habitatRaws,
+    getDataRaws: getHabitatRaws,
+    fields: habitatFields,
+    getDataFields: getHabitatFields,
+    series: habitatSeries,
+    getDataSeries: getHabitatSeries,
+  } = useHabitat();
+
+  const {
     sites: terreSoundIndexSites,
     getDataSites: getTerreSoundIndexSites,
     raws: terreSoundIndexRaws,
@@ -206,6 +219,13 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     fields: otolithFields,
     getDataFields: getOtolithFields,
   } = useOtolith();
+
+  const {
+    raws: fishingRaws,
+    getDataRaws: getFishingRaws,
+    fields: fishingFields,
+    getDataFields: getFishingFields,
+  } = useFishing();
 
   const contextData: ContextItem[] = [
     {
@@ -346,6 +366,17 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       getSeries: getWaterSeries,
     },
     {
+      id: 'habitat',
+      sites: habitatSites,
+      getSites: getHabitatSites,
+      raws: habitatRaws,
+      getRaws: getHabitatRaws,
+      fields: habitatFields,
+      getFields: getHabitatFields,
+      series: habitatSeries,
+      getSeries: getHabitatSeries,
+    },
+    {
       id: 'terre-sound-index',
       sites: terreSoundIndexSites,
       getSites: getTerreSoundIndexSites,
@@ -388,6 +419,13 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       getSeries: getOtolithSeries,
       fields: otolithFields,
       getFields: getOtolithFields,
+    },
+    {
+      id: 'fishing',
+      raws: fishingRaws,
+      getRaws: getFishingRaws,
+      fields: fishingFields,
+      getFields: getFishingFields,
     },
   ];
 

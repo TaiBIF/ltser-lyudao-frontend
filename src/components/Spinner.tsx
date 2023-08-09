@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Spinner = () => {
+const Spinner = ({ layout }: { layout?: string }) => {
   return (
     <>
       <svg
@@ -16,13 +16,13 @@ const Spinner = () => {
         height="200px"
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
-        className="c-spinner"
+        className={`c-spinner ${layout ? `c-spinner--${layout}` : ''}`}
       >
         <circle
+          className="c-spinner__circle"
           cx="50"
           cy="50"
           fill="none"
-          stroke="#ffffff"
           strokeWidth="10"
           r="35"
           strokeDasharray="164.93361431346415 56.97787143782138"

@@ -24,18 +24,18 @@ const useCoralComm = () => {
 
   const { getDataSites } = useSurveyMapData({
     url: URL,
-    defaultSites,
+    // defaultSites,
     setSites,
   });
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: coralCommRaws,
+    // defaultRaws: coralCommRaws,
     setRaws,
-    defaultFields: coralCommFields,
+    // defaultFields: coralCommFields,
     setFields,
-    defaultSeries: countSeries,
+    // defaultSeries: countSeries,
     setSeries,
   });
 

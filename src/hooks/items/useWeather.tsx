@@ -6,12 +6,7 @@ import { DetailItemTypes } from 'types/detail';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 
-import {
-  defaultTimeRange,
-  defaultSites,
-  defaultIdTimeRange,
-  weatherDetail,
-} from 'data/home/content';
+import { defaultSites, weatherDetail } from 'data/home/content';
 import { weatherRaws } from 'data/rawData';
 import { weatherSeries } from 'data/series';
 import { weatherFields } from 'data/field';
@@ -24,9 +19,6 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 const useWeather = () => {
   const [sites, setSites] = useState<string[]>([]);
   const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
-  const [idTimeRange, setIdTimeRange] = useState<TimeRangeItem>({
-    ...defaultTimeRange,
-  });
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -43,23 +35,17 @@ const useWeather = () => {
 
   const URL = `weather`;
 
-  const {
-    getDataSites,
-    getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
-    getDataDetail,
-  } = useSurveyMapData({
-    url: URL,
-    defaultSites,
-    defaultIdTimeRange,
-    defaultDetail: weatherDetail,
-    setSites,
-    allTimeRange,
-    setAllTimeRange,
-    setIdTimeRange,
-    setDetail,
-  });
+  const { getDataSites, getDataAllTimeRange, getDataDetail } = useSurveyMapData(
+    {
+      url: URL,
+      // defaultSites,
+      // defaultDetail: weatherDetail,
+      setSites,
+      allTimeRange,
+      setAllTimeRange,
+      setDetail,
+    }
+  );
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
@@ -75,15 +61,12 @@ const useWeather = () => {
   return {
     sites,
     allTimeRange,
-    idTimeRange,
     detail,
     raws,
     fields,
     series,
     getDataSites,
     getDataAllTimeRange,
-    getDataHoverTimeRange,
-    getDataIdTimeRange,
     getDataDetail,
     getDataRaws,
     getDataFields,

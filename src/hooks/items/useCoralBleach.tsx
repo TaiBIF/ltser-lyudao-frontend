@@ -25,18 +25,18 @@ const useCoralBleach = () => {
 
   const { getDataSites } = useSurveyMapData({
     url: URL,
-    defaultSites,
+    // defaultSites,
     setSites,
   });
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
     url: URL,
-    defaultRaws: coralBleachRaws,
+    // defaultRaws: coralBleachRaws,
     setRaws,
-    defaultFields: coralBleachFields,
+    // defaultFields: coralBleachFields,
     setFields,
-    defaultSeries: countSeries,
+    // defaultSeries: countSeries,
     setSeries,
   });
 
