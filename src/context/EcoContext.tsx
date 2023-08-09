@@ -6,7 +6,7 @@ import React, {
   useRef,
 } from 'react';
 
-import { ShowState } from 'types/siteData';
+import { ShowState } from 'types/utils';
 
 import { gsapFade } from 'utils/animation';
 
@@ -23,7 +23,7 @@ export const EcoProvider = ({ children }: EcoProviderProps) => {
   });
   const downloadPopupRef = useRef<HTMLDivElement>(null);
 
-  const handleLoginClick = (action: string) => {
+  const handleDownloadClick = (action: string) => {
     const target = downloadPopupRef.current;
     if (target) {
       setShow({ ...show, downloadPopup: action === 'show' ? true : false });
@@ -34,7 +34,7 @@ export const EcoProvider = ({ children }: EcoProviderProps) => {
   const contextData = {
     show,
     downloadPopupRef,
-    handleLoginClick,
+    handleDownloadClick,
   };
 
   return (

@@ -1,18 +1,21 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useRef } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import { PaginationDataItem } from 'types/utils';
 
 interface PaginationProps {
+  scrollTargetRef?: any;
   currentPage: number;
   paginationData: PaginationDataItem;
   setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
 const Pagination = (props: PaginationProps) => {
-  const { currentPage, setCurrentPage, paginationData } = props;
+  const { scrollTargetRef, currentPage, setCurrentPage, paginationData } =
+    props;
   const { totalPages, totalRecords } = paginationData;
+
   const pageList = () => {
     let pageArr = [];
     for (let i = 1; i <= totalPages; i++) {
@@ -34,6 +37,11 @@ const Pagination = (props: PaginationProps) => {
 
   const handlePage = (page: number) => {
     setCurrentPage(page);
+    if (scrollTargetRef.current) {
+      (scrollTargetRef.current as HTMLElement).scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
   };
   return (
     <>

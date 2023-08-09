@@ -19,12 +19,11 @@ import usePage from 'hooks/utils/usePage';
 
 interface SearchProps {
   item: string;
-  isFetchingFields: boolean;
-  isFetchingRaws: boolean;
+  isDoneFetching: boolean;
 }
 
 const Search = (props: SearchProps) => {
-  const { item, isFetchingFields, isFetchingRaws } = props;
+  const { item, isDoneFetching } = props;
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const initialValues = Object.fromEntries(
     contextData.fields.map((v: RawFieldItem) => [v.id, ''])
@@ -33,8 +32,6 @@ const Search = (props: SearchProps) => {
   const { query, setQuery } = useSiteDataContext();
   const { pathname } = useLocation();
   const { currentPage } = usePage();
-
-  const isDoneFetching = !isFetchingFields && !isFetchingRaws;
 
   const handleSubmit = (
     values: RawItemTypes,

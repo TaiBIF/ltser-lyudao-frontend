@@ -1,7 +1,17 @@
-import React, { createContext, useContext, ReactNode, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useRef,
+} from 'react';
 
 import { Dictionary } from 'lodash';
+
 import { SurveyMapFilterItem } from 'types/home';
+import { ShowState } from 'types/utils';
+
+import { gsapFade } from 'utils/animation';
 
 interface SurveyMapProviderProps {
   children: ReactNode;
@@ -17,14 +27,28 @@ export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
     item: '',
     chart: false,
   });
-
+  const [show, setShow] = useState<ShowState>({
+    downloadPopup: false,
+  });
+  const downloadPopupRef = useRef<HTMLDivElement>(null);
   const [idData, setIdData] = useState<Dictionary<number | string>>({});
+
+  const handleDownloadPopup = (action: string) => {
+    const target = downloadPopupRef.current;
+    if (target) {
+      setShow({ ...show, downloadPopup: action === 'show' ? true : false });
+      gsapFade(action === 'show' ? 'in' : 'out', target);
+    }
+  };
 
   const contextData = {
     filter,
     setFilter,
     idData,
     setIdData,
+    show,
+    downloadPopupRef,
+    handleDownloadPopup,
   };
 
   return (

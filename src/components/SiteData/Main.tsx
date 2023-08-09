@@ -27,6 +27,7 @@ const Main = () => {
   const isFetchingSites = contextData.sites.length === 0;
   const isFetchingFields = contextData.fields.length === 0;
   const isFetchingRaws = contextData.raws.length === 0;
+  const isDoneFetching = !isFetchingFields && !isFetchingRaws;
 
   useEffect(() => {
     contextData.getFields();
@@ -51,16 +52,8 @@ const Main = () => {
           <EchartsChart item={item} />
         </div>
         <div className="data-searchbox">
-          <Search
-            item={item}
-            isFetchingFields={isFetchingFields}
-            isFetchingRaws={isFetchingRaws}
-          />
-          <Result
-            item={item}
-            isFetchingFields={isFetchingFields}
-            isFetchingRaws={isFetchingRaws}
-          />
+          <Search item={item} isDoneFetching={isDoneFetching} />
+          <Result item={item} isDoneFetching={isDoneFetching} />
         </div>
       </div>
     </>

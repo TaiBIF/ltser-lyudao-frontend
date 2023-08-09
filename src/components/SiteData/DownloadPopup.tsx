@@ -7,7 +7,7 @@ import { fadeInitStyle } from 'utils/animation';
 import { handleStopPropagation } from 'helpers/stopPropagation';
 
 const DownloadPopup = () => {
-  const { downloadPopupRef, handleLoginClick } = useEcoContext();
+  const { downloadPopupRef, handleDownloadPopup } = useEcoContext();
 
   return (
     <>
@@ -15,14 +15,14 @@ const DownloadPopup = () => {
         <div
           className="flex100"
           onClick={() => {
-            handleLoginClick('close');
+            handleDownloadPopup('close');
           }}
         >
           <div className="w_bgbox" onClick={handleStopPropagation}>
             <div
               className="xx"
               onClick={() => {
-                handleLoginClick('close');
+                handleDownloadPopup('close');
               }}
             >
               <CloseIcon />

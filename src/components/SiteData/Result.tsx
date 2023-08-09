@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import Pagination from 'components/Pagination';
 
 import { useEcoContext } from 'context/EcoContext';
 import { useDataContext } from 'context/DataContext';
 
-import { ShowState } from 'types/siteData';
-import { ContextItem } from 'types/utils';
+import { ShowState, ContextItem } from 'types/utils';
 
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
@@ -18,20 +17,18 @@ import { useLocation } from 'react-router-dom';
 
 interface ResultProps {
   item: string;
-  isFetchingFields: boolean;
-  isFetchingRaws: boolean;
+  isDoneFetching: boolean;
 }
 
 const Result = (props: ResultProps) => {
-  const { item, isFetchingFields, isFetchingRaws } = props;
-  const { show, handleLoginClick } = useEcoContext();
+  const { item, isDoneFetching } = props;
+  const { show, handleDownloadPopup } = useEcoContext();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();
   const { query, setQuery } = useSiteDataContext();
   const { pathname } = useLocation();
-
-  const isDoneFetching = !isFetchingFields && !isFetchingRaws;
+  const scrollTargetRef = useRef(null);
 
   useEffect(() => {
     setQuery({});
@@ -48,7 +45,7 @@ const Result = (props: ResultProps) => {
 
   return (
     <>
-      <div className="result-area">
+      <div className="result-area" ref={scrollTargetRef}>
         {isDoneFetching ? (
           <>
             <div className="toptool">
@@ -60,7 +57,7 @@ const Result = (props: ResultProps) => {
                   type="button"
                   className="dowapply"
                   onClick={() => {
-                    handleLoginClick('show');
+                    handleDownloadPopup('show');
                   }}
                 >
                   資料下載
@@ -105,6 +102,7 @@ const Result = (props: ResultProps) => {
               </table>
             </div>
             <Pagination
+              scrollTargetRef={scrollTargetRef}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
               paginationData={paginationData}

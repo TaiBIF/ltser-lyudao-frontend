@@ -21,17 +21,10 @@ interface useSurveyMapDataProps {
 }
 
 const useSurveyMapData = (props: useSurveyMapDataProps) => {
-  const {
-    url,
-    defaultSites,
-    defaultDetail,
-    setSites,
-    setDetail,
-    setAllTimeRange,
-  } = props;
+  const { url, defaultSites, defaultDetail, setSites, setDetail } = props;
   const { id, year } = useSurveyMapContext().filter;
   const { filter, setFilter } = useSiteDataContext();
-  const { getSites, getAllTimeRange, getTimeRange, getDetail } = useSurveyMap();
+  const { getSites, getTimeRange, getDetail } = useSurveyMap();
 
   const getDataSites = () => {
     getSites({
@@ -40,13 +33,6 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
       filter,
       setFilter,
       defaultList: defaultSites?.sites || [],
-    });
-  };
-
-  const getDataAllTimeRange = () => {
-    getAllTimeRange({
-      url,
-      setList: setAllTimeRange,
     });
   };
 
@@ -62,7 +48,6 @@ const useSurveyMapData = (props: useSurveyMapDataProps) => {
 
   return {
     getDataSites,
-    getDataAllTimeRange,
     getDataDetail,
   };
 };

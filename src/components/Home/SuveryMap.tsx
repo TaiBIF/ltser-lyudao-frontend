@@ -8,6 +8,7 @@ import Filter from 'components/Home/LeafletMap/Filter';
 import MapContent from 'components/Home/LeafletMap/Content';
 import ChartContent from 'components/Home/EchartsChart/Content';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
+import DownloadPopup from 'components/Home/LeafletMap/DownloadPopup';
 
 interface SurveyMapProps {
   enter: EnterState;
@@ -40,6 +41,7 @@ const SurveyMap = (props: SurveyMapProps) => {
             </div>
           </div>
         )}
+        <DownloadPopup />
       </section>
     </>
   );

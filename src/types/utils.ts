@@ -120,3 +120,7 @@ export type AttachmentsItem = {
 export type ImagesItem = {
   image: string;
 };
+
+export type ShowState = {
+  downloadPopup: boolean;
+};

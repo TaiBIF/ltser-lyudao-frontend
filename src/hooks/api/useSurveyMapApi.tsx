@@ -33,23 +33,6 @@ const useSurveyMapApi = () => {
     }
   };
 
-  const getAllTimeRange = async ({
-    url,
-    setList,
-  }: {
-    id?: string;
-    url: string;
-    setList: any;
-  }) => {
-    const result = await handleApi({
-      method: 'get',
-      url: `/data/${url}/time-range/`,
-    });
-    if (result?.status === 'success') {
-      setList([...result.response.data]);
-    }
-  };
-
   const getTimeRange = async ({
     id,
     url,
@@ -118,7 +101,12 @@ const useSurveyMapApi = () => {
     }
   };
 
-  return { getSites, getAllTimeRange, getTimeRange, getDetail, getItems };
+  return {
+    getSites,
+    getTimeRange,
+    getDetail,
+    getItems,
+  };
 };
 
 export default useSurveyMapApi;

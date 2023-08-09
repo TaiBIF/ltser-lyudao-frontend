@@ -21,6 +21,7 @@ import itemList from 'data/home/items.json';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDataContext } from 'context/DataContext';
 import { useDownload } from 'hooks/api/useDownload';
+import { useAuthContext } from 'context/AuthContext';
 
 type PopupLayoutProps = {
   data: Dictionary<number | string>;
@@ -32,24 +33,30 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const map = useMap();
   const navigate = useNavigate();
 
-  const { filter, setFilter, setIdData } = useSurveyMapContext();
+  const { filter, setFilter, setIdData, handleDownloadPopup } =
+    useSurveyMapContext();
   const contextData = useDataContext();
   const { handleDownload, progress } = useDownload();
+  const { auth } = useAuthContext();
 
   const [downloading, setDownloading] = useState(false);
   const [items, setItems] = useState<SiteObservationItem[]>([]);
 
   const handleDownloadClick = () => {
-    const fileName = `${filter.id}_${filter.year}`;
-    setDownloading(true);
-    handleDownload({
-      url: 'site',
-      fileName,
-      params: {
-        locationID: filter.id,
-        year: filter.year,
-      },
-    });
+    if (auth) {
+      const fileName = `${filter.id}_${filter.year}`;
+      setDownloading(true);
+      handleDownload({
+        url: 'site',
+        fileName,
+        params: {
+          locationID: filter.id,
+          year: filter.year,
+        },
+      });
+    } else {
+      handleDownloadPopup('show');
+    }
   };
 
   const handleCloseClick = () => {
@@ -182,17 +189,13 @@ const PopupLayout = (props: PopupLayoutProps) => {
               <p>查看圖表</p>
               <ArrowIcon />
             </button>
-            {!downloading ? (
-              <button
-                type="button"
-                className="link-more e-btn e-btn--outline"
-                onClick={handleDownloadClick}
-              >
-                <p>下載樣區資料</p>
-              </button>
-            ) : (
-              <ProgressBar progress={progress} />
-            )}
+            <button
+              type="button"
+              className="link-more e-btn e-btn--outline"
+              onClick={handleDownloadClick}
+            >
+              <p>下載樣區資料</p>
+            </button>
           </div>
           <PopupArrow />
         </div>

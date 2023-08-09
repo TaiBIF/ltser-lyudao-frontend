@@ -18,7 +18,7 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useWeather = () => {
   const [sites, setSites] = useState<string[]>([]);
-  const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
+  // const [allTimeRange, setAllTimeRange] = useState<TimeRangeItem[]>([]);
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -35,17 +35,11 @@ const useWeather = () => {
 
   const URL = `weather`;
 
-  const { getDataSites, getDataAllTimeRange, getDataDetail } = useSurveyMapData(
-    {
-      url: URL,
-      // defaultSites,
-      // defaultDetail: weatherDetail,
-      setSites,
-      allTimeRange,
-      setAllTimeRange,
-      setDetail,
-    }
-  );
+  const { getDataSites, getDataDetail } = useSurveyMapData({
+    url: URL,
+    setSites,
+    setDetail,
+  });
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
@@ -60,13 +54,11 @@ const useWeather = () => {
 
   return {
     sites,
-    allTimeRange,
     detail,
     raws,
     fields,
     series,
     getDataSites,
-    getDataAllTimeRange,
     getDataDetail,
     getDataRaws,
     getDataFields,

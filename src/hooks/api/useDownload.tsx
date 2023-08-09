@@ -5,7 +5,7 @@ import { swalToast } from 'helpers/customSwal';
 import { useApi } from './useApi';
 
 export const useDownload = () => {
-  const { handleApi, handleActions } = useApi();
+  const { loading, handleApi, handleActions } = useApi();
   const [progress, setProgress] = useState<number>(0);
 
   const handleDownloadAction = ({
@@ -100,5 +100,43 @@ export const useDownload = () => {
     getDownloadFile({ url, fileName, params });
   };
 
-  return { handleDownload, progress };
+  const handleApplyDownload = async ({
+    values,
+    url,
+    fileName,
+    params,
+    handleAction,
+  }: {
+    values: Record<string, any>;
+    url: string;
+    fileName: string;
+    params?: any;
+    handleAction: (type: string) => void;
+  }) => {
+    const result = await handleApi({
+      method: 'post',
+      url: `/download/${url}/`,
+      data: values,
+      params,
+      responseType: 'arraybuffer',
+    });
+    if (result?.status === 'success') {
+      handleDownloadAction({ result, fileName });
+    }
+    const handleSuccessAction = () => {
+      handleAction('close');
+    };
+    handleActions({
+      result,
+      success: {
+        title: '申請成功。',
+        action: handleSuccessAction,
+      },
+      error: {
+        title: '發生錯誤，檔案讀取失敗。',
+      },
+    });
+  };
+
+  return { loading, progress, handleDownload, handleApplyDownload };
 };

@@ -17,6 +17,7 @@ const Content = () => {
 
   const isFetchingFields = contextData.fields.length === 0;
   const isFetchingRaws = contextData.raws.length === 0;
+  const isDoneFetching = !isFetchingFields && !isFetchingRaws;
 
   useEffect(() => {
     contextData.getFields();
@@ -27,16 +28,8 @@ const Content = () => {
       <div className="right-infbox">
         <Title paths={paths} />
         <div className="data-searchbox">
-          <Search
-            item={item}
-            isFetchingFields={isFetchingFields}
-            isFetchingRaws={isFetchingRaws}
-          />
-          <Result
-            item={item}
-            isFetchingFields={isFetchingFields}
-            isFetchingRaws={isFetchingRaws}
-          />
+          <Search item={item} isDoneFetching={isDoneFetching} />
+          <Result item={item} isDoneFetching={isDoneFetching} />
         </div>
       </div>
     </>

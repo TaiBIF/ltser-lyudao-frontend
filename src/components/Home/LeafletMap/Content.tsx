@@ -36,7 +36,6 @@ const Content = () => {
     (Dictionary<number | string> | LocalityItem)[]
   >([]);
   const { filter, setFilter } = useSurveyMapContext();
-  const { getDataAllTimeRange } = useWeather();
 
   const isFetchingLocalities = localities.length === 0;
 
@@ -73,7 +72,6 @@ const Content = () => {
       resouceId: `8d4b3a7f-5a76-4406-9b19-0c709dbd7d68`,
       defaultList: localityList,
     });
-    getDataAllTimeRange();
   }, []);
 
   return (
