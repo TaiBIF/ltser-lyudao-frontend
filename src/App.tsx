@@ -51,9 +51,9 @@ import DashboardFormLinkContent from 'components/Dashboard/FormLink/Content';
 import DashboardFormLinkAdd from 'components/Dashboard/FormLink/Add';
 import DashboardFormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import DashboardDownload from 'components/Dashboard/Download';
+import DashboardDownloadRecord from 'components/Dashboard/DownloadRecord';
 
 import AuthProtectedRoute from 'utils/ProtectedRoute/Auth';
-import StaffProtectedRoute from 'utils/ProtectedRoute/Staff';
 import SuperuserProtectedRoute from 'utils/ProtectedRoute/Superuser';
 
 import { HeaderProvider } from 'context/HeaderContext';
@@ -246,7 +246,7 @@ function App() {
                   element={<Dashboard content={<DashboardNewsTypeAdd />} />}
                 />
                 <Route
-                  path="/dashboard/news-type/edit/:qaTypeId"
+                  path="/dashboard/news-type/edit/:newsTypeId"
                   element={<Dashboard content={<DashboardNewsTypeEdit />} />}
                 />
                 <Route
@@ -319,6 +319,12 @@ function App() {
                   <Route
                     path="/dashboard/download"
                     element={<Dashboard content={<DashboardDownload />} />}
+                  />
+                  <Route
+                    path="/dashboard/download-record"
+                    element={
+                      <Dashboard content={<DashboardDownloadRecord />} />
+                    }
                   />
                 </Route>
               </Route>

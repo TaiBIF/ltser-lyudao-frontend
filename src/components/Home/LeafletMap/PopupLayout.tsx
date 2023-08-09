@@ -53,6 +53,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
           locationID: filter.id,
           year: filter.year,
         },
+        withHeaders: true,
       });
     } else {
       handleDownloadPopup('show');

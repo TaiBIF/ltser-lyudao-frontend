@@ -53,6 +53,11 @@ export const tabList: TabItem[] = [
     auth: ['superuser'],
   },
   {
+    id: 'download-record',
+    title: '下載資料紀錄',
+    auth: ['superuser', 'staff', 'none'],
+  },
+  {
     id: 'download',
     title: '資料下載申請資訊',
     auth: ['superuser'],
@@ -781,18 +786,18 @@ export const formLinkColList: ColItem[] = [
     show: true,
     space: 'text',
   },
-  {
-    id: 'link',
-    title: '資源連結',
-    show: true,
-    space: 'text',
-  },
-  {
-    id: 'attachments',
-    title: '資源附件檔案',
-    show: false,
-    space: 'text',
-  },
+  // {
+  //   id: 'link',
+  //   title: '資源連結',
+  //   show: true,
+  //   space: 'text',
+  // },
+  // {
+  //   id: 'attachments',
+  //   title: '資源附件檔案',
+  //   show: false,
+  //   space: 'text',
+  // },
   {
     id: 'created_at',
     title: '建立日期',
@@ -903,46 +908,58 @@ export const downloadUnitRoleList: TypeItem[] = [
 ];
 
 export const downloadColList: ColItem[] = [
+  // {
+  //   id: 'id',
+  //   title: '申請id',
+  //   show: true,
+  // },
   {
-    id: 'id',
-    title: '申請id',
-    show: true,
-  },
-  {
-    id: 'file',
-    title: '下載檔案連結',
-    show: true,
-  },
-  {
-    id: 'user_email',
+    id: 'email',
     title: '下載者信箱',
     show: true,
   },
   {
-    id: 'unit_role',
+    id: 'role',
     title: '下載者身份',
     show: true,
-    relate: downloadUnitRoleList,
   },
   {
-    id: 'purpose',
+    id: 'content',
     title: '下載原因',
     show: true,
   },
   {
-    id: 'status',
-    title: '狀態',
-    show: true,
-    relate: downloadStatusList,
-  },
-  {
-    id: 'submitted',
-    title: '請求日期',
+    id: 'filename',
+    title: '下載檔案連結',
     show: true,
   },
+  // {
+  //   id: 'status',
+  //   title: '狀態',
+  //   show: true,
+  //   relate: downloadStatusList,
+  // },
+  // {
+  //   id: 'submitted',
+  //   title: '請求日期',
+  //   show: true,
+  // },
+  // {
+  //   id: 'expired',
+  //   title: '過期日期',
+  //   show: true,
+  // },
+];
+
+export const downloadRecordColList: ColItem[] = [
   {
-    id: 'expired',
-    title: '過期日期',
+    id: 'filename',
+    title: '檔案名稱',
+    show: true,
+  },
+  {
+    id: 'time',
+    title: '下載時間',
     show: true,
   },
 ];

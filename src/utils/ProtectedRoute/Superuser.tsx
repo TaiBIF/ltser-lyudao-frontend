@@ -15,10 +15,10 @@ const Superuser: React.FC<SuperuserProps> = ({
   const isSuperuser = group === 'superuser';
 
   if (!isSuperuser) {
-    swalToast.fire({
-      icon: 'error',
-      title: '權限不足。',
-    });
+    // swalToast.fire({
+    //   icon: 'error',
+    //   title: '權限不足。',
+    // });
     return <Navigate to={redirectPath} replace />;
   }
 

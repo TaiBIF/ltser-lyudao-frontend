@@ -2,10 +2,15 @@ import { useApi } from 'hooks/api/useApi';
 
 import { ItemTypes, RelateListTypes } from 'types/utils';
 
-import placeholderImg from 'image/peoib-img.png';
+import { useAuthContext } from 'context/AuthContext';
 
 const useDashboard = () => {
   const { loading, handleApi, handleActions } = useApi();
+  const { authTokens } = useAuthContext();
+
+  const headers = {
+    Authorization: `Bearer ${authTokens.access}`,
+  };
 
   const getList = async ({
     url,
@@ -13,17 +18,20 @@ const useDashboard = () => {
     defaultList,
     params,
     setPaginationData,
+    withHeaders = false,
   }: {
     url: string;
     setList: any;
     defaultList?: ItemTypes[];
     params?: any;
     setPaginationData?: any;
+    withHeaders?: boolean;
   }) => {
     const result = await handleApi({
       method: 'get',
       url: `/users/${url}/`,
       params,
+      headers: withHeaders ? headers : null,
     });
     if (result?.status === 'success') {
       setList([...result.response.data.records]);

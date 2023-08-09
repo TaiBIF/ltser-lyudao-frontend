@@ -29,5 +29,8 @@ export const NEWS_PATH = 'news';
 export const NEWS_TYPE_API_URL = 'newstags';
 export const NEWS_TYPE_PATH = 'news-type';
 
-export const DOWNLOAD_API_URL = 'download';
+export const DOWNLOAD_API_URL = 'download-apply';
 export const DOWNLOAD_PATH = 'download';
+
+export const DOWNLOAD_RECORD_API_URL = 'download-record';
+export const DOWNLOAD_RECORD_PATH = 'download-record';

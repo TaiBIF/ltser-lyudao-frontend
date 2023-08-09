@@ -28,6 +28,7 @@ interface AuthContextData {
   group: string;
   isInternalUser: boolean;
   loading: boolean;
+  authTokens: AuthTokens;
   handleLogin: ({
     values,
     setShow,
@@ -360,6 +361,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     group,
     isInternalUser,
     loading,
+    authTokens,
     handleLogin,
     handleSignup,
     handleResendEmail,

@@ -3,10 +3,16 @@ import { saveAs } from 'file-saver';
 
 import { swalToast } from 'helpers/customSwal';
 import { useApi } from './useApi';
+import { useAuthContext } from 'context/AuthContext';
 
 export const useDownload = () => {
   const { loading, handleApi, handleActions } = useApi();
   const [progress, setProgress] = useState<number>(0);
+  const { authTokens } = useAuthContext();
+
+  const headers = {
+    Authorization: `Bearer ${authTokens.access}`,
+  };
 
   const handleDownloadAction = ({
     result,
@@ -60,10 +66,12 @@ export const useDownload = () => {
     url,
     fileName,
     params,
+    withHeaders,
   }: {
     url: string;
     fileName: string;
     params?: any;
+    withHeaders?: boolean;
   }) => {
     const result = await handleApi({
       method: 'get',
@@ -74,6 +82,7 @@ export const useDownload = () => {
         const percentage = Math.round((e.loaded * 100) / e.total);
         setProgress(percentage);
       },
+      headers: withHeaders ? headers : null,
     });
     if (result?.status === 'success') {
       // handleVerifyReaptcha({ token: '', result });
@@ -92,12 +101,14 @@ export const useDownload = () => {
     url,
     fileName,
     params,
+    withHeaders,
   }: {
     url: string;
     fileName: string;
     params?: any;
+    withHeaders?: boolean;
   }) => {
-    getDownloadFile({ url, fileName, params });
+    getDownloadFile({ url, fileName, params, withHeaders });
   };
 
   const handleApplyDownload = async ({
