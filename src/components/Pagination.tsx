@@ -12,8 +12,12 @@ interface PaginationProps {
 }
 
 const Pagination = (props: PaginationProps) => {
-  const { scrollTargetRef, currentPage, setCurrentPage, paginationData } =
-    props;
+  const {
+    scrollTargetRef = null,
+    currentPage,
+    setCurrentPage,
+    paginationData,
+  } = props;
   const { totalPages, totalRecords } = paginationData;
 
   const pageList = () => {
@@ -37,8 +41,13 @@ const Pagination = (props: PaginationProps) => {
 
   const handlePage = (page: number) => {
     setCurrentPage(page);
-    if (scrollTargetRef.current) {
+    if (scrollTargetRef) {
       (scrollTargetRef.current as HTMLElement).scrollIntoView({
+        behavior: 'smooth',
+      });
+    } else {
+      window.scrollTo({
+        top: 0,
         behavior: 'smooth',
       });
     }
