@@ -46,8 +46,6 @@ const ActionBtns = (props: ActionBtnsProps) => {
   useEffect(() => {
     if (!isFetchingList) {
       const idList = news.map((v) => v.id);
-      console.log(idList);
-
       setIds([...(idList as number[])]);
     }
   }, [news]);

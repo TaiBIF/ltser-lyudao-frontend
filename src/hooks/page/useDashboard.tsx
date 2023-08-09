@@ -138,7 +138,10 @@ const useDashboard = () => {
     const data = new FormData();
     Object.entries(values).forEach(([key, value]) => {
       if (value) {
-        if ((key === 'image' || key === 'cover') && typeof value === 'string') {
+        if (
+          (key === 'image' || key === 'cover' || key === 'file') &&
+          typeof value === 'string'
+        ) {
           return;
         }
         if (Array.isArray(value)) {

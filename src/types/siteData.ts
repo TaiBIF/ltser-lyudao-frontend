@@ -23,7 +23,7 @@ export type InterviewItem = {
   year: string;
   title: string;
   content: string;
-  target: string;
+  target: number | string;
   type: number | string;
   image: string;
   tags: string[];

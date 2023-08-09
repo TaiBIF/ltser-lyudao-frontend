@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  Field,
+  Form,
+  Formik,
+  FormikConfig,
+  FormikHelpers,
+  useFormikContext,
+} from 'formik';
 
 import Banner from 'components/Banner';
 import Breadcrumb from 'components/Breadcrumb';
-import Pagination from 'components/Pagination';
 
 import bannerImg from 'image/social_bn.png';
 
 import { BannerData } from 'types/common';
 
-import { interviewList, interviewTypeList } from 'data/siteData';
-
-import usePage from 'hooks/utils/usePage';
+import {
+  interviewList,
+  interviewTypeList,
+  interviewTargetList,
+} from 'data/siteData';
+import { InterviewItem } from 'types/siteData';
+import FilterLayout from 'components/SiteData/Interview/FilterLayout';
 
 const Content = () => {
   const bannerData: BannerData = {
@@ -21,8 +32,39 @@ const Content = () => {
     bgImg: bannerImg,
   };
 
-  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
-    usePage();
+  const initialValues = {
+    keyword: '',
+    types: [],
+    target: '',
+  };
+
+  const [interviews, setInterviews] = useState<InterviewItem[]>([]);
+
+  const handleSubmit = (
+    values: Record<string, any>,
+    { setSubmitting }: FormikHelpers<Record<string, any>>
+  ) => {
+    const matchFilter = interviewList.filter((v) => {
+      const matchKeyword = v.title.includes(values.keyword);
+      const matchTarget =
+        values.target === '' || String(v.target) === values.target;
+      const matchTypes =
+        values.types.length === 0 || values.types.includes(String(v.type));
+      return matchKeyword && matchTarget && matchTypes;
+    });
+    setInterviews(matchFilter);
+    setSubmitting(false);
+  };
+
+  const formikConfig: FormikConfig<Record<string, any>> = {
+    initialValues,
+    onSubmit: handleSubmit,
+  };
+
+  useEffect(() => {
+    setInterviews([...interviewList]);
+  }, []);
+
   return (
     <>
       <div className="innbox">
@@ -31,62 +73,22 @@ const Content = () => {
         <div className="contentbox gray-bg">
           <div className="main-box">
             <div className="chose-itembox">
-              <div className="item-set2">
-                <div className="input-item">
-                  <div className="title">
-                    關鍵字
-                    <div className="line" />
-                  </div>
-                  <input type="text" placeholder="請輸入關鍵字" />
-                </div>
-                <div className="input-item">
-                  <div className="title">
-                    受訪對象
-                    <div className="line" />
-                  </div>
-                  <select>
-                    <option>請選擇</option>
-                  </select>
-                </div>
-              </div>
-              <div className="check-itembox">
-                <div className="title">
-                  議題分類
-                  <div className="line" />
-                </div>
-                <div className="itembox">
-                  <label className="check-item">
-                    項目一
-                    <input type="checkbox" />
-                    <span className="checkmark" />
-                  </label>
-                  <label className="check-item">
-                    項目一
-                    <input type="checkbox" />
-                    <span className="checkmark" />
-                  </label>
-                  <label className="check-item">
-                    項目一
-                    <input type="checkbox" />
-                    <span className="checkmark" />
-                  </label>
-                  <label className="check-item">
-                    項目一
-                    <input type="checkbox" />
-                    <span className="checkmark" />
-                  </label>
-                </div>
-              </div>
-              <div className="send-btnarea">
-                <button className="clearall">清除</button>
-                <button className="searchall">搜尋</button>
-              </div>
+              <Formik {...formikConfig}>
+                {({ isSubmitting }) => (
+                  <Form>
+                    <FilterLayout isSubmitting={isSubmitting} />
+                  </Form>
+                )}
+              </Formik>
             </div>
             <ul className="soci-list">
-              {interviewList.map((v) => {
+              {interviews.map((v) => {
                 const { id, year, target, type, title, tags } = v;
                 const matchType = interviewTypeList.find(
                   (v) => v.id === type
+                )?.title;
+                const matchTarget = interviewTargetList.find(
+                  (v) => v.id === target
                 )?.title;
                 return (
                   <li key={id} style={{ width: '100%' }}>
@@ -96,7 +98,7 @@ const Content = () => {
                     </div>
                     <div className="mb-1">
                       <small className="d-block text-muted">
-                        受訪對象: {target}
+                        受訪對象: {matchTarget}
                       </small>
                       <small className="d-block text-muted">
                         議題分類: {matchType}
@@ -109,9 +111,9 @@ const Content = () => {
                       {title}
                     </Link>
                     <div className="tag-box">
-                      {tags.map((tag) => {
+                      {tags.map((tag, i) => {
                         return (
-                          <a href="/" className="tagitem">
+                          <a key={i} role="button" className="tagitem">
                             #{tag}
                           </a>
                         );
@@ -121,11 +123,6 @@ const Content = () => {
                 );
               })}
             </ul>
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              paginationData={paginationData}
-            />
           </div>
         </div>
       </div>
