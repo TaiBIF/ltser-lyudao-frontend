@@ -39,6 +39,16 @@ const RelatedLiterature = () => {
     setFilter({ ...filter, keyword: e.currentTarget.value });
   };
 
+  const handleSearchClick = () => {
+    getList({
+      url: LITERATURE_API_URL,
+      setList: setLiteratures,
+      defaultList: literatureList,
+      params: { page: currentPage, keyword: filter.keyword },
+      setPaginationData,
+    });
+  };
+
   useEffect(() => {
     getList({
       url: LITERATURE_API_URL,
@@ -48,15 +58,6 @@ const RelatedLiterature = () => {
       setPaginationData,
     });
   }, [currentPage]);
-
-  useEffect(() => {
-    if (!isFetchingList) {
-      const matchKeyword = literatures.filter((v) =>
-        v.name.includes(filter.keyword)
-      );
-      setData([...matchKeyword]);
-    }
-  }, [literatures, filter.keyword]);
 
   return (
     <>
@@ -73,14 +74,14 @@ const RelatedLiterature = () => {
                   value={filter.keyword}
                   onChange={handleSearchChange}
                 />
-                <button>
+                <button type="button" onClick={handleSearchClick}>
                   <SearchIcon />
                 </button>
               </div>
             </div>
             {!isFetchingList && (
               <ul className="literature-list">
-                {data.map((v) => {
+                {literatures.map((v) => {
                   const { id, name } = v;
                   return <li key={id}>{name}</li>;
                 })}
