@@ -43,8 +43,8 @@ const RelatedLiterature = () => {
     getList({
       url: LITERATURE_API_URL,
       setList: setLiteratures,
-      defaultList: literatureList,
-      params: { page: currentPage, keyword: filter.keyword },
+      // defaultList: literatureList,
+      params: { keyword: filter.keyword },
       setPaginationData,
     });
   };
@@ -53,7 +53,7 @@ const RelatedLiterature = () => {
     getList({
       url: LITERATURE_API_URL,
       setList: setLiteratures,
-      defaultList: literatureList,
+      // defaultList: literatureList,
       params: { page: currentPage },
       setPaginationData,
     });

@@ -99,7 +99,7 @@ export const footerMenuList: FooterMenuItem[] = [
       {
         id: 3,
         subtitle: '社會觀測',
-        link: '/site-data/social-observation',
+        link: '/site-data/social-observation/social-economy-data',
       },
     ],
   },
