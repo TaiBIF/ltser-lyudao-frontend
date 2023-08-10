@@ -56,6 +56,13 @@ interface AuthContextData {
     token: string | null;
     values: Record<string, any>;
   }) => Promise<void>;
+  handleGoogleSignIn: ({
+    code,
+    setShow,
+  }: {
+    code: string;
+    setShow: Dispatch<SetStateAction<HeaderShowState>>;
+  }) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -88,6 +95,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     Authorization: `Bearer ${authTokens.access}`,
   };
 
+  const handleLoginSuccessAction = ({
+    data,
+    setShow,
+  }: {
+    data: AuthTokens;
+    setShow: Dispatch<SetStateAction<HeaderShowState>>;
+  }) => {
+    setShow({
+      menu3: false,
+      mainMenu: false,
+      mobile: false,
+      loginPopup: false,
+      loginContent: 'login',
+    });
+    setAuthTokens({ ...data });
+    localStorage.setItem('authTokens', JSON.stringify(data));
+    navigate('/');
+  };
+
   const handleLogin = async ({
     values,
     setShow,
@@ -101,24 +127,39 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       data: values,
       url: `/login/`,
     });
-    const handleSuccessAction = (data: AuthTokens) => {
-      setShow({
-        menu3: false,
-        mainMenu: false,
-        mobile: false,
-        loginPopup: false,
-        loginContent: 'login',
-      });
-      setAuthTokens({ ...data });
-      localStorage.setItem('authTokens', JSON.stringify(data));
-      navigate('/');
-    };
     handleActions({
       result,
       success: {
         title: '登入成功',
         action: () => {
-          handleSuccessAction(result?.response.data);
+          handleLoginSuccessAction({ data: result?.response.data, setShow });
+        },
+      },
+      error: {
+        title: result?.response.data.detail,
+      },
+    });
+  };
+
+  const handleGoogleSignIn = async ({
+    code,
+    setShow,
+  }: {
+    code: string;
+    setShow: Dispatch<SetStateAction<HeaderShowState>>;
+  }) => {
+    const result = await handleApi({
+      type: 'auth',
+      method: 'post',
+      data: { code },
+      url: `/google-login/`,
+    });
+    handleActions({
+      result,
+      success: {
+        title: '登入成功',
+        action: () => {
+          handleLoginSuccessAction({ data: result?.response.data, setShow });
         },
       },
       error: {
@@ -369,6 +410,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleLogout,
     handleResetPswEmail,
     handleResetPsw,
+    handleGoogleSignIn,
   };
 
   return (

@@ -25,19 +25,19 @@ const Login = () => {
     // rememberMe: false,
   };
 
-  const { loading, handleLogin } = useAuthContext();
+  const { loading, handleLogin, handleGoogleSignIn } = useAuthContext();
   const { setShow } = useHeaderContext();
   const googleSignInRef = useRef(null);
 
-  const handleCallbackResponse = (response: { credential: any }) => {
-    console.log(response.credential);
+  const handleGoogleResponse = (response: { credential: any }) => {
+    handleGoogleSignIn({ code: response.credential, setShow });
   };
 
   useEffect(() => {
     google.accounts.id.initialize({
       client_id:
         '293650145366-i0mnv9rn0jqptkvtrr677dh9cb6nhttp.apps.googleusercontent.com',
-      callback: handleCallbackResponse,
+      callback: handleGoogleResponse,
     });
     if (googleSignInRef.current) {
       google.accounts.id.renderButton(googleSignInRef.current, {
