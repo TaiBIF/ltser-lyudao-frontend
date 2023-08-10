@@ -23,7 +23,7 @@ export const EcoProvider = ({ children }: EcoProviderProps) => {
   });
   const downloadPopupRef = useRef<HTMLDivElement>(null);
 
-  const handleDownloadClick = (action: string) => {
+  const handleDownloadPopup = (action: string) => {
     const target = downloadPopupRef.current;
     if (target) {
       setShow({ ...show, downloadPopup: action === 'show' ? true : false });
@@ -34,7 +34,7 @@ export const EcoProvider = ({ children }: EcoProviderProps) => {
   const contextData = {
     show,
     downloadPopupRef,
-    handleDownloadClick,
+    handleDownloadPopup,
   };
 
   return (

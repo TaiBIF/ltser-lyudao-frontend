@@ -5,13 +5,13 @@ import { ErrorMessage, Field, useFormikContext } from 'formik';
 import Spinner from 'components/Spinner';
 import { ShowState } from 'types/utils';
 
-interface DownloadPopupProps {
+interface DownloadPopupFieldProps {
   isSubmitting: boolean;
   loading: boolean;
   show: ShowState;
 }
 
-const DownloadPopupLayout = (props: DownloadPopupProps) => {
+const DownloadPopupFieldLayout = (props: DownloadPopupFieldProps) => {
   const { isSubmitting, loading, show } = props;
   const formik = useFormikContext();
 
@@ -71,4 +71,4 @@ const DownloadPopupLayout = (props: DownloadPopupProps) => {
   );
 };
 
-export default DownloadPopupLayout;
+export default DownloadPopupFieldLayout;

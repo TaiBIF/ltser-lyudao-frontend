@@ -14,6 +14,8 @@ import usePage from 'hooks/utils/usePage';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import Placeholder from 'components/Placeholder';
 import { useLocation } from 'react-router-dom';
+import { useDownload } from 'hooks/api/useDownload';
+import { useAuthContext } from 'context/AuthContext';
 
 interface ResultProps {
   item: string;
@@ -39,8 +41,24 @@ const Result = (props: ResultProps) => {
   const { query, setQuery } = useSiteDataContext();
   const { pathname } = useLocation();
   const scrollTargetRef = useRef(null);
+  const { handleDownload } = useDownload();
+  const { auth } = useAuthContext();
 
   const hasNoRaws = isDoneFetching && contextData.raws.length === 0;
+
+  const handleDownloadClick = () => {
+    const fileName = `${item}`;
+    if (auth) {
+      handleDownload({
+        url: `${item}/raws`,
+        fileName,
+        params: { ...query },
+        withHeaders: true,
+      });
+    } else {
+      handleDownloadPopup('show');
+    }
+  };
 
   useEffect(() => {
     setQuery({});
@@ -68,9 +86,7 @@ const Result = (props: ResultProps) => {
                 <button
                   type="button"
                   className="dowapply"
-                  onClick={() => {
-                    handleDownloadPopup('show');
-                  }}
+                  onClick={handleDownloadClick}
                 >
                   資料下載
                 </button>

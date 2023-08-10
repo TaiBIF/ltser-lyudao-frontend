@@ -1,21 +1,15 @@
 import React, { useEffect, useRef } from 'react';
+import { Form, Formik, FormikConfig, FormikHelpers } from 'formik';
 
 import CloseIcon from 'components/CloseIcon';
+import DownloadPopupFieldLayout from 'components/DownloadPopupFieldLayout';
+
+import { applyDownloadValidationSchema } from 'data/validationSchema';
 
 import { fadeInitStyle } from 'utils/animation';
 import { handleStopPropagation } from 'helpers/stopPropagation';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
-import {
-  ErrorMessage,
-  Field,
-  Form,
-  Formik,
-  FormikConfig,
-  FormikHelpers,
-} from 'formik';
 import { useDownload } from 'hooks/api/useDownload';
-import DownloadPopupLayout from './DownloadPopupLayout';
-import { applyDownloadValidationSchema } from 'data/validationSchema';
 
 const DownloadPopup = () => {
   const { filter, show, downloadPopupRef, handleDownloadPopup } =
@@ -75,7 +69,7 @@ const DownloadPopup = () => {
             <Formik {...formikConfig}>
               {({ isSubmitting }) => (
                 <Form>
-                  <DownloadPopupLayout
+                  <DownloadPopupFieldLayout
                     isSubmitting={isSubmitting}
                     loading={loading}
                     show={show}

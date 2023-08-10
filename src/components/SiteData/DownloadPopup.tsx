@@ -1,13 +1,56 @@
 import React, { useEffect, useRef } from 'react';
+import { Form, Formik, FormikConfig, FormikHelpers } from 'formik';
 
 import CloseIcon from 'components/CloseIcon';
+import DownloadPopupFieldLayout from 'components/DownloadPopupFieldLayout';
 
-import { useEcoContext } from 'context/EcoContext';
 import { fadeInitStyle } from 'utils/animation';
 import { handleStopPropagation } from 'helpers/stopPropagation';
+import { useDownload } from 'hooks/api/useDownload';
 
-const DownloadPopup = () => {
-  const { downloadPopupRef, handleDownloadPopup } = useEcoContext();
+import { useEcoContext } from 'context/EcoContext';
+import { useSiteDataContext } from 'context/SiteDataContext';
+import { useAuthContext } from 'context/AuthContext';
+
+import { applyDownloadValidationSchema } from 'data/validationSchema';
+
+interface DownloadPopupItem {
+  item: string;
+}
+
+const DownloadPopup = (props: DownloadPopupItem) => {
+  const { item } = props;
+  const { show, downloadPopupRef, handleDownloadPopup } = useEcoContext();
+  const { loading, handleApplyDownload, handleDownload } = useDownload();
+  const { query } = useSiteDataContext();
+  const initialValues = {
+    email: '',
+    role: '',
+    content: '',
+  };
+
+  const handleSubmit = (
+    values: Record<string, any>,
+    { setSubmitting }: FormikHelpers<Record<string, any>>
+  ) => {
+    const fileName = `${item}`;
+    handleApplyDownload({
+      url: `${item}/raws`,
+      fileName,
+      values,
+      params: { ...query },
+      handleAction: () => {
+        handleDownloadPopup('close');
+      },
+    });
+    setSubmitting(false);
+  };
+
+  const formikConfig: FormikConfig<Record<string, any>> = {
+    initialValues,
+    onSubmit: handleSubmit,
+    validationSchema: applyDownloadValidationSchema,
+  };
 
   return (
     <>
@@ -28,17 +71,17 @@ const DownloadPopup = () => {
               <CloseIcon />
             </div>
             <div className="title">下載申請</div>
-            <div className="input-item">
-              <input type="text" placeholder="請輸入您email" />
-            </div>
-            <div className="input-item">
-              <select name="" id="">
-                <option value="">您的身份</option>
-              </select>
-            </div>
-            <p>下載原因</p>
-            <textarea name="" id="" />
-            <button>送出申請</button>
+            <Formik {...formikConfig}>
+              {({ isSubmitting }) => (
+                <Form>
+                  <DownloadPopupFieldLayout
+                    isSubmitting={isSubmitting}
+                    loading={loading}
+                    show={show}
+                  />
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>

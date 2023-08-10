@@ -7,6 +7,7 @@ import Search from 'components/SiteData/Search';
 import Result from 'components/SiteData/Result';
 import Select from 'components/SiteData/Select';
 import EchartsChart from 'components/SiteData/EchartsChart/Content';
+import DownloadPopup from 'components/SiteData/DownloadPopup';
 
 import { ContextItem, SelectItem } from 'types/utils';
 
@@ -15,13 +16,15 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 import Placeholder from 'components/Placeholder';
 import usePage from 'hooks/utils/usePage';
 
-const Main = () => {
-  const location = useLocation();
-  const queryParams = queryString.parse(location.search);
-  const page = queryParams.page ? queryParams.page : 1;
-  const { pathname } = location;
-  const paths = pathname.split('/');
-  const item = paths[paths.length - 1];
+interface MainProps {
+  paths: string[];
+  item: string;
+  pathname: string;
+}
+
+const Main = (props: MainProps) => {
+  const { paths, item, pathname } = props;
+
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { filter, setFilter } = useSiteDataContext();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =

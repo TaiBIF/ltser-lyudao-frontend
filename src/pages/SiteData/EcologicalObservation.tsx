@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Breadcrumb from 'components/Breadcrumb';
 import Banner from 'components/Banner';
 import Aside from 'components/SiteData/Aside/Content';
-import DownloadPopup from 'components/SiteData/DownloadPopup';
-
 import bannerImg from 'image/ecological_bn.png';
 
 import { BannerData } from 'types/common';
 
 import { ecoAsideList } from 'data/siteData';
 import Main from 'components/SiteData/Main';
+import DownloadPopup from 'components/SiteData/DownloadPopup';
 
 const EcologicalObservation = () => {
   const { dataId } = useParams();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const paths = pathname.split('/');
+  const item = paths[paths.length - 1];
+
   const bannerData: BannerData = {
     title: '環境觀測',
     en: ['Ecological', 'observation'],
@@ -43,12 +46,12 @@ const EcologicalObservation = () => {
           <div className="main-box">
             <div className="observation-box">
               <Aside data={ecoAsideList} page={page} />
-              {dataId && <Main />}
+              {dataId && <Main item={item} paths={paths} pathname={pathname} />}
             </div>
           </div>
         </div>
       </div>
-      <DownloadPopup />
+      <DownloadPopup item={item} />
     </>
   );
 };
