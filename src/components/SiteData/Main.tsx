@@ -42,7 +42,7 @@ const Main = (props: MainProps) => {
   return (
     <>
       <div className="right-infbox">
-        <Title paths={paths} />
+        <Title paths={paths} url={contextData.depositarUrl} />
         <div className="u-section">
           {!isFetchingSites ? (
             <Select

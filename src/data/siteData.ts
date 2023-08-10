@@ -147,7 +147,121 @@ export const economyAsideList: AsideItem[] = [
   {
     id: 1,
     title: '休閒漁業',
-    link: 'social-economy-data/fishing',
+    link: 'fishing',
+  },
+];
+
+export const layoutAsideList: AsideItem[] = [
+  {
+    id: 1,
+    title: '觀測項目層級ㄧ',
+    list: [
+      {
+        id: 1,
+        title: '觀測項目層級二',
+        list: [
+          {
+            id: 1,
+            title: '辨識出的鳥類紀錄',
+            link: '/',
+          },
+          {
+            id: 2,
+            title: '可聽音的聲音指數',
+            link: '/',
+          },
+          {
+            id: 3,
+            title: '層級三',
+            link: '/',
+          },
+        ],
+      },
+      {
+        id: 2,
+        title: '觀測項目層級二',
+        list: [
+          {
+            id: 1,
+            title: '辨識出的鳥類紀錄',
+            link: '/',
+          },
+          {
+            id: 2,
+            title: '可聽音的聲音指數',
+            link: '/',
+          },
+          {
+            id: 3,
+            title: '層級三',
+            link: '/',
+          },
+        ],
+      },
+      {
+        id: 3,
+        title: '觀測項目層級二',
+        link: '/',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: '觀測項目層級ㄧ',
+    list: [
+      {
+        id: 1,
+        title: '觀測項目層級二',
+        list: [
+          {
+            id: 1,
+            title: '辨識出的鳥類紀錄',
+            link: '/',
+          },
+          {
+            id: 2,
+            title: '可聽音的聲音指數',
+            link: '/',
+          },
+          {
+            id: 3,
+            title: '層級三',
+            link: '/',
+          },
+        ],
+      },
+      {
+        id: 2,
+        title: '觀測項目層級二',
+        list: [
+          {
+            id: 1,
+            title: '辨識出的鳥類紀錄',
+            link: '/',
+          },
+          {
+            id: 2,
+            title: '可聽音的聲音指數',
+            link: '/',
+          },
+          {
+            id: 3,
+            title: '層級三',
+            link: '/',
+          },
+        ],
+      },
+      {
+        id: 3,
+        title: '觀測項目層級二',
+        link: '/',
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: '觀測項目層級ㄧ',
+    link: '/',
   },
 ];
 

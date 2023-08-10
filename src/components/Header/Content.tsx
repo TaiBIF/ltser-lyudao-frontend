@@ -37,7 +37,7 @@ const Content = () => {
     const target = menu3Ref.current;
     if (target) {
       target.style.display = 'block';
-      gsapSlideToggle('6rem', target, show.menu3);
+      gsapSlideToggle('9rem', target, show.menu3);
     }
   }, [show.menu3]);
 

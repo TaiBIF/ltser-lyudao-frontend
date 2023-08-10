@@ -230,6 +230,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const contextData: ContextItem[] = [
     {
       id: 'weather',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-weather',
       sites: weatherSites,
       getSites: getWeatherSites,
       detail: weatherDetail,
@@ -243,6 +244,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'sea-temperature',
+      depositarUrl:
+        'https://data.depositar.io/dataset/ltser-lyudao-seatemperature',
       sites: seaTemperatureSites,
       getSites: getSeaTemperatureSites,
       detail: seaTemperatureDetail,
@@ -256,6 +259,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'coral-div',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-coraldiv',
       sites: coralDivSites,
       getSites: getCoralDivSites,
       detail: coralDivDetail,
@@ -269,6 +273,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'coral-rec',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-coraljuv',
       sites: coralRecSites,
       getSites: getCoralRecSites,
       detail: coralRecDetail,
@@ -282,6 +287,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'coral-bleach',
+      depositarUrl:
+        'https://data.depositar.io/dataset/ltser-lyudao-coralbleach',
       sites: coralBleachSites,
       getSites: getCoralBleachSites,
       raws: coralBleachRaws,
@@ -293,6 +300,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'coral-comm',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-coralcomm',
       sites: coralCommSites,
       getSites: getCoralCommSites,
       raws: coralCommRaws,
@@ -304,6 +312,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'zoobenthos',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-zoobenthos',
       sites: zoobenthosSites,
       getSites: getZoobenthosSites,
       raws: zoobenthosRaws,
@@ -317,6 +326,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'plant',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-plant',
       sites: plantSites,
       getSites: getPlantSites,
       raws: plantRaws,
@@ -330,6 +340,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'bird-net-sound',
+      depositarUrl:
+        'https://data.depositar.io/dataset/ltser-lyudao-birdnetsound',
       sites: birdNetSoundSites,
       getSites: getBirdNetSoundSites,
       raws: birdNetSoundRaws,
@@ -343,6 +355,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'fish-div',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-fishdiv',
       sites: fishDivSites,
       getSites: getFishDivSites,
       raws: fishDivRaws,
@@ -356,6 +369,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'water',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-water',
       sites: waterSites,
       getSites: getWaterSites,
       raws: waterRaws,
@@ -367,6 +381,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'habitat',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-habitat',
       sites: habitatSites,
       getSites: getHabitatSites,
       raws: habitatRaws,
@@ -378,6 +393,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'terre-sound-index',
+      depositarUrl:
+        'https://data.depositar.io/dataset/ltser-lyudao-terresoundindex',
       sites: terreSoundIndexSites,
       getSites: getTerreSoundIndexSites,
       raws: terreSoundIndexRaws,
@@ -389,6 +406,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'ocean-sound-index',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-oceansound',
       sites: oceanSoundIndexSites,
       getSites: getOceanSoundIndexSites,
       raws: oceanSoundIndexRaws,
@@ -400,6 +418,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'bio-sound',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-biosound',
       sites: bioSoundSites,
       getSites: getBioSoundSites,
       raws: bioSoundRaws,
@@ -411,6 +430,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'otolith',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-otolith',
       sites: otolithSites,
       getSites: getOtolithSites,
       raws: otolithRaws,
@@ -422,6 +442,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     },
     {
       id: 'fishing',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-fishing',
       raws: fishingRaws,
       getRaws: getFishingRaws,
       fields: fishingFields,

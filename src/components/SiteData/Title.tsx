@@ -1,7 +1,7 @@
 import { ecoAsideList, economyAsideList, envAsideList } from 'data/siteData';
 import React from 'react';
 
-const Title = ({ paths }: { paths: string[] }) => {
+const Title = ({ paths, url }: { paths: string[]; url: string }) => {
   let asideList;
   let title;
   const observation = paths[paths.length - 2].split('-')[0];
@@ -58,7 +58,7 @@ const Title = ({ paths }: { paths: string[] }) => {
           </h2>
           <div className="line" />
         </div>
-        <a href="/" className="meta">
+        <a href={url} className="meta" target="_blank" rel="noreferrer">
           查看metadata
         </a>
       </div>

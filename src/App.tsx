@@ -61,6 +61,7 @@ import { SiteDataProvider } from 'context/SiteDataContext';
 import { AuthProvider } from 'context/AuthContext';
 
 import RouteGuard from 'utils/RouteGuard';
+import Layout from 'components/SiteData/Economy/Layout';
 
 function App() {
   return (
@@ -158,20 +159,10 @@ function App() {
               />
               <Route
                 path="/site-data/social-observation/social-economy-data"
-                element={
-                  <SiteDataProvider>
-                    <SurveyMapProvider>
-                      <DataProvider>
-                        <EcoProvider>
-                          <Economy />
-                        </EcoProvider>
-                      </DataProvider>
-                    </SurveyMapProvider>
-                  </SiteDataProvider>
-                }
+                element={<Layout />}
               />
               <Route
-                path="/site-data/social-observation/social-economy-data/:dataId"
+                path="/site-data/social-observation/:dataId"
                 element={
                   <SiteDataProvider>
                     <SurveyMapProvider>

@@ -27,14 +27,14 @@ const Economy = () => {
   };
   const page = bannerData.en.map((v) => v.toLowerCase()).join('-');
 
-  useEffect(() => {
-    if (!dataId) {
-      const matchAsideFirstItem = economyAsideList[0].list
-        ? economyAsideList[0].list[0].link
-        : economyAsideList[0].link;
-      navigate(`/site-data/${page}/${matchAsideFirstItem}`);
-    }
-  }, [dataId]);
+  // useEffect(() => {
+  //   if (!dataId) {
+  //     const matchAsideFirstItem = economyAsideList[0].list
+  //       ? economyAsideList[0].list[0].link
+  //       : economyAsideList[0].link;
+  //     navigate(`/site-data/${page}/${matchAsideFirstItem}`);
+  //   }
+  // }, [dataId]);
 
   return (
     <>

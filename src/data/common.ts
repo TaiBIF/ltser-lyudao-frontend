@@ -180,6 +180,11 @@ export const menuList: HeaderMenuItem[] = [
           },
           {
             id: 2,
+            title: '休閒漁業資料',
+            link: 'fishing',
+          },
+          {
+            id: 3,
             title: '社會面訪談資料',
             link: 'social-interview-data',
           },

@@ -80,14 +80,14 @@ const Content = () => {
                 );
               })}
             </ul>
-            {/* <a href="/" className="taibif-box">
+            <a href="/" className="taibif-box">
               <img src={ftlogoImg8} alt="" />
               <p>
                 資料庫管理：
                 <br />
                 臺灣生物多樣性機構 TaiBIF
               </p>
-            </a> */}
+            </a>
           </div>
         </div>
         <div className="footer-botbox">

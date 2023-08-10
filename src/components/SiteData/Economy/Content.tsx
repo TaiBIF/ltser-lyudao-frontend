@@ -29,7 +29,7 @@ const Content = () => {
   return (
     <>
       <div className="right-infbox">
-        <Title paths={paths} />
+        <Title paths={paths} url={contextData.depositarUrl} />
         <div className="data-searchbox">
           <Search
             item={item}

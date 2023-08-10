@@ -26,7 +26,9 @@ const SubItem = (props: SubItemProps) => {
   const targetRef = useRef<HTMLUListElement>(null);
   const { dataId } = useParams();
 
-  const isActiveLink = dataId === data.link;
+  const isActiveLink = dataId && dataId === data.link && data.link !== '/';
+  console.log(data.link);
+  console.log(isActiveLink);
 
   const handleMenuClick = () => {
     setActive(!active);
