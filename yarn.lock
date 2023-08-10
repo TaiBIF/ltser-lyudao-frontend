@@ -1966,6 +1966,11 @@
   resolved "https://registry.npmjs.org/@types/geojson/-/geojson-7946.0.10.tgz"
   integrity sha512-Nmh0K3iWQJzniTuPRcJn5hxXkfB1T1pgB89SBig5PlJQU5yocazeu4jATJlaA0GYFKWMqDdvYemoSnF2pXgLVA==
 
+"@types/google.accounts@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@types/google.accounts/-/google.accounts-0.0.8.tgz#5a1d290e4847b2231a37e3255eb836cbb713ca22"
+  integrity sha512-2PsbBf8fWr0PyC5jzl4Gxc0WzcHVnoPC+0Kv8XutaH0/gaPmW3Vrq2Mdv6WnZOh4K7OSrzvjNkCKEL8EHHx5Aw==
+
 "@types/graceful-fs@^4.1.2":
   version "4.1.6"
   resolved "https://registry.npmjs.org/@types/graceful-fs/-/graceful-fs-4.1.6.tgz"

@@ -33,7 +33,7 @@ const About = () => {
     type: '',
   });
 
-  const hasData = data.id !== 0;
+  const isFetchingData = data.id === 0;
 
   useEffect(() => {
     getDetail({
@@ -44,7 +44,7 @@ const About = () => {
   }, [pathname]);
 
   useEffect(() => {
-    if (hasData) {
+    if (!isFetchingData) {
       const matchCategory = tabList.find((v) => v.id === data.type);
       if (matchCategory) {
         setRelate({ ...data, type: matchCategory.title });
@@ -74,30 +74,33 @@ const About = () => {
               <div className="leftbox">
                 <div className="title-area">
                   <div className="ab-category">{relate.type}</div>
-                  <h2>{data.name}</h2>
+                  <h2>{!isFetchingData && data.name}</h2>
                 </div>
-                <p>{data.content}</p>
+                <p>{!isFetchingData && data.content}</p>
               </div>
-              <div className="rightbox">
-                <div className="pic-area">
-                  {/*上背景圖*/}
-                  <div
-                    className="img-area"
-                    style={{
-                      backgroundImage: `url(${IMAGE_URL}${data.image})`,
-                    }}
-                  />
+              {!isFetchingData && (
+                <div className="rightbox">
+                  <div className="pic-area">
+                    {/*上背景圖*/}
+                    <div
+                      className="img-area"
+                      style={{
+                        backgroundImage: `url(${IMAGE_URL}${data.image})`,
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
         {/*有其他內容的才有下面這塊*/}
         <div className="ab-otherbox">
           <div className="main-box">
-            {data.attachments?.map((v) => {
-              return <Item key={v.id} data={v} />;
-            })}
+            {!isFetchingData &&
+              data.attachments?.map((v) => {
+                return <Item key={v.id} data={v} />;
+              })}
           </div>
         </div>
       </div>

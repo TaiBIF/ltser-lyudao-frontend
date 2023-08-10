@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Formik,
   Form,
@@ -27,6 +27,26 @@ const Login = () => {
 
   const { loading, handleLogin } = useAuthContext();
   const { setShow } = useHeaderContext();
+  const googleSignInRef = useRef(null);
+
+  const handleCallbackResponse = (response: { credential: any }) => {
+    console.log(response.credential);
+  };
+
+  useEffect(() => {
+    google.accounts.id.initialize({
+      client_id:
+        '293650145366-i0mnv9rn0jqptkvtrr677dh9cb6nhttp.apps.googleusercontent.com',
+      callback: handleCallbackResponse,
+    });
+    if (googleSignInRef.current) {
+      google.accounts.id.renderButton(googleSignInRef.current, {
+        theme: 'outline',
+        size: 'large',
+        type: 'standard',
+      });
+    }
+  }, []);
 
   const handleSubmit = (
     values: Record<string, any>,
@@ -85,7 +105,9 @@ const Login = () => {
                 <button type="submit" className="login" disabled={isSubmitting}>
                   {!loading ? '登入' : <Spinner />}
                 </button>
-                <button className="logingoogle">使用GOOGLE登入</button>
+                <div ref={googleSignInRef}>
+                  <button className="logingoogle">使用GOOGLE登入</button>
+                </div>
               </div>
               <div className="btn-area2">
                 <ActionBtn type="signup" loading={loading} />
