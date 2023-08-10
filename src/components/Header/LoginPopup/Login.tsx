@@ -30,7 +30,8 @@ const Login = () => {
   const googleSignInRef = useRef(null);
 
   const handleGoogleResponse = (response: { credential: any }) => {
-    handleGoogleSignIn({ code: response.credential, setShow });
+    console.log(response.credential);
+    // handleGoogleSignIn({ code: response.credential, setShow });
   };
 
   useEffect(() => {

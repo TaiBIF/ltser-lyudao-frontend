@@ -163,7 +163,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
       },
       error: {
-        title: result?.response.data.detail,
+        title: '發生錯誤。',
       },
     });
   };
