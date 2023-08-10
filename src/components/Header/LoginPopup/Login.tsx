@@ -95,13 +95,13 @@ const Login = () => {
                   className="text-danger"
                 />
               </div>
-              {/* <div className="check-area">
-              <label className="check-item">
-                記住我的帳號
-                <Field type="checkbox" name="rememberMe" />
-                <span className="checkmark" />
-              </label>
-            </div> */}
+              <div className="check-area">
+                <label className="check-item">
+                  記住我的帳號
+                  <Field type="checkbox" name="rememberMe" />
+                  <span className="checkmark" />
+                </label>
+              </div>
               <div className="btn-area">
                 <button type="submit" className="login" disabled={isSubmitting}>
                   {!loading ? '登入' : <Spinner />}
