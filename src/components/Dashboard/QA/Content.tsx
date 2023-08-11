@@ -16,7 +16,7 @@ import usePage from 'hooks/utils/usePage';
 const Content = () => {
   const PAGE: string = QA_PATH;
 
-  const [qaList, setQaList] = useState<QAItem[]>([]);
+  const [qaList, setQaList] = useState<QAItem[] | null>(null);
   const [colList, setColList] = useState<ColItem[]>([]);
 
   const { getList, handleRelate } = useDashboard();

@@ -14,7 +14,7 @@ import usePage from 'hooks/utils/usePage';
 const Content = () => {
   const PAGE: string = 'form-link';
 
-  const [formLinkList, setFormLinkList] = useState<FormLinkItem[]>([]);
+  const [formLinkList, setFormLinkList] = useState<FormLinkItem[] | null>(null);
 
   const { getList } = useDashboard();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =

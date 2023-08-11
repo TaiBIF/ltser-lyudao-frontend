@@ -4,17 +4,14 @@ import { FormikHelpers } from 'formik';
 import AddTemplate from 'components/Dashboard/Template/Add';
 
 import { FieldItem, ItemTypes } from 'types/utils';
-import { AboutItem } from 'types/about';
+import { AboutItem, HeaderAboutSubItem } from 'types/about';
 
 import { aboutAttachmentAddFieldList } from 'data/dashboard';
 import { aboutAttachmentAddValidationSchema } from 'data/validationSchema';
-import {
-  ABOUT_API_URL,
-  ABOUT_ATTACHMENT_API_URL,
-  ABOUT_ATTACHMENT_PATH,
-} from 'data/api';
+import { ABOUT_ATTACHMENT_API_URL, ABOUT_ATTACHMENT_PATH } from 'data/api';
 
 import useDashboard from 'hooks/page/useDashboard';
+import { useHeaderContext } from 'context/HeaderContext';
 
 const Add = () => {
   const initialValues: AboutItem = {
@@ -26,18 +23,19 @@ const Add = () => {
     image: '',
   };
 
-  const [aboutList, setAboutList] = useState<AboutItem[]>([]);
+  const [aboutList, setAboutList] = useState<HeaderAboutSubItem[]>([]);
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
 
-  const { getList, handleAdd } = useDashboard();
+  const { loading, handleAdd } = useDashboard();
+  const { about } = useHeaderContext();
 
   const isFetchingAboutList = aboutList.length === 0;
 
   useEffect(() => {
-    getList({
-      url: ABOUT_API_URL,
-      setList: setAboutList,
-    });
+    const abouts: HeaderAboutSubItem[] = Object.entries(about).flatMap(
+      ([key, value]) => value as HeaderAboutSubItem
+    );
+    setAboutList([...abouts]);
   }, []);
 
   useEffect(() => {
@@ -74,6 +72,7 @@ const Add = () => {
         fieldList={fieldList}
         validationSchema={aboutAttachmentAddValidationSchema}
         handleSubmit={handleAddSubmit}
+        loading={loading}
       />
     </>
   );

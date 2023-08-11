@@ -13,7 +13,7 @@ import usePage from 'hooks/utils/usePage';
 
 const Content = () => {
   const PAGE: string = CONTACT_PATH;
-  const [contactList, setContactList] = useState<ContactItem[]>([]);
+  const [contactList, setContactList] = useState<ContactItem[] | null>(null);
   const { getList } = useDashboard();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();

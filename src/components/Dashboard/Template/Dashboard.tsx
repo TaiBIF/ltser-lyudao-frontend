@@ -17,19 +17,19 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = (props) => {
   return (
     <>
       <main className="u-page">
-        <div className="container">
-          <div className="row gx-5">
-            <div className="col-3">
-              <div className="d-flex flex-column">
+        <div className="container u-container">
+          <div className="row gx-5 u-container">
+            <div className="col-3 pe-4">
+              <div className="c-tabs">
                 {tabList.map((v) => {
                   const { id, title, auth } = v;
                   return (
                     auth?.includes(group) && (
                       <Link
                         key={id}
-                        className={`btn btn-${
-                          paths.includes(id) ? 'primary' : 'light'
-                        } mb-2`}
+                        className={`c-tabs__btn ${
+                          paths.includes(id) ? 'active' : ''
+                        }`}
                         to={`/dashboard/${id}`}
                       >
                         {title}
@@ -39,7 +39,9 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = (props) => {
                 })}
               </div>
             </div>
-            <div className="col-9">{content}</div>
+            <div className="col-9">
+              <div className="u-main">{content}</div>
+            </div>
           </div>
         </div>
       </main>

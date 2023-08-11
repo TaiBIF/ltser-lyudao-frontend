@@ -24,7 +24,7 @@ const Edit = () => {
     image: '',
   });
   const { contactId } = useParams();
-  const { getDetail, handleEdit, handleDelete } = useDashboard();
+  const { loading, getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = contactId ?? '';
   const URL = CONTACT_API_URL;
@@ -68,6 +68,7 @@ const Edit = () => {
         fieldList={contactEditFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

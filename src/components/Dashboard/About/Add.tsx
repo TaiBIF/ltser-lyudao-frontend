@@ -19,7 +19,7 @@ const Add = () => {
     image: '',
   };
 
-  const { handleAdd } = useDashboard();
+  const { loading, handleAdd } = useDashboard();
 
   const handleAddSubmit = (
     values: ItemTypes,
@@ -40,6 +40,7 @@ const Add = () => {
         fieldList={aboutAddFieldList}
         validationSchema={aboutValidationSchema}
         handleSubmit={handleAddSubmit}
+        loading={loading}
       />
     </>
   );

@@ -22,7 +22,7 @@ const Edit = () => {
     image: '',
   });
   const { aboutId } = useParams();
-  const { getDetail, handleEdit, handleDelete } = useDashboard();
+  const { loading, getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = aboutId ?? '';
   const URL = ABOUT_API_URL;
@@ -66,6 +66,7 @@ const Edit = () => {
         fieldList={aboutEditFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

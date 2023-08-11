@@ -3,12 +3,17 @@ import Spinner from 'components/Spinner';
 interface PlaceholderProps {
   layout?: string;
   text?: string;
+  dir?: string;
 }
 
 const Placeholder = (props: PlaceholderProps) => {
-  const { layout, text } = props;
+  const { layout, text, dir = 'start' } = props;
   return (
-    <div className={`c-placeholder c-placeholder--${layout}`}>
+    <div
+      className={`c-placeholder c-placeholder--${layout} ${
+        dir ? `c-placeholder--${dir}` : ''
+      }`}
+    >
       <div className="c-placeholder__icon">
         {text && (
           <>

@@ -6,6 +6,7 @@ import FieldLayout from 'components/Dashboard/FieldLayout';
 
 import { ItemTypes } from 'types/utils';
 import { FieldItem } from 'types/utils';
+import Spinner from 'components/Spinner';
 
 interface AddTemplateProps {
   initialValues: ItemTypes;
@@ -15,10 +16,12 @@ interface AddTemplateProps {
     values: ItemTypes,
     formikHelpers: FormikHelpers<ItemTypes>
   ) => void;
+  loading: boolean;
 }
 
 const Add = (props: AddTemplateProps) => {
-  const { initialValues, fieldList, validationSchema, handleSubmit } = props;
+  const { initialValues, fieldList, validationSchema, handleSubmit, loading } =
+    props;
   const navigate = useNavigate();
 
   const handleCancelClick = () => {
@@ -34,21 +37,28 @@ const Add = (props: AddTemplateProps) => {
   return (
     <>
       <Formik {...formikConfig}>
-        <Form>
-          {fieldList.map((v) => {
-            const { id } = v;
-            return <FieldLayout key={id} data={v}></FieldLayout>;
-          })}
-          <button type="submit" className="btn btn-primary me-2">
-            儲存
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={handleCancelClick}
-          >
-            取消
-          </button>
+        <Form className="d-flex flex-column justify-content-between h-100">
+          <div>
+            {fieldList.map((v) => {
+              const { id } = v;
+              return <FieldLayout key={id} data={v}></FieldLayout>;
+            })}
+          </div>
+          <div className="c-btns">
+            <button
+              type="submit"
+              className="c-btns__btn e-btn e-btn--primary e-btn--wmax"
+            >
+              {!loading ? '儲存' : <Spinner layout="dashboard" />}
+            </button>
+            <button
+              type="button"
+              className="c-btns__btn e-btn e-btn--muted e-btn--wmax"
+              onClick={handleCancelClick}
+            >
+              取消
+            </button>
+          </div>
         </Form>
       </Formik>
     </>

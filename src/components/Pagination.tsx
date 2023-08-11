@@ -61,7 +61,7 @@ const Pagination = (props: PaginationProps) => {
             onClick={() => {
               handlePage(1);
             }}
-            className="num"
+            className="num m-1"
           >
             1
           </div>
@@ -71,7 +71,7 @@ const Pagination = (props: PaginationProps) => {
             onClick={() => {
               handlePage(currentPage - 1);
             }}
-            className="back"
+            className="back m-1"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ const Pagination = (props: PaginationProps) => {
           return (
             <div
               key={v}
-              className={`num ${currentPage === v ? 'now' : ''}`}
+              className={`num m-1 ${currentPage === v ? 'now' : ''}`}
               onClick={() => {
                 handlePage(v);
               }}
@@ -113,7 +113,7 @@ const Pagination = (props: PaginationProps) => {
         })}
         {hasNext && (
           <div
-            className="next"
+            className="next m-1"
             onClick={() => {
               handlePage(currentPage + 1);
             }}
@@ -145,7 +145,7 @@ const Pagination = (props: PaginationProps) => {
         )}
         {!isLastPage && (
           <div
-            className="num"
+            className="num m-1"
             onClick={() => {
               handlePage(totalPages);
             }}

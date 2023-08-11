@@ -16,7 +16,7 @@ const Add = () => {
     id: 0,
     title: '',
   };
-  const { handleAdd } = useDashboard();
+  const { loading, handleAdd } = useDashboard();
 
   const handleAddSubmit = (
     values: ItemTypes,
@@ -37,6 +37,7 @@ const Add = () => {
         fieldList={typeFieldList}
         validationSchema={qaTypeValidationSchema}
         handleSubmit={handleAddSubmit}
+        loading={loading}
       />
     </>
   );

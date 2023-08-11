@@ -19,7 +19,7 @@ const Edit = () => {
   });
 
   const { newsTypeId } = useParams();
-  const { getDetail, handleEdit, handleDelete } = useDashboard();
+  const { loading, getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = newsTypeId ?? '';
   const URL = NEWS_TYPE_API_URL;
@@ -63,6 +63,7 @@ const Edit = () => {
         fieldList={typeFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

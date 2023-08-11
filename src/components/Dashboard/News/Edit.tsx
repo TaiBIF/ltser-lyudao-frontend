@@ -38,7 +38,8 @@ const Edit = () => {
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
 
   const { newsId } = useParams();
-  const { getList, getDetail, handleEdit, handleDelete } = useDashboard();
+  const { loading, getList, getDetail, handleEdit, handleDelete } =
+    useDashboard();
 
   const isFetchingTypeList = typeList.length === 0;
 
@@ -124,6 +125,7 @@ const Edit = () => {
         fieldList={fieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

@@ -15,7 +15,7 @@ import usePage from 'hooks/utils/usePage';
 const Content = () => {
   const PAGE: string = ABOUT_PATH;
 
-  const [aboutList, setAboutList] = useState<AboutItem[]>([]);
+  const [aboutList, setAboutList] = useState<AboutItem[] | null>(null);
 
   const { getList } = useDashboard();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =

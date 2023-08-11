@@ -7,6 +7,7 @@ import FieldLayout from 'components/Dashboard/FieldLayout';
 
 import { ItemTypes } from 'types/utils';
 import { FieldItem } from 'types/utils';
+import Spinner from 'components/Spinner';
 
 interface EditTemplateProps {
   param?: string;
@@ -18,6 +19,7 @@ interface EditTemplateProps {
     formikHelpers: FormikHelpers<ItemTypes>
   ) => void;
   handleDeleteClick: () => void;
+  loading: boolean;
 }
 
 const EditTemplate = (props: EditTemplateProps) => {
@@ -27,6 +29,7 @@ const EditTemplate = (props: EditTemplateProps) => {
     validationSchema,
     handleSubmit,
     handleDeleteClick,
+    loading,
   } = props;
   const navigate = useNavigate();
 
@@ -45,19 +48,24 @@ const EditTemplate = (props: EditTemplateProps) => {
     <>
       <Formik {...formikConfig}>
         {() => (
-          <Form>
-            {fieldList.map((v) => {
-              const { id } = v;
-              return <FieldLayout key={id} data={v} />;
-            })}
+          <Form className="d-flex flex-column justify-content-between h-100">
+            <div>
+              {fieldList.map((v) => {
+                const { id } = v;
+                return <FieldLayout key={id} data={v} />;
+              })}
+            </div>
             <div className="d-flex justify-content-between">
-              <div>
-                <button type="submit" className="btn btn-primary me-2">
-                  儲存
+              <div className="c-btns">
+                <button
+                  type="submit"
+                  className="c-btns__btn e-btn e-btn--primary e-btn--wmax"
+                >
+                  {!loading ? '儲存' : <Spinner layout="dashboard" />}
                 </button>
                 <button
                   type="button"
-                  className="btn btn-secondary"
+                  className="c-btns__btn e-btn e-btn--muted e-btn--wmax"
                   onClick={handleCancelClick}
                 >
                   取消
@@ -65,10 +73,10 @@ const EditTemplate = (props: EditTemplateProps) => {
               </div>
               <button
                 type="button"
-                className="btn btn-danger"
+                className="c-btns__btn e-btn e-btn--outline e-btn--wmax"
                 onClick={handleDeleteClick}
               >
-                刪除
+                {!loading ? '刪除' : <Spinner layout="dashboard" />}
               </button>
             </div>
           </Form>

@@ -19,7 +19,7 @@ const Edit = () => {
     title: '',
   });
   const { qaTypeId } = useParams();
-  const { getDetail, handleEdit, handleDelete } = useDashboard();
+  const { loading, getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = qaTypeId ?? '';
   const URL = QA_TYPE_API_URL;
@@ -63,6 +63,7 @@ const Edit = () => {
         fieldList={typeFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

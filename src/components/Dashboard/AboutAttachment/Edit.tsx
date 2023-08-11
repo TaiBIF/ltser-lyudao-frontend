@@ -5,17 +5,14 @@ import { FormikHelpers } from 'formik';
 import EditTemplate from 'components/Dashboard/Template/Edit';
 
 import { FieldItem, ItemTypes } from 'types/utils';
-import { AboutItem } from 'types/about';
+import { AboutItem, HeaderAboutSubItem } from 'types/about';
 
 import { aboutAttachmentEditFieldList } from 'data/dashboard';
 import { aboutAttachmentEditValidationSchema } from 'data/validationSchema';
-import {
-  ABOUT_API_URL,
-  ABOUT_ATTACHMENT_API_URL,
-  ABOUT_ATTACHMENT_PATH,
-} from 'data/api';
+import { ABOUT_ATTACHMENT_API_URL, ABOUT_ATTACHMENT_PATH } from 'data/api';
 
 import useDashboard from 'hooks/page/useDashboard';
+import { useHeaderContext } from 'context/HeaderContext';
 
 const Edit = () => {
   const [initialValues, setInitialValues] = useState<AboutItem>({
@@ -28,10 +25,11 @@ const Edit = () => {
     file: '',
   });
   const { aboutAttachmentId } = useParams();
-  const { getList, getDetail, handleEdit, handleDelete } = useDashboard();
+  const { loading, getDetail, handleEdit, handleDelete } = useDashboard();
 
-  const [aboutList, setAboutList] = useState<AboutItem[]>([]);
+  const [aboutList, setAboutList] = useState<HeaderAboutSubItem[]>([]);
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
+  const { about } = useHeaderContext();
 
   const ID = aboutAttachmentId ?? '';
   const URL = ABOUT_ATTACHMENT_API_URL;
@@ -81,10 +79,10 @@ const Edit = () => {
       setData: setInitialValues,
       redirectPath: REDIRECT_PATH,
     });
-    getList({
-      url: ABOUT_API_URL,
-      setList: setAboutList,
-    });
+    const abouts: HeaderAboutSubItem[] = Object.entries(about).flatMap(
+      ([key, value]) => value as HeaderAboutSubItem
+    );
+    setAboutList([...abouts]);
   }, []);
 
   return (
@@ -95,6 +93,7 @@ const Edit = () => {
         fieldList={fieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

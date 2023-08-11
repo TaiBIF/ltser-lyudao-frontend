@@ -22,7 +22,7 @@ const Edit = () => {
     created_at: '',
   });
   const { formLinkId } = useParams();
-  const { getDetail, handleEdit, handleDelete } = useDashboard();
+  const { loading, getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = formLinkId ?? '';
   const URL = FORM_LINK_API_URL;
@@ -66,6 +66,7 @@ const Edit = () => {
         fieldList={formLinkEditFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

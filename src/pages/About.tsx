@@ -36,12 +36,14 @@ const About = () => {
   const isFetchingData = data.id === 0;
 
   useEffect(() => {
-    getDetail({
-      id: aboutId,
-      url: ABOUT_API_URL,
-      setData,
-    });
-  }, [pathname]);
+    if (aboutId) {
+      getDetail({
+        id: aboutId,
+        url: ABOUT_API_URL,
+        setData,
+      });
+    }
+  }, [aboutId, pathname]);
 
   useEffect(() => {
     if (!isFetchingData) {

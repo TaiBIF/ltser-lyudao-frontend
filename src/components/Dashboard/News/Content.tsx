@@ -15,7 +15,7 @@ import { ColItem, TypeItem } from 'types/utils';
 
 const Content = () => {
   const PAGE: string = 'news';
-  const [newsList, setNewsList] = useState<NewsItem[]>([]);
+  const [newsList, setNewsList] = useState<NewsItem[] | null>(null);
   const [colList, setColList] = useState<ColItem[]>([]);
 
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =

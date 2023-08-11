@@ -26,7 +26,7 @@ const Add = () => {
   const [typeList, setTypeList] = useState<TypeItem[]>([]);
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
 
-  const { getList, handleAdd } = useDashboard();
+  const { loading, getList, handleAdd } = useDashboard();
 
   const isFetchingTypeList = typeList.length === 0;
 
@@ -76,6 +76,7 @@ const Add = () => {
         fieldList={fieldList}
         validationSchema={newsValidationSchema}
         handleSubmit={handleAddSubmit}
+        loading={loading}
       />
     </>
   );

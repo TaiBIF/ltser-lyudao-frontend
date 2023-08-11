@@ -113,7 +113,7 @@ export const aboutColList: ColItem[] = [
   },
   {
     id: 'image',
-    title: '觀測項目介紹圖片連結',
+    title: '觀測項目介紹圖片',
     show: true,
   },
 ];
@@ -209,6 +209,7 @@ export const aboutAttachmentColList: ColItem[] = [
     id: 'aboutId',
     title: '觀測項目名稱',
     show: true,
+    space: 'text',
   },
   {
     id: 'name',
@@ -224,12 +225,12 @@ export const aboutAttachmentColList: ColItem[] = [
   },
   {
     id: 'file',
-    title: '補充資訊檔案連結',
+    title: '補充資訊檔案',
     show: true,
   },
   {
     id: 'image',
-    title: '補充資訊圖片連結',
+    title: '補充資訊圖片',
     show: true,
   },
 ];
@@ -263,7 +264,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
     id: 4,
     type: 'file',
     title: 'file',
-    label: '補充資訊檔案連結',
+    label: '補充資訊檔案',
     readonly: false,
     required: true,
   },
@@ -271,7 +272,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
     id: 5,
     type: 'file',
     title: 'image',
-    label: '補充資訊檔案圖片',
+    label: '補充資訊圖片',
     readonly: false,
     required: true,
     fileType: 'image',
@@ -307,7 +308,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
     id: 4,
     type: 'file',
     title: 'file',
-    label: '補充資訊檔案連結',
+    label: '補充資訊檔案',
     readonly: false,
     required: true,
     hints: [
@@ -321,7 +322,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
     id: 5,
     type: 'file',
     title: 'image',
-    label: '補充資訊檔案圖片',
+    label: '補充資訊圖片',
     readonly: false,
     required: true,
     fileType: 'image',
@@ -363,6 +364,7 @@ export const contactColList: ColItem[] = [
     id: 'content',
     title: '人員簡介',
     show: true,
+    space: 'nowrap',
   },
   {
     id: 'contact',
@@ -554,6 +556,7 @@ export const newsColList: ColItem[] = [
     id: 'type',
     title: '消息類型',
     show: true,
+    space: 'nowrap',
     // relate: newsTypeList,
   },
   {

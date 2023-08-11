@@ -235,6 +235,7 @@ const useDashboard = () => {
   };
 
   return {
+    loading,
     getList,
     getDetail,
     handleAdd,

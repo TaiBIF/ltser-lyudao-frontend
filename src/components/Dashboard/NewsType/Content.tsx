@@ -15,7 +15,7 @@ import { TypeItem } from 'types/utils';
 const Content = () => {
   const PAGE: string = 'news-type';
 
-  const [newsTypeList, setNewsTypeList] = useState<TypeItem[]>([]);
+  const [newsTypeList, setNewsTypeList] = useState<TypeItem[] | null>(null);
 
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();

@@ -19,7 +19,7 @@ const Edit = () => {
     name: '',
   });
   const { literatureId } = useParams();
-  const { getDetail, handleEdit, handleDelete } = useDashboard();
+  const { loading, getDetail, handleEdit, handleDelete } = useDashboard();
 
   const ID = literatureId ?? '';
   const URL = LITERATURE_API_URL;
@@ -63,6 +63,7 @@ const Edit = () => {
         fieldList={literatureFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

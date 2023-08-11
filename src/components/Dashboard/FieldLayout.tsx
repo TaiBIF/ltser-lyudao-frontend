@@ -13,7 +13,7 @@ import {
   ItemTypes,
 } from 'types/utils';
 import { hasImageProperty } from 'helpers/hasImageProperty';
-import { BE_URL } from 'utils/config';
+import { BE_URL, IMAGE_URL } from 'utils/config';
 import { FormLinkItem } from 'types/formLink';
 import { NewsItem } from 'types/news';
 
@@ -33,9 +33,6 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
   const { values, setFieldValue } = useFormikContext<ItemTypes>();
   const [files, setFiles] = useState<FileItem[]>([]);
   const [fileName, setFileName] = useState('');
-  const [cover, setCover] = useState('0');
-
-  const isNoFile = files.length === 0;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = e.currentTarget.files;
@@ -92,15 +89,15 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
     case 'email':
     case 'date':
       return (
-        <div className="mb-2">
-          <label htmlFor={title} className="form-label">
+        <div className="c-form__set">
+          <label htmlFor={title} className="c-form__label">
             {label}
           </label>
           <Field
             type={type}
             id={title}
             name={title}
-            className="form-control"
+            className="c-form__input"
             placeholder={`請輸入${label}`}
             readOnly={readonly}
             required={required}
@@ -114,15 +111,15 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
       );
     case 'select':
       return (
-        <div className="mb-2">
-          <label htmlFor={title} className="form-label">
+        <div className="c-form__set">
+          <label htmlFor={title} className="c-form__label">
             {label}
           </label>
           <Field
             as="select"
             id={title}
             name={title}
-            className="form-select"
+            className="c-form__input"
             readOnly={readonly}
             required={required}
             multiple={multiple}
@@ -149,11 +146,10 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
     case 'file':
       return (
         <>
-          <div className="mb-2">
-            <label htmlFor={title} className="form-label">
+          <div className="c-form__set">
+            <label htmlFor={title} className="c-form__label">
               {label}
             </label>
-
             <label htmlFor={title} className="c-form__file">
               <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
             </label>
@@ -174,16 +170,16 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                 switch (id) {
                   case 'link':
                     return (
-                      !isNoFile ||
+                      files.length !== 0 ||
                       (hasImageProperty(values) &&
                         typeof values.image === 'string' && (
-                          <div key={id} className="form-text">
+                          <div key={id} className="c-form__text">
                             {title}
                             {hasImageProperty(values) &&
                               typeof values.image === 'string' && (
                                 <a
-                                  href={`${BE_URL}/${values.image}`}
-                                  className="ms-2"
+                                  href={`${IMAGE_URL}/${values.image}`}
+                                  className="e-link"
                                   target="_blank"
                                   rel="noreferrer"
                                 >
@@ -195,49 +191,62 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                     );
                   case 'cover':
                     value = (values as NewsItem).cover;
+                    const hasCover =
+                      (values as NewsItem).cover?.length !== 0 &&
+                      typeof value === 'string';
                     return (
-                      <div key={id} className="form-text">
-                        {title}
-                        <a
-                          href={`${BE_URL}/${value}`}
-                          className="ms-2"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {value}
-                        </a>
-                      </div>
+                      hasCover && (
+                        <div key={id} className="c-form__text">
+                          {title}
+                          <a
+                            href={`${IMAGE_URL}/${value}`}
+                            className="e-link"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {value}
+                          </a>
+                        </div>
+                      )
                     );
                   case 'files':
                     value = ((values as FormLinkItem) || (values as NewsItem))
                       .attachments;
+                    const hasAttachments =
+                      ((values as FormLinkItem) || (values as NewsItem))
+                        .attachments?.length !== 0;
                     return (
-                      <div key={id} className="form-text">
-                        {title}
-                        {value &&
-                          value.map((v: AttachmentsItem, i: number) => {
-                            return (
-                              <div key={i} className="form-text">
-                                {v.file}
-                              </div>
-                            );
-                          })}
-                      </div>
+                      hasAttachments && (
+                        <div key={id} className="c-form__text">
+                          {title}
+                          {value &&
+                            value.map((v: AttachmentsItem, i: number) => {
+                              return (
+                                <div key={i} className="c-form__text">
+                                  {v.file}
+                                </div>
+                              );
+                            })}
+                        </div>
+                      )
                     );
                   case 'images':
                     value = (values as NewsItem).images;
+                    const hasImages = (values as NewsItem).images?.length !== 0;
                     return (
-                      <div key={id} className="form-text">
-                        {title}
-                        {value &&
-                          value.map((v: ImagesItem, i: number) => {
-                            return (
-                              <div key={i} className="form-text">
-                                {v.image}
-                              </div>
-                            );
-                          })}
-                      </div>
+                      hasImages && (
+                        <div key={id} className="c-form__text">
+                          {title}
+                          {value &&
+                            value.map((v: ImagesItem, i: number) => {
+                              return (
+                                <div key={i} className="c-form__text">
+                                  {v.image}
+                                </div>
+                              );
+                            })}
+                        </div>
+                      )
                     );
                 }
               })}
@@ -249,12 +258,8 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                   <FileImgItem
                     key={v.id}
                     files={files}
-                    setFiles={setFiles}
-                    cover={cover}
-                    setCover={setCover}
                     data={v}
                     index={i}
-                    multiple={multiple}
                     handleFileRemove={handleFileRemove}
                   />
                 );
@@ -277,15 +282,15 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
       );
     case 'textarea':
       return (
-        <div className="mb-2">
-          <label htmlFor={title} className="form-label">
+        <div className="c-form__set">
+          <label htmlFor={title} className="c-form__label">
             {label}
           </label>
           <Field
             as={type}
             id={title}
             name={title}
-            className="form-control"
+            className="c-form__input"
             placeholder={`請輸入${label}`}
             readOnly={readonly}
             required={required}
@@ -301,20 +306,23 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
     case 'checkbox':
       return (
         <>
-          <div role="group" aria-labelledby="checkbox-group">
-            <div className="form-label">{label}</div>
-            <div className="d-flex align-items-center mb-2">
+          <div className="c-form__checkbox c-form__set">
+            <div className="c-form__label">{label}</div>
+            <div className="c-form__checkbox-set">
               {options?.map((v) => {
                 const { title } = v;
                 return (
-                  <div key={`${id}-${v.id}`} className="form-check me-2">
-                    <label className="form-check-label" htmlFor={title}>
+                  <div key={`${id}-${v.id}`} className="c-checkbox form-check">
+                    <label
+                      className="c-checkbox__label form-check-label"
+                      htmlFor={title}
+                    >
                       <Field
                         type="checkbox"
                         id={title}
                         name={data.title}
                         value={String(v.id)}
-                        className="form-check-input"
+                        className="c-checkbox__input form-check-input"
                       />
                       {title}
                     </label>
@@ -322,12 +330,12 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                 );
               })}
             </div>
+            <ErrorMessage
+              name={title}
+              component="small"
+              className="text-danger"
+            />
           </div>
-          <ErrorMessage
-            name={title}
-            component="small"
-            className="text-danger"
-          />
         </>
       );
     default:

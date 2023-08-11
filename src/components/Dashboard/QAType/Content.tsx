@@ -12,7 +12,7 @@ import { QA_TYPE_API_URL } from 'data/api';
 
 const Content = () => {
   const PAGE: string = 'qa-type';
-  const [qaTypeList, setQaTypeList] = useState<TypeItem[]>([]);
+  const [qaTypeList, setQaTypeList] = useState<TypeItem[] | null>(null);
   const { getList } = useDashboard();
 
   useEffect(() => {

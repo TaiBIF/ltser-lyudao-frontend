@@ -23,7 +23,8 @@ const Edit = () => {
   });
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
   const { qaId } = useParams();
-  const { getDetail, handleEdit, handleDelete, handleRelate } = useDashboard();
+  const { loading, getDetail, handleEdit, handleDelete, handleRelate } =
+    useDashboard();
 
   const ID = qaId ?? '';
   const URL = QA_API_URL;
@@ -74,6 +75,7 @@ const Edit = () => {
         fieldList={fieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
+        loading={loading}
       />
     </>
   );

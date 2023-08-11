@@ -21,7 +21,7 @@ const Add = () => {
     contact: '',
     image: '',
   };
-  const { handleAdd } = useDashboard();
+  const { loading, handleAdd } = useDashboard();
 
   const handleAddSubmit = (
     values: ItemTypes,
@@ -43,6 +43,7 @@ const Add = () => {
         fieldList={contactAddFieldList}
         validationSchema={contactValidationSchema}
         handleSubmit={handleAddSubmit}
+        loading={loading}
       />
     </>
   );

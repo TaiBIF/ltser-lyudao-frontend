@@ -18,3 +18,8 @@ export type AboutItem = {
   file?: string;
   attachments?: AttachmentItem[];
 };
+
+export type HeaderAboutSubItem = {
+  id: number | string;
+  name: string;
+};

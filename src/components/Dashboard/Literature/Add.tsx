@@ -16,7 +16,7 @@ const Add = () => {
   const initialValues: LiteratureItem = {
     name: '',
   };
-  const { handleAdd } = useDashboard();
+  const { loading, handleAdd } = useDashboard();
 
   const handleAddSubmit = (
     values: ItemTypes,
@@ -37,6 +37,7 @@ const Add = () => {
         fieldList={literatureFieldList}
         validationSchema={literatureValidationSchema}
         handleSubmit={handleAddSubmit}
+        loading={loading}
       />
     </>
   );

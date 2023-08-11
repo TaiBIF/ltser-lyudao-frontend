@@ -18,7 +18,7 @@ const Add = () => {
     files: [],
   };
 
-  const { handleAdd } = useDashboard();
+  const { loading, handleAdd } = useDashboard();
 
   const handleAddSubmit = (
     values: ItemTypes,
@@ -40,6 +40,7 @@ const Add = () => {
         fieldList={formLinkAddFieldList}
         validationSchema={formLinkValidationSchema}
         handleSubmit={handleAddSubmit}
+        loading={loading}
       />
     </>
   );

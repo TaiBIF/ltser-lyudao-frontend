@@ -24,6 +24,106 @@
   }
 }
 
+$color: (
+  primary: #529a81,
+  light: #fff,
+  error: #cf0000,
+  hover: #256750,
+  bg: (
+    muted: #fafafa
+  ),
+  border: (
+    muted: #e0e0e0,
+    table: #f2f2f2
+  ),
+  font: (
+    muted: #828282,
+    text: #333333,
+    primary: #529a81,
+    light: #ffffff
+  ),
+  opacity: (
+    primary: rgba(#529a81, 0.4)
+  ),
+  gray: (
+    1: #333333,
+    2: #505050,
+    3: #828282,
+    4: #bdbdbd,
+    5: #e0e0e0,
+    6: #f2f2f2,
+    7: #fafafa
+  ),
+  shadow: rgba(0, 0, 0, 0.1)
+);
+
+$padding: (
+  action: 1rem 1.5rem,
+  input: 0.75rem,
+  main: 2rem,
+  section: 1rem,
+  thead: 1rem,
+  icon: 0.25rem,
+  btn: 1rem 1.5rem
+);
+
+$margin: (
+  item: 1rem,
+  text: 0.25rem,
+  icon: 0.25rem,
+  block: 2rem
+);
+
+$height: (
+  line: 0.125rem,
+  action: 2.75rem,
+  icon: 1.25rem
+);
+
+$radius: (
+  action: 1rem,
+  block: 0.5rem,
+  main: 2rem,
+  section: 1rem,
+  input: 0.5rem,
+  btn: 100000rem
+);
+
+$border: (
+  input: 0.0625rem solid
+    map-get(
+      $map: map-get($color, border),
+      $key: muted
+    )
+);
+
+$shadow: (
+  block: 0 0 1rem 0
+    map-get(
+      $map: $color,
+      $key: shadow
+    ),
+  table: 0 0 0 0.00625rem
+    map-get(
+      $map: map-get($color, border),
+      $key: table
+    ),
+  focus: 0 0 0 0.3rem
+    map-get(
+      $map: map-get($color, opacity),
+      $key: primary
+    )
+);
+
+$weight: (
+  normal: 400,
+  bold: 500
+);
+
+$transition: (
+  default: 0.3s
+);
+
 @keyframes slideRight {
   0% {
     transform: translate3d(-100%, 0, 0);
@@ -33,30 +133,33 @@
   }
 }
 
-.u-section {
-  margin: 3rem 0;
-}
-
-.e-img {
-  width: 100%;
-  height: 100%;
-  &--contain {
-    object-fit: contain;
-  }
-  &--cover {
-    object-fit: cover;
+.u {
+  &-section {
+    margin: 3rem 0;
   }
 }
 
-.e-tag {
-  &--news {
-    margin-right: 0.5rem;
-    &:last-of-type {
-      margin-right: 0;
+.e {
+  &-img {
+    width: 100%;
+    height: 100%;
+    &--contain {
+      object-fit: contain;
     }
-    &:hover,
-    &.now {
-      @include category();
+    &--cover {
+      object-fit: cover;
+    }
+  }
+  &-tag {
+    &--news {
+      margin-right: 0.5rem;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      &:hover,
+      &.now {
+        @include category();
+      }
     }
   }
 }
@@ -86,6 +189,10 @@
     #{$_}__circle {
       stroke: #828282;
     }
+  }
+  &--dashboard {
+    width: 2rem;
+    height: 1.5rem;
   }
 }
 
@@ -166,5 +273,9 @@
     &:last-of-type {
       margin-right: 0;
     }
+  }
+  &--end {
+    margin-left: auto;
+    margin-right: 0;
   }
 }

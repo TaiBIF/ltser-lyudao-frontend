@@ -19,7 +19,7 @@ const Add = () => {
     question: '',
     answer: '',
   };
-  const { handleAdd, handleRelate } = useDashboard();
+  const { loading, handleAdd, handleRelate } = useDashboard();
   const [fieldList, setFieldList] = useState<FieldItem[]>([]);
 
   const handleAddSubmit = (
@@ -52,6 +52,7 @@ const Add = () => {
         fieldList={fieldList}
         validationSchema={qaValidationSchema}
         handleSubmit={handleAddSubmit}
+        loading={loading}
       />
     </>
   );

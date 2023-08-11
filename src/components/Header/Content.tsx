@@ -76,7 +76,7 @@ const Content = () => {
       setData: setAbout,
       defaultData: headerAboutData,
     });
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (!isFetchingAbout) {

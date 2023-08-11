@@ -7,6 +7,8 @@ const Item = ({ data }: { data: AttachmentItem }) => {
   const { id, name, content, file, image, created_at, updated_at } = data;
   const imageLink = `${IMAGE_URL}${image}`;
   const fileLink = `${FILE_URL}${file}`;
+
+  const hasFile = file.length !== 0;
   return (
     <>
       <div className="ab-item">
@@ -15,11 +17,13 @@ const Item = ({ data }: { data: AttachmentItem }) => {
         <div className="main-1280">
           <img className="marb_20" src={imageLink} alt={name} />
         </div>
-        <div>
-          <a href={fileLink} target="_blank" rel="noreferrer">
-            {fileLink}
-          </a>
-        </div>
+        {hasFile && (
+          <div>
+            <a href={fileLink} target="_blank" rel="noreferrer">
+              {fileLink}
+            </a>
+          </div>
+        )}
       </div>
     </>
   );
