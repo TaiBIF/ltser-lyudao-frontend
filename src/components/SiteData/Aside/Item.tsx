@@ -39,18 +39,18 @@ const Item = (props: ItemProps) => {
 
   return (
     <>
-      <li key={`${data.id}`}>
+      <li key={`${data.id}`} className="c-aside__list">
         {data.list ? (
           <>
             {/*給item-box now 並展開level-2*/}
             <div
-              className={`item-box ${active ? 'now' : ''}`}
+              className={`item-box c-aside__item ${active ? 'now' : ''}`}
               onClick={handleMenuClick}
             >
               <p>{data.title}</p>
               <Arrow />
             </div>
-            <ul className="level-2" ref={targetRef}>
+            <ul className="level-2 c-aside__menu" ref={targetRef}>
               {data.list.map((subItem) => {
                 return (
                   <SubItem

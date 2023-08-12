@@ -17,8 +17,6 @@ import Content from 'components/SiteData/Economy/Content';
 
 const Economy = () => {
   const { dataId } = useParams();
-
-  const navigate = useNavigate();
   const bannerData: BannerData = {
     title: '社會觀測',
     en: ['social', 'observation'],

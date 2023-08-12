@@ -28,7 +28,7 @@ const Title = ({ paths, url }: { paths: string[]; url: string }) => {
         .map((v) => v.list)
         .flat()
         .find((v) => v?.link === item)?.title
-    : asideList.find((v) => v?.link?.split('/')[1] === item)?.title;
+    : asideList.find((v) => v?.link === item)?.title;
 
   return (
     <>

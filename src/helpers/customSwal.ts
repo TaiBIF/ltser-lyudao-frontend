@@ -13,5 +13,6 @@ export const swalToast = Swal.mixin({
   customClass: {
     container: 'c-alert__container',
     popup: 'c-alert__toast',
+    title: 'c-alert__title',
   },
 });

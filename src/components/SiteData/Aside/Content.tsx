@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import Item from 'components/SiteData/Aside/Item';
 import Arrow from 'components/SiteData/Aside/ArrowIcon';
@@ -13,6 +13,7 @@ type ContentProps = {
 
 const Content = (props: ContentProps) => {
   const { data, page } = props;
+  const { dataId } = useParams();
 
   return (
     <>
@@ -21,7 +22,7 @@ const Content = (props: ContentProps) => {
           <p>觀測項目選擇</p>
           <ArrowUpIcon />
         </div>
-        <ul className="level-1">
+        <ul className="level-1 c-aside">
           {data.map((item) => {
             return item.list ? (
               <Item key={item.id} data={item} page={page} />
@@ -30,7 +31,9 @@ const Content = (props: ContentProps) => {
                 {/*本身就是連結的給item-box linkto*/}
                 <Link
                   to={`/site-data/${page}/${item.link}`}
-                  className="item-box linkto"
+                  className={`item-box linkto c-aside__tab ${
+                    dataId === item.link ? 'now ' : ''
+                  }`}
                 >
                   <p>{item.title}</p>
                   <Arrow />
