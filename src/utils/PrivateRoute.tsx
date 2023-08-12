@@ -2,6 +2,7 @@ import React, { ReactNode, useContext } from 'react';
 import { RouteProps, useNavigate } from 'react-router-dom';
 import { useAuthContext } from 'context/AuthContext';
 import { swalToast } from 'helpers/customSwal';
+import Spinner from 'components/Spinner';
 
 interface PrivateRouteProps {
   roles: string[];
@@ -17,6 +18,8 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   const { auth, group } = useAuthContext();
   const navigate = useNavigate();
 
+  const isFetchingGroup = group === '';
+
   if (!auth) {
     swalToast.fire({
       icon: 'warning',
@@ -25,8 +28,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
     navigate(redirectPath);
     return null;
   }
-
-  if (roles && !roles.includes(group as any)) {
+  if (roles && !isFetchingGroup && !roles.includes(group as any)) {
     swalToast.fire({
       icon: 'warning',
       title: '權限不足。',
@@ -34,7 +36,6 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
     navigate(redirectPath);
     return null;
   }
-
   return <>{children}</>;
 };
 

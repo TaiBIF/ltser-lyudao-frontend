@@ -9,6 +9,7 @@ const LinkIcon = () => {
         width="22.506"
         height="22.5"
         viewBox="0 0 22.506 22.5"
+        className="e-icon"
       >
         <g id="Group_7729" data-name="Group 7729" transform="translate(0)">
           <path

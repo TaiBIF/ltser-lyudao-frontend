@@ -10,6 +10,15 @@
         fill: map-get($map: $color, $key: hover);
       }
     }
+    &--icon {
+      &:hover {
+        .e-icon {
+          path {
+            fill: map-get($map: $color, $key: light);
+          }
+        }
+      }
+    }
   }
   &-icon {
     fill: map-get($map: $color, $key: primary);

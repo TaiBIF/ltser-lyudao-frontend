@@ -28,7 +28,12 @@ const Item = ({ data }: { data: FormLinkItem }) => {
           <p>{name}</p>
         </div>
         {isLink ? (
-          <a href={link} className="right-icob">
+          <a
+            href={link}
+            className="right-icob e-link e-link--icon"
+            target="_blank"
+            rel="noreferrer"
+          >
             <LinkIcon />
           </a>
         ) : (
