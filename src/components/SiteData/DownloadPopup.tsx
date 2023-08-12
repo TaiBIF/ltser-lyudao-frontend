@@ -10,7 +10,6 @@ import { useDownload } from 'hooks/api/useDownload';
 
 import { useEcoContext } from 'context/EcoContext';
 import { useSiteDataContext } from 'context/SiteDataContext';
-import { useAuthContext } from 'context/AuthContext';
 
 import { applyDownloadValidationSchema } from 'data/validationSchema';
 
@@ -20,8 +19,15 @@ interface DownloadPopupItem {
 
 const DownloadPopup = (props: DownloadPopupItem) => {
   const { item } = props;
-  const { show, downloadPopupRef, handleDownloadPopup } = useEcoContext();
-  const { loading, handleApplyDownload, handleDownload } = useDownload();
+  const {
+    show,
+    target,
+    downloadPopupRef,
+    handleDownloadPopup,
+    downloadTarget,
+    handleDownloadParams,
+  } = useEcoContext();
+  const { loading, handleApplyDownload } = useDownload();
   const { query } = useSiteDataContext();
   const initialValues = {
     email: '',
@@ -33,9 +39,12 @@ const DownloadPopup = (props: DownloadPopupItem) => {
     values: Record<string, any>,
     { setSubmitting }: FormikHelpers<Record<string, any>>
   ) => {
-    const fileName = `${item}`;
+    const { url, fileName } = handleDownloadParams({
+      item,
+      target: downloadTarget,
+    });
     handleApplyDownload({
-      url: `${item}/raws`,
+      url,
       fileName,
       values,
       params: { ...query },

@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   useState,
   useRef,
+  useEffect,
 } from 'react';
 
 import { ShowState } from 'types/utils';
@@ -22,12 +23,36 @@ export const EcoProvider = ({ children }: EcoProviderProps) => {
     downloadPopup: false,
   });
   const downloadPopupRef = useRef<HTMLDivElement>(null);
+  const [downloadTarget, setDownloadTarget] = useState('');
+
+  const handleDownloadParams = ({
+    item,
+    target,
+  }: {
+    item: string;
+    target: string;
+  }) => {
+    let url;
+    let fileName;
+    switch (target) {
+      case 'species':
+        url = `${item}/raws/species`;
+        fileName = `${item}_species`;
+        break;
+      case 'all':
+      default:
+        url = `${item}/raws`;
+        fileName = `${item}`;
+        break;
+    }
+    return { url, fileName };
+  };
 
   const handleDownloadPopup = (action: string) => {
-    const target = downloadPopupRef.current;
-    if (target) {
+    const popup = downloadPopupRef.current;
+    if (popup) {
       setShow({ ...show, downloadPopup: action === 'show' ? true : false });
-      gsapFade(action === 'show' ? 'in' : 'out', target);
+      gsapFade(action === 'show' ? 'in' : 'out', popup);
     }
   };
 
@@ -35,6 +60,9 @@ export const EcoProvider = ({ children }: EcoProviderProps) => {
     show,
     downloadPopupRef,
     handleDownloadPopup,
+    downloadTarget,
+    setDownloadTarget,
+    handleDownloadParams,
   };
 
   return (

@@ -35,7 +35,8 @@ const Result = (props: ResultProps) => {
     paginationData,
     setPaginationData,
   } = props;
-  const { show, handleDownloadPopup } = useEcoContext();
+  const { show, setDownloadTarget, handleDownloadPopup, handleDownloadParams } =
+    useEcoContext();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
 
   const { query, setQuery } = useSiteDataContext();
@@ -46,11 +47,16 @@ const Result = (props: ResultProps) => {
 
   const hasNoRaws = isDoneFetching && contextData.raws.length === 0;
 
-  const handleDownloadClick = () => {
-    const fileName = `${item}`;
+  const handleDownloadClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.currentTarget.dataset.target;
+    setDownloadTarget(target);
     if (auth) {
+      const { url, fileName } = handleDownloadParams({
+        item,
+        target,
+      });
       handleDownload({
-        url: `${item}/raws`,
+        url,
         fileName,
         params: { ...query },
         withHeaders: true,
@@ -63,6 +69,10 @@ const Result = (props: ResultProps) => {
   useEffect(() => {
     setQuery({});
   }, [item]);
+
+  useEffect(() => {
+    setDownloadTarget('');
+  }, [pathname]);
 
   useEffect(() => {
     if (contextData.raws !== undefined) {
@@ -87,10 +97,17 @@ const Result = (props: ResultProps) => {
                   type="button"
                   className="dowapply"
                   onClick={handleDownloadClick}
+                  data-target="all"
                 >
                   資料下載
                 </button>
-                <button>物種名錄下載</button>
+                <button
+                  type="button"
+                  onClick={handleDownloadClick}
+                  data-target="species"
+                >
+                  物種名錄下載
+                </button>
               </div>
             </div>
           </>
