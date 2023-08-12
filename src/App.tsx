@@ -52,6 +52,7 @@ import DashboardFormLinkAdd from 'components/Dashboard/FormLink/Add';
 import DashboardFormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import DashboardDownload from 'components/Dashboard/Download';
 import DashboardDownloadRecord from 'components/Dashboard/DownloadRecord';
+import Layout from 'components/SiteData/Economy/Layout';
 
 import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
@@ -60,8 +61,7 @@ import { DataProvider } from 'context/DataContext';
 import { SiteDataProvider } from 'context/SiteDataContext';
 import { AuthProvider } from 'context/AuthContext';
 
-import RouteGuard from 'utils/RouteGuard';
-import Layout from 'components/SiteData/Economy/Layout';
+import PrivateRoute from 'utils/PrivateRoute';
 
 function App() {
   return (
@@ -183,173 +183,298 @@ function App() {
               />
               <Route path="/terms" element={<Terms />} />
               <Route
+                path="/form-link"
                 element={
-                  <RouteGuard
+                  <PrivateRoute
                     roles={['none', 'staff', 'superuser']}
-                    redirectPath={`/`}
-                  />
-                }
-              >
-                <Route path="/form-link" element={<FormLink />} />
-                <Route
-                  element={
-                    <RouteGuard
-                      roles={['staff', 'superuser']}
-                      redirectPath={`/dashboard/about`}
-                    />
-                  }
-                >
-                  <Route
-                    path="/dashboard/about"
-                    element={<Dashboard content={<DashboardAboutContent />} />}
-                  />
-                  <Route
-                    path="/dashboard/about/add"
-                    element={<Dashboard content={<DashboardAboutAdd />} />}
-                  />
-                  <Route
-                    path="/dashboard/about/edit/:aboutId"
-                    element={<Dashboard content={<DashboardAboutEdit />} />}
-                  />
-                  <Route
-                    path="/dashboard/about-attachment"
-                    element={
-                      <Dashboard
-                        content={<DashboardAboutAttachmentContent />}
-                      />
-                    }
-                  />
-                  <Route
-                    path="/dashboard/about-attachment/add"
-                    element={
-                      <Dashboard content={<DashboardAboutAttachmentAdd />} />
-                    }
-                  />
-                  <Route
-                    path="/dashboard/about-attachment/edit/:aboutAttachmentId"
-                    element={
-                      <Dashboard content={<DashboardAboutAttachmentEdit />} />
-                    }
-                  />
-                  <Route
-                    path="/dashboard/news"
-                    element={<Dashboard content={<DashboardNewsContent />} />}
-                  />
-                  <Route
-                    path="/dashboard/news/add"
-                    element={<Dashboard content={<DashboardNewsAdd />} />}
-                  />
-                  <Route
-                    path="/dashboard/news/edit/:newsId"
-                    element={<Dashboard content={<DashboardNewsEdit />} />}
-                  />
-                  <Route
-                    path="/dashboard/news-type"
-                    element={
-                      <Dashboard content={<DashboardNewsTypeContent />} />
-                    }
-                  />
-                  <Route
-                    path="/dashboard/news-type/add"
-                    element={<Dashboard content={<DashboardNewsTypeAdd />} />}
-                  />
-                  <Route
-                    path="/dashboard/news-type/edit/:newsTypeId"
-                    element={<Dashboard content={<DashboardNewsTypeEdit />} />}
-                  />
-                  <Route
-                    path="/dashboard/related-literature"
-                    element={
-                      <Dashboard content={<DashboardLiteratureContent />} />
-                    }
-                  />
-                  <Route
-                    path="/dashboard/related-literature/add"
-                    element={<Dashboard content={<DashboardLiteratureAdd />} />}
-                  />
-                  <Route
-                    path="/dashboard/related-literature/edit/:literatureId"
-                    element={
-                      <Dashboard content={<DashboardLiteratureEdit />} />
-                    }
-                  />
-                  <Route
-                    path="/dashboard/download-record"
-                    element={
-                      <Dashboard content={<DashboardDownloadRecord />} />
-                    }
-                  />
-                  <Route
-                    element={
-                      <RouteGuard
-                        roles={['superuser']}
-                        redirectPath={`/dashboard/about`}
-                      />
-                    }
+                    redirectPath="/"
                   >
-                    <Route
-                      path="/dashboard/contact"
-                      element={
-                        <Dashboard content={<DashboardContactContent />} />
-                      }
-                    />
-                    <Route
-                      path="/dashboard/contact/add"
-                      element={<Dashboard content={<DashboardContactAdd />} />}
-                    />
-                    <Route
-                      path="/dashboard/contact/edit/:contactId"
-                      element={<Dashboard content={<DashboardContactEdit />} />}
-                    />
-                    <Route
-                      path="/dashboard/qa"
-                      element={<Dashboard content={<DashboardQAContent />} />}
-                    />
-                    <Route
-                      path="/dashboard/qa/add"
-                      element={<Dashboard content={<DashboardQAAdd />} />}
-                    />
-                    <Route
-                      path="/dashboard/qa/edit/:qaId"
-                      element={<Dashboard content={<DashboardQAEdit />} />}
-                    />
-                    <Route
-                      path="/dashboard/qa-type"
-                      element={
-                        <Dashboard content={<DashboardQATypeContent />} />
-                      }
-                    />
-                    <Route
-                      path="/dashboard/qa-type/add"
-                      element={<Dashboard content={<DashboardQATypeAdd />} />}
-                    />
-                    <Route
-                      path="/dashboard/qa-type/edit/:qaTypeId"
-                      element={<Dashboard content={<DashboardQATypeEdit />} />}
-                    />
-                    <Route
-                      path="/dashboard/form-link"
-                      element={
-                        <Dashboard content={<DashboardFormLinkContent />} />
-                      }
-                    />
-                    <Route
-                      path="/dashboard/form-link/add"
-                      element={<Dashboard content={<DashboardFormLinkAdd />} />}
-                    />
-                    <Route
-                      path="/dashboard/form-link/edit/:formLinkId"
-                      element={
-                        <Dashboard content={<DashboardFormLinkEdit />} />
-                      }
-                    />
-                    <Route
-                      path="/dashboard/download"
-                      element={<Dashboard content={<DashboardDownload />} />}
-                    />
-                  </Route>
-                </Route>
-              </Route>
+                    <FormLink />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/form-link"
+                element={
+                  <PrivateRoute
+                    roles={['none', 'staff', 'superuser']}
+                    redirectPath="/login"
+                  >
+                    <FormLink />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/about"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardAboutContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/about/add"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardAboutAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/about/edit/:aboutId"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardAboutEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/about-attachment"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardAboutAttachmentContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/about-attachment/add"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardAboutAttachmentAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/about-attachment/edit/:aboutAttachmentId"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardAboutAttachmentEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/news"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardNewsContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/news/add"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardNewsAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/news/edit/:newsId"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardNewsEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/news-type"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardNewsTypeContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/news-type/add"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardNewsTypeAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/news-type/edit/:newsTypeId"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardNewsTypeEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/related-literature"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardLiteratureContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/related-literature/add"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardLiteratureAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/related-literature/edit/:literatureId"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardLiteratureEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/download-record"
+                element={
+                  <PrivateRoute roles={['staff', 'superuser']} redirectPath="/">
+                    <Dashboard content={<DashboardDownloadRecord />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/contact"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardContactContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/contact/add"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardContactAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/contact/edit/:contactId"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardContactEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/qa"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardQAContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/qa/add"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardQAAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/qa/edit/:qaId"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardQAEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/qa-type"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardQATypeContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/qa-type/add"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardQATypeAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/qa-type/edit/:qaTypeId"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardQATypeEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/form-link"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardFormLinkContent />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/form-link/add"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardFormLinkAdd />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/form-link/edit/:formLinkId"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardFormLinkEdit />} />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/dashboard/download"
+                element={
+                  <PrivateRoute
+                    roles={['superuser']}
+                    redirectPath="/dashboard/about"
+                  >
+                    <Dashboard content={<DashboardDownload />} />
+                  </PrivateRoute>
+                }
+              />
             </Routes>
             <Footer />
           </AuthProvider>
