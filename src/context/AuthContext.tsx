@@ -127,6 +127,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       data: values,
       url: `/login/`,
     });
+    if (values.rememberMe) {
+      localStorage.setItem('rememberMe', values.email);
+    } else {
+      localStorage.removeItem('rememberMe');
+    }
     handleActions({
       result,
       success: {
@@ -251,7 +256,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       url: `/signUp/`,
     });
     const handleSuccessAction = () => {
-      localStorage.setItem('email', values['email']);
+      localStorage.setItem('email', values.email);
       navigate('/verify-email');
       setShow({
         menu3: false,
