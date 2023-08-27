@@ -11,6 +11,12 @@ const usePage = () => {
     ...defaultPaginationData,
   });
 
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setPaginationData({ ...defaultPaginationData });
+  }, [pathname]);
+
   return {
     currentPage,
     setCurrentPage,

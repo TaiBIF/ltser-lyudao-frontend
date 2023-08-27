@@ -1,6 +1,6 @@
 export const defaultPaginationData = {
-  currentPage: 1,
-  recordsPerPage: 1,
-  totalPages: 1,
-  totalRecords: 1,
+  currentPage: 0,
+  recordsPerPage: 0,
+  totalPages: 0,
+  totalRecords: 0,
 };

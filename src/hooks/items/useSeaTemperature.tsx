@@ -18,7 +18,7 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 import { seaTemperatureSeries } from 'data/series';
 
 const useSeaTemperature = () => {
-  const [sites, setSites] = useState<string[]>([]);
+  const [sites, setSites] = useState<string[] | null>(null);
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -29,7 +29,7 @@ const useSeaTemperature = () => {
   });
   const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
-  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[] | null>(null);
   const { filter } = useSiteDataContext();
 
   const URL = `sea-temperature`;

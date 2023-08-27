@@ -36,6 +36,12 @@ const useSiteDataApi = () => {
           ),
         });
       }
+    } else {
+      if (defaultList) {
+        setList([...defaultList]);
+      } else {
+        setList([]);
+      }
     }
   };
 
@@ -55,7 +61,11 @@ const useSiteDataApi = () => {
     if (result?.status === 'success') {
       setList([...result.response.data]);
     } else {
-      setList([...defaultList]);
+      if (defaultList) {
+        setList([...defaultList]);
+      } else {
+        setList([]);
+      }
     }
   };
 
@@ -80,7 +90,11 @@ const useSiteDataApi = () => {
     if (result?.status === 'success') {
       setList([...result.response.data]);
     } else {
-      setList([...defaultList]);
+      if (defaultList) {
+        setList([...defaultList]);
+      } else {
+        setList([]);
+      }
     }
   };
 

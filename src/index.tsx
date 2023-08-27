@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 // Leaflet
 import 'leaflet/dist/leaflet.css';
 
+// react-h5-audio-player
+import 'react-h5-audio-player/lib/styles.css';
+
 // Custom CSS
 import 'styles/theme.scss';
 

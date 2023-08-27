@@ -30,8 +30,9 @@ const Main = (props: MainProps) => {
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();
 
-  const isFetchingSites = contextData.sites.length === 0;
-  const isFetchingFields = contextData.fields.length === 0;
+  const isFetchingSites = contextData.sites === null;
+  const hasNoSites = !isFetchingSites && contextData.sites.length === 0;
+  const isFetchingFields = contextData.fields === null;
   const isFetchingRaws = contextData.raws === null;
   const isDoneFetching = !isFetchingFields && !isFetchingRaws;
   useEffect(() => {
@@ -45,12 +46,16 @@ const Main = (props: MainProps) => {
         <Title paths={paths} url={contextData.depositarUrl} />
         <div className="u-section">
           {!isFetchingSites ? (
-            <Select
-              title="測站/樣區"
-              options={contextData.sites}
-              filter={filter}
-              setFilter={setFilter}
-            />
+            !hasNoSites ? (
+              <Select
+                title="測站/樣區"
+                options={contextData.sites}
+                filter={filter}
+                setFilter={setFilter}
+              />
+            ) : (
+              <>目前沒有測站資料。</>
+            )
           ) : (
             <Placeholder layout="inline" />
           )}

@@ -17,7 +17,7 @@ import useSiteData from 'hooks/page/useSiteData';
 import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useWeather = () => {
-  const [sites, setSites] = useState<string[]>([]);
+  const [sites, setSites] = useState<string[] | null>(null);
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
@@ -29,7 +29,7 @@ const useWeather = () => {
   });
   const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
-  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[] | null>(null);
   const { filter } = useSiteDataContext();
 
   const URL = `weather`;

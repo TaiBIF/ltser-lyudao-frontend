@@ -16,10 +16,10 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 import { oceanSoundIndexSeries } from 'data/series';
 
 const useOceanSoundIndex = () => {
-  const [sites, setSites] = useState<string[]>([]);
+  const [sites, setSites] = useState<string[] | null>(null);
   const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
-  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[] | null>(null);
   const { filter } = useSiteDataContext();
 
   const URL = `ocean-sound-index`;

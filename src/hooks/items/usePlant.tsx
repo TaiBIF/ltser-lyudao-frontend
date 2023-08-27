@@ -16,14 +16,14 @@ import useSiteData from 'hooks/page/useSiteData';
 import { useSiteDataContext } from 'context/SiteDataContext';
 
 const usePlant = () => {
-  const [sites, setSites] = useState<string[]>([]);
+  const [sites, setSites] = useState<string[] | null>(null);
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
     seasonal: [],
   });
   const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
-  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
   const { filter } = useSiteDataContext();
 

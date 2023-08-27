@@ -34,6 +34,8 @@ const Search = (props: SearchProps) => {
   const { pathname } = useLocation();
   const { currentPage } = usePage();
 
+  const hasNoFields = isDoneFetching && contextData.fields.length === 0;
+
   const handleSubmit = (
     values: RawItemTypes,
     { setSubmitting }: FormikHelpers<RawItemTypes>
@@ -64,23 +66,27 @@ const Search = (props: SearchProps) => {
       <div className="center-title">資料列表搜尋</div>
       <div className="input-box">
         {isDoneFetching ? (
-          <Formik {...formikConfig}>
-            <Form>
-              <ul className="set-li">
-                {searchFieldList.map((v: RawFieldItem) => {
-                  return <SearchFieldLayout key={v.id} data={v} />;
-                })}
-              </ul>
-              <div className="send-btnarea">
-                <button type="reset" className="clearall">
-                  清除
-                </button>
-                <button type="submit" className="searchall">
-                  搜尋
-                </button>
-              </div>
-            </Form>
-          </Formik>
+          !hasNoFields ? (
+            <Formik {...formikConfig}>
+              <Form>
+                <ul className="set-li">
+                  {searchFieldList.map((v: RawFieldItem) => {
+                    return <SearchFieldLayout key={v.id} data={v} />;
+                  })}
+                </ul>
+                <div className="send-btnarea">
+                  <button type="reset" className="clearall">
+                    清除
+                  </button>
+                  <button type="submit" className="searchall">
+                    搜尋
+                  </button>
+                </div>
+              </Form>
+            </Formik>
+          ) : (
+            <>目前沒有欄位資料。</>
+          )
         ) : (
           <>
             <Placeholder layout="line" />

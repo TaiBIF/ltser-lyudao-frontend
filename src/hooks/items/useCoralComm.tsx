@@ -14,10 +14,10 @@ import useSurveyMapData from 'hooks/page/useSurveyMapData';
 import { useSiteDataContext } from 'context/SiteDataContext';
 
 const useCoralComm = () => {
-  const [sites, setSites] = useState<string[]>([]);
+  const [sites, setSites] = useState<string[] | null>(null);
   const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
-  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[] | null>(null);
   const { filter } = useSiteDataContext();
 
   const URL = `coral-comm`;

@@ -14,10 +14,10 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 import { waterSeries } from 'data/series';
 
 const useWater = () => {
-  const [sites, setSites] = useState<string[]>([]);
+  const [sites, setSites] = useState<string[] | null>(null);
   const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
-  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[] | null>(null);
   const { filter } = useSiteDataContext();
 
   const URL = `water`;

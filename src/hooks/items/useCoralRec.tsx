@@ -17,14 +17,14 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 import { weatherRaws } from 'data/rawData';
 
 const useCoralRec = () => {
-  const [sites, setSites] = useState<string[]>([]);
+  const [sites, setSites] = useState<string[] | null>(null);
   const [detail, setDetail] = useState<DetailItemTypes>({
     site: '',
     year: '',
     count: 0,
   });
   const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
-  const [series, setSeries] = useState<SeriesItemTypes[]>([]);
+  const [series, setSeries] = useState<SeriesItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
   const { filter } = useSiteDataContext();
 

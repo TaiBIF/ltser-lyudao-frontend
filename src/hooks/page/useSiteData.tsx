@@ -15,7 +15,7 @@ interface useSiteDataProps {
   defaultSeries?: SeriesItemTypes[];
   setRaws?: Dispatch<SetStateAction<RawItemTypes[] | null>>;
   setFields?: Dispatch<SetStateAction<RawFieldItem[]>>;
-  setSeries?: Dispatch<SetStateAction<SeriesItemTypes[]>>;
+  setSeries?: Dispatch<SetStateAction<SeriesItemTypes[] | null>>;
   setPageData?: Dispatch<SetStateAction<PaginationDataItem[]>>;
 }
 

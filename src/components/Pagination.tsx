@@ -52,6 +52,7 @@ const Pagination = (props: PaginationProps) => {
       });
     }
   };
+
   return (
     <>
       <div className="page-num">

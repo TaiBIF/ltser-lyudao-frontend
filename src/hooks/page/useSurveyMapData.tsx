@@ -14,7 +14,7 @@ interface useSurveyMapDataProps {
   url: string;
   defaultSites?: SiteItem;
   defaultDetail?: DetailItemTypes;
-  setSites?: Dispatch<SetStateAction<string[]>>;
+  setSites?: Dispatch<SetStateAction<string[] | null>>;
   allTimeRange?: TimeRangeItem[];
   setAllTimeRange?: Dispatch<SetStateAction<TimeRangeItem[]>>;
   setDetail?: Dispatch<SetStateAction<DetailItemTypes>>;

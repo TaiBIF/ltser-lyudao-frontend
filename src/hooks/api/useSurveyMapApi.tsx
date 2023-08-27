@@ -29,7 +29,11 @@ const useSurveyMapApi = () => {
       setList([...result.response.data.sites]);
       setFilter({ ...filter, site: result.response.data.sites[0] });
     } else {
-      setList([...defaultList]);
+      if (defaultList) {
+        setList([...defaultList]);
+      } else {
+        setList([]);
+      }
     }
   };
 

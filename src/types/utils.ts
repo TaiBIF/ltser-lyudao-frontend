@@ -85,7 +85,7 @@ export type RelateListTypes = ColItem | FieldItem;
 export type ContextItem = {
   id: string;
   depositarUrl: string;
-  sites?: string[];
+  sites?: string[] | null;
   getSites?: any;
   detail?: any;
   getDetail?: any;
@@ -93,7 +93,7 @@ export type ContextItem = {
   getRaws?: any;
   fields?: RawFieldItem[];
   getFields?: any;
-  series?: SeriesItemTypes[];
+  series?: SeriesItemTypes[] | null;
   getSeries?: any;
 };
 

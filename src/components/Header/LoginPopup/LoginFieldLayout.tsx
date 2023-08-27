@@ -27,7 +27,7 @@ const LoginFieldLayout = ({
   };
 
   useEffect(() => {
-    if (google) {
+    if (google !== undefined) {
       google.accounts.id.initialize({
         client_id:
           '293650145366-i0mnv9rn0jqptkvtrr677dh9cb6nhttp.apps.googleusercontent.com',
@@ -41,7 +41,7 @@ const LoginFieldLayout = ({
         });
       }
     }
-  }, [google]);
+  }, []);
 
   return (
     <>
