@@ -21,9 +21,10 @@ type SeriesItem = {
   name?: string;
   data: number[];
   type: string;
+  isHabitat: boolean;
 };
 
-const Content = ({ item }: { item: string }) => {
+const Content = ({ item, isHabitat }: { item: string; isHabitat: boolean }) => {
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
@@ -48,7 +49,13 @@ const Content = ({ item }: { item: string }) => {
     if (!isFetchingSeries) {
       if (!hasNoSite) {
         if (!hasNoSeries) {
-          const xAxis = contextData.series.map((v: SeriesItemTypes) => v.time);
+          let key: string;
+          if (isHabitat) {
+            key = 'locationID';
+          } else {
+            key = 'time';
+          }
+          const xAxis = contextData.series.map((v: SeriesItemTypes) => v[key]);
           setXAxisList([...xAxis]);
           const series = Object.entries(contextData.series[0])
             .map(([key]) => {

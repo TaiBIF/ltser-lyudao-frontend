@@ -35,6 +35,9 @@ const Main = (props: MainProps) => {
   const isFetchingFields = contextData.fields === null;
   const isFetchingRaws = contextData.raws === null;
   const isDoneFetching = !isFetchingFields && !isFetchingRaws;
+
+  const isHabitat = item === 'habitat';
+
   useEffect(() => {
     contextData.getFields();
     contextData.getSites();
@@ -45,21 +48,22 @@ const Main = (props: MainProps) => {
       <div className="right-infbox">
         <Title paths={paths} url={contextData.depositarUrl} />
         <div className="u-section">
-          {!isFetchingSites ? (
-            !hasNoSites ? (
-              <Select
-                title="測站/樣區"
-                options={contextData.sites}
-                filter={filter}
-                setFilter={setFilter}
-              />
+          {!isHabitat &&
+            (!isFetchingSites ? (
+              !hasNoSites ? (
+                <Select
+                  title="測站/樣區"
+                  options={contextData.sites}
+                  filter={filter}
+                  setFilter={setFilter}
+                />
+              ) : (
+                <>目前沒有測站資料。</>
+              )
             ) : (
-              <>目前沒有測站資料。</>
-            )
-          ) : (
-            <Placeholder layout="inline" />
-          )}
-          <EchartsChart item={item} />
+              <Placeholder layout="inline" />
+            ))}
+          <EchartsChart item={item} isHabitat={isHabitat} />
         </div>
         <div className="data-searchbox">
           <Search
