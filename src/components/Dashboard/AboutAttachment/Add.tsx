@@ -57,6 +57,8 @@ const Add = () => {
     values: ItemTypes,
     { setSubmitting }: FormikHelpers<ItemTypes>
   ) => {
+    console.log(values);
+
     handleAdd({
       values,
       url: ABOUT_ATTACHMENT_API_URL,

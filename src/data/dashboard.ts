@@ -313,7 +313,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
     required: true,
     hints: [
       {
-        id: 'link',
+        id: 'file',
         title: '目前檔案:',
       },
     ],

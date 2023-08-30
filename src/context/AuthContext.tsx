@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       ? JSON.parse(localStorage.getItem('authTokens') as string)
       : { ...initialAuthToken }
   );
-  const [init, setInit] = useState<boolean>(false);
+  const [init, setInit] = useState<boolean>(true);
   const [auth, setAuth] = useState<boolean>(true);
   const [group, setGroup] = useState<string>('');
 
@@ -198,6 +198,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setAuthTokens({ ...authTokens, ...data });
       localStorage.setItem('authTokens', JSON.stringify(authTokens));
       console.log('token updated');
+      getGroup();
       if (init) {
         setInit(false);
       }
@@ -378,13 +379,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (isExistTokens) {
-      setAuth(true);
-      getGroup();
-    } else {
-      setAuth(false);
+    if (!init) {
+      if (isExistTokens) {
+        setAuth(true);
+        getGroup();
+      } else {
+        setAuth(false);
+      }
     }
-  }, [authTokens.access]);
+  }, [authTokens.access, init]);
 
   useEffect(() => {
     const time = 11.9 * 60 * 60 * 1000;
@@ -397,7 +400,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [authTokens, init]);
 
   useEffect(() => {
-    if (authTokens.access !== '') {
+    if (authTokens) {
       setInit(false);
     }
   }, [authTokens.access]);

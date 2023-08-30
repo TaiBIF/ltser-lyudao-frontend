@@ -189,6 +189,22 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
                           </div>
                         ))
                     );
+                  case 'file':
+                    return (
+                      typeof values.file === 'string' && (
+                        <div key={id} className="c-form__text">
+                          {title}
+                          <a
+                            href={`${IMAGE_URL}/${values.file}`}
+                            className="e-link"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {values.file}
+                          </a>
+                        </div>
+                      )
+                    );
                   case 'cover':
                     value = (values as NewsItem).cover;
                     const hasCover =

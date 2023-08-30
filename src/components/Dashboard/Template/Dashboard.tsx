@@ -14,6 +14,8 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = (props) => {
   const paths = pathname.split('/');
   const { group } = useAuthContext();
 
+  const isFetchingGroup = group === '';
+
   return (
     <>
       <main className="u-page">
@@ -24,6 +26,7 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = (props) => {
                 {tabList.map((v) => {
                   const { id, title, auth } = v;
                   return (
+                    !isFetchingGroup &&
                     auth?.includes(group) && (
                       <Link
                         key={id}

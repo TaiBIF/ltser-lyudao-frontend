@@ -43,11 +43,7 @@ const Item = ({ data }: { data: AttachmentItem }) => {
         )}
         {hasFile &&
           (isAudio ? (
-            <AudioPlayer
-              autoPlay
-              src={fileLink}
-              onPlay={(e) => console.log('onPlay')}
-            />
+            <AudioPlayer src={fileLink} onPlay={(e) => console.log('onPlay')} />
           ) : (
             <div>
               <a href={fileLink} target="_blank" rel="noreferrer">
