@@ -75,6 +75,7 @@ const Content = () => {
       url: HEADER_ABOUT_API_URL,
       setData: setAbout,
       defaultData: headerAboutData,
+      redirectPath: '/',
     });
   }, [pathname]);
 

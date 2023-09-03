@@ -62,6 +62,7 @@ import { SiteDataProvider } from 'context/SiteDataContext';
 import { AuthProvider } from 'context/AuthContext';
 
 import PrivateRoute from 'utils/PrivateRoute';
+import Placeholder from 'components/Placeholder';
 
 function App() {
   return (
@@ -475,6 +476,7 @@ function App() {
                   </PrivateRoute>
                 }
               />
+              <Route path="/oauth/callback" element={<Placeholder />} />
             </Routes>
             <Footer />
           </AuthProvider>
