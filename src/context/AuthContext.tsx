@@ -156,7 +156,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const result = await handleApi({
       type: 'auth',
       method: 'post',
-      data: { code },
+      data: { authorization_code: code },
       url: `/google/`,
     });
     handleActions({
