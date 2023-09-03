@@ -157,7 +157,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       type: 'auth',
       method: 'post',
       data: { code },
-      url: `/google-login/`,
+      url: `/google/`,
     });
     handleActions({
       result,

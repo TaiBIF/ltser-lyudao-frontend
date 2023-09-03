@@ -60,8 +60,10 @@ export const useApi = () => {
           baseUrl = AUTH_URL;
           break;
         case 'api':
-        default:
           baseUrl = API_URL;
+          break;
+        default:
+          baseUrl = '';
           break;
       }
       response = await axios({
