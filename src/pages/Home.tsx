@@ -25,6 +25,7 @@ const Home = () => {
 
   useEffect(() => {
     if (code) {
+      console.log(code);
       handleGoogleSignIn({ code, setShow });
     }
   }, [location, code]);
