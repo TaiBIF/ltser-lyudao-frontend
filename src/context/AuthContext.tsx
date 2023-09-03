@@ -159,6 +159,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       data: { authorization_code: code },
       url: `/google/`,
     });
+    const handleErrorAction = () => {
+      navigate('/');
+    };
     handleActions({
       result,
       success: {
@@ -169,6 +172,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       },
       error: {
         title: '發生錯誤。',
+        action: () => {
+          handleErrorAction();
+        },
       },
     });
   };
