@@ -28,7 +28,7 @@ const LoginFieldLayout = ({
   // };
 
   const handleGoogleClick = () => {
-    const redirectUri = `${FE_URL}oauth/callback`;
+    const redirectUri = `${FE_URL}`;
     const scope = 'openid email profile';
     const responseType = 'code';
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GSI_CLIENT_ID}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
