@@ -567,6 +567,7 @@ body {
 						width: 100%;
 						padding: 15px 20px;
 						flex-wrap: wrap;
+						border-bottom: 1px solid #eee;
 					}
 				}
 				.menu_2 {
@@ -618,6 +619,63 @@ body {
 						visibility: visible;
 						@include bg_change(0.3s);
 						@include alpha(1);
+					}
+				}
+			}
+			.logoutbox {
+				cursor: pointer;
+				@include bg_change(0.3s);
+				position: relative;
+				@media #{$pc_s} {
+					height: initial;
+				}
+				.formb {
+					padding: 0px 20px;
+					display: flex;
+					align-items: center;
+					height: 80px;
+					@media #{$pc_m} {
+						padding: 0px 10px 0px 20px;
+					}
+					@media #{$pc_s} {
+						height: initial;
+						width: 100%;
+						padding: 15px 20px;
+						flex-wrap: wrap;
+						border-bottom: 1px solid #eee;
+					}
+				}
+				svg {
+					path {
+						@include bg_change(0.3s);
+					}
+				}
+				p {
+					color: $col-green;
+					font-size: 18px;
+					margin-left: 5px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical;
+					max-width: 150px;
+					@media #{$pc_m} {
+						font-size: 16px;
+						max-width: 80px;
+					}
+				}
+				&:hover {
+					@include bg_change(0.3s);
+					background: $col-green;
+					p {
+						color: #fff;
+					}
+					svg {
+						path {
+							fill: #fff;
+							@include bg_change(0.3s);
+						}
 					}
 				}
 			}
@@ -1186,6 +1244,8 @@ body {
 		.map-box {
 			position: absolute;
 			width: 100%;
+			left: 0;
+			bottom: 0;
 			height: 100%;
 			img,
 			iframe,

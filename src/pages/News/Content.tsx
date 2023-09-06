@@ -43,8 +43,6 @@ const Content = () => {
   const isAllType = filter.type === 0;
   const isFetchingList = news.length === 0;
   const isFetchingTypeList = typeList.length === 0;
-  const hasStartDate = filter.startDate !== '';
-  const hasEndDate = filter.endDate !== '';
 
   const handleTypeClick = (id: number | string) => {
     setFilter({ ...filter, type: id });
@@ -65,12 +63,10 @@ const Content = () => {
       params: {
         page: currentPage,
         tag: !isAllType ? filter.type : null,
-        startDate: hasStartDate ? filter.startDate : null,
-        endDate: hasEndDate ? filter.endDate : null,
       },
       setPaginationData,
     });
-  }, [currentPage, filter]);
+  }, [currentPage, filter.type]);
 
   return (
     <>
@@ -100,7 +96,14 @@ const Content = () => {
                     })}
                 </ul>
               </div>
-              <DateFilter filter={filter} setFilter={setFilter} />
+              <DateFilter
+                filter={filter}
+                setFilter={setFilter}
+                setNews={setNews}
+                currentPage={currentPage}
+                setPaginationData={setPaginationData}
+                isAllType={isAllType}
+              />
             </div>
             <div className="news-list">
               <ul>

@@ -159,6 +159,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       data: { authorization_code: code },
       url: `/google/`,
     });
+    console.log(result);
+
     const handleErrorAction = () => {
       navigate('/');
     };

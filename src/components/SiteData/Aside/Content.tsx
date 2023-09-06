@@ -5,6 +5,8 @@ import Arrow from 'components/SiteData/Aside/ArrowIcon';
 import ArrowUpIcon from 'components/SiteData/Aside/ArrowUpIcon';
 
 import { AsideItem } from 'types/siteData';
+import { useEffect, useRef, useState } from 'react';
+import { gsapSlideToggle } from 'utils/animation';
 
 type ContentProps = {
   data: AsideItem[];
@@ -14,15 +16,33 @@ type ContentProps = {
 const Content = (props: ContentProps) => {
   const { data, page } = props;
   const { dataId } = useParams();
+  const [active, setActive] = useState(false);
+  const targetRef = useRef<HTMLUListElement>(null);
+
+  const handleMobileClick = () => {
+    setActive(!active);
+  };
+
+  useEffect(() => {
+    const target = targetRef.current;
+    if (target) {
+      target.style.display = 'block';
+      if (active) {
+        gsapSlideToggle('auto', target, true);
+      } else {
+        gsapSlideToggle('auto', target, false);
+      }
+    }
+  }, [active]);
 
   return (
     <>
       <div className="left-mainmenu" style={{ overflow: 'visible' }}>
-        <div className="btn-mb">
+        <div className="btn-mb" onClick={handleMobileClick}>
           <p>觀測項目選擇</p>
           <ArrowUpIcon />
         </div>
-        <ul className="level-1 c-aside">
+        <ul className="level-1 c-aside" ref={targetRef}>
           {data.map((item) => {
             return item.list ? (
               <Item key={item.id} data={item} page={page} />

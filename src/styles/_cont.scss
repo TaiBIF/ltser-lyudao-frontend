@@ -159,11 +159,16 @@
   .main-box {
     @include alpha(0);
     animation: alphatop30 0.5s 0.3s linear forwards;
+    @media #{$pad} {
+      @include alpha(1);
+      animation: none;
+    }
   }
   .tool-area {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 40px;
+    justify-content: space-between;
     @media #{$pad} {
       margin-bottom: 30px;
     }
@@ -172,6 +177,9 @@
       background: #fff;
       border-radius: 30px;
       padding: 0px 25px;
+      @media #{$pc_s} {
+        width: 50%;
+      }
       @media #{$pad} {
         margin-bottom: 30px;
       }
@@ -184,7 +192,18 @@
       }
       ul {
         display: flex;
-
+        @media #{$pc_s} {
+          overflow: auto;
+          width: 100%;
+          &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+          &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #256750;
+          }
+        }
         @media #{$mobile} {
           width: 100%;
           overflow: auto;
@@ -201,7 +220,7 @@
           @include bg_change(0.3s);
           position: relative;
           border-bottom: 2px solid #fff;
-          @media #{$mobile} {
+          @media #{$pc_s} {
             white-space: nowrap;
             padding: 10px;
             font-size: 16px;
@@ -234,7 +253,7 @@
   .tool-select {
     display: flex;
     align-items: center;
-    margin-left: 30px;
+    justify-content: space-between;
     @media #{$pad} {
       margin-left: 0;
     }
@@ -255,6 +274,9 @@
       justify-content: space-between;
       font-size: 18px;
       padding: 0px 20px;
+      @media #{$pc_s} {
+        width: 350px;
+      }
       @media #{$mobile} {
         width: 100%;
         height: 50px;
@@ -264,6 +286,7 @@
       .inp-item {
         width: calc(50% - 15px);
         position: relative;
+        margin-bottom: 0;
         .dateicon {
           position: absolute;
           right: 0px;
@@ -293,6 +316,29 @@
             // display: none;
             opacity: 0;
           }
+        }
+      }
+    }
+    button {
+      background: $col-green;
+      color: #fff;
+      height: 60px;
+      border-radius: 30px;
+      padding: 0px 20px;
+      font-size: 18px;
+      margin-left: 10px;
+      min-width: 100px;
+      @include bg_change(0.3s);
+      @media #{$mobile} {
+        height: 50px;
+        min-width: 70px;
+        padding: 0px 10px;
+        font-size: 16px;
+      }
+      @media #{$pc} {
+        &:hover {
+          @include bg_change(0.3s);
+          background: #77bca4;
         }
       }
     }
@@ -755,14 +801,14 @@
       .ansbox {
         background: #fff;
         border-radius: 30px;
+        padding: 15px;
+        margin-top: 10px;
         display: none;
         @media #{$mobile} {
           padding: 10px;
           border-radius: 20px;
         }
         .flex {
-          margin-top: 10px;
-          padding: 15px;
           display: flex;
         }
         .mark-a {
@@ -1349,7 +1395,6 @@
         z-index: 50;
         left: 0;
         border-radius: 10px 10px 0 0;
-        overflow: hidden;
         max-height: 100%;
         overflow: auto;
       }
@@ -1398,6 +1443,12 @@
             p {
               font-size: 18px;
               line-height: 30px;
+              letter-spacing: 0;
+              margin-right: 5px;
+              @media #{$pc_m} {
+                font-size: 17px;
+                line-height: 25px;
+              }
             }
             &.linkto {
               .arr {
@@ -1478,6 +1529,11 @@
                 p {
                   font-size: 18px;
                   line-height: 30px;
+                  margin-right: 5px;
+                  @media #{$pc_m} {
+                    font-size: 17px;
+                    line-height: 25px;
+                  }
                   @media #{$mobile} {
                     font-size: 16px;
                   }
@@ -1568,9 +1624,13 @@
       }
     }
     .right-infbox {
-      width: 100%;
+      width: calc(100% - 300px);
       padding-left: 40px;
+      @media #{$pc_m} {
+        width: calc(100% - 250px);
+      }
       @media #{$pad} {
+        width: 100%;
         padding-left: 0;
       }
       .infbox-title {
@@ -1826,6 +1886,7 @@
               padding: 10px;
               border-bottom: 1px solid #eee;
               color: #555;
+              font-size: 16px;
             }
             tr:first-child {
               td {
@@ -1970,10 +2031,8 @@
           flex-direction: column;
           margin-bottom: 20px;
         }
-        div {
-          width: calc(50% - 10px);
-        }
         input {
+          width: calc(50% - 10px);
           border-radius: 10px;
           border: 1px solid #ddd;
           height: 50px;

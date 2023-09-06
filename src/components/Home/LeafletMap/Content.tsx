@@ -76,29 +76,31 @@ const Content = () => {
 
   return (
     <>
-      <MapContainer
-        id="leafletmap"
-        className="map-area"
-        center={surveyMapParams.center}
-        zoom={surveyMapParams.zoom}
-        scrollWheelZoom={false}
-        doubleClickZoom={false}
-        zoomControl={false}
-      >
-        <LayersControl>
-          <LayersControl.Overlay name="" checked>
-            <LayerGroup>
-              {!isFetchingLocalities &&
-                markers.map((v) => {
-                  return <MarkerLayout key={v['_id']} data={v} />;
-                })}
-            </LayerGroup>
-          </LayersControl.Overlay>
-        </LayersControl>
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <ScaleControl position="bottomleft" imperial={false} />
-        <Filter />
-      </MapContainer>
+      <div className="map-area">
+        <MapContainer
+          id="leafletmap"
+          className="map-box"
+          center={surveyMapParams.center}
+          zoom={surveyMapParams.zoom}
+          scrollWheelZoom={false}
+          doubleClickZoom={false}
+          zoomControl={false}
+        >
+          <LayersControl>
+            <LayersControl.Overlay name="" checked>
+              <LayerGroup>
+                {!isFetchingLocalities &&
+                  markers.map((v) => {
+                    return <MarkerLayout key={v['_id']} data={v} />;
+                  })}
+              </LayerGroup>
+            </LayersControl.Overlay>
+          </LayersControl>
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          <ScaleControl position="bottomleft" imperial={false} />
+          <Filter />
+        </MapContainer>
+      </div>
     </>
   );
 };

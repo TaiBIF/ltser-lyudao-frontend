@@ -52,7 +52,10 @@ const Banner = ({ data }: { data: BannerData }) => {
         )}
         {/*banner替換請用 background-image: url("");*/}
         {bgImg && (
-          <div className="pic-box" style={{ background: `url(${bgImg})` }} />
+          <div
+            className="pic-box"
+            style={{ backgroundImage: `url(${bgImg})` }}
+          />
         )}
       </div>
       {/*banner替換請用 background-image: url("");*/}

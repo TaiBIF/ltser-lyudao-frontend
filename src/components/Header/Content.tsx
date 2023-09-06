@@ -21,12 +21,15 @@ import { headerAboutData } from 'data/about';
 import { useHeaderContext } from 'context/HeaderContext';
 import { gsapSlideToggle } from 'utils/animation';
 import useRender from 'hooks/page/useRender';
+import LogoutBtn from './LogoutBtn';
+import { useAuthContext } from 'context/AuthContext';
 
 const Content = () => {
   const { pathname, hash, key } = useLocation();
   const { show, menu3Ref, mainMenuRef } = useHeaderContext();
   const { getDetail } = useRender();
   const { about, setAbout } = useHeaderContext();
+  const { auth } = useAuthContext();
 
   const [menu, setMenu] = useState<HeaderMenuItem[]>([]);
 
@@ -131,7 +134,7 @@ const Content = () => {
             <div className="header-iconbox">
               <LanguageBtn />
               <ContactLink />
-              <LoginBtn />
+              {auth ? <LogoutBtn /> : <LoginBtn />}
             </div>
           </div>
         </div>
