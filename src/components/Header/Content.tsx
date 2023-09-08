@@ -134,7 +134,7 @@ const Content = () => {
             <div className="header-iconbox">
               <LanguageBtn />
               <ContactLink />
-              {auth ? <LogoutBtn /> : <LoginBtn />}
+              <LoginBtn />
             </div>
           </div>
         </div>

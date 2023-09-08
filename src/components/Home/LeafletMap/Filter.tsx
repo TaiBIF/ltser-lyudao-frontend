@@ -71,7 +71,7 @@ const Filter = () => {
 
   return (
     <>
-      <div className="select-area c-map__filter">
+      <div className="selbox c-map__filter">
         <h3 className="item-title">測站/樣區篩選</h3>
         <select name="year" value={filter.year} onChange={handleSelectChange}>
           <option value="" disabled>

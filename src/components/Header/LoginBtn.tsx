@@ -8,7 +8,7 @@ import { useAuthContext } from 'context/AuthContext';
 
 const LoginBtn = () => {
   const { handleLoginClick } = useHeaderContext();
-  const { auth } = useAuthContext();
+  const { auth, handleLogout } = useAuthContext();
 
   const handleBtnClick = () => {
     if (!auth) {
@@ -16,13 +16,27 @@ const LoginBtn = () => {
     }
   };
 
+  const handleLogoutClick = () => {
+    handleLogout();
+  };
+
   return (
     <>
       <div className="loginbox">
         <div className="formb" onClick={handleBtnClick}>
           <UserIcon />
-          <p>登入</p>
+          <p>{auth ? 'Hi' : '登入'}</p>
         </div>
+        {auth && (
+          <div className="menu_2">
+            <div className="w_bg">
+              <Link to="/dashboard/about">後台</Link>
+              <Link to="#" onClick={handleLogoutClick}>
+                登出
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
