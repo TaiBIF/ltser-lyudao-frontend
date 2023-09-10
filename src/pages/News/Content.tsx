@@ -43,10 +43,24 @@ const Content = () => {
   const isAllType = filter.type === 0;
   const isFetchingList = news.length === 0;
   const isFetchingTypeList = typeList.length === 0;
+  const hasType = filter.type !== '';
+  const hasDate = filter.startDate !== '' || filter.endDate !== '';
 
   const handleTypeClick = (id: number | string) => {
     setFilter({ ...filter, type: id });
   };
+
+  useEffect(() => {
+    if (hasDate) {
+      setFilter({ ...filter, type: '' });
+    }
+  }, [filter.startDate, filter.endDate]);
+
+  useEffect(() => {
+    if (hasType) {
+      setFilter({ ...filter, startDate: '', endDate: '' });
+    }
+  }, [filter.type]);
 
   useEffect(() => {
     getList({
@@ -56,16 +70,18 @@ const Content = () => {
   }, []);
 
   useEffect(() => {
-    getList({
-      url: NEWS_API_URL,
-      setList: setNews,
-      defaultList: newsList,
-      params: {
-        page: currentPage,
-        tag: !isAllType ? filter.type : null,
-      },
-      setPaginationData,
-    });
+    if (hasType) {
+      getList({
+        url: NEWS_API_URL,
+        setList: setNews,
+        defaultList: newsList,
+        params: {
+          page: currentPage,
+          tag: !isAllType ? filter.type : null,
+        },
+        setPaginationData,
+      });
+    }
   }, [currentPage, filter.type]);
 
   return (

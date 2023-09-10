@@ -41,7 +41,7 @@ const DateFilter = (props: DateFilterProps) => {
       setList: setNews,
       params: {
         page: currentPage,
-        tag: !isAllType ? filter.type : null,
+        // tag: !isAllType ? filter.type : null,
         startDate: hasStartDate ? filter.startDate : null,
         endDate: hasEndDate ? filter.endDate : null,
       },
@@ -59,6 +59,7 @@ const DateFilter = (props: DateFilterProps) => {
               name="startDate"
               className="c-form__date"
               onChange={handleInputChange}
+              value={filter.startDate}
             />
             <div className="c-form__icon">
               <DateIcon />
@@ -71,6 +72,7 @@ const DateFilter = (props: DateFilterProps) => {
               name="endDate"
               className="c-form__date"
               onChange={handleInputChange}
+              value={filter.endDate}
             />
             <div className="c-form__icon">
               <DateIcon />

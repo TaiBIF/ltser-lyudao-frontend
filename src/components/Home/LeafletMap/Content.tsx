@@ -76,6 +76,7 @@ const Content = () => {
 
   return (
     <>
+      <Filter />
       <div className="map-area">
         <MapContainer
           id="leafletmap"
@@ -98,7 +99,6 @@ const Content = () => {
           </LayersControl>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <ScaleControl position="bottomleft" imperial={false} />
-          <Filter />
         </MapContainer>
       </div>
     </>

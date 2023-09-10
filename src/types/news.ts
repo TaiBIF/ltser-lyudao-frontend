@@ -33,7 +33,7 @@ export type NewsFormItem = {
 };
 
 export type NewsFilterItem = {
-  type: number | string;
+  type: number | string | null;
   startDate?: string;
   endDate?: string;
 };

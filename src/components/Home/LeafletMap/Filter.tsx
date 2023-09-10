@@ -71,32 +71,34 @@ const Filter = () => {
 
   return (
     <>
-      <div className="selbox c-map__filter">
+      <div className="select-area">
         <h3 className="item-title">測站/樣區篩選</h3>
-        <select name="year" value={filter.year} onChange={handleSelectChange}>
-          <option value="" disabled>
-            年份
-          </option>
-          {!isFetchingYears &&
-            years.map((v) => {
-              return (
-                <option key={v} value={v}>
-                  {v}
-                </option>
-              );
-            })}
-        </select>
-        <select name="item" value={filter.item} onChange={handleSelectChange}>
-          <option value="">觀測項目</option>
-          {!isFetchingItems &&
-            items.map((v) => {
-              return (
-                <option key={v} value={v}>
-                  {v}
-                </option>
-              );
-            })}
-        </select>
+        <div className="selbox c-map__filter">
+          <select name="year" value={filter.year} onChange={handleSelectChange}>
+            <option value="" disabled>
+              年份
+            </option>
+            {!isFetchingYears &&
+              years.map((v) => {
+                return (
+                  <option key={v} value={v}>
+                    {v}
+                  </option>
+                );
+              })}
+          </select>
+          <select name="item" value={filter.item} onChange={handleSelectChange}>
+            <option value="">觀測項目</option>
+            {!isFetchingItems &&
+              items.map((v) => {
+                return (
+                  <option key={v} value={v}>
+                    {v}
+                  </option>
+                );
+              })}
+          </select>
+        </div>
       </div>
     </>
   );
