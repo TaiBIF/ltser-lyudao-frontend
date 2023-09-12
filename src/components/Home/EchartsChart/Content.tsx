@@ -26,34 +26,29 @@ const Content = () => {
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const [items, setItems] = useState<string[]>([]);
-  const { filter, idData } = useSurveyMapContext();
-  const contextData = useDataContext();
+  const { filter, idData, allDetail } = useSurveyMapContext();
 
   const seasonList: string[] = ['1-3', '4-6', '7-9', '10-12'];
 
   const chartSeriesList: ObservationItem[] = [
     {
-      id: 'airTemperature',
+      id: 'seasonalAirTemperature',
       plan: 'weather',
       title: '季均溫',
-      data: contextData.find((v: ContextItem) => v.id === 'weather').detail,
       col: 'airTemperature',
       unit: '',
     },
     {
-      id: 'precipitation',
+      id: 'seasonalPrecipitation',
       plan: 'weather',
       title: '季雨量',
-      data: contextData.find((v: ContextItem) => v.id === 'weather').detail,
       col: 'precipitation',
       unit: '',
     },
     {
-      id: 'seaTemperature',
+      id: 'seasonalSeaTemperature',
       plan: 'sea-temperature',
       title: '季海溫',
-      data: contextData.find((v: ContextItem) => v.id === 'sea-temperature')
-        .detail,
       col: 'seaTemperature',
       unit: '',
     },
@@ -61,7 +56,6 @@ const Content = () => {
       id: 'zoobenthos',
       plan: 'zoobenthos',
       title: '底棲動物種類數',
-      data: contextData.find((v: ContextItem) => v.id === 'zoobenthos').detail,
       col: 'count',
       unit: '',
     },
@@ -69,7 +63,6 @@ const Content = () => {
       id: 'plant',
       plan: 'plant',
       title: '陸域植物種類數',
-      data: contextData.find((v: ContextItem) => v.id === 'plant').detail,
       col: 'count',
       unit: '',
     },
@@ -77,8 +70,6 @@ const Content = () => {
       id: 'birdNetSound',
       plan: 'bird-net-sound',
       title: '鳥種數(鳥音)',
-      data: contextData.find((v: ContextItem) => v.id === 'bird-net-sound')
-        .detail,
       col: 'count',
       unit: '',
     },
@@ -86,7 +77,6 @@ const Content = () => {
       id: 'fishDiv',
       plan: 'fish-div',
       title: '魚種數',
-      data: contextData.find((v: ContextItem) => v.id === 'fish-div').detail,
       col: 'count',
       unit: '',
     },
@@ -138,6 +128,7 @@ const Content = () => {
   };
 
   const isFetchingItems = items.length === 0;
+  const isFetchingAllDetail = allDetail === null;
 
   useEffect(() => {
     const matchFilter = itemList
@@ -152,16 +143,18 @@ const Content = () => {
   }, [filter.id]);
 
   useEffect(() => {
-    if (!isFetchingItems) {
+    if (!isFetchingItems && !isFetchingAllDetail) {
       const xAxis = seasonList.map((v) => `${v}月`);
       setXAxisList([...xAxis]);
       const series = chartSeriesList
         .map((v: ObservationItem) => {
-          const { id, plan, title, data, col, unit } = v;
+          const { id, plan, title, col, unit } = v;
           if (plan && items.includes(plan)) {
             return {
               type: 'line',
-              data: data.seasonal.map((v: ObservationItem) => v[col]),
+              data: allDetail[plan].seasonal.map(
+                (v: ObservationItem) => v[col]
+              ),
               name: title,
             };
           } else {
@@ -171,7 +164,7 @@ const Content = () => {
         .filter((v) => v !== null) as SeriesItem[];
       setSeriesList([...series]);
     }
-  }, [items]);
+  }, [items, allDetail]);
 
   return (
     <>

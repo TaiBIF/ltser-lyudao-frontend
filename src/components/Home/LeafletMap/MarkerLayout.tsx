@@ -20,7 +20,6 @@ interface MarkerLayoutProps {
 const MarkerLayout = (props: MarkerLayoutProps) => {
   const { data } = props;
   const { filter, setFilter } = useSurveyMapContext();
-  const [active, setActive] = useState<string>('');
 
   const location: LatLngExpression = [
     Number(data.decimalLatitude),

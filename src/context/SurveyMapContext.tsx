@@ -12,6 +12,7 @@ import { SurveyMapFilterItem } from 'types/home';
 import { ShowState } from 'types/utils';
 
 import { gsapFade } from 'utils/animation';
+import { AllDeatilItem } from 'types/detail';
 
 interface SurveyMapProviderProps {
   children: ReactNode;
@@ -22,16 +23,18 @@ export const useSurveyMapContext = () => useContext(SurveyMapContext);
 
 export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
   const [filter, setFilter] = useState<SurveyMapFilterItem>({
-    id: '',
-    year: '2023',
-    item: '',
-    chart: false,
+    id: '', // 測站/樣區
+    year: '2023', // 年份
+    item: '', // 觀測項目
+    chart: false, // 圖表
   });
   const [show, setShow] = useState<ShowState>({
     downloadPopup: false,
   });
   const downloadPopupRef = useRef<HTMLDivElement>(null);
   const [idData, setIdData] = useState<Dictionary<number | string>>({});
+
+  const [allDetail, setAllDetail] = useState<AllDeatilItem | null>(null);
 
   const handleDownloadPopup = (action: string) => {
     const target = downloadPopupRef.current;
@@ -46,6 +49,8 @@ export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
     setFilter,
     idData,
     setIdData,
+    allDetail,
+    setAllDetail,
     show,
     downloadPopupRef,
     handleDownloadPopup,

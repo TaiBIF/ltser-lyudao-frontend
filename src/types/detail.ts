@@ -39,3 +39,15 @@ export type CountItem = {
 };
 
 export type DetailItemTypes = AnnualSeasonalItem | SeasonalItem | CountItem;
+
+export type AllDeatilItem = {
+  [key: string]: any;
+  weather: WeatherItem;
+  seaTemperature: SeaTemperatureItem;
+  coralDiv: CountItem;
+  coralRec: CountItem;
+  plant: SeasonalItem;
+  birdNetSound: SeasonalItem;
+  fishDiv: SeasonalItem;
+  zoobenthos: SeasonalItem;
+};

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import ReactECharts from 'echarts-for-react';
 
-import { ObservationItem } from 'types/utils';
 import { ContextItem } from 'types/utils';
 
 import {

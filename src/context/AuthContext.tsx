@@ -344,7 +344,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         title: '發送成功',
       },
       error: {
-        title: '發生錯誤，發送失敗',
+        title: result?.response.message,
       },
     });
   };

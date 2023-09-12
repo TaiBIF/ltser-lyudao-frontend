@@ -85,6 +85,31 @@ const useSurveyMapApi = () => {
     }
   };
 
+  const getAllDetail = async ({
+    id,
+    year,
+    setData,
+    defaultData,
+  }: {
+    id: string;
+    year: string;
+    setData: any;
+    defaultData?: any;
+  }) => {
+    const result = await handleApi({
+      method: 'get',
+      url: `/data/all/detail/`,
+      params: { locationID: id, year },
+    });
+    if (result?.status === 'success') {
+      setData({ ...result.response.data });
+    } else {
+      if (defaultData) {
+        setData({ ...defaultData });
+      }
+    }
+  };
+
   const getItems = async ({
     id,
     setList,
@@ -109,6 +134,7 @@ const useSurveyMapApi = () => {
     getSites,
     getTimeRange,
     getDetail,
+    getAllDetail,
     getItems,
   };
 };

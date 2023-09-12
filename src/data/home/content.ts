@@ -77,13 +77,13 @@ export const surveyMapColList: ObservationItem[] = [
     title: '年均海溫',
   },
   {
-    id: 'coralNumber',
+    id: 'coralDiv',
     plan: 'coral-div',
     col: 'scientificName',
     title: '珊瑚礁種類數',
   },
   {
-    id: 'coralRecNumber',
+    id: 'coralRec',
     plan: 'coral-rec',
     col: 'individualCount',
     title: '珊瑚礁入添數量',
@@ -152,6 +152,157 @@ export const surveyMapItemList: SelectItem[] = [
     title: '魚種數',
   },
 ];
+
+export const defaultAllDetail = {
+  weather: {
+    site: 'A1',
+    year: '2023',
+    annual: {
+      airTemperature: 0,
+      precipitation: 0,
+    },
+    seasonal: [
+      {
+        season: '1-3',
+        airTemperature: 0,
+        precipitation: 0,
+      },
+      {
+        season: '4-6',
+        airTemperature: 0,
+        precipitation: 0,
+      },
+      {
+        season: '7-9',
+        airTemperature: 0,
+        precipitation: 0,
+      },
+      {
+        season: '10-12',
+        airTemperature: 0,
+        precipitation: 0,
+      },
+    ],
+  },
+  seaTemperature: {
+    site: 'CK',
+    year: '2023',
+    annual: {
+      seaTemperature: 0,
+    },
+    seasonal: [
+      {
+        season: '1-3',
+        seaTemperature: 0,
+      },
+      {
+        season: '4-6',
+        seaTemperature: 0,
+      },
+      {
+        season: '7-9',
+        seaTemperature: 0,
+      },
+      {
+        season: '10-12',
+        seaTemperature: 0,
+      },
+    ],
+  },
+  coralRec: {
+    site: 'GG',
+    year: '2023',
+    count: 0,
+  },
+  plant: {
+    site: '001',
+    year: '2023',
+    seasonal: [
+      {
+        season: '1-3',
+        count: 0,
+      },
+      {
+        season: '4-6',
+        count: 0,
+      },
+      {
+        season: '7-9',
+        count: 0,
+      },
+      {
+        season: '10-12',
+        count: 0,
+      },
+    ],
+  },
+  birdNetSound: {
+    site: 'YZH',
+    year: '2023',
+    seasonal: [
+      {
+        season: '1-3',
+        count: 0,
+      },
+      {
+        season: '4-6',
+        count: 0,
+      },
+      {
+        season: '7-9',
+        count: 0,
+      },
+      {
+        season: '10-12',
+        count: 0,
+      },
+    ],
+  },
+  fishDiv: {
+    site: 'KZY',
+    year: '2023',
+    seasonal: [
+      {
+        season: '1-3',
+        count: 0,
+      },
+      {
+        season: '4-6',
+        count: 0,
+      },
+      {
+        season: '7-9',
+        count: 0,
+      },
+      {
+        season: '10-12',
+        count: 0,
+      },
+    ],
+  },
+  zoobenthos: {
+    site: 'KZY',
+    year: '2023',
+    seasonal: [
+      {
+        season: '1-3',
+        count: 0,
+      },
+      {
+        season: '4-6',
+        count: 0,
+      },
+      {
+        season: '7-9',
+        count: 0,
+      },
+      {
+        season: '10-12',
+        count: 0,
+      },
+    ],
+  },
+};
 
 export const defaultTimeRange: TimeRangeItem = {
   site: '',

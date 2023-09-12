@@ -30,40 +30,40 @@ import itemList from 'data/home/items.json';
 const Content = () => {
   const { getDepositarList } = useRender();
   const [localities, setLocalities] = useState<
-    (Dictionary<number | string> | LocalityItem)[]
-  >([]);
+    (Dictionary<number | string> | LocalityItem)[] | null
+  >(null);
   const [markers, setMarkers] = useState<
     (Dictionary<number | string> | LocalityItem)[]
   >([]);
-  const { filter, setFilter } = useSurveyMapContext();
+  const { filter } = useSurveyMapContext();
 
-  const isFetchingLocalities = localities.length === 0;
+  const isFetchingLocalities = localities === null;
 
   const handleSiteFilter = () => {
-    if (filter.item !== '') {
-      const matchPlan = surveyMapItemList.find(
-        (v) => v.title === filter.item
-      )!.plan;
-      const matchSite = itemList
-        .filter((item) =>
-          item.years.some(
-            (v) => v.year === filter.year && v.items.includes(matchPlan)
+    if (!isFetchingLocalities) {
+      if (filter.item !== '') {
+        const matchPlan = surveyMapItemList.find(
+          (v) => v.title === filter.item
+        )!.plan;
+        const matchSite = itemList
+          .filter((item) =>
+            item.years.some(
+              (v) => v.year === filter.year && v.items.includes(matchPlan)
+            )
           )
-        )
-        .map((v) => v.site);
-      const matchMarker = localities.filter((v) =>
-        matchSite.includes(String(v.locationID))
-      );
-      setMarkers([...matchMarker]);
-    } else {
-      setMarkers([...localities]);
+          .map((v) => v.site);
+        const matchMarker = localities.filter((v) =>
+          matchSite.includes(String(v.locationID))
+        );
+        setMarkers([...matchMarker]);
+      } else {
+        setMarkers([...localities]);
+      }
     }
   };
 
   useEffect(() => {
-    if (!isFetchingLocalities) {
-      handleSiteFilter();
-    }
+    handleSiteFilter();
   }, [localities, filter.item]);
 
   useEffect(() => {

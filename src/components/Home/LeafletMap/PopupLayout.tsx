@@ -7,14 +7,14 @@ import { useMap } from 'react-leaflet';
 import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
 import PopupArrow from 'components/Home/LeafletMap/PopupArrow';
-import ProgressBar from 'components/Home/LeafletMap/ProgressBar';
 
-import { ContextItem, SiteObservationItem } from 'types/utils';
+import { SiteObservationItem } from 'types/utils';
 
 import {
   surveyMapParams,
   surveyMapColList,
   surveyMapItemList,
+  defaultAllDetail,
 } from 'data/home/content';
 import itemList from 'data/home/items.json';
 
@@ -22,6 +22,7 @@ import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDataContext } from 'context/DataContext';
 import { useDownload } from 'hooks/api/useDownload';
 import { useAuthContext } from 'context/AuthContext';
+import useSurveyMapApi from 'hooks/api/useSurveyMapApi';
 
 type PopupLayoutProps = {
   data: Dictionary<number | string>;
@@ -33,14 +34,21 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const map = useMap();
   const navigate = useNavigate();
 
-  const { filter, setFilter, setIdData, handleDownloadPopup } =
-    useSurveyMapContext();
-  const contextData = useDataContext();
+  const {
+    filter,
+    setFilter,
+    setIdData,
+    allDetail,
+    setAllDetail,
+    handleDownloadPopup,
+  } = useSurveyMapContext();
   const { handleDownload, progress } = useDownload();
   const { auth } = useAuthContext();
+  const { getAllDetail } = useSurveyMapApi();
 
   const [downloading, setDownloading] = useState(false);
   const [items, setItems] = useState<SiteObservationItem[]>([]);
+  const [itemsDetail, setItemsDetail] = useState<any>(null);
 
   const handleDownloadClick = () => {
     if (auth) {
@@ -73,18 +81,9 @@ const PopupLayout = (props: PopupLayoutProps) => {
     navigate('#chart');
   };
 
-  const planList = [
-    'weather',
-    'sea-temperature',
-    'coral-div',
-    'coral-rec',
-    'zoobenthos',
-    'plant',
-    'bird-net-sound',
-    'fish-div',
-  ];
-
   const isFetchingItems = items.length === 0;
+  const isFetchingAllDetail = allDetail === null;
+  const isFecthingItemsDetail = itemsDetail === null;
 
   useEffect(() => {
     const matchFilter = itemList
@@ -96,21 +95,28 @@ const PopupLayout = (props: PopupLayoutProps) => {
       );
       setItems([...matchItem]);
     }
+    getAllDetail({
+      id: filter.id,
+      year: filter.year,
+      setData: setAllDetail,
+      defaultData: defaultAllDetail,
+    });
   }, [filter.id]);
 
   useEffect(() => {
-    if (!isFetchingItems) {
+    if (!isFetchingItems && !isFetchingAllDetail) {
       setIdData({ ...data });
-      items.forEach((item, i) => {
-        const matchData = contextData.find(
-          (v: ContextItem) => v.id === item.plan
-        );
-        if (i === 0) {
-          matchData.getDetail();
-        }
-      });
+      const result = Object.fromEntries(
+        items.map((item) => {
+          const matchItem = Object.entries(allDetail).find(
+            ([key]) => key === item.plan
+          );
+          return [[item.id], matchItem ? matchItem[1] : null];
+        })
+      );
+      setItemsDetail({ ...result });
     }
-  }, [items]);
+  }, [items, allDetail]);
 
   return (
     <>
@@ -129,56 +135,53 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 <td>觀測項目</td>
                 <td></td>
               </tr>
-              {surveyMapColList.map((v) => {
-                const { id, plan, col, title } = v;
-                const renderRow = () => {
-                  if (id === 'year') {
-                    return (
-                      <tr key={id}>
-                        <td>{title}</td>
-                        <td>{filter.year}</td>
-                      </tr>
-                    );
-                  } else {
-                    if (!plan) {
-                      return (
-                        <tr key={id}>
-                          <td>{title}</td>
-                          <td>{data[col]}</td>
-                        </tr>
-                      );
-                    } else {
-                      if (items.find((v) => v.plan === plan)) {
-                        let data;
-                        const matchContext = contextData.find(
-                          (v: ContextItem) => v.id === plan
-                        ).detail;
-                        switch (plan) {
-                          case 'weather':
-                          case 'sea-temperature':
-                            data = matchContext.annual[col];
-                            break;
-                          case 'coral-div':
-                          case 'coral-rec':
-                            data = matchContext.count;
-                            break;
-                          default:
-                            return;
-                        }
+              {!isFecthingItemsDetail &&
+                surveyMapColList.map((v) => {
+                  const { id, plan, col, title } = v;
+                  const renderRow = () => {
+                    switch (id) {
+                      case 'year':
                         return (
                           <tr key={id}>
                             <td>{title}</td>
-                            <td>{data === null ? '-' : data}</td>
+                            <td>{filter.year}</td>
                           </tr>
                         );
-                      } else {
-                        return <React.Fragment key={id}></React.Fragment>;
-                      }
+                      default:
+                        if (!plan) {
+                          return (
+                            <tr key={id}>
+                              <td>{title}</td>
+                              <td>{data[col]}</td>
+                            </tr>
+                          );
+                        } else {
+                          if (items.find((v) => v.plan === plan)) {
+                            let data;
+                            switch (plan) {
+                              case 'weather':
+                              case 'sea-temperature':
+                                data = itemsDetail[id]?.annual[col];
+                                break;
+                              case 'coral-div':
+                              case 'coral-rec':
+                                data = itemsDetail[id]?.count;
+                                break;
+                              default:
+                                return;
+                            }
+                            return (
+                              <tr key={id}>
+                                <td>{title}</td>
+                                <td>{data === null ? '-' : data}</td>
+                              </tr>
+                            );
+                          }
+                        }
                     }
-                  }
-                };
-                return renderRow();
-              })}
+                  };
+                  return renderRow();
+                })}
             </tbody>
           </table>
           <div className="align-center">
