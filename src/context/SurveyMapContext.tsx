@@ -36,6 +36,8 @@ export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
 
   const [allDetail, setAllDetail] = useState<AllDeatilItem | null>(null);
 
+  const isFetchingAllDetail = allDetail === null;
+
   const handleDownloadPopup = (action: string) => {
     const target = downloadPopupRef.current;
     if (target) {
@@ -51,6 +53,7 @@ export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
     setIdData,
     allDetail,
     setAllDetail,
+    isFetchingAllDetail,
     show,
     downloadPopupRef,
     handleDownloadPopup,

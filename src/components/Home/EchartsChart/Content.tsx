@@ -150,9 +150,13 @@ const Content = () => {
         .map((v: ObservationItem) => {
           const { id, plan, title, col, unit } = v;
           if (plan && items.includes(plan)) {
+            const formatPlan = (plan: string) =>
+              plan.replace(/-([a-z])/g, (match, letter) =>
+                letter.toUpperCase()
+              );
             return {
               type: 'line',
-              data: allDetail[plan].seasonal.map(
+              data: allDetail[formatPlan(plan)].seasonal.map(
                 (v: ObservationItem) => v[col]
               ),
               name: title,

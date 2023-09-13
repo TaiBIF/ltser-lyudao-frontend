@@ -40,6 +40,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
     setIdData,
     allDetail,
     setAllDetail,
+    isFetchingAllDetail,
     handleDownloadPopup,
   } = useSurveyMapContext();
   const { handleDownload, progress } = useDownload();
@@ -48,7 +49,6 @@ const PopupLayout = (props: PopupLayoutProps) => {
 
   const [downloading, setDownloading] = useState(false);
   const [items, setItems] = useState<SiteObservationItem[]>([]);
-  const [itemsDetail, setItemsDetail] = useState<any>(null);
 
   const handleDownloadClick = () => {
     if (auth) {
@@ -81,9 +81,8 @@ const PopupLayout = (props: PopupLayoutProps) => {
     navigate('#chart');
   };
 
-  const isFetchingItems = items.length === 0;
-  const isFetchingAllDetail = allDetail === null;
-  const isFecthingItemsDetail = itemsDetail === null;
+  const hasFilterId = filter.id !== '';
+  const hasItems = items.length !== 0;
 
   useEffect(() => {
     const matchFilter = itemList
@@ -95,28 +94,16 @@ const PopupLayout = (props: PopupLayoutProps) => {
       );
       setItems([...matchItem]);
     }
-    getAllDetail({
-      id: filter.id,
-      year: filter.year,
-      setData: setAllDetail,
-      defaultData: defaultAllDetail,
-    });
-  }, [filter.id]);
-
-  useEffect(() => {
-    if (!isFetchingItems && !isFetchingAllDetail) {
+    setAllDetail(null);
+    if (hasFilterId) {
+      getAllDetail({
+        id: filter.id,
+        year: filter.year,
+        setData: setAllDetail,
+      });
       setIdData({ ...data });
-      const result = Object.fromEntries(
-        items.map((item) => {
-          const matchItem = Object.entries(allDetail).find(
-            ([key]) => key === item.plan
-          );
-          return [[item.id], matchItem ? matchItem[1] : null];
-        })
-      );
-      setItemsDetail({ ...result });
     }
-  }, [items, allDetail]);
+  }, [filter.id]);
 
   return (
     <>
@@ -135,72 +122,79 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 <td>觀測項目</td>
                 <td></td>
               </tr>
-              {!isFecthingItemsDetail &&
-                surveyMapColList.map((v) => {
-                  const { id, plan, col, title } = v;
-                  const renderRow = () => {
-                    switch (id) {
-                      case 'year':
+              {surveyMapColList.map((v) => {
+                const { id, plan, col, title } = v;
+                const renderRow = () => {
+                  switch (id) {
+                    case 'year':
+                      return (
+                        <tr key={id}>
+                          <td>{title}</td>
+                          <td>{filter.year}</td>
+                        </tr>
+                      );
+                    default:
+                      if (!plan) {
                         return (
                           <tr key={id}>
                             <td>{title}</td>
-                            <td>{filter.year}</td>
+                            <td>{data[col]}</td>
                           </tr>
                         );
-                      default:
-                        if (!plan) {
+                      } else {
+                        const hasItem =
+                          items.find((v) => v.plan === plan) !== undefined;
+                        if (hasItem && !isFetchingAllDetail) {
+                          let data;
+                          const formatPlan = (plan: string) =>
+                            plan.replace(/-([a-z])/g, (match, letter) =>
+                              letter.toUpperCase()
+                            );
+                          switch (plan) {
+                            case 'weather':
+                            case 'sea-temperature':
+                              data = allDetail[formatPlan(plan)]?.annual[col];
+                              break;
+                            case 'coral-div':
+                            case 'coral-rec':
+                              data = allDetail[id]?.count;
+                              break;
+                            default:
+                              return;
+                          }
                           return (
                             <tr key={id}>
                               <td>{title}</td>
-                              <td>{data[col]}</td>
+                              <td>{data === null ? '-' : data}</td>
                             </tr>
                           );
-                        } else {
-                          if (items.find((v) => v.plan === plan)) {
-                            let data;
-                            switch (plan) {
-                              case 'weather':
-                              case 'sea-temperature':
-                                data = itemsDetail[id]?.annual[col];
-                                break;
-                              case 'coral-div':
-                              case 'coral-rec':
-                                data = itemsDetail[id]?.count;
-                                break;
-                              default:
-                                return;
-                            }
-                            return (
-                              <tr key={id}>
-                                <td>{title}</td>
-                                <td>{data === null ? '-' : data}</td>
-                              </tr>
-                            );
-                          }
                         }
-                    }
-                  };
-                  return renderRow();
-                })}
+                      }
+                  }
+                };
+                return renderRow();
+              })}
             </tbody>
           </table>
-          <div className="align-center">
-            <button
-              type="button"
-              className="link-more"
-              onClick={handleMoreClick}
-            >
-              <p>查看圖表</p>
-              <ArrowIcon />
-            </button>
-            <button
-              type="button"
-              className="link-more e-btn e-btn--outline"
-              onClick={handleDownloadClick}
-            >
-              <p>下載樣區資料</p>
-            </button>
-          </div>
+          {hasItems && (
+            <div className="align-center">
+              <button
+                type="button"
+                className="link-more"
+                onClick={handleMoreClick}
+              >
+                <p>查看圖表</p>
+                <ArrowIcon />
+              </button>
+              <button
+                type="button"
+                className="link-more e-btn e-btn--outline"
+                onClick={handleDownloadClick}
+              >
+                <p>下載樣區資料</p>
+              </button>
+            </div>
+          )}
           <PopupArrow />
         </div>
       </div>
