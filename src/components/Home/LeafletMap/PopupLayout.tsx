@@ -123,7 +123,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 <td></td>
               </tr>
               {surveyMapColList.map((v) => {
-                const { id, plan, col, title } = v;
+                const { id, type, plan, col, title } = v;
                 const renderRow = () => {
                   switch (id) {
                     case 'year':
@@ -157,6 +157,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                               break;
                             case 'coral-div':
                             case 'coral-rec':
+                            case 'fish-div':
                               data = allDetail[id]?.count;
                               break;
                             default:
@@ -164,7 +165,13 @@ const PopupLayout = (props: PopupLayoutProps) => {
                           }
                           return (
                             <tr key={id}>
-                              <td>{title}</td>
+                              <td>
+                                <a
+                                  href={`/site-data/${type}-observation/${plan}?site=${filter.id}`}
+                                >
+                                  {title}
+                                </a>
+                              </td>
                               <td>{data === null ? '-' : data}</td>
                             </tr>
                           );

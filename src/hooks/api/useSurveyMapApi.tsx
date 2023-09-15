@@ -27,7 +27,6 @@ const useSurveyMapApi = () => {
     });
     if (result?.status === 'success') {
       setList([...result.response.data.sites]);
-      setFilter({ ...filter, site: result.response.data.sites[0] });
     } else {
       if (defaultList) {
         setList([...defaultList]);

@@ -1,7 +1,9 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import ArrowIcon from './Aside/ArrowIcon';
 
 import { FilterItem } from 'types/siteData';
-import ArrowIcon from './Aside/ArrowIcon';
 
 interface SelectProps {
   title: string;
@@ -12,6 +14,16 @@ interface SelectProps {
 
 const Select = (props: SelectProps) => {
   const { title, options, filter, setFilter } = props;
+  const { search, pathname } = useLocation();
+  const site = new URLSearchParams(search).get('site');
+
+  useEffect(() => {
+    if (site) {
+      setFilter({ ...filter, site: site });
+    } else {
+      setFilter({ ...filter, site: options[0] });
+    }
+  }, [pathname]);
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilter({ ...filter, [e.currentTarget.name]: e.currentTarget.value });
@@ -29,6 +41,7 @@ const Select = (props: SelectProps) => {
             name="site"
             className="c-select__select"
             onChange={handleSelectChange}
+            value={filter.site}
           >
             <option value="" disabled>
               請選擇{title}

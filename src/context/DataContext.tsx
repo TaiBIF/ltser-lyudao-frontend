@@ -19,6 +19,8 @@ import useBioSound from 'hooks/items/useBioSound';
 import useOtolith from 'hooks/items/useOtolith';
 import useHabitat from 'hooks/items/useHabitat';
 import useFishing from 'hooks/items/useFishing';
+import useAquaticfauna from 'hooks/items/useAquaticfauna';
+import useStream from 'hooks/items/useStream';
 
 interface DataProviderProps {
   children?: ReactNode;
@@ -226,6 +228,28 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     fields: fishingFields,
     getDataFields: getFishingFields,
   } = useFishing();
+
+  const {
+    sites: aquaticfaunaSites,
+    getDataSites: getAquaticfaunaSites,
+    raws: aquaticfaunaRaws,
+    getDataRaws: getAquaticfaunaRaws,
+    series: aquaticfaunaSeries,
+    getDataSeries: getAquaticfaunaSeries,
+    fields: aquaticfaunaFields,
+    getDataFields: getAquaticfaunaFields,
+  } = useAquaticfauna();
+
+  const {
+    sites: streamSites,
+    getDataSites: getStreamSites,
+    raws: streamRaws,
+    getDataRaws: getStreamRaws,
+    series: streamSeries,
+    getDataSeries: getStreamSeries,
+    fields: streamFields,
+    getDataFields: getStreamFields,
+  } = useStream();
 
   const contextData: ContextItem[] = [
     {
@@ -447,6 +471,31 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       getRaws: getFishingRaws,
       fields: fishingFields,
       getFields: getFishingFields,
+    },
+    {
+      id: 'aquaticfauna',
+      depositarUrl:
+        'https://data.depositar.io/dataset/ltser-lyudao-aquaticfauna',
+      sites: aquaticfaunaSites,
+      getSites: getAquaticfaunaSites,
+      raws: aquaticfaunaRaws,
+      getRaws: getAquaticfaunaRaws,
+      series: aquaticfaunaSeries,
+      getSeries: getAquaticfaunaSeries,
+      fields: aquaticfaunaFields,
+      getFields: getAquaticfaunaFields,
+    },
+    {
+      id: 'stream',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-stream',
+      sites: streamSites,
+      getSites: getStreamSites,
+      raws: streamRaws,
+      getRaws: getStreamRaws,
+      series: streamSeries,
+      getSeries: getStreamSeries,
+      fields: streamFields,
+      getFields: getStreamFields,
     },
   ];
 

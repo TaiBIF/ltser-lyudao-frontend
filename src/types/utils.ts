@@ -59,6 +59,7 @@ export type ColItem = {
 export type ObservationItem = {
   [key: string]: any;
   id: string;
+  type?: string;
   plan?: string;
   col: string;
   title: string;

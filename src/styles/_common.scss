@@ -341,6 +341,7 @@ $transition: (
 
 .c-aside {
   $_: &;
+  height: auto !important;
   &__tab {
     &.now {
       border-radius: 20px;

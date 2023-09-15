@@ -106,6 +106,17 @@ export const ecoAsideList: AsideItem[] = [
       },
     ],
   },
+  {
+    id: 8,
+    title: '溪流生物調查',
+    list: [
+      {
+        id: 1,
+        title: '溪流生物',
+        link: 'aquaticfauna',
+      },
+    ],
+  },
 ];
 
 export const envAsideList: AsideItem[] = [
@@ -138,6 +149,11 @@ export const envAsideList: AsideItem[] = [
         id: 3,
         title: '棲地評估',
         link: 'habitat',
+      },
+      {
+        id: 4,
+        title: '溪流水質',
+        link: 'stream',
       },
     ],
   },

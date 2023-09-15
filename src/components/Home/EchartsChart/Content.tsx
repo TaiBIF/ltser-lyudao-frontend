@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import ReactECharts from 'echarts-for-react';
 
@@ -14,7 +15,7 @@ import {
 import { useDataContext } from 'context/DataContext';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
-import itemList from 'data/home/items.json';
+import itemList from 'data/home/sites.json';
 import { surveyMapItemList } from 'data/home/content';
 
 type SeriesItem = {
@@ -27,12 +28,14 @@ const Content = () => {
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const [items, setItems] = useState<string[]>([]);
   const { filter, idData, allDetail } = useSurveyMapContext();
+  const navigate = useNavigate();
 
   const seasonList: string[] = ['1-3', '4-6', '7-9', '10-12'];
 
   const chartSeriesList: ObservationItem[] = [
     {
       id: 'seasonalAirTemperature',
+      type: 'environmental',
       plan: 'weather',
       title: '季均溫',
       col: 'airTemperature',
@@ -40,6 +43,7 @@ const Content = () => {
     },
     {
       id: 'seasonalPrecipitation',
+      type: 'environmental',
       plan: 'weather',
       title: '季雨量',
       col: 'precipitation',
@@ -47,6 +51,7 @@ const Content = () => {
     },
     {
       id: 'seasonalSeaTemperature',
+      type: 'environmental',
       plan: 'sea-temperature',
       title: '季海溫',
       col: 'seaTemperature',
@@ -54,6 +59,7 @@ const Content = () => {
     },
     {
       id: 'zoobenthos',
+      type: 'ecological',
       plan: 'zoobenthos',
       title: '底棲動物種類數',
       col: 'count',
@@ -61,6 +67,7 @@ const Content = () => {
     },
     {
       id: 'plant',
+      type: 'ecological',
       plan: 'plant',
       title: '陸域植物種類數',
       col: 'count',
@@ -68,6 +75,7 @@ const Content = () => {
     },
     {
       id: 'birdNetSound',
+      type: 'ecological',
       plan: 'bird-net-sound',
       title: '鳥種數(鳥音)',
       col: 'count',
@@ -75,12 +83,37 @@ const Content = () => {
     },
     {
       id: 'fishDiv',
+      type: 'ecological',
       plan: 'fish-div',
       title: '魚種數',
       col: 'count',
       unit: '',
     },
+    {
+      id: 'aquaticfauna',
+      type: 'ecological',
+      plan: 'aquaticfauna',
+      title: '生物物種數',
+      col: 'count',
+      unit: '',
+    },
   ];
+
+  const handleChartClick = (params: any) => {
+    console.log(params);
+    const matchItemByTitle = chartSeriesList.find(
+      (v) => v.title === params.seriesName
+    );
+    if (matchItemByTitle) {
+      navigate(
+        `/site-data/${matchItemByTitle.type}-observation/${matchItemByTitle.plan}?site=${filter.id}`
+      );
+    }
+  };
+
+  const onEvents = {
+    click: handleChartClick,
+  };
 
   const option = {
     ...commonOptions,
@@ -181,6 +214,7 @@ const Content = () => {
           height: '100%',
           width: '100%',
         }}
+        onEvents={onEvents}
       />
     </>
   );

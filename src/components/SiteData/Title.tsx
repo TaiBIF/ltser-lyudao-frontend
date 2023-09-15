@@ -1,5 +1,5 @@
-import { ecoAsideList, economyAsideList, envAsideList } from 'data/siteData';
 import React from 'react';
+import { ecoAsideList, economyAsideList, envAsideList } from 'data/siteData';
 
 const Title = ({ paths, url }: { paths: string[]; url: string }) => {
   let asideList;
@@ -59,7 +59,7 @@ const Title = ({ paths, url }: { paths: string[]; url: string }) => {
           <div className="line" />
         </div>
         <a href={url} className="meta" target="_blank" rel="noreferrer">
-          查看metadata
+          查看資料集與研究方法
         </a>
       </div>
     </>

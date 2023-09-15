@@ -60,33 +60,52 @@ export const surveyMapColList: ObservationItem[] = [
   },
   {
     id: 'annualAirTemperature',
+    category: 'environmental',
     plan: 'weather',
     col: 'airTemperature',
     title: '年均溫',
   },
   {
     id: 'annualPrecipitation',
+    category: 'environmental',
     plan: 'weather',
     col: 'precipitation',
     title: '年雨量',
   },
   {
     id: 'annualSeaTemperature',
+    category: 'environmental',
     plan: 'sea-temperature',
     col: 'seaTemperature',
     title: '年均海溫',
   },
   {
     id: 'coralDiv',
+    category: 'ecological',
     plan: 'coral-div',
     col: 'scientificName',
     title: '珊瑚礁種類數',
   },
   {
     id: 'coralRec',
+    category: 'ecological',
     plan: 'coral-rec',
     col: 'individualCount',
     title: '珊瑚礁入添數量',
+  },
+  {
+    id: 'fishDiv',
+    category: 'ecological',
+    plan: 'fish-div',
+    col: 'individualCount',
+    title: '魚種數',
+  },
+  {
+    id: 'aquaticfauna',
+    category: 'ecological',
+    plan: 'aquaticfauna',
+    col: 'scientificName',
+    title: '生物物種數',
   },
 ];
 
@@ -150,6 +169,11 @@ export const surveyMapItemList: SelectItem[] = [
     id: 'fishDiv',
     plan: 'fish-div',
     title: '魚種數',
+  },
+  {
+    id: 'aquaticfauna',
+    plan: 'aquaticfauna',
+    title: '溪流生物',
   },
 ];
 

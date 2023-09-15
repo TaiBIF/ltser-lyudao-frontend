@@ -39,7 +39,7 @@ const Content = ({ item, isHabitat }: { item: string; isHabitat: boolean }) => {
     contextData.series.length === 0;
 
   useEffect(() => {
-    if (contextData.series !== undefined) {
+    if (contextData.series !== undefined && !hasNoSite) {
       contextData.getSeries();
     }
   }, [pathname, filter.site]);
