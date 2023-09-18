@@ -9,7 +9,7 @@ import Select from 'components/SiteData/Select';
 import EchartsChart from 'components/SiteData/EchartsChart/Content';
 import DownloadPopup from 'components/SiteData/DownloadPopup';
 
-import { ContextItem, SelectItem } from 'types/utils';
+import { ContextItem } from 'types/utils';
 
 import { useDataContext } from 'context/DataContext';
 import { useSiteDataContext } from 'context/SiteDataContext';

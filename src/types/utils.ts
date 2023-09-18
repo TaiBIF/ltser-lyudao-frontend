@@ -69,14 +69,17 @@ export type ObservationItem = {
 
 export type SiteObservationItem = {
   id: string;
+  type: string;
   plan: string;
   title: string;
 };
 
 export type SelectItem = {
   id: string;
+  type: string;
   title: string;
   plan: string;
+  redirect: boolean | null;
 };
 
 export type RelateTypes = TypeItem | AttachmentItem | any;

@@ -2,7 +2,7 @@ import { map, zipObject, Dictionary } from 'lodash';
 import { DateTime } from 'luxon';
 
 import { TabItem, SurveyMapParams, TimeRangeItem } from 'types/home';
-import { ObservationItem, SelectItem } from 'types/utils';
+import { ObservationItem, SelectItem, SiteObservationItem } from 'types/utils';
 
 import localityData from 'data/home/locality.json';
 
@@ -59,6 +59,11 @@ export const surveyMapColList: ObservationItem[] = [
     title: '地點緯度',
   },
   {
+    id: 'items',
+    col: 'items',
+    title: '觀測項目',
+  },
+  {
     id: 'annualAirTemperature',
     category: 'environmental',
     plan: 'weather',
@@ -94,86 +99,105 @@ export const surveyMapColList: ObservationItem[] = [
     title: '珊瑚礁入添數量',
   },
   {
-    id: 'fishDiv',
-    category: 'ecological',
-    plan: 'fish-div',
-    col: 'individualCount',
-    title: '魚種數',
-  },
-  {
     id: 'aquaticfauna',
     category: 'ecological',
     plan: 'aquaticfauna',
     col: 'scientificName',
-    title: '生物物種數',
+    title: '溪流生物物種數',
   },
 ];
 
 export const surveyMapItemList: SelectItem[] = [
   {
     id: 'annualAirTemperature',
+    type: 'environmental',
     plan: 'weather',
     title: '年均溫',
+    redirect: false,
   },
   {
     id: 'seasonalAirTemperature',
+    type: 'environmental',
     plan: 'weather',
     title: '季均溫',
+    redirect: null,
   },
   {
     id: 'annualPrecipitation',
+    type: 'environmental',
     plan: 'weather',
     title: '年雨量',
+    redirect: false,
   },
   {
     id: 'seasonalPrecipitation',
+    type: 'environmental',
     plan: 'weather',
     title: '季雨量',
+    redirect: null,
   },
   {
     id: 'annualSeaTemperature',
+    type: 'environmental',
     plan: 'sea-temperature',
     title: '年均海溫',
+    redirect: false,
   },
   {
     id: 'seasonalSeaTemperature',
+    type: 'environmental',
     plan: 'sea-temperature',
     title: '季均海溫',
+    redirect: null,
   },
   {
     id: 'coralDiv',
+    type: 'ecological',
     plan: 'coral-div',
     title: '珊瑚礁種類數',
+    redirect: true,
   },
   {
     id: 'coralRec',
+    type: 'ecological',
     plan: 'coral-rec',
     title: '珊瑚礁入添數量',
+    redirect: true,
   },
   {
     id: 'zoobenthos',
+    type: 'ecological',
     plan: 'zoobenthos',
     title: '底棲動物種類數',
+    redirect: null,
   },
   {
     id: 'plant',
+    type: 'ecological',
     plan: 'plant',
     title: '陸域植物種類數',
+    redirect: null,
   },
   {
     id: 'birdNetSound',
+    type: 'ecological',
     plan: 'bird-net-sound',
     title: '鳥種數(鳥音)',
+    redirect: null,
   },
   {
     id: 'fishDiv',
+    type: 'ecological',
     plan: 'fish-div',
     title: '魚種數',
+    redirect: null,
   },
   {
     id: 'aquaticfauna',
+    type: 'ecological',
     plan: 'aquaticfauna',
     title: '溪流生物',
+    redirect: null,
   },
 ];
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Dictionary } from 'lodash';
 import { useMap } from 'react-leaflet';
@@ -8,7 +8,7 @@ import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
 import PopupArrow from 'components/Home/LeafletMap/PopupArrow';
 
-import { SiteObservationItem } from 'types/utils';
+import { ObservationItem, SelectItem } from 'types/utils';
 
 import {
   surveyMapParams,
@@ -48,7 +48,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const { getAllDetail } = useSurveyMapApi();
 
   const [downloading, setDownloading] = useState(false);
-  const [items, setItems] = useState<SiteObservationItem[]>([]);
+  const [items, setItems] = useState<SelectItem[]>([]);
 
   const handleDownloadClick = () => {
     if (auth) {
@@ -123,7 +123,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 <td></td>
               </tr>
               {surveyMapColList.map((v) => {
-                const { id, type, plan, col, title } = v;
+                const { id, plan, col, title } = v;
                 const renderRow = () => {
                   switch (id) {
                     case 'year':
@@ -131,6 +131,27 @@ const PopupLayout = (props: PopupLayoutProps) => {
                         <tr key={id}>
                           <td>{title}</td>
                           <td>{filter.year}</td>
+                        </tr>
+                      );
+                    case 'items':
+                      return (
+                        <tr key={id}>
+                          <td>{title}</td>
+                          <td>
+                            {items.map((item) => {
+                              return item.redirect === true ? (
+                                <div key={item.id}>
+                                  <Link
+                                    to={`/site-data/${item.type}-observation/${item.plan}?site=${filter.id}`}
+                                  >
+                                    {item.title}
+                                  </Link>
+                                </div>
+                              ) : (
+                                <div key={item.id}>{item.title}</div>
+                              );
+                            })}
+                          </td>
                         </tr>
                       );
                     default:
@@ -165,13 +186,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                           }
                           return (
                             <tr key={id}>
-                              <td>
-                                <a
-                                  href={`/site-data/${type}-observation/${plan}?site=${filter.id}`}
-                                >
-                                  {title}
-                                </a>
-                              </td>
+                              <td>{title}</td>
                               <td>{data === null ? '-' : data}</td>
                             </tr>
                           );

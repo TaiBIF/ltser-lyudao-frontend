@@ -8,16 +8,13 @@ import { surveyMapItemList } from 'data/home/content';
 import itemList from 'data/home/items.json';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
-import useWeather from 'hooks/items/useWeather';
 
 const Filter = () => {
   const { filter, setFilter } = useSurveyMapContext();
-  const [yearRange, setYearRange] = useState<string[]>([]);
 
   const [years, setYears] = useState<string[]>([]);
   const [items, setItems] = useState<string[]>([]);
 
-  const hasId = filter.id !== '';
   const isFetchingYears = years.length === 0;
   const hasYear = years.length !== 0;
   const isFetchingItems = items.length === 0;
