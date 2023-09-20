@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { gsap, Power1 } from 'gsap';
 
 import ArrowIcon from 'components/QA/ArrowIcon';
 
@@ -40,7 +41,7 @@ const Item = (props: ItemProps) => {
           <ArrowIcon />
         </div>
         <div className="ansbox" ref={targetRef} style={gsapSlideToggleStyle}>
-          <div className="flex">
+          <div className="flex inner">
             <div className="mark-a">A</div>
             <p>{data.answer}</p>
           </div>
