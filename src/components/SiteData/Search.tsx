@@ -26,12 +26,21 @@ interface SearchProps {
 const Search = (props: SearchProps) => {
   const { item, isDoneFetching, setPaginationData } = props;
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
-  const initialValues = Object.fromEntries(
-    contextData.fields.map((v: RawFieldItem) => [v.id, ''])
-  );
+
   const searchFieldList = contextData.fields;
-  const { query, setQuery } = useSiteDataContext();
-  const { pathname } = useLocation();
+  const { setQuery } = useSiteDataContext();
+  const { search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+  const locationID = queryParams.get('locationID');
+  const initialValues = locationID
+    ? Object.fromEntries([
+        contextData.fields.map((v: RawFieldItem) => [v.id, '']),
+        ['locationID', locationID],
+      ])
+    : Object.fromEntries(
+        contextData.fields.map((v: RawFieldItem) => [v.id, ''])
+      );
+
   const { currentPage } = usePage();
 
   const hasNoFields = isDoneFetching && contextData.fields.length === 0;
@@ -57,13 +66,11 @@ const Search = (props: SearchProps) => {
     validationSchema: searchValidationSchema,
   };
 
-  useEffect(() => {
-    setQuery({});
-  }, [pathname]);
-
   return (
     <>
-      <div className="center-title">資料列表搜尋</div>
+      <div className="center-title" id="search">
+        資料列表搜尋
+      </div>
       <div className="input-box">
         {isDoneFetching ? (
           !hasNoFields ? (

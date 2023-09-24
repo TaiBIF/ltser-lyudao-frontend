@@ -15,6 +15,7 @@ import {
   surveyMapColList,
   surveyMapItemList,
   defaultAllDetail,
+  planList,
 } from 'data/home/content';
 import itemList from 'data/home/items.json';
 
@@ -89,10 +90,17 @@ const PopupLayout = (props: PopupLayoutProps) => {
       .find((v) => v.site === filter.id)
       ?.years.find((v) => v.year === filter.year)?.items;
     if (matchFilter) {
-      const matchItem = matchFilter.flatMap((item) =>
-        surveyMapItemList.filter((v) => v.plan === item)
-      );
-      setItems([...matchItem]);
+      const matchItem = matchFilter.flatMap((item) => {
+        return surveyMapItemList.filter((v) => v.plan === item);
+      });
+      const matchResult = matchItem.map((item) => {
+        const matchPlanTitle = planList.find((v) => v.id === item.plan);
+        return {
+          ...item,
+          planTitle: matchPlanTitle?.title,
+        };
+      });
+      setItems([...matchResult]);
     }
     setAllDetail(null);
     if (hasFilterId) {
@@ -118,40 +126,34 @@ const PopupLayout = (props: PopupLayoutProps) => {
             cellSpacing={0}
           >
             <tbody>
-              <tr>
-                <td>觀測項目</td>
-                <td></td>
-              </tr>
               {surveyMapColList.map((v) => {
                 const { id, plan, col, title } = v;
                 const renderRow = () => {
                   switch (id) {
-                    case 'year':
-                      return (
-                        <tr key={id}>
-                          <td>{title}</td>
-                          <td>{filter.year}</td>
-                        </tr>
-                      );
                     case 'items':
                       return (
                         <tr key={id}>
                           <td>{title}</td>
                           <td>
                             {items.map((item) => {
-                              return item.redirect === true ? (
+                              return (
                                 <div key={item.id}>
                                   <Link
                                     to={`/site-data/${item.type}-observation/${item.plan}?site=${filter.id}`}
                                   >
-                                    {item.title}
+                                    {item.planTitle}
                                   </Link>
                                 </div>
-                              ) : (
-                                <div key={item.id}>{item.title}</div>
                               );
                             })}
                           </td>
+                        </tr>
+                      );
+                    case 'year':
+                      return (
+                        <tr key={id}>
+                          <td>{title}</td>
+                          <td>{filter.year}</td>
                         </tr>
                       );
                     default:
@@ -163,8 +165,8 @@ const PopupLayout = (props: PopupLayoutProps) => {
                           </tr>
                         );
                       } else {
-                        const hasItem =
-                          items.find((v) => v.plan === plan) !== undefined;
+                        const matchPlan = items.find((v) => v.plan === plan);
+                        const hasItem = matchPlan !== undefined;
                         if (hasItem && !isFetchingAllDetail) {
                           let data;
                           const formatPlan = (plan: string) =>
@@ -184,7 +186,18 @@ const PopupLayout = (props: PopupLayoutProps) => {
                             default:
                               return;
                           }
-                          return (
+                          return matchPlan.redirect ? (
+                            <tr key={id}>
+                              <td>{title}</td>
+                              <td>
+                                <Link
+                                  to={`/site-data/${matchPlan.type}-observation/${matchPlan.plan}?site=${filter.id}&locationID=${filter.id}#search`}
+                                >
+                                  {data === null ? '-' : data}
+                                </Link>
+                              </td>
+                            </tr>
+                          ) : (
                             <tr key={id}>
                               <td>{title}</td>
                               <td>{data === null ? '-' : data}</td>

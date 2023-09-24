@@ -57,3 +57,8 @@ export type SurveyMapFilterItem = {
   item: string;
   chart: boolean;
 };
+
+export type PlanItem = {
+  id: string;
+  title: string;
+};

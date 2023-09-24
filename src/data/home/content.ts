@@ -1,7 +1,7 @@
 import { map, zipObject, Dictionary } from 'lodash';
 import { DateTime } from 'luxon';
 
-import { TabItem, SurveyMapParams, TimeRangeItem } from 'types/home';
+import { TabItem, SurveyMapParams, TimeRangeItem, PlanItem } from 'types/home';
 import { ObservationItem, SelectItem, SiteObservationItem } from 'types/utils';
 
 import localityData from 'data/home/locality.json';
@@ -39,6 +39,11 @@ export const localityList: Dictionary<string | number>[] = map(
 
 export const surveyMapColList: ObservationItem[] = [
   {
+    id: 'items',
+    col: 'items',
+    title: '觀測項目',
+  },
+  {
     id: 'year',
     col: 'eventDate',
     title: '年份',
@@ -57,11 +62,6 @@ export const surveyMapColList: ObservationItem[] = [
     id: 'longitude',
     col: 'decimalLongitude',
     title: '地點緯度',
-  },
-  {
-    id: 'items',
-    col: 'items',
-    title: '觀測項目',
   },
   {
     id: 'annualAirTemperature',
@@ -104,6 +104,97 @@ export const surveyMapColList: ObservationItem[] = [
     plan: 'aquaticfauna',
     col: 'scientificName',
     title: '溪流生物物種數',
+  },
+];
+
+export const planList: PlanItem[] = [
+  {
+    id: 'coral-div',
+    title: '珊瑚多樣性',
+  },
+  {
+    id: 'coral-rec',
+    title: '珊瑚入添',
+  },
+  {
+    id: 'coral-bleach',
+    title: '珊瑚白化',
+  },
+  {
+    id: 'coral-comm',
+    title: '珊瑚群聚',
+  },
+  {
+    id: 'otolith',
+    title: '耳石',
+  },
+  {
+    id: 'ocean-sound',
+    title: '海域聲學-調查事件',
+  },
+  {
+    id: 'fish-div',
+    title: '魚類多樣性',
+  },
+  {
+    id: 'fishing',
+    title: '休閒漁業',
+  },
+  {
+    id: 'plant',
+    title: '陸域植物',
+  },
+  {
+    id: 'terre-sound',
+    title: '陸域聲學-調查事件',
+  },
+  {
+    id: 'terre-sound-index',
+    title: '陸域聲學-聲音指數',
+  },
+  {
+    id: 'bird-net-sound',
+    title: '陸域聲學-鳥音辨識',
+  },
+  {
+    id: 'bio-sound',
+    title: '陸域聲學-生物辨識',
+  },
+  {
+    id: 'water',
+    title: '海域水質',
+  },
+  {
+    id: 'habitat',
+    title: '棲地評估',
+  },
+  {
+    id: 'zoobenthos',
+    title: '底棲動物',
+  },
+  {
+    id: 'aquatic-fauna',
+    title: '溪流生物',
+  },
+  {
+    id: 'stream',
+    title: '溪流水質',
+  },
+  {
+    id: 'weather',
+    title: '氣象觀測',
+  },
+  {
+    id: 'ocean-env',
+    title: '海洋觀測',
+  },
+  {
+    id: 'sea-temperature',
+    title: '海洋觀測-海溫',
+  },
+  {
+    id: 'issue',
+    title: '社會觀測-議題盤點',
   },
 ];
 

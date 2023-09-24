@@ -40,7 +40,9 @@ const Result = (props: ResultProps) => {
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
 
   const { query, setQuery } = useSiteDataContext();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  const queryParams = new URLSearchParams(search);
+  const locationID = queryParams.get('locationID');
   const scrollTargetRef = useRef(null);
   const { handleDownload } = useDownload();
   const { auth } = useAuthContext();
@@ -67,19 +69,23 @@ const Result = (props: ResultProps) => {
   };
 
   useEffect(() => {
-    setQuery({});
-  }, [item]);
-
-  useEffect(() => {
     setDownloadTarget('');
+    setQuery({});
   }, [pathname]);
 
   useEffect(() => {
     if (contextData.raws !== undefined) {
-      contextData.getRaws({
-        params: { ...query, page: currentPage },
-        setPaginationData,
-      });
+      if (locationID) {
+        contextData.getRaws({
+          params: { locationID, page: currentPage },
+          setPaginationData,
+        });
+      } else {
+        contextData.getRaws({
+          params: { ...query, page: currentPage },
+          setPaginationData,
+        });
+      }
     }
   }, [currentPage, pathname]);
 

@@ -79,6 +79,7 @@ export type SelectItem = {
   type: string;
   title: string;
   plan: string;
+  planTitle?: string;
   redirect: boolean | null;
 };
 
