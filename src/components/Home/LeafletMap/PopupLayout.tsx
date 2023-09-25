@@ -75,7 +75,6 @@ const PopupLayout = (props: PopupLayoutProps) => {
       map.setView(surveyMapParams.center, surveyMapParams.zoom);
     }
     setFilter({ ...filter, id: '' });
-    setIdData({});
   };
 
   const handleMoreClick = () => {
@@ -111,6 +110,8 @@ const PopupLayout = (props: PopupLayoutProps) => {
         setData: setAllDetail,
       });
       setIdData({ ...data });
+    } else {
+      setIdData({});
     }
   }, [filter.id]);
 

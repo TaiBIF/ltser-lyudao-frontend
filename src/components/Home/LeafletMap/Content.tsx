@@ -92,7 +92,7 @@ const Content = () => {
               <LayerGroup>
                 {!isFetchingLocalities &&
                   markers.map((v) => {
-                    return <MarkerLayout key={v['_id']} data={v} />;
+                    return <MarkerLayout key={v.locationID} data={v} />;
                   })}
               </LayerGroup>
             </LayersControl.Overlay>
