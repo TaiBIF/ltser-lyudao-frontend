@@ -100,7 +100,6 @@ const Content = () => {
   ];
 
   const handleChartClick = (params: any) => {
-    console.log(params);
     const matchItemByTitle = chartSeriesList.find(
       (v) => v.title === params.seriesName
     );
