@@ -46,7 +46,6 @@ const PopupLayout = (props: PopupLayoutProps) => {
   } = useSurveyMapContext();
   const { handleDownload, progress } = useDownload();
   const { auth } = useAuthContext();
-  const { getAllDetail } = useSurveyMapApi();
 
   const [downloading, setDownloading] = useState(false);
   const [items, setItems] = useState<SelectItem[]>([]);
@@ -104,11 +103,6 @@ const PopupLayout = (props: PopupLayoutProps) => {
     }
     setAllDetail(null);
     if (hasFilterId) {
-      getAllDetail({
-        id: filter.id,
-        year: filter.year,
-        setData: setAllDetail,
-      });
       setIdData({ ...data });
     } else {
       setIdData({});
