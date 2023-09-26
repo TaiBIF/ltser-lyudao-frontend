@@ -11,7 +11,6 @@ import PopupLayout from 'components/Home/LeafletMap/PopupLayout';
 import TooltipLayout from 'components/Home/LeafletMap/TooltipLayout';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
-import { SiteObservationItem } from 'types/utils';
 import useSurveyMapApi from 'hooks/api/useSurveyMapApi';
 
 interface MarkerLayoutProps {
@@ -20,7 +19,7 @@ interface MarkerLayoutProps {
 
 const MarkerLayout = (props: MarkerLayoutProps) => {
   const { data } = props;
-  const { filter, setFilter, setAllDetail } = useSurveyMapContext();
+  const { filter, setFilter, setAllDetail, setIdData } = useSurveyMapContext();
   const { getAllDetail } = useSurveyMapApi();
 
   const location: LatLngExpression = [
@@ -34,6 +33,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
       year: filter.year,
       setData: setAllDetail,
     });
+    setIdData({ ...data });
     setFilter({ ...filter, id: String(data.locationID) });
   };
 

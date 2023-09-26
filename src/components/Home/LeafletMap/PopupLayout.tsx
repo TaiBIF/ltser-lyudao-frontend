@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { Dictionary } from 'lodash';
@@ -8,22 +8,19 @@ import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
 import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
 import PopupArrow from 'components/Home/LeafletMap/PopupArrow';
 
-import { ObservationItem, SelectItem } from 'types/utils';
+import { SelectItem } from 'types/utils';
 
 import {
   surveyMapParams,
   surveyMapColList,
   surveyMapItemList,
-  defaultAllDetail,
   planList,
 } from 'data/home/content';
 import itemList from 'data/home/items.json';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
-import { useDataContext } from 'context/DataContext';
 import { useDownload } from 'hooks/api/useDownload';
 import { useAuthContext } from 'context/AuthContext';
-import useSurveyMapApi from 'hooks/api/useSurveyMapApi';
 
 type PopupLayoutProps = {
   data: Dictionary<number | string>;
@@ -38,8 +35,8 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const {
     filter,
     setFilter,
-    setIdData,
     allDetail,
+    setIdData,
     setAllDetail,
     isFetchingAllDetail,
     handleDownloadPopup,
@@ -74,6 +71,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
       map.setView(surveyMapParams.center, surveyMapParams.zoom);
     }
     setFilter({ ...filter, id: '' });
+    setIdData(null);
   };
 
   const handleMoreClick = () => {
@@ -81,7 +79,6 @@ const PopupLayout = (props: PopupLayoutProps) => {
     navigate('#chart');
   };
 
-  const hasFilterId = filter.id !== '';
   const hasItems = items.length !== 0;
 
   useEffect(() => {
@@ -102,11 +99,6 @@ const PopupLayout = (props: PopupLayoutProps) => {
       setItems([...matchResult]);
     }
     setAllDetail(null);
-    if (hasFilterId) {
-      setIdData({ ...data });
-    } else {
-      setIdData({});
-    }
   }, [filter.id]);
 
   return (

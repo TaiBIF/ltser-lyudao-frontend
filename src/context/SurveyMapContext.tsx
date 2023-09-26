@@ -32,7 +32,9 @@ export const SurveyMapProvider = ({ children }: SurveyMapProviderProps) => {
     downloadPopup: false,
   });
   const downloadPopupRef = useRef<HTMLDivElement>(null);
-  const [idData, setIdData] = useState<Dictionary<number | string>>({});
+  const [idData, setIdData] = useState<Dictionary<number | string> | null>(
+    null
+  );
 
   const [allDetail, setAllDetail] = useState<AllDeatilItem | null>(null);
 
