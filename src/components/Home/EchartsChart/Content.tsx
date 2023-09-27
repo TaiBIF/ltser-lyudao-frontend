@@ -93,7 +93,7 @@ const Content = () => {
       id: 'aquaticfauna',
       type: 'ecological',
       plan: 'aquaticfauna',
-      title: '生物物種數',
+      title: '溪流生物物種數',
       col: 'count',
       unit: '',
     },

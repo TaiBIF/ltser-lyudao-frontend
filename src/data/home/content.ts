@@ -173,7 +173,7 @@ export const planList: PlanItem[] = [
     title: '底棲動物',
   },
   {
-    id: 'aquatic-fauna',
+    id: 'aquaticfauna',
     title: '溪流生物',
   },
   {

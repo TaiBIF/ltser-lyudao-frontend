@@ -19,6 +19,9 @@
         }
       }
     }
+    &--light {
+      color: map-get($map: map-get($color, font), $key: light) !important;
+    }
   }
   &-icon {
     fill: map-get($map: $color, $key: primary);

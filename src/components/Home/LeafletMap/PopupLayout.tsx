@@ -70,8 +70,9 @@ const PopupLayout = (props: PopupLayoutProps) => {
       map.closePopup();
       map.setView(surveyMapParams.center, surveyMapParams.zoom);
     }
-    setFilter({ ...filter, id: '' });
+    setFilter({ ...filter, id: '', chart: false });
     setIdData(null);
+    setAllDetail(null);
   };
 
   const handleMoreClick = () => {
@@ -123,17 +124,29 @@ const PopupLayout = (props: PopupLayoutProps) => {
                         <tr key={id}>
                           <td>{title}</td>
                           <td>
-                            {items.map((item) => {
-                              return (
-                                <div key={item.id}>
-                                  <Link
-                                    to={`/site-data/${item.type}-observation/${item.plan}?site=${filter.id}`}
-                                  >
-                                    {item.planTitle}
-                                  </Link>
-                                </div>
-                              );
-                            })}
+                            {items
+                              .reduce((accumulator: SelectItem[], current) => {
+                                if (
+                                  accumulator.some(
+                                    (obj) => obj.plan === current.plan
+                                  )
+                                )
+                                  return accumulator;
+
+                                return [...accumulator, current];
+                              }, [])
+                              .map((item) => {
+                                return (
+                                  <div key={item.id}>
+                                    <Link
+                                      to={`/site-data/${item.type}-observation/${item.plan}?site=${filter.id}`}
+                                      className="e-link e-link--light"
+                                    >
+                                      {item.planTitle}
+                                    </Link>
+                                  </div>
+                                );
+                              })}
                           </td>
                         </tr>
                       );
