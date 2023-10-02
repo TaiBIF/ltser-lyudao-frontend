@@ -68,7 +68,6 @@ const Content = () => {
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({ block: 'start', behavior: 'smooth' });
-          window.scrollBy(0, 200);
         }
       }, 0);
     }

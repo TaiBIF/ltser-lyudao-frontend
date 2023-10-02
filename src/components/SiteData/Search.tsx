@@ -68,9 +68,8 @@ const Search = (props: SearchProps) => {
 
   return (
     <>
-      <div className="center-title" id="search">
-        資料列表搜尋
-      </div>
+      <div id="search" style={{ position: 'relative', top: '-96px' }}></div>
+      <div className="center-title">資料列表搜尋</div>
       <div className="input-box">
         {isDoneFetching ? (
           !hasNoFields ? (
