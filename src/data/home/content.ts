@@ -31,7 +31,7 @@ export const tabList: TabItem[] = [
     style: '3',
     title: '社會觀測',
     subtitle: ['Social', 'Observation'],
-    link: 'social-observation',
+    link: 'social-observation/social-economy-data',
   },
 ];
 

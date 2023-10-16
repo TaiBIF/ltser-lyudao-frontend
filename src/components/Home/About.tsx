@@ -59,7 +59,7 @@ const About = (props: AboutProps) => {
                 return (
                   <Link
                     key={id}
-                    to={`/${link}`}
+                    to={`/site-data/${link}`}
                     className={`ciritem cir0${style}`}
                   >
                     <div className="txt">
