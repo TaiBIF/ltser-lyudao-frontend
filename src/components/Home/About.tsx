@@ -55,12 +55,12 @@ const About = (props: AboutProps) => {
               </div>
               <img src={abmapImg} alt="綠島地圖" />
               {tabList.map((v) => {
-                const { id, title, subtitle, link } = v;
+                const { id, style, title, subtitle, link } = v;
                 return (
                   <Link
                     key={id}
                     to={`/${link}`}
-                    className={`ciritem cir0${id}`}
+                    className={`ciritem cir0${style}`}
                   >
                     <div className="txt">
                       <p>{title}</p>

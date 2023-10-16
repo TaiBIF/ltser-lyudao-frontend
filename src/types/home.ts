@@ -8,6 +8,7 @@ export type EnterState = {
 
 export type TabItem = {
   id: number | string;
+  style: string;
   title: string;
   subtitle: [string, string];
   link: string;

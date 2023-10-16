@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { EnterState } from 'types/home';
 import { NewsItem, NewsFilterItem, HomeNewsFilterItem } from 'types/news';
+import { TypeItem } from 'types/utils';
 
 import { newsList, newsTypeList } from 'data/news';
+import { NEWS_API_URL, NEWS_TYPE_API_URL } from 'data/api';
 
 import useRender from 'hooks/page/useRender';
-import { NEWS_API_URL, NEWS_TYPE_API_URL } from 'data/api';
-import { TypeItem } from 'types/utils';
 
 interface NewsProps {
   enter: EnterState;
