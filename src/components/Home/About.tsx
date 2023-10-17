@@ -1,19 +1,27 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
+
 import abmapImg from 'image/abmap.png';
 
 import { EnterState } from 'types/home';
-import { tabList } from 'data/home/content';
+import { generateAboutTabList } from 'data/home/content';
 
 interface AboutProps {
   enter: EnterState;
+  PAGE_NAME: string;
 }
 
 const About = (props: AboutProps) => {
-  const { enter } = props;
+  const { enter, PAGE_NAME } = props;
 
-  useEffect(() => {}, []);
+  const aboutTabList = generateAboutTabList();
+
+  const COMPONENT_NAME = 'About';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -53,8 +61,8 @@ const About = (props: AboutProps) => {
                   </g>
                 </svg>
               </div>
-              <img src={abmapImg} alt="綠島地圖" />
-              {tabList.map((v) => {
+              <img src={abmapImg} alt={t(`${I18N_KEY_PREFIX}.mapTitle`)} />
+              {aboutTabList.map((v) => {
                 const { id, style, title, subtitle, link } = v;
                 return (
                   <Link
@@ -65,9 +73,14 @@ const About = (props: AboutProps) => {
                     <div className="txt">
                       <p>{title}</p>
                       <span>
-                        {subtitle[0]}
-                        <br />
-                        {subtitle[1]}
+                        {subtitle.map((v, i) => {
+                          return (
+                            <>
+                              {v}
+                              {i === subtitle.length - 1 ? <></> : <br />}
+                            </>
+                          );
+                        })}
                       </span>
                     </div>
                   </Link>
@@ -76,15 +89,15 @@ const About = (props: AboutProps) => {
             </div>
           </div>
           <div className="rightbox">
-            <h2>ABOUT</h2>
+            <h2>{t(`${I18N_KEY_PREFIX}.aboutTitle`)}</h2>
             <p>
-              綠島是離島中的第四大島，受到黑潮主流的影響，孕育出了豐富的珊瑚礁生態。珊瑚礁生態系支持了綠島早期的漁業活動，以及近年的觀光活動。觀光人數日漸增加再加上氣候變遷的不可遇測性，使得需要長期依靠臺灣本島補給的綠島，面對人為及自然的衝擊的脆弱度增加。
+              {t(`${I18N_KEY_PREFIX}.content1`)}
               <br />
               <br />
-              在目前的環境下綠島是否能永續發展，需要依靠長期的社會及生態資料的收集及觀測，藉由分析長期的資料才能知曉。因此本計畫將透過盤點社會生態議題及進行環境及生態觀測，建置綠島社會生態長期觀測資料庫，進行資料倉儲並開放分享，建立起一個平台。
+              {t(`${I18N_KEY_PREFIX}.content2`)}
               <br />
               <br />
-              藉由這個平台，大家可以進行研究、教育及議題的討論，找出集體共識，最終找出綠島永續發展的可執行政策。
+              {t(`${I18N_KEY_PREFIX}.content3`)}
             </p>
           </div>
         </div>

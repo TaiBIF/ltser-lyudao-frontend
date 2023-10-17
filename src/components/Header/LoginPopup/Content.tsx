@@ -19,6 +19,10 @@ type loginContentItem = {
 };
 
 const Content = () => {
+  const PAGE_NAME = 'common';
+  const COMPONENT_NAME = `LoginPopup`;
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
   const { show, setShow, loginPopupRef, handleLoginClick } = useHeaderContext();
   const { pathname } = useLocation();
   const { width } = useWindowDimensions();
@@ -28,15 +32,15 @@ const Content = () => {
   const loginContentList: loginContentItem[] = [
     {
       id: 'login',
-      content: <Login />,
+      content: <Login I18N_KEY_PREFIX={I18N_KEY_PREFIX} />,
     },
     {
       id: 'forgotPsw',
-      content: <ForgotPsw />,
+      content: <ForgotPsw I18N_KEY_PREFIX={I18N_KEY_PREFIX} />,
     },
     {
       id: 'signup',
-      content: <Signup />,
+      content: <Signup I18N_KEY_PREFIX={I18N_KEY_PREFIX} />,
     },
   ];
 

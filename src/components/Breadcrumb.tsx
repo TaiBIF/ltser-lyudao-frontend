@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { HeaderMenuItem } from 'types/common';
-import { routeList } from 'data/common';
+import { generateRouteList } from 'data/common';
 
 const Breadcrumb = () => {
+  const routeList: HeaderMenuItem[] = generateRouteList();
+
   const { pathname } = useLocation();
   const paths = pathname.split('/').slice(1);
   const [breadcrumb, setBreadcrumb] = useState<string[]>([]);

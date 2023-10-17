@@ -1,17 +1,57 @@
 import { map, zipObject, Dictionary } from 'lodash';
 import { DateTime } from 'luxon';
+import i18n from 'i18next';
 
 import { TabItem, SurveyMapParams, TimeRangeItem, PlanItem } from 'types/home';
 import { ObservationItem, SelectItem, SiteObservationItem } from 'types/utils';
 
 import localityData from 'data/home/locality.json';
 
+const PAGE_NAME = 'data';
+const COMPONENT_NAME = 'home';
+const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
 export const surveyMapParams: SurveyMapParams = {
   center: [22.6581038, 121.4870464],
   zoom: 14,
 };
 
-export const tabList: TabItem[] = [
+// tabList
+// TabItem[]
+export const generateAboutTabList = () => [
+  {
+    id: 'ecologicalObservation',
+    style: '1',
+    title: i18n.t(`${I18N_KEY_PREFIX}.aboutTab.ecologicalObservation.title`),
+    subtitle: [
+      i18n.t(`${I18N_KEY_PREFIX}.aboutTab.ecologicalObservation.subtitle1`),
+      i18n.t(`${I18N_KEY_PREFIX}.aboutTab.ecologicalObservation.subtitle2`),
+    ],
+    link: 'ecological-observation',
+  },
+  {
+    id: 'environmentalObservation',
+    style: '2',
+    title: i18n.t(`${I18N_KEY_PREFIX}.aboutTab.environmentalObservation.title`),
+    subtitle: [
+      i18n.t(`${I18N_KEY_PREFIX}.aboutTab.environmentalObservation.subtitle1`),
+      i18n.t(`${I18N_KEY_PREFIX}.aboutTab.environmentalObservation.subtitle2`),
+    ],
+    link: 'environmental-observation',
+  },
+  {
+    id: 'socialObservation',
+    style: '3',
+    title: i18n.t(`${I18N_KEY_PREFIX}.aboutTab.socialObservation.title`),
+    subtitle: [
+      i18n.t(`${I18N_KEY_PREFIX}.aboutTab.socialObservation.subtitle1`),
+      i18n.t(`${I18N_KEY_PREFIX}.aboutTab.socialObservation.subtitle2`),
+    ],
+    link: 'social-observation/social-economy-data',
+  },
+];
+
+export const tabList = [
   {
     id: 'ecologicalObservation',
     style: '1',

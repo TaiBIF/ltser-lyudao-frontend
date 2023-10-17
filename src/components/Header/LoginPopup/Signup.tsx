@@ -7,6 +7,7 @@ import {
   FormikConfig,
   FormikHelpers,
 } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import ActionBtn from 'components/Header/LoginPopup/ActionBtn';
 import Spinner from 'components/Spinner';
@@ -16,7 +17,10 @@ import { useAuthContext } from 'context/AuthContext';
 import { signupValidationSchema } from 'data/validationSchema';
 import { useHeaderContext } from 'context/HeaderContext';
 
-const Signup = () => {
+const Signup = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
+  const PREFIX = 'Signup';
+  const { t } = useTranslation();
+
   const initialValues = {
     first_name: '',
     last_name: '',
@@ -45,12 +49,18 @@ const Signup = () => {
     <>
       {/*註冊*/}
       <div className="register-set">
-        <div className="titlebox">會員註冊</div>
+        <div className="titlebox">
+          {t(`${I18N_KEY_PREFIX}.${PREFIX}.title`)}
+        </div>
         <Formik {...formikConfig}>
           {({ isSubmitting }) => (
             <Form>
               <div className="input-item">
-                <Field type="text" name="last_name" placeholder="姓" />
+                <Field
+                  type="text"
+                  name="last_name"
+                  placeholder={t(`${I18N_KEY_PREFIX}.${PREFIX}.lastNameText`)}
+                />
                 <ErrorMessage
                   name="lastName"
                   component="small"
@@ -58,7 +68,11 @@ const Signup = () => {
                 />
               </div>
               <div className="input-item">
-                <Field type="text" name="first_name" placeholder="名" />
+                <Field
+                  type="text"
+                  name="first_name"
+                  placeholder={t(`${I18N_KEY_PREFIX}.${PREFIX}.firstNameText`)}
+                />
                 <ErrorMessage
                   name="firstName"
                   component="small"
@@ -69,7 +83,7 @@ const Signup = () => {
                 <Field
                   type="email"
                   name="email"
-                  placeholder="請輸入您的Email作為帳號"
+                  placeholder={t(`${I18N_KEY_PREFIX}.emailText`)}
                 />
                 <ErrorMessage
                   name="email"
@@ -81,7 +95,7 @@ const Signup = () => {
                 <Field
                   type="password"
                   name="password"
-                  placeholder="請輸入您的密碼"
+                  placeholder={t(`${I18N_KEY_PREFIX}.passwordText`)}
                 />
                 <ErrorMessage
                   name="password"
@@ -93,7 +107,7 @@ const Signup = () => {
                 <Field
                   type="password"
                   name="password2"
-                  placeholder="請再次輸入密碼"
+                  placeholder={t(`${I18N_KEY_PREFIX}.${PREFIX}.password2Text`)}
                 />
                 <ErrorMessage
                   name="password2"
@@ -103,14 +117,26 @@ const Signup = () => {
               </div>
               <div className="btn-area">
                 <button type="submit" className="login" disabled={isSubmitting}>
-                  {!loading ? '註冊' : <Spinner />}
+                  {!loading ? (
+                    t(`${I18N_KEY_PREFIX}.${PREFIX}.signupBtn`)
+                  ) : (
+                    <Spinner />
+                  )}
                 </button>
               </div>
               <div className="btn-area2">
-                <ActionBtn type="login" loading={loading} />
+                <ActionBtn
+                  type="login"
+                  loading={loading}
+                  I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+                />
                 <div className="link">
-                  <span className="col-red">*註冊即同意</span>{' '}
-                  <a href="/">使用者條款</a>
+                  <span className="col-red">
+                    *{t(`${I18N_KEY_PREFIX}.${PREFIX}.hintText`)}
+                  </span>{' '}
+                  <a href="/">
+                    {t(`${I18N_KEY_PREFIX}.${PREFIX}.hintTermLink`)}
+                  </a>
                 </div>
               </div>
             </Form>

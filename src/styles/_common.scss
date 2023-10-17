@@ -337,6 +337,16 @@ $transition: (
     margin-left: auto;
     margin-right: 0;
   }
+  &--full-page {
+    position: absolute;
+    #{$_}__img {
+      width: 3rem;
+      height: 3rem;
+    }
+    #{$_}__text {
+      display: none;
+    }
+  }
 }
 
 .c-aside {

@@ -1,9 +1,6 @@
-import {
-  HeaderMenuItem,
-  FooterLogoItem,
-  FooterSociIconItem,
-  FooterMenuItem,
-} from 'types/common';
+import i18n from 'i18next';
+
+import { FooterLogoItem } from 'types/common';
 
 import ftlogoImg1 from 'image/ftlogo1.png';
 import ftlogoImg2 from 'image/ftlogo2.png';
@@ -13,7 +10,11 @@ import ftlogoImg5 from 'image/ftlogo5.png';
 import ftlogoImg6 from 'image/ftlogo6.png';
 import ftlogoImg7 from 'image/ftlogo7.png';
 
-export const logoList: FooterLogoItem[] = [
+const PAGE_NAME = 'data';
+const COMPONENT_NAME = 'common';
+const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+export const footerLogoList: FooterLogoItem[] = [
   {
     id: 1,
     img: ftlogoImg1,
@@ -60,45 +61,51 @@ export const logoList: FooterLogoItem[] = [
   },
 ];
 
-export const footerMenuList: FooterMenuItem[] = [
+// footerMenuList
+// FooterMenuItem[]
+export const generateFooterMenuList = () => [
   {
     id: 1,
-    title: '關於LTSER_綠島',
+    title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.about`),
     list: [
       {
         id: 1,
-        subtitle: '生態觀測',
+        subtitle: i18n.t(`${I18N_KEY_PREFIX}.menu.title.ecologicalObservation`),
         link: '/about/ecological-observation',
       },
       {
         id: 2,
-        subtitle: '環境觀測',
+        subtitle: i18n.t(
+          `${I18N_KEY_PREFIX}.menu.title.environmentalObservation`
+        ),
         link: '/about/environmental-observation',
       },
       {
         id: 3,
-        subtitle: '社會觀測',
+        subtitle: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialObservation`),
         link: '/about/social-observation',
       },
     ],
   },
   {
     id: 2,
-    title: '觀測站資料',
+    title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.siteData`),
     list: [
       {
         id: 1,
-        subtitle: '生態觀測',
+        subtitle: i18n.t(`${I18N_KEY_PREFIX}.menu.title.ecologicalObservation`),
         link: '/site-data/ecological-observation',
       },
       {
         id: 2,
-        subtitle: '環境觀測',
+        subtitle: i18n.t(
+          `${I18N_KEY_PREFIX}.menu.title.environmentalObservation`
+        ),
         link: '/site-data/environmental-observation',
       },
       {
         id: 3,
-        subtitle: '社會觀測',
+        subtitle: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialObservation`),
         link: '/site-data/social-observation/social-economy-data',
       },
     ],
@@ -108,45 +115,47 @@ export const footerMenuList: FooterMenuItem[] = [
     list: [
       {
         id: 1,
-        title: '最新消息',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.news`),
         link: '/news',
       },
       {
         id: 2,
-        title: '相關文獻',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.relatedLiterature`),
         link: '/related-literature',
       },
       {
         id: 3,
-        title: '常見Q&A',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.qa`),
         link: '/qa',
       },
     ],
   },
 ];
 
-export const menuList: HeaderMenuItem[] = [
+// headerMenuList
+// HeaderMenuItem[]
+export const generateHeaderMenuList = () => [
   {
     id: 1,
-    title: '關於LTSER_綠島',
+    title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.about`),
     type: 'mega',
     link: 'about',
     list: [
       {
         id: 1,
-        title: '生態觀測',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.ecologicalObservation`),
         link: 'ecological-observation',
         list: [],
       },
       {
         id: 2,
-        title: '環境觀測',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.environmentalObservation`),
         link: 'environmental-observation',
         list: [],
       },
       {
         id: 3,
-        title: '社會觀測',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialObservation`),
         link: 'social-observation',
         list: [],
       },
@@ -154,38 +163,38 @@ export const menuList: HeaderMenuItem[] = [
   },
   {
     id: 2,
-    title: '觀測站資料',
+    title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.siteData`),
     type: 'sec',
     link: 'site-data',
     list: [
       {
         id: 1,
-        title: '生態觀測',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.ecologicalObservation`),
         link: 'ecological-observation',
       },
       {
         id: 2,
-        title: '環境觀測',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.environmentalObservation`),
         link: 'environmental-observation',
       },
       {
         id: 3,
-        title: '社會觀測',
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialObservation`),
         link: 'social-observation',
         list: [
           {
             id: 1,
-            title: '社會經濟資料',
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
             link: 'social-economy-data',
           },
           {
             id: 2,
-            title: '休閒漁業資料',
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.fishing`),
             link: 'fishing',
           },
           {
             id: 3,
-            title: '社會面訪談資料',
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialInterviewData`),
             link: 'social-interview-data',
           },
         ],
@@ -194,57 +203,59 @@ export const menuList: HeaderMenuItem[] = [
   },
   {
     id: 3,
-    title: '最新消息',
+    title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.news`),
     link: 'news',
   },
   {
     id: 4,
-    title: '相關文獻',
+    title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.relatedLiterature`),
     link: 'related-literature',
   },
   {
     id: 5,
-    title: '常見Q&A',
+    title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.qa`),
     link: 'qa',
   },
   {
     id: 6,
-    title: '常用表單與連結',
+    title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.formLink`),
     link: 'form-link',
     show: 'auth',
   },
 ];
 
-export const routeList: HeaderMenuItem[] = [
-  ...menuList,
+// routeList
+// HeaderMenuItem[]
+export const generateRouteList = () => [
+  ...generateHeaderMenuList(),
   {
     id: 0,
-    title: '首頁',
+    title: i18n.t(`${I18N_KEY_PREFIX}.route.title.home`),
     link: '',
   },
   {
     id: 7,
-    title: '聯絡我們',
+    title: i18n.t(`${I18N_KEY_PREFIX}.route.title.contact`),
     link: 'contact',
   },
   {
     id: 8,
-    title: '忘記密碼',
+    title: i18n.t(`${I18N_KEY_PREFIX}.route.title.forgotPassword`),
     link: 'forgot-password',
   },
   {
     id: 9,
-    title: '會員註冊',
+    title: i18n.t(`${I18N_KEY_PREFIX}.route.title.mailVerification`),
     link: 'mail-verification',
   },
   {
     id: 10,
-    title: '驗證成功',
+    title: i18n.t(`${I18N_KEY_PREFIX}.route.title.signupSuccess`),
     link: 'signup-success',
   },
   {
     id: 10,
-    title: '使用條款',
+    title: i18n.t(`${I18N_KEY_PREFIX}.route.title.terms`),
     link: 'terms',
   },
 ];

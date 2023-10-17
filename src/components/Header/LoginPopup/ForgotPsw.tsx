@@ -8,14 +8,19 @@ import {
   FormikHelpers,
 } from 'formik';
 
+import { useTranslation } from 'react-i18next';
+
 import ActionBtn from 'components/Header/LoginPopup/ActionBtn';
+import Spinner from 'components/Spinner';
 
 import { resetPswEmailValidationSchema } from 'data/validationSchema';
 
 import { useAuthContext } from 'context/AuthContext';
-import Spinner from 'components/Spinner';
 
-const ForgotPsw = () => {
+const ForgotPsw = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
+  const PREFIX = 'ForgotPsw';
+  const { t } = useTranslation();
+
   const initialValues = {
     email: '',
   };
@@ -40,8 +45,10 @@ const ForgotPsw = () => {
     <>
       {/*忘記密碼*/}
       <div className="forget-set">
-        <div className="titlebox">忘記密碼</div>
-        <p>請輸入當初加入會員使用的E-Mail，我們將協助您重新設定密碼。</p>
+        <div className="titlebox">
+          {t(`${I18N_KEY_PREFIX}.${PREFIX}.title`)}
+        </div>
+        <p>{t(`${I18N_KEY_PREFIX}.${PREFIX}.subtitle`)}</p>
         <Formik {...formikConfig}>
           {({ isSubmitting }) => (
             <Form>
@@ -49,7 +56,7 @@ const ForgotPsw = () => {
                 <Field
                   type="text"
                   name="email"
-                  placeholder="請輸入您的帳號(email)"
+                  placeholder={t(`${I18N_KEY_PREFIX}.emailText`)}
                 />
                 <ErrorMessage
                   name="email"
@@ -59,12 +66,24 @@ const ForgotPsw = () => {
               </div>
               <div className="btn-area">
                 <button className="login" type="submit" disabled={isSubmitting}>
-                  {!loading ? '確認送出' : <Spinner />}
+                  {!loading ? (
+                    t(`${I18N_KEY_PREFIX}.${PREFIX}.submitBtn`)
+                  ) : (
+                    <Spinner />
+                  )}
                 </button>
               </div>
               <div className="btn-area2">
-                <ActionBtn type="signup" loading={loading} />
-                <ActionBtn type="login" loading={loading} />
+                <ActionBtn
+                  type="signup"
+                  loading={loading}
+                  I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+                />
+                <ActionBtn
+                  type="login"
+                  loading={loading}
+                  I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+                />
               </div>
             </Form>
           )}

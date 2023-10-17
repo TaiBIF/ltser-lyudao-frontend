@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { HeaderLoginContentState } from 'types/common';
 
@@ -7,10 +8,15 @@ import { useHeaderContext } from 'context/HeaderContext';
 interface ActionBtnProps {
   type: string;
   loading: boolean;
+  I18N_KEY_PREFIX: string;
 }
 
 const ActionBtn = (props: ActionBtnProps) => {
-  const { type, loading } = props;
+  const { type, loading, I18N_KEY_PREFIX } = props;
+  const PREFIX = 'ActionBtn';
+
+  const { t } = useTranslation();
+
   const { show, setShow } = useHeaderContext();
   const [content, setContent] = useState<HeaderLoginContentState>({
     class: '',
@@ -24,18 +30,27 @@ const ActionBtn = (props: ActionBtnProps) => {
   useEffect(() => {
     switch (type) {
       case 'forgotPsw':
-        setContent({ class: 'forget-btn', text: '忘記密碼' });
+        setContent({
+          class: 'forget-btn',
+          text: t(`${I18N_KEY_PREFIX}.${PREFIX}.forgotPswBtn`),
+        });
         break;
       case 'signup':
-        setContent({ class: 'res-btn', text: '建立帳號' });
+        setContent({
+          class: 'res-btn',
+          text: t(`${I18N_KEY_PREFIX}.${PREFIX}.signupBtn`),
+        });
         break;
       case 'login':
-        setContent({ class: 'back-btn', text: '返回登入' });
+        setContent({
+          class: 'back-btn',
+          text: t(`${I18N_KEY_PREFIX}.${PREFIX}.backBtn`),
+        });
         break;
       default:
         break;
     }
-  }, []);
+  }, [show]);
 
   return (
     <>

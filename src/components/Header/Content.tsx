@@ -14,22 +14,27 @@ import Item from 'components/Header/Item';
 
 import { HeaderMenuItem } from 'types/common';
 
-import { menuList } from 'data/common';
+import { generateHeaderMenuList } from 'data/common';
 import { HEADER_ABOUT_API_URL } from 'data/api';
 import { headerAboutData } from 'data/about';
 
 import { useHeaderContext } from 'context/HeaderContext';
 import { gsapSlideToggle } from 'utils/animation';
 import useRender from 'hooks/page/useRender';
-import LogoutBtn from './LogoutBtn';
-import { useAuthContext } from 'context/AuthContext';
+import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 
 const Content = () => {
+  const PAGE_NAME = 'common';
+  const COMPONENT_NAME = `Header`;
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+  const { list: menuList, isFetchingList: isFetchingMenuList } =
+    useRerenderTranslation({ generateList: generateHeaderMenuList });
+
   const { pathname, hash, key } = useLocation();
   const { show, menu3Ref, mainMenuRef } = useHeaderContext();
   const { getDetail } = useRender();
   const { about, setAbout } = useHeaderContext();
-  const { auth } = useAuthContext();
 
   const [menu, setMenu] = useState<HeaderMenuItem[]>([]);
 
@@ -83,12 +88,12 @@ const Content = () => {
   }, [pathname]);
 
   useEffect(() => {
-    if (!isFetchingAbout) {
+    if (!isFetchingAbout && !isFetchingMenuList) {
       const originalMenu = menuList;
       Object.entries(about).forEach(([key, value]) => {
-        const aboutItem = originalMenu
-          .find((v) => v.link === 'about')
-          ?.list?.find((v) => {
+        const aboutItem = menuList
+          .find((v: any) => v.link === 'about')
+          ?.list?.find((v: any) => {
             const formatLink = `${v.link?.split('-')[0]}${v.link
               ?.split('-')[1]
               .slice(0, 1)
@@ -101,14 +106,14 @@ const Content = () => {
       });
       setMenu([...originalMenu]);
     }
-  }, [about]);
+  }, [about, menuList]);
 
   return (
     <>
       <div className="header">
         <MobileCollapseBtn />
         <div className="flex-box">
-          <LogoLink />
+          <LogoLink I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
           <div
             className="main_menu"
             ref={mainMenuRef}
@@ -134,7 +139,7 @@ const Content = () => {
             <div className="header-iconbox">
               <LanguageBtn />
               <ContactLink />
-              <LoginBtn />
+              <LoginBtn I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
             </div>
           </div>
         </div>

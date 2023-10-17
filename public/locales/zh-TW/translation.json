@@ -1,0 +1,113 @@
+{
+  "common": {
+    "Header": {
+      "loginBtn": "登入",
+      "greetingText": "Hi",
+      "logoTitle": "長期社會生態核心觀測-綠島站",
+      "logoSubtitle": "LTSER LYUDAO",
+      "dashboardBtn": "後台",
+      "logoutBtn": "登出"
+    },
+    "LoginPopup": {
+      "emailText": "請輸入您的帳號(email)",
+      "passwordText": "請輸入您的密碼",
+      "Login": {
+        "title": "會員登入",
+        "rememberMeLabel": "記住我的帳號",
+        "loginBtn": "登入",
+        "googleLoginBtn": "使用GOOGLE登入"
+      },
+      "ForgotPsw": {
+        "title": "忘記密碼",
+        "subtitle": "請輸入當初加入會員使用的E-Mail，我們將協助您重新設定密碼。",
+        "emailText": "請輸入您的帳號(email)",
+        "submitBtn": "確認送出"
+      },
+      "Signup": {
+        "title": "會員註冊",
+        "lastNameText": "姓",
+        "firstNameText": "名",
+        "emailText": "請輸入您的帳號(email)",
+        "passwordText": "請輸入您的密碼",
+        "password2Text": "請再次輸入密碼",
+        "signupBtn": "註冊",
+        "hintText": "註冊即同意",
+        "hintTermLink": "使用者條款"
+      },
+      "ActionBtn": {
+        "forgotPswBtn": "忘記密碼",
+        "signupBtn": "建立帳號",
+        "backBtn": "返回登入"
+      }
+    },
+    "Footer": {
+      "dbLogoText1": "資料庫管理：",
+      "dbLogoText2": "臺灣生物多樣性機構 TaiBIF",
+      "privacyPolicyLink": "隱私權政策",
+      "termsLink": "使用者條款",
+      "copyRightText": "©2022LTSER 長期社會生態核心觀測綠島站"
+    }
+  },
+  "Home": {
+    "Kvbox": {
+      "title": "長期社會生態核心觀測站-綠島站",
+      "subtitle": "LTSER LYUDAO"
+    },
+    "About": {
+      "mapTitle": "綠島地圖",
+      "aboutTitle": "ABOUT",
+      "content1": "綠島是離島中的第四大島，受到黑潮主流的影響，孕育出了豐富的珊瑚礁生態。珊瑚礁生態系支持了綠島早期的漁業活動，以及近年的觀光活動。觀光人數日漸增加再加上氣候變遷的不可遇測性，使得需要長期依靠臺灣本島補給的綠島，面對人為及自然的衝擊的脆弱度增加。",
+      "content2": "在目前的環境下綠島是否能永續發展，需要依靠長期的社會及生態資料的收集及觀測，藉由分析長期的資料才能知曉。因此本計畫將透過盤點社會生態議題及進行環境及生態觀測，建置綠島社會生態長期觀測資料庫，進行資料倉儲並開放分享，建立起一個平台。",
+      "content3": "藉由這個平台，大家可以進行研究、教育及議題的討論，找出集體共識，最終找出綠島永續發展的可執行政策。"
+    }
+  },
+  "data": {
+    "common": {
+      "menu": {
+        "title": {
+          "about": "關於LTSER_綠島",
+          "ecologicalObservation": "生態觀測",
+          "environmentalObservation": "環境觀測",
+          "socialObservation": "社會觀測",
+          "siteData": "觀測站資料",
+          "socialEconomyData": "社會經濟資料",
+          "fishing": "休閒漁業資料",
+          "socialInterviewData": "社會面訪談資料",
+          "news": "最新消息",
+          "relatedLiterature": "相關文獻",
+          "qa": "常見Q&A",
+          "formLink": "常用表單與連結"
+        }
+      },
+      "route": {
+        "title": {
+          "home": "首頁",
+          "contact": "聯絡我們",
+          "forgotPassword": "忘記密碼",
+          "mailVerification": "會員註冊",
+          "signupSuccess": "驗證成功",
+          "terms": "使用條款"
+        }
+      }
+    },
+    "home": {
+      "aboutTab": {
+        "ecologicalObservation": {
+          "title": "生態觀測",
+          "subtitle1": "Ecological",
+          "subtitle2": "Observation"
+        },
+        "environmentalObservation": {
+          "title": "環境觀測",
+          "subtitle1": "Environmental",
+          "subtitle2": "Observation"
+        },
+        "socialObservation": {
+          "title": "社會觀測",
+          "subtitle1": "Social",
+          "subtitle2": "Observation"
+        }
+      }
+    }
+  }
+}

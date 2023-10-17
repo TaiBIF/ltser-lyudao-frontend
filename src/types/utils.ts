@@ -130,3 +130,9 @@ export type ImagesItem = {
 export type ShowState = {
   downloadPopup: boolean;
 };
+
+export type LangItem = {
+  id: string;
+  title: string;
+  hint: string;
+};

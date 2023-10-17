@@ -12,6 +12,8 @@ import { useAuthContext } from 'context/AuthContext';
 import { useHeaderContext } from 'context/HeaderContext';
 
 const Home = () => {
+  const PAGE_NAME = 'Home';
+
   const [enter, setEnter] = useState<EnterState>({
     s2: false,
     s3: false,
@@ -59,8 +61,8 @@ const Home = () => {
 
   return (
     <>
-      <Kvbox />
-      <About enter={enter} />
+      <Kvbox PAGE_NAME={PAGE_NAME} />
+      <About enter={enter} PAGE_NAME={PAGE_NAME} />
       <News enter={enter} />
       <SurveyMap enter={enter} />
     </>
