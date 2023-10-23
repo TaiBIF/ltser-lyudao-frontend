@@ -338,10 +338,19 @@ $transition: (
     margin-right: 0;
   }
   &--full-page {
+    width: 100vw;
+    height: 100vh;
+
+    background: map-get($map: $color, $key: light);
+
     position: absolute;
+    &::after {
+      display: none;
+    }
     #{$_}__img {
-      width: 3rem;
-      height: 3rem;
+      .c-spinner__circle {
+        stroke: map-get($map: $color, $key: primary);
+      }
     }
     #{$_}__text {
       display: none;

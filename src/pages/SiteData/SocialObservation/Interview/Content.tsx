@@ -25,6 +25,12 @@ import { InterviewItem } from 'types/siteData';
 import FilterLayout from 'components/SiteData/Interview/FilterLayout';
 
 const Content = () => {
+  const PAGE_NAME = 'SiteData';
+  const COMPONENT_NAME = 'Economy';
+  const PREFIX = 'Interview';
+
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}.${PREFIX}`;
+
   const bannerData: BannerData = {
     title: '社會觀測',
     en: ['social', 'observation'],
@@ -76,7 +82,10 @@ const Content = () => {
               <Formik {...formikConfig}>
                 {({ isSubmitting }) => (
                   <Form>
-                    <FilterLayout isSubmitting={isSubmitting} />
+                    <FilterLayout
+                      isSubmitting={isSubmitting}
+                      I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+                    />
                   </Form>
                 )}
               </Formik>

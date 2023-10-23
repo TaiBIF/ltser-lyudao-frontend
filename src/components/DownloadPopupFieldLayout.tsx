@@ -4,15 +4,20 @@ import { ErrorMessage, Field, useFormikContext } from 'formik';
 
 import Spinner from 'components/Spinner';
 import { ShowState } from 'types/utils';
+import { useTranslation } from 'react-i18next';
 
 interface DownloadPopupFieldProps {
   isSubmitting: boolean;
   loading: boolean;
   show: ShowState;
+  I18N_KEY_PREFIX: string;
 }
 
 const DownloadPopupFieldLayout = (props: DownloadPopupFieldProps) => {
-  const { isSubmitting, loading, show } = props;
+  const { isSubmitting, loading, show, I18N_KEY_PREFIX } = props;
+
+  const { t } = useTranslation();
+
   const formik = useFormikContext();
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const DownloadPopupFieldLayout = (props: DownloadPopupFieldProps) => {
           id="email"
           name="email"
           className="c-form__input"
-          placeholder="請輸入您email"
+          placeholder={t(`${I18N_KEY_PREFIX}.emailText`)}
           required={true}
         />
         <ErrorMessage
@@ -42,7 +47,7 @@ const DownloadPopupFieldLayout = (props: DownloadPopupFieldProps) => {
           id="role"
           name="role"
           className="c-form__input"
-          placeholder="您的身份"
+          placeholder={t(`${I18N_KEY_PREFIX}.roleText`)}
           required={true}
         />
         <ErrorMessage
@@ -51,7 +56,7 @@ const DownloadPopupFieldLayout = (props: DownloadPopupFieldProps) => {
           className="c-form__hint"
         />
       </div>
-      <p>下載原因</p>
+      <p>{t(`${I18N_KEY_PREFIX}.contentLabel`)}</p>
       <Field
         as="textarea"
         id="content"
@@ -65,7 +70,7 @@ const DownloadPopupFieldLayout = (props: DownloadPopupFieldProps) => {
         className="c-form__hint"
       />
       <button type="submit" disabled={isSubmitting}>
-        {!loading ? '送出申請' : <Spinner />}
+        {!loading ? t(`${I18N_KEY_PREFIX}.submitBtn`) : <Spinner />}
       </button>
     </>
   );

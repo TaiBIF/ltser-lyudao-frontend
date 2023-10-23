@@ -48,7 +48,6 @@ const Content = (props: ContentProps) => {
               <Item key={item.id} data={item} page={page} />
             ) : (
               <li key={`${item.id}`}>
-                {/*本身就是連結的給item-box linkto*/}
                 <Link
                   to={`/site-data/${page}/${item.link}`}
                   className={`item-box linkto c-aside__tab ${

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Form, Formik, FormikConfig, FormikHelpers } from 'formik';
 
+import { useTranslation } from 'react-i18next';
+
 import CloseIcon from 'components/CloseIcon';
 import DownloadPopupFieldLayout from 'components/DownloadPopupFieldLayout';
 
@@ -19,6 +21,12 @@ interface DownloadPopupItem {
 
 const DownloadPopup = (props: DownloadPopupItem) => {
   const { item } = props;
+  const PAGE_NAME = 'common';
+  const COMPONENT_NAME = 'DownloadPopup';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+  const { t } = useTranslation();
+
   const {
     show,
     target,
@@ -79,7 +87,7 @@ const DownloadPopup = (props: DownloadPopupItem) => {
             >
               <CloseIcon />
             </div>
-            <div className="title">下載申請</div>
+            <div className="title">{t(`${I18N_KEY_PREFIX}.title`)}</div>
             <Formik {...formikConfig}>
               {({ isSubmitting }) => (
                 <Form>
@@ -87,6 +95,7 @@ const DownloadPopup = (props: DownloadPopupItem) => {
                     isSubmitting={isSubmitting}
                     loading={loading}
                     show={show}
+                    I18N_KEY_PREFIX={I18N_KEY_PREFIX}
                   />
                 </Form>
               )}

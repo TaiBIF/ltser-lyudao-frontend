@@ -6,8 +6,8 @@ i18n
   .use(HttpBackend)
   .use(initReactI18next)
   .init({
-    lng: 'cn',
-    fallbackLng: 'cn',
+    lng: 'zh-tw',
+    fallbackLng: 'zh-tw',
     interpolation: {
       escapeValue: false,
     },

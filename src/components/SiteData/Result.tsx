@@ -1,5 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import Pagination from 'components/Pagination';
 
 import { useEcoContext } from 'context/EcoContext';
@@ -24,6 +26,7 @@ interface ResultProps {
   setCurrentPage: Dispatch<SetStateAction<number>>;
   paginationData: PaginationDataItem;
   setPaginationData: Dispatch<SetStateAction<PaginationDataItem>>;
+  I18N_KEY_PREFIX: string;
 }
 
 const Result = (props: ResultProps) => {
@@ -34,7 +37,11 @@ const Result = (props: ResultProps) => {
     setCurrentPage,
     paginationData,
     setPaginationData,
+    I18N_KEY_PREFIX,
   } = props;
+
+  const { t } = useTranslation();
+
   const { show, setDownloadTarget, handleDownloadPopup, handleDownloadParams } =
     useEcoContext();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
@@ -96,7 +103,9 @@ const Result = (props: ResultProps) => {
           <>
             <div className="toptool">
               <div className="data-num">
-                資料筆數：{paginationData?.totalRecords}
+                {t(`${I18N_KEY_PREFIX}.recordsText`, {
+                  records: paginationData?.totalRecords,
+                })}
               </div>
               <div className="btnr-box">
                 <button
@@ -105,14 +114,14 @@ const Result = (props: ResultProps) => {
                   onClick={handleDownloadClick}
                   data-target="all"
                 >
-                  資料下載
+                  {t(`${I18N_KEY_PREFIX}.dataDownloadBtn`)}
                 </button>
                 <button
                   type="button"
                   onClick={handleDownloadClick}
                   data-target="species"
                 >
-                  物種名錄下載
+                  {t(`${I18N_KEY_PREFIX}.speciesDownloadBtn`)}
                 </button>
               </div>
             </div>
@@ -153,7 +162,7 @@ const Result = (props: ResultProps) => {
                   ) : (
                     <tr>
                       <td colSpan={contextData.fields.length}>
-                        目前沒有資料。
+                        {t(`${I18N_KEY_PREFIX}.dataEmptyStateText`)}
                       </td>
                     </tr>
                   )}

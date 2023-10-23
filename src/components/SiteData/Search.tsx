@@ -1,7 +1,9 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
 
 import { Form, Formik, FormikHelpers, FormikConfig } from 'formik';
-import { useLocation } from 'react-router-dom';
 import qs from 'qs';
 
 import SearchFieldLayout from 'components/SiteData/SearchFieldLayout';
@@ -21,10 +23,14 @@ interface SearchProps {
   item: string;
   isDoneFetching: boolean;
   setPaginationData: Dispatch<SetStateAction<PaginationDataItem>>;
+  I18N_KEY_PREFIX: string;
 }
 
 const Search = (props: SearchProps) => {
-  const { item, isDoneFetching, setPaginationData } = props;
+  const { item, isDoneFetching, setPaginationData, I18N_KEY_PREFIX } = props;
+
+  const { t } = useTranslation();
+
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
 
   const searchFieldList = contextData.fields;
@@ -69,7 +75,7 @@ const Search = (props: SearchProps) => {
   return (
     <>
       <div id="search" style={{ position: 'relative', top: '-96px' }}></div>
-      <div className="center-title">資料列表搜尋</div>
+      <div className="center-title">{t(`${I18N_KEY_PREFIX}.searchTitle`)}</div>
       <div className="input-box">
         {isDoneFetching ? (
           !hasNoFields ? (
@@ -82,16 +88,16 @@ const Search = (props: SearchProps) => {
                 </ul>
                 <div className="send-btnarea">
                   <button type="reset" className="clearall">
-                    清除
+                    {t(`${I18N_KEY_PREFIX}.clearBtn`)}
                   </button>
                   <button type="submit" className="searchall">
-                    搜尋
+                    {t(`${I18N_KEY_PREFIX}.searchBtn`)}
                   </button>
                 </div>
               </Form>
             </Formik>
           ) : (
-            <>目前沒有欄位資料。</>
+            <> {t(`${I18N_KEY_PREFIX}.searchEmptyStateText`)}</>
           )
         ) : (
           <>

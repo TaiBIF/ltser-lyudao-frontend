@@ -7,9 +7,10 @@ import { languageList } from 'data/utils';
 import useLang from 'hooks/utils/useLang';
 
 const LanguageBtn = () => {
-  const { setLang } = useLang();
+  const { setLang, setChanged } = useLang();
   const handleLangClick = (lang: string) => {
     setLang(lang);
+    setChanged(true);
   };
   return (
     <>

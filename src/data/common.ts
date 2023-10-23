@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 
-import { FooterLogoItem } from 'types/common';
+import { FooterLogoItem, FooterMenuItem, HeaderMenuItem } from 'types/common';
 
 import ftlogoImg1 from 'image/ftlogo1.png';
 import ftlogoImg2 from 'image/ftlogo2.png';
@@ -63,7 +63,7 @@ export const footerLogoList: FooterLogoItem[] = [
 
 // footerMenuList
 // FooterMenuItem[]
-export const generateFooterMenuList = () => [
+export const generateFooterMenuList = (): FooterMenuItem[] => [
   {
     id: 1,
     title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.about`),
@@ -134,7 +134,7 @@ export const generateFooterMenuList = () => [
 
 // headerMenuList
 // HeaderMenuItem[]
-export const generateHeaderMenuList = () => [
+export const generateHeaderMenuList = (): HeaderMenuItem[] => [
   {
     id: 1,
     title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.about`),
@@ -226,7 +226,7 @@ export const generateHeaderMenuList = () => [
 
 // routeList
 // HeaderMenuItem[]
-export const generateRouteList = () => [
+export const generateRouteList = (): HeaderMenuItem[] => [
   ...generateHeaderMenuList(),
   {
     id: 0,

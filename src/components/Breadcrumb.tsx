@@ -87,7 +87,9 @@ const Breadcrumb = () => {
               return (
                 <React.Fragment key={i}>
                   <p>{v}</p>
-                  {i !== breadcrumb.length - 1 && <span> &gt; </span>}
+                  {i !== breadcrumb.length - 1 && breadcrumb[i + 1] !== '' && (
+                    <span> &gt; </span>
+                  )}
                 </React.Fragment>
               );
             })}

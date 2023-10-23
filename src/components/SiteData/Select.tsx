@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
+
 import ArrowIcon from './Aside/ArrowIcon';
 
 import { FilterItem } from 'types/siteData';
@@ -10,10 +12,14 @@ interface SelectProps {
   options: string[];
   filter: FilterItem;
   setFilter: Dispatch<SetStateAction<FilterItem>>;
+  I18N_KEY_PREFIX: string;
 }
 
 const Select = (props: SelectProps) => {
-  const { title, options, filter, setFilter } = props;
+  const { title, options, filter, setFilter, I18N_KEY_PREFIX } = props;
+
+  const { t } = useTranslation();
+
   const { search, pathname } = useLocation();
   const site = new URLSearchParams(search).get('site');
 
@@ -31,9 +37,8 @@ const Select = (props: SelectProps) => {
   return (
     <>
       <div className="c-select c-form__set">
-        {/* <h3 className="c-select__title">{title}篩選</h3> */}
         <label htmlFor="site" className="c-select__label c-form__label">
-          請選擇觀測站
+          {t(`${I18N_KEY_PREFIX}.siteLabel2`, { title })}
         </label>
         <div className="c-select__wrapper">
           <select
@@ -44,7 +49,7 @@ const Select = (props: SelectProps) => {
             value={filter.site}
           >
             <option value="" disabled>
-              請選擇{title}
+              {t(`${I18N_KEY_PREFIX}.siteDefaultOption`, { title })}
             </option>
             {options.map((v: string) => {
               return (

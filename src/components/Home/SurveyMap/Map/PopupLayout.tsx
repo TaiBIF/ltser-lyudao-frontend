@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
+
 import { Dictionary } from 'lodash';
 import { useMap } from 'react-leaflet';
 
-import CloseBtn from 'components/Home/LeafletMap/CloseBtn';
-import ArrowIcon from 'components/Home/LeafletMap/ArrowIcon';
-import PopupArrow from 'components/Home/LeafletMap/PopupArrow';
+import CloseBtn from 'components/Home/SurveyMap/Map/CloseBtn';
+import ArrowIcon from 'components/Home/SurveyMap/Map/ArrowIcon';
+import PopupArrow from 'components/Home/SurveyMap/Map/PopupArrow';
 
 import { SelectItem } from 'types/utils';
 
 import {
   surveyMapParams,
-  surveyMapColList,
-  surveyMapItemList,
-  planList,
+  generateSurveyMapColList,
+  generateSurveyMapItemList,
+  generatePlanList,
 } from 'data/home/content';
 import itemList from 'data/home/items.json';
 
@@ -24,10 +26,17 @@ import { useAuthContext } from 'context/AuthContext';
 
 type PopupLayoutProps = {
   data: Dictionary<number | string>;
+  I18N_KEY_PREFIX: string;
 };
 
 const PopupLayout = (props: PopupLayoutProps) => {
-  const { data } = props;
+  const { data, I18N_KEY_PREFIX } = props;
+
+  const { t } = useTranslation();
+
+  const surveyMapColList = generateSurveyMapColList();
+  const surveyMapItemList = generateSurveyMapItemList();
+  const planList = generatePlanList();
 
   const map = useMap();
   const navigate = useNavigate();
@@ -107,7 +116,9 @@ const PopupLayout = (props: PopupLayoutProps) => {
       <div className="wbox-cont">
         <div className="rel">
           <CloseBtn onClick={handleCloseClick} />
-          <h3 className="item-title">{data.verbatimLocality} - 實時觀測資料</h3>
+          <h3 className="item-title">
+            {t(`${I18N_KEY_PREFIX}.title`, { siteName: data.verbatimLocality })}
+          </h3>
           <table
             className="map-tablestyle"
             border={0}
@@ -219,7 +230,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 className="link-more"
                 onClick={handleMoreClick}
               >
-                <p>查看圖表</p>
+                <p>{t(`${I18N_KEY_PREFIX}.viewChartBtn`)}</p>
                 <ArrowIcon />
               </button>
               <button
@@ -227,7 +238,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                 className="link-more e-btn e-btn--outline"
                 onClick={handleDownloadClick}
               >
-                <p>下載樣區資料</p>
+                <p>{t(`${I18N_KEY_PREFIX}.downloadBtn`)}</p>
               </button>
             </div>
           )}

@@ -10,24 +10,27 @@ import {
   LayerGroup,
 } from 'react-leaflet';
 
-import Filter from 'components/Home/LeafletMap/Filter';
-import MarkerLayout from 'components/Home/LeafletMap/MarkerLayout';
+import Filter from 'components/Home/SurveyMap/Map/Filter';
+import MarkerLayout from 'components/Home/SurveyMap/Map/MarkerLayout';
 
 import { LocalityItem } from 'types/home';
 
 import {
   localityList,
-  surveyMapItemList,
+  generateSurveyMapItemList,
   surveyMapParams,
 } from 'data/home/content';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import useRender from 'hooks/page/useRender';
-import useWeather from 'hooks/items/useWeather';
 
 import itemList from 'data/home/items.json';
 
-const Content = () => {
+const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
+  const PREFIX = 'Map';
+
+  const surveyMapItemList = generateSurveyMapItemList();
+
   const { getDepositarList } = useRender();
   const [localities, setLocalities] = useState<
     (Dictionary<number | string> | LocalityItem)[] | null
@@ -76,7 +79,7 @@ const Content = () => {
 
   return (
     <>
-      <Filter />
+      <Filter I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
       <div className="map-area">
         <MapContainer
           id="leafletmap"
@@ -92,7 +95,13 @@ const Content = () => {
               <LayerGroup>
                 {!isFetchingLocalities &&
                   markers.map((v) => {
-                    return <MarkerLayout key={v.locationID} data={v} />;
+                    return (
+                      <MarkerLayout
+                        key={v.locationID}
+                        data={v}
+                        I18N_KEY_PREFIX={`${I18N_KEY_PREFIX}.${PREFIX}`}
+                      />
+                    );
                   })}
               </LayerGroup>
             </LayersControl.Overlay>

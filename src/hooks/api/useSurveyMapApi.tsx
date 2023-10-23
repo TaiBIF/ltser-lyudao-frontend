@@ -1,12 +1,14 @@
 import { TimeRangeItem } from 'types/home';
 import { DetailItemTypes } from 'types/detail';
 
-import { surveyMapItemList } from 'data/home/content';
+import { generateSurveyMapItemList } from 'data/home/content';
 
 import { useApi } from 'hooks/api/useApi';
 
 const useSurveyMapApi = () => {
   const { loading, handleApi, handleActions } = useApi();
+
+  const surveyMapItemList = generateSurveyMapItemList();
 
   const getSites = async ({
     url,

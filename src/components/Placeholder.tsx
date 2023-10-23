@@ -15,6 +15,11 @@ const Placeholder = (props: PlaceholderProps) => {
       }`}
     >
       <div className="c-placeholder__icon">
+        {layout === 'full-page' && (
+          <div className="c-placeholder__img">
+            <Spinner layout="placeholder" />
+          </div>
+        )}
         {text && (
           <>
             <div className="c-placeholder__img">

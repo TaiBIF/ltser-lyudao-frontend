@@ -33,7 +33,7 @@ const Content = () => {
 
   const { pathname, hash, key } = useLocation();
   const { show, menu3Ref, mainMenuRef } = useHeaderContext();
-  const { getDetail } = useRender();
+  const { getHeaderDetail } = useRender();
   const { about, setAbout } = useHeaderContext();
 
   const [menu, setMenu] = useState<HeaderMenuItem[]>([]);
@@ -79,11 +79,10 @@ const Content = () => {
   }, [pathname, hash, key]);
 
   useEffect(() => {
-    getDetail({
+    getHeaderDetail({
       url: HEADER_ABOUT_API_URL,
       setData: setAbout,
       defaultData: headerAboutData,
-      redirectPath: '/',
     });
   }, [pathname]);
 

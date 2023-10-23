@@ -7,7 +7,7 @@ import { SiteObservationItem } from 'types/utils';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 import itemList from 'data/home/items.json';
-import { surveyMapItemList } from 'data/home/content';
+import { generateSurveyMapItemList } from 'data/home/content';
 
 interface TooltipLayoutProps {
   data: Dictionary<number | string>;
@@ -15,6 +15,8 @@ interface TooltipLayoutProps {
 
 const TooltipLayout = (props: TooltipLayoutProps) => {
   const { data } = props;
+
+  const surveyMapItemList = generateSurveyMapItemList();
 
   const { filter } = useSurveyMapContext();
 

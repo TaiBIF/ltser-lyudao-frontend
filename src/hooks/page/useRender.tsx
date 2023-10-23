@@ -108,6 +108,28 @@ const useRender = () => {
     }
   };
 
+  const getHeaderDetail = async ({
+    url,
+    setData,
+    defaultData,
+  }: {
+    url: string;
+    setData: any;
+    defaultData?: any;
+  }) => {
+    const result = await handleApi({
+      method: 'get',
+      url: `/users/${url}/`,
+    });
+    if (result?.status === 'success') {
+      setData({ ...result.response.data });
+    } else {
+      if (defaultData) {
+        setData({ ...defaultData });
+      }
+    }
+  };
+
   const getDepositarList = async ({
     setList,
     resouceId,
@@ -131,7 +153,7 @@ const useRender = () => {
     }
   };
 
-  return { getList, getAllList, getDetail, getDepositarList };
+  return { getList, getAllList, getDetail, getHeaderDetail, getDepositarList };
 };
 
 export default useRender;

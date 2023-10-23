@@ -4,18 +4,23 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Breadcrumb from 'components/Breadcrumb';
 import Banner from 'components/Banner';
 import Aside from 'components/SiteData/Aside/Content';
+import Content from 'components/SiteData/Economy/Content';
 
 import { BannerData } from 'types/common';
 import { ContextItem } from 'types/utils';
 
 import bannerImg from 'image/social_bn.png';
 
-import { economyAsideList } from 'data/siteData';
+import { generateEconomyAsideList } from 'data/siteData';
 
-import { useDataContext } from 'context/DataContext';
-import Content from 'components/SiteData/Economy/Content';
+import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 
 const Economy = () => {
+  const PAGE_NAME = 'SiteData';
+
+  const { list: asideList, isFetchingList: isFetchingAsideList } =
+    useRerenderTranslation({ generateList: generateEconomyAsideList });
+
   const { dataId } = useParams();
   const bannerData: BannerData = {
     title: '社會觀測',
@@ -42,8 +47,8 @@ const Economy = () => {
         <div className="contentbox">
           <div className="main-box">
             <div className="observation-box">
-              <Aside data={economyAsideList} page={page} />
-              {dataId && <Content />}
+              {!isFetchingAsideList && <Aside data={asideList} page={page} />}
+              {dataId && <Content PAGE_NAME={PAGE_NAME} />}
             </div>
           </div>
         </div>

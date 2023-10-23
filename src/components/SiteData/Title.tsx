@@ -1,7 +1,29 @@
 import React from 'react';
-import { ecoAsideList, economyAsideList, envAsideList } from 'data/siteData';
+import { useTranslation } from 'react-i18next';
 
-const Title = ({ paths, url }: { paths: string[]; url: string }) => {
+import {
+  generateEcoAsideList,
+  generateEconomyAsideList,
+  generateEnvAsideList,
+} from 'data/siteData';
+
+const Title = ({
+  paths,
+  url,
+  PAGE_NAME,
+}: {
+  paths: string[];
+  url: string;
+  PAGE_NAME: string;
+}) => {
+  const I18N_KEY_PREFIX = PAGE_NAME;
+
+  const { t } = useTranslation();
+
+  const ecoAsideList = generateEcoAsideList();
+  const envAsideList = generateEnvAsideList();
+  const economyAsideList = generateEconomyAsideList();
+
   let asideList;
   let title;
   const observation = paths[paths.length - 2].split('-')[0];
@@ -59,7 +81,7 @@ const Title = ({ paths, url }: { paths: string[]; url: string }) => {
           <div className="line" />
         </div>
         <a href={url} className="meta" target="_blank" rel="noreferrer">
-          查看資料集與研究方法
+          {t(`${I18N_KEY_PREFIX}.viewMetadataBtn`)}
         </a>
       </div>
     </>

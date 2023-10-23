@@ -8,13 +8,18 @@ import Aside from 'components/SiteData/Aside/Content';
 import { BannerData } from 'types/common';
 
 import bannerImg from 'image/ecological_bn.png';
-import { envAsideList } from 'data/siteData';
+import { generateEnvAsideList } from 'data/siteData';
 
-import { useEcoContext } from 'context/EcoContext';
 import Main from 'components/SiteData/Main';
 import DownloadPopup from 'components/SiteData/DownloadPopup';
+import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 
 const EnvironmentalObservation = () => {
+  const PAGE_NAME = 'SiteData';
+
+  const { list: asideList, isFetchingList: isFetchingAsideList } =
+    useRerenderTranslation({ generateList: generateEnvAsideList });
+
   const { dataId } = useParams();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -30,13 +35,13 @@ const EnvironmentalObservation = () => {
   const page = bannerData.en.map((v) => v.toLowerCase()).join('-');
 
   useEffect(() => {
-    if (!dataId) {
-      const matchAsideFirstItem = envAsideList[0].list
-        ? envAsideList[0].list[0].link
-        : envAsideList[0].link;
+    if (!dataId && !isFetchingAsideList) {
+      const matchAsideFirstItem = asideList[0].list
+        ? asideList[0].list[0].link
+        : asideList[0].link;
       navigate(`/site-data/${page}/${matchAsideFirstItem}`);
     }
-  }, [dataId]);
+  }, [dataId, asideList]);
 
   return (
     <>
@@ -46,8 +51,15 @@ const EnvironmentalObservation = () => {
         <div className="contentbox">
           <div className="main-box">
             <div className="observation-box">
-              <Aside data={envAsideList} page={page} />
-              {dataId && <Main item={item} paths={paths} pathname={pathname} />}
+              {!isFetchingAsideList && <Aside data={asideList} page={page} />}
+              {dataId && (
+                <Main
+                  item={item}
+                  paths={paths}
+                  pathname={pathname}
+                  PAGE_NAME={PAGE_NAME}
+                />
+              )}
             </div>
           </div>
         </div>

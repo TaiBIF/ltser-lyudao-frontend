@@ -14,7 +14,7 @@ export const languageList: LangItem[] = [
     hint: 'Language set.',
   },
   {
-    id: 'zh-TW',
+    id: 'zh-tw',
     title: '繁體中文',
     hint: '語言已設定。',
   },

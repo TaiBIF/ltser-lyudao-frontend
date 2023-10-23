@@ -6,19 +6,20 @@ import { Marker, Popup, Tooltip } from 'react-leaflet';
 import { LatLngExpression, DivIcon } from 'leaflet';
 import ReactDOMServer from 'react-dom/server';
 
-import MarkerIconLayout from 'components/Home/LeafletMap/MarkerIconLayout';
-import PopupLayout from 'components/Home/LeafletMap/PopupLayout';
-import TooltipLayout from 'components/Home/LeafletMap/TooltipLayout';
+import MarkerIconLayout from 'components/Home/SurveyMap/Map/MarkerIconLayout';
+import PopupLayout from 'components/Home/SurveyMap/Map/PopupLayout';
+import TooltipLayout from 'components/Home/SurveyMap/Map/TooltipLayout';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 import useSurveyMapApi from 'hooks/api/useSurveyMapApi';
 
 interface MarkerLayoutProps {
   data: Dictionary<number | string>;
+  I18N_KEY_PREFIX: string;
 }
 
 const MarkerLayout = (props: MarkerLayoutProps) => {
-  const { data } = props;
+  const { data, I18N_KEY_PREFIX } = props;
   const { filter, setFilter, setAllDetail, setIdData } = useSurveyMapContext();
   const { getAllDetail } = useSurveyMapApi();
 
@@ -58,7 +59,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
         }}
       >
         <Popup closeButton={false} closeOnClick={false}>
-          <PopupLayout data={data} />
+          <PopupLayout data={data} I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
         </Popup>
         <Tooltip offset={[30, -16.5]}>
           <TooltipLayout data={data} />

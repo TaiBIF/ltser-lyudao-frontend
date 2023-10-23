@@ -3,25 +3,27 @@ import { Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import Deco from 'components/Home/About/Deco';
+
 import abmapImg from 'image/abmap.png';
 
 import { EnterState } from 'types/home';
 import { generateAboutTabList } from 'data/home/content';
 
-interface AboutProps {
+interface ContentProps {
   enter: EnterState;
   PAGE_NAME: string;
 }
 
-const About = (props: AboutProps) => {
+const Content = (props: ContentProps) => {
   const { enter, PAGE_NAME } = props;
-
-  const aboutTabList = generateAboutTabList();
 
   const COMPONENT_NAME = 'About';
   const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
 
   const { t } = useTranslation();
+
+  const aboutTabList = generateAboutTabList();
 
   return (
     <>
@@ -29,38 +31,7 @@ const About = (props: AboutProps) => {
         <div className="main-box">
           <div className="leftbox">
             <div className="mapimg">
-              <div className="yel-dash">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={475}
-                  height={473}
-                  viewBox="0 0 475 473"
-                >
-                  <g
-                    id="Ellipse_187"
-                    data-name="Ellipse 187"
-                    fill="none"
-                    stroke="#d5b943"
-                    strokeWidth={1}
-                    strokeDasharray={5}
-                  >
-                    <ellipse
-                      cx="237.5"
-                      cy="236.5"
-                      rx="237.5"
-                      ry="236.5"
-                      stroke="none"
-                    />
-                    <ellipse
-                      cx="237.5"
-                      cy="236.5"
-                      rx={237}
-                      ry={236}
-                      fill="none"
-                    />
-                  </g>
-                </svg>
-              </div>
+              <Deco />
               <img src={abmapImg} alt={t(`${I18N_KEY_PREFIX}.mapTitle`)} />
               {aboutTabList.map((v) => {
                 const { id, style, title, subtitle, link } = v;
@@ -106,4 +77,4 @@ const About = (props: AboutProps) => {
   );
 };
 
-export default About;
+export default Content;

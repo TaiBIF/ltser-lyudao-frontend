@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import ReactECharts from 'echarts-for-react';
 
 import { ObservationItem } from 'types/utils';
-import { ContextItem } from 'types/utils';
 
 import {
   commonOptions,
@@ -12,92 +11,33 @@ import {
   chartsHeight,
 } from 'helpers/customEcharts';
 
-import { useDataContext } from 'context/DataContext';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 import itemList from 'data/home/sites.json';
-import { surveyMapItemList } from 'data/home/content';
+import {
+  generateChartSeriesList,
+  generateSurveyMapItemList,
+} from 'data/home/content';
+import { useTranslation } from 'react-i18next';
 
 type SeriesItem = {
   data: number[];
   type: string;
 };
 
-const Content = () => {
-  const [xAxisList, setXAxisList] = useState<string[]>([]);
+const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
+  const PREFIX = 'Chart';
+  const { t } = useTranslation();
+
+  const chartSeriesList = generateChartSeriesList();
+  const surveyMapItemList = generateSurveyMapItemList();
+  const seasonList: string[] = ['1-3', '4-6', '7-9', '10-12'];
+
+  const [xAxisList, setXAxisList] = useState<string[]>([...seasonList]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const [items, setItems] = useState<string[]>([]);
   const { filter, idData, allDetail } = useSurveyMapContext();
   const navigate = useNavigate();
-
-  const seasonList: string[] = ['1-3', '4-6', '7-9', '10-12'];
-
-  const chartSeriesList: ObservationItem[] = [
-    {
-      id: 'seasonalAirTemperature',
-      type: 'environmental',
-      plan: 'weather',
-      title: '季均溫',
-      col: 'airTemperature',
-      unit: '',
-    },
-    {
-      id: 'seasonalPrecipitation',
-      type: 'environmental',
-      plan: 'weather',
-      title: '季雨量',
-      col: 'precipitation',
-      unit: '',
-    },
-    {
-      id: 'seasonalSeaTemperature',
-      type: 'environmental',
-      plan: 'sea-temperature',
-      title: '季海溫',
-      col: 'seaTemperature',
-      unit: '',
-    },
-    {
-      id: 'zoobenthos',
-      type: 'ecological',
-      plan: 'zoobenthos',
-      title: '底棲動物種類數',
-      col: 'count',
-      unit: '',
-    },
-    {
-      id: 'plant',
-      type: 'ecological',
-      plan: 'plant',
-      title: '陸域植物種類數',
-      col: 'count',
-      unit: '',
-    },
-    {
-      id: 'birdNetSound',
-      type: 'ecological',
-      plan: 'bird-net-sound',
-      title: '鳥種數(鳥音)',
-      col: 'count',
-      unit: '',
-    },
-    {
-      id: 'fishDiv',
-      type: 'ecological',
-      plan: 'fish-div',
-      title: '魚種數',
-      col: 'count',
-      unit: '',
-    },
-    {
-      id: 'aquaticfauna',
-      type: 'ecological',
-      plan: 'aquaticfauna',
-      title: '溪流生物物種數',
-      col: 'count',
-      unit: '',
-    },
-  ];
 
   const handleChartClick = (params: any) => {
     const matchItemByTitle = chartSeriesList.find(
@@ -118,7 +58,9 @@ const Content = () => {
     ...commonOptions,
     color: chartsColor.legend.multiple,
     title: {
-      text: `${idData.verbatimLocality} - 視覺化統計圖`,
+      text: t(`${I18N_KEY_PREFIX}.${PREFIX}.title`, {
+        siteName: idData.verbatimLocality,
+      }),
     },
     dataZoom: [
       ...commonOptions.dataZoom,
@@ -152,6 +94,7 @@ const Content = () => {
       type: 'category',
       boundaryGap: true,
       data: xAxisList,
+      name: t(`${I18N_KEY_PREFIX}.${PREFIX}.xAsisUnitText`),
     },
     yAxis: {
       type: 'value',
@@ -176,8 +119,6 @@ const Content = () => {
 
   useEffect(() => {
     if (!isFetchingItems && !isFetchingAllDetail) {
-      const xAxis = seasonList.map((v) => `${v}月`);
-      setXAxisList([...xAxis]);
       const series = chartSeriesList
         .map((v: ObservationItem) => {
           const { id, plan, title, col, unit } = v;

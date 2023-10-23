@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-import { DateTime } from 'luxon';
+import { useTranslation } from 'react-i18next';
 
 import { SiteYearItem } from 'types/home';
 
-import { surveyMapItemList } from 'data/home/content';
+import { generateSurveyMapItemList } from 'data/home/content';
 import itemList from 'data/home/items.json';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 
-const Filter = () => {
+const Filter = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
+  const PREFIX = 'Filter';
+
+  const { t } = useTranslation();
+
+  const surveyMapItemList = generateSurveyMapItemList();
+
   const { filter, setFilter } = useSurveyMapContext();
 
   const [years, setYears] = useState<string[]>([]);
@@ -69,11 +75,13 @@ const Filter = () => {
   return (
     <>
       <div className="select-area">
-        <h3 className="item-title">測站/樣區篩選</h3>
+        <h3 className="item-title">
+          {t(`${I18N_KEY_PREFIX}.${PREFIX}.siteLabel`)}
+        </h3>
         <div className="selbox c-map__filter">
           <select name="year" value={filter.year} onChange={handleSelectChange}>
             <option value="" disabled>
-              年份
+              {t(`${I18N_KEY_PREFIX}.${PREFIX}.siteDefaultOption`)}
             </option>
             {!isFetchingYears &&
               years.map((v) => {
@@ -85,7 +93,9 @@ const Filter = () => {
               })}
           </select>
           <select name="item" value={filter.item} onChange={handleSelectChange}>
-            <option value="">觀測項目</option>
+            <option value="">
+              {t(`${I18N_KEY_PREFIX}.${PREFIX}.itemLabel`)}
+            </option>
             {!isFetchingItems &&
               items.map((v) => {
                 return (

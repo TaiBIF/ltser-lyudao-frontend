@@ -18,7 +18,7 @@ export const surveyMapParams: SurveyMapParams = {
 
 // tabList
 // TabItem[]
-export const generateAboutTabList = () => [
+export const generateAboutTabList = (): TabItem[] => [
   {
     id: 'ecologicalObservation',
     style: '1',
@@ -80,258 +80,333 @@ export const localityList: Dictionary<string | number>[] = map(
   (record) => zipObject(map(localityData.fields, 'id'), record)
 );
 
-export const surveyMapColList: ObservationItem[] = [
-  {
-    id: 'items',
-    col: 'items',
-    title: '觀測項目',
-  },
-  {
-    id: 'year',
-    col: 'eventDate',
-    title: '年份',
-  },
-  {
-    id: 'locality',
-    col: 'verbatimLocality',
-    title: '地點名稱',
-  },
-  {
-    id: 'latitude',
-    col: 'decimalLatitude',
-    title: '地點經度',
-  },
-  {
-    id: 'longitude',
-    col: 'decimalLongitude',
-    title: '地點緯度',
-  },
-  {
-    id: 'annualAirTemperature',
-    category: 'environmental',
-    plan: 'weather',
-    col: 'airTemperature',
-    title: '年均溫',
-  },
-  {
-    id: 'annualPrecipitation',
-    category: 'environmental',
-    plan: 'weather',
-    col: 'precipitation',
-    title: '年雨量',
-  },
-  {
-    id: 'annualSeaTemperature',
-    category: 'environmental',
-    plan: 'sea-temperature',
-    col: 'seaTemperature',
-    title: '年均海溫',
-  },
-  {
-    id: 'coralDiv',
-    category: 'ecological',
-    plan: 'coral-div',
-    col: 'scientificName',
-    title: '珊瑚礁種類數',
-  },
-  {
-    id: 'coralRec',
-    category: 'ecological',
-    plan: 'coral-rec',
-    col: 'individualCount',
-    title: '珊瑚礁入添數量',
-  },
-  {
-    id: 'aquaticfauna',
-    category: 'ecological',
-    plan: 'aquaticfauna',
-    col: 'scientificName',
-    title: '溪流生物物種數',
-  },
-];
-
-export const planList: PlanItem[] = [
-  {
-    id: 'coral-div',
-    title: '珊瑚多樣性',
-  },
-  {
-    id: 'coral-rec',
-    title: '珊瑚入添',
-  },
-  {
-    id: 'coral-bleach',
-    title: '珊瑚白化',
-  },
-  {
-    id: 'coral-comm',
-    title: '珊瑚群聚',
-  },
-  {
-    id: 'otolith',
-    title: '耳石',
-  },
-  {
-    id: 'ocean-sound',
-    title: '海域聲學-調查事件',
-  },
-  {
-    id: 'fish-div',
-    title: '魚類多樣性',
-  },
-  {
-    id: 'fishing',
-    title: '休閒漁業',
-  },
-  {
-    id: 'plant',
-    title: '陸域植物',
-  },
-  {
-    id: 'terre-sound',
-    title: '陸域聲學-調查事件',
-  },
-  {
-    id: 'terre-sound-index',
-    title: '陸域聲學-聲音指數',
-  },
-  {
-    id: 'bird-net-sound',
-    title: '陸域聲學-鳥音辨識',
-  },
-  {
-    id: 'bio-sound',
-    title: '陸域聲學-生物辨識',
-  },
-  {
-    id: 'water',
-    title: '海域水質',
-  },
-  {
-    id: 'habitat',
-    title: '棲地評估',
-  },
-  {
-    id: 'zoobenthos',
-    title: '底棲動物',
-  },
-  {
-    id: 'aquaticfauna',
-    title: '溪流生物',
-  },
-  {
-    id: 'stream',
-    title: '溪流水質',
-  },
-  {
-    id: 'weather',
-    title: '氣象觀測',
-  },
-  {
-    id: 'ocean-env',
-    title: '海洋觀測',
-  },
-  {
-    id: 'sea-temperature',
-    title: '海洋觀測-海溫',
-  },
-  {
-    id: 'issue',
-    title: '社會觀測-議題盤點',
-  },
-];
-
-export const surveyMapItemList: SelectItem[] = [
+// surveyMapItemList
+// SelectItem[]
+export const generateSurveyMapItemList = (): SelectItem[] => [
   {
     id: 'annualAirTemperature',
     type: 'environmental',
     plan: 'weather',
-    title: '年均溫',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.annualAirTemperature`),
     redirect: false,
   },
   {
     id: 'seasonalAirTemperature',
     type: 'environmental',
     plan: 'weather',
-    title: '季均溫',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalAirTemperature`),
     redirect: null,
   },
   {
     id: 'annualPrecipitation',
     type: 'environmental',
     plan: 'weather',
-    title: '年雨量',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.annualPrecipitation`),
     redirect: false,
   },
   {
     id: 'seasonalPrecipitation',
     type: 'environmental',
     plan: 'weather',
-    title: '季雨量',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalPrecipitation`),
     redirect: null,
   },
   {
     id: 'annualSeaTemperature',
     type: 'environmental',
     plan: 'sea-temperature',
-    title: '年均海溫',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.annualSeaTemperature`),
     redirect: false,
   },
   {
     id: 'seasonalSeaTemperature',
     type: 'environmental',
     plan: 'sea-temperature',
-    title: '季均海溫',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalSeaTemperature`),
     redirect: null,
   },
   {
     id: 'coralDiv',
     type: 'ecological',
     plan: 'coral-div',
-    title: '珊瑚礁種類數',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.coralDiv`),
     redirect: true,
   },
   {
     id: 'coralRec',
     type: 'ecological',
     plan: 'coral-rec',
-    title: '珊瑚礁入添數量',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.coralRec`),
     redirect: true,
   },
   {
     id: 'zoobenthos',
     type: 'ecological',
     plan: 'zoobenthos',
-    title: '底棲動物種類數',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.zoobenthos`),
     redirect: null,
   },
   {
     id: 'plant',
     type: 'ecological',
     plan: 'plant',
-    title: '陸域植物種類數',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.plant`),
     redirect: null,
   },
   {
     id: 'birdNetSound',
     type: 'ecological',
     plan: 'bird-net-sound',
-    title: '鳥種數(鳥音)',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.birdNetSound`),
     redirect: null,
   },
   {
     id: 'fishDiv',
     type: 'ecological',
     plan: 'fish-div',
-    title: '魚種數',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.fishDiv`),
     redirect: null,
   },
   {
     id: 'aquaticfauna',
     type: 'ecological',
     plan: 'aquaticfauna',
-    title: '溪流生物',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.aquaticfauna`),
     redirect: null,
+  },
+];
+
+// surveyMapColList
+// ObservationItem[]
+export const generateSurveyMapColList = (): ObservationItem[] => [
+  {
+    id: 'items',
+    col: 'items',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.items`),
+  },
+  {
+    id: 'year',
+    col: 'eventDate',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.year`),
+  },
+  {
+    id: 'locality',
+    col: 'verbatimLocality',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.locality`),
+  },
+  {
+    id: 'latitude',
+    col: 'decimalLatitude',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.latitude`),
+  },
+  {
+    id: 'longitude',
+    col: 'decimalLongitude',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.longitude`),
+  },
+  {
+    id: 'annualAirTemperature',
+    category: 'environmental',
+    plan: 'weather',
+    col: 'airTemperature',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.annualAirTemperature`),
+  },
+  {
+    id: 'annualPrecipitation',
+    category: 'environmental',
+    plan: 'weather',
+    col: 'precipitation',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.annualPrecipitation`),
+  },
+  {
+    id: 'annualSeaTemperature',
+    category: 'environmental',
+    plan: 'sea-temperature',
+    col: 'seaTemperature',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.annualSeaTemperature`),
+  },
+  {
+    id: 'coralDiv',
+    category: 'ecological',
+    plan: 'coral-div',
+    col: 'scientificName',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.coralDiv`),
+  },
+  {
+    id: 'coralRec',
+    category: 'ecological',
+    plan: 'coral-rec',
+    col: 'individualCount',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.coralRec`),
+  },
+  {
+    id: 'aquaticfauna',
+    category: 'ecological',
+    plan: 'aquaticfauna',
+    col: 'scientificName',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.aquaticfauna`),
+  },
+];
+
+// chartSeriesList
+// ObservationItem[]
+export const generateChartSeriesList = (): ObservationItem[] => [
+  {
+    id: 'seasonalAirTemperature',
+    type: 'environmental',
+    plan: 'weather',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalAirTemperature`),
+    col: 'airTemperature',
+    unit: '',
+  },
+  {
+    id: 'seasonalPrecipitation',
+    type: 'environmental',
+    plan: 'weather',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalPrecipitation`),
+    col: 'precipitation',
+    unit: '',
+  },
+  {
+    id: 'seasonalSeaTemperature',
+    type: 'environmental',
+    plan: 'sea-temperature',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalSeaTemperature`),
+    col: 'seaTemperature',
+    unit: '',
+  },
+  {
+    id: 'zoobenthos',
+    type: 'ecological',
+    plan: 'zoobenthos',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.zoobenthos`),
+    col: 'count',
+    unit: '',
+  },
+  {
+    id: 'plant',
+    type: 'ecological',
+    plan: 'plant',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.plant`),
+    col: 'count',
+    unit: '',
+  },
+  {
+    id: 'birdNetSound',
+    type: 'ecological',
+    plan: 'bird-net-sound',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.birdNetSound`),
+    col: 'count',
+    unit: '',
+  },
+  {
+    id: 'fishDiv',
+    type: 'ecological',
+    plan: 'fish-div',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.fishDiv`),
+    col: 'count',
+    unit: '',
+  },
+  {
+    id: 'aquaticfauna',
+    type: 'ecological',
+    plan: 'aquaticfauna',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.aquaticfauna`),
+    col: 'count',
+    unit: '',
+  },
+];
+
+// planList
+// PlanItem[]
+export const generatePlanList = (): PlanItem[] => [
+  {
+    id: 'coral-div',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.coral-div`),
+  },
+  {
+    id: 'coral-rec',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.coral-rec`),
+  },
+  {
+    id: 'coral-bleach',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.coral-bleach`),
+  },
+  {
+    id: 'coral-comm',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.coral-comm`),
+  },
+  {
+    id: 'otolith',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.otolith`),
+  },
+  {
+    id: 'ocean-sound',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.ocean-sound`),
+  },
+  {
+    id: 'fish-div',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.fish-div`),
+  },
+  {
+    id: 'fishing',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.fishing`),
+  },
+  {
+    id: 'plant',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.plant`),
+  },
+  {
+    id: 'terre-sound',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.terre-sound`),
+  },
+  {
+    id: 'terre-sound-index',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.terre-sound-index`),
+  },
+  {
+    id: 'bird-net-sound',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.bird-net-sound`),
+  },
+  {
+    id: 'bio-sound',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.bio-sound`),
+  },
+  {
+    id: 'water',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.water`),
+  },
+  {
+    id: 'habitat',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.habitat`),
+  },
+  {
+    id: 'zoobenthos',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.zoobenthos`),
+  },
+  {
+    id: 'aquaticfauna',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.aquaticfauna`),
+  },
+  {
+    id: 'stream',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.stream`),
+  },
+  {
+    id: 'weather',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.weather`),
+  },
+  {
+    id: 'ocean-env',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.ocean-env`),
+  },
+  {
+    id: 'sea-temperature',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.sea-temperature`),
+  },
+  {
+    id: 'issue',
+    title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.issue`),
   },
 ];
 

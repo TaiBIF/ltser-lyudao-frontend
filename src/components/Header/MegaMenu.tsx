@@ -16,11 +16,11 @@ interface MegaMenuProps {
 
 const MegaMenu = (props: MegaMenuProps) => {
   const { data } = props;
-  const { getDetail } = useRender();
+  const { getHeaderDetail } = useRender();
   const { setAbout } = useHeaderContext();
 
   const handleHeaderAboutHover = () => {
-    getDetail({
+    getHeaderDetail({
       url: HEADER_ABOUT_API_URL,
       setData: setAbout,
       defaultData: headerAboutData,

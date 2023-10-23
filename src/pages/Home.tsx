@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Kvbox from 'components/Home/Kvbox';
-import About from 'components/Home/About';
-import News from 'components/Home/News';
-import SurveyMap from 'components/Home/SuveryMap';
+import About from 'components/Home/About/Content';
+import News from 'components/Home/News/Content';
+import SurveyMap from 'components/Home/SurveyMap/Content';
 
 import { EnterState } from 'types/home';
 import { useLocation } from 'react-router-dom';
@@ -63,8 +63,8 @@ const Home = () => {
     <>
       <Kvbox PAGE_NAME={PAGE_NAME} />
       <About enter={enter} PAGE_NAME={PAGE_NAME} />
-      <News enter={enter} />
-      <SurveyMap enter={enter} />
+      <News enter={enter} PAGE_NAME={PAGE_NAME} />
+      <SurveyMap enter={enter} PAGE_NAME={PAGE_NAME} />
     </>
   );
 };

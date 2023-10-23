@@ -5,14 +5,20 @@ import Breadcrumb from 'components/Breadcrumb';
 import Banner from 'components/Banner';
 import Aside from 'components/SiteData/Aside/Content';
 import bannerImg from 'image/ecological_bn.png';
-
-import { BannerData } from 'types/common';
-
-import { ecoAsideList } from 'data/siteData';
 import Main from 'components/SiteData/Main';
 import DownloadPopup from 'components/SiteData/DownloadPopup';
 
+import { BannerData } from 'types/common';
+
+import { generateEcoAsideList } from 'data/siteData';
+import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
+
 const EcologicalObservation = () => {
+  const PAGE_NAME = 'SiteData';
+
+  const { list: asideList, isFetchingList: isFetchingAsideList } =
+    useRerenderTranslation({ generateList: generateEcoAsideList });
+
   const { dataId } = useParams();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -29,13 +35,13 @@ const EcologicalObservation = () => {
   const page = bannerData.en.map((v) => v.toLowerCase()).join('-');
 
   useEffect(() => {
-    if (!dataId) {
-      const matchAsideFirstItem = ecoAsideList[0].list
-        ? ecoAsideList[0].list[0].link
-        : ecoAsideList[0].link;
+    if (!dataId && !isFetchingAsideList) {
+      const matchAsideFirstItem = asideList[0].list
+        ? asideList[0].list[0].link
+        : asideList[0].link;
       navigate(`/site-data/${page}/${matchAsideFirstItem}`);
     }
-  }, [dataId]);
+  }, [dataId, asideList]);
 
   return (
     <>
@@ -45,8 +51,15 @@ const EcologicalObservation = () => {
         <div className="contentbox">
           <div className="main-box">
             <div className="observation-box">
-              <Aside data={ecoAsideList} page={page} />
-              {dataId && <Main item={item} paths={paths} pathname={pathname} />}
+              {!isFetchingAsideList && <Aside data={asideList} page={page} />}
+              {dataId && (
+                <Main
+                  item={item}
+                  paths={paths}
+                  pathname={pathname}
+                  PAGE_NAME={PAGE_NAME}
+                />
+              )}
             </div>
           </div>
         </div>

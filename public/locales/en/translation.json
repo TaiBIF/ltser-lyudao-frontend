@@ -52,6 +52,54 @@
       "content1": "綠島是離島中的第四大島，受到黑潮主流的影響，孕育出了豐富的珊瑚礁生態。珊瑚礁生態系支持了綠島早期的漁業活動，以及近年的觀光活動。觀光人數日漸增加再加上氣候變遷的不可遇測性，使得需要長期依靠臺灣本島補給的綠島，面對人為及自然的衝擊的脆弱度增加。",
       "content2": "在目前的環境下綠島是否能永續發展，需要依靠長期的社會及生態資料的收集及觀測，藉由分析長期的資料才能知曉。因此本計畫將透過盤點社會生態議題及進行環境及生態觀測，建置綠島社會生態長期觀測資料庫，進行資料倉儲並開放分享，建立起一個平台。",
       "content3": "藉由這個平台，大家可以進行研究、教育及議題的討論，找出集體共識，最終找出綠島永續發展的可執行政策。"
+    },
+    "News": {
+      "title": "NEWS",
+      "allTabBtn": "全部",
+      "viewAllBtn": "查看更多"
+    },
+    "SurveyMap": {
+      "title": "survey map",
+      "Filter": {
+        "siteLabel": "測站/樣區篩選",
+        "siteDefaultOption": "年份",
+        "itemLabel": "觀測項目"
+      },
+      "Map": {
+        "title": "{{siteName}} - 實時觀測資料",
+        "viewChartBtn": "查看圖表",
+        "downloadBtn": "下載樣區資料"
+      },
+      "Chart": {
+        "title": "{{siteName}} - 視覺化統計圖",
+        "xAsisUnitText": "(月)"
+      }
+    }
+  },
+  "SiteData": {
+    "viewMetadataBtn": "查看資料集與研究方法",
+    "siteLabel1": "測站/樣區",
+    "siteLabel2": "請選擇{{title}}",
+    "siteDefaultOption": "請選擇{{title}}",
+    "siteEmptyStateText": "目前沒有測站資料。",
+    "searchTitle": "資料列表搜尋",
+    "clearBtn": "清除",
+    "searchBtn": "搜尋",
+    "searchEmptyStateText": "目前沒有欄位資料。",
+    "recordsText": "資料筆數：{{records}}",
+    "dataDownloadBtn": "資料下載",
+    "speciesDownloadBtn": "物種名錄下載",
+    "dataEmptyStateText": "目前沒有資料。",
+    "Economy": {
+      "Interview": {
+        "keywordLabel": "關鍵字",
+        "keywordText": "請輸入關鍵字",
+        "targetLabel": "受訪對象",
+        "targetDefaultOption": "選擇受訪對象",
+        "typeLabel": "議題分類",
+        "clearBtn": "清除",
+        "submitBtn": "搜尋"
+      }
     }
   },
   "data": {
@@ -87,19 +135,120 @@
     "home": {
       "aboutTab": {
         "ecologicalObservation": {
-          "title": "Ecological Observation",
-          "subtitle1": "生態觀測",
-          "subtitle2": ""
+          "title": "生態觀測",
+          "subtitle1": "Ecological",
+          "subtitle2": "Observation"
         },
         "environmentalObservation": {
-          "title": "Environmental Observation",
-          "subtitle1": "環境觀測",
-          "subtitle2": ""
+          "title": "環境觀測",
+          "subtitle1": "Environmental",
+          "subtitle2": "Observation"
         },
         "socialObservation": {
-          "title": "Social Observation",
-          "subtitle1": "社會觀測",
-          "subtitle2": ""
+          "title": "社會觀測",
+          "subtitle1": "Social",
+          "subtitle2": "Observation"
+        }
+      },
+      "col": {
+        "title": {
+          "items": "觀測項目",
+          "year": "年份",
+          "locality": "地點名稱",
+          "latitude": "地點經度",
+          "longitude": "地點緯度",
+          "annualAirTemperature": "年均溫",
+          "annualPrecipitation": "年雨量",
+          "annualSeaTemperature": "年均海溫",
+          "coralDiv": "珊瑚礁種類數",
+          "coralRec": "珊瑚礁入添數量",
+          "aquaticfauna": "溪流生物物種數"
+        }
+      },
+      "item": {
+        "title": {
+          "annualAirTemperature": "年均溫",
+          "seasonalAirTemperature": "季均溫",
+          "annualPrecipitation": "年雨量",
+          "seasonalPrecipitation": "季雨量",
+          "annualSeaTemperature": "年均海溫",
+          "seasonalSeaTemperature": "季均海溫",
+          "coralDiv": "珊瑚礁種類數",
+          "coralRec": "珊瑚礁入添數量",
+          "zoobenthos": "底棲動物種類數",
+          "plant": "陸域植物種類數",
+          "birdNetSound": "鳥種數(鳥音)",
+          "fishDiv": "魚種數",
+          "aquaticfauna": "溪流生物"
+        }
+      },
+      "plan": {
+        "title": {
+          "coral-div": "珊瑚多樣性",
+          "coral-rec": "珊瑚入添",
+          "coral-bleach": "珊瑚白化",
+          "coral-comm": "珊瑚群聚",
+          "otolith": "耳石",
+          "ocean-sound": "海域聲學-調查事件",
+          "fish-div": "魚類多樣性",
+          "fishing": "休閒漁業",
+          "plant": "陸域植物",
+          "terre-sound": "陸域聲學-調查事件",
+          "terre-sound-index": "陸域聲學-聲音指數",
+          "bird-net-sound": "陸域聲學-鳥音辨識",
+          "bio-sound": "陸域聲學-生物辨識",
+          "water": "海域水質",
+          "habitat": "棲地評估",
+          "zoobenthos": "底棲動物",
+          "aquaticfauna": "溪流生物",
+          "stream": "溪流水質",
+          "weather": "氣象觀測",
+          "ocean-env": "海洋觀測",
+          "sea-temperature": "海洋觀測-海溫",
+          "issue": "社會觀測-議題盤點"
+        }
+      }
+    },
+    "siteData": {
+      "eco": {
+        "title": {
+          "1": "珊瑚礁魚類時空變化",
+          "1_1": "耳石",
+          "2": "珊瑚礁魚類多樣性與群聚",
+          "2_1": "魚類多樣性",
+          "3": "珊瑚多樣性、珊瑚礁群聚、入添與白化觀測",
+          "3_1": "珊瑚多樣性",
+          "3_2": "珊瑚入添",
+          "3_3": "珊瑚白化",
+          "3_4": "珊瑚群聚",
+          "4": "潮間帶貝類多樣性與群聚特性",
+          "4_1": "底棲動物",
+          "5": "陸域維管束植物社會監測",
+          "5_1": "陸域植物",
+          "6": "陸域聲景調查",
+          "6_1": "聲音指數",
+          "6_2": "鳥類辨識",
+          "6_3": "生物辨識",
+          "7": "珊瑚礁水下聲景調查",
+          "7_1": "海洋聲學",
+          "8": "溪流生物調查",
+          "8_1": "溪流生物"
+        }
+      },
+      "env": {
+        "title": {
+          "1": "綠島海洋水域以及珊瑚健康指標觀測",
+          "1_1": "水質/海洋健康指標",
+          "2": "陸域與海域環境觀測",
+          "2_1": "氣象觀測",
+          "2_2": "海洋觀測",
+          "2_3": "棲地評估",
+          "2_4": "溪流水質"
+        }
+      },
+      "economy": {
+        "title": {
+          "1": "休閒漁業"
         }
       }
     }

@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
 
 import Search from 'components/SiteData/Search';
 import Result from 'components/SiteData/Result';
 import Title from 'components/SiteData/Title';
-import { useLocation } from 'react-router-dom';
-import { useDataContext } from 'context/DataContext';
+
 import { ContextItem } from 'types/utils';
+
+import { useDataContext } from 'context/DataContext';
 import usePage from 'hooks/utils/usePage';
 
-const Content = () => {
+const Content = ({ PAGE_NAME }: { PAGE_NAME: string }) => {
+  const I18N_KEY_PREFIX = `${PAGE_NAME}`;
+
   const location = useLocation();
   const { pathname } = location;
   const paths = pathname.split('/');
@@ -29,12 +35,17 @@ const Content = () => {
   return (
     <>
       <div className="right-infbox">
-        <Title paths={paths} url={contextData.depositarUrl} />
+        <Title
+          paths={paths}
+          url={contextData.depositarUrl}
+          PAGE_NAME={PAGE_NAME}
+        />
         <div className="data-searchbox">
           <Search
             item={item}
             isDoneFetching={isDoneFetching}
             setPaginationData={setPaginationData}
+            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
           />
           <Result
             item={item}
@@ -43,6 +54,7 @@ const Content = () => {
             setCurrentPage={setCurrentPage}
             paginationData={paginationData}
             setPaginationData={setPaginationData}
+            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
           />
         </div>
       </div>
