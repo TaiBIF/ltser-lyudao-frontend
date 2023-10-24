@@ -1,8 +1,10 @@
 import React, { ReactNode, useContext } from 'react';
 import { RouteProps, useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { useAuthContext } from 'context/AuthContext';
 import { swalToast } from 'helpers/customSwal';
-import Spinner from 'components/Spinner';
 
 interface PrivateRouteProps {
   roles: string[];
@@ -15,6 +17,12 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   redirectPath = '/',
   children,
 }) => {
+  const PAGE_NAME = 'others';
+  const COMPONENT_NAME = 'PrivateRoute';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+  const { t } = useTranslation();
+
   const { auth, group } = useAuthContext();
   const navigate = useNavigate();
 
@@ -23,7 +31,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   if (!auth) {
     swalToast.fire({
       icon: 'warning',
-      title: '請先登入。',
+      title: t(`${I18N_KEY_PREFIX}.authAlert`),
     });
     navigate(redirectPath);
     return null;
@@ -31,7 +39,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   if (roles && !isFetchingGroup && !roles.includes(group as any)) {
     swalToast.fire({
       icon: 'warning',
-      title: '權限不足。',
+      title: t(`${I18N_KEY_PREFIX}.roleAlert`),
     });
     navigate(redirectPath);
     return null;

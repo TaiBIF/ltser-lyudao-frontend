@@ -342,5 +342,47 @@
       "arrayMin": "至少需要選擇一項",
       "confirmPassword": "密碼與確認密碼不一致"
     }
+  },
+  "others": {
+    "PrivateRoute": {
+      "authAlert": "請先登入",
+      "roleAlert": "權限不足"
+    },
+    "AuthContext": {
+      "alert": {
+        "login": {
+          "success": "登入成功",
+          "fail": "發生錯誤，登入失敗"
+        },
+        "logout": {
+          "success": "已登出"
+        },
+        "updateToken": {
+          "fail": "更新權限發生錯誤，即將登出"
+        },
+        "getGroup": {
+          "fail": "發生錯誤，讀取身份失敗"
+        },
+        "signup": {
+          "success": "註冊成功",
+          "fail": "發生錯誤，註冊失敗"
+        },
+        "resendEmail": {
+          "success": "發送成功",
+          "fail": "發生錯誤，發送失敗"
+        },
+        "verifyEmail": {
+          "success": "驗證成功",
+          "fail": "發生錯誤，驗證失敗"
+        },
+        "resetPswEmail": {
+          "success": "發送成功"
+        },
+        "resetPsw": {
+          "success": "更改成功，請重新登入",
+          "fail": "發生錯誤，更改失敗"
+        }
+      }
+    }
   }
 }

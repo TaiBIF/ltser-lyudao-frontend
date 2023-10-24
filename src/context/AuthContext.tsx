@@ -7,12 +7,15 @@ import {
   SetStateAction,
   Dispatch,
 } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { HeaderShowState } from 'types/common';
 
 import { useApi } from 'hooks/api/useApi';
-import { useNavigate } from 'react-router-dom';
 import { swalToast } from 'helpers/customSwal';
-import { useHeaderContext } from './HeaderContext';
-import { HeaderShowState } from 'types/common';
+import { useHeaderContext } from 'context/HeaderContext';
 
 interface AuthTokens {
   access: string;
@@ -69,6 +72,13 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const PAGE_NAME = 'others';
+  const COMPONENT_NAME = 'AuthContext';
+  const PREFIX = 'alert';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}.${PREFIX}`;
+
+  const { t } = useTranslation();
+
   const initialAuthToken: AuthTokens = {
     access: '',
     refresh: '',
@@ -135,7 +145,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleActions({
       result,
       success: {
-        title: '登入成功',
+        title: t(`${I18N_KEY_PREFIX}.login.success`),
         action: () => {
           handleLoginSuccessAction({ data: result?.response.data, setShow });
         },
@@ -159,21 +169,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       data: { authorization_code: code },
       url: `/google/`,
     });
-    console.log(result);
-
     const handleErrorAction = () => {
       navigate('/');
     };
     handleActions({
       result,
       success: {
-        title: '登入成功',
+        title: t(`${I18N_KEY_PREFIX}.login.success`),
         action: () => {
           handleLoginSuccessAction({ data: result?.response.data, setShow });
         },
       },
       error: {
-        title: '發生錯誤。',
+        title: t(`${I18N_KEY_PREFIX}.login.fail`),
         action: () => {
           handleErrorAction();
         },
@@ -187,7 +195,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('authTokens');
     swalToast.fire({
       icon: 'success',
-      title: '已登出',
+      title: t(`${I18N_KEY_PREFIX}.logout.success`),
     });
     navigate('/');
     setLoading(false);
@@ -222,7 +230,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
       },
       error: {
-        title: '更新權限發生錯誤，即將登出',
+        title: t(`${I18N_KEY_PREFIX}.updateToken.fail`),
         action: handleErrorAction,
       },
     });
@@ -246,7 +254,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
       },
       error: {
-        title: '發生錯誤，讀取身份失敗。',
+        title: t(`${I18N_KEY_PREFIX}.getGroup.fail`),
       },
     });
   };
@@ -278,11 +286,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleActions({
       result,
       success: {
-        title: '註冊成功',
+        title: t(`${I18N_KEY_PREFIX}.signup.success`),
         action: handleSuccessAction,
       },
       error: {
-        title: '發生錯誤，註冊失敗',
+        title: t(`${I18N_KEY_PREFIX}.signup.fail`),
       },
     });
   };
@@ -297,10 +305,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleActions({
       result,
       success: {
-        title: '發送成功',
+        title: t(`${I18N_KEY_PREFIX}.resendEmail.success`),
       },
       error: {
-        title: '發生錯誤，發送失敗',
+        title: t(`${I18N_KEY_PREFIX}.resendEmail.fail`),
       },
     });
   };
@@ -320,13 +328,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleActions({
       result,
       success: {
-        title: '驗證成功',
+        title: t(`${I18N_KEY_PREFIX}.verifyEmail.success`),
         action: () => {
           handleSuccessAction();
         },
       },
       error: {
-        title: '發生錯誤，驗證失敗',
+        title: t(`${I18N_KEY_PREFIX}.verifyEmail.fail`),
       },
     });
   };
@@ -341,7 +349,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleActions({
       result,
       success: {
-        title: '發送成功',
+        title: t(`${I18N_KEY_PREFIX}.resetPswEmail.success`),
       },
       error: {
         title: result?.response.data.message,
@@ -377,11 +385,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleActions({
       result,
       success: {
-        title: '更改成功，請重新登入',
+        title: t(`${I18N_KEY_PREFIX}.resetPsw.success`),
         action: handleSuccessAction,
       },
       error: {
-        title: '發生錯誤，更改失敗',
+        title: t(`${I18N_KEY_PREFIX}.resetPsw.fail`),
       },
     });
   };
