@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import Breadcrumb from 'components/Breadcrumb';
 import MainItem from 'components/Contact/MainItem';
 import SubItem from 'components/Contact/SubItem';
 import Banner from 'components/Banner';
 
-import { contactList, contactTypeList } from 'data/contact';
+import { contactList, generateContactTypeList } from 'data/contact';
 
 import { BannerData } from 'types/common';
 import { ContactItem } from 'types/contact';
@@ -17,6 +19,13 @@ import useRender from 'hooks/page/useRender';
 import { CONTACT_ALL_API_URL } from 'data/api';
 
 const Contact = () => {
+  const PAGE_NAME = 'Contact';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}`;
+
+  const { t } = useTranslation();
+
+  const contactTypeList = generateContactTypeList();
+
   const { getAllList } = useRender();
   const [contacts, setContacts] = useState<ContactItem[]>([]);
 
@@ -90,7 +99,7 @@ const Contact = () => {
                   <div className="line-titlarea">
                     <div className="peo-title">
                       <div className="line1" />
-                      聯絡方式
+                      {t(`${I18N_KEY_PREFIX}.contactSubtitle`)}
                       <div className="line2" />
                     </div>
                   </div>

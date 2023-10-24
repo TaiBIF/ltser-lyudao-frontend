@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
+
 import {
   Form,
   Formik,
@@ -18,6 +20,12 @@ import Spinner from 'components/Spinner';
 import { spinnerBtnStyle } from 'utils/style';
 
 const ResetPsw = () => {
+  const PAGE_NAME = 'Auth';
+  const COMPONENT_NAME = 'ResetPsw';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+  const { t } = useTranslation();
+
   const initialValues = {
     password: '',
     password2: '',
@@ -53,16 +61,20 @@ const ResetPsw = () => {
               <div className="line-titlarea">
                 <div className="peo-title">
                   <div className="line1" />
-                  忘記密碼
+                  {t(`${I18N_KEY_PREFIX}.title`)}
                   <div className="line2" />
                 </div>
               </div>
               <p className="center marb_20">
-                您可在下方欄位修改您的密碼，下次請使用新的密碼登入
+                {t(`${I18N_KEY_PREFIX}.subtitle`)}
               </p>
               <div className="inpbox">
                 <p>
-                  新密碼<span className="col-red"> (8-12位含英文與數字)</span>
+                  {t(`${I18N_KEY_PREFIX}.passwordTitle`)}
+                  <span className="col-red">
+                    {' '}
+                    {t(`${I18N_KEY_PREFIX}.passwordHint`)}
+                  </span>
                 </p>
                 <Formik {...formikConfig}>
                   {({ isSubmitting }) => (
@@ -70,14 +82,14 @@ const ResetPsw = () => {
                       <div className="flex-input c-form">
                         <div className="c-form__set">
                           <label htmlFor="password" className="visually-hidden">
-                            密碼
+                            {t(`${I18N_KEY_PREFIX}.passwordLabel`)}
                           </label>
                           <Field
                             type="password"
                             id="password"
                             name="password"
                             className="c-form__input"
-                            placeholder="請輸入密碼"
+                            placeholder={t(`${I18N_KEY_PREFIX}.passwordText`)}
                             required={true}
                           />
                           <ErrorMessage
@@ -91,14 +103,14 @@ const ResetPsw = () => {
                             htmlFor="confirmPassword"
                             className="visually-hidden"
                           >
-                            確認密碼
+                            {t(`${I18N_KEY_PREFIX}.password2Label`)}
                           </label>
                           <Field
                             type="password"
                             id="password2"
                             name="password2"
                             className="c-form__input"
-                            placeholder="請再輸入一次密碼"
+                            placeholder={t(`${I18N_KEY_PREFIX}.password2Text`)}
                             required={true}
                           />
                           <ErrorMessage
@@ -114,7 +126,11 @@ const ResetPsw = () => {
                         style={spinnerBtnStyle}
                         disabled={isSubmitting}
                       >
-                        {!loading ? '確認送出' : <Spinner />}
+                        {!loading ? (
+                          t(`${I18N_KEY_PREFIX}.submitBtn`)
+                        ) : (
+                          <Spinner />
+                        )}
                       </button>
                     </Form>
                   )}

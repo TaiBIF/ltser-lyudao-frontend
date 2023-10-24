@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import Breadcrumb from 'components/Breadcrumb';
 import Item from 'components/FormLink/Item';
-import Pagination from 'components/Pagination';
+import Pagination from 'components/Pagination/Content';
 
 import { FormLinkItem } from 'types/formLink';
 
@@ -13,6 +15,11 @@ import useRender from 'hooks/page/useRender';
 import usePage from 'hooks/utils/usePage';
 
 const FormLink = () => {
+  const PAGE_NAME = 'FormLink';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}`;
+
+  const { t } = useTranslation();
+
   const [formLinks, setFormLinks] = useState<FormLinkItem[]>([]);
   const { getList } = useRender();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
@@ -39,7 +46,7 @@ const FormLink = () => {
             <div className="line-titlarea">
               <div className="peo-title">
                 <div className="line1" />
-                常用表單與連結
+                {t(`${I18N_KEY_PREFIX}.title`)}
                 <div className="line2" />
               </div>
             </div>

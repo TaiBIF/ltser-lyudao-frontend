@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   Formik,
   Form,
@@ -18,6 +21,12 @@ import Spinner from 'components/Spinner';
 import { spinnerBtnStyle } from 'utils/style';
 
 const VerifyEmail = () => {
+  const PAGE_NAME = 'Auth';
+  const COMPONENT_NAME = 'VerifyEmail';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+  const { t } = useTranslation();
+
   const mail = localStorage.getItem('email');
   const initialValues = {
     email: mail ? mail : '',
@@ -57,12 +66,12 @@ const VerifyEmail = () => {
               <div className="line-titlarea">
                 <div className="peo-title">
                   <div className="line1" />
-                  會員註冊
+                  {t(`${I18N_KEY_PREFIX}.title`)}
                   <div className="line2" />
                 </div>
               </div>
               <p className="center marb_20">
-                我們將寄出一封驗證信至您填寫的信箱，請完成您的電子信箱認證就可啟用會員帳號。謝謝！！
+                {t(`${I18N_KEY_PREFIX}.subtitle`)}
               </p>
               <Formik {...formikConfig}>
                 {({ isSubmitting }) => (
@@ -85,7 +94,7 @@ const VerifyEmail = () => {
                       style={spinnerBtnStyle}
                       disabled={isSubmitting}
                     >
-                      {!loading ? '重新寄送' : <Spinner />}
+                      {!loading ? t(`${I18N_KEY_PREFIX}.sendBtn`) : <Spinner />}
                     </button>
                   </Form>
                 )}

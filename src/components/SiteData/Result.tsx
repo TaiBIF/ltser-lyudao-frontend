@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import Pagination from 'components/Pagination';
+import Pagination from 'components/Pagination/Content';
 
 import { useEcoContext } from 'context/EcoContext';
 import { useDataContext } from 'context/DataContext';

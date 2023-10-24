@@ -1,4 +1,5 @@
 import React, { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import DateIcon from 'components/News/DateIcon';
 import { NewsFilterItem, NewsItem } from 'types/news';
@@ -13,6 +14,7 @@ interface DateFilterProps {
   currentPage: number;
   setPaginationData: Dispatch<SetStateAction<PaginationDataItem>>;
   isAllType: boolean;
+  I18N_KEY_PREFIX: string;
 }
 
 const DateFilter = (props: DateFilterProps) => {
@@ -23,7 +25,10 @@ const DateFilter = (props: DateFilterProps) => {
     currentPage,
     setPaginationData,
     isAllType,
+    I18N_KEY_PREFIX,
   } = props;
+
+  const { t } = useTranslation();
 
   const hasStartDate = filter.startDate !== '';
   const hasEndDate = filter.endDate !== '';
@@ -79,7 +84,7 @@ const DateFilter = (props: DateFilterProps) => {
             </div>
           </div>
         </div>
-        <button type="submit">篩選</button>
+        <button type="submit">{t(`${I18N_KEY_PREFIX}.filterBtn`)}</button>
       </form>
     </>
   );

@@ -1,5 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import PrevIcon from 'components/PrevIcon';
 import NextIcon from 'components/NextIcon';
 
@@ -15,11 +18,14 @@ interface ActionBtnsProps {
   paginationData: PaginationDataItem;
   setCurrentPage: Dispatch<SetStateAction<number>>;
   setPaginationData: Dispatch<SetStateAction<PaginationDataItem>>;
+  I18N_KEY_PREFIX: string;
 }
 
 const ActionBtns = (props: ActionBtnsProps) => {
-  const { id, currentPage, setCurrentPage, paginationData, setPaginationData } =
-    props;
+  const { id, currentPage, setPaginationData, I18N_KEY_PREFIX } = props;
+
+  const { t } = useTranslation();
+
   const { getList } = useRender();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [ids, setIds] = useState<number[]>([]);
@@ -63,13 +69,13 @@ const ActionBtns = (props: ActionBtnsProps) => {
         {hasPrev && (
           <Link to={`/news/${ids[currentIdIndex - 1]}`}>
             <PrevIcon />
-            <p>上一則</p>
+            <p>{t(`${I18N_KEY_PREFIX}.prevBtn`)}</p>
           </Link>
         )}
-        <Link to={`/news`}>回列表</Link>
+        <Link to={`/news`}>{t(`${I18N_KEY_PREFIX}.backBtn`)}</Link>
         {hasNext && (
           <Link to={`/news/${ids[currentIdIndex + 1]}`}>
-            <p>下一則</p>
+            <p>{t(`${I18N_KEY_PREFIX}.nextBtn`)}</p>
             <NextIcon />
           </Link>
         )}

@@ -1,57 +1,75 @@
 {
   "common": {
     "Header": {
-      "loginBtn": "Login",
+      "loginBtn": "Log In",
       "greetingText": "Hi",
-      "logoTitle": "長期社會生態核心觀測-綠島站",
+      "logoTitle": "Taiwan LTSER Core Platform",
       "logoSubtitle": "LTSER LYUDAO",
-      "dashboardBtn": "後台",
-      "logoutBtn": "登出"
+      "dashboardBtn": "Admin Panel",
+      "logoutBtn": "Log Out"
     },
     "LoginPopup": {
-      "emailText": "請輸入您的帳號(email)",
-      "passwordText": "請輸入您的密碼",
+      "emailText": "Account (your E-mail)",
+      "passwordText": "Password",
       "Login": {
-        "title": "會員登入",
-        "rememberMeLabel": "記住我的帳號",
-        "loginBtn": "登入",
-        "googleLoginBtn": "使用GOOGLE登入"
+        "title": "Log In",
+        "rememberMeLabel": "Remember my account",
+        "loginBtn": "Log In",
+        "googleLoginBtn": "continue with Google"
       },
       "ForgotPsw": {
-        "title": "忘記密碼",
-        "subtitle": "請輸入當初加入會員使用的E-Mail，我們將協助您重新設定密碼。",
-        "emailText": "請輸入您的帳號(email)",
-        "submitBtn": "確認送出"
+        "title": "Forgot Password",
+        "subtitle": "Please enter the E-Mail you used when you joined as a member, and we will assist you in resetting your password.",
+        "emailText": "Account (your E-mail)",
+        "submitBtn": "Send"
       },
       "Signup": {
-        "title": "會員註冊",
-        "lastNameText": "姓",
-        "firstNameText": "名",
-        "emailText": "請輸入您的帳號(email)",
-        "passwordText": "請輸入您的密碼",
-        "password2Text": "請再次輸入密碼",
-        "signupBtn": "註冊",
-        "hintText": "註冊即同意",
-        "hintTermLink": "使用者條款"
+        "title": "Register",
+        "lastNameText": "Last Name",
+        "firstNameText": "First Name",
+        "emailText": "Account (your E-mail)",
+        "passwordText": "Password",
+        "password2Text": "Re-enter your password",
+        "signupBtn": "Register",
+        "hintText": "Registration implies agreement with the",
+        "hintTermLink": "Terms of Use"
       },
       "ActionBtn": {
-        "forgotPswBtn": "忘記密碼",
-        "signupBtn": "建立帳號",
-        "backBtn": "返回登入"
+        "forgotPswBtn": "Forgot Password",
+        "signupBtn": "Sign Up",
+        "backBtn": "Back"
       }
+    },
+    "Footer": {
+      "dbLogoText1": "Database Management:",
+      "dbLogoText2": "臺灣生物多樣性機構 TaiBIF",
+      "privacyPolicyLink": "Privacy Policy",
+      "termsLink": "Terms of Use",
+      "copyRightText": "©2022 LTSER LYUDAO"
+    },
+    "DownloadPopup": {
+      "title": "下載申請",
+      "emailText": "請輸入您email",
+      "roleText": "您的身份",
+      "contentLabel": "下載原因",
+      "submitBtn": "送出申請"
+    },
+    "Pagination": {
+      "prevBtn": "上一頁",
+      "nextBtn": "next page"
     }
   },
   "Home": {
     "Kvbox": {
-      "title": "長期社會生態核心觀測站-綠島站",
+      "title": "Taiwan LTSER Core Platform",
       "subtitle": "LTSER LYUDAO"
     },
     "About": {
       "mapTitle": "綠島地圖",
       "aboutTitle": "ABOUT",
-      "content1": "綠島是離島中的第四大島，受到黑潮主流的影響，孕育出了豐富的珊瑚礁生態。珊瑚礁生態系支持了綠島早期的漁業活動，以及近年的觀光活動。觀光人數日漸增加再加上氣候變遷的不可遇測性，使得需要長期依靠臺灣本島補給的綠島，面對人為及自然的衝擊的脆弱度增加。",
-      "content2": "在目前的環境下綠島是否能永續發展，需要依靠長期的社會及生態資料的收集及觀測，藉由分析長期的資料才能知曉。因此本計畫將透過盤點社會生態議題及進行環境及生態觀測，建置綠島社會生態長期觀測資料庫，進行資料倉儲並開放分享，建立起一個平台。",
-      "content3": "藉由這個平台，大家可以進行研究、教育及議題的討論，找出集體共識，最終找出綠島永續發展的可執行政策。"
+      "content1": "Lyudao (also known as Green Island) is the fourth largest offshore island in Taiwan. Influenced by the Kuroshio Current, Lyudao is fringed by rich tropical coral reefs. Coral reef ecosystem supports local fishery in the past and more importantly the modern tourist industry. The increasing number of tourists and the unpredictability of climate change have made Lyudao, which has long relied on the supplies from mainland Taiwan, increasingly vulnerable to human-derived and natural disturbances.",
+      "content2": "Whether Lyudao can develop sustainably under the current circumstances requires the collection and analysis of long term social-ecological data. Therefore, this project will build a long-term observation platform of sociology by taking inventory of social and ecological issues, conducting environmental and ecological observations, and warehousing and openly sharing the data.",
+      "content3": "Through this platform, the stakeholders can conduct research, education and discussion of issues to find collective consensus and ultimately find executable policies for the sustainable development of Lyudao."
     },
     "News": {
       "title": "NEWS",
@@ -77,60 +95,116 @@
     }
   },
   "SiteData": {
-    "viewMetadataBtn": "查看資料集與研究方法",
-    "siteLabel1": "測站/樣區",
-    "siteLabel2": "請選擇{{title}}",
-    "siteDefaultOption": "請選擇{{title}}",
-    "siteEmptyStateText": "目前沒有測站資料。",
-    "searchTitle": "資料列表搜尋",
-    "clearBtn": "清除",
-    "searchBtn": "搜尋",
-    "searchEmptyStateText": "目前沒有欄位資料。",
-    "recordsText": "資料筆數：{{records}}",
-    "dataDownloadBtn": "資料下載",
-    "speciesDownloadBtn": "物種名錄下載",
-    "dataEmptyStateText": "目前沒有資料。",
+    "viewMetadataBtn": "View Datasets and Research Methods",
+    "siteLabel1": "Observation Station",
+    "siteLabel2": "Select an {{title}}",
+    "siteDefaultOption": "Select an {{title}}",
+    "siteEmptyStateText": "There is no data available.",
+    "searchTitle": "Data Search",
+    "clearBtn": "Clear",
+    "searchBtn": "Search",
+    "searchEmptyStateText": "There is no data available.",
+    "recordsText": "Data count: {{records}}",
+    "dataDownloadBtn": "Download data",
+    "speciesDownloadBtn": "Download catalogue",
+    "dataEmptyStateText": "There is no data available.",
     "Economy": {
       "Interview": {
-        "keywordLabel": "關鍵字",
-        "keywordText": "請輸入關鍵字",
-        "targetLabel": "受訪對象",
-        "targetDefaultOption": "選擇受訪對象",
-        "typeLabel": "議題分類",
+        "keywordLabel": "Keyword",
+        "keywordText": "Enter Keyword",
+        "targetLabel": "Interviewee",
+        "targetDefaultOption": "Select Interviewee",
+        "typeLabel": "Issue Classification",
         "clearBtn": "清除",
         "submitBtn": "搜尋"
       }
     }
   },
+  "News": {
+    "allTabBtn": "全部",
+    "filterBtn": "篩選",
+    "Detail": {
+      "nextBtn": "下一則",
+      "prevBtn": "上一則",
+      "backBtn": "回列表"
+    }
+  },
+  "RelatedLiterature": {
+    "keywordText": "關鍵字查詢"
+  },
+  "Contact": {
+    "contactSubtitle": "聯絡方式"
+  },
+  "Terms": {
+    "content0_1": "本使用者服務條款 (以下稱為「使用者條款」) 適用於您存取與使用 Slack線上工作空間生產工具及平台 (以下稱為「服務」)相關事宜，請務必詳閱。即使你要登入現有工作空間，使用者條款依舊適用於你，即使用服務的使用者。感謝您造訪。",
+    "content0_2": "首先說明",
+    "subtitle1": "使用者條款具法律效力",
+    "content1": "使用者條款具法律效力，為你與我雙方的合約。作為這些使用者條款的一部分，你同意遵守可接受的使用政策之最新版本，該政策透過引用與使用者條款結合。若你存取或使用服務，或接獲使用者條款或可接受使用政策變更後，仍繼續存取或使用服務，即表示你確認已閱讀、理解並同意受此使用者條款與可接受的使用政策約束。「我方」、「我們的」、「我們」目前係指此合約中適用之Slack 實體（定義如下）。",
+    "subtitle2": "客戶的選擇與指示",
+    "content2_1": "您是工作空間的授權使用者，該工作空間是由「客戶」所控管",
+    "content2_2": "本使用者條款中稱為「客戶」的組織或其他第三方，已邀請您加入工作空間(亦即一組使用者可存取服務的獨特網域，詳載於說明中心頁面)。舉例而言，若您加入雇主的工作空間，客戶即為您的雇主。若你加入的工作空間，係由朋友使用個人電子郵件地址所建，以為新創公司發想創意，該位朋友即為我方的客戶且會授權你加入其工作空間。",
+    "subtitle3": "對雙方有何意義",
+    "content3": "客戶已另外同意遵守本公司的客戶服務條款，或與本公司或關係企業訂立書面協議(兩者均為「合約」)，其中允許客戶建立與設定工作空間，您與其他人因此得以加入(可存取服務的受邀者，包括您在內，皆為「授權使用者」)。合約包含本公司為客戶提供服務的承諾，客戶可邀請授權使用者加入其工作空間。若授權使用者(包括您在內) 向服務提交訊息、檔案等內容或資訊(以下稱為「客戶資料」)，即表示確認並同意客戶資料歸客戶所有，且合約針對客戶資料提供客戶許多選項與控管方式。舉例而言，客戶可佈建或解除服務存取途徑、啟用或停用第三方整合、管理權限、保留與匯出設定、轉移或指派工作空間、共用頻道、將您的工作空間或頻道與其他工作空間或頻道整合，此類選擇及指示可能造成存取、使用、揭露、修改或刪除特定或全部客戶資料。詳情請查閱我方的「說明中心」頁面，瞭解我方不同服務方案與客戶可用的選項。",
+    "subtitle4": "你、客戶、我方之間的關係",
+    "content4": "在我方與客戶間，你同意客戶須負完全責任於 (一) 將相關客戶政策、做法、可能影響客戶資料處理之設定，告知您與授權使用者；(二) 從你與任何授權使用者處取得任何權利、權限或同意，以供合法客戶資料與服務運作使用；(三) 確保本合約內客戶資料傳輸與處理皆合法；(四) 回應與解決您與任何授權使用者就客戶資料、、服務，或客戶無法遵守義務之紛爭。Slack不就服務提供任何明示或暗示之陳述與保證，服務均以「現行」、「現可取得」之原則提供。",
+    "subtitle5": "一些基本規定",
+    "content5_1": "你須達法定年齡",
+    "content5_2": "在適用法律禁止的範圍內，本服務的目標使用者並非 (a) 未滿十六歲者或 (b) 未滿您所在司法管轄區中資料保護法規明訂之法定成年年齡者，且不應由此等人員使用。您表示已達法定年齡，且為客戶邀請使用服務之對象。若前述有任一不實資訊，無論用途，您都不得存取或使用服務。在不限於上述規定的前提下，您須達合法工作年齡。轉讓無論依法於否，使用者條款 (包括可接受的使用政策)下之權利與義務，均不得轉讓或委派予他人，然獲我方事前書面同意 (不得不當拒絕)，則不在此限。本公司可將使用者條款 (包括透過引用納入的所有條款與條件) 完全讓與關係企業，或於合併、收購、組織重整、出售全部或重大部分資產時一併轉讓，無需取得您同意。"
+  },
+  "Auth": {
+    "ResetPsw": {
+      "title": "忘記密碼",
+      "subtitle": "您可在下方欄位修改您的密碼，下次請使用新的密碼登入",
+      "passwordTitle": "新密碼",
+      "passwordHintText": "(8-12位含英文與數字)",
+      "passwordLabel": "密碼",
+      "passwordText": "請輸入密碼",
+      "password2Label": "確認密碼",
+      "password2Text": "請再輸入一次密碼",
+      "submitBtn": "確認送出"
+    },
+    "VerifyEmail": {
+      "title": "會員註冊",
+      "subtitle": "我們將寄出一封驗證信至您填寫的信箱，請完成您的電子信箱認證就可啟用會員帳號。謝謝！！",
+      "sendBtn": "重新寄送"
+    },
+    "VerifyEmailSuccess": {
+      "title": "驗證成功",
+      "subtitle": "您的電子信箱驗證成功，歡迎加入LTSER_LYUDAO網站會員！",
+      "backBtn": "回首頁"
+    }
+  },
+  "FormLink": {
+    "title": "常用表單與連結"
+  },
   "data": {
     "common": {
       "menu": {
         "title": {
-          "about": "關於LTSER_綠島",
-          "ecologicalObservation": "生態觀測",
-          "environmentalObservation": "環境觀測",
-          "socialObservation": "社會觀測",
-          "siteData": "觀測站資料",
-          "socialEconomyData": "社會經濟資料",
-          "fishing": "休閒漁業資料",
-          "socialInterviewData": "社會面訪談資料",
-          "news": "最新消息",
-          "relatedLiterature": "相關文獻",
-          "qa": "常見Q&A",
-          "formLink": "常用表單與連結"
+          "about": "About Us",
+          "ecologicalObservation": "Ecological Observation",
+          "environmentalObservation": "Environmental Observation",
+          "socialObservation": "Social Observation",
+          "siteData": "Data",
+          "socialEconomyData": "Socioeconomic Data",
+          "fishing": "Recreational Fisheries Data",
+          "socialInterviewData": "Social Interview Data",
+          "news": "News",
+          "relatedLiterature": "Related Literature",
+          "qa": "Q&A",
+          "formLink": "Common Forms and Links"
         }
       },
       "route": {
         "title": {
-          "home": "首頁",
-          "contact": "聯絡我們",
-          "forgotPassword": "忘記密碼",
-          "mailVerification": "會員註冊",
-          "signupSuccess": "驗證成功",
-          "terms": "使用條款"
+          "home": "Home",
+          "contact": "Contact Us",
+          "forgotPassword": "Forgot Password",
+          "mailVerification": "Register",
+          "signupSuccess": "Signup Success",
+          "terms": "Terms of Use"
         }
-      },
-      "footer": {}
+      }
     },
     "home": {
       "aboutTab": {
@@ -249,6 +323,15 @@
       "economy": {
         "title": {
           "1": "休閒漁業"
+        }
+      }
+    },
+    "contact": {
+      "type": {
+        "title": {
+          "leader": "計畫總主持人",
+          "executor": "計畫執行人員",
+          "other": "其他人員"
         }
       }
     }

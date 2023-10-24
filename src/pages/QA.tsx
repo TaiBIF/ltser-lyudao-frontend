@@ -4,7 +4,7 @@ import Banner from 'components/Banner';
 import Breadcrumb from 'components/Breadcrumb';
 import Tabs from 'components/QA/Tabs';
 import Item from 'components/QA/Item';
-import Pagination from 'components/Pagination';
+import Pagination from 'components/Pagination/Content';
 
 import bannerImg from 'image/qa_bn.png';
 

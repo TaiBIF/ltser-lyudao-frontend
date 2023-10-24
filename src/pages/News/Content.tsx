@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import Banner from 'components/Banner';
 import Breadcrumb from 'components/Breadcrumb';
 import Item from 'components/News/Item';
-import Pagination from 'components/Pagination';
+import Pagination from 'components/Pagination/Content';
 import DateFilter from 'components/News/DateFilter';
 
 import bannerImg from 'image/newsbn.jpg';
@@ -20,6 +22,11 @@ import { NEWS_API_URL, NEWS_TYPE_API_URL } from 'data/api';
 import { TypeItem } from 'types/utils';
 
 const Content = () => {
+  const PAGE_NAME = 'News';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}`;
+
+  const { t } = useTranslation();
+
   const bannerData: BannerData = {
     title: '最新消息',
     en: ['News'],
@@ -96,7 +103,10 @@ const Content = () => {
                 <ul>
                   {/*目前位置給now*/}
                   {!isFetchingTypeList &&
-                    [{ id: 0, title: '全部' }, ...typeList].map((v) => {
+                    [
+                      { id: 0, title: t(`${I18N_KEY_PREFIX}.allTabBtn`) },
+                      ...typeList,
+                    ].map((v) => {
                       const { id, title } = v;
                       return (
                         <li
@@ -119,6 +129,7 @@ const Content = () => {
                 currentPage={currentPage}
                 setPaginationData={setPaginationData}
                 isAllType={isAllType}
+                I18N_KEY_PREFIX={I18N_KEY_PREFIX}
               />
             </div>
             <div className="news-list">

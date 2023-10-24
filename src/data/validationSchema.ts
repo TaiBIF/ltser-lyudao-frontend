@@ -1,5 +1,11 @@
 import * as Yup from 'yup';
 
+import i18n from 'i18next';
+
+const PAGE_NAME = 'data';
+const COMPONENT_NAME = 'validationSchema';
+const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
 export const contactValidationSchema = Yup.object().shape({
   name: Yup.string().required('此欄位為必填'),
   contact: Yup.string().email('請輸入正確格式').required('此欄位為必填'),
@@ -61,56 +67,59 @@ export const searchValidationSchema = Yup.object().shape({});
 
 export const resetPasswordValidationSchema = Yup.object().shape({
   password: Yup.string()
-    .required('此欄位為必填')
-    .min(8, '密碼須為8-12位含英文與數字')
-    .matches(/[a-zA-Z]/, '密碼須為8-12位含英文與數字'),
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`))
+    .min(8, i18n.t(`${I18N_KEY_PREFIX}.passwordForm`))
+    .matches(/[a-zA-Z]/, i18n.t(`${I18N_KEY_PREFIX}.passwordForm`)),
   confirmPassword: Yup.string()
-    .required('此欄位為必填')
-    .oneOf([Yup.ref('password'), ''], '確認密碼不一致'),
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`))
+    .oneOf(
+      [Yup.ref('password'), ''],
+      i18n.t(`${I18N_KEY_PREFIX}.confirmPassword`)
+    ),
 });
 
 export const loginValidationSchema = Yup.object({
   email: Yup.string()
-    .email('請輸入有效的電子郵件地址')
-    .required('請輸入您的帳號'),
-  password: Yup.string().required('請輸入您的密碼'),
+    .email(i18n.t(`${I18N_KEY_PREFIX}.emailForm`))
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
+  password: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
 });
 
 export const signupValidationSchema = Yup.object().shape({
-  last_name: Yup.string().required('姓名為必填項目'),
-  first_name: Yup.string().required('姓名為必填項目'),
+  last_name: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
+  first_name: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
   email: Yup.string()
-    .email('請輸入有效的Email地址')
-    .required('Email為必填項目'),
-  password: Yup.string().required('密碼為必填項目'),
+    .email(i18n.t(`${I18N_KEY_PREFIX}.emailForm`))
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
+  password: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
   password2: Yup.string()
-    .oneOf([Yup.ref('password')], '密碼不一致')
-    .required('確認密碼為必填項目'),
+    .oneOf([Yup.ref('password')], i18n.t(`${I18N_KEY_PREFIX}.confirmPassword`))
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
 });
 
 export const resendEmailValidationSchema = Yup.object().shape({
   email: Yup.string()
-    .email('請輸入有效的Email地址')
-    .required('Email為必填項目'),
+    .email(i18n.t(`${I18N_KEY_PREFIX}.emailForm`))
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
 });
 
 export const resetPswEmailValidationSchema = Yup.object().shape({
   email: Yup.string()
-    .email('請輸入有效的Email地址')
-    .required('Email為必填項目'),
+    .email(i18n.t(`${I18N_KEY_PREFIX}.emailForm`))
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
 });
 
 export const resetPswValidationSchema = Yup.object().shape({
-  password: Yup.string().required('密碼為必填項目'),
+  password: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
   password2: Yup.string()
-    .oneOf([Yup.ref('password')], '密碼不一致')
-    .required('確認密碼為必填項目'),
+    .oneOf([Yup.ref('password')], i18n.t(`${I18N_KEY_PREFIX}.confirmPassword`))
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
 });
 
 export const applyDownloadValidationSchema = Yup.object().shape({
   email: Yup.string()
-    .email('請輸入有效的Email地址')
-    .required('Email為必填項目'),
-  role: Yup.string().required('為必填項目'),
-  content: Yup.string().required('為必填項目'),
+    .email(i18n.t(`${I18N_KEY_PREFIX}.emailForm`))
+    .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
+  role: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
+  content: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
 });

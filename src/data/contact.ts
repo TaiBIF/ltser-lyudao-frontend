@@ -1,3 +1,5 @@
+import i18n from 'i18next';
+
 import { ContactItem } from 'types/contact';
 import { TypeItem } from 'types/utils';
 
@@ -15,6 +17,27 @@ import peo11Img from 'image/peo11.png';
 import peo12Img from 'image/peo12.png';
 import peo13Img from 'image/peo13.png';
 import peoIbImg from 'image/peoib-img.png';
+
+const PAGE_NAME = 'data';
+const COMPONENT_NAME = 'contact';
+const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+// contactTypeList
+// TypeItem[]
+export const generateContactTypeList = (): TypeItem[] => [
+  {
+    id: 'leader',
+    title: '計畫總主持人',
+  },
+  {
+    id: 'executor',
+    title: '計畫執行人員',
+  },
+  {
+    id: 'other',
+    title: '其他人員',
+  },
+];
 
 export const contactTypeList: TypeItem[] = [
   {

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
+
 import Banner from 'components/Banner';
 import Breadcrumb from 'components/Breadcrumb';
 import ActionBtns from 'components/News/ActionBtns';
+import Images from 'components/News/Images';
+import AttachmentItem from 'components/News/AttachmentItem';
 
 import { BannerData } from 'types/common';
 import { TypeItem } from 'types/utils';
@@ -15,11 +19,14 @@ import bannerImg from 'image/newsbn.jpg';
 import useRender from 'hooks/page/useRender';
 import { NEWS_API_URL, NEWS_PATH, NEWS_TYPE_API_URL } from 'data/api';
 import { IMAGE_URL } from 'utils/config';
-import Images from 'components/News/Images';
-import AttachmentItem from 'components/News/AttachmentItem';
+
 import usePage from 'hooks/utils/usePage';
 
 const Detail = () => {
+  const PAGE_NAME = 'News';
+  const COMPONENT_NAME = 'Detail';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
   const bannerData: BannerData = {
     title: '最新消息',
     en: ['News'],
@@ -116,6 +123,7 @@ const Detail = () => {
                 setCurrentPage={setCurrentPage}
                 paginationData={paginationData}
                 setPaginationData={setPaginationData}
+                I18N_KEY_PREFIX={I18N_KEY_PREFIX}
               />
             </div>
           </div>

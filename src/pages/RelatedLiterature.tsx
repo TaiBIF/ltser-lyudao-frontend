@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import Banner from 'components/Banner';
 import Breadcrumb from 'components/Breadcrumb';
-import Pagination from 'components/Pagination';
+import Pagination from 'components/Pagination/Content';
 import SearchIcon from 'components/RelatedLiterature/SearchIcon';
 
 import literatureBannerImg from 'image/literature_bn.png';
@@ -11,17 +13,20 @@ import { BannerData } from 'types/common';
 import { LiteratureItem } from 'types/literature';
 
 import { LITERATURE_API_URL } from 'data/api';
-import { literatureList } from 'data/literature';
 
 import useRender from 'hooks/page/useRender';
 import usePage from 'hooks/utils/usePage';
 
 const RelatedLiterature = () => {
+  const PAGE_NAME = 'RelatedLiterature';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}`;
+
+  const { t } = useTranslation();
+
   const [filter, setFilter] = useState({
     keyword: '',
   });
   const [literatures, setLiteratures] = useState<LiteratureItem[]>([]);
-  const [data, setData] = useState<LiteratureItem[]>([]);
   const { getList } = useRender();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();
@@ -70,7 +75,7 @@ const RelatedLiterature = () => {
               <div className="searchbox">
                 <input
                   type="text"
-                  placeholder="關鍵字查詢"
+                  placeholder={t(`${I18N_KEY_PREFIX}.keywordText`)}
                   value={filter.keyword}
                   onChange={handleSearchChange}
                 />

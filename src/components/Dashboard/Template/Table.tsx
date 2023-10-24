@@ -1,4 +1,4 @@
-import Pagination from 'components/Pagination';
+import Pagination from 'components/Pagination/Content';
 import Placeholder from 'components/Placeholder';
 import React, { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
