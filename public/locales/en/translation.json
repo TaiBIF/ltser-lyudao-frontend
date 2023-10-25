@@ -48,14 +48,14 @@
       "copyRightText": "©2022 LTSER LYUDAO"
     },
     "DownloadPopup": {
-      "title": "下載申請",
-      "emailText": "請輸入您email",
-      "roleText": "您的身份",
-      "contentLabel": "下載原因",
-      "submitBtn": "送出申請"
+      "title": "Download Application",
+      "emailText": "E-mail",
+      "roleText": "Identity",
+      "contentLabel": "Reason for Downloading",
+      "submitBtn": "Send"
     },
     "Pagination": {
-      "prevBtn": "上一頁",
+      "prevBtn": "previous page",
       "nextBtn": "next page"
     }
   },
@@ -73,23 +73,23 @@
     },
     "News": {
       "title": "NEWS",
-      "allTabBtn": "全部",
-      "viewAllBtn": "查看更多"
+      "allTabBtn": "All",
+      "viewAllBtn": "View More"
     },
     "SurveyMap": {
       "title": "survey map",
       "Filter": {
-        "siteLabel": "測站/樣區篩選",
-        "siteDefaultOption": "年份",
-        "itemLabel": "觀測項目"
+        "siteLabel": "Observation Station Selection",
+        "siteDefaultOption": "Year",
+        "itemLabel": "Observation Item"
       },
       "Map": {
-        "title": "{{siteName}} - 實時觀測資料",
-        "viewChartBtn": "查看圖表",
-        "downloadBtn": "下載樣區資料"
+        "title": "{{siteName}} - Observation Data",
+        "viewChartBtn": "View Charts",
+        "downloadBtn": "Download Data"
       },
       "Chart": {
-        "title": "{{siteName}} - 視覺化統計圖",
+        "title": "{{siteName}} - Visual Charts",
         "xAsisUnitText": "(月)"
       }
     }
@@ -115,25 +115,25 @@
         "targetLabel": "Interviewee",
         "targetDefaultOption": "Select Interviewee",
         "typeLabel": "Issue Classification",
-        "clearBtn": "清除",
-        "submitBtn": "搜尋"
+        "clearBtn": "Clear",
+        "submitBtn": "Search"
       }
     }
   },
   "News": {
-    "allTabBtn": "全部",
-    "filterBtn": "篩選",
+    "allTabBtn": "All",
+    "filterBtn": "Filter",
     "Detail": {
-      "nextBtn": "下一則",
-      "prevBtn": "上一則",
-      "backBtn": "回列表"
+      "nextBtn": "Previous",
+      "prevBtn": "Next",
+      "backBtn": "Back"
     }
   },
   "RelatedLiterature": {
-    "keywordText": "關鍵字查詢"
+    "keywordText": "Search"
   },
   "Contact": {
-    "contactSubtitle": "聯絡方式"
+    "contactSubtitle": "Contact Information"
   },
   "Terms": {
     "content0_1": "本使用者服務條款 (以下稱為「使用者條款」) 適用於您存取與使用 Slack線上工作空間生產工具及平台 (以下稱為「服務」)相關事宜，請務必詳閱。即使你要登入現有工作空間，使用者條款依舊適用於你，即使用服務的使用者。感謝您造訪。",
@@ -153,29 +153,29 @@
   },
   "Auth": {
     "ResetPsw": {
-      "title": "忘記密碼",
-      "subtitle": "您可在下方欄位修改您的密碼，下次請使用新的密碼登入",
-      "passwordTitle": "新密碼",
-      "passwordHintText": "(8-12位含英文與數字)",
-      "passwordLabel": "密碼",
-      "passwordText": "請輸入密碼",
-      "password2Label": "確認密碼",
-      "password2Text": "請再輸入一次密碼",
-      "submitBtn": "確認送出"
+      "title": "Forgot Password",
+      "subtitle": "Change your password in the field below, and please use your new password for your next login.",
+      "passwordTitle": "New Password",
+      "passwordHintText": "8-12 characters and include both letters and numbers.",
+      "passwordLabel": "Password",
+      "passwordText": "Please enter your password.",
+      "password2Label": "Confirm password",
+      "password2Text": "Re-enter your password",
+      "submitBtn": "Send"
     },
     "VerifyEmail": {
-      "title": "會員註冊",
-      "subtitle": "我們將寄出一封驗證信至您填寫的信箱，請完成您的電子信箱認證就可啟用會員帳號。謝謝！！",
-      "sendBtn": "重新寄送"
+      "title": "Register",
+      "subtitle": "We will send a verification email to the address you provided. Please complete the email verification to activate your member account. Thank you!",
+      "sendBtn": "Resend"
     },
     "VerifyEmailSuccess": {
-      "title": "驗證成功",
-      "subtitle": "您的電子信箱驗證成功，歡迎加入LTSER_LYUDAO網站會員！",
-      "backBtn": "回首頁"
+      "title": "Verification Successful",
+      "subtitle": "Your email verification is successful. Welcome to the LTSER LYUDAO website as a member!",
+      "backBtn": "Back to Homepage"
     }
   },
   "FormLink": {
-    "title": "常用表單與連結"
+    "title": "Common Forms and Links"
   },
   "data": {
     "common": {
@@ -286,24 +286,24 @@
     "siteData": {
       "eco": {
         "title": {
-          "1": "珊瑚礁魚類時空變化",
+          "1": "Temporal and Spatial Changes of Coral Reef Fish",
           "1_1": "耳石",
-          "2": "珊瑚礁魚類多樣性與群聚",
+          "2": "Coral Reef Fish Diversity and Assemblages",
           "2_1": "魚類多樣性",
-          "3": "珊瑚多樣性、珊瑚礁群聚、入添與白化觀測",
+          "3": "Coral Diversity, Coral Reef Communities, Bleaching and Discoloration Observations",
           "3_1": "珊瑚多樣性",
           "3_2": "珊瑚入添",
           "3_3": "珊瑚白化",
           "3_4": "珊瑚群聚",
-          "4": "潮間帶貝類多樣性與群聚特性",
+          "4": "Intertidal Bivalve Diversity and Assemblage Characteristics",
           "4_1": "底棲動物",
-          "5": "陸域維管束植物社會監測",
+          "5": "Terrestrial Vascular Plant Community Monitoring",
           "5_1": "陸域植物",
-          "6": "陸域聲景調查",
+          "6": "Terrestrial Acoustic Landscape Survey",
           "6_1": "聲音指數",
           "6_2": "鳥類辨識",
           "6_3": "生物辨識",
-          "7": "珊瑚礁水下聲景調查",
+          "7": "Underwater Acoustic Landscape Survey of Coral Reefs",
           "7_1": "海洋聲學",
           "8": "溪流生物調查",
           "8_1": "溪流生物"
@@ -311,9 +311,9 @@
       },
       "env": {
         "title": {
-          "1": "綠島海洋水域以及珊瑚健康指標觀測",
+          "1": "Marine Waters and Coral Health Index Observations around Lyudao",
           "1_1": "水質/海洋健康指標",
-          "2": "陸域與海域環境觀測",
+          "2": "Terrestrial and Marine Environmental Monitoring",
           "2_1": "氣象觀測",
           "2_2": "海洋觀測",
           "2_3": "棲地評估",
@@ -322,58 +322,65 @@
       },
       "economy": {
         "title": {
-          "1": "休閒漁業"
+          "1": "Recreational Fisheries Survey"
         }
       }
     },
     "contact": {
       "type": {
         "title": {
-          "leader": "計畫總主持人",
-          "executor": "計畫執行人員",
+          "leader": "Project Director",
+          "executor": "Project Team Members",
           "other": "其他人員"
         }
       }
+    },
+    "validationSchema": {
+      "required": "Required",
+      "emailForm": "Please enter a valid email format.",
+      "passwordForm": "Password must be 8-12 characters and include both letters and numbers.",
+      "arrayMin": "At least one selection is required.",
+      "confirmPassword": "Password mismatch."
     }
   },
   "others": {
     "PrivateRoute": {
-      "authAlert": "請先登入",
-      "roleAlert": "權限不足"
+      "authAlert": "Please log in first.",
+      "roleAlert": "Insufficient Permissions"
     },
     "AuthContext": {
       "alert": {
         "login": {
-          "success": "登入成功",
-          "fail": "發生錯誤，登入失敗"
+          "success": "Login Successful",
+          "fail": "Error occurred. Login failed."
         },
         "logout": {
-          "success": "已登出"
+          "success": "Logged Out"
         },
         "updateToken": {
-          "fail": "更新權限發生錯誤，即將登出"
+          "fail": "Error updating permissions, logging out shortly."
         },
         "getGroup": {
-          "fail": "發生錯誤，讀取身份失敗"
+          "fail": "Error occurred. Failed to fetch identity."
         },
         "signup": {
-          "success": "註冊成功",
-          "fail": "發生錯誤，註冊失敗"
+          "success": "Registration Successful",
+          "fail": "Error occurred. Registration failed."
         },
         "resendEmail": {
-          "success": "發送成功",
-          "fail": "發生錯誤，發送失敗"
+          "success": "Send Successful",
+          "fail": "Error occurred. Sending failed."
         },
         "verifyEmail": {
-          "success": "驗證成功",
-          "fail": "發生錯誤，驗證失敗"
+          "success": "Verification Successful",
+          "fail": "Error occurred. Verification failed."
         },
         "resetPswEmail": {
-          "success": "發送成功"
+          "success": "Send Successful"
         },
         "resetPsw": {
-          "success": "更改成功，請重新登入",
-          "fail": "發生錯誤，更改失敗"
+          "success": "Changes saved successfully. Please log in again.",
+          "fail": "Error occurred. Changes failed."
         }
       }
     }
