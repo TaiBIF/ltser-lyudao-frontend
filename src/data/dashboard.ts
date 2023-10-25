@@ -120,7 +120,7 @@ export const aboutColList: ColItem[] = [
 
 export const aboutAddFieldList: FieldItem[] = [
   {
-    id: 1,
+    id: '1',
     type: 'select',
     title: 'type',
     label: '觀測類型',
@@ -129,7 +129,7 @@ export const aboutAddFieldList: FieldItem[] = [
     options: aboutTypeList,
   },
   {
-    id: 2,
+    id: '2',
     type: 'text',
     title: 'name',
     label: '觀測項目名稱',
@@ -137,7 +137,15 @@ export const aboutAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 3,
+    id: '2-1',
+    type: 'text',
+    title: 'name_en',
+    label: '觀測項目名稱 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '3',
     type: 'text',
     title: 'content',
     label: '觀測項目簡介',
@@ -145,7 +153,15 @@ export const aboutAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 4,
+    id: '3-1',
+    type: 'text',
+    title: 'content_en',
+    label: '觀測項目簡介 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '4',
     type: 'file',
     title: 'image',
     label: '觀測項目介紹圖片',
@@ -157,7 +173,7 @@ export const aboutAddFieldList: FieldItem[] = [
 
 export const aboutEditFieldList: FieldItem[] = [
   {
-    id: 1,
+    id: '1',
     type: 'select',
     title: 'type',
     label: '觀測類型',
@@ -166,7 +182,7 @@ export const aboutEditFieldList: FieldItem[] = [
     options: aboutTypeList,
   },
   {
-    id: 2,
+    id: '2',
     type: 'text',
     title: 'name',
     label: '觀測項目名稱',
@@ -174,7 +190,15 @@ export const aboutEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 3,
+    id: '2-1',
+    type: 'text',
+    title: 'name_en',
+    label: '觀測項目名稱 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '3',
     type: 'text',
     title: 'content',
     label: '觀測項目簡介',
@@ -182,7 +206,15 @@ export const aboutEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 4,
+    id: '3-1',
+    type: 'text',
+    title: 'content_en',
+    label: '觀測項目簡介 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '4',
     type: 'file',
     title: 'image',
     label: '觀測項目介紹圖片',
@@ -237,7 +269,7 @@ export const aboutAttachmentColList: ColItem[] = [
 
 export const aboutAttachmentAddFieldList: FieldItem[] = [
   {
-    id: 1,
+    id: '1',
     type: 'select',
     title: 'aboutId',
     label: '計畫介紹名稱',
@@ -245,7 +277,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 2,
+    id: '2',
     type: 'text',
     title: 'name',
     label: '補充資訊名稱',
@@ -253,7 +285,15 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 3,
+    id: '2-1',
+    type: 'text',
+    title: 'name_en',
+    label: '補充資訊名稱 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '3',
     type: 'text',
     title: 'content',
     label: '補充資訊簡介',
@@ -261,7 +301,15 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 4,
+    id: '3-1',
+    type: 'text',
+    title: 'content_en',
+    label: '補充資訊簡介 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '4',
     type: 'file',
     title: 'file',
     label: '補充資訊檔案',
@@ -269,7 +317,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 5,
+    id: '5',
     type: 'file',
     title: 'image',
     label: '補充資訊圖片',
@@ -281,7 +329,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
 
 export const aboutAttachmentEditFieldList: FieldItem[] = [
   {
-    id: 1,
+    id: '1',
     type: 'select',
     title: 'aboutId',
     label: '計畫介紹名稱',
@@ -289,7 +337,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 2,
+    id: '2',
     type: 'text',
     title: 'name',
     label: '補充資訊名稱',
@@ -297,7 +345,15 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 3,
+    id: '2-1',
+    type: 'text',
+    title: 'name_en',
+    label: '補充資訊名稱 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '3',
     type: 'text',
     title: 'content',
     label: '補充資訊簡介',
@@ -305,7 +361,15 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 4,
+    id: '3-1',
+    type: 'text',
+    title: 'content_en',
+    label: '補充資訊簡介 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '4',
     type: 'file',
     title: 'file',
     label: '補充資訊檔案',
@@ -319,7 +383,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
     ],
   },
   {
-    id: 5,
+    id: '5',
     type: 'file',
     title: 'image',
     label: '補充資訊圖片',
@@ -380,7 +444,7 @@ export const contactColList: ColItem[] = [
 
 export const contactAddFieldList: FieldItem[] = [
   {
-    id: 1,
+    id: '1',
     type: 'select',
     title: 'type',
     label: '類別',
@@ -389,7 +453,7 @@ export const contactAddFieldList: FieldItem[] = [
     options: contactTypeList,
   },
   {
-    id: 2,
+    id: '2',
     type: 'text',
     title: 'name',
     label: '姓名',
@@ -397,7 +461,15 @@ export const contactAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 3,
+    id: '2-1',
+    type: 'text',
+    title: 'name_en',
+    label: '姓名 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '3',
     type: 'text',
     title: 'unit',
     label: '單位',
@@ -405,10 +477,26 @@ export const contactAddFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 4,
+    id: '3-1',
+    type: 'text',
+    title: 'unit_en',
+    label: '單位 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '4',
     type: 'text',
     title: 'content',
     label: '內容',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '4-1',
+    type: 'text',
+    title: 'content_en',
+    label: '內容 (英文)',
     readonly: false,
     required: true,
   },
@@ -433,7 +521,7 @@ export const contactAddFieldList: FieldItem[] = [
 
 export const contactEditFieldList: FieldItem[] = [
   {
-    id: 1,
+    id: '1',
     type: 'select',
     title: 'type',
     label: '類別',
@@ -442,7 +530,7 @@ export const contactEditFieldList: FieldItem[] = [
     options: contactTypeList,
   },
   {
-    id: 2,
+    id: '2',
     type: 'text',
     title: 'name',
     label: '姓名',
@@ -450,7 +538,15 @@ export const contactEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 3,
+    id: '2-1',
+    type: 'text',
+    title: 'name_en',
+    label: '姓名 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '3',
     type: 'text',
     title: 'unit',
     label: '單位',
@@ -458,7 +554,15 @@ export const contactEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 4,
+    id: '3-1',
+    type: 'text',
+    title: 'unit_en',
+    label: '單位 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '4',
     type: 'text',
     title: 'content',
     label: '內容',
@@ -466,7 +570,15 @@ export const contactEditFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 5,
+    id: '4-1',
+    type: 'text',
+    title: 'content_en',
+    label: '內容 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '5',
     type: 'email',
     title: 'contact',
     label: '聯絡方式',
@@ -474,7 +586,7 @@ export const contactEditFieldList: FieldItem[] = [
     required: false,
   },
   {
-    id: 6,
+    id: '6',
     type: 'file',
     title: 'image',
     label: '照片',
