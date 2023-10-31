@@ -130,7 +130,7 @@ export const aboutAddFieldList: FieldItem[] = [
   },
   {
     id: '2',
-    type: 'text',
+    type: 'textarea',
     title: 'name',
     label: '觀測項目名稱',
     readonly: false,
@@ -138,7 +138,7 @@ export const aboutAddFieldList: FieldItem[] = [
   },
   {
     id: '2-1',
-    type: 'text',
+    type: 'textarea',
     title: 'name_en',
     label: '觀測項目名稱 (英文)',
     readonly: false,
@@ -146,7 +146,7 @@ export const aboutAddFieldList: FieldItem[] = [
   },
   {
     id: '3',
-    type: 'text',
+    type: 'textarea',
     title: 'content',
     label: '觀測項目簡介',
     readonly: false,
@@ -154,7 +154,7 @@ export const aboutAddFieldList: FieldItem[] = [
   },
   {
     id: '3-1',
-    type: 'text',
+    type: 'textarea',
     title: 'content_en',
     label: '觀測項目簡介 (英文)',
     readonly: false,
@@ -183,7 +183,7 @@ export const aboutEditFieldList: FieldItem[] = [
   },
   {
     id: '2',
-    type: 'text',
+    type: 'textarea',
     title: 'name',
     label: '觀測項目名稱',
     readonly: false,
@@ -191,7 +191,7 @@ export const aboutEditFieldList: FieldItem[] = [
   },
   {
     id: '2-1',
-    type: 'text',
+    type: 'textarea',
     title: 'name_en',
     label: '觀測項目名稱 (英文)',
     readonly: false,
@@ -199,7 +199,7 @@ export const aboutEditFieldList: FieldItem[] = [
   },
   {
     id: '3',
-    type: 'text',
+    type: 'textarea',
     title: 'content',
     label: '觀測項目簡介',
     readonly: false,
@@ -207,7 +207,7 @@ export const aboutEditFieldList: FieldItem[] = [
   },
   {
     id: '3-1',
-    type: 'text',
+    type: 'textarea',
     title: 'content_en',
     label: '觀測項目簡介 (英文)',
     readonly: false,
@@ -278,7 +278,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
   },
   {
     id: '2',
-    type: 'text',
+    type: 'textarea',
     title: 'name',
     label: '補充資訊名稱',
     readonly: false,
@@ -286,7 +286,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
   },
   {
     id: '2-1',
-    type: 'text',
+    type: 'textarea',
     title: 'name_en',
     label: '補充資訊名稱 (英文)',
     readonly: false,
@@ -294,7 +294,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
   },
   {
     id: '3',
-    type: 'text',
+    type: 'textarea',
     title: 'content',
     label: '補充資訊簡介',
     readonly: false,
@@ -302,7 +302,7 @@ export const aboutAttachmentAddFieldList: FieldItem[] = [
   },
   {
     id: '3-1',
-    type: 'text',
+    type: 'textarea',
     title: 'content_en',
     label: '補充資訊簡介 (英文)',
     readonly: false,
@@ -338,7 +338,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
   },
   {
     id: '2',
-    type: 'text',
+    type: 'textarea',
     title: 'name',
     label: '補充資訊名稱',
     readonly: false,
@@ -346,7 +346,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
   },
   {
     id: '2-1',
-    type: 'text',
+    type: 'textarea',
     title: 'name_en',
     label: '補充資訊名稱 (英文)',
     readonly: false,
@@ -354,7 +354,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
   },
   {
     id: '3',
-    type: 'text',
+    type: 'textarea',
     title: 'content',
     label: '補充資訊簡介',
     readonly: false,
@@ -362,7 +362,7 @@ export const aboutAttachmentEditFieldList: FieldItem[] = [
   },
   {
     id: '3-1',
-    type: 'text',
+    type: 'textarea',
     title: 'content_en',
     label: '補充資訊簡介 (英文)',
     readonly: false,

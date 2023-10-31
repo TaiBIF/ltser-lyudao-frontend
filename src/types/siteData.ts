@@ -18,6 +18,11 @@ export type FilterItem = {
   site: string;
 };
 
+export type SelectItem = {
+  id: number | string;
+  title: string;
+};
+
 export type InterviewItem = {
   id?: number | string;
   year: string;

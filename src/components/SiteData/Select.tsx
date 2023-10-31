@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 import ArrowIcon from './Aside/ArrowIcon';
 
-import { FilterItem } from 'types/siteData';
+import { FilterItem, SelectItem } from 'types/siteData';
 
 interface SelectProps {
   title: string;
-  options: string[];
+  options: SelectItem[];
   filter: FilterItem;
   setFilter: Dispatch<SetStateAction<FilterItem>>;
   I18N_KEY_PREFIX: string;
@@ -27,7 +27,7 @@ const Select = (props: SelectProps) => {
     if (site) {
       setFilter({ ...filter, site: site });
     } else {
-      setFilter({ ...filter, site: options[0] });
+      setFilter({ ...filter, site: String(options[0].id) });
     }
   }, [pathname]);
 
@@ -51,10 +51,10 @@ const Select = (props: SelectProps) => {
             <option value="" disabled>
               {t(`${I18N_KEY_PREFIX}.siteDefaultOption`, { title })}
             </option>
-            {options.map((v: string) => {
+            {options.map((v: SelectItem) => {
               return (
-                <option key={v} value={v}>
-                  {v}
+                <option key={v.id} value={v.title}>
+                  {v.title}
                 </option>
               );
             })}

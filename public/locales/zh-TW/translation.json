@@ -118,7 +118,8 @@
         "clearBtn": "清除",
         "submitBtn": "搜尋"
       }
-    }
+    },
+    "graphEmptyStateText": "目前沒有圖表資料。"
   },
   "News": {
     "allTabBtn": "全部",
@@ -280,6 +281,15 @@
           "ocean-env": "海洋觀測",
           "sea-temperature": "海洋觀測-海溫",
           "issue": "社會觀測-議題盤點"
+        }
+      }
+    },
+    "about": {
+      "type": {
+        "title": {
+          "ecologicalObservation": "生態觀測",
+          "environmentalObservation": "環境觀測",
+          "socialObservation": "社會觀測"
         }
       }
     },

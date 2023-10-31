@@ -1,6 +1,27 @@
 import { TypeItem } from 'types/utils';
 import { AboutItem } from 'types/about';
 
+import i18n from 'i18next';
+
+const PAGE_NAME = 'data';
+const COMPONENT_NAME = 'about';
+const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
+
+export const generateTypeList = (): TypeItem[] => [
+  {
+    id: 'ecologicalObservation',
+    title: i18n.t(`${I18N_KEY_PREFIX}.type.title.ecologicalObservation`),
+  },
+  {
+    id: 'environmentalObservation',
+    title: i18n.t(`${I18N_KEY_PREFIX}.type.title.environmentalObservation`),
+  },
+  {
+    id: 'socialObservation',
+    title: i18n.t(`${I18N_KEY_PREFIX}.type.title.socialObservation`),
+  },
+];
+
 export const aboutTypeList: TypeItem[] = [
   {
     id: 'ecologicalObservation',

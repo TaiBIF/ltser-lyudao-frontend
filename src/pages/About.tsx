@@ -4,18 +4,18 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Item from 'components/About/Item';
 
 import { AboutItem } from 'types/about';
-import { AttachmentItem } from 'types/about';
 import { RelateState } from 'types/utils';
 
-import { tabList } from 'data/home/content';
+import { generateTypeList } from 'data/about';
 import { ABOUT_API_URL } from 'data/api';
 
 import useRender from 'hooks/page/useRender';
-import { aboutList } from 'data/about';
 import { useHeaderContext } from 'context/HeaderContext';
 import { IMAGE_URL } from 'utils/config';
 
 const About = () => {
+  const tabList = generateTypeList();
+
   const { categoryId, aboutId } = useParams();
   const { getDetail } = useRender();
   const { pathname } = useLocation();

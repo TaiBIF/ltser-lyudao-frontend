@@ -9,12 +9,12 @@ import Search from 'components/SiteData/Search';
 import Result from 'components/SiteData/Result';
 import Select from 'components/SiteData/Select';
 import EchartsChart from 'components/SiteData/EchartsChart/Content';
+import Placeholder from 'components/Placeholder';
 
 import { ContextItem } from 'types/utils';
 
 import { useDataContext } from 'context/DataContext';
 import { useSiteDataContext } from 'context/SiteDataContext';
-import Placeholder from 'components/Placeholder';
 import usePage from 'hooks/utils/usePage';
 
 interface MainProps {
@@ -31,11 +31,12 @@ const Main = (props: MainProps) => {
 
   const { t } = useTranslation();
 
+  const langPreference = localStorage.getItem('lang');
+
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { filter, setFilter } = useSiteDataContext();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();
-
   const isFetchingSites = contextData.sites === null;
   const hasNoSites = !isFetchingSites && contextData.sites.length === 0;
   const isFetchingFields = contextData.fields === null;
@@ -47,7 +48,7 @@ const Main = (props: MainProps) => {
   useEffect(() => {
     contextData.getFields();
     contextData.getSites();
-  }, [pathname]);
+  }, [pathname, langPreference]);
 
   return (
     <>
@@ -74,7 +75,11 @@ const Main = (props: MainProps) => {
             ) : (
               <Placeholder layout="inline" />
             ))}
-          <EchartsChart item={item} isHabitat={isHabitat} />
+          <EchartsChart
+            item={item}
+            isHabitat={isHabitat}
+            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+          />
         </div>
         <div className="data-searchbox">
           <Search

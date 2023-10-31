@@ -40,6 +40,7 @@ export const useApi = () => {
   const navigate = useNavigate();
 
   const handleApi = async (apiParams: apiParamsProps) => {
+    const langPreference = localStorage.getItem('lang');
     const {
       type = 'api',
       method,
@@ -72,7 +73,10 @@ export const useApi = () => {
         url,
         params,
         data,
-        headers,
+        headers: {
+          'Ltser-User-Language': langPreference ? langPreference : 'zh-tw',
+          ...headers,
+        },
         responseType,
         onDownloadProgress,
       });

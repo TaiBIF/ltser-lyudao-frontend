@@ -118,7 +118,9 @@
         "clearBtn": "Clear",
         "submitBtn": "Search"
       }
-    }
+    },
+    "graphEmptyStateText": "There is no data available.",
+    "graphText": ""
   },
   "News": {
     "allTabBtn": "All",
@@ -226,34 +228,34 @@
       },
       "col": {
         "title": {
-          "items": "觀測項目",
-          "year": "年份",
-          "locality": "地點名稱",
-          "latitude": "地點經度",
-          "longitude": "地點緯度",
-          "annualAirTemperature": "年均溫",
-          "annualPrecipitation": "年雨量",
-          "annualSeaTemperature": "年均海溫",
-          "coralDiv": "珊瑚礁種類數",
-          "coralRec": "珊瑚礁入添數量",
-          "aquaticfauna": "溪流生物物種數"
+          "items": "Observation Item",
+          "year": "Year",
+          "locality": "Locality",
+          "latitude": "Latitude",
+          "longitude": "Longitude",
+          "annualAirTemperature": "Average Annual Temperature",
+          "annualPrecipitation": "Annual Precipitation",
+          "annualSeaTemperature": "Average Annual Temperature of Seawater",
+          "coralDiv": "Number of Coral Reef Species",
+          "coralRec": "Number of Coral Reef Juvenile",
+          "aquaticfauna": "Number of Stream Fauna Species"
         }
       },
       "item": {
         "title": {
-          "annualAirTemperature": "年均溫",
-          "seasonalAirTemperature": "季均溫",
-          "annualPrecipitation": "年雨量",
-          "seasonalPrecipitation": "季雨量",
-          "annualSeaTemperature": "年均海溫",
-          "seasonalSeaTemperature": "季均海溫",
-          "coralDiv": "珊瑚礁種類數",
-          "coralRec": "珊瑚礁入添數量",
-          "zoobenthos": "底棲動物種類數",
-          "plant": "陸域植物種類數",
-          "birdNetSound": "鳥種數(鳥音)",
-          "fishDiv": "魚種數",
-          "aquaticfauna": "溪流生物"
+          "annualAirTemperature": "Average Annual Temperature",
+          "seasonalAirTemperature": "Average Seasonal Temperature",
+          "annualPrecipitation": "Annual Precipitation",
+          "seasonalPrecipitation": "Seasonal Precipitation",
+          "annualSeaTemperature": "Average Annual Temperature of Seawater",
+          "seasonalSeaTemperature": "Average Seasonal Temperature of Seawater",
+          "coralDiv": "Number of Coral Reef Species",
+          "coralRec": "Number of Coral Reef Juvenile",
+          "zoobenthos": "Number of Benthic Fauna Species",
+          "plant": "Number of Terrestrial Plant Species",
+          "birdNetSound": "Number of Bird Species (Sound Identification)",
+          "fishDiv": "Number of Fish Species",
+          "aquaticfauna": "Stream Fauna"
         }
       },
       "plan": {
@@ -280,6 +282,15 @@
           "ocean-env": "Oceanographic Observations",
           "sea-temperature": "Oceanographic Observations - Sea Temperature",
           "issue": "Social Observations - Issue Inventory"
+        }
+      }
+    },
+    "about": {
+      "type": {
+        "title": {
+          "ecologicalObservation": "Ecological Observation",
+          "environmentalObservation": "Environmental Observation",
+          "socialObservation": "Social Observation"
         }
       }
     },

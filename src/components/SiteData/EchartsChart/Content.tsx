@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import ReactECharts from 'echarts-for-react';
 
 import { ContextItem } from 'types/utils';
@@ -23,7 +25,17 @@ type SeriesItem = {
   isHabitat: boolean;
 };
 
-const Content = ({ item, isHabitat }: { item: string; isHabitat: boolean }) => {
+const Content = ({
+  item,
+  isHabitat,
+  I18N_KEY_PREFIX,
+}: {
+  item: string;
+  isHabitat: boolean;
+  I18N_KEY_PREFIX: string;
+}) => {
+  const { t } = useTranslation();
+
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
@@ -144,10 +156,10 @@ const Content = ({ item, isHabitat }: { item: string; isHabitat: boolean }) => {
             }}
           />
         ) : (
-          <div>目前沒有圖表資料。</div>
+          <div>{t(`${I18N_KEY_PREFIX}.graphEmptyStateText`)}</div>
         )
       ) : (
-        <Placeholder text="讀取中，請稍候" layout="block" />
+        <Placeholder text="" layout="block" />
       )}
     </>
   );
