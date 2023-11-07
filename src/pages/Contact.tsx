@@ -24,9 +24,10 @@ const Contact = () => {
 
   const { t } = useTranslation();
 
+  const { getAllList } = useRender();
+
   const contactTypeList = generateContactTypeList();
 
-  const { getAllList } = useRender();
   const [contacts, setContacts] = useState<ContactItem[]>([]);
 
   const bannerData: BannerData = {

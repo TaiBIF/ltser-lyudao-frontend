@@ -7,7 +7,7 @@ import { swalToast } from 'helpers/customSwal';
 
 const useLang = () => {
   const { i18n } = useTranslation();
-  const [lang, setLang] = useState<string>('zh-tw');
+  const [lang, setLang] = useState<string>('');
   const langPreference = localStorage.getItem('lang');
   const [changed, setChanged] = useState<boolean>(false);
 
@@ -21,7 +21,7 @@ const useLang = () => {
     const matchLang = languageList.find((v) => v.id === lang);
     if (matchLang) {
       i18n.changeLanguage(matchLang.id);
-      if (!langPreference || changed) {
+      if (changed) {
         swalToast.fire({
           icon: 'info',
           title: matchLang.hint,

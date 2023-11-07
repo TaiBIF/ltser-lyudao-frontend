@@ -246,6 +246,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const handleSuccessAction = (data: GroupItem) => {
       setGroup(data.group);
     };
+    const handleErrorAction = () => {
+      handleLogout();
+    };
     handleActions({
       result,
       success: {
@@ -255,6 +258,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       },
       error: {
         title: t(`${I18N_KEY_PREFIX}.getGroup.fail`),
+        action: () => {
+          handleErrorAction();
+        },
       },
     });
   };
