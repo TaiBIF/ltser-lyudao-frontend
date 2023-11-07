@@ -8,6 +8,7 @@ import { useSurveyMapContext } from 'context/SurveyMapContext';
 
 import itemList from 'data/home/items.json';
 import { generateSurveyMapItemList } from 'data/home/content';
+import { useLangContext } from 'context/LangContext';
 
 interface TooltipLayoutProps {
   data: Dictionary<number | string>;
@@ -19,8 +20,11 @@ const TooltipLayout = (props: TooltipLayoutProps) => {
   const surveyMapItemList = generateSurveyMapItemList();
 
   const { filter } = useSurveyMapContext();
+  const { lang } = useLangContext();
 
   const [items, setItems] = useState<SiteObservationItem[]>([]);
+
+  const isEn = lang === 'en';
 
   useEffect(() => {
     const matchFilter = itemList
@@ -38,7 +42,7 @@ const TooltipLayout = (props: TooltipLayoutProps) => {
 
   return (
     <>
-      <div>{data.verbatimLocality}</div>
+      <div>{data[isEn ? 'locality' : 'verbatimLocality']}</div>
       <div>2022-01-01 - 2023-06-27</div>
       <div>
         {items.map((v) => {

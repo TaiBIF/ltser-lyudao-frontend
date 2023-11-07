@@ -143,9 +143,11 @@ const Result = (props: ResultProps) => {
               >
                 <tbody>
                   <tr>
-                    {contextData.fields.map((v: RawFieldItem) => {
-                      const { id, title } = v;
-                      return <td key={id}>{title}</td>;
+                    {Object.keys(contextData.raws[0]).map((key, i) => {
+                      const matchField = contextData.fields.find(
+                        (v: RawFieldItem) => key === v.id
+                      );
+                      return <td key={key}>{matchField.title}</td>;
                     })}
                   </tr>
                   {!hasNoRaws ? (

@@ -90,7 +90,7 @@
       },
       "Chart": {
         "title": "{{siteName}} - Visual Charts",
-        "xAsisUnitText": "(月)"
+        "xAsisUnitText": "(Month)"
       }
     }
   },

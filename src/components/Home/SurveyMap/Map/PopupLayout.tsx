@@ -60,6 +60,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
 
   const [downloading, setDownloading] = useState(false);
   const [items, setItems] = useState<SelectItem[]>([]);
+  const isEn = lang === 'en';
 
   const handleDownloadClick = () => {
     if (auth) {
@@ -124,7 +125,9 @@ const PopupLayout = (props: PopupLayoutProps) => {
         <div className="rel">
           <CloseBtn onClick={handleCloseClick} />
           <h3 className="item-title">
-            {t(`${I18N_KEY_PREFIX}.title`, { siteName: data.verbatimLocality })}
+            {t(`${I18N_KEY_PREFIX}.title`, {
+              siteName: data[isEn ? 'locality' : 'verbatimLocality'],
+            })}
           </h3>
           <table
             className="map-tablestyle"
@@ -179,13 +182,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                         <tr key={id}>
                           <td>{title}</td>
                           <td>
-                            {
-                              data[
-                                lang === 'zh-tw'
-                                  ? 'verbatimLocality'
-                                  : 'locality'
-                              ]
-                            }
+                            {data[isEn ? 'locality' : 'verbatimLocality']}
                           </td>
                         </tr>
                       );

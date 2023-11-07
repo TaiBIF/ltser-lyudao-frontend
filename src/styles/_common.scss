@@ -398,8 +398,9 @@ $transition: (
     position: relative;
   }
   &__select {
-    width: 15rem;
+    width: 20rem;
     padding: map-get($map: $padding, $key: input);
+    margin-top: map-get($map: $margin, $key: text);
 
     border-radius: map-get($map: $radius, $key: action);
     background: map-get($map: map-get($color, gray), $key: 6);

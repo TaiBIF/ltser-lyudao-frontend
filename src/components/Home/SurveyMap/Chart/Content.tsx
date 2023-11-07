@@ -19,6 +19,7 @@ import {
   generateSurveyMapItemList,
 } from 'data/home/content';
 import { useTranslation } from 'react-i18next';
+import { useLangContext } from 'context/LangContext';
 
 type SeriesItem = {
   data: number[];
@@ -38,6 +39,10 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
   const [items, setItems] = useState<string[]>([]);
   const { filter, idData, allDetail } = useSurveyMapContext();
   const navigate = useNavigate();
+
+  const { lang } = useLangContext();
+
+  const isEn = lang === 'en';
 
   const handleChartClick = (params: any) => {
     const matchItemByTitle = chartSeriesList.find(
@@ -59,7 +64,7 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
     color: chartsColor.legend.multiple,
     title: {
       text: t(`${I18N_KEY_PREFIX}.${PREFIX}.title`, {
-        siteName: idData.verbatimLocality,
+        siteName: idData[isEn ? 'locality' : 'verbatimLocality'],
       }),
     },
     dataZoom: [
