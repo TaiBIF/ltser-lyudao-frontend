@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import LanguageIcon from 'components/Header/LanguageIcon';
 
 import { languageList } from 'data/utils';
-import useLang from 'hooks/utils/useLang';
+import { useLangContext } from 'context/LangContext';
 
 const LanguageBtn = () => {
-  const { setLang, setChanged } = useLang();
+  const { setLang, setChanged } = useLangContext();
   const handleLangClick = (lang: string) => {
     setLang(lang);
     setChanged(true);
@@ -24,6 +24,7 @@ const LanguageBtn = () => {
               return (
                 <button
                   type="button"
+                  className="lang-btn"
                   key={id}
                   onClick={() => {
                     handleLangClick(id);

@@ -17,6 +17,7 @@ import bannerImg from 'image/contact_bn.png';
 import useRender from 'hooks/page/useRender';
 
 import { CONTACT_ALL_API_URL } from 'data/api';
+import { useLangContext } from 'context/LangContext';
 
 const Contact = () => {
   const PAGE_NAME = 'Contact';
@@ -24,6 +25,7 @@ const Contact = () => {
 
   const { t } = useTranslation();
 
+  const { lang } = useLangContext();
   const { getAllList } = useRender();
 
   const contactTypeList = generateContactTypeList();
@@ -59,7 +61,7 @@ const Contact = () => {
       setList: setContacts,
       defaultList: contactList,
     });
-  }, []);
+  }, [lang]);
 
   return (
     <>

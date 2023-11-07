@@ -27,11 +27,11 @@ const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
 export const generateContactTypeList = (): TypeItem[] => [
   {
     id: 'leader',
-    title: '計畫總主持人',
+    title: i18n.t(`${I18N_KEY_PREFIX}.type.title.leader`),
   },
   {
     id: 'executor',
-    title: '計畫執行人員',
+    title: i18n.t(`${I18N_KEY_PREFIX}.type.title.executor`),
   },
   {
     id: 'other',

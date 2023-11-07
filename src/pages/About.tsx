@@ -12,8 +12,11 @@ import { ABOUT_API_URL } from 'data/api';
 import useRender from 'hooks/page/useRender';
 import { useHeaderContext } from 'context/HeaderContext';
 import { IMAGE_URL } from 'utils/config';
+import { useLangContext } from 'context/LangContext';
 
 const About = () => {
+  const { lang } = useLangContext();
+
   const tabList = generateTypeList();
 
   const { categoryId, aboutId } = useParams();
@@ -43,7 +46,7 @@ const About = () => {
         setData,
       });
     }
-  }, [aboutId, pathname]);
+  }, [aboutId, pathname, lang]);
 
   useEffect(() => {
     if (!isFetchingData) {

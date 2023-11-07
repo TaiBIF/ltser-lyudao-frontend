@@ -1,0 +1,27 @@
+.lang-btn {
+  width: 100%;
+  background-color: #fff;
+  color: #555;
+  display: block;
+  font-size: 16px;
+  padding: 17px 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  @include bg_change(0.3s);
+  @media #{$pc_s} {
+    text-align: left;
+    padding: 10px 20px;
+  }
+  &:last-child {
+    border-bottom: 0;
+  }
+  @media #{$pad} {
+    padding: 10px 20px;
+  }
+  &:hover,
+  &.now {
+    color: #fff;
+    @include bg_change(0.3s);
+    background: $col-green;
+  }
+}

@@ -4,6 +4,7 @@ import { To, useNavigate } from 'react-router-dom';
 
 import { API_URL, AUTH_URL } from 'utils/config';
 import { swalToast } from 'helpers/customSwal';
+import { useLangContext } from 'context/LangContext';
 
 type ResultItem = {
   type?: string;
@@ -38,9 +39,9 @@ interface actionParamsProps {
 export const useApi = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { lang } = useLangContext();
 
   const handleApi = async (apiParams: apiParamsProps) => {
-    const langPreference = localStorage.getItem('lang');
     const {
       type = 'api',
       method,
@@ -74,7 +75,7 @@ export const useApi = () => {
         params,
         data,
         headers: {
-          'Ltser-User-Language': langPreference ? langPreference : 'zh-tw',
+          'Ltser-User-Language': lang ? lang : 'zh-tw',
           ...headers,
         },
         responseType,
