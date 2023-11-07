@@ -54,6 +54,11 @@ const Result = (props: ResultProps) => {
   const { auth } = useAuthContext();
 
   const hasNoRaws = isDoneFetching && contextData.raws.length === 0;
+  const hasData =
+    contextData.raws !== null &&
+    contextData.raws !== undefined &&
+    contextData.raws[0] !== null &&
+    contextData.raws[0] !== undefined;
 
   const handleDownloadClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.currentTarget.dataset.target;
@@ -143,12 +148,22 @@ const Result = (props: ResultProps) => {
               >
                 <tbody>
                   <tr>
-                    {Object.keys(contextData.raws[0]).map((key, i) => {
-                      const matchField = contextData.fields.find(
-                        (v: RawFieldItem) => key === v.id
-                      );
-                      return <td key={key}>{matchField.title}</td>;
-                    })}
+                    {hasData ? (
+                      Object.keys(contextData.raws[0]).map((key, i) => {
+                        const matchField = contextData.fields.find(
+                          (v: RawFieldItem) => key === v.id
+                        );
+                        return (
+                          matchField && <td key={key}>{matchField.title}</td>
+                        );
+                      })
+                    ) : (
+                      <tr>
+                        <td colSpan={contextData.fields.length}>
+                          {t(`${I18N_KEY_PREFIX}.dataEmptyStateText`)}
+                        </td>
+                      </tr>
+                    )}
                   </tr>
                   {!hasNoRaws ? (
                     contextData.raws.map((v: RawItemTypes, index: number) => {
