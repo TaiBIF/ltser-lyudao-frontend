@@ -11,6 +11,8 @@ const PAGE_NAME = 'data';
 const COMPONENT_NAME = 'home';
 const I18N_KEY_PREFIX = `${PAGE_NAME}.${COMPONENT_NAME}`;
 
+const langPreference = localStorage.getItem('lang');
+
 export const surveyMapParams: SurveyMapParams = {
   center: [22.6581038, 121.4870464],
   zoom: 14,

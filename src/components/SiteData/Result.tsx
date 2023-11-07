@@ -12,7 +12,6 @@ import { ShowState, ContextItem, PaginationDataItem } from 'types/utils';
 import { RawFieldItem } from 'types/field';
 import { RawItemTypes } from 'types/rawData';
 
-import usePage from 'hooks/utils/usePage';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import Placeholder from 'components/Placeholder';
 import { useLocation } from 'react-router-dom';
@@ -145,8 +144,8 @@ const Result = (props: ResultProps) => {
                 <tbody>
                   <tr>
                     {contextData.fields.map((v: RawFieldItem) => {
-                      const { id } = v;
-                      return <td key={id}>{id}</td>;
+                      const { id, title } = v;
+                      return <td key={id}>{title}</td>;
                     })}
                   </tr>
                   {!hasNoRaws ? (

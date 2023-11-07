@@ -23,6 +23,8 @@ import itemList from 'data/home/items.json';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDownload } from 'hooks/api/useDownload';
 import { useAuthContext } from 'context/AuthContext';
+import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
+import { useLangContext } from 'context/LangContext';
 
 type PopupLayoutProps = {
   data: Dictionary<number | string>;
@@ -34,8 +36,11 @@ const PopupLayout = (props: PopupLayoutProps) => {
 
   const { t } = useTranslation();
 
+  const { lang } = useLangContext();
+
   const surveyMapColList = generateSurveyMapColList();
-  const surveyMapItemList = generateSurveyMapItemList();
+  const { list: surveyMapItemList, isFetchingList: isFetchingItemList } =
+    useRerenderTranslation({ generateList: generateSurveyMapItemList });
   const planList = generatePlanList();
 
   const map = useMap();
@@ -92,24 +97,26 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const hasItems = items.length !== 0;
 
   useEffect(() => {
-    const matchFilter = itemList
-      .find((v) => v.site === filter.id)
-      ?.years.find((v) => v.year === filter.year)?.items;
-    if (matchFilter) {
-      const matchItem = matchFilter.flatMap((item) => {
-        return surveyMapItemList.filter((v) => v.plan === item);
-      });
-      const matchResult = matchItem.map((item) => {
-        const matchPlanTitle = planList.find((v) => v.id === item.plan);
-        return {
-          ...item,
-          planTitle: matchPlanTitle?.title,
-        };
-      });
-      setItems([...matchResult]);
+    if (!isFetchingItemList) {
+      const matchFilter = itemList
+        .find((v) => v.site === filter.id)
+        ?.years.find((v) => v.year === filter.year)?.items;
+      if (matchFilter) {
+        const matchItem = matchFilter.flatMap((item) => {
+          return surveyMapItemList.filter((v: SelectItem) => v.plan === item);
+        });
+        const matchResult = matchItem.map((item) => {
+          const matchPlanTitle = planList.find((v) => v.id === item.plan);
+          return {
+            ...item,
+            planTitle: matchPlanTitle?.title,
+          };
+        });
+        setItems([...matchResult]);
+      }
+      setAllDetail(null);
     }
-    setAllDetail(null);
-  }, [filter.id]);
+  }, [filter.id, surveyMapItemList]);
 
   return (
     <>
@@ -143,7 +150,6 @@ const PopupLayout = (props: PopupLayoutProps) => {
                                   )
                                 )
                                   return accumulator;
-
                                 return [...accumulator, current];
                               }, [])
                               .map((item) => {
@@ -166,6 +172,21 @@ const PopupLayout = (props: PopupLayoutProps) => {
                         <tr key={id}>
                           <td>{title}</td>
                           <td>{filter.year}</td>
+                        </tr>
+                      );
+                    case 'locality':
+                      return (
+                        <tr key={id}>
+                          <td>{title}</td>
+                          <td>
+                            {
+                              data[
+                                lang === 'zh-tw'
+                                  ? 'verbatimLocality'
+                                  : 'locality'
+                              ]
+                            }
+                          </td>
                         </tr>
                       );
                     default:

@@ -16,6 +16,7 @@ import { ContextItem } from 'types/utils';
 import { useDataContext } from 'context/DataContext';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import usePage from 'hooks/utils/usePage';
+import { useLangContext } from 'context/LangContext';
 
 interface MainProps {
   paths: string[];
@@ -31,7 +32,7 @@ const Main = (props: MainProps) => {
 
   const { t } = useTranslation();
 
-  const langPreference = localStorage.getItem('lang');
+  const { lang } = useLangContext();
 
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { filter, setFilter } = useSiteDataContext();
@@ -48,7 +49,7 @@ const Main = (props: MainProps) => {
   useEffect(() => {
     contextData.getFields();
     contextData.getSites();
-  }, [pathname, langPreference]);
+  }, [pathname, lang]);
 
   return (
     <>
