@@ -8,6 +8,10 @@ const useDashboard = () => {
   const { loading, handleApi, handleActions } = useApi();
   const { authTokens } = useAuthContext();
 
+  const langHeader = {
+    'Ltser-User-Language': 'zh-tw',
+  };
+
   const headers = {
     Authorization: `Bearer ${authTokens.access}`,
   };
@@ -31,7 +35,7 @@ const useDashboard = () => {
       method: 'get',
       url: `/users/${url}/`,
       params,
-      headers: withHeaders ? headers : null,
+      headers: withHeaders ? { ...headers, ...langHeader } : langHeader,
     });
     if (result?.status === 'success') {
       setList([...result.response.data.records]);
@@ -66,6 +70,7 @@ const useDashboard = () => {
       method: 'get',
       url: `/users/${url}/`,
       params: { id },
+      headers: langHeader,
     });
     if (result?.status === 'success') {
       setData({ ...result.response.data });
@@ -108,6 +113,7 @@ const useDashboard = () => {
       method: 'post',
       data,
       url: `/users/${url}/`,
+      headers: langHeader,
     });
     handleActions({
       result,
@@ -158,6 +164,7 @@ const useDashboard = () => {
       url: `/users/${url}/`,
       data,
       params: { id },
+      headers: langHeader,
     });
     handleActions({
       result,
@@ -187,6 +194,7 @@ const useDashboard = () => {
       method: 'delete',
       url: `/users/${url}/`,
       params: { id },
+      headers: langHeader,
     });
     handleActions({
       result,
@@ -221,6 +229,7 @@ const useDashboard = () => {
     const result = await handleApi({
       method: 'get',
       url: `/users/${url}/`,
+      headers: langHeader,
     });
     const relate = result?.response.data.records;
     const newList = prevList.map((v) =>
