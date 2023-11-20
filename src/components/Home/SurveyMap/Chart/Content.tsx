@@ -37,7 +37,8 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
   const [xAxisList, setXAxisList] = useState<string[]>([...seasonList]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const [items, setItems] = useState<string[]>([]);
-  const { filter, idData, allDetail } = useSurveyMapContext();
+  const { filter, idData, allDetail, isFetchingAllDetail } =
+    useSurveyMapContext();
   const navigate = useNavigate();
 
   const { lang } = useLangContext();
@@ -108,7 +109,6 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
   };
 
   const isFetchingItems = items.length === 0;
-  const isFetchingAllDetail = allDetail === null;
 
   useEffect(() => {
     const matchFilter = itemList
