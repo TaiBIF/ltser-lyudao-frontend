@@ -214,6 +214,11 @@ $transition: (
 .c-form {
   &__set {
     position: relative;
+    &--row {
+      display: flex;
+      flex-direction: row !important;
+      align-items: center;
+    }
   }
   &__date {
     width: calc(100% + 1rem) !important;
@@ -393,6 +398,7 @@ $transition: (
 }
 
 .c-select {
+  $_: &;
   &__wrapper {
     width: max-content;
     position: relative;
@@ -415,6 +421,18 @@ $transition: (
     top: 50%;
     right: 0.8rem;
     transform: translateY(-50%);
+  }
+  &--light {
+    margin-top: 0.5rem;
+    #{$_}__select {
+      width: 8rem;
+      margin: 0;
+
+      background: map-get($map: $color, $key: light);
+    }
+    #{$_}__label {
+      margin: 0 0.5rem 0 0;
+    }
   }
 }
 

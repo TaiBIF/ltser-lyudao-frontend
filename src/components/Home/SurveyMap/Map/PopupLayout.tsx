@@ -136,7 +136,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
           >
             <tbody>
               {surveyMapColList.map((v) => {
-                const { id, plan, col, title } = v;
+                const { id, plan, col, title, unit } = v;
                 const renderRow = () => {
                   switch (id) {
                     case 'items':
@@ -222,14 +222,16 @@ const PopupLayout = (props: PopupLayoutProps) => {
                                 <Link
                                   to={`/site-data/${matchPlan.type}-observation/${matchPlan.plan}?site=${filter.id}&locationID=${filter.id}#search`}
                                 >
-                                  {data === null ? '-' : data}
+                                  {data === null ? '-' : data} {unit}
                                 </Link>
                               </td>
                             </tr>
                           ) : (
                             <tr key={id}>
                               <td>{title}</td>
-                              <td>{data === null ? '-' : data}</td>
+                              <td>
+                                {data === null ? '-' : data} {unit}
+                              </td>
                             </tr>
                           );
                         }

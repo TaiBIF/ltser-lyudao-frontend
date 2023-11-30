@@ -7,7 +7,7 @@ import ArrowIcon from './Aside/ArrowIcon';
 
 import { FilterItem, SelectItem } from 'types/siteData';
 
-interface SelectProps {
+interface SiteSelectProps {
   title: string;
   options: SelectItem[];
   filter: FilterItem;
@@ -15,7 +15,7 @@ interface SelectProps {
   I18N_KEY_PREFIX: string;
 }
 
-const Select = (props: SelectProps) => {
+const SiteSelect = (props: SiteSelectProps) => {
   const { title, options, filter, setFilter, I18N_KEY_PREFIX } = props;
 
   const { t } = useTranslation();
@@ -68,4 +68,4 @@ const Select = (props: SelectProps) => {
   );
 };
 
-export default Select;
+export default SiteSelect;

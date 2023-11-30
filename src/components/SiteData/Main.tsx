@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import Title from 'components/SiteData/Title';
 import Search from 'components/SiteData/Search';
 import Result from 'components/SiteData/Result';
-import Select from 'components/SiteData/Select';
+import SiteSelect from 'components/SiteData/SiteSelect';
 import EchartsChart from 'components/SiteData/EchartsChart/Content';
 import Placeholder from 'components/Placeholder';
 
@@ -36,8 +36,14 @@ const Main = (props: MainProps) => {
 
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { filter, setFilter } = useSiteDataContext();
-  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
-    usePage();
+  const {
+    currentPage,
+    setCurrentPage,
+    paginationData,
+    setPaginationData,
+    currentRecordsPerPage,
+    setCurrentRecordsPerPage,
+  } = usePage();
   const isFetchingSites = contextData.sites === null;
   const hasNoSites = !isFetchingSites && contextData.sites.length === 0;
   const isFetchingFields = contextData.fields === null;
@@ -63,7 +69,7 @@ const Main = (props: MainProps) => {
           {!isHabitat &&
             (!isFetchingSites ? (
               !hasNoSites ? (
-                <Select
+                <SiteSelect
                   title={t(`${I18N_KEY_PREFIX}.siteLabel1`)}
                   options={contextData.sites}
                   filter={filter}
@@ -96,6 +102,8 @@ const Main = (props: MainProps) => {
             setCurrentPage={setCurrentPage}
             paginationData={paginationData}
             setPaginationData={setPaginationData}
+            currentRecordsPerPage={currentRecordsPerPage}
+            setCurrentRecordsPerPage={setCurrentRecordsPerPage}
             I18N_KEY_PREFIX={I18N_KEY_PREFIX}
           />
         </div>

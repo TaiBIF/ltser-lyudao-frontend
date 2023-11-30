@@ -21,8 +21,14 @@ const Content = ({ PAGE_NAME }: { PAGE_NAME: string }) => {
   const item = paths[paths.length - 1];
 
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
-  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
-    usePage();
+  const {
+    currentPage,
+    setCurrentPage,
+    paginationData,
+    setPaginationData,
+    currentRecordsPerPage,
+    setCurrentRecordsPerPage,
+  } = usePage();
 
   const isFetchingFields = contextData.fields.length === 0;
   const isFetchingRaws = contextData.raws === null;
@@ -54,6 +60,8 @@ const Content = ({ PAGE_NAME }: { PAGE_NAME: string }) => {
             setCurrentPage={setCurrentPage}
             paginationData={paginationData}
             setPaginationData={setPaginationData}
+            currentRecordsPerPage={currentRecordsPerPage}
+            setCurrentRecordsPerPage={setCurrentRecordsPerPage}
             I18N_KEY_PREFIX={I18N_KEY_PREFIX}
           />
         </div>

@@ -17,6 +17,7 @@ import Placeholder from 'components/Placeholder';
 import { useLocation } from 'react-router-dom';
 import { useDownload } from 'hooks/api/useDownload';
 import { useAuthContext } from 'context/AuthContext';
+import RecordSelect from './RecordSelect';
 
 interface ResultProps {
   item: string;
@@ -26,6 +27,8 @@ interface ResultProps {
   paginationData: PaginationDataItem;
   setPaginationData: Dispatch<SetStateAction<PaginationDataItem>>;
   I18N_KEY_PREFIX: string;
+  currentRecordsPerPage: number;
+  setCurrentRecordsPerPage: Dispatch<SetStateAction<number>>;
 }
 
 const Result = (props: ResultProps) => {
@@ -36,6 +39,8 @@ const Result = (props: ResultProps) => {
     setCurrentPage,
     paginationData,
     setPaginationData,
+    currentRecordsPerPage,
+    setCurrentRecordsPerPage,
     I18N_KEY_PREFIX,
   } = props;
 
@@ -106,10 +111,17 @@ const Result = (props: ResultProps) => {
         {isDoneFetching ? (
           <>
             <div className="toptool">
-              <div className="data-num">
-                {t(`${I18N_KEY_PREFIX}.recordsText`, {
-                  records: paginationData?.totalRecords,
-                })}
+              <div className="d-flex flex-column">
+                <div className="data-num">
+                  {t(`${I18N_KEY_PREFIX}.recordsText`, {
+                    records: paginationData?.totalRecords,
+                  })}
+                </div>
+                <RecordSelect
+                  paginationData={paginationData}
+                  currentRecordsPerPage={currentRecordsPerPage}
+                  setCurrentRecordsPerPage={setCurrentRecordsPerPage}
+                />
               </div>
               <div className="btnr-box">
                 <button

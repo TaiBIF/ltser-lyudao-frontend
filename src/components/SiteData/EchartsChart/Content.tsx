@@ -17,6 +17,7 @@ import { useLocation } from 'react-router-dom';
 import { SeriesItemTypes } from 'types/series';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import Placeholder from 'components/Placeholder';
+import { useLangContext } from 'context/LangContext';
 
 type SeriesItem = {
   name?: string;
@@ -41,6 +42,7 @@ const Content = ({
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { pathname } = useLocation();
   const { filter } = useSiteDataContext();
+  const { lang } = useLangContext();
 
   const isFetchingSeries = contextData.series === null;
   const hasNoSite = filter.site === '';
@@ -54,7 +56,7 @@ const Content = ({
     if (contextData.series !== undefined && !hasNoSite) {
       contextData.getSeries();
     }
-  }, [pathname, filter.site]);
+  }, [pathname, filter.site, lang]);
 
   useEffect(() => {
     if (!isFetchingSeries) {

@@ -10,6 +10,8 @@ const usePage = () => {
   const [paginationData, setPaginationData] = useState<PaginationDataItem>({
     ...defaultPaginationData,
   });
+  const [currentRecordsPerPage, setCurrentRecordsPerPage] =
+    useState<number>(100);
 
   const { pathname } = useLocation();
 
@@ -22,6 +24,8 @@ const usePage = () => {
     setCurrentPage,
     paginationData,
     setPaginationData,
+    currentRecordsPerPage,
+    setCurrentRecordsPerPage,
   };
 };
 

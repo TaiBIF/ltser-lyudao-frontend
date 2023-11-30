@@ -188,6 +188,7 @@ export const generateSurveyMapColList = (): ObservationItem[] => [
     plan: 'weather',
     col: 'airTemperature',
     title: i18n.t(`${I18N_KEY_PREFIX}.col.title.annualAirTemperature`),
+    unit: '°C',
   },
   {
     id: 'annualPrecipitation',
@@ -195,6 +196,7 @@ export const generateSurveyMapColList = (): ObservationItem[] => [
     plan: 'weather',
     col: 'precipitation',
     title: i18n.t(`${I18N_KEY_PREFIX}.col.title.annualPrecipitation`),
+    unit: 'mm',
   },
   {
     id: 'annualSeaTemperature',
@@ -202,6 +204,7 @@ export const generateSurveyMapColList = (): ObservationItem[] => [
     plan: 'sea-temperature',
     col: 'seaTemperature',
     title: i18n.t(`${I18N_KEY_PREFIX}.col.title.annualSeaTemperature`),
+    unit: '°C',
   },
   {
     id: 'coralDiv',
@@ -209,6 +212,7 @@ export const generateSurveyMapColList = (): ObservationItem[] => [
     plan: 'coral-div',
     col: 'scientificName',
     title: i18n.t(`${I18N_KEY_PREFIX}.col.title.coralDiv`),
+    unit: '種',
   },
   {
     id: 'coralRec',
@@ -216,6 +220,7 @@ export const generateSurveyMapColList = (): ObservationItem[] => [
     plan: 'coral-rec',
     col: 'individualCount',
     title: i18n.t(`${I18N_KEY_PREFIX}.col.title.coralRec`),
+    unit: '株',
   },
   {
     id: 'aquaticfauna',
@@ -223,6 +228,7 @@ export const generateSurveyMapColList = (): ObservationItem[] => [
     plan: 'aquaticfauna',
     col: 'scientificName',
     title: i18n.t(`${I18N_KEY_PREFIX}.col.title.aquaticfauna`),
+    unit: '種',
   },
 ];
 
@@ -235,7 +241,7 @@ export const generateChartSeriesList = (): ObservationItem[] => [
     plan: 'weather',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalAirTemperature`),
     col: 'airTemperature',
-    unit: '',
+    unit: '°C',
   },
   {
     id: 'seasonalPrecipitation',
@@ -243,7 +249,7 @@ export const generateChartSeriesList = (): ObservationItem[] => [
     plan: 'weather',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalPrecipitation`),
     col: 'precipitation',
-    unit: '',
+    unit: 'mm',
   },
   {
     id: 'seasonalSeaTemperature',
@@ -251,7 +257,7 @@ export const generateChartSeriesList = (): ObservationItem[] => [
     plan: 'sea-temperature',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.seasonalSeaTemperature`),
     col: 'seaTemperature',
-    unit: '',
+    unit: '°C',
   },
   {
     id: 'zoobenthos',
@@ -259,7 +265,7 @@ export const generateChartSeriesList = (): ObservationItem[] => [
     plan: 'zoobenthos',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.zoobenthos`),
     col: 'count',
-    unit: '',
+    unit: '種',
   },
   {
     id: 'plant',
@@ -267,7 +273,7 @@ export const generateChartSeriesList = (): ObservationItem[] => [
     plan: 'plant',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.plant`),
     col: 'count',
-    unit: '',
+    unit: '種',
   },
   {
     id: 'birdNetSound',
@@ -275,7 +281,7 @@ export const generateChartSeriesList = (): ObservationItem[] => [
     plan: 'bird-net-sound',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.birdNetSound`),
     col: 'count',
-    unit: '',
+    unit: '種',
   },
   {
     id: 'fishDiv',
@@ -283,7 +289,7 @@ export const generateChartSeriesList = (): ObservationItem[] => [
     plan: 'fish-div',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.fishDiv`),
     col: 'count',
-    unit: '',
+    unit: '種',
   },
   {
     id: 'aquaticfauna',
@@ -291,7 +297,7 @@ export const generateChartSeriesList = (): ObservationItem[] => [
     plan: 'aquaticfauna',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.aquaticfauna`),
     col: 'count',
-    unit: '',
+    unit: '種',
   },
 ];
 
