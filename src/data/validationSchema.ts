@@ -123,3 +123,8 @@ export const applyDownloadValidationSchema = Yup.object().shape({
   role: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
   content: Yup.string().required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
 });
+
+export const userValidationSchema = Yup.object().shape({
+  name: Yup.string().required('此欄位為必填'),
+  role: Yup.string().required('此欄位為必填'),
+});

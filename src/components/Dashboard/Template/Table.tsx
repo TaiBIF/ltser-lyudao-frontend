@@ -13,7 +13,7 @@ interface TableTemplateProps<T> {
   page: string;
   cols: ColItem[];
   data: T[] | null;
-  renderAction: () => React.ReactElement | null;
+  renderAction?: () => React.ReactElement | null;
   currentPage?: number;
   setCurrentPage?: Dispatch<SetStateAction<number>>;
   paginationData?: PaginationDataItem;
@@ -32,7 +32,7 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
 
   const isFetchingData = data === null;
   const hasNoData = data?.length === 0;
-  const hasNoAction = renderAction() === null;
+  const hasNoAction = renderAction && renderAction() === null;
 
   return (
     <>
@@ -61,7 +61,7 @@ const TableTemplate = <T extends ItemTypes>(props: TableTemplateProps<T>) => {
         {!isFetchingData ? (
           <>
             <div className="mb-3">
-              {renderAction()}
+              {renderAction && renderAction()}
               <div className="c-table">
                 <table className="c-table__container">
                   <thead>

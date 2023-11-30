@@ -29,6 +29,7 @@ const MarkerLayout = (props: MarkerLayoutProps) => {
   ];
 
   const handleMarkerClick = () => {
+    setAllDetail(null);
     getAllDetail({
       id: String(data.locationID),
       year: filter.year,

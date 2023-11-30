@@ -34,3 +34,6 @@ export const DOWNLOAD_PATH = 'download';
 
 export const DOWNLOAD_RECORD_API_URL = 'download-record';
 export const DOWNLOAD_RECORD_PATH = 'download-record';
+
+export const USER_API_URL = 'user';
+export const USER_PATH = 'user';

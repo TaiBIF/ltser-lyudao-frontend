@@ -62,6 +62,11 @@ export const tabList: TabItem[] = [
     title: '資料下載申請資訊',
     auth: ['superuser'],
   },
+  {
+    id: 'user',
+    title: '個人帳號',
+    auth: ['superuser', 'staff'],
+  },
 ];
 
 // Types 類型
@@ -861,7 +866,6 @@ export const newsEditFieldList: FieldItem[] = [
 ];
 
 // Literature 相關文獻
-
 export const literatureColList: ColItem[] = [
   {
     id: 'id',
@@ -1089,5 +1093,57 @@ export const downloadList: DownloadItem[] = [
     status: 1,
     submitted: '2023-05-26',
     expired: '2023-05-26',
+  },
+];
+
+// Literature 個人帳號
+export const userColList: ColItem[] = [
+  {
+    id: 'id',
+    title: 'id',
+    show: true,
+    param: true,
+  },
+  {
+    id: 'email',
+    title: '帳號',
+    show: true,
+  },
+  {
+    id: 'name',
+    title: '姓名',
+    show: true,
+  },
+  {
+    id: 'role',
+    title: '角色',
+    show: true,
+  },
+];
+
+export const userFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'email',
+    title: 'email',
+    label: '帳號',
+    readonly: true,
+    required: true,
+  },
+  {
+    id: 2,
+    type: 'text',
+    title: 'name',
+    label: '姓名',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 3,
+    type: 'text',
+    title: 'role',
+    label: '角色',
+    readonly: false,
+    required: true,
   },
 ];
