@@ -272,7 +272,7 @@ body {
 
 				@include bg_change(0.3s);
 				@media #{$pc_s} {
-					padding: 10px 0;
+					// padding: 10px 0;
 					background: #f7f7f7;
 				}
 				a {
@@ -297,6 +297,12 @@ body {
 						@media #{$pc_s} {
 							background: #f7f7f7;
 						}
+					}
+					&:first-of-type {
+						padding-top: 15px;
+					}
+					&:last-of-type {
+						padding-bottom: 15px;
 					}
 				}
 			}
@@ -384,8 +390,8 @@ body {
 							.itembox {
 								@media #{$pc_s} {
 									background: #f7f7f7;
-									padding: 10px 0px;
-									display: none;
+									// padding: 10px 0px;
+									// display: none;
 								}
 							}
 							a {
@@ -401,6 +407,12 @@ body {
 								&:hover {
 									color: $col-green;
 									@include bg_change(0.3s);
+								}
+								&:first-of-type {
+									margin-top: 10px;
+								}
+								&:last-of-type {
+									margin-bottom: 10px;
 								}
 							}
 						}

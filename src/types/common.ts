@@ -1,4 +1,5 @@
 export type HeaderShowState = {
+  [key: string]: any;
   menu3: boolean;
   mainMenu: boolean;
   mobile: boolean;

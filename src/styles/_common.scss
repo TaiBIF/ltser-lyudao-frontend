@@ -365,7 +365,10 @@ $transition: (
 
 .c-aside {
   $_: &;
-  height: auto !important;
+  @media only screen and (min-width: 999px) {
+    height: auto !important;
+    display: block !important;
+  }
   &__tab {
     &.now {
       border-radius: 20px;
@@ -447,4 +450,26 @@ $transition: (
 
   display: flex;
   align-items: center;
+}
+
+.u-slide-toggle {
+  display: none;
+  overflow: hidden;
+  @media only screen and (min-width: 1279px) {
+    display: block;
+    overflow: visible;
+    height: auto;
+  }
+}
+
+.c-menu {
+  $_: &;
+  &--mega {
+    @media only screen and (min-width: 1279px) {
+      height: 400px !important;
+      #{$_}__content {
+        height: 100%;
+      }
+    }
+  }
 }

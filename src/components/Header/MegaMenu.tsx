@@ -9,6 +9,7 @@ import { headerAboutData } from 'data/about';
 
 import useRender from 'hooks/page/useRender';
 import { useHeaderContext } from 'context/HeaderContext';
+import { gsapSlideToggle } from 'utils/animation';
 
 interface MegaMenuProps {
   data: HeaderMenuItem;
@@ -17,7 +18,8 @@ interface MegaMenuProps {
 const MegaMenu = (props: MegaMenuProps) => {
   const { data } = props;
   const { getHeaderDetail } = useRender();
-  const { setAbout } = useHeaderContext();
+  const { setAbout, handleMenuClick, show, menuMegaRef, isMobile } =
+    useHeaderContext();
 
   const handleHeaderAboutHover = () => {
     getHeaderDetail({
@@ -27,14 +29,34 @@ const MegaMenu = (props: MegaMenuProps) => {
     });
   };
 
+  useEffect(() => {
+    const target = menuMegaRef.current;
+    if (target) {
+      if (show.menuMega) {
+        target.style.display = 'block';
+        gsapSlideToggle('auto', target, show.menuMega);
+      } else {
+        gsapSlideToggle('auto', target, show.menuMega);
+      }
+    }
+  }, [show.menuMega]);
+
   return (
     <>
-      <div className="big_title" onMouseEnter={handleHeaderAboutHover}>
+      <div
+        className={`big_title ${isMobile && show.menuMega ? 'now' : ''}`}
+        onMouseEnter={handleHeaderAboutHover}
+        onClick={handleMenuClick}
+        data-target="menuMega"
+      >
         {data.title}
         <span></span>
       </div>
-      <div className="menu_mega">
-        <div className="w_bg">
+      <div
+        className="menu_mega u-slide-toggle c-menu c-menu--mega"
+        ref={menuMegaRef}
+      >
+        <div className="w_bg c-menu__content">
           <div className="main-1240">
             {data.list &&
               data.list.map((subItem) => {

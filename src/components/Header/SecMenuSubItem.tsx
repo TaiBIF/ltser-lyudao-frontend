@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import FinalItem from './FinalItem';
 
 import { HeaderMenuItem } from 'types/common';
 import { useHeaderContext } from 'context/HeaderContext';
+import { gsapSlideToggle } from 'utils/animation';
 
 interface SecMenuSubItemProps {
   parentId: string;
@@ -13,13 +14,25 @@ interface SecMenuSubItemProps {
 
 const SecMenuSubItem = (props: SecMenuSubItemProps) => {
   const { parentId, parentLink, data } = props;
-  const { show, m3titleRef, menu3Ref, handleMenuClick } = useHeaderContext();
+  const { show, menu3Ref, handleMenuClick } = useHeaderContext();
+
+  useEffect(() => {
+    const target = menu3Ref.current;
+    if (target) {
+      if (show.menu3) {
+        target.style.display = 'block';
+        gsapSlideToggle('auto', target, show.menu3);
+      } else {
+        gsapSlideToggle('auto', target, show.menu3);
+      }
+    }
+  }, [show.menu3]);
+
   return (
     <>
       <div key={`${parentId}-${data.id}`} className="m3titlebox">
         <div
           className={`m3title ${show.menu3 ? 'now' : ''}`}
-          ref={m3titleRef}
           onClick={handleMenuClick}
           data-target="menu3"
         >

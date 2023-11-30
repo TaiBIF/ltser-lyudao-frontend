@@ -16,7 +16,7 @@ type ContentProps = {
 const Content = (props: ContentProps) => {
   const { data, page } = props;
   const { dataId } = useParams();
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<boolean>(false);
   const targetRef = useRef<HTMLUListElement>(null);
 
   const handleMobileClick = () => {
@@ -26,11 +26,12 @@ const Content = (props: ContentProps) => {
   useEffect(() => {
     const target = targetRef.current;
     if (target) {
-      target.style.display = 'block';
       if (active) {
-        gsapSlideToggle('auto', target, true);
+        target.style.display = 'block';
+        gsapSlideToggle('auto', target, active);
       } else {
-        gsapSlideToggle('auto', target, false);
+        // target.style.display = 'none';
+        gsapSlideToggle('auto', target, active);
       }
     }
   }, [active]);
@@ -42,7 +43,7 @@ const Content = (props: ContentProps) => {
           <p>觀測項目選擇</p>
           <ArrowUpIcon />
         </div>
-        <ul className="level-1 c-aside" ref={targetRef}>
+        <ul className="level-1 c-aside u-slide-toggle" ref={targetRef}>
           {data.map((item) => {
             return item.list ? (
               <Item key={item.id} data={item} page={page} />

@@ -1429,7 +1429,7 @@
         width: 100%;
         list-style: none;
         @media #{$pad} {
-          display: none;
+          // display: none;
         }
         li {
           &:last-child {

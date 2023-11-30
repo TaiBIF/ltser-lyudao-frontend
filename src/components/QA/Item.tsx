@@ -5,7 +5,7 @@ import ArrowIcon from 'components/QA/ArrowIcon';
 
 import { QAItem } from 'types/qa';
 
-import { gsapSlideToggle, gsapSlideToggleStyle } from 'utils/animation';
+import { gsapSlideToggle } from 'utils/animation';
 
 interface ItemProps {
   data: QAItem;
@@ -40,7 +40,7 @@ const Item = (props: ItemProps) => {
           <p>{data.question}</p>
           <ArrowIcon />
         </div>
-        <div className="ansbox" ref={targetRef} style={gsapSlideToggleStyle}>
+        <div className="ansbox u-slide-toggle" ref={targetRef}>
           <div className="flex inner">
             <div className="mark-a">A</div>
             <p>{data.answer}</p>

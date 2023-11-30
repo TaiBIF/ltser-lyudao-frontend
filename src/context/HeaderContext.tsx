@@ -1,10 +1,13 @@
+import useWindowDimensions from 'hooks/utils/useWindowDimensions';
 import React, {
   createContext,
   useContext,
   ReactNode,
   useState,
   useRef,
+  useEffect,
 } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { HeaderMenuItem, HeaderShowState } from 'types/common';
 
@@ -18,24 +21,45 @@ interface HeaderProviderProps {
 }
 
 export const HeaderProvider = ({ children }: HeaderProviderProps) => {
-  const [show, setShow] = useState<HeaderShowState>({
+  const initialState = {
     menu3: false,
     mainMenu: false,
     mobile: false,
     loginPopup: false,
     loginContent: 'login',
-  });
+    menuMega: false,
+    itembox: {},
+    secMenu: false,
+    langMenu: false,
+  };
+  const [show, setShow] = useState<HeaderShowState>({ ...initialState });
   const [about, setAbout] = useState<any>({});
+  const { pathname } = useLocation();
 
-  const m3titleRef = useRef<HTMLDivElement>(null);
   const menu3Ref = useRef<HTMLDivElement>(null);
   const mainMenuRef = useRef<HTMLDivElement>(null);
   const loginPopupRef = useRef<HTMLDivElement>(null);
+  const menuMegaRef = useRef<HTMLDivElement>(null);
+  const itemboxRefs = useRef<{ [key: string]: HTMLDivElement }>({});
+  const secMenuRef = useRef<HTMLDivElement>(null);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+
+  const { width } = useWindowDimensions();
+
+  const isMobile = width && width < 1279;
 
   const handleMenuClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.currentTarget as HTMLDivElement;
-    const key = target.getAttribute('data-target') as keyof HeaderShowState;
-    setShow({ ...show, [key]: !show[key] });
+    const targetKey = target.getAttribute('data-target');
+    if (isMobile) {
+      if (targetKey) {
+        setShow({ ...show, [targetKey]: !show[targetKey], mobile: true });
+      }
+    } else {
+      if (targetKey) {
+        setShow({ ...show, [targetKey]: !show[targetKey], mobile: false });
+      }
+    }
   };
 
   const handleMenuMouseLeave = () => {
@@ -50,18 +74,35 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
     }
   };
 
+  const handleItemboxRef = (key: string) => (element: HTMLDivElement) => {
+    if (element) {
+      itemboxRefs.current[key] = element;
+    } else {
+      delete itemboxRefs.current[key];
+    }
+  };
+
+  useEffect(() => {
+    setShow({ ...initialState });
+  }, [pathname]);
+
   const contextData = {
     show,
     setShow,
-    m3titleRef,
     menu3Ref,
     mainMenuRef,
     loginPopupRef,
+    menuMegaRef,
+    itemboxRefs,
+    secMenuRef,
+    langMenuRef,
     handleMenuClick,
     handleMenuMouseLeave,
     handleLoginClick,
+    handleItemboxRef,
     about,
     setAbout,
+    isMobile,
   };
 
   return (

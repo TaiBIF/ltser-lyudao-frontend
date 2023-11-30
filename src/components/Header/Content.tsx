@@ -42,21 +42,13 @@ const Content = () => {
   const isFetchingMenu = false;
 
   useEffect(() => {
-    const target = menu3Ref.current;
-    if (target) {
-      target.style.display = 'block';
-      gsapSlideToggle('9rem', target, show.menu3);
-    }
-  }, [show.menu3]);
-
-  useEffect(() => {
     const target = mainMenuRef.current;
     if (target) {
       if (show.mobile) {
         target.style.display = 'block';
-        gsapSlideToggle('auto', target, show.mainMenu);
+        gsapSlideToggle('calc(100vh - 60px)', target, show.mainMenu);
       } else {
-        gsap.killTweensOf(target);
+        gsapSlideToggle('calc(100vh - 60px)', target, show.mainMenu);
       }
     }
   }, [show.mobile, show.mainMenu]);
@@ -116,7 +108,7 @@ const Content = () => {
           <div
             className="main_menu"
             ref={mainMenuRef}
-            style={{ display: show.mobile ? '' : 'flex' }}
+            style={{ display: show.mobile ? 'block' : 'flex' }}
           >
             <ul>
               {!isFetchingMenu &&
