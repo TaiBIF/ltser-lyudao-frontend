@@ -40,7 +40,11 @@ const Item = (props: ItemProps) => {
           <p>{data.question}</p>
           <ArrowIcon />
         </div>
-        <div className="ansbox u-slide-toggle" ref={targetRef}>
+        <div
+          className="ansbox"
+          ref={targetRef}
+          style={{ display: 'none', overflow: 'hidden' }}
+        >
           <div className="flex inner">
             <div className="mark-a">A</div>
             <p>{data.answer}</p>

@@ -47,7 +47,9 @@ const MainItem = (props: MainItemProps) => {
               <div className="line" />
             </div>
             <div className="company">{unit}</div>
-            <div className="job-unit">{content}</div>
+            <div className="job-unit" style={{ whiteSpace: 'pre-line' }}>
+              {content}
+            </div>
             <h2 className="peo-name">{name}</h2>
           </div>
         </div>

@@ -471,7 +471,7 @@ export const contactAddFieldList: FieldItem[] = [
     title: 'name_en',
     label: '姓名 (英文)',
     readonly: false,
-    required: true,
+    required: false,
   },
   {
     id: '3',
@@ -487,11 +487,11 @@ export const contactAddFieldList: FieldItem[] = [
     title: 'unit_en',
     label: '單位 (英文)',
     readonly: false,
-    required: true,
+    required: false,
   },
   {
     id: '4',
-    type: 'text',
+    type: 'textarea',
     title: 'content',
     label: '內容',
     readonly: false,
@@ -499,11 +499,11 @@ export const contactAddFieldList: FieldItem[] = [
   },
   {
     id: '4-1',
-    type: 'text',
+    type: 'textarea',
     title: 'content_en',
     label: '內容 (英文)',
     readonly: false,
-    required: true,
+    required: false,
   },
   {
     id: 5,
@@ -548,7 +548,7 @@ export const contactEditFieldList: FieldItem[] = [
     title: 'name_en',
     label: '姓名 (英文)',
     readonly: false,
-    required: true,
+    required: false,
   },
   {
     id: '3',
@@ -556,7 +556,7 @@ export const contactEditFieldList: FieldItem[] = [
     title: 'unit',
     label: '單位',
     readonly: false,
-    required: true,
+    required: false,
   },
   {
     id: '3-1',
@@ -564,11 +564,11 @@ export const contactEditFieldList: FieldItem[] = [
     title: 'unit_en',
     label: '單位 (英文)',
     readonly: false,
-    required: true,
+    required: false,
   },
   {
     id: '4',
-    type: 'text',
+    type: 'textarea',
     title: 'content',
     label: '內容',
     readonly: false,
@@ -576,11 +576,11 @@ export const contactEditFieldList: FieldItem[] = [
   },
   {
     id: '4-1',
-    type: 'text',
+    type: 'textarea',
     title: 'content_en',
     label: '內容 (英文)',
     readonly: false,
-    required: true,
+    required: false,
   },
   {
     id: '5',
