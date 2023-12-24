@@ -37,6 +37,7 @@ const About = () => {
   });
 
   const isFetchingData = data.id === 0;
+  const hasType = relate.type !== '';
 
   useEffect(() => {
     if (aboutId) {
@@ -78,7 +79,7 @@ const About = () => {
             <div className="about-mainbox">
               <div className="leftbox">
                 <div className="title-area">
-                  <div className="ab-category">{relate.type}</div>
+                  {hasType && <div className="ab-category">{relate.type}</div>}
                   <h2>{!isFetchingData && data.name}</h2>
                 </div>
                 <p>{!isFetchingData && data.content}</p>

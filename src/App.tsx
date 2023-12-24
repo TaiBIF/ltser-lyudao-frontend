@@ -55,6 +55,9 @@ import DashboardDownloadRecord from 'components/Dashboard/DownloadRecord';
 import Layout from 'components/SiteData/Economy/Layout';
 import DashboardUserContent from 'components/Dashboard/User/Content';
 import DashboardUserEdit from 'components/Dashboard/User/Edit';
+import DashboardSocialInterviewDataContent from 'components/Dashboard/SocialInterviewData/Content';
+import DashboardSocialInterviewDataEdit from 'components/Dashboard/SocialInterviewData/Edit';
+import DashboardSocialInterviewDataAdd from 'components/Dashboard/SocialInterviewData/Add';
 
 import { HeaderProvider } from 'context/HeaderContext';
 import { EcoProvider } from 'context/EcoContext';
@@ -542,13 +545,49 @@ function App() {
                   }
                 />
                 <Route
-                  path="/dashboard/user/edit/:literatureId"
+                  path="/dashboard/user/edit/:userId"
                   element={
                     <PrivateRoute
                       roles={['staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardUserEdit />} />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/social-interview-data"
+                  element={
+                    <PrivateRoute roles={['superuser']} redirectPath="/">
+                      <Dashboard
+                        content={<DashboardSocialInterviewDataContent />}
+                      />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/social-interview-data/add/"
+                  element={
+                    <PrivateRoute
+                      roles={['staff', 'superuser']}
+                      redirectPath="/"
+                    >
+                      <Dashboard
+                        content={<DashboardSocialInterviewDataAdd />}
+                      />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/social-interview-data/edit/:id"
+                  element={
+                    <PrivateRoute
+                      roles={['staff', 'superuser']}
+                      redirectPath="/"
+                    >
+                      <Dashboard
+                        content={<DashboardSocialInterviewDataEdit />}
+                      />
                     </PrivateRoute>
                   }
                 />

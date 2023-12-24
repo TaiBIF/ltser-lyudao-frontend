@@ -20,6 +20,10 @@ export const generateTypeList = (): TypeItem[] => [
     id: 'socialObservation',
     title: i18n.t(`${I18N_KEY_PREFIX}.type.title.socialObservation`),
   },
+  {
+    id: 'introduction',
+    title: i18n.t(`${I18N_KEY_PREFIX}.type.title.introduction`),
+  },
 ];
 
 export const aboutTypeList: TypeItem[] = [
@@ -62,6 +66,12 @@ export const headerAboutData: any = {
     },
   ],
   socialObservation: [
+    {
+      id: 0,
+      name: '珊瑚礁水下景觀',
+    },
+  ],
+  projectIntroduction: [
     {
       id: 0,
       name: '珊瑚礁水下景觀',

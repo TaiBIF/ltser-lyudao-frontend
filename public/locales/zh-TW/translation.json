@@ -186,6 +186,7 @@
           "ecologicalObservation": "生態觀測",
           "environmentalObservation": "環境觀測",
           "socialObservation": "社會觀測",
+          "projectIntroduction": "計畫介紹",
           "siteData": "觀測站資料",
           "socialEconomyData": "社會經濟資料",
           "fishing": "休閒漁業資料",
@@ -223,6 +224,11 @@
           "title": "社會觀測",
           "subtitle1": "Social",
           "subtitle2": "Observation"
+        },
+        "projectIntroduction": {
+          "title": "計畫介紹",
+          "subtitle1": "Project",
+          "subtitle2": "Introduction"
         }
       },
       "col": {
@@ -289,7 +295,8 @@
         "title": {
           "ecologicalObservation": "生態觀測",
           "environmentalObservation": "環境觀測",
-          "socialObservation": "社會觀測"
+          "socialObservation": "社會觀測",
+          "projectIntroduction": "計畫介紹"
         }
       }
     },

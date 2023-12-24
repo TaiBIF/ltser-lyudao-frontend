@@ -67,6 +67,11 @@ export const tabList: TabItem[] = [
     title: '個人帳號',
     auth: ['superuser', 'staff'],
   },
+  {
+    id: 'social-interview-data',
+    title: '社會面訪談資料',
+    auth: ['superuser', 'staff', 'none'],
+  },
 ];
 
 // Types 類型
@@ -1096,7 +1101,7 @@ export const downloadList: DownloadItem[] = [
   },
 ];
 
-// Literature 個人帳號
+// User 個人帳號
 export const userColList: ColItem[] = [
   {
     id: 'id',
@@ -1147,3 +1152,15 @@ export const userFieldList: FieldItem[] = [
     required: true,
   },
 ];
+
+// Social Interview Data 社會面訪談資料
+export const socialInterviewDataColList: ColItem[] = [
+  {
+    id: 'id',
+    title: 'id',
+    show: true,
+    param: true,
+  },
+];
+
+export const socialInterviewDataFieldList: FieldItem[] = [];

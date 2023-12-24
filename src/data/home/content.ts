@@ -51,6 +51,16 @@ export const generateAboutTabList = (): TabItem[] => [
     ],
     link: 'social-observation/social-economy-data',
   },
+  {
+    id: 'projectIntroduction',
+    style: '',
+    title: i18n.t(`${I18N_KEY_PREFIX}.aboutTab.projectIntroduction.title`),
+    subtitle: [
+      i18n.t(`${I18N_KEY_PREFIX}.aboutTab.projectIntroduction.subtitle1`),
+      i18n.t(`${I18N_KEY_PREFIX}.aboutTab.projectIntroduction.subtitle2`),
+    ],
+    link: 'project-introduction',
+  },
 ];
 
 export const localityList: Dictionary<string | number>[] = map(

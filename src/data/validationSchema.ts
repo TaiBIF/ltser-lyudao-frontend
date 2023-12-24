@@ -128,3 +128,5 @@ export const userValidationSchema = Yup.object().shape({
   name: Yup.string().required('此欄位為必填'),
   role: Yup.string().required('此欄位為必填'),
 });
+
+export const socialInterviewDataSchema = Yup.object().shape({});
