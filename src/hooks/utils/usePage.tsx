@@ -11,7 +11,7 @@ const usePage = () => {
     ...defaultPaginationData,
   });
   const [currentRecordsPerPage, setCurrentRecordsPerPage] =
-    useState<number>(100);
+    useState<number>(10);
 
   const { pathname } = useLocation();
 

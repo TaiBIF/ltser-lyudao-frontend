@@ -142,6 +142,12 @@ export const generateHeaderMenuList = (): HeaderMenuItem[] => [
     link: 'about',
     list: [
       {
+        id: 4,
+        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.projectIntroduction`),
+        link: 'project-introduction',
+        list: [],
+      },
+      {
         id: 1,
         title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.ecologicalObservation`),
         link: 'ecological-observation',
@@ -157,12 +163,6 @@ export const generateHeaderMenuList = (): HeaderMenuItem[] => [
         id: 3,
         title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialObservation`),
         link: 'social-observation',
-        list: [],
-      },
-      {
-        id: 4,
-        title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.projectIntroduction`),
-        link: 'project-introduction',
         list: [],
       },
     ],
