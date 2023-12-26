@@ -28,6 +28,10 @@ export const generateTypeList = (): TypeItem[] => [
 
 export const aboutTypeList: TypeItem[] = [
   {
+    id: 'projectIntroduction',
+    title: '計畫介紹',
+  },
+  {
     id: 'ecologicalObservation',
     title: '生態觀測',
   },
@@ -53,6 +57,12 @@ export const aboutList: AboutItem[] = [
 ];
 
 export const headerAboutData: any = {
+  projectIntroduction: [
+    {
+      id: 0,
+      name: '珊瑚礁水下景觀',
+    },
+  ],
   ecologicalObservation: [
     {
       id: 0,
@@ -66,12 +76,6 @@ export const headerAboutData: any = {
     },
   ],
   socialObservation: [
-    {
-      id: 0,
-      name: '珊瑚礁水下景觀',
-    },
-  ],
-  projectIntroduction: [
     {
       id: 0,
       name: '珊瑚礁水下景觀',

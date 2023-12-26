@@ -93,17 +93,25 @@ const Result = (props: ResultProps) => {
     if (contextData.raws !== undefined) {
       if (locationID) {
         contextData.getRaws({
-          params: { locationID, page: currentPage },
+          params: {
+            locationID,
+            page: currentPage,
+            page_size: currentRecordsPerPage,
+          },
           setPaginationData,
         });
       } else {
         contextData.getRaws({
-          params: { ...query, page: currentPage },
+          params: {
+            ...query,
+            page: currentPage,
+            page_size: currentRecordsPerPage,
+          },
           setPaginationData,
         });
       }
     }
-  }, [currentPage, pathname]);
+  }, [currentPage, pathname, currentRecordsPerPage]);
 
   return (
     <>

@@ -75,6 +75,10 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
     setFiles([]);
   };
 
+  const renderRequiredText = () => {
+    return required && <span className="text-danger">*</span>;
+  };
+
   useEffect(() => {
     if (fileName) {
       setFieldValue(
@@ -91,7 +95,8 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
       return (
         <div className="c-form__set">
           <label htmlFor={title} className="c-form__label">
-            {label}
+            {title}
+            {renderRequiredText()}
           </label>
           <Field
             type={type}
@@ -114,6 +119,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
         <div className="c-form__set">
           <label htmlFor={title} className="c-form__label">
             {label}
+            {renderRequiredText()}
           </label>
           <Field
             as="select"
@@ -149,6 +155,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
           <div className="c-form__set">
             <label htmlFor={title} className="c-form__label">
               {label}
+              {renderRequiredText()}
             </label>
             <label htmlFor={title} className="c-form__file">
               <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
@@ -301,6 +308,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
         <div className="c-form__set">
           <label htmlFor={title} className="c-form__label">
             {label}
+            {renderRequiredText()}
           </label>
           <Field
             as={type}
@@ -323,7 +331,10 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
       return (
         <>
           <div className="c-form__checkbox c-form__set">
-            <div className="c-form__label">{label}</div>
+            <div className="c-form__label">
+              {label}
+              {renderRequiredText()}
+            </div>
             <div className="c-form__checkbox-set">
               {options?.map((v) => {
                 const { title } = v;

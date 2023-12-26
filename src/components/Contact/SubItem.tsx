@@ -33,7 +33,9 @@ const SubItem = (props: SubItemProps) => {
           </div>
           <div className="txt-area">
             <div className="company">{unit}</div>
-            <div className="job-unit">{content}</div>
+            <div className="job-unit" style={{ whiteSpace: 'pre-line' }}>
+              {content}
+            </div>
             <h2 className="peo-name">{name}</h2>
             {contact && <p className="mailtxt">信箱：{data.contact}</p>}
           </div>

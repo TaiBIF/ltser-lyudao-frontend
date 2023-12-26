@@ -365,6 +365,10 @@ $transition: (
 
 .c-aside {
   $_: &;
+  @media only screen and (max-width: 999px) {
+    max-height: 60vh !important;
+    overflow: auto !important;
+  }
   @media only screen and (min-width: 999px) {
     height: auto !important;
     display: block !important;
