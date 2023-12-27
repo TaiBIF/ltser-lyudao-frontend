@@ -50,6 +50,8 @@
     "DownloadPopup": {
       "title": "Download Application",
       "emailText": "E-mail",
+      "lastNameText": "Last Name",
+      "firstNameText": "First Name",
       "roleText": "Identity",
       "contentLabel": "Reason for Downloading",
       "submitBtn": "Send"

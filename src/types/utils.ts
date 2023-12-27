@@ -9,6 +9,7 @@ import { QAItem } from 'types/qa';
 import { RawItemTypes } from 'types/rawData';
 import { RawFieldItem } from 'types/field';
 import { SeriesItemTypes } from 'types/series';
+import { UserItem } from './user';
 
 export type TypeItem = {
   [key: string]: any;
@@ -110,7 +111,8 @@ export type ItemTypes =
   | NewsFormItem
   | LiteratureItem
   | FormLinkItem
-  | DownloadItem;
+  | DownloadItem
+  | UserItem;
 
 export type PaginationDataItem = {
   currentPage: number;

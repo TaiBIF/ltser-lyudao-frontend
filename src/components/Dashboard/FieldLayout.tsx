@@ -95,7 +95,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
       return (
         <div className="c-form__set">
           <label htmlFor={title} className="c-form__label">
-            {title}
+            {label}
             {renderRequiredText()}
           </label>
           <Field

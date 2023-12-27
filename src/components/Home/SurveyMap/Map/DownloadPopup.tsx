@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { Form, Formik, FormikConfig, FormikHelpers } from 'formik';
+import {
+  Form,
+  Formik,
+  FormikConfig,
+  FormikHelpers,
+  useFormikContext,
+} from 'formik';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,6 +18,7 @@ import { fadeInitStyle } from 'utils/animation';
 import { handleStopPropagation } from 'helpers/stopPropagation';
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import { useDownload } from 'hooks/api/useDownload';
+import { useAuthContext } from 'context/AuthContext';
 
 const DownloadPopup = () => {
   const PAGE_NAME = 'common';
@@ -23,9 +30,12 @@ const DownloadPopup = () => {
   const { filter, show, downloadPopupRef, handleDownloadPopup } =
     useSurveyMapContext();
   const { loading, handleApplyDownload } = useDownload();
+
   const initialValues = {
     email: '',
     role: '',
+    last_name: '',
+    first_name: '',
     content: '',
   };
 
@@ -53,6 +63,7 @@ const DownloadPopup = () => {
     initialValues,
     onSubmit: handleSubmit,
     validationSchema: applyDownloadValidationSchema,
+    // enableReinitialize: true,
   };
 
   return (

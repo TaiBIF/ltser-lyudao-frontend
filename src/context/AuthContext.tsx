@@ -16,6 +16,7 @@ import { HeaderShowState } from 'types/common';
 import { useApi } from 'hooks/api/useApi';
 import { swalToast } from 'helpers/customSwal';
 import { useHeaderContext } from 'context/HeaderContext';
+import { UserItem } from 'types/user';
 
 interface AuthTokens {
   access: string;
@@ -29,6 +30,7 @@ export type GroupItem = {
 interface AuthContextData {
   auth: boolean;
   group: string;
+  info: UserItem;
   isInternalUser: boolean;
   loading: boolean;
   authTokens: AuthTokens;
@@ -66,6 +68,7 @@ interface AuthContextData {
     code: string;
     setShow: Dispatch<SetStateAction<HeaderShowState>>;
   }) => Promise<void>;
+  getMemberInfo: () => void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -92,6 +95,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [init, setInit] = useState<boolean>(true);
   const [auth, setAuth] = useState<boolean>(true);
   const [group, setGroup] = useState<string>('');
+  const [info, setInfo] = useState<any | null>(null);
 
   const { loading, setLoading, handleApi, handleActions } = useApi();
   const navigate = useNavigate();
@@ -265,6 +269,35 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const getMemberInfo = async () => {
+    const result = await handleApi({
+      type: 'api',
+      method: 'get',
+      url: `/users/member-info/`,
+      headers,
+    });
+    const handleSuccessAction = (data: any) => {
+      setInfo(data);
+    };
+    // const handleErrorAction = () => {
+    //   handleLogout();
+    // };
+    handleActions({
+      result,
+      success: {
+        action: () => {
+          handleSuccessAction(result?.response.data);
+        },
+      },
+      error: {
+        title: '讀取會員資料失敗',
+        action: () => {
+          // handleErrorAction();
+        },
+      },
+    });
+  };
+
   const handleSignup = async ({
     values,
     setShow,
@@ -405,6 +438,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (isExistTokens) {
         setAuth(true);
         getGroup();
+        getMemberInfo();
       } else {
         setAuth(false);
       }
@@ -430,6 +464,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const contextData: AuthContextData = {
     auth,
     group,
+    info,
     isInternalUser,
     loading,
     authTokens,
@@ -441,6 +476,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     handleResetPswEmail,
     handleResetPsw,
     handleGoogleSignIn,
+    getMemberInfo,
   };
 
   return (

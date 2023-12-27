@@ -53,7 +53,6 @@ import DashboardFormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import DashboardDownload from 'components/Dashboard/Download';
 import DashboardDownloadRecord from 'components/Dashboard/DownloadRecord';
 import Layout from 'components/SiteData/Economy/Layout';
-import DashboardUserContent from 'components/Dashboard/User/Content';
 import DashboardUserEdit from 'components/Dashboard/User/Edit';
 import DashboardSocialInterviewDataContent from 'components/Dashboard/SocialInterviewData/Content';
 import DashboardSocialInterviewDataEdit from 'components/Dashboard/SocialInterviewData/Edit';
@@ -534,18 +533,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="/dashboard/user"
-                  element={
-                    <PrivateRoute
-                      roles={['staff', 'superuser']}
-                      redirectPath="/"
-                    >
-                      <Dashboard content={<DashboardUserContent />} />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/dashboard/user/edit/:userId"
+                  path="/dashboard/user/edit/"
                   element={
                     <PrivateRoute
                       roles={['staff', 'superuser']}

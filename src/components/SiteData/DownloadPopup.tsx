@@ -14,6 +14,7 @@ import { useEcoContext } from 'context/EcoContext';
 import { useSiteDataContext } from 'context/SiteDataContext';
 
 import { applyDownloadValidationSchema } from 'data/validationSchema';
+import { useAuthContext } from 'context/AuthContext';
 
 interface DownloadPopupItem {
   item: string;
@@ -37,9 +38,12 @@ const DownloadPopup = (props: DownloadPopupItem) => {
   } = useEcoContext();
   const { loading, handleApplyDownload } = useDownload();
   const { query } = useSiteDataContext();
+
   const initialValues = {
     email: '',
     role: '',
+    last_name: '',
+    first_name: '',
     content: '',
   };
 
@@ -67,6 +71,7 @@ const DownloadPopup = (props: DownloadPopupItem) => {
     initialValues,
     onSubmit: handleSubmit,
     validationSchema: applyDownloadValidationSchema,
+    // enableReinitialize: true,
   };
 
   return (

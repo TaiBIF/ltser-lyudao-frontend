@@ -49,7 +49,9 @@
     },
     "DownloadPopup": {
       "title": "下載申請",
-      "emailText": "請輸入您email",
+      "emailText": "Email",
+      "lastNameText": "姓",
+      "firstNameText": "名",
       "roleText": "您的身份",
       "contentLabel": "下載原因",
       "submitBtn": "送出申請"

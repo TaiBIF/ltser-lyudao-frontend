@@ -63,21 +63,21 @@ const PopupLayout = (props: PopupLayoutProps) => {
   const isEn = lang === 'en';
 
   const handleDownloadClick = () => {
-    if (auth) {
-      const fileName = `${filter.id}_${filter.year}`;
-      setDownloading(true);
-      handleDownload({
-        url: 'site',
-        fileName,
-        params: {
-          locationID: filter.id,
-          year: filter.year,
-        },
-        withHeaders: true,
-      });
-    } else {
-      handleDownloadPopup('show');
-    }
+    // if (auth) {
+    //   const fileName = `${filter.id}_${filter.year}`;
+    //   setDownloading(true);
+    //   handleDownload({
+    //     url: 'site',
+    //     fileName,
+    //     params: {
+    //       locationID: filter.id,
+    //       year: filter.year,
+    //     },
+    //     withHeaders: true,
+    //   });
+    // } else {
+    handleDownloadPopup('show');
+    // }
   };
 
   const handleCloseClick = () => {

@@ -68,20 +68,20 @@ const Result = (props: ResultProps) => {
   const handleDownloadClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.currentTarget.dataset.target;
     setDownloadTarget(target);
-    if (auth) {
-      const { url, fileName } = handleDownloadParams({
-        item,
-        target,
-      });
-      handleDownload({
-        url,
-        fileName,
-        params: { ...query },
-        withHeaders: true,
-      });
-    } else {
-      handleDownloadPopup('show');
-    }
+    // if (auth) {
+    //   const { url, fileName } = handleDownloadParams({
+    //     item,
+    //     target,
+    //   });
+    //   handleDownload({
+    //     url,
+    //     fileName,
+    //     params: { ...query },
+    //     withHeaders: true,
+    //   });
+    // } else {
+    handleDownloadPopup('show');
+    // }
   };
 
   useEffect(() => {

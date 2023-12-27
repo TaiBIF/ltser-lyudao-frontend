@@ -243,6 +243,26 @@ const useDashboard = () => {
     setList([...newList]);
   };
 
+  const handleEditInfo = async ({ data }: { data: any }) => {
+    const result = await handleApi({
+      method: 'patch',
+      url: `users/member-info/`,
+      data,
+      headers: { ...headers, ...langHeader },
+    });
+    console.log(result);
+
+    handleActions({
+      result,
+      success: {
+        title: '更新成功',
+      },
+      error: {
+        title: '發生錯誤，更新失敗',
+      },
+    });
+  };
+
   return {
     loading,
     getList,
@@ -251,6 +271,7 @@ const useDashboard = () => {
     handleEdit,
     handleDelete,
     handleRelate,
+    handleEditInfo,
   };
 };
 

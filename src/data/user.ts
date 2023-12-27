@@ -4,7 +4,8 @@ export const defaultUserList: UserItem[] = [
   {
     id: 1,
     email: 'email@email.com',
-    name: '陳昭倫',
+    last_name: '陳',
+    first_name: '昭倫',
     role: '計畫總主持人',
   },
 ];

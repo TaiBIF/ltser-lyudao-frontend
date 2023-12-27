@@ -63,7 +63,7 @@ export const tabList: TabItem[] = [
     auth: ['superuser'],
   },
   {
-    id: 'user',
+    id: 'user/edit',
     title: '個人帳號',
     auth: ['superuser', 'staff'],
   },
@@ -1115,8 +1115,13 @@ export const userColList: ColItem[] = [
     show: true,
   },
   {
-    id: 'name',
-    title: '姓名',
+    id: 'last_name',
+    title: '姓',
+    show: true,
+  },
+  {
+    id: 'first_name',
+    title: '名',
     show: true,
   },
   {
@@ -1138,13 +1143,21 @@ export const userFieldList: FieldItem[] = [
   {
     id: 2,
     type: 'text',
-    title: 'name',
-    label: '姓名',
+    title: 'first_name',
+    label: '姓',
     readonly: false,
     required: true,
   },
   {
     id: 3,
+    type: 'text',
+    title: 'last_name',
+    label: '名',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 4,
     type: 'text',
     title: 'role',
     label: '角色',
