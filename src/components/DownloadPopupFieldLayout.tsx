@@ -26,6 +26,7 @@ const DownloadPopupFieldLayout = (props: DownloadPopupFieldProps) => {
   const isFetchingInfo = info === null;
 
   useEffect(() => {
+    resetForm();
     if (!isFetchingInfo) {
       setValues({
         email: info.email,
@@ -35,11 +36,7 @@ const DownloadPopupFieldLayout = (props: DownloadPopupFieldProps) => {
         content: '',
       });
     }
-  }, [info]);
-
-  useEffect(() => {
-    resetForm();
-  }, [pathname]);
+  }, [info, pathname]);
 
   return (
     <>
