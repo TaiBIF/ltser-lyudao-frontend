@@ -212,6 +212,17 @@ function App() {
                   }
                 />
                 <Route
+                  path="/dashboard/user/edit/"
+                  element={
+                    <PrivateRoute
+                      roles={['none', 'staff', 'superuser']}
+                      redirectPath="/"
+                    >
+                      <Dashboard content={<DashboardUserEdit />} />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
                   path="/dashboard/about"
                   element={
                     <PrivateRoute
@@ -529,17 +540,6 @@ function App() {
                       redirectPath="/dashboard/about"
                     >
                       <Dashboard content={<DashboardDownload />} />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/dashboard/user/edit/"
-                  element={
-                    <PrivateRoute
-                      roles={['staff', 'superuser']}
-                      redirectPath="/"
-                    >
-                      <Dashboard content={<DashboardUserEdit />} />
                     </PrivateRoute>
                   }
                 />

@@ -21,7 +21,7 @@ const LogoutBtn = () => {
         </div>
         <div className="menu_2">
           <div className="w_bg">
-            <Link to="/dashboard/about">後台</Link>
+            <Link to="/dashboard/user/edit">後台</Link>
           </div>
         </div>
       </div>

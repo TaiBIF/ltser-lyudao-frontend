@@ -31,7 +31,10 @@ const DashboardTemplate: React.FC<DashboardTemplateProps> = (props) => {
                       <Link
                         key={id}
                         className={`c-tabs__btn ${
-                          paths.includes(id) ? 'active' : ''
+                          paths.includes(id) ||
+                          (paths.includes('user') && id === 'user/edit')
+                            ? 'active'
+                            : ''
                         }`}
                         to={`/dashboard/${id}`}
                       >

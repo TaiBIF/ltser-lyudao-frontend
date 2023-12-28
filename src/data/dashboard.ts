@@ -8,14 +8,19 @@ import { qaTypeList } from 'data/qa';
 // Tabs 左側邊欄頁籤
 export const tabList: TabItem[] = [
   {
+    id: 'user/edit',
+    title: '個人帳號',
+    auth: ['superuser', 'staff', 'none'],
+  },
+  {
     id: 'about',
     title: '計畫介紹',
-    auth: ['superuser', 'staff', 'none'],
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'about-attachment',
     title: '計畫介紹補充資訊',
-    auth: ['superuser', 'staff', 'none'],
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'contact',
@@ -35,7 +40,7 @@ export const tabList: TabItem[] = [
   {
     id: 'news',
     title: '最新消息',
-    auth: ['superuser', 'staff', 'none'],
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'news-type',
@@ -45,7 +50,7 @@ export const tabList: TabItem[] = [
   {
     id: 'related-literature',
     title: '相關文獻',
-    auth: ['superuser', 'staff', 'none'],
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'form-link',
@@ -55,7 +60,7 @@ export const tabList: TabItem[] = [
   {
     id: 'download-record',
     title: '下載資料紀錄',
-    auth: ['superuser', 'staff', 'none'],
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'download',
@@ -63,14 +68,9 @@ export const tabList: TabItem[] = [
     auth: ['superuser'],
   },
   {
-    id: 'user/edit',
-    title: '個人帳號',
-    auth: ['superuser', 'staff'],
-  },
-  {
     id: 'social-interview-data',
     title: '社會面訪談資料',
-    auth: ['superuser', 'staff', 'none'],
+    auth: ['superuser', 'staff'],
   },
 ];
 

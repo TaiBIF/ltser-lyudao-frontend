@@ -37,7 +37,7 @@ const LoginBtn = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
         {auth && (
           <div className="menu_2">
             <div className="w_bg">
-              <Link to="/dashboard/about">
+              <Link to="/dashboard/user/edit">
                 {t(`${I18N_KEY_PREFIX}.dashboardBtn`)}
               </Link>
               <Link to="#" onClick={handleLogoutClick}>
