@@ -45,7 +45,7 @@ export const tabList: TabItem[] = [
   {
     id: 'news-type',
     title: '最新消息類型',
-    auth: ['superuser'],
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'related-literature',
@@ -70,7 +70,7 @@ export const tabList: TabItem[] = [
   {
     id: 'social-interview-data',
     title: '社會面訪談資料',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser'],
   },
 ];
 

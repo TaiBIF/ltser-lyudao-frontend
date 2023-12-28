@@ -556,10 +556,7 @@ function App() {
                 <Route
                   path="/dashboard/social-interview-data/add/"
                   element={
-                    <PrivateRoute
-                      roles={['staff', 'superuser']}
-                      redirectPath="/"
-                    >
+                    <PrivateRoute roles={['superuser']} redirectPath="/">
                       <Dashboard
                         content={<DashboardSocialInterviewDataAdd />}
                       />
@@ -569,10 +566,7 @@ function App() {
                 <Route
                   path="/dashboard/social-interview-data/edit/:id"
                   element={
-                    <PrivateRoute
-                      roles={['staff', 'superuser']}
-                      redirectPath="/"
-                    >
+                    <PrivateRoute roles={['superuser']} redirectPath="/">
                       <Dashboard
                         content={<DashboardSocialInterviewDataEdit />}
                       />
