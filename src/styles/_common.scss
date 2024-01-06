@@ -470,9 +470,19 @@ $transition: (
   $_: &;
   &--mega {
     @media only screen and (min-width: 1279px) {
-      height: 400px !important;
+      height: max-content !important;
       #{$_}__content {
-        height: 100%;
+        height: max-content;
+        overflow-y: auto !important;
+      }
+      #{$_}__block {
+        height: max-content;
+      }
+      #{$_}__set {
+        height: max-content !important;
+      }
+      #{$_}__item {
+        height: max-content !important;
       }
     }
   }

@@ -79,7 +79,7 @@ const Content = (props: ContentProps) => {
                       className={`${
                         filter.type === id ? 'now' : ''
                       } e-tag e-tag--news`}
-                      data-color={Number(id) === 0 ? 'all' : Number(id) % 3}
+                      data-color={Number(id) === 0 ? 'all' : Number(id) % 4}
                       onClick={() => {
                         handleTypeClick(Number(id));
                       }}
@@ -125,10 +125,10 @@ const Content = (props: ContentProps) => {
               </ul>
             </div>
             <div className="align-right">
-              <a href="/" className="link-more">
+              <Link to="/news" className="link-more">
                 <p>{t(`${I18N_KEY_PREFIX}.viewAllBtn`)}</p>
                 <ArrowIcon />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="rightbox">

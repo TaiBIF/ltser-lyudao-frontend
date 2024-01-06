@@ -345,6 +345,7 @@ body {
 						}
 						.item-set1 {
 							width: calc((1 / 3) * 100% - 13px);
+							height: 100%;
 							@media #{$pc_s} {
 								width: 100%;
 								border-top: 1px solid #eee;
@@ -1588,7 +1589,7 @@ body {
 		@media #{$mobile} {
 			padding: 15px 0;
 		}
-		a {
+		div {
 			display: block;
 			margin: 0px 20px;
 			@media #{$pc_s} {

@@ -174,7 +174,11 @@ const Result = (props: ResultProps) => {
                           (v: RawFieldItem) => key === v.id
                         );
                         return (
-                          matchField && <td key={key}>{matchField.title}</td>
+                          matchField && (
+                            <td key={key} className="text-nowrap">
+                              {matchField.title}
+                            </td>
+                          )
                         );
                       })
                     ) : (

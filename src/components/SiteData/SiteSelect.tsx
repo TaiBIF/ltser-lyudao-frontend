@@ -53,7 +53,7 @@ const SiteSelect = (props: SiteSelectProps) => {
             </option>
             {options.map((v: SelectItem) => {
               return (
-                <option key={v.id} value={v.title}>
+                <option key={v.id} value={v.id}>
                   {v.title}
                 </option>
               );

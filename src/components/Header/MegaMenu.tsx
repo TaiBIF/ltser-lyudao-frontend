@@ -57,7 +57,7 @@ const MegaMenu = (props: MegaMenuProps) => {
         ref={menuMegaRef}
       >
         <div className="w_bg c-menu__content">
-          <div className="main-1240">
+          <div className="main-1240 c-menu__block">
             {data.list &&
               data.list.map((subItem) => {
                 return (

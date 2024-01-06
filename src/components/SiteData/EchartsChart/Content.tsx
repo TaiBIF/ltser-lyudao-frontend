@@ -99,7 +99,7 @@ const Content = ({
         }
       }
     }
-  }, [contextData.series]);
+  }, [contextData.series, filter.site]);
 
   const option = {
     ...commonOptions,
@@ -113,8 +113,9 @@ const Content = ({
       },
     ],
     grid: {
-      width: '78%',
-      left: '5%',
+      top: '10%',
+      width: '90%',
+      left: '7.5%',
       height: '60%',
     },
     tooltip: {
@@ -130,16 +131,23 @@ const Content = ({
       type: 'category',
       boundaryGap: true,
       data: xAxisList,
+      axisLabel: {
+        formatter: (value: any, index: number) => {
+          return value.replace(' ', `\n`);
+        },
+      },
     },
     yAxis: {
       type: 'value',
     },
     series: seriesList,
     legend: {
-      top: '30%',
-      right: '2%',
+      bottom: '12.5%',
+      left: 'center',
+      align: 'right',
       type: 'scroll',
-      orient: 'vertical',
+      orient: 'horizontal',
+      itemGap: 20,
     },
   };
 

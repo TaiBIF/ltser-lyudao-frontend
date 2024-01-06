@@ -27,7 +27,7 @@ export type FooterLogoItem = {
   img: string;
   title: string;
   width?: string;
-  link: string;
+  link?: string;
 };
 export type FooterSociIconItem = {
   id: number | string;

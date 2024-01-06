@@ -6,10 +6,11 @@ import { aboutTypeList } from 'data/about';
 import { qaTypeList } from 'data/qa';
 
 // Tabs 左側邊欄頁籤
+// 調整權限的話，記得 App route 權限也要調整
 export const tabList: TabItem[] = [
   {
     id: 'user/edit',
-    title: '個人帳號',
+    title: '個人帳號管理',
     auth: ['superuser', 'staff', 'none'],
   },
   {
@@ -65,7 +66,7 @@ export const tabList: TabItem[] = [
   {
     id: 'download',
     title: '資料下載申請資訊',
-    auth: ['superuser'],
+    auth: ['superuser', 'staff'],
   },
   {
     id: 'social-interview-data',
@@ -1101,7 +1102,7 @@ export const downloadList: DownloadItem[] = [
   },
 ];
 
-// User 個人帳號
+// User 個人帳號管理
 export const userColList: ColItem[] = [
   {
     id: 'id',

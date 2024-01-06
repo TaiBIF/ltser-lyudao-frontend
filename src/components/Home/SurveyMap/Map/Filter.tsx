@@ -8,13 +8,18 @@ import { generateSurveyMapItemList } from 'data/home/content';
 import itemList from 'data/home/items.json';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
+import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
+import { SelectItem } from 'types/utils';
 
 const Filter = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
   const PREFIX = 'Filter';
 
   const { t } = useTranslation();
 
-  const surveyMapItemList = generateSurveyMapItemList();
+  const {
+    list: surveyMapItemList,
+    isFetchingList: isFetchingSurveyMapItemList,
+  } = useRerenderTranslation({ generateList: generateSurveyMapItemList });
 
   const { filter, setFilter } = useSurveyMapContext();
 
@@ -61,16 +66,18 @@ const Filter = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
             }
           });
       });
-      const matchItem = yearItemList
-        .map((v) =>
-          surveyMapItemList
-            .filter((item) => item.plan === v)
-            .map((v) => v.title)
-        )
-        .reduce((target, arr) => [...target, ...arr], []);
-      setItems([...matchItem]);
+      if (!isFetchingSurveyMapItemList) {
+        const matchItem = yearItemList
+          .map((v) =>
+            surveyMapItemList
+              .filter((item: SelectItem) => item.plan === v)
+              .map((v: SelectItem) => v.title)
+          )
+          .reduce((target, arr) => [...target, ...arr], []);
+        setItems([...matchItem]);
+      }
     }
-  }, [years, filter.year]);
+  }, [years, filter.year, surveyMapItemList]);
 
   return (
     <>
@@ -96,7 +103,8 @@ const Filter = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
             <option value="">
               {t(`${I18N_KEY_PREFIX}.${PREFIX}.itemLabel`)}
             </option>
-            {!isFetchingItems &&
+            {!isFetchingSurveyMapItemList &&
+              !isFetchingItems &&
               items.map((v) => {
                 return (
                   <option key={v} value={v}>

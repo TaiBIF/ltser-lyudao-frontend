@@ -37,7 +37,7 @@ const MegaMenuSubItem = (props: MegaMenuSubItemProps) => {
 
   return (
     <>
-      <div className="item-set1">
+      <div className="item-set1 c-menu__set">
         <div
           className={`titlebox ${show ? 'now' : ''}`}
           onClick={handleItemClick}
@@ -48,7 +48,7 @@ const MegaMenuSubItem = (props: MegaMenuSubItemProps) => {
         </div>
         <div
           ref={handleItemboxRef(`${parentId}-${data.id}`)}
-          className="itembox u-slide-toggle"
+          className="itembox u-slide-toggle c-menu__item"
         >
           {data.list &&
             data.list.map((finalItem) => {

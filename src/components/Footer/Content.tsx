@@ -29,17 +29,17 @@ const Content = () => {
     {
       id: 'facebook',
       img: <FacebookIcon />,
-      link: '/',
+      link: 'https://www.facebook.com/profile.php?id=100085888727555',
     },
     {
       id: 'email',
       img: <EmailIcon />,
-      link: '/',
+      link: 'mailto:ltsertwlyudao@gmail.com',
     },
     {
       id: 'tel',
       img: <TelIcon />,
-      link: '/',
+      link: 'tel:0981637120',
     },
   ];
 
@@ -50,9 +50,9 @@ const Content = () => {
           {footerLogoList.map((v) => {
             const { id, img, title, width } = v;
             return (
-              <Link key={id} to="/">
+              <div key={id}>
                 <img src={img} width={width} alt={title} />
-              </Link>
+              </div>
             );
           })}
         </div>
@@ -65,9 +65,9 @@ const Content = () => {
               {sociIconList.map((v) => {
                 const { id, img, link } = v;
                 return (
-                  <Link key={id} to={link}>
+                  <a key={id} href={link}>
                     {img}
-                  </Link>
+                  </a>
                 );
               })}
             </div>
@@ -94,14 +94,14 @@ const Content = () => {
                   );
                 })}
             </ul>
-            <a href="/" className="taibif-box">
+            <div className="taibif-box">
               <img src={ftlogoImg8} alt="" />
               <p>
                 {t(`${I18N_KEY_PREFIX}.dbLogoText1`)}
                 <br />
                 {t(`${I18N_KEY_PREFIX}.dbLogoText2`)}
               </p>
-            </a>
+            </div>
           </div>
         </div>
         <div className="footer-botbox">
