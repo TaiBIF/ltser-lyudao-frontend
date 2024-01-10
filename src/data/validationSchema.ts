@@ -29,11 +29,14 @@ export const newsTypeValidationSchema = Yup.object().shape({
 export const qaValidationSchema = Yup.object().shape({
   type_id: Yup.string().required('此欄位為必填'),
   question: Yup.string().required('此欄位為必填'),
+  question_en: Yup.string().required('此欄位為必填'),
   answer: Yup.string().required('此欄位為必填'),
+  answer_en: Yup.string().required('此欄位為必填'),
 });
 
 export const qaTypeValidationSchema = Yup.object().shape({
   title: Yup.string().required('此欄位為必填'),
+  title_en: Yup.string().required('此欄位為必填'),
 });
 
 export const literatureValidationSchema = Yup.object().shape({

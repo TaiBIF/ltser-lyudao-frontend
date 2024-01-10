@@ -39,7 +39,7 @@ const Content = () => {
     {
       id: 'tel',
       img: <TelIcon />,
-      link: 'tel:0981637120',
+      link: 'tel:',
     },
   ];
 

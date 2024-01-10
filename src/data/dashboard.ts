@@ -642,7 +642,7 @@ export const qaColList: ColItem[] = [
 
 export const qaFieldList: FieldItem[] = [
   {
-    id: 1,
+    id: '1',
     type: 'select',
     title: 'type_id',
     label: '類型',
@@ -650,20 +650,55 @@ export const qaFieldList: FieldItem[] = [
     required: true,
   },
   {
-    id: 2,
-    type: 'text',
+    id: '2',
+    type: 'textarea',
     title: 'question',
     label: '問題',
     readonly: false,
     required: true,
   },
   {
-    id: 3,
+    id: '2-1',
+    type: 'textarea',
+    title: 'question_en',
+    label: '問題 (英文)',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '3',
     type: 'textarea',
     title: 'answer',
     label: '答案',
     readonly: false,
     required: false,
+  },
+  {
+    id: '3-1',
+    type: 'textarea',
+    title: 'answer_en',
+    label: '答案 (英文)',
+    readonly: false,
+    required: true,
+  },
+];
+
+export const qaTypeFieldList: FieldItem[] = [
+  {
+    id: '1',
+    type: 'text',
+    title: 'title',
+    label: '類型',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: '1-1',
+    type: 'text',
+    title: 'title_en',
+    label: '類型（英文）',
+    readonly: false,
+    required: true,
   },
 ];
 

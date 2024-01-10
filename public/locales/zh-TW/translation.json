@@ -101,15 +101,15 @@
     "siteLabel1": "測站/樣區",
     "siteLabel2": "請選擇{{title}}",
     "siteDefaultOption": "請選擇{{title}}",
-    "siteEmptyStateText": "目前沒有測站資料。",
+    "siteEmptyStateText": "觀測資料鑑定中。",
     "searchTitle": "資料列表搜尋",
     "clearBtn": "清除",
     "searchBtn": "搜尋",
-    "searchEmptyStateText": "目前沒有欄位資料。",
+    "searchEmptyStateText": "觀測資料鑑定中。",
     "recordsText": "資料筆數：{{records}}",
     "dataDownloadBtn": "資料下載",
     "speciesDownloadBtn": "物種名錄下載",
-    "dataEmptyStateText": "目前沒有資料。",
+    "dataEmptyStateText": "觀測資料鑑定中。",
     "Economy": {
       "Interview": {
         "keywordLabel": "關鍵字",

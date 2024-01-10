@@ -5,7 +5,7 @@ import AddTemplate from 'components/Dashboard/Template/Add';
 
 import { TypeItem, ItemTypes } from 'types/utils';
 
-import { typeFieldList } from 'data/dashboard';
+import { qaTypeFieldList } from 'data/dashboard';
 import { qaTypeValidationSchema } from 'data/validationSchema';
 
 import useDashboard from 'hooks/page/useDashboard';
@@ -34,7 +34,7 @@ const Add = () => {
     <>
       <AddTemplate
         initialValues={initialValues}
-        fieldList={typeFieldList}
+        fieldList={qaTypeFieldList}
         validationSchema={qaTypeValidationSchema}
         handleSubmit={handleAddSubmit}
         loading={loading}

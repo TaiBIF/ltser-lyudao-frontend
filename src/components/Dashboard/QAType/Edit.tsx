@@ -6,7 +6,7 @@ import EditTemplate from 'components/Dashboard/Template/Edit';
 
 import { TypeItem, ItemTypes } from 'types/utils';
 
-import { typeFieldList } from 'data/dashboard';
+import { qaTypeFieldList } from 'data/dashboard';
 import { qaTypeList } from 'data/qa';
 import { qaTypeValidationSchema } from 'data/validationSchema';
 
@@ -60,7 +60,7 @@ const Edit = () => {
       <EditTemplate
         initialValues={initialValues}
         validationSchema={qaTypeValidationSchema}
-        fieldList={typeFieldList}
+        fieldList={qaTypeFieldList}
         handleSubmit={handleEditSubmit}
         handleDeleteClick={handleDeleteClick}
         loading={loading}
