@@ -31,7 +31,8 @@ const Layout = () => {
             <div className="observation-box">
               <Aside data={layoutAsideList} page={page} />
               <div className="right-infbox">
-                <div className="infbox-title">
+                資料建置中
+                {/* <div className="infbox-title">
                   <div className="titlearea">
                     <h2>
                       辨識出的鳥類紀錄
@@ -60,7 +61,7 @@ const Layout = () => {
                 </div>
                 <div className="chart-box">
                   <img src={chartImg} alt="" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -16,8 +16,14 @@ import { qaList } from 'data/qa';
 
 import useRender from 'hooks/page/useRender';
 import usePage from 'hooks/utils/usePage';
+import { useLangContext } from 'context/LangContext';
 
 const QA = () => {
+  const PAGE_NAME = 'News';
+  const I18N_KEY_PREFIX = `${PAGE_NAME}`;
+
+  const { lang } = useLangContext();
+
   const { getList } = useRender();
   const [filter, setFilter] = useState<FilterItem>({
     type: 0,
@@ -44,7 +50,7 @@ const QA = () => {
       params: { page: currentPage, tag: !isAllType ? filter.type : null },
       setPaginationData,
     });
-  }, [currentPage, filter.type]);
+  }, [currentPage, filter.type, lang]);
 
   return (
     <>
@@ -53,7 +59,11 @@ const QA = () => {
         <Breadcrumb />
         <div className="contentbox">
           <div className="main-box">
-            <Tabs filter={filter} setFilter={setFilter} />
+            <Tabs
+              filter={filter}
+              setFilter={setFilter}
+              I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+            />
             {!isFetchingList && (
               <ul className="qa-list">
                 {qas.map((v) => {

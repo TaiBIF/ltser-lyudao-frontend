@@ -6,14 +6,21 @@ import { FilterItem } from 'types/qa';
 import { QA_TYPE_API_URL } from 'data/api';
 
 import useRender from 'hooks/page/useRender';
+import { useTranslation } from 'react-i18next';
+import { useLangContext } from 'context/LangContext';
 
 interface TabProps {
   filter: FilterItem;
   setFilter: Dispatch<SetStateAction<FilterItem>>;
+  I18N_KEY_PREFIX: string;
 }
 
 const Tabs = (props: TabProps) => {
-  const { filter, setFilter } = props;
+  const { filter, setFilter, I18N_KEY_PREFIX } = props;
+
+  const { t } = useTranslation();
+  const { lang } = useLangContext();
+
   const { getList } = useRender();
   const [qaTypes, setQaTypes] = useState<TypeItem[]>([]);
   const [data, setData] = useState<TypeItem[]>([]);
@@ -29,11 +36,14 @@ const Tabs = (props: TabProps) => {
       url: QA_TYPE_API_URL,
       setList: setQaTypes,
     });
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     if (!isFetchingList) {
-      setData([{ id: 0, title: '全部' }, ...qaTypes]);
+      setData([
+        { id: 0, title: t(`${I18N_KEY_PREFIX}.allTabBtn`) },
+        ...qaTypes,
+      ]);
     }
   }, [qaTypes]);
 

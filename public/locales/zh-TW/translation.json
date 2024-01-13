@@ -132,6 +132,9 @@
       "backBtn": "回列表"
     }
   },
+  "QA": {
+    "allTabBtn": "全部"
+  },
   "RelatedLiterature": {
     "keywordText": "關鍵字查詢"
   },

@@ -39,7 +39,7 @@ const Content = () => {
     {
       id: 'tel',
       img: <TelIcon />,
-      link: 'tel:',
+      link: 'tel:+88689671679',
     },
   ];
 
@@ -106,7 +106,9 @@ const Content = () => {
         </div>
         <div className="footer-botbox">
           <div className="linkbox">
-            <a href="/">{t(`${I18N_KEY_PREFIX}.privacyPolicyLink`)}</a>
+            <a href="/privacy-policy">
+              {t(`${I18N_KEY_PREFIX}.privacyPolicyLink`)}
+            </a>
             <div className="line"> | </div>
             <Link to="/terms">{t(`${I18N_KEY_PREFIX}.termsLink`)}</Link>
           </div>

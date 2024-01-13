@@ -68,6 +68,7 @@ import { AuthProvider } from 'context/AuthContext';
 import PrivateRoute from 'utils/PrivateRoute';
 import Placeholder from 'components/Placeholder';
 import { LangProvider } from 'context/LangContext';
+import PrivacyPolicy from 'pages/PrivacyPolicy';
 
 function App() {
   return (
@@ -189,6 +190,7 @@ function App() {
                   element={<VerifyEmailSuccess />}
                 />
                 <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route
                   path="/form-link"
                   element={
