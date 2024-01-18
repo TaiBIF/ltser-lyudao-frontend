@@ -82,7 +82,9 @@ const About = () => {
                   {hasType && <div className="ab-category">{relate.type}</div>}
                   <h2>{!isFetchingData && data.name}</h2>
                 </div>
-                <p>{!isFetchingData && data.content}</p>
+                <p style={{ whiteSpace: 'pre-line' }}>
+                  {!isFetchingData && data.content}
+                </p>
               </div>
               {!isFetchingData && (
                 <div className="rightbox">

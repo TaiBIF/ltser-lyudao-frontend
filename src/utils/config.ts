@@ -1,4 +1,4 @@
-export const FE_URL = `https://ltsertwlyudao.org/`;
+export const FE_URL = `https://ltsertwlyudao.org`;
 export const BE_URL = `https://ltsertwlyudao.org`;
 export const API_URL = `${BE_URL}/api/`;
 export const AUTH_URL = `${BE_URL}/api/auth/`;
