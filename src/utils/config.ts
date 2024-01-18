@@ -1,4 +1,4 @@
-export const FE_URL = `https://main.d2vmu7m6oriit2.amplifyapp.com`;
+export const FE_URL = `https://ltsertwlyudao.org/`;
 export const BE_URL = `https://www.thousandaitech.com`;
 export const API_URL = `${BE_URL}/api/`;
 export const AUTH_URL = `${BE_URL}/api/auth/`;

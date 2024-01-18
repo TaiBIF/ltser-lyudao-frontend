@@ -92,7 +92,7 @@ const Content = () => {
             </div>
             <ul className="soci-list">
               {interviews.map((v) => {
-                const { id, year, target, type, title, tags } = v;
+                const { id, date, target, type, title, tags } = v;
                 const matchType = interviewTypeList.find(
                   (v) => v.id === type
                 )?.title;
@@ -102,7 +102,7 @@ const Content = () => {
                 return (
                   <li key={id} style={{ width: '100%' }}>
                     <div className="datebox">
-                      {year}
+                      {date}
                       <div className="line" />
                     </div>
                     <div className="mb-1">

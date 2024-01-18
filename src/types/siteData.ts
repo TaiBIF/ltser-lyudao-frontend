@@ -25,7 +25,7 @@ export type SelectItem = {
 
 export type InterviewItem = {
   id?: number | string;
-  year: string;
+  date: string;
   title: string;
   content: string;
   target: number | string;
