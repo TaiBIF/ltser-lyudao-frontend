@@ -130,6 +130,7 @@ export const useDownload = () => {
       data: values,
       params,
       responseType: 'arraybuffer',
+      headers,
     });
     if (result?.status === 'success') {
       handleDownloadAction({ result, fileName });
