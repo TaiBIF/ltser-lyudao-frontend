@@ -38,7 +38,7 @@ const Item = ({ data }: { data: AttachmentItem }) => {
         <p className="center marb_20">{content}</p>
         {image && (
           <div className="main-1280">
-            <img className="marb_20" src={imageLink} alt={name} />
+            <img className="marb_20 w-100" src={imageLink} alt={name} />
           </div>
         )}
         {hasFile &&
