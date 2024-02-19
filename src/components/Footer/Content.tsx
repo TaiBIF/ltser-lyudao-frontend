@@ -112,7 +112,9 @@ const Content = () => {
             <div className="line"> | </div>
             <Link to="/terms">{t(`${I18N_KEY_PREFIX}.termsLink`)}</Link>
           </div>
-          <h6>{t(`${I18N_KEY_PREFIX}.copyRightText`)}</h6>
+          <h6 style={{ lineHeight: 'normal' }}>
+            {t(`${I18N_KEY_PREFIX}.copyRightText`)}
+          </h6>
         </div>
       </div>
     </>
