@@ -5,7 +5,7 @@ import React, {
   Dispatch,
   SetStateAction,
 } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 import Arrow from 'components/SiteData/Aside/ArrowIcon';
 
@@ -18,15 +18,22 @@ interface SubItemProps {
   data: AsideItem;
   setParentActive: Dispatch<SetStateAction<boolean>>;
   page: string;
+  parentLink?: string;
 }
 
 const SubItem = (props: SubItemProps) => {
   const { parentId, data, setParentActive, page } = props;
+
   const [active, setActive] = useState(false);
   const targetRef = useRef<HTMLUListElement>(null);
   const { dataId } = useParams();
 
-  const isActiveLink = dataId && dataId === data.link && data.link !== '/';
+  const { pathname } = useLocation();
+  const path = pathname.split('/').at(-1);
+
+  const isActiveLink =
+    ((dataId && dataId === data.link) || path === data.link) &&
+    data.link !== '/';
 
   const handleMenuClick = () => {
     setActive(!active);

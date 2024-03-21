@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   generateEcoAsideList,
-  generateEconomyAsideList,
+  generateEconomyFishingAsideList,
   generateEnvAsideList,
 } from 'data/siteData';
 
@@ -22,7 +22,7 @@ const Title = ({
 
   const ecoAsideList = generateEcoAsideList();
   const envAsideList = generateEnvAsideList();
-  const economyAsideList = generateEconomyAsideList();
+  const economyFishingAsideList = generateEconomyFishingAsideList();
 
   let asideList;
   let title;
@@ -34,7 +34,7 @@ const Title = ({
       asideList = ecoAsideList;
       break;
     case 'social':
-      asideList = economyAsideList;
+      asideList = economyFishingAsideList;
       break;
     case 'environmental':
     default:

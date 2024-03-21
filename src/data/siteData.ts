@@ -169,13 +169,52 @@ export const generateEnvAsideList = (): AsideItem[] => [
   },
 ];
 
-// economyAsideList
+// economyFishingAsideList
 // AsideItem[]
-export const generateEconomyAsideList = (): AsideItem[] => [
+export const generateEconomyFishingAsideList = (): AsideItem[] => [
   {
     id: 1,
     title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.1`),
     link: 'fishing',
+  },
+];
+
+// economyAsideList
+// AsideItem[]
+export const generateEconomyDataAsideList = (): AsideItem[] => [
+  {
+    id: 1,
+    title: '外部資料介接',
+    link: 'external-data',
+    list: [
+      {
+        id: 1,
+        title: '人口結構',
+        link: 'population',
+      },
+      {
+        id: 2,
+        title: '產業結構',
+        link: 'industry',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: '文史資料彙整',
+    link: 'literature-data',
+    list: [
+      {
+        id: 1,
+        title: '書籍',
+        link: 'books',
+      },
+      {
+        id: 2,
+        title: '研究文獻',
+        link: 'researches',
+      },
+    ],
   },
 ];
 

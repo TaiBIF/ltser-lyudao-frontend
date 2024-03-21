@@ -20,7 +20,8 @@ import NewsDetail from 'pages/News/Detail';
 import QA from 'pages/QA';
 import InterviewContent from 'pages/SiteData/SocialObservation/Interview/Content';
 import InterviewDetail from 'pages/SiteData/SocialObservation/Interview/Detail';
-import Economy from 'pages/SiteData/SocialObservation/Economy';
+import Economy from 'components/SiteData/SocialEconomyData/Population';
+import SocialObservation from 'pages/SiteData/SocialObservation/SocialObservation';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
 import DashboardAboutContent from 'components/Dashboard/About/Content';
@@ -52,7 +53,6 @@ import DashboardFormLinkAdd from 'components/Dashboard/FormLink/Add';
 import DashboardFormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import DashboardDownload from 'components/Dashboard/Download';
 import DashboardDownloadRecord from 'components/Dashboard/DownloadRecord';
-import Layout from 'components/SiteData/Economy/Layout';
 import DashboardUserEdit from 'components/Dashboard/User/Edit';
 import DashboardSocialInterviewDataContent from 'components/Dashboard/SocialInterviewData/Content';
 import DashboardSocialInterviewDataEdit from 'components/Dashboard/SocialInterviewData/Edit';
@@ -69,6 +69,11 @@ import PrivateRoute from 'utils/PrivateRoute';
 import Placeholder from 'components/Placeholder';
 import { LangProvider } from 'context/LangContext';
 import PrivacyPolicy from 'pages/PrivacyPolicy';
+import Fishing from 'pages/SiteData/SocialObservation/Fishing';
+import Industry from 'components/SiteData/SocialEconomyData/Industry';
+import Books from 'components/SiteData/SocialEconomyData/Books';
+import Researches from 'components/SiteData/SocialEconomyData/Researches';
+import { PopulationProvider } from 'context/SocialEconomyData/PopulationContext';
 
 function App() {
   return (
@@ -166,21 +171,45 @@ function App() {
                   element={<InterviewDetail />}
                 />
                 <Route
-                  path="/site-data/social-observation/social-economy-data"
-                  element={<Layout />}
+                  path="/site-data/social-observation/population"
+                  element={
+                    <PopulationProvider>
+                      <SocialObservation content={<Economy />} />
+                    </PopulationProvider>
+                  }
                 />
                 <Route
-                  path="/site-data/social-observation/:dataId"
+                  path="/site-data/social-observation/industry"
+                  element={<SocialObservation content={<Industry />} />}
+                />
+                <Route
+                  path="/site-data/social-observation/books"
+                  element={<SocialObservation content={<Books />} />}
+                />
+                <Route
+                  path="/site-data/social-observation/researches"
+                  element={<SocialObservation content={<Researches />} />}
+                />
+                <Route
+                  path="/site-data/social-observation/fishing"
                   element={
                     <SiteDataProvider>
                       <SurveyMapProvider>
                         <DataProvider>
                           <EcoProvider>
-                            <Economy />
+                            <Fishing />
                           </EcoProvider>
                         </DataProvider>
                       </SurveyMapProvider>
                     </SiteDataProvider>
+                  }
+                />
+                <Route
+                  path="/site-data/social-observation/:dataId"
+                  element={
+                    <PopulationProvider>
+                      <SocialObservation content={<Economy />} />
+                    </PopulationProvider>
                   }
                 />
                 <Route path="/reset-password" element={<ResetPsw />} />

@@ -4,22 +4,22 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Breadcrumb from 'components/Breadcrumb';
 import Banner from 'components/Banner';
 import Aside from 'components/SiteData/Aside/Content';
-import Content from 'components/SiteData/Economy/Content';
+import Content from 'components/SiteData/SocialEconomyData/Content';
 
 import { BannerData } from 'types/common';
 import { ContextItem } from 'types/utils';
 
 import bannerImg from 'image/social_bn.png';
 
-import { generateEconomyAsideList } from 'data/siteData';
+import { generateEconomyFishingAsideList } from 'data/siteData';
 
 import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 
-const Economy = () => {
+const Fishing = () => {
   const PAGE_NAME = 'SiteData';
 
   const { list: asideList, isFetchingList: isFetchingAsideList } =
-    useRerenderTranslation({ generateList: generateEconomyAsideList });
+    useRerenderTranslation({ generateList: generateEconomyFishingAsideList });
 
   const { dataId } = useParams();
   const bannerData: BannerData = {
@@ -30,15 +30,6 @@ const Economy = () => {
   };
   const page = bannerData.en.map((v) => v.toLowerCase()).join('-');
 
-  // useEffect(() => {
-  //   if (!dataId) {
-  //     const matchAsideFirstItem = economyAsideList[0].list
-  //       ? economyAsideList[0].list[0].link
-  //       : economyAsideList[0].link;
-  //     navigate(`/site-data/${page}/${matchAsideFirstItem}`);
-  //   }
-  // }, [dataId]);
-
   return (
     <>
       <div className="innbox">
@@ -48,7 +39,7 @@ const Economy = () => {
           <div className="main-box">
             <div className="observation-box">
               {!isFetchingAsideList && <Aside data={asideList} page={page} />}
-              {dataId && <Content PAGE_NAME={PAGE_NAME} />}
+              <Content PAGE_NAME={PAGE_NAME} />
             </div>
           </div>
         </div>
@@ -57,4 +48,4 @@ const Economy = () => {
   );
 };
 
-export default Economy;
+export default Fishing;
