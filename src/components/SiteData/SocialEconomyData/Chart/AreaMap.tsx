@@ -3,13 +3,17 @@ import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
 
 import map from 'data/socialEconomyData/village.json';
-import { villageAnnuallyPopulationList } from 'data/socialEconomyData/population';
 import _ from 'lodash';
 import { usePopulationContext } from 'context/SocialEconomyData/PopulationContext';
 import { RangeItem } from 'types/socialEconomyData';
 
 const AreaMap = () => {
-  const { raw, data, setData, filter, setFilter } = usePopulationContext();
+  const {
+    villageRaw: raw,
+    villageYearChartData: data,
+    setVillageYearChartData: setData,
+    filter,
+  } = usePopulationContext();
 
   const [range, setRange] = useState<RangeItem>({ min: 0, max: 0 });
 

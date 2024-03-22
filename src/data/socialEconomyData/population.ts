@@ -66,7 +66,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '-2',
     社會增加人數: '5',
     資料時間: '98Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -84,7 +83,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '9',
     社會增加人數: '68',
     資料時間: '98Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -119,7 +117,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '3',
     社會增加人數: '22',
     資料時間: '99Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -137,7 +134,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '3',
     社會增加人數: '-8',
     資料時間: '99Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -172,7 +168,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '5',
     社會增加人數: '-1',
     資料時間: '100Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -190,7 +185,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '7',
     社會增加人數: '-21',
     資料時間: '100Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -225,7 +219,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '7',
     社會增加人數: '-18',
     資料時間: '101Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -243,7 +236,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '7',
     社會增加人數: '20',
     資料時間: '101Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -279,7 +271,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '3',
     社會增加人數: '55',
     資料時間: '102Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -297,7 +288,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '0',
     社會增加人數: '-40',
     資料時間: '102Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -332,7 +322,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '3',
     社會增加率人數: '81',
     資料時間: '103Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -350,7 +339,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '0',
     社會增加率人數: '27',
     資料時間: '103Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -385,7 +373,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '3',
     社會增加人數: '-15',
     資料時間: '104Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -403,7 +390,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '4',
     社會增加人數: '1',
     資料時間: '104Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -438,7 +424,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '5',
     社會增加人數: '-9',
     資料時間: '105Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -456,7 +441,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '18',
     社會增加人數: '-35',
     資料時間: '105Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -491,7 +475,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '4',
     社會增加人數: '92',
     資料時間: '106Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -509,7 +492,6 @@ export const villageAnnuallyPopulationList = [
     自然增加人數: '3',
     社會增加人數: '22',
     資料時間: '106Y06M',
-    '': '',
   },
   {
     縣市代碼: '10014',
@@ -1073,11 +1055,15 @@ export const townshipAnnuallyPopulationList = [
   },
 ];
 
+export const populationThemeTermObj = { 性別比: '性比例' };
+
 export const populaitonThemeList = [
-  '總人口數',
+  '人口數小計',
   '性比例',
   '扶養比',
   '老化指數',
   '自然增加人數',
   '社會增加人數',
 ];
+
+export const populationKeyList = ['鄉鎮市區名稱', '資料時間'];

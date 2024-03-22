@@ -4,7 +4,7 @@ import { usePopulationContext } from 'context/SocialEconomyData/PopulationContex
 import _ from 'lodash';
 
 const Select = () => {
-  const { filter, setFilter, raw, data } = usePopulationContext();
+  const { filter, setFilter, villageRaw: raw } = usePopulationContext();
   const [years, setYears] = useState<string[]>([]);
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilter({ ...filter, [e.currentTarget.name]: e.currentTarget.value });

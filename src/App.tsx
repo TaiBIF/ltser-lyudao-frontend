@@ -20,7 +20,7 @@ import NewsDetail from 'pages/News/Detail';
 import QA from 'pages/QA';
 import InterviewContent from 'pages/SiteData/SocialObservation/Interview/Content';
 import InterviewDetail from 'pages/SiteData/SocialObservation/Interview/Detail';
-import Economy from 'components/SiteData/SocialEconomyData/Population';
+import Economy from 'components/SiteData/SocialEconomyData/Page/Population';
 import SocialObservation from 'pages/SiteData/SocialObservation/SocialObservation';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
@@ -70,9 +70,9 @@ import Placeholder from 'components/Placeholder';
 import { LangProvider } from 'context/LangContext';
 import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Fishing from 'pages/SiteData/SocialObservation/Fishing';
-import Industry from 'components/SiteData/SocialEconomyData/Industry';
-import Books from 'components/SiteData/SocialEconomyData/Books';
-import Researches from 'components/SiteData/SocialEconomyData/Researches';
+import Industry from 'components/SiteData/SocialEconomyData/Page/Industry';
+import Books from 'components/SiteData/SocialEconomyData/Page/Books';
+import Researches from 'components/SiteData/SocialEconomyData/Page/Researches';
 import { PopulationProvider } from 'context/SocialEconomyData/PopulationContext';
 
 function App() {
