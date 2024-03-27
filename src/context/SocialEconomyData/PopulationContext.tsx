@@ -1,4 +1,5 @@
 import {
+  populationPyramidList,
   townshipAnnuallyPopulationList,
   villageAnnuallyPopulationList,
 } from 'data/socialEconomyData/population';
@@ -14,7 +15,8 @@ export const usePopulationContext = () => useContext(PopulationContext);
 
 export const PopulationProvider = ({ children }: PopulationProviderProps) => {
   const [filter, setFilter] = useState<FilterItem>({
-    year: '97',
+    areaMapYear: '97',
+    pyramidChartYear: '97',
   });
   const [villageRaw, setVillageRaw] = useState<any[]>([
     ...villageAnnuallyPopulationList,
@@ -28,6 +30,10 @@ export const PopulationProvider = ({ children }: PopulationProviderProps) => {
 
   const [annuallyData, setAnnuallyData] = useState<any[] | null>(null);
 
+  const [pyramidRaw, setPyramidRaw] = useState<any[]>([
+    ...populationPyramidList,
+  ]);
+
   const contextData = {
     filter,
     setFilter,
@@ -37,6 +43,7 @@ export const PopulationProvider = ({ children }: PopulationProviderProps) => {
     setVillageYearChartData,
     annuallyData,
     setAnnuallyData,
+    pyramidRaw,
   };
 
   return (

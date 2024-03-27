@@ -11,6 +11,7 @@ import {
 } from 'data/socialEconomyData/population';
 import LineChart from '../Chart/LineChart';
 import { Grid } from '@mui/material';
+import PyramidChart from '../Chart/PyramidChart';
 
 const Population = () => {
   const { filter, setAnnuallyData, townshipRaw, villageRaw } =
@@ -34,11 +35,13 @@ const Population = () => {
     <>
       <section className="u-section">
         <Subtitle text="人口概況" />
-        <Select />
+        <Select data={villageRaw} filterKey="areaMapYear" />
         <AreaMap />
       </section>
       <section className="u-section">
         <Subtitle text="人口金字塔" />
+        <Select data={villageRaw} filterKey="pyramidChartYear" />
+        <PyramidChart />
       </section>
       <section className="u-section">
         <Subtitle text="人口變遷" />

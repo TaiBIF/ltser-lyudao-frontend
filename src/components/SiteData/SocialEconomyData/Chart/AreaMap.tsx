@@ -59,14 +59,14 @@ const AreaMap = () => {
 
   useEffect(() => {
     const matchYear = raw
-      .filter((o: any) => o['資料時間'].split('Y')[0] === filter.year)
+      .filter((o: any) => o['資料時間'].split('Y')[0] === filter.areaMapYear)
       .map((o: any) => ({
         name: o['鄉鎮市區名稱'],
         value: Number(o['人口數小計']),
       }));
 
     setData(matchYear);
-  }, [filter.year]);
+  }, [filter.areaMapYear]);
 
   useEffect(() => {
     if (!isFetchingData) {

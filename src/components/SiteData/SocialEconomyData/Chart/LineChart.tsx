@@ -14,6 +14,8 @@ const LineChart = ({ theme }: { theme: string }) => {
     title: {
       text: theme,
     },
+    color: ['#5470C6', '#91CC75', '#FAC858', '#EA7CCC'],
+
     tooltip: {
       trigger: 'axis',
     },

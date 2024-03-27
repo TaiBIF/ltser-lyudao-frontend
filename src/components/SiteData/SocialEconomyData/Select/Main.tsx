@@ -3,7 +3,7 @@ import ArrowIcon from './ArrowIcon';
 import { usePopulationContext } from 'context/SocialEconomyData/PopulationContext';
 import _ from 'lodash';
 
-const Select = () => {
+const Select = ({ data, filterKey }: { data: any[]; filterKey: string }) => {
   const { filter, setFilter, villageRaw: raw } = usePopulationContext();
   const [years, setYears] = useState<string[]>([]);
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -12,7 +12,7 @@ const Select = () => {
 
   useEffect(() => {
     const yearList: string[] = _.uniq(
-      raw.map((o: any) => String(o['資料時間'].split('Y')[0]) as string)
+      data.map((o: any) => String(o['資料時間'].split('Y')[0]) as string)
     );
     setYears(yearList);
   }, []);
@@ -26,10 +26,10 @@ const Select = () => {
         <div className="c-select__wrapper">
           <select
             id="site"
-            name="year"
+            name={filterKey}
             className="c-select__select"
             onChange={handleSelectChange}
-            value={filter.year}
+            value={filter[filterKey]}
           >
             <option value="" disabled>
               請選擇
