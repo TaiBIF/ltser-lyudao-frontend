@@ -1066,7 +1066,7 @@ export const populaitonThemeList = [
   '社會增加人數',
 ];
 
-export const populationKeyList = ['鄉鎮市區名稱', '資料時間'];
+export const populationHiddenKeyList = ['鄉鎮市區名稱', '資料時間'];
 
 export const populationPyramidList = [
   {

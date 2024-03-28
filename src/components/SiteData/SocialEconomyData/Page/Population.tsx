@@ -6,10 +6,10 @@ import { usePopulationContext } from 'context/SocialEconomyData/PopulationContex
 import _ from 'lodash';
 import {
   populaitonThemeList,
-  populationKeyList,
+  populationHiddenKeyList,
   populationThemeTermObj,
 } from 'data/socialEconomyData/population';
-import LineChart from '../Chart/LineChart';
+import LineChart from '../Chart/PopulationLineChart';
 import { Grid } from '@mui/material';
 import PyramidChart from '../Chart/PyramidChart';
 
@@ -26,7 +26,7 @@ const Population = () => {
           delete o[prevKey];
         }
       });
-      return _.pick(o, [...populaitonThemeList, ...populationKeyList]);
+      return _.pick(o, [...populaitonThemeList, ...populationHiddenKeyList]);
     });
     setAnnuallyData(rawThemeList);
   }, []);
@@ -48,7 +48,9 @@ const Population = () => {
         <Grid container spacing={3}>
           {populaitonThemeList.map(
             (v, i) =>
-              !populationKeyList.includes(v) && <LineChart key={i} theme={v} />
+              !populationHiddenKeyList.includes(v) && (
+                <LineChart key={i} theme={v} />
+              )
           )}
         </Grid>
       </section>

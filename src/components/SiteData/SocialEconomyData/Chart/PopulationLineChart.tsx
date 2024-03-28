@@ -5,7 +5,7 @@ import { usePopulationContext } from 'context/SocialEconomyData/PopulationContex
 import _ from 'lodash';
 import { Grid } from '@mui/material';
 
-const LineChart = ({ theme }: { theme: string }) => {
+const PopulationLineChart = ({ theme }: { theme: string }) => {
   const height = 400;
   const [xAxis, setXAxis] = useState<string[]>([]);
   const [series, setSeries] = useState<any[]>([]);
@@ -14,8 +14,7 @@ const LineChart = ({ theme }: { theme: string }) => {
     title: {
       text: theme,
     },
-    color: ['#5470C6', '#91CC75', '#FAC858', '#EA7CCC'],
-
+    color: ['#5470C6', '#91CC75', '#FAC858', '#EE6666'],
     tooltip: {
       trigger: 'axis',
     },
@@ -66,7 +65,7 @@ const LineChart = ({ theme }: { theme: string }) => {
       }));
       setSeries(s);
       const x = _.uniqBy(data, '資料時間').map(
-        (o: any) => `${o['資料時間'].split('Y')[0]}年`
+        (o: any) => `${Number(o['資料時間'].split('Y')[0]) + 1911}年`
       );
       setXAxis(x);
     }
@@ -87,4 +86,4 @@ const LineChart = ({ theme }: { theme: string }) => {
   );
 };
 
-export default LineChart;
+export default PopulationLineChart;
