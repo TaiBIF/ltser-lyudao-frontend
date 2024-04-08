@@ -6,7 +6,7 @@ import {
   tourismList,
 } from 'data/socialEconomyData/industry';
 import IndustryLineChart from '../Chart/IndustryLineChart';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 const Industry = () => {
   const industryThemeList = [
@@ -54,6 +54,11 @@ const Industry = () => {
           />
         ))}
       </Grid>
+      <section className="u-section">
+        <Typography variant="body1" component={'div'} textAlign={'end'}>
+          資料來源：
+        </Typography>
+      </section>
     </>
   );
 };

@@ -1,3 +1,5 @@
+import { ThemeItem } from 'types/socialEconomyData';
+
 export const villageAnnuallyPopulationList = [
   {
     縣市代碼: '10014',
@@ -1057,13 +1059,35 @@ export const townshipAnnuallyPopulationList = [
 
 export const populationThemeTermObj = { 性別比: '性比例' };
 
-export const populaitonThemeList = [
-  '人口數小計',
-  '性比例',
-  '扶養比',
-  '老化指數',
-  '自然增加人數',
-  '社會增加人數',
+export const populaitonThemeList: ThemeItem[] = [
+  {
+    title: '人口數小計',
+    subtitle: '',
+  },
+  {
+    title: '性比例',
+    subtitle:
+      '男性人口相對於女性人口的比例，\n即每有100名女性人口就有多少的男性人口數。',
+  },
+  {
+    title: '扶養比',
+    subtitle:
+      '每100個工作年齡人口（15-64歲人口）\n所需扶養的依賴人口數（0-14歲以及65歲以上人口）。',
+  },
+  {
+    title: '老化指數',
+    subtitle:
+      '老年人口（65歲以上人口）對幼年人口（0-14歲人口）之比，\n即每有100名幼年人口就有多少老年人口數。',
+  },
+  {
+    title: '自然增加人數',
+    subtitle: '因出生、死亡而造成的人口增減數，\n即出生人數與死亡人數之差。',
+  },
+  {
+    title: '社會增加人數',
+    subtitle:
+      '因戶籍遷入、遷出而造成的人口增減數，\n即戶籍遷入數與遷出數之差。',
+  },
 ];
 
 export const populationHiddenKeyList = ['鄉鎮市區名稱', '資料時間'];

@@ -10,7 +10,7 @@ import {
   populationThemeTermObj,
 } from 'data/socialEconomyData/population';
 import LineChart from '../Chart/PopulationLineChart';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import PyramidChart from '../Chart/PyramidChart';
 
 const Population = () => {
@@ -26,7 +26,10 @@ const Population = () => {
           delete o[prevKey];
         }
       });
-      return _.pick(o, [...populaitonThemeList, ...populationHiddenKeyList]);
+      return _.pick(o, [
+        ...populaitonThemeList.map((o) => o.title),
+        ...populationHiddenKeyList,
+      ]);
     });
     setAnnuallyData(rawThemeList);
   }, []);
@@ -47,12 +50,17 @@ const Population = () => {
         <Subtitle text="人口變遷" />
         <Grid container spacing={3}>
           {populaitonThemeList.map(
-            (v, i) =>
-              !populationHiddenKeyList.includes(v) && (
-                <LineChart key={i} theme={v} />
+            (o, i) =>
+              !populationHiddenKeyList.includes(o.title) && (
+                <LineChart key={i} theme={o} />
               )
           )}
         </Grid>
+      </section>
+      <section className="u-section">
+        <Typography variant="body1" component={'div'} textAlign={'end'}>
+          資料來源：
+        </Typography>
       </section>
     </>
   );

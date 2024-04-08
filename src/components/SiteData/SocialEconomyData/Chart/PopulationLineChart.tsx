@@ -4,15 +4,23 @@ import ReactECharts from 'echarts-for-react';
 import { usePopulationContext } from 'context/SocialEconomyData/PopulationContext';
 import _ from 'lodash';
 import { Grid } from '@mui/material';
+import { ThemeItem } from 'types/socialEconomyData';
 
-const PopulationLineChart = ({ theme }: { theme: string }) => {
+const PopulationLineChart = ({ theme }: { theme: ThemeItem }) => {
   const height = 400;
   const [xAxis, setXAxis] = useState<string[]>([]);
   const [series, setSeries] = useState<any[]>([]);
 
+  const hasSubtitle = theme.subtitle !== '';
+
   const option = {
     title: {
-      text: theme,
+      text: theme.title,
+      subtext: hasSubtitle ? `(${theme.subtitle})` : null,
+      subtextStyle: {
+        color: '#333333',
+        lineHeight: 16,
+      },
     },
     color: ['#5470C6', '#91CC75', '#FAC858', '#EE6666'],
     tooltip: {
@@ -33,9 +41,10 @@ const PopulationLineChart = ({ theme }: { theme: string }) => {
       bottom: '0',
     },
     grid: {
+      top: '22.5%',
       left: '15%',
       right: '10%',
-      height: '65%',
+      height: '55%',
     },
     xAxis: {
       type: 'category',
@@ -61,7 +70,7 @@ const PopulationLineChart = ({ theme }: { theme: string }) => {
       const s = Object.entries(group).map(([key, value]): any => ({
         type: 'line',
         name: key,
-        data: value.map((o: any) => Number(o[theme])),
+        data: value.map((o: any) => Number(o[theme.title])),
       }));
       setSeries(s);
       const x = _.uniqBy(data, '資料時間').map(
