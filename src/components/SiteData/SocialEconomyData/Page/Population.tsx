@@ -59,7 +59,7 @@ const Population = () => {
       </section>
       <section className="u-section">
         <Typography variant="body1" component={'div'} textAlign={'end'}>
-          資料來源：
+          資料來源：SEGIS 社會經濟資料服務平台
         </Typography>
       </section>
     </>
