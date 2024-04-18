@@ -16,7 +16,7 @@ const PopulationLineChart = ({ theme }: { theme: ThemeItem }) => {
   const option = {
     title: {
       text: theme.title,
-      subtext: hasSubtitle ? `(${theme.subtitle})` : null,
+      subtext: hasSubtitle ? `${theme.subtitle}` : null,
       subtextStyle: {
         color: '#333333',
         lineHeight: 16,
