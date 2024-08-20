@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Field,
   Form,
@@ -11,10 +11,13 @@ import {
 
 import Banner from 'components/Banner';
 import Breadcrumb from 'components/Breadcrumb';
+import Title from 'components/SiteData/Title';
 
 import bannerImg from 'image/social_bn.png';
 
 import { BannerData } from 'types/common';
+
+
 
 import {
   interviewList,
@@ -25,6 +28,10 @@ import { InterviewItem } from 'types/siteData';
 import FilterLayout from 'components/SiteData/Interview/FilterLayout';
 
 const Content = () => {
+  const location = useLocation();
+  const { pathname } = location;
+  const paths = pathname.split('/');
+
   const PAGE_NAME = 'SiteData';
   const COMPONENT_NAME = 'Economy';
   const PREFIX = 'Interview';
@@ -78,6 +85,11 @@ const Content = () => {
         <Breadcrumb />
         <div className="contentbox gray-bg">
           <div className="main-box">
+            <Title
+            paths={paths}
+            url='https://data.depositar.io/zh_Hant_TW/dataset/ltser-lyudao-water'
+            PAGE_NAME={PAGE_NAME}
+            />
             <div className="chose-itembox">
               <Formik {...formikConfig}>
                 {({ isSubmitting }) => (

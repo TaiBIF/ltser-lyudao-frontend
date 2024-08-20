@@ -2721,3 +2721,63 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.infbox-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+
+  .titlearea {
+    display: flex;
+    align-items: center;
+    @media #{$mobile} {
+      margin-bottom: 5px;
+    }
+    .line {
+      width: 25px;
+      height: 1px;
+      background: $col-green;
+      margin: 0px 5px;
+    }
+    h2 {
+      position: relative;
+      font-size: 30px;
+      color: $col-green;
+      @media #{$mobile} {
+        font-size: 26px;
+      }
+      .mark-cir {
+        position: absolute;
+        top: -16px;
+        left: -16px;
+        @media #{$mobile} {
+          top: -15px;
+          left: -10px;
+          svg {
+            width: 10px;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+  .meta {
+    padding: 5px 15px;
+    border-radius: 30px;
+    line-height: 30ps;
+    border: 1px solid $col-green;
+    color: $col-green;
+    @include bg_change(0.3s);
+    @media #{$mobile} {
+      font-size: 14px;
+      line-height: 22px;
+      padding: 5px 10px;
+    }
+    &:hover {
+      background: $col-green;
+      color: #ffff;
+      @include bg_change(0.3s);
+    }
+  }
+}

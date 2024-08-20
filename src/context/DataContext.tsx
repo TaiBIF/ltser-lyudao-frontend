@@ -496,7 +496,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       getSeries: getStreamSeries,
       fields: streamFields,
       getFields: getStreamFields,
-    },
+    }
   ];
 
   return (
