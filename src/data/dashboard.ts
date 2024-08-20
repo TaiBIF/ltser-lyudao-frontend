@@ -68,11 +68,11 @@ export const tabList: TabItem[] = [
     title: '資料下載申請資訊',
     auth: ['superuser', 'staff'],
   },
-  {
-    id: 'social-interview-data',
-    title: '社會面訪談資料',
-    auth: ['superuser'],
-  },
+  // {
+  //   id: 'social-interview-data',
+  //   title: '社會面訪談資料',
+  //   auth: ['superuser'],
+  // },
 ];
 
 // Types 類型
