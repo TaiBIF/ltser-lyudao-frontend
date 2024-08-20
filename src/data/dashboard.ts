@@ -61,7 +61,7 @@ export const tabList: TabItem[] = [
   {
     id: 'download-record',
     title: '下載資料紀錄',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'staff', 'none'],
   },
   {
     id: 'download',

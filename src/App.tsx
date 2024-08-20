@@ -424,7 +424,7 @@ function App() {
                   path="/dashboard/download-record"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['none', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardDownloadRecord />} />
