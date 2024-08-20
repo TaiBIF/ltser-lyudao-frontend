@@ -78,6 +78,11 @@ const RelatedLiterature = () => {
                   placeholder={t(`${I18N_KEY_PREFIX}.keywordText`)}
                   value={filter.keyword}
                   onChange={handleSearchChange}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      handleSearchClick();
+                    }
+                  }}
                 />
                 <button type="button" onClick={handleSearchClick}>
                   <SearchIcon />
