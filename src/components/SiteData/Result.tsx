@@ -113,6 +113,10 @@ const Result = (props: ResultProps) => {
     }
   }, [currentPage, pathname, currentRecordsPerPage]);
 
+  const hasScientificName = contextData.fields.some(
+    (field:any) => field.id === 'scientificName'
+  );
+
   return (
     <>
       <div className="result-area" ref={scrollTargetRef}>
@@ -140,13 +144,15 @@ const Result = (props: ResultProps) => {
                 >
                   {t(`${I18N_KEY_PREFIX}.dataDownloadBtn`)}
                 </button>
-                <button
-                  type="button"
-                  onClick={handleDownloadClick}
-                  data-target="species"
-                >
-                  {t(`${I18N_KEY_PREFIX}.speciesDownloadBtn`)}
-                </button>
+                {hasScientificName && (
+                  <button
+                    type="button"
+                    onClick={handleDownloadClick}
+                    data-target="species"
+                  >
+                    {t(`${I18N_KEY_PREFIX}.speciesDownloadBtn`)}
+                  </button>
+                )}
               </div>
             </div>
           </>
