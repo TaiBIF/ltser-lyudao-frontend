@@ -23,18 +23,6 @@ const Content = (props: ContentProps) => {
     setActive(!active);
   };
 
-  useEffect(() => {
-    const target = targetRef.current;
-    if (target) {
-      if (active) {
-        target.style.display = 'block';
-        gsapSlideToggle('auto', target, active);
-      } else {
-        // target.style.display = 'none';
-        gsapSlideToggle('auto', target, active);
-      }
-    }
-  }, [active]);
 
   return (
     <>
@@ -51,6 +39,7 @@ const Content = (props: ContentProps) => {
               <li key={`${item.id}`}>
                 <Link
                   to={`/site-data/${page}/${item.link}`}
+                  preventScrollReset={true}
                   className={`item-box linkto c-aside__tab ${
                     dataId === item.link ? 'now ' : ''
                   }`}

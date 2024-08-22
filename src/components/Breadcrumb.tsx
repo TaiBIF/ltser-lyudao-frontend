@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { HeaderMenuItem } from 'types/common';
 import { generateRouteList } from 'data/common';
 
-const Breadcrumb = () => {
+const Breadcrumb = forwardRef<HTMLDivElement>((_, ref) => {
   const routeList: HeaderMenuItem[] = generateRouteList();
 
   const { pathname } = useLocation();
@@ -35,7 +35,7 @@ const Breadcrumb = () => {
   return (
     <>
       <div className="path">
-        <div className="main-box">
+        <div className="main-box" ref={ref}>
           <div className="path-area">
             <a href="/" className="home">
               <svg
@@ -98,6 +98,6 @@ const Breadcrumb = () => {
       </div>
     </>
   );
-};
+});
 
 export default Breadcrumb;
