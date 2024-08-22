@@ -227,6 +227,7 @@ export const generateHeaderMenuList = (): HeaderMenuItem[] => [
     title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.formLink`),
     link: 'form-link',
     show: 'auth',
+    requiredGroup: ['staff', 'superuser']
   },
 ];
 

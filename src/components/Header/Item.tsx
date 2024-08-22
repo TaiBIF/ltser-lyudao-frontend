@@ -10,22 +10,21 @@ interface ItemProps {
 
 const Item = (props: ItemProps) => {
   const { data } = props;
-  const { auth } = useAuthContext();
+  const { auth, group } = useAuthContext();
+
+  const shouldShowItem = () => {
+    if (data.show === 'auth' && !auth) {
+      return false; // 未登入用戶不顯示項目
+    }
+    if (data.requiredGroup && !data.requiredGroup.includes(group)) {
+      return false; // 不在分組內不顯示項目
+    }
+    return true; // 顯示項目
+  };
 
   return (
     <>
-      {data.show === 'auth' ? (
-        auth ? (
-          <li>
-            <Link to={`/${data.link}`} className="big_title">
-              {data.title}
-              <span></span>
-            </Link>
-          </li>
-        ) : (
-          <></>
-        )
-      ) : (
+      {shouldShowItem() && (
         <li>
           <Link to={`/${data.link}`} className="big_title">
             {data.title}

@@ -224,7 +224,7 @@ function App() {
                   path="/form-link"
                   element={
                     <PrivateRoute
-                      roles={['none', 'staff', 'superuser']}
+                      roles={['staff', 'superuser']}
                       redirectPath="/"
                     >
                       <FormLink />
@@ -235,7 +235,7 @@ function App() {
                   path="/form-link"
                   element={
                     <PrivateRoute
-                      roles={['none', 'staff', 'superuser']}
+                      roles={['staff', 'superuser']}
                       redirectPath="/login"
                     >
                       <FormLink />

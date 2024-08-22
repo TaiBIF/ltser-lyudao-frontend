@@ -20,6 +20,7 @@ export type HeaderMenuItem = {
   link?: string;
   list?: HeaderMenuItem[];
   show?: string;
+  requiredGroup?: string[];
 };
 
 export type FooterLogoItem = {
