@@ -18,7 +18,7 @@ interface MegaMenuProps {
 const MegaMenu = (props: MegaMenuProps) => {
   const { data } = props;
   const { getHeaderDetail } = useRender();
-  const { setAbout, handleMenuClick, show, menuMegaRef, isMobile } =
+  const { setAbout, show, menuMegaRef, isMobile, setShow } =
     useHeaderContext();
 
   const handleHeaderAboutHover = () => {
@@ -27,6 +27,7 @@ const MegaMenu = (props: MegaMenuProps) => {
       setData: setAbout,
       defaultData: headerAboutData,
     });
+    setShow({ ...show, menuMega: true})
   };
 
   useEffect(() => {
@@ -36,18 +37,18 @@ const MegaMenu = (props: MegaMenuProps) => {
         target.style.display = 'block';
         gsapSlideToggle('auto', target, show.menuMega);
       } else {
+        target.style.display = 'none';
         gsapSlideToggle('auto', target, show.menuMega);
       }
     }
   }, [show.menuMega]);
+
 
   return (
     <>
       <div
         className={`big_title ${isMobile && show.menuMega ? 'now' : ''}`}
         onMouseEnter={handleHeaderAboutHover}
-        onClick={handleMenuClick}
-        data-target="menuMega"
       >
         {data.title}
         <span></span>

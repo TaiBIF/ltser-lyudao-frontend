@@ -23,8 +23,7 @@ const MegaMenuSubItem = (props: MegaMenuSubItemProps) => {
   };
 
   useEffect(() => {
-    const target =
-      itemboxRefs.current && itemboxRefs.current[`${parentId}-${data.id}`];
+    const target = itemboxRefs.current && itemboxRefs.current[`${parentId}-${data.id}`];
     if (target) {
       if (show) {
         target.style.display = 'block';
