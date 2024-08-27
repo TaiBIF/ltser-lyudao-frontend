@@ -89,7 +89,7 @@
     height: 100%;
     right: 0;
     width: 100%;
-    background: url("../image/newsbn.jpg");
+    background: url('../image/newsbn.jpg');
     background-size: auto 100%;
     background-position: right top;
     background-repeat: no-repeat;
@@ -311,14 +311,14 @@
           @media #{$mobile} {
             font-size: calc(14 / 375 * 100vw);
           }
-          &[type="date"]::-webkit-calendar-picker-indicator {
+          &[type='date']::-webkit-calendar-picker-indicator {
             // display: none;
             opacity: 0;
           }
         }
       }
     }
-    button {
+    .submit-btn {
       background: $col-green;
       color: #fff;
       height: 60px;
@@ -1199,7 +1199,7 @@
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
-        background: url("../image/select-ar.svg") center right 20px no-repeat;
+        background: url('../image/select-ar.svg') center right 20px no-repeat;
       }
     }
     .check-itembox {
@@ -1980,7 +1980,7 @@
           height: 100%;
           top: 0;
           left: 0;
-          background: url("../image/abimg.png") no-repeat;
+          background: url('../image/abimg.png') no-repeat;
           background-size: cover;
         }
       }
@@ -2221,7 +2221,7 @@
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
-        background: url("../image/select-ar.svg") center right 20px no-repeat;
+        background: url('../image/select-ar.svg') center right 20px no-repeat;
       }
     }
     p {
@@ -2573,7 +2573,7 @@
         appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
-        background: url("../image/select-ar.svg") center right 20px no-repeat;
+        background: url('../image/select-ar.svg') center right 20px no-repeat;
       }
     }
     .check-area {
@@ -2604,10 +2604,11 @@
         border: 1px solid $col-green;
         color: $col-green;
         @include bg_change(0.3s);
-        background: url("../image/Google_Logo.svg") center left 15px no-repeat;
+        background: url('../image/Google_Logo.svg') center left 15px no-repeat;
         &:hover {
           @include bg_change(0.3s);
-          background: url("../image/Google_Logos.svg") center left 15px no-repeat;
+          background: url('../image/Google_Logos.svg') center left 15px
+            no-repeat;
           background-color: $col-green;
           color: #fff;
         }
@@ -2700,7 +2701,7 @@
 }
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
-  content: "";
+  content: '';
   position: absolute;
   display: none;
 }
