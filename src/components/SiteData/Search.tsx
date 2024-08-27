@@ -83,7 +83,7 @@ const Search = (props: SearchProps) => {
               <Form>
                 <ul className="set-li">
                   {searchFieldList.map((v: RawFieldItem) => {
-                    return v.show && <SearchFieldLayout key={v.id} data={v} />;
+                    return v.show && <SearchFieldLayout key={v.id} data={v}/>;
                   })}
                 </ul>
                 <div className="send-btnarea">
