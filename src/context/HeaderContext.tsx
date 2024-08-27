@@ -13,8 +13,8 @@ import { HeaderMenuItem, HeaderShowState } from 'types/common';
 
 import { gsapFade } from 'utils/animation';
 
-const HeaderContaxt = createContext<any>(null);
-export const useHeaderContext = () => useContext(HeaderContaxt);
+const HeaderContext = createContext<any>(null);
+export const useHeaderContext = () => useContext(HeaderContext);
 
 interface HeaderProviderProps {
   children: ReactNode;
@@ -106,8 +106,8 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
   };
 
   return (
-    <HeaderContaxt.Provider value={contextData}>
+    <HeaderContext.Provider value={contextData}>
       {children}
-    </HeaderContaxt.Provider>
+    </HeaderContext.Provider>
   );
 };
