@@ -13,7 +13,7 @@ import {
 import Filter from 'components/Home/SurveyMap/Map/Filter';
 import MarkerLayout from 'components/Home/SurveyMap/Map/MarkerLayout';
 
-import { LocalityItem } from 'types/home';
+import { LocalityItem, SiteYearItem } from 'types/home';
 
 import {
   localityList,
@@ -23,8 +23,7 @@ import {
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import useRender from 'hooks/page/useRender';
-
-import itemList from 'data/home/items.json';
+import useSurveyMap from 'hooks/api/useSurveyMapApi';
 
 const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
   const PREFIX = 'Map';
@@ -38,9 +37,15 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
   const [markers, setMarkers] = useState<
     (Dictionary<number | string> | LocalityItem)[]
   >([]);
+  const [data, setData] = useState<SiteYearItem[]>([]);
   const { filter } = useSurveyMapContext();
+  const { getOptions } = useSurveyMap();
 
   const isFetchingLocalities = localities === null;
+
+  const dropdownOptions = () => {
+    getOptions({ setData });
+  };
 
   const handleSiteFilter = () => {
     if (!isFetchingLocalities) {
@@ -48,7 +53,7 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
         const matchPlan = surveyMapItemList.find(
           (v) => v.title === filter.item
         )!.plan;
-        const matchSite = itemList
+        const matchSite = data
           .filter((item) =>
             item.years.some(
               (v) => v.year === filter.year && v.items.includes(matchPlan)
@@ -66,6 +71,10 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
   };
 
   useEffect(() => {
+    dropdownOptions();
+  }, []);
+
+  useEffect(() => {
     handleSiteFilter();
   }, [localities, filter.item]);
 
@@ -79,7 +88,7 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
 
   return (
     <>
-      <Filter I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
+      <Filter I18N_KEY_PREFIX={I18N_KEY_PREFIX} dropdownOptions={data} />
       <div className="map-area">
         <MapContainer
           id="leafletmap"

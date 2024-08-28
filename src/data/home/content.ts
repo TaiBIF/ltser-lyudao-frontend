@@ -128,6 +128,20 @@ export const generateSurveyMapItemList = (): SelectItem[] => [
     redirect: true,
   },
   {
+    id: 'coralComm',
+    type: 'ecological',
+    plan: 'coral-comm',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.coralComm`),
+    redirect: true,
+  },
+  {
+    id: 'coralBleach',
+    type: 'ecological',
+    plan: 'coral-bleach',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.coralBleach`),
+    redirect: true,
+  },
+  {
     id: 'zoobenthos',
     type: 'ecological',
     plan: 'zoobenthos',
@@ -161,6 +175,13 @@ export const generateSurveyMapItemList = (): SelectItem[] => [
     plan: 'aquaticfauna',
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.aquaticfauna`),
     redirect: null,
+  },
+  {
+    id: 'otolith',
+    type: 'ecological',
+    plan: 'otolith',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.otolith`),
+    redirect: true,
   },
 ];
 

@@ -131,12 +131,25 @@ const useSurveyMapApi = () => {
     }
   };
 
+  const getOptions = async ({ setData }: { setData: any }) => {
+    const result = await handleApi({
+      method: 'get',
+      url: `/data/surveymap/option/`,
+    });
+    if (result?.status === 'success') {
+      setData([...result.response.data]);
+    } else {
+      setData([...surveyMapItemList]);
+    }
+  };
+
   return {
     getSites,
     getTimeRange,
     getDetail,
     getAllDetail,
     getItems,
+    getOptions,
   };
 };
 

@@ -5,13 +5,18 @@ import { useTranslation } from 'react-i18next';
 import { SiteYearItem } from 'types/home';
 
 import { generateSurveyMapItemList } from 'data/home/content';
-import itemList from 'data/home/items.json';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
 import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 import { SelectItem } from 'types/utils';
 
-const Filter = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
+const Filter = ({
+  I18N_KEY_PREFIX,
+  dropdownOptions,
+}: {
+  I18N_KEY_PREFIX: string;
+  dropdownOptions: SiteYearItem[];
+}) => {
   const PREFIX = 'Filter';
 
   const { t } = useTranslation();
@@ -43,21 +48,22 @@ const Filter = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
 
   useEffect(() => {
     let yearList: string[] = [];
-    itemList.forEach((site: SiteYearItem) => {
+    dropdownOptions.forEach((site: SiteYearItem) => {
       site.years.forEach((v) => {
         if (!yearList.includes(v.year)) {
           yearList.push(v.year);
         }
       });
     });
+    yearList.sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
     setYears([...yearList]);
-  }, []);
+  }, [dropdownOptions]);
 
   useEffect(() => {
     setFilter({ ...filter, item: '' });
     if (hasYear) {
       let yearItemList: string[] = [];
-      itemList.forEach((site: SiteYearItem) => {
+      dropdownOptions.forEach((site: SiteYearItem) => {
         site.years
           .find((v) => v.year === filter.year)
           ?.items.forEach((v) => {
@@ -74,10 +80,14 @@ const Filter = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
               .map((v: SelectItem) => v.title)
           )
           .reduce((target, arr) => [...target, ...arr], []);
-        setItems([...matchItem]);
+
+        const sortedMatchItem = matchItem.sort((a: string, b: string) =>
+          a.localeCompare(b)
+        );
+        setItems([...sortedMatchItem]);
       }
     }
-  }, [years, filter.year, surveyMapItemList]);
+  }, [years, filter.year, surveyMapItemList, dropdownOptions]);
 
   return (
     <>

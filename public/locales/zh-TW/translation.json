@@ -265,7 +265,10 @@
           "plant": "陸域植物種類數",
           "birdNetSound": "鳥種數(機器辨認)",
           "fishDiv": "魚種數",
-          "aquaticfauna": "溪流生物"
+          "aquaticfauna": "溪流生物",
+          "coralComm": "珊瑚群聚",
+          "otolith": "耳石",
+          "coralBleach": "珊瑚白化"
         }
       },
       "plan": {
