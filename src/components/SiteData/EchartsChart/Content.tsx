@@ -39,6 +39,7 @@ const Content = ({
 
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
+  const [dateWindowTik, setDateWindowTik] = useState<string>();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { pathname } = useLocation();
   const { filter } = useSiteDataContext();
@@ -98,20 +99,44 @@ const Content = ({
           setSeriesList([...series]);
         }
       }
+      if (contextData.series && contextData.series.length > 0) {
+        const lastTime = contextData.series.at(-1).time;
+        if (lastTime) {
+          const lastDate = new Date(lastTime);
+          lastDate.setFullYear(lastDate.getFullYear() - 1);
+
+          const formattedLastDate = `${lastDate.getFullYear()}-${String(
+            lastDate.getMonth() + 1
+          ).padStart(2, '0')}-${String(lastDate.getDate()).padStart(
+            2,
+            '0'
+          )} ${String(lastDate.getHours()).padStart(2, '0')}:${String(
+            lastDate.getMinutes()
+          ).padStart(2, '0')}:${String(lastDate.getSeconds()).padStart(
+            2,
+            '0'
+          )}`;
+
+          setDateWindowTik(formattedLastDate);
+        }
+      }
     }
   }, [contextData.series, filter.site]);
+
+  const updatedDataZoom = commonOptions.dataZoom.map((zoom, index) => {
+    if (index === 0) {
+      return {
+        ...zoom,
+        startValue: dateWindowTik,
+      };
+    }
+    return zoom;
+  });
 
   const option = {
     ...commonOptions,
     color: chartsColor.legend.multiple,
-    dataZoom: [
-      ...commonOptions.dataZoom,
-      {
-        start: 20,
-        end: 80,
-        zoomOnMouseWheel: false,
-      },
-    ],
+    dataZoom: updatedDataZoom,
     grid: {
       top: '10%',
       width: '90%',

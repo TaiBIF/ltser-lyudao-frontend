@@ -89,23 +89,6 @@ export const commonOptions = {
   dataZoom: [
     {
       type: 'slider',
-      selectedDataBackground: {
-        areaStyle: {
-          color: 'rgba(1, 116, 187, 0.7)',
-          opacity: 1,
-        },
-        lineStyle: {
-          color: 'rgba(189, 189, 189, 1)',
-        },
-      },
-      dataBackground: {
-        lineStyle: {
-          color: 'rgba(189, 189, 189, 1)',
-        },
-        areaStyle: {
-          color: 'rgba(1, 116, 187, 0)',
-        },
-      },
       borderColor: 'rgba(224, 224, 224, 1)',
       handleStyle: {
         borderColor: 'rgba(224, 224, 224, 1)',
@@ -122,7 +105,7 @@ export const commonOptions = {
         },
       },
       backgroundColor: 'rgba(255, 255, 255, 0)',
-      fillerColor: 'rgba(1, 116, 187, 0)',
+      fillerColor: 'rgba(82, 154, 129, 0.2)',
       brushStyle: {
         color: 'rgba(1, 116, 187, 0)',
       },
