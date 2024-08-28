@@ -12,6 +12,8 @@ import {
   chartsHeight,
 } from 'helpers/customEcharts';
 
+import { customYAxisUnit } from 'helpers/customYAxisUnit';
+
 import { useDataContext } from 'context/DataContext';
 import { useLocation } from 'react-router-dom';
 import { SeriesItemTypes } from 'types/series';
@@ -40,6 +42,7 @@ const Content = ({
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const [dateWindowTik, setDateWindowTik] = useState<string>();
+  const [yAxisUnit, setYAxisUnit] = useState<string>();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { pathname } = useLocation();
   const { filter } = useSiteDataContext();
@@ -120,6 +123,10 @@ const Content = ({
           setDateWindowTik(formattedLastDate);
         }
       }
+      const yAxisConfig = customYAxisUnit[item] || [
+        { yAxisName: '', unit: '' },
+      ];
+      setYAxisUnit(yAxisConfig[0]?.unit || '');
     }
   }, [contextData.series, filter.site]);
 
@@ -164,6 +171,7 @@ const Content = ({
     },
     yAxis: {
       type: 'value',
+      name: yAxisUnit,
     },
     series: seriesList,
     legend: {
