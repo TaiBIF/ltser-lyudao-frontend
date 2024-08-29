@@ -63,6 +63,7 @@ const Content = ({
   }, [pathname, filter.site, lang]);
 
   useEffect(() => {
+    console.log(contextData.series);
     if (!isFetchingSeries) {
       if (!hasNoSite) {
         if (!hasNoSeries) {
@@ -76,30 +77,39 @@ const Content = ({
           setXAxisList([...xAxis]);
           const series = Object.entries(contextData.series[0])
             .map(([key]) => {
-              switch (key) {
-                case 'time':
-                  return null;
-                case 'airTemperature':
-                  return {
-                    name: key,
-                    type: 'line',
-                    data: contextData.series.map(
-                      (v: SeriesItemTypes) => v[key]
-                    ),
-                  };
-                default:
-                  return {
-                    name: key,
-                    type: 'line',
-                    data: contextData.series.map(
-                      (v: SeriesItemTypes) => v[key]
-                    ),
-                    show: false,
-                  };
+              if (key === 'time') {
+                return null;
+              } else if (key === 'airTemperature') {
+                return {
+                  name: key,
+                  type: 'line',
+                  data: contextData.series.map((v: SeriesItemTypes) => v[key]),
+                };
+              } else if (key === 'coverage') {
+                // 提取所有 coverage 類別
+                const categories = Object.keys(contextData.series[0].coverage);
+                // 為每個 coverage 類別創建一個系列
+                return categories.map((category) => ({
+                  name: category,
+                  type: 'bar',
+                  stack: 'total',
+                  data: contextData.series.map(
+                    (item: any) => item.coverage[category] || 0
+                  ),
+                }));
+              } else {
+                return {
+                  name: key,
+                  type: 'line',
+                  data: contextData.series.map((v: SeriesItemTypes) => v[key]),
+                  show: false,
+                };
               }
             })
+            .flat() // 將嵌套的系列數組展平為一維
             .filter((v) => v !== null) as SeriesItem[];
           setSeriesList([...series]);
+          console.log(series);
         }
       }
       if (contextData.series && contextData.series.length > 0) {
