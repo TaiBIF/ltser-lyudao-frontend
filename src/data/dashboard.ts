@@ -919,6 +919,11 @@ export const literatureColList: ColItem[] = [
     title: '文獻名稱',
     show: true,
   },
+  {
+    id: 'year',
+    title: '文獻發表年份',
+    show: true,
+  },
 ];
 
 export const literatureFieldList: FieldItem[] = [
@@ -927,6 +932,14 @@ export const literatureFieldList: FieldItem[] = [
     type: 'text',
     title: 'name',
     label: '文獻名稱',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 2,
+    type: 'text',
+    title: 'year',
+    label: '文獻發布年份',
     readonly: false,
     required: true,
   },
