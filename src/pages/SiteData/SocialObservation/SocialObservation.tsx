@@ -40,7 +40,7 @@ const SocialObservation = ({ content }: { content: ReactNode }) => {
 
   useEffect(() => {
     if (dataId) {
-      navigate(`/site-data/social-observation/population`);
+      navigate(`/site-data/social-observation/memorabilia`);
     }
   }, [dataId]);
 

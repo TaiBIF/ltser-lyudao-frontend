@@ -189,6 +189,40 @@ export const generateEconomyFishingAsideList = (): AsideItem[] => [
 export const generateEconomyDataAsideList = (): AsideItem[] => [
   {
     id: 1,
+    title: '綠島大事紀',
+    link: 'memorabilia',
+    list: [
+      {
+        id: 1,
+        title: '大事紀',
+        link: 'memorabilia',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: '土地與海域利用',
+    link: 'land-ocean-usage',
+    list: [
+      {
+        id: 1,
+        title: '土地利用',
+        link: 'land-usage',
+      },
+      {
+        id: 2,
+        title: '海域利用',
+        link: 'ocean-usage',
+      },
+      {
+        id: 3,
+        title: '綠島土地與海域利用的時節變化',
+        link: 'temporal-variation',
+      },
+    ],
+  },
+  {
+    id: 3,
     title: '外部資料介接',
     link: 'external-data',
     list: [
@@ -205,7 +239,7 @@ export const generateEconomyDataAsideList = (): AsideItem[] => [
     ],
   },
   {
-    id: 2,
+    id: 4,
     title: '文史資料彙整',
     link: 'literature-data',
     list: [

@@ -153,7 +153,30 @@ const useRender = () => {
     }
   };
 
-  return { getList, getAllList, getDetail, getHeaderDetail, getDepositarList };
+  const getSocialObservationContent = async ({
+    url,
+    setList,
+  }: {
+    url: string;
+    setList: any;
+  }) => {
+    const result = await handleApi({
+      method: 'get',
+      url: `${url}`,
+    });
+    if (result?.status === 'success') {
+      setList([...result.response.data]);
+    }
+  };
+
+  return {
+    getList,
+    getAllList,
+    getDetail,
+    getHeaderDetail,
+    getDepositarList,
+    getSocialObservationContent,
+  };
 };
 
 export default useRender;

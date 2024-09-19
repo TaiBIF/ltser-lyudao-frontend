@@ -2783,3 +2783,25 @@
     }
   }
 }
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 5rem;
+
+  img {
+    width: 100%;
+  }
+
+  div {
+    white-space: pre-wrap;
+  }
+
+  .img-text {
+    text-align: center;
+    font-size: 0.85rem;
+  }
+}
