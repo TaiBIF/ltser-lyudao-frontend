@@ -78,6 +78,7 @@ import Memorabilia from 'components/SiteData/SocialEconomyData/Page/Memorabilia'
 import LandUsage from 'components/SiteData/SocialEconomyData/Page/LandUsage';
 import OceanUsage from 'components/SiteData/SocialEconomyData/Page/OceanUsage';
 import TemporalVariation from 'components/SiteData/SocialEconomyData/Page/TemporalVariation';
+import Government from 'components/SiteData/SocialEconomyData/Page/Government';
 
 function App() {
   return (
@@ -211,6 +212,10 @@ function App() {
                 <Route
                   path="/site-data/social-observation/researches"
                   element={<SocialObservation content={<Researches />} />}
+                />
+                <Route
+                  path="/site-data/social-observation/government"
+                  element={<SocialObservation content={<Government />} />}
                 />
                 <Route
                   path="/site-data/social-observation/fishing"

@@ -2805,3 +2805,122 @@
     font-size: 0.85rem;
   }
 }
+
+.book-container {
+  margin-bottom: 50px;
+  .title-box {
+    margin-bottom: 10px;
+    h2 {
+      font-size: 30px;
+      font-weight: normal;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .line {
+      width: 25px;
+      height: 1px;
+      background: #529a81;
+      margin: 0px 5px;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+  ul li {
+    list-style: none;
+  }
+  .detail-box {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    div {
+      color: #555;
+    }
+    .book-title {
+      font-size: 20px;
+      color: #529a81;
+      font-weight: bold;
+    }
+    .book-detail {
+      font-size: 0.8rem;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.literature-container {
+  margin-bottom: 50px;
+  .title-box {
+    margin-bottom: 10px;
+    h2 {
+      font-size: 30px;
+      font-weight: normal;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .line {
+      width: 25px;
+      height: 1px;
+      background: #529a81;
+      margin: 0px 5px;
+    }
+  }
+  ul li {
+    list-style: none;
+  }
+  .detail-box {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    div {
+      color: #555;
+    }
+    .literature-title {
+      font-size: 20px;
+      color: #529a81;
+      font-weight: bold;
+    }
+    .literature-detail {
+      font-size: 0.8rem;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+  }
+}
+
+.government-literature-container {
+  margin-bottom: 10px;
+  ul li {
+    list-style: none;
+  }
+  .detail-box {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    div {
+      color: #555;
+    }
+    .literature-title {
+      font-size: 20px;
+      color: #529a81;
+      font-weight: bold;
+    }
+    .literature-detail {
+      font-size: 0.8rem;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: right;
+    }
+  }
+}
