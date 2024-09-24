@@ -1047,6 +1047,10 @@ export const terreSoundIndexFields: RawFieldItem[] = [
     type: 'string',
   },
   {
+    id: 'locationID',
+    type: 'string',
+  },
+  {
     id: 'sh',
     type: 'string',
   },

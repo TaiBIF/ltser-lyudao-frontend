@@ -63,7 +63,6 @@ const Content = ({
   }, [pathname, filter.site, lang]);
 
   useEffect(() => {
-    console.log(contextData.series);
     if (!isFetchingSeries) {
       if (!hasNoSite) {
         if (!hasNoSeries) {
