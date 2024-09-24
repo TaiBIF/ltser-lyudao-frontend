@@ -786,6 +786,10 @@ export const birdNetSoundFields: RawFieldItem[] = [
     type: 'text',
   },
   {
+    id: 'locationID',
+    type: 'text',
+  },
+  {
     id: 'species_list',
     type: 'text',
   },

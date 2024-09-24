@@ -108,7 +108,6 @@ const Content = ({
             .flat() // 將嵌套的系列數組展平為一維
             .filter((v) => v !== null) as SeriesItem[];
           setSeriesList([...series]);
-          console.log(series);
         }
       }
       if (contextData.series && contextData.series.length > 0) {
