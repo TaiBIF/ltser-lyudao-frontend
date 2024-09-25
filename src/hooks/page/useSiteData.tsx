@@ -9,6 +9,7 @@ import { PaginationDataItem } from 'types/utils';
 
 interface useSiteDataProps {
   id: string;
+  depth?: string;
   url: string;
   defaultRaws?: RawItemTypes[];
   defaultFields?: RawFieldItem[];
@@ -22,6 +23,7 @@ interface useSiteDataProps {
 const useSiteData = (props: useSiteDataProps) => {
   const {
     id,
+    depth,
     url,
     defaultRaws,
     defaultFields,
@@ -59,6 +61,7 @@ const useSiteData = (props: useSiteDataProps) => {
   const getDataSeries = () => {
     getSeries({
       id,
+      depth,
       url,
       setList: setSeries,
       defaultList: defaultSeries || [],

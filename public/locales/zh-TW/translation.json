@@ -100,6 +100,7 @@
     "viewMetadataBtn": "查看資料集與研究方法",
     "siteLabel1": "測站/樣區",
     "siteLabel2": "請選擇{{title}}",
+    "siteLabel3": "請選擇深度",
     "siteDefaultOption": "請選擇{{title}}",
     "siteEmptyStateText": "觀測資料鑑定中。",
     "searchTitle": "資料列表搜尋",
@@ -293,7 +294,7 @@
           "coral-bleach": "珊瑚白化",
           "coral-comm": "珊瑚群聚",
           "otolith": "耳石",
-          "ocean-sound": "海域聲學-調查事件",
+          "ocean-sound": "海域聲學",
           "fish-div": "魚類多樣性",
           "fishing": "休閒漁業",
           "plant": "陸域植物",
@@ -344,7 +345,7 @@
           "6_2": "陸域聲景-鳥音辨識",
           "6_3": "陸域聲景-生物辨識",
           "7": "珊瑚礁水下聲景調查",
-          "7_1": "海域聲學-調查事件",
+          "7_1": "海域聲學",
           "8": "溪流生物調查",
           "8_1": "溪流生物"
         }

@@ -71,11 +71,13 @@ const useSiteDataApi = () => {
 
   const getSeries = async ({
     id,
+    depth,
     url,
     setList,
     defaultList,
   }: {
     id: string;
+    depth?: string;
     url: string;
     setList: any;
     defaultList: SeriesItemTypes[];
@@ -85,6 +87,7 @@ const useSiteDataApi = () => {
       url: `/data/${url}/series/`,
       params: {
         locationID: id,
+        depth: depth,
       },
     });
     if (result?.status === 'success') {

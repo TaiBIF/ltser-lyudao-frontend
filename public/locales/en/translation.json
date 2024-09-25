@@ -100,6 +100,7 @@
     "viewMetadataBtn": "View Datasets and Research Methods",
     "siteLabel1": "Observation Station",
     "siteLabel2": "Select an {{title}}",
+    "siteLabel3": "Select verbatimDepth",
     "siteDefaultOption": "Select an {{title}}",
     "siteEmptyStateText": "There is no data available.",
     "searchTitle": "Data Search",

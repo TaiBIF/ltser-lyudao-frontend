@@ -32,6 +32,7 @@ const useOceanSoundIndex = () => {
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
+    depth: filter.depth,
     url: URL,
     // defaultRaws: oceanSoundIndexRaws,
     setRaws,

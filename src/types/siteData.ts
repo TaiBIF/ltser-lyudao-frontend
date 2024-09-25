@@ -16,6 +16,7 @@ export type EcoSearchItem = {
 
 export type FilterItem = {
   site: string;
+  depth: string;
 };
 
 export type SelectItem = {

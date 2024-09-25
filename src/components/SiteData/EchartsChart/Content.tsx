@@ -60,7 +60,7 @@ const Content = ({
     if (contextData.series !== undefined && !hasNoSite) {
       contextData.getSeries();
     }
-  }, [pathname, filter.site, lang]);
+  }, [pathname, filter.site, filter.depth, lang]);
 
   useEffect(() => {
     if (!isFetchingSeries) {
