@@ -183,6 +183,27 @@ export const generateSurveyMapItemList = (): SelectItem[] => [
     title: i18n.t(`${I18N_KEY_PREFIX}.item.title.otolith`),
     redirect: true,
   },
+  {
+    id: 'biosound',
+    type: 'ecological',
+    plan: 'bio-sound',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.biosound`),
+    redirect: true,
+  },
+  {
+    id: 'terreSoundIndex',
+    type: 'ecological',
+    plan: 'terre-sound-index',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.terreSoundIndex`),
+    redirect: true,
+  },
+  {
+    id: 'oceanSoundIndex',
+    type: 'ecological',
+    plan: 'ocean-sound-index',
+    title: i18n.t(`${I18N_KEY_PREFIX}.item.title.oceanSoundIndex`),
+    redirect: true,
+  },
 ];
 
 // surveyMapColList
@@ -356,7 +377,7 @@ export const generatePlanList = (): PlanItem[] => [
     title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.otolith`),
   },
   {
-    id: 'ocean-sound',
+    id: 'ocean-sound-index',
     title: i18n.t(`${I18N_KEY_PREFIX}.plan.title.ocean-sound`),
   },
   {

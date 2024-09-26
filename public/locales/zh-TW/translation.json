@@ -279,12 +279,15 @@
           "coralRec": "珊瑚礁入添數量",
           "zoobenthos": "底棲動物種類數",
           "plant": "陸域植物種類數",
-          "birdNetSound": "鳥種數(機器辨認)",
+          "birdNetSound": "陸域聲景-鳥音辨識",
           "fishDiv": "魚種數",
           "aquaticfauna": "溪流生物",
           "coralComm": "珊瑚群聚",
           "otolith": "耳石",
-          "coralBleach": "珊瑚白化"
+          "coralBleach": "珊瑚白化",
+          "biosound": "陸域聲景-生物辨識",
+          "terreSoundIndex": "陸域聲景-聲音指數",
+          "oceanSoundIndex": "海域聲學"
         }
       },
       "plan": {

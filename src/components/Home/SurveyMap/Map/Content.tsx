@@ -109,6 +109,7 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
                         key={v.locationID}
                         data={v}
                         I18N_KEY_PREFIX={`${I18N_KEY_PREFIX}.${PREFIX}`}
+                        dropdownOptions={data}
                       />
                     );
                   })}

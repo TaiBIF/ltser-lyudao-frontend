@@ -25,14 +25,16 @@ import { useDownload } from 'hooks/api/useDownload';
 import { useAuthContext } from 'context/AuthContext';
 import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 import { useLangContext } from 'context/LangContext';
+import { SiteYearItem } from 'types/home';
 
 type PopupLayoutProps = {
   data: Dictionary<number | string>;
   I18N_KEY_PREFIX: string;
+  dropdownOptions: SiteYearItem[];
 };
 
 const PopupLayout = (props: PopupLayoutProps) => {
-  const { data, I18N_KEY_PREFIX } = props;
+  const { data, I18N_KEY_PREFIX, dropdownOptions } = props;
 
   const { t } = useTranslation();
 
@@ -99,7 +101,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
 
   useEffect(() => {
     if (!isFetchingItemList) {
-      const matchFilter = itemList
+      const matchFilter = dropdownOptions
         .find((v) => v.site === filter.id)
         ?.years.find((v) => v.year === filter.year)?.items;
       if (matchFilter) {
