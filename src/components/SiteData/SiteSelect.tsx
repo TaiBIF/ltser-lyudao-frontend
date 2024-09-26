@@ -33,8 +33,6 @@ const SiteSelect = (props: SiteSelectProps) => {
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilter({ ...filter, [e.currentTarget.name]: e.currentTarget.value });
-    console.log(e.currentTarget);
-    console.log(filter);
   };
 
   return (
