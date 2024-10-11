@@ -25,16 +25,13 @@ type SeriesItem = {
   name?: string;
   data: number[];
   type: string;
-  isHabitat: boolean;
 };
 
 const Content = ({
   item,
-  isHabitat,
   I18N_KEY_PREFIX,
 }: {
   item: string;
-  isHabitat: boolean;
   I18N_KEY_PREFIX: string;
 }) => {
   const { t } = useTranslation();
@@ -67,11 +64,7 @@ const Content = ({
       if (!hasNoSite) {
         if (!hasNoSeries) {
           let key: string;
-          if (isHabitat) {
-            key = 'locationID';
-          } else {
-            key = 'time';
-          }
+          key = 'time';
           const xAxis = contextData.series.map((v: SeriesItemTypes) => v[key]);
           setXAxisList([...xAxis]);
           const series = Object.entries(contextData.series[0])

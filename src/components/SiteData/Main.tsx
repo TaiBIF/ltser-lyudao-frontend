@@ -50,8 +50,6 @@ const Main = (props: MainProps) => {
   const isFetchingRaws = contextData.raws === null;
   const isDoneFetching = !isFetchingFields && !isFetchingRaws;
 
-  const isHabitat = item === 'habitat';
-
   useEffect(() => {
     contextData.getFields();
     contextData.getSites();
@@ -66,27 +64,22 @@ const Main = (props: MainProps) => {
           PAGE_NAME={PAGE_NAME}
         />
         <div className="u-section">
-          {!isHabitat &&
-            (!isFetchingSites ? (
-              !hasNoSites ? (
-                <SiteSelect
-                  title={t(`${I18N_KEY_PREFIX}.siteLabel1`)}
-                  options={contextData.sites}
-                  filter={filter}
-                  setFilter={setFilter}
-                  I18N_KEY_PREFIX={I18N_KEY_PREFIX}
-                />
-              ) : (
-                <>{t(`${I18N_KEY_PREFIX}.siteEmptyStateText`)}</>
-              )
+          {!isFetchingSites ? (
+            !hasNoSites ? (
+              <SiteSelect
+                title={t(`${I18N_KEY_PREFIX}.siteLabel1`)}
+                options={contextData.sites}
+                filter={filter}
+                setFilter={setFilter}
+                I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+              />
             ) : (
-              <Placeholder layout="inline" />
-            ))}
-          <EchartsChart
-            item={item}
-            isHabitat={isHabitat}
-            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
-          />
+              <>{t(`${I18N_KEY_PREFIX}.siteEmptyStateText`)}</>
+            )
+          ) : (
+            <Placeholder layout="inline" />
+          )}
+          <EchartsChart item={item} I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
         </div>
         <div className="data-searchbox">
           <Search
