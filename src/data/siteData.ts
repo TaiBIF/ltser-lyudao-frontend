@@ -460,7 +460,7 @@ export const BookItemList: BookItem[] = [
       '這系列綠島的地方鄉誌，全面彙整綠島的自然地理、生態基本研究資料，和對於綠島傳統人文產業、風俗民情、社會形態的詳細介紹與研究，以及觀光興起後的社會經濟變遷。',
     author: '臺東縣綠島鄉公所',
     publish_date: '2014年',
-    url: 'https://www.lyudao.gov.tw/history/',
+    url: 'https://tm.ncl.edu.tw/article?u=006_104_000122',
     publisher: '臺東縣綠島鄉公所',
     isbn_issn: '9789860433708',
   },
@@ -568,7 +568,7 @@ export const BookItemList: BookItem[] = [
       '2022成立的綠島地方刊物，利用圖文介紹，看見綠島生態環境、文化特色，以及綠島上人們的生活，深入了解島嶼的現況。',
     author: '島嶼綠工作室',
     publish_date: '(Vol.01) 2021年; (Vol.02) 2022年',
-    url: 'https://children.moc.gov.tw/book/232643',
+    url: '',
     publisher: '島嶼綠工作室',
     isbn_issn: '29580811',
   },
@@ -678,7 +678,7 @@ export const LiteratureItemList: LiteratureItem[] = [
   {
     id: 7,
     theme: 'land-usage',
-    title: '綠島地景動態之研',
+    title: '綠島地景動態之研究',
     abstract:
       '研究整合航空照片材料、地理資訊系統，發現綠島在1979-1989年間，天然闊葉樹林的面積明顯增加，而木麻黃造林地面積明顯減少。利用馬可夫模式預測，隨著森林生態系的自然演替、恢復，綠島的植群生態將在30-60年後穩定，成為以天然闊葉樹林為主之植物社會。',
     author: '鍾玉龍、呂明倫',
