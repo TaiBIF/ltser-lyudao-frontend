@@ -196,12 +196,12 @@ export const generateEconomyFishingAsideList = (): AsideItem[] => [
 export const generateEconomyDataAsideList = (): AsideItem[] => [
   {
     id: 1,
-    title: '綠島大事紀',
+    title: '綠島時間表',
     link: 'memorabilia',
     list: [
       {
         id: 1,
-        title: '大事紀',
+        title: '時間表',
         link: 'memorabilia',
       },
     ],

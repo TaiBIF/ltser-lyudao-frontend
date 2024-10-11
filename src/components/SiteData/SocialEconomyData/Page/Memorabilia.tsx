@@ -32,7 +32,7 @@ const Memorabilia = () => {
     <div key={index} className="img-container">
       <img
         src={item.image}
-        alt={`綠島大事紀 Memorabilia of Green Isand ${index + 1}`}
+        alt={`綠島時間表 Memorabilia of Green Isand ${index + 1}`}
       />
       <div className="img-text">{item.description}</div>
     </div>
