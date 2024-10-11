@@ -184,11 +184,6 @@ export const generateEconomyFishingAsideList = (): AsideItem[] => [
     title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.1`),
     link: 'fishing',
   },
-  {
-    id: 2,
-    title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.2`),
-    link: 'social-interview-data',
-  },
 ];
 
 // economyAsideList
