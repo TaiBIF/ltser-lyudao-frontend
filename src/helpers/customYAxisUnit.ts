@@ -16,4 +16,5 @@ export const customYAxisUnit: { [key: string]: YAxisConfig[] } = {
   'bird-net-sound': [{ yAxisName: '鳥種數(鳥音)', unit: '種' }],
   'bio-sound': [{ yAxisName: '生物物種數', unit: '種' }],
   aquaticfauna: [{ yAxisName: '生物物種數', unit: '種' }],
+  'sea-temperature': [{ yAxisName: '海溫', unit: '°C' }],
 };
