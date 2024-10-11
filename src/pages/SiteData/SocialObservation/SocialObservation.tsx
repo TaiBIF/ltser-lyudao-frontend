@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Banner from 'components/Banner';
@@ -15,6 +15,7 @@ import { AsideItem } from 'types/siteData';
 
 const SocialObservation = ({ content }: { content: ReactNode }) => {
   const PAGE_NAME = 'SiteData';
+  const mainBoxRef = useRef<HTMLDivElement>(null);
   const bannerData: BannerData = {
     title: '社會觀測',
     en: ['social', 'observation'],
@@ -44,11 +45,17 @@ const SocialObservation = ({ content }: { content: ReactNode }) => {
     }
   }, [dataId]);
 
+  useEffect(() => {
+    if (mainBoxRef.current) {
+      mainBoxRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [pathname]);
+
   return (
     <>
       <div className="innbox">
         <Banner data={bannerData} />
-        <Breadcrumb />
+        <Breadcrumb ref={mainBoxRef}/>
         <div className="contentbox">
           <div className="main-box">
             <div className="observation-box">

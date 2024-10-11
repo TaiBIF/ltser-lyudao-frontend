@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Field,
@@ -31,6 +31,7 @@ const Content = () => {
   const location = useLocation();
   const { pathname } = location;
   const paths = pathname.split('/');
+  const mainBoxRef = useRef<HTMLDivElement>(null);
 
   const PAGE_NAME = 'SiteData';
   const COMPONENT_NAME = 'Economy';
@@ -78,11 +79,17 @@ const Content = () => {
     setInterviews([...interviewList]);
   }, []);
 
+  useEffect(() => {
+    if (mainBoxRef.current) {
+      mainBoxRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [pathname]);
+
   return (
     <>
       <div className="innbox">
         <Banner data={bannerData} />
-        <Breadcrumb />
+        <Breadcrumb ref={mainBoxRef}/>
         <div className="contentbox gray-bg">
           <div className="main-box">
             <Title

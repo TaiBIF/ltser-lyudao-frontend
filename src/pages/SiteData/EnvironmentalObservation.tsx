@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Breadcrumb from 'components/Breadcrumb';
@@ -16,6 +16,7 @@ import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 
 const EnvironmentalObservation = () => {
   const PAGE_NAME = 'SiteData';
+  const mainBoxRef = useRef<HTMLDivElement>(null);
 
   const { list: asideList, isFetchingList: isFetchingAsideList } =
     useRerenderTranslation({ generateList: generateEnvAsideList });
@@ -43,11 +44,17 @@ const EnvironmentalObservation = () => {
     }
   }, [dataId, asideList]);
 
+  useEffect(() => {
+    if (mainBoxRef.current) {
+      mainBoxRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [pathname]);
+
   return (
     <>
       <div className="innbox">
         <Banner data={bannerData} />
-        <Breadcrumb />
+        <Breadcrumb ref={mainBoxRef}/>
         <div className="contentbox">
           <div className="main-box">
             <div className="observation-box">
