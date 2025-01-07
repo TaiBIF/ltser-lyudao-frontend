@@ -41,7 +41,6 @@ const Content = ({
   const [dateWindowTik, setDateWindowTik] = useState<string>();
   const [yAxisUnit, setYAxisUnit] = useState<string>();
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
-  const { pathname } = useLocation();
   const { filter } = useSiteDataContext();
   const { lang } = useLangContext();
 
@@ -57,7 +56,7 @@ const Content = ({
     if (contextData.series !== undefined && !hasNoSite) {
       contextData.getSeries();
     }
-  }, [pathname, filter.site, filter.depth, lang]);
+  }, [filter.site, filter.depth, lang]);
 
   useEffect(() => {
     if (!isFetchingSeries) {
@@ -203,7 +202,8 @@ const Content = ({
           <div>{t(`${I18N_KEY_PREFIX}.graphEmptyStateText`)}</div>
         )
       ) : (
-        <Placeholder text="" layout="block" />
+        // <Placeholder text="" layout="block" />
+        <div>{t(`${I18N_KEY_PREFIX}.fetchingStateData`)}</div>
       )}
     </>
   );
