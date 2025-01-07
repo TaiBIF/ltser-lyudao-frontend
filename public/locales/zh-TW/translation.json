@@ -122,7 +122,8 @@
         "submitBtn": "搜尋"
       }
     },
-    "graphEmptyStateText": "目前沒有圖表資料。"
+    "graphEmptyStateText": "目前沒有圖表資料。",
+    "fetchingStateData": "獲取資料中．．．"
   },
   "News": {
     "allTabBtn": "全部",
@@ -367,7 +368,8 @@
       "economy": {
         "title": {
           "1": "休閒漁業",
-          "2": "社會面訪談"
+          "2": "社會面訪談",
+          "3": "議題盤點"
         }
       }
     },

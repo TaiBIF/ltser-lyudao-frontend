@@ -123,7 +123,8 @@
       }
     },
     "graphEmptyStateText": "There is no data available.",
-    "graphText": ""
+    "graphText": "",
+    "fetchingStateData": "Fetching data..."
   },
   "News": {
     "allTabBtn": "All",
@@ -358,7 +359,8 @@
       },
       "economy": {
         "title": {
-          "1": "Recreational Fisheries Survey"
+          "1": "Recreational Fisheries Survey",
+          "3": "Social Interviews"
         }
       }
     },
