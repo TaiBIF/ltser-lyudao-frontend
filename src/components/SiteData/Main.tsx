@@ -79,7 +79,9 @@ const Main = (props: MainProps) => {
           ) : (
             <Placeholder layout="inline" />
           )}
-          <EchartsChart item={item} I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
+          {contextData.sites && contextData.sites.length > 0 &&
+            <EchartsChart item={item} I18N_KEY_PREFIX={I18N_KEY_PREFIX} sites={contextData.sites}/>
+          }
         </div>
         <div className="data-searchbox">
           <Search
