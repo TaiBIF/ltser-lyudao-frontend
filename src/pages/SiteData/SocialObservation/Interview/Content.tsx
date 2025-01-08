@@ -8,26 +8,38 @@ import {
   FormikHelpers,
   useFormikContext,
 } from 'formik';
-
 import Banner from 'components/Banner';
 import Breadcrumb from 'components/Breadcrumb';
 import Title from 'components/SiteData/Title';
-
 import bannerImg from 'image/social_bn.png';
-
 import { BannerData } from 'types/common';
-
-
-
+import useRender from 'hooks/page/useRender';
 import {
-  interviewList,
   interviewTypeList,
   interviewTargetList,
 } from 'data/siteData';
 import { InterviewItem } from 'types/siteData';
 import FilterLayout from 'components/SiteData/Interview/FilterLayout';
+import Pagination from 'components/Pagination/Content';
+import usePage from 'hooks/utils/usePage';
+
+interface ParticipantType {
+  id: number;
+  title: string;
+}
+
+interface IssueType {
+  id: number;
+  title: string;
+}
 
 const Content = () => {
+  const {
+    currentPage,
+    setCurrentPage,
+    paginationData,
+    setPaginationData,
+  } = usePage();
   const location = useLocation();
   const { pathname } = location;
   const paths = pathname.split('/');
@@ -53,20 +65,24 @@ const Content = () => {
   };
 
   const [interviews, setInterviews] = useState<InterviewItem[]>([]);
+  const [participantType, setParticipantType] = useState<ParticipantType[]>([])
+  const [selectedParticipantType, setSelectedParticipantType] = useState<string | null>(null);
+  const [issueType, setIssueType] = useState<IssueType[]>([])
+  const [selectedIssueType, setSelectedIssueType] = useState<[] | null>([]);
+  const { getSocialObservationContent } = useRender();
 
   const handleSubmit = (
     values: Record<string, any>,
     { setSubmitting }: FormikHelpers<Record<string, any>>
   ) => {
-    const matchFilter = interviewList.filter((v) => {
-      const matchKeyword = v.title.includes(values.keyword);
-      const matchTarget =
-        values.target === '' || String(v.target) === values.target;
-      const matchTypes =
-        values.types.length === 0 || values.types.includes(String(v.type));
-      return matchKeyword && matchTarget && matchTypes;
-    });
-    setInterviews(matchFilter);
+    const selectedParticipant = participantType.find(
+      (type) => Number(values.target) === type.id
+    );
+
+    const selectedIssue = values.types.map((type: string) => issueType.find((issue) => Number(type) === issue.id)?.title)
+  
+    setSelectedParticipantType(selectedParticipant?.title || null);
+    setSelectedIssueType(selectedIssue || null);
     setSubmitting(false);
   };
 
@@ -76,8 +92,24 @@ const Content = () => {
   };
 
   useEffect(() => {
-    setInterviews([...interviewList]);
-  }, []);
+    const participantTypeParam = selectedParticipantType
+    ? `&participantType=${selectedParticipantType}`
+    : '';
+
+    const issueTypeParam = selectedIssueType
+    ? `&issueType=${selectedIssueType}`
+    : '';
+  
+    getSocialObservationContent({
+      url: `social_observation/social_interview?page=${currentPage}${participantTypeParam}${issueTypeParam}`,
+      setList: (responseData: { [key: string]: any }) => {
+        setInterviews(responseData.data);
+        setParticipantType(responseData.participant_types_result);
+        setIssueType(responseData.cap_issues_result);
+        setPaginationData(responseData.pagination);
+      },
+    });
+  }, [currentPage, selectedParticipantType, selectedIssueType]);
 
   useEffect(() => {
     if (mainBoxRef.current) {
@@ -104,6 +136,8 @@ const Content = () => {
                     <FilterLayout
                       isSubmitting={isSubmitting}
                       I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+                      participantType={participantType}
+                      issueType={issueType}
                     />
                   </Form>
                 )}
@@ -111,38 +145,32 @@ const Content = () => {
             </div>
             <ul className="soci-list">
               {interviews.map((v) => {
-                const { id, date, target, type, title, tags } = v;
-                const matchType = interviewTypeList.find(
-                  (v) => v.id === type
-                )?.title;
-                const matchTarget = interviewTargetList.find(
-                  (v) => v.id === target
-                )?.title;
+                const { id, time, dataID, text, tag, CAP_issue, participant_type } = v;
                 return (
                   <li key={id} style={{ width: '100%' }}>
                     <div className="datebox">
-                      {date}
+                      {time}
                       <div className="line" />
                     </div>
                     <div className="mb-1">
                       <small className="d-block text-muted">
-                        受訪對象: {matchTarget}
+                        受訪對象: {participant_type}
                       </small>
                       <small className="d-block text-muted">
-                        議題分類: {matchType}
+                        議題分類: {CAP_issue}
                       </small>
                     </div>
                     <Link
                       to={`/site-data/social-observation/social-interview-data/${id}`}
                       className="titlebox"
                     >
-                      {title}
+                      {dataID}
                     </Link>
                     <div className="tag-box">
-                      {tags.map((tag, i) => {
+                      {tag.map((t, i) => {
                         return (
                           <a key={i} role="button" className="tagitem">
-                            #{tag}
+                            #{t}
                           </a>
                         );
                       })}
@@ -151,6 +179,12 @@ const Content = () => {
                 );
               })}
             </ul>
+            <Pagination
+              scrollTargetRef={mainBoxRef}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              paginationData={paginationData}
+            />
           </div>
         </div>
       </div>

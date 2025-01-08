@@ -165,7 +165,13 @@ const useRender = () => {
       url: `${url}`,
     });
     if (result?.status === 'success') {
-      setList([...result.response.data]);
+      const data = result.response.data;
+    
+      if (Array.isArray(data)) {
+        setList([...data]); 
+      } else {
+        setList(data);
+      }
     }
   };
 

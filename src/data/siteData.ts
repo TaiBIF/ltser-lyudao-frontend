@@ -184,6 +184,11 @@ export const generateEconomyFishingAsideList = (): AsideItem[] => [
     title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.1`),
     link: 'fishing',
   },
+  {
+    id: 2,
+    title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.3`),
+    link: 'social-interview-data',
+  },
 ];
 
 // economyAsideList
@@ -261,7 +266,7 @@ export const generateEconomyDataAsideList = (): AsideItem[] => [
         link: 'government',
       },
     ],
-  },
+  }
 ];
 
 export const layoutAsideList: AsideItem[] = [
@@ -391,15 +396,14 @@ export const ecoResultList: EcoSearchItem[] = [
 
 export const interviewList: InterviewItem[] = [
   {
-    id: 1,
-    date: '2023-04',
-    tags: ['船舶', '公船', '飛機', '調降票價'],
-    type: 1,
-    image: newsImg,
-    target: 1,
-    title: 'issue-2023-1',
-    content:
-      '交通的話就是船舶部分，跟其實飛機班次也是一個問題，因為像小琉球因為比較近嘛，而且他們有公船，所以他們有正常的一個規定時間就是要開船，那像我們的話就是沒有，所以船公司說的算，那在飛機的部分可能就沒有辦法多做什麼調整，但是我覺得調整部分可以是班次增加之類的，或者是他可以調降票價的費用，然後讓大家可以來的時候是也可以在做小型的飛機進來這裡會比較舒服，因為畢竟船的話，浪大會比較不舒服，那坐飛機的話大概是15分鐘至20分鐘就會到達這裡。如果票價比較比較好一點的話，可能就會有更多人選擇進來這樣。',
+    id: 0,
+    dataID: '',
+    time: '',
+    text: '',
+    CAP_issue: '',
+    local_issue: '',
+    tag: ['船舶', '公船', '飛機', '調降票價'],
+    participant_type: ''
   },
 ];
 

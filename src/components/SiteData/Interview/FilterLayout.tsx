@@ -1,34 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { interviewTargetList, interviewTypeList } from 'data/siteData';
 import { Field, useFormikContext } from 'formik';
+import useRender from 'hooks/page/useRender';
 
 const FilterLayout = ({
   isSubmitting,
   I18N_KEY_PREFIX,
+  participantType,
+  issueType
 }: {
   isSubmitting: boolean;
   I18N_KEY_PREFIX: string;
+  participantType: { id: number; title: string }[];
+  issueType: { id: number; title: string }[];
 }) => {
   const { t } = useTranslation();
 
   const { values, setFieldValue } = useFormikContext();
+  const { getSocialObservationContent } = useRender();
 
   return (
     <>
       <div className="item-set2">
-        <div className="input-item">
-          <div className="title">
-            {t(`${I18N_KEY_PREFIX}.keywordLabel`)}
-            <div className="line" />
-          </div>
-          <Field
-            type="text"
-            name="keyword"
-            placeholder={t(`${I18N_KEY_PREFIX}.keywordText`)}
-          />
-        </div>
         <div className="input-item">
           <div className="title">
             {t(`${I18N_KEY_PREFIX}.targetLabel`)}
@@ -38,7 +33,7 @@ const FilterLayout = ({
             <option value="">
               {t(`${I18N_KEY_PREFIX}.targetDefaultOption`)}
             </option>
-            {interviewTargetList.map((v) => (
+            {participantType.map((v) => (
               <option key={v.id} value={v.id}>
                 {v.title}
               </option>
@@ -52,7 +47,7 @@ const FilterLayout = ({
           <div className="line" />
         </div>
         <div className="itembox">
-          {interviewTypeList.map((v) => (
+          {issueType.map((v) => (
             <label key={v.id} className="check-item">
               {v.title}
               <Field

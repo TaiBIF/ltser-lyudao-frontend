@@ -2670,7 +2670,9 @@
   @media #{$mobile} {
     margin-right: 15px;
     padding-left: 25px;
+    width: calc(45% - 10px);
   }
+  width: calc(18% - 10px);
 }
 /* Hide the browser's default checkbox */
 .check-item input {

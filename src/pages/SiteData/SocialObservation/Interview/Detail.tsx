@@ -11,6 +11,7 @@ import { interviewList } from 'data/siteData';
 import { InterviewItem } from 'types/siteData';
 import TagIcon from 'components/SiteData/Interview/TagIcon';
 import ActionBtns from 'components/SiteData/Interview/ActionBtns';
+import useRender from 'hooks/page/useRender';
 
 const Detail = () => {
   const bannerData: BannerData = {
@@ -20,26 +21,22 @@ const Detail = () => {
     bgImg: bannerImg,
   };
   const { interviewId } = useParams();
-  const [interviewData, setInterviewData] = useState<InterviewItem>({
-    id: 0,
-    date: '',
-    title: '',
-    content: '',
-    target: '',
-    type: 0,
-    image: '',
-    tags: [],
-  });
+  const [interviewData, setInterviewData] = useState<InterviewItem[]>([]);
 
-  const hasTags = interviewData.tags.length !== 0;
+  const { getSocialObservationContent } = useRender();
+
+  const [selectedInterview, setSelectedInterview] = useState<InterviewItem | null>(null);
 
   useEffect(() => {
-    const matchInterview =
-      interviewId && interviewList.find((v) => v.id === Number(interviewId));
-    if (matchInterview) {
-      setInterviewData({ ...matchInterview });
-    }
-  }, [interviewId]);
+    getSocialObservationContent({
+      url: `social_observation/social_interview?id=${interviewId}`,
+      setList: (responseData: { [key: string]: any }) => {
+        setSelectedInterview(responseData.data[0]);
+      },
+    });
+  }, [interviewId, interviewData]); 
+
+  const hasTags = selectedInterview && selectedInterview.tag.length !== 0;
 
   return (
     <>
@@ -51,10 +48,10 @@ const Detail = () => {
             <div className="news-de soci-de">
               <div className="title-area">
                 <div className="cat-date">
-                  <div className="date">{interviewData.date}</div>
+                  <div className="date">{selectedInterview && selectedInterview.time}</div>
                 </div>
                 <div className="news-title">
-                  <h2>{interviewData.title}</h2>
+                  <h2>{selectedInterview && selectedInterview.dataID}</h2>
                   <div className="greenline" />
                 </div>
               </div>
@@ -63,7 +60,7 @@ const Detail = () => {
                   <div className="icon">
                     <TagIcon />
                   </div>
-                  {interviewData.tags.map((v, i) => {
+                  {selectedInterview && selectedInterview.tag.map((v, i) => {
                     return (
                       <a key={i} href="/" className="tagitem">
                         #{v}
@@ -74,17 +71,10 @@ const Detail = () => {
               )}
               <div className="editer">
                 <p style={{ whiteSpace: 'pre-line' }}>
-                  {interviewData.content}
+                  {selectedInterview && selectedInterview.text}
                 </p>
                 <br />
                 <br />
-                {/*左右圖文*/}
-                <div className="flex-box">
-                  <p style={{ whiteSpace: 'pre-line' }}>
-                    {interviewData.content}
-                  </p>
-                  <img src={interviewData.image} alt="" />
-                </div>
               </div>
               <div className="btn-area">
                 <ActionBtns />
