@@ -113,11 +113,13 @@
     "dataEmptyStateText": "觀測資料鑑定中。",
     "Economy": {
       "Interview": {
-        "keywordLabel": "關鍵字",
+        "keywordLabel": "#關鍵字",
+        "contentKeywordLabel": "搜尋內文",
         "keywordText": "請輸入關鍵字",
         "targetLabel": "受訪對象",
         "targetDefaultOption": "選擇受訪對象",
-        "typeLabel": "議題分類",
+        "capIssueLabel": "CAP議題",
+        "localIssueLabel": "在地議題",
         "clearBtn": "清除",
         "submitBtn": "搜尋"
       }

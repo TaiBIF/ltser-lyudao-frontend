@@ -113,11 +113,13 @@
     "dataEmptyStateText": "There is no data available.",
     "Economy": {
       "Interview": {
-        "keywordLabel": "Keyword",
+        "keywordLabel": "#Keyword",
+        "contentKeywordLabel": "Search Content",
         "keywordText": "Enter Keyword",
         "targetLabel": "Interviewee",
         "targetDefaultOption": "Select Interviewee",
-        "typeLabel": "Issue Classification",
+        "capIssueLabel": "CAP Issue",
+        "localIssueLabel": "Local Issue",
         "clearBtn": "Clear",
         "submitBtn": "Search"
       }

@@ -31,6 +31,7 @@ interface ParticipantType {
 interface IssueType {
   id: number;
   title: string;
+  value: string;
 }
 
 const Content = () => {
@@ -60,15 +61,22 @@ const Content = () => {
 
   const initialValues = {
     keyword: '',
+    content: '',
     types: [],
     target: '',
+    capTypes: [], 
+    localTypes: [],
   };
 
   const [interviews, setInterviews] = useState<InterviewItem[]>([]);
   const [participantType, setParticipantType] = useState<ParticipantType[]>([])
   const [selectedParticipantType, setSelectedParticipantType] = useState<string | null>(null);
-  const [issueType, setIssueType] = useState<IssueType[]>([])
-  const [selectedIssueType, setSelectedIssueType] = useState<[] | null>([]);
+  const [capIssueType, setCapIssueType] = useState<IssueType[]>([])
+  const [localIssueType, setLocalIssueType] = useState<IssueType[]>([])
+  const [selectedCapIssueType, setSelectedCapIssueType] = useState<[] | null>([]);
+  const [selectedLocalIssueType, setSelectedLocalIssueType] = useState<[] | null>([]);
+  const [selectedKeyword, setSelectedKeyword] = useState<string>('');
+  const [selectedContent, setSelectedContent] = useState<string>('');
   const { getSocialObservationContent } = useRender();
 
   const handleSubmit = (
@@ -78,11 +86,14 @@ const Content = () => {
     const selectedParticipant = participantType.find(
       (type) => Number(values.target) === type.id
     );
-
-    const selectedIssue = values.types.map((type: string) => issueType.find((issue) => Number(type) === issue.id)?.title)
+    const selectedCapIssue = values.capTypes.map((type: string) => capIssueType.find((issue) => Number(type) === issue.id)?.value)
+    const selectedLocalIssue = values.localTypes.map((type: string) => localIssueType.find((issue) => Number(type) === issue.id)?.title)
   
     setSelectedParticipantType(selectedParticipant?.title || null);
-    setSelectedIssueType(selectedIssue || null);
+    setSelectedCapIssueType(selectedCapIssue || null);
+    setSelectedLocalIssueType(selectedLocalIssue || null);
+    // setSelectedKeyword(values.keyword);
+    setSelectedContent(values.content);
     setSubmitting(false);
   };
 
@@ -96,26 +107,43 @@ const Content = () => {
     ? `&participantType=${selectedParticipantType}`
     : '';
 
-    const issueTypeParam = selectedIssueType
-    ? `&issueType=${selectedIssueType}`
+    const capIssueTypeParam = selectedCapIssueType
+    ? `&capIssueType=${selectedCapIssueType}`
+    : '';
+
+    const localIssueTypeParam = selectedCapIssueType
+    ? `&localIssueType=${selectedLocalIssueType}`
+    : '';
+
+    // const keywordParam = selectedKeyword
+    // ? `&keyword=${selectedKeyword}`
+    // : '';
+
+    const contentParam = selectedContent
+    ? `&content=${selectedContent}`
     : '';
   
     getSocialObservationContent({
-      url: `social_observation/social_interview?page=${currentPage}${participantTypeParam}${issueTypeParam}`,
+      url: `social_observation/social_interview?page=${currentPage}${participantTypeParam}${capIssueTypeParam}${localIssueTypeParam}${contentParam}`,
       setList: (responseData: { [key: string]: any }) => {
         setInterviews(responseData.data);
         setParticipantType(responseData.participant_types_result);
-        setIssueType(responseData.cap_issues_result);
+        setCapIssueType(responseData.cap_issues_result);
+        setLocalIssueType(responseData.local_issues_result);
         setPaginationData(responseData.pagination);
       },
     });
-  }, [currentPage, selectedParticipantType, selectedIssueType]);
+  }, [currentPage, selectedParticipantType, selectedCapIssueType, selectedLocalIssueType, selectedKeyword, selectedContent]);
 
   useEffect(() => {
     if (mainBoxRef.current) {
       mainBoxRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [pathname]);
+
+  // const handleKeywordClick = (keyword:string) => {
+  //   setSelectedKeyword(keyword);
+  // };
 
   return (
     <>
@@ -137,7 +165,9 @@ const Content = () => {
                       isSubmitting={isSubmitting}
                       I18N_KEY_PREFIX={I18N_KEY_PREFIX}
                       participantType={participantType}
-                      issueType={issueType}
+                      capIssueType={capIssueType}
+                      localIssueType={localIssueType}
+                      selectedKeyword={selectedKeyword}
                     />
                   </Form>
                 )}
@@ -145,7 +175,7 @@ const Content = () => {
             </div>
             <ul className="soci-list">
               {interviews.map((v) => {
-                const { id, time, dataID, text, tag, CAP_issue, participant_type } = v;
+                const { id, time, dataID, tag, CAP_issue, local_issue, participant_type } = v;
                 return (
                   <li key={id} style={{ width: '100%' }}>
                     <div className="datebox">
@@ -157,7 +187,10 @@ const Content = () => {
                         受訪對象: {participant_type}
                       </small>
                       <small className="d-block text-muted">
-                        議題分類: {CAP_issue}
+                        CAP議題: {CAP_issue}
+                      </small>
+                      <small className="d-block text-muted">
+                        在地議題: {local_issue}
                       </small>
                     </div>
                     <Link
@@ -169,7 +202,9 @@ const Content = () => {
                     <div className="tag-box">
                       {tag.map((t, i) => {
                         return (
-                          <a key={i} role="button" className="tagitem">
+                          <a key={i} className="tagitem" 
+                            // onClick={() => handleKeywordClick(t)}
+                          >
                             #{t}
                           </a>
                         );
