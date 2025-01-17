@@ -45,6 +45,7 @@ const Content = () => {
   const { pathname } = location;
   const paths = pathname.split('/');
   const mainBoxRef = useRef<HTMLDivElement>(null);
+  const sociListRef = useRef(null);
 
   const PAGE_NAME = 'SiteData';
   const COMPONENT_NAME = 'Economy';
@@ -168,12 +169,13 @@ const Content = () => {
                       capIssueType={capIssueType}
                       localIssueType={localIssueType}
                       selectedKeyword={selectedKeyword}
+                      scrollTargetRef={sociListRef}
                     />
                   </Form>
                 )}
               </Formik>
             </div>
-            <ul className="soci-list">
+            <ul className="soci-list" ref={sociListRef}>
               {interviews.map((v) => {
                 const { id, time, dataID, tag, CAP_issue, local_issue, participant_type } = v;
                 return (

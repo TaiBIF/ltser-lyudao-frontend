@@ -62,7 +62,7 @@ const Detail = () => {
                   </div>
                   {selectedInterview && selectedInterview.tag.map((v, i) => {
                     return (
-                      <a key={i} href="/" className="tagitem">
+                      <a key={i} className="tagitem">
                         #{v}
                       </a>
                     );
@@ -70,6 +70,9 @@ const Detail = () => {
                 </div>
               )}
               <div className="editer">
+                <p>受訪對象：{selectedInterview && selectedInterview.participant_type}</p>
+                <p>CAP議題：{selectedInterview && selectedInterview.CAP_issue}</p>
+                <p style={{ marginBottom: 20 }}>在地議題：{selectedInterview && selectedInterview.local_issue}</p>
                 <p style={{ whiteSpace: 'pre-line' }}>
                   {selectedInterview && selectedInterview.text}
                 </p>

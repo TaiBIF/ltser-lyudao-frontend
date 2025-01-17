@@ -12,6 +12,7 @@ const FilterLayout = ({
   capIssueType,
   localIssueType,
   selectedKeyword,
+  scrollTargetRef
 }: {
   isSubmitting: boolean;
   I18N_KEY_PREFIX: string;
@@ -19,10 +20,27 @@ const FilterLayout = ({
   capIssueType: { id: number; title: string; value: string }[];
   localIssueType: { id: number; title: string }[];
   selectedKeyword: string;
+  scrollTargetRef?: any;
 }) => {
   const { t } = useTranslation();
 
   const { values, setFieldValue } = useFormikContext();
+
+  const handlePageScroll = () => {
+    const navbar = document.querySelector(".header") as HTMLElement;
+    const navbarHeight = navbar ? navbar.offsetHeight + 20 : 0;
+
+    if (scrollTargetRef.current) {
+      const elementRect = scrollTargetRef.current.getBoundingClientRect();
+      const absolutePosition = window.scrollY + elementRect.top; 
+      const offsetPosition = absolutePosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth", 
+      });
+    }
+  };
 
   // useEffect(() => {
   //   setFieldValue('keyword', selectedKeyword);
@@ -118,7 +136,7 @@ const FilterLayout = ({
         <button className="clearall" type="reset">
           {t(`${I18N_KEY_PREFIX}.clearBtn`)}
         </button>
-        <button className="searchall" type="submit">
+        <button className="searchall" type="submit" onClick={handlePageScroll}>
           {t(`${I18N_KEY_PREFIX}.submitBtn`)}
         </button>
       </div>
