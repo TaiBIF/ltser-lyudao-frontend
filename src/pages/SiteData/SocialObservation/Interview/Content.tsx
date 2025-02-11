@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
+import { styled } from '@mui/system';
+
 import {
   Field,
   Form,
@@ -14,10 +17,6 @@ import Title from 'components/SiteData/Title';
 import bannerImg from 'image/social_bn.png';
 import { BannerData } from 'types/common';
 import useRender from 'hooks/page/useRender';
-import {
-  interviewTypeList,
-  interviewTargetList,
-} from 'data/siteData';
 import { InterviewItem } from 'types/siteData';
 import FilterLayout from 'components/SiteData/Interview/FilterLayout';
 import Pagination from 'components/Pagination/Content';
@@ -35,12 +34,8 @@ interface IssueType {
 }
 
 const Content = () => {
-  const {
-    currentPage,
-    setCurrentPage,
-    paginationData,
-    setPaginationData,
-  } = usePage();
+  const { currentPage, setCurrentPage, paginationData, setPaginationData } =
+    usePage();
   const location = useLocation();
   const { pathname } = location;
   const paths = pathname.split('/');
@@ -65,17 +60,28 @@ const Content = () => {
     content: '',
     types: [],
     target: '',
-    capTypes: [], 
+    capTypes: [],
     localTypes: [],
   };
 
   const [interviews, setInterviews] = useState<InterviewItem[]>([]);
-  const [participantType, setParticipantType] = useState<ParticipantType[]>([])
-  const [selectedParticipantType, setSelectedParticipantType] = useState<string | null>(null);
-  const [capIssueType, setCapIssueType] = useState<IssueType[]>([])
-  const [localIssueType, setLocalIssueType] = useState<IssueType[]>([])
-  const [selectedCapIssueType, setSelectedCapIssueType] = useState<[] | null>([]);
-  const [selectedLocalIssueType, setSelectedLocalIssueType] = useState<[] | null>([]);
+  const [participantType, setParticipantType] = useState<ParticipantType[]>([]);
+  const [selectedParticipantType, setSelectedParticipantType] = useState<
+    string | null
+  >(null);
+  const [capIssueType, setCapIssueType] = useState<IssueType[]>([]);
+  const [localIssueType, setLocalIssueType] = useState<IssueType[]>([]);
+  const [selectedCapIssueType, setSelectedCapIssueType] = useState<string[]>(
+    []
+  );
+  const [selectedLocalIssueType, setSelectedLocalIssueType] = useState<
+    string[]
+  >([]);
+  const [selectedLocalIssueTypeTitle, setSelectedLocalIssueTypeTitle] =
+    useState<string[]>([]);
+  const [selectedCapIssueTypeTitle, setSelectedCapIssueTypeTitle] = useState<
+    string[]
+  >([]);
   const [selectedKeyword, setSelectedKeyword] = useState<string>('');
   const [selectedContent, setSelectedContent] = useState<string>('');
   const { getSocialObservationContent } = useRender();
@@ -85,11 +91,18 @@ const Content = () => {
     { setSubmitting }: FormikHelpers<Record<string, any>>
   ) => {
     const selectedParticipant = participantType.find(
-      (type) => Number(values.target) === type.id
+      (type) => values.target === type.title
     );
-    const selectedCapIssue = values.capTypes.map((type: string) => capIssueType.find((issue) => Number(type) === issue.id)?.value)
-    const selectedLocalIssue = values.localTypes.map((type: string) => localIssueType.find((issue) => Number(type) === issue.id)?.title)
-  
+    const selectedCapIssue = values.capTypes.map(
+      (type: string) =>
+        capIssueType.find((issue) => type === issue.title)?.value
+    );
+    const selectedLocalIssue = values.localTypes.map(
+      (type: string) =>
+        localIssueType.find((issue) => type === issue.title)?.title
+    );
+    console.log(selectedLocalIssue);
+
     setSelectedParticipantType(selectedParticipant?.title || null);
     setSelectedCapIssueType(selectedCapIssue || null);
     setSelectedLocalIssueType(selectedLocalIssue || null);
@@ -103,29 +116,42 @@ const Content = () => {
     onSubmit: handleSubmit,
   };
 
+  const CustomTooltip = styled(
+    ({ className, ...props }: TooltipProps & { className?: string }) => (
+      <Tooltip {...props} arrow classes={{ popper: className }} />
+    )
+  )(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: 'rgba(32, 61, 51, 0.8)',
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: 'rgba(32, 61, 51, 0.8)',
+      color: '#fff',
+      fontSize: '14px',
+      padding: '5px 10px',
+      borderRadius: '5px',
+    },
+  }));
+
   useEffect(() => {
     const participantTypeParam = selectedParticipantType
-    ? `&participantType=${selectedParticipantType}`
-    : '';
+      ? `&participantType=${selectedParticipantType}`
+      : '';
 
     const capIssueTypeParam = selectedCapIssueType
-    ? `&capIssueType=${selectedCapIssueType}`
-    : '';
+      ? `&capIssueType=${selectedCapIssueType}`
+      : '';
 
     const localIssueTypeParam = selectedCapIssueType
-    ? `&localIssueType=${selectedLocalIssueType}`
-    : '';
+      ? `&localIssueType=${selectedLocalIssueType}`
+      : '';
 
-    // const keywordParam = selectedKeyword
-    // ? `&keyword=${selectedKeyword}`
-    // : '';
+    const keywordParam = selectedKeyword ? `&keyword=${selectedKeyword}` : '';
 
-    const contentParam = selectedContent
-    ? `&content=${selectedContent}`
-    : '';
-  
+    const contentParam = selectedContent ? `&content=${selectedContent}` : '';
+
     getSocialObservationContent({
-      url: `social_observation/social_interview?page=${currentPage}${participantTypeParam}${capIssueTypeParam}${localIssueTypeParam}${contentParam}`,
+      url: `social_observation/social_interview?page=${currentPage}${participantTypeParam}${capIssueTypeParam}${localIssueTypeParam}${contentParam}${keywordParam}`,
       setList: (responseData: { [key: string]: any }) => {
         setInterviews(responseData.data);
         setParticipantType(responseData.participant_types_result);
@@ -134,7 +160,14 @@ const Content = () => {
         setPaginationData(responseData.pagination);
       },
     });
-  }, [currentPage, selectedParticipantType, selectedCapIssueType, selectedLocalIssueType, selectedKeyword, selectedContent]);
+  }, [
+    currentPage,
+    selectedParticipantType,
+    selectedCapIssueType,
+    selectedLocalIssueType,
+    selectedKeyword,
+    selectedContent,
+  ]);
 
   useEffect(() => {
     if (mainBoxRef.current) {
@@ -142,21 +175,35 @@ const Content = () => {
     }
   }, [pathname]);
 
-  // const handleKeywordClick = (keyword:string) => {
-  //   setSelectedKeyword(keyword);
-  // };
+  const handleKeywordClick = (keyword: string) => {
+    setSelectedKeyword(keyword); // 觸發 getSocialObservationContent
+  };
+
+  const handleLocalIssueBtnClick = (issue: string) => {
+    setSelectedLocalIssueType([issue]); // 觸發 getSocialObservationContent
+    setSelectedLocalIssueTypeTitle([issue]); // 傳遞給 FilterLayout 渲染搜尋框
+  };
+
+  const handleCapIssueBtnClick = (issue: string, title: string) => {
+    setSelectedCapIssueType([issue]); // 觸發 getSocialObservationContent
+    setSelectedCapIssueTypeTitle([title]); // 傳遞給 FilterLayout 渲染搜尋框
+  };
+
+  const handleParticipantBtnClick = (participant: string) => {
+    setSelectedParticipantType(participant); // 觸發 getSocialObservationContent
+  };
 
   return (
     <>
       <div className="innbox">
         <Banner data={bannerData} />
-        <Breadcrumb ref={mainBoxRef}/>
+        <Breadcrumb ref={mainBoxRef} />
         <div className="contentbox gray-bg">
           <div className="main-box">
             <Title
-            paths={paths}
-            url='https://data.depositar.io/zh_Hant_TW/dataset/ltser-lyudao-issue'
-            PAGE_NAME={PAGE_NAME}
+              paths={paths}
+              url="https://data.depositar.io/zh_Hant_TW/dataset/ltser-lyudao-issue"
+              PAGE_NAME={PAGE_NAME}
             />
             <div className="chose-itembox">
               <Formik {...formikConfig}>
@@ -168,8 +215,12 @@ const Content = () => {
                       participantType={participantType}
                       capIssueType={capIssueType}
                       localIssueType={localIssueType}
+                      setSelectedKeyword={setSelectedKeyword}
                       selectedKeyword={selectedKeyword}
                       scrollTargetRef={sociListRef}
+                      selectedLocalIssueTypeTitle={selectedLocalIssueTypeTitle}
+                      selectedCapIssueTypeTitle={selectedCapIssueTypeTitle}
+                      selectedParticipantType={selectedParticipantType}
                     />
                   </Form>
                 )}
@@ -177,42 +228,109 @@ const Content = () => {
             </div>
             <ul className="soci-list" ref={sociListRef}>
               {interviews.map((v) => {
-                const { id, time, dataID, tag, CAP_issue, local_issue, participant_type } = v;
+                const {
+                  id,
+                  time,
+                  dataID,
+                  tag,
+                  cap_issue_detail,
+                  local_issue,
+                  participant_type,
+                  short_text,
+                } = v;
+                const renderedParticipantType = (
+                  <span
+                    className="issue-label"
+                    onClick={() => handleParticipantBtnClick(participant_type)}
+                  >
+                    {participant_type}
+                  </span>
+                );
+                const renderedLocalIssue = local_issue
+                  .split(';')
+                  .map((issue, index, array) => (
+                    <span className="issue-btn" key={index}>
+                      <span
+                        className="issue-label"
+                        onClick={() => handleLocalIssueBtnClick(issue)}
+                      >
+                        {issue}
+                      </span>
+                      {index < array.length - 1 && '｜'}
+                    </span>
+                  ));
+                const renderedCapIssue = cap_issue_detail.map(
+                  (issue, index, array) => (
+                    <span className="issue-btn" key={index}>
+                      <span
+                        className="issue-label"
+                        onClick={() =>
+                          handleCapIssueBtnClick(
+                            issue.raw_issue,
+                            issue.mapped_issue
+                          )
+                        }
+                      >
+                        {issue.mapped_issue}
+                      </span>
+                      {index < array.length - 1 && '｜'}
+                    </span>
+                  )
+                );
                 return (
-                  <li key={id} style={{ width: '100%' }}>
-                    <div className="datebox">
-                      {time}
-                      <div className="line" />
-                    </div>
-                    <div className="mb-1">
-                      <small className="d-block text-muted">
-                        受訪對象: {participant_type}
-                      </small>
-                      <small className="d-block text-muted">
-                        CAP議題: {CAP_issue}
-                      </small>
-                      <small className="d-block text-muted">
-                        在地議題: {local_issue}
-                      </small>
-                    </div>
-                    <Link
-                      to={`/site-data/social-observation/social-interview-data/${id}`}
-                      className="titlebox"
-                    >
-                      {dataID}
-                    </Link>
-                    <div className="tag-box">
-                      {tag.map((t, i) => {
-                        return (
-                          <a key={i} className="tagitem" 
-                            // onClick={() => handleKeywordClick(t)}
-                          >
-                            #{t}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </li>
+                  <CustomTooltip key={id} title={short_text} followCursor>
+                    <li key={id} style={{ width: '100%' }}>
+                      <Link
+                        to={`/site-data/social-observation/social-interview-data/${id}`}
+                        className="titlebox"
+                      >
+                        {dataID}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill="none"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M13.5 10.5L21 3m-5 0h5v5m0 6v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"
+                          />
+                        </svg>
+                      </Link>
+                      <div className="datebox">
+                        {time}
+                        <div className="line" />
+                      </div>
+                      <div className="mb-1">
+                        <small className="d-block text-muted interview-sub-title">
+                          受訪對象：{renderedParticipantType}
+                        </small>
+                        <small className="d-block text-muted interview-sub-title">
+                          CAP議題：{renderedCapIssue}
+                        </small>
+                        <small className="d-block text-muted interview-sub-title">
+                          在地議題：{renderedLocalIssue}
+                        </small>
+                      </div>
+                      <div className="tag-box">
+                        {tag.map((t, i) => {
+                          return (
+                            <a
+                              key={i}
+                              className="tagitem"
+                              onClick={() => handleKeywordClick(t)}
+                            >
+                              #{t}
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </li>
+                  </CustomTooltip>
                 );
               })}
             </ul>

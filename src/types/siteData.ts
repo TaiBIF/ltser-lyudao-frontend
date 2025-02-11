@@ -26,13 +26,15 @@ export type SelectItem = {
 
 export type InterviewItem = {
   id?: number | string;
-  dataID: string,
+  dataID: string;
   time: string;
   text: string;
+  cap_issue_detail: [{ [key: string]: string }];
   CAP_issue: string;
   local_issue: string;
   tag: string[];
   participant_type: string;
+  short_text: string;
 };
 
 export type CategoryItem = {

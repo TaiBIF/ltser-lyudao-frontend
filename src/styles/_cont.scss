@@ -1202,12 +1202,45 @@
         background: url('../image/select-ar.svg') center right 20px no-repeat;
       }
     }
+    .interview-input-item {
+      width: calc(50% - 10px);
+      margin-bottom: 10px;
+      @media #{$mobile} {
+        width: 100%;
+      }
+      .title {
+        color: #555;
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      input,
+      select {
+        display: block;
+        width: 100%;
+        height: 50px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 0px 15px;
+        font-size: 16px;
+      }
+      select {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background: url('../image/select-ar.svg') center right 20px no-repeat;
+      }
+    }
     .check-itembox {
       margin-bottom: 20px;
       .title {
         color: #555;
         margin-bottom: 10px;
-        font-size: 18px;
+        font-size: 24px;
         font-weight: bold;
         position: relative;
         display: inline-block;
@@ -1223,6 +1256,70 @@
       .itembox {
         display: flex;
         flex-wrap: wrap;
+      }
+    }
+    .interview-check-itembox {
+      margin-bottom: 20px;
+      .title {
+        color: #555;
+        margin-top: 30px;
+        font-size: 24px;
+        font-weight: bold;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .title-comment {
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        color: #777;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .itembox {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 20px;
+        @media #{$pad} {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @media #{$mobile} {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    }
+    .interview-local-issue-check-itembox {
+      margin-bottom: 20px;
+      .title {
+        color: #555;
+        margin-top: 30px;
+        font-size: 24px;
+        font-weight: bold;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .title-comment {
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        color: #777;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .itembox {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 20px;
+        @media #{$pad} {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @media #{$mobile} {
+          grid-template-columns: repeat(1, 1fr);
+        }
       }
     }
     .send-btnarea {
@@ -1278,6 +1375,7 @@
       margin-bottom: 30px;
     }
     li {
+      position: relative;
       background: #fff;
       border-radius: 30px;
       padding: 20px;
@@ -1315,7 +1413,7 @@
         }
       }
       .titlebox {
-        font-size: 18px;
+        font-size: 22px;
         line-height: 30px;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -1323,26 +1421,53 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
         margin-bottom: 10px;
+        position: relative;
+        text-decoration: underline;
         @include bg_change(0.3s);
         &:hover {
           color: $col-green;
           @include bg_change(0.3s);
         }
+        svg {
+          width: 14px;
+          position: absolute;
+        }
       }
+    }
+    .issue-label {
+      color: #555;
+      font-size: 14px;
+      background-color: #edf4f2;
+      border-radius: 40px;
+      padding: 5px 10px;
+      &:hover {
+        cursor: pointer;
+        color: #fff;
+        background-color: $col-green;
+        transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+      }
+    }
+    .interview-sub-title {
+      margin-top: 6px;
     }
   }
   .tag-box {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    margin-top: 30px;
     a {
       margin-right: 10px;
       display: block;
       padding: 5px 10px;
-      font-size: 16px;
-      color: #888;
+      font-size: 14px;
+      color: #555;
       line-height: 25px;
-      background: #f7f7f7;
+      border: 1px solid #555;
       border-radius: 40px;
       @include bg_change(0.3s);
       @media #{$mobile} {
@@ -1351,8 +1476,10 @@
       }
       &:hover {
         background: $col-green;
+        border: 1px solid $col-green;
         color: #ffffff;
         @include bg_change(0.3s);
+        cursor: pointer;
       }
     }
   }
@@ -2656,7 +2783,8 @@
 .check-item {
   display: block;
   position: relative;
-  padding-left: 30px;
+  // padding-left: 30px;
+  padding: 15px;
   cursor: pointer;
   font-size: 16px;
   line-height: 20px;
@@ -2664,16 +2792,30 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  margin-right: 20px;
+  // margin-right: 20px;
   color: #555;
   margin-bottom: 10px;
-  @media #{$mobile} {
-    margin-right: 15px;
-    padding-left: 25px;
-    width: calc(45% - 10px);
-  }
-  width: calc(18% - 10px);
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+
+  // @media #{$mobile} {
+  //   margin-right: 15px;
+  //   padding-left: 25px;
+  //   width: calc(45% - 10px);
+  // }
+  // width: calc(18% - 10px);
 }
+
+.check-item:hover {
+  background-color: #edf4f2;
+  // background-color: #f7f7f7;
+}
+
 /* Hide the browser's default checkbox */
 .check-item input {
   position: absolute;
@@ -2684,19 +2826,21 @@
 }
 /* Create a custom checkbox */
 .checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  position: relative;
   height: 20px;
   width: 20px;
   background-color: #fff;
   border-radius: 3px;
   border: 1px solid #ddd;
 }
+
 /* On mouse-over, add a grey background color */
-.check-item:hover input ~ .checkmark {
-  border: 1px solid $col-green;
-}
+// .check-item:hover input ~ .checkmark {
+//   border: 1px solid $col-green;
+// }
 /* When the checkbox is checked, add a blue background */
 .check-item input:checked ~ .checkmark {
   background-color: $col-green;
@@ -2925,4 +3069,9 @@
       text-align: right;
     }
   }
+}
+
+.interview-tooltip {
+  border-radius: 40px !important;
+  font-size: 14px !important;
 }

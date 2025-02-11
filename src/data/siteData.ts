@@ -266,7 +266,7 @@ export const generateEconomyDataAsideList = (): AsideItem[] => [
         link: 'government',
       },
     ],
-  }
+  },
 ];
 
 export const layoutAsideList: AsideItem[] = [
@@ -400,10 +400,12 @@ export const interviewList: InterviewItem[] = [
     dataID: '',
     time: '',
     text: '',
+    cap_issue_detail: [{ raw_issue: '', mapped_issue: '' }],
     CAP_issue: '',
     local_issue: '',
     tag: ['船舶', '公船', '飛機', '調降票價'],
-    participant_type: ''
+    participant_type: '',
+    short_text: '',
   },
 ];
 

@@ -25,7 +25,8 @@ const Detail = () => {
 
   const { getSocialObservationContent } = useRender();
 
-  const [selectedInterview, setSelectedInterview] = useState<InterviewItem | null>(null);
+  const [selectedInterview, setSelectedInterview] =
+    useState<InterviewItem | null>(null);
 
   useEffect(() => {
     getSocialObservationContent({
@@ -34,7 +35,7 @@ const Detail = () => {
         setSelectedInterview(responseData.data[0]);
       },
     });
-  }, [interviewId, interviewData]); 
+  }, [interviewId, interviewData]);
 
   const hasTags = selectedInterview && selectedInterview.tag.length !== 0;
 
@@ -48,7 +49,9 @@ const Detail = () => {
             <div className="news-de soci-de">
               <div className="title-area">
                 <div className="cat-date">
-                  <div className="date">{selectedInterview && selectedInterview.time}</div>
+                  <div className="date">
+                    {selectedInterview && selectedInterview.time}
+                  </div>
                 </div>
                 <div className="news-title">
                   <h2>{selectedInterview && selectedInterview.dataID}</h2>
@@ -60,19 +63,27 @@ const Detail = () => {
                   <div className="icon">
                     <TagIcon />
                   </div>
-                  {selectedInterview && selectedInterview.tag.map((v, i) => {
-                    return (
-                      <a key={i} className="tagitem">
-                        #{v}
-                      </a>
-                    );
-                  })}
+                  {selectedInterview &&
+                    selectedInterview.tag.map((v, i) => {
+                      return (
+                        <a key={i} className="tagitem">
+                          #{v}
+                        </a>
+                      );
+                    })}
                 </div>
               )}
               <div className="editer">
-                <p>受訪對象：{selectedInterview && selectedInterview.participant_type}</p>
-                <p>CAP議題：{selectedInterview && selectedInterview.CAP_issue}</p>
-                <p style={{ marginBottom: 20 }}>在地議題：{selectedInterview && selectedInterview.local_issue}</p>
+                <p>
+                  受訪對象：
+                  {selectedInterview && selectedInterview.participant_type}
+                </p>
+                <p>
+                  CAP議題：{selectedInterview && selectedInterview.CAP_issue}
+                </p>
+                <p style={{ marginBottom: 20 }}>
+                  在地議題：{selectedInterview && selectedInterview.local_issue}
+                </p>
                 <p style={{ whiteSpace: 'pre-line' }}>
                   {selectedInterview && selectedInterview.text}
                 </p>
