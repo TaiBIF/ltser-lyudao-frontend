@@ -191,7 +191,7 @@ export const generateHeaderMenuList = (): HeaderMenuItem[] => [
           {
             id: 1,
             title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
-            link: 'social-economy-data',
+            link: 'memorabilia',
           },
           {
             id: 2,
@@ -202,6 +202,46 @@ export const generateHeaderMenuList = (): HeaderMenuItem[] => [
             id: 3,
             title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialInterviewData`),
             link: 'social-interview-data',
+          },
+          {
+            id: 4,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
+            link: 'land-usage',
+          },
+          {
+            id: 5,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
+            link: 'ocean-usage',
+          },
+          {
+            id: 6,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
+            link: 'temporal-variation',
+          },
+          {
+            id: 7,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
+            link: 'population',
+          },
+          {
+            id: 8,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
+            link: 'industry',
+          },
+          {
+            id: 9,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
+            link: 'books',
+          },
+          {
+            id: 10,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
+            link: 'researches',
+          },
+          {
+            id: 11,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.socialEconomyData`),
+            link: 'government',
           },
         ],
       },
@@ -227,7 +267,7 @@ export const generateHeaderMenuList = (): HeaderMenuItem[] => [
     title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.formLink`),
     link: 'form-link',
     show: 'auth',
-    requiredGroup: ['staff', 'superuser']
+    requiredGroup: ['staff', 'superuser'],
   },
 ];
 

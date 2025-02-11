@@ -23,7 +23,6 @@ const Content = (props: ContentProps) => {
     setActive(!active);
   };
 
-
   return (
     <>
       <div className="left-mainmenu" style={{ overflow: 'visible' }}>
