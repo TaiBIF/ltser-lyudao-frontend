@@ -196,73 +196,69 @@ export const generateEconomyFishingAsideList = (): AsideItem[] => [
 export const generateEconomyDataAsideList = (): AsideItem[] => [
   {
     id: 1,
-    title: '綠島時間表',
-    link: 'memorabilia',
+    title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.1`),
     list: [
       {
         id: 1,
-        title: '時間表',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.1_1`),
         link: 'memorabilia',
       },
     ],
   },
   {
     id: 2,
-    title: '土地與海域利用',
-    link: 'land-ocean-usage',
+    title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.2`),
     list: [
       {
         id: 1,
-        title: '土地利用',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.2_1`),
         link: 'land-usage',
       },
       {
         id: 2,
-        title: '海域利用',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.2_2`),
         link: 'ocean-usage',
       },
       {
         id: 3,
-        title: '綠島土地與海域利用的時節變化',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.2_3`),
         link: 'temporal-variation',
       },
     ],
   },
   {
     id: 3,
-    title: '外部資料介接',
-    link: 'external-data',
+    title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.3`),
     list: [
       {
         id: 1,
-        title: '人口結構',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.3_1`),
         link: 'population',
       },
       {
         id: 2,
-        title: '產業結構',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.3_2`),
         link: 'industry',
       },
     ],
   },
   {
     id: 4,
-    title: '文史資料彙整',
-    link: 'literature-data',
+    title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.4`),
     list: [
       {
         id: 1,
-        title: '書籍',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.4_1`),
         link: 'books',
       },
       {
         id: 2,
-        title: '研究文獻',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.4_2`),
         link: 'researches',
       },
       {
         id: 2,
-        title: '政府文獻',
+        title: i18n.t(`${I18N_KEY_PREFIX}.social_economy.title.4_3`),
         link: 'government',
       },
     ],

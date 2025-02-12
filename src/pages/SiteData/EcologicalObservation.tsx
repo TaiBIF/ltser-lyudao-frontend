@@ -53,8 +53,8 @@ const EcologicalObservation = () => {
   return (
     <>
       <div className="innbox">
-        <Banner data={bannerData}/>
-        <Breadcrumb ref={mainBoxRef}/>
+        <Banner data={bannerData} />
+        <Breadcrumb ref={mainBoxRef} />
         <div className="contentbox">
           <div className="main-box">
             <div className="observation-box">

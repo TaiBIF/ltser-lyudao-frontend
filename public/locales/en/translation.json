@@ -364,6 +364,23 @@
           "1": "Recreational Fisheries Survey",
           "3": "Social Interviews"
         }
+      },
+      "social_economy": {
+        "title": {
+          "1": "Green Island Timetable",
+          "1_1": "Timetable",
+          "2": "Land & Marine Use",
+          "2_1": "Land Use",
+          "2_2": "Marine Use",
+          "2_3": "Seasonal Changes in Land & Marine Use",
+          "3": "External Data Integration",
+          "3_1": "Population Structure",
+          "3_2": "Industry Structure",
+          "4": "Historical & Cultural Records",
+          "4_1": "Books",
+          "4_2": "Research Papers",
+          "4_3": "Government Documents"
+        }
       }
     },
     "contact": {

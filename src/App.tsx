@@ -20,7 +20,6 @@ import NewsDetail from 'pages/News/Detail';
 import QA from 'pages/QA';
 import InterviewContent from 'pages/SiteData/SocialObservation/Interview/Content';
 import InterviewDetail from 'pages/SiteData/SocialObservation/Interview/Detail';
-import Economy from 'components/SiteData/SocialEconomyData/Page/Population';
 import SocialObservation from 'pages/SiteData/SocialObservation/SocialObservation';
 
 import Dashboard from 'components/Dashboard/Template/Dashboard';
@@ -175,26 +174,26 @@ function App() {
                   path="/site-data/social-observation/social-interview-data/:interviewId"
                   element={<InterviewDetail />}
                 />
-                <Route
-                  path="/site-data/social-observation/memorabilia"
+                {/* <Route
+                  path="/site-data/social-observation/social-economy/memorabilia"
                   element={<SocialObservation content={<Memorabilia />} />}
                 />
                 <Route
-                  path="/site-data/social-observation/land-usage"
+                  path="/site-data/social-observation/social-economy/land-usage"
                   element={<SocialObservation content={<LandUsage />} />}
                 />
                 <Route
-                  path="/site-data/social-observation/ocean-usage"
+                  path="/site-data/social-observation/social-economy/ocean-usage"
                   element={<SocialObservation content={<OceanUsage />} />}
                 />
                 <Route
-                  path="/site-data/social-observation/temporal-variation"
+                  path="/site-data/social-observation/social-economy/temporal-variation"
                   element={
                     <SocialObservation content={<TemporalVariation />} />
                   }
                 />
                 <Route
-                  path="/site-data/social-observation/population"
+                  path="/site-data/social-observation/social-economy/population"
                   element={
                     <PopulationProvider>
                       <SocialObservation content={<Economy />} />
@@ -202,23 +201,23 @@ function App() {
                   }
                 />
                 <Route
-                  path="/site-data/social-observation/industry"
+                  path="/site-data/social-observation/social-economy/industry"
                   element={<SocialObservation content={<Industry />} />}
                 />
                 <Route
-                  path="/site-data/social-observation/books"
+                  path="/site-data/social-observation/social-economy/books"
                   element={<SocialObservation content={<Books />} />}
                 />
                 <Route
-                  path="/site-data/social-observation/researches"
+                  path="/site-data/social-observation/social-economy/researches"
                   element={<SocialObservation content={<Researches />} />}
                 />
                 <Route
-                  path="/site-data/social-observation/government"
+                  path="/site-data/social-observation/social-economy/government"
                   element={<SocialObservation content={<Government />} />}
                 />
                 <Route
-                  path="/site-data/social-observation/fishing"
+                  path="/site-data/social-observation/social-economy/fishing"
                   element={
                     <SiteDataProvider>
                       <SurveyMapProvider>
@@ -230,15 +229,16 @@ function App() {
                       </SurveyMapProvider>
                     </SiteDataProvider>
                   }
+                /> */}
+                <Route
+                  path="/site-data/social-observation/socioeconomic-data/"
+                  element={<SocialObservation />}
                 />
                 <Route
-                  path="/site-data/social-observation/:dataId"
-                  element={
-                    <PopulationProvider>
-                      <SocialObservation content={<Economy />} />
-                    </PopulationProvider>
-                  }
+                  path="/site-data/social-observation/socioeconomic-data/:dataId"
+                  element={<SocialObservation />}
                 />
+
                 <Route path="/reset-password" element={<ResetPsw />} />
                 <Route path="/verify-email" element={<VerifyEmail />} />
                 <Route
