@@ -362,7 +362,8 @@
       "economy": {
         "title": {
           "1": "Recreational Fisheries Survey",
-          "3": "Social Interviews"
+          "3": "Social Interviews",
+          "3_1": "Social Interviews"
         }
       },
       "social_economy": {

@@ -49,7 +49,6 @@ const SocialObservation = () => {
     );
 
   useEffect(() => {
-    console.log(asideList);
     if (!dataId && !isFetchingAsideList) {
       const matchAsideFirstItem = asideList[0].list
         ? asideList[0].list[0].link

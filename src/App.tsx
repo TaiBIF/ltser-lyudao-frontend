@@ -174,50 +174,22 @@ function App() {
                   path="/site-data/social-observation/social-interview-data/:interviewId"
                   element={<InterviewDetail />}
                 />
+                <Route
+                  path="/site-data/social-observation/:dataId"
+                  element={
+                    <SiteDataProvider>
+                      <SurveyMapProvider>
+                        <DataProvider>
+                          <EcoProvider>
+                            <Fishing />
+                          </EcoProvider>
+                        </DataProvider>
+                      </SurveyMapProvider>
+                    </SiteDataProvider>
+                  }
+                />
                 {/* <Route
-                  path="/site-data/social-observation/social-economy/memorabilia"
-                  element={<SocialObservation content={<Memorabilia />} />}
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/land-usage"
-                  element={<SocialObservation content={<LandUsage />} />}
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/ocean-usage"
-                  element={<SocialObservation content={<OceanUsage />} />}
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/temporal-variation"
-                  element={
-                    <SocialObservation content={<TemporalVariation />} />
-                  }
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/population"
-                  element={
-                    <PopulationProvider>
-                      <SocialObservation content={<Economy />} />
-                    </PopulationProvider>
-                  }
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/industry"
-                  element={<SocialObservation content={<Industry />} />}
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/books"
-                  element={<SocialObservation content={<Books />} />}
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/researches"
-                  element={<SocialObservation content={<Researches />} />}
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/government"
-                  element={<SocialObservation content={<Government />} />}
-                />
-                <Route
-                  path="/site-data/social-observation/social-economy/fishing"
+                  path="/site-data/social-observation/fishing"
                   element={
                     <SiteDataProvider>
                       <SurveyMapProvider>
