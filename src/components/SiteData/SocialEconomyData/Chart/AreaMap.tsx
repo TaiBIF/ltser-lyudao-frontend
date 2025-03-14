@@ -7,9 +7,8 @@ import _ from 'lodash';
 import { usePopulationContext } from 'context/SocialEconomyData/PopulationContext';
 import { RangeItem } from 'types/socialEconomyData';
 
-const AreaMap = () => {
+const AreaMap = ({ mapData }: { mapData: any[] }) => {
   const {
-    villageRaw: raw,
     villageYearChartData: data,
     setVillageYearChartData: setData,
     filter,
@@ -58,7 +57,7 @@ const AreaMap = () => {
   const isFetchingData = data === null;
 
   useEffect(() => {
-    const matchYear = raw
+    const matchYear = mapData
       .filter((o: any) => o['資料時間'].split('Y')[0] === filter.areaMapYear)
       .map((o: any) => ({
         name: o['鄉鎮市區名稱'],

@@ -8,14 +8,14 @@ type PyramidData = {
   female: number[];
 };
 
-const PyramidChart = () => {
+const PyramidChart = ({ pyramidData }: { pyramidData: any }) => {
   const [xAxis, setXAxis] = useState<string[] | null>();
   const [data, setData] = useState<PyramidData>({
     male: [],
     female: [],
   });
 
-  const { filter, pyramidRaw: raw } = usePopulationContext();
+  const { filter } = usePopulationContext();
 
   const height = 600;
 
@@ -100,7 +100,7 @@ const PyramidChart = () => {
   };
 
   useEffect(() => {
-    const matchYear = raw.find(
+    const matchYear = pyramidData.find(
       (o: any) => o['資料時間'].split('Y')[0] === filter.pyramidChartYear
     );
     let x: string[] = [];

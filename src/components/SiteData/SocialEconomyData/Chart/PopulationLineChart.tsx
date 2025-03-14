@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
 import ReactECharts from 'echarts-for-react';
-import { usePopulationContext } from 'context/SocialEconomyData/PopulationContext';
 import _ from 'lodash';
 import { Grid } from '@mui/material';
 import { ThemeItem } from 'types/socialEconomyData';
 
-const PopulationLineChart = ({ theme }: { theme: ThemeItem }) => {
+const PopulationLineChart = ({
+  theme,
+  chartData,
+}: {
+  theme: ThemeItem;
+  chartData: any;
+}) => {
   const height = 400;
   const [xAxis, setXAxis] = useState<string[]>([]);
   const [series, setSeries] = useState<any[]>([]);
@@ -61,24 +66,23 @@ const PopulationLineChart = ({ theme }: { theme: ThemeItem }) => {
     series,
   };
 
-  const { annuallyData: data } = usePopulationContext();
-  const isFetchingData = data === null;
+  const isFetchingData = chartData === null;
 
   useEffect(() => {
     if (!isFetchingData) {
-      const group = _.groupBy(data, '鄉鎮市區名稱');
+      const group = _.groupBy(chartData, '鄉鎮市區名稱');
       const s = Object.entries(group).map(([key, value]): any => ({
         type: 'line',
         name: key,
         data: value.map((o: any) => Number(o[theme.title])),
       }));
       setSeries(s);
-      const x = _.uniqBy(data, '資料時間').map(
+      const x = _.uniqBy(chartData, '資料時間').map(
         (o: any) => `${Number(o['資料時間'].split('Y')[0]) + 1911}年`
       );
       setXAxis(x);
     }
-  }, [data]);
+  }, [chartData]);
 
   return (
     <>

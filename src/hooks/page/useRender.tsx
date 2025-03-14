@@ -166,12 +166,28 @@ const useRender = () => {
     });
     if (result?.status === 'success') {
       const data = result.response.data;
-    
+
       if (Array.isArray(data)) {
-        setList([...data]); 
+        setList([...data]);
       } else {
         setList(data);
       }
+    }
+  };
+
+  const getSocialEconomyContent = async (url: string) => {
+    try {
+      const result = await handleApi({ method: 'get', url });
+
+      if (result?.status === 'success') {
+        return result.response.data;
+      } else {
+        console.log(`Error fecthing data, got ${result?.status}`);
+        return null;
+      }
+    } catch (error) {
+      console.error(`Error fetching data, ${error}`);
+      return null;
     }
   };
 
@@ -182,6 +198,7 @@ const useRender = () => {
     getHeaderDetail,
     getDepositarList,
     getSocialObservationContent,
+    getSocialEconomyContent,
   };
 };
 
