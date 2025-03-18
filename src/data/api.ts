@@ -40,3 +40,6 @@ export const USER_PATH = 'member-info';
 
 export const SOCIAL_INTERVIEW_DATA_API_URL = 'social-interview-data';
 export const SOCIAL_INTERVIEW_DATA_PATH = 'social-interview-data';
+
+export const VISITORS_API_URL = 'social_economy_visitors';
+export const VISITORS_PATH = 'visitors';

@@ -53,6 +53,9 @@ import DashboardFormLinkEdit from 'components/Dashboard/FormLink/Edit';
 import DashboardDownload from 'components/Dashboard/Download';
 import DashboardDownloadRecord from 'components/Dashboard/DownloadRecord';
 import DashboardUserEdit from 'components/Dashboard/User/Edit';
+import DashboardVisitorContent from 'components/Dashboard/Visitors/Content';
+import DashboardVisitorAdd from 'components/Dashboard/Visitors/Add';
+import DashboardVisitorEdit from 'components/Dashboard/Visitors/Edit';
 import DashboardSocialInterviewDataContent from 'components/Dashboard/SocialInterviewData/Content';
 import DashboardSocialInterviewDataEdit from 'components/Dashboard/SocialInterviewData/Edit';
 import DashboardSocialInterviewDataAdd from 'components/Dashboard/SocialInterviewData/Add';
@@ -223,7 +226,7 @@ function App() {
                   path="/form-link"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <FormLink />
@@ -234,7 +237,7 @@ function App() {
                   path="/form-link"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/login"
                     >
                       <FormLink />
@@ -245,7 +248,12 @@ function App() {
                   path="/dashboard/user/edit/"
                   element={
                     <PrivateRoute
-                      roles={['none', 'staff', 'superuser']}
+                      roles={[
+                        'none',
+                        'social_project_staff',
+                        'staff',
+                        'superuser',
+                      ]}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardUserEdit />} />
@@ -256,7 +264,7 @@ function App() {
                   path="/dashboard/about"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardAboutContent />} />
@@ -267,7 +275,7 @@ function App() {
                   path="/dashboard/about/add"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardAboutAdd />} />
@@ -278,7 +286,7 @@ function App() {
                   path="/dashboard/about/edit/:aboutId"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardAboutEdit />} />
@@ -289,7 +297,7 @@ function App() {
                   path="/dashboard/about-attachment"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard
@@ -302,7 +310,7 @@ function App() {
                   path="/dashboard/about-attachment/add"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardAboutAttachmentAdd />} />
@@ -313,7 +321,7 @@ function App() {
                   path="/dashboard/about-attachment/edit/:aboutAttachmentId"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardAboutAttachmentEdit />} />
@@ -324,7 +332,7 @@ function App() {
                   path="/dashboard/news"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardNewsContent />} />
@@ -335,7 +343,7 @@ function App() {
                   path="/dashboard/news/add"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardNewsAdd />} />
@@ -346,7 +354,7 @@ function App() {
                   path="/dashboard/news/edit/:newsId"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardNewsEdit />} />
@@ -357,7 +365,7 @@ function App() {
                   path="/dashboard/news-type"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardNewsTypeContent />} />
@@ -368,7 +376,7 @@ function App() {
                   path="/dashboard/news-type/add"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardNewsTypeAdd />} />
@@ -379,7 +387,7 @@ function App() {
                   path="/dashboard/news-type/edit/:newsTypeId"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardNewsTypeEdit />} />
@@ -390,7 +398,7 @@ function App() {
                   path="/dashboard/related-literature"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardLiteratureContent />} />
@@ -401,7 +409,7 @@ function App() {
                   path="/dashboard/related-literature/add"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardLiteratureAdd />} />
@@ -412,7 +420,7 @@ function App() {
                   path="/dashboard/related-literature/edit/:literatureId"
                   element={
                     <PrivateRoute
-                      roles={['staff', 'superuser']}
+                      roles={['social_project_staff', 'staff', 'superuser']}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardLiteratureEdit />} />
@@ -423,7 +431,12 @@ function App() {
                   path="/dashboard/download-record"
                   element={
                     <PrivateRoute
-                      roles={['none', 'staff', 'superuser']}
+                      roles={[
+                        'none',
+                        'social_project_staff',
+                        'staff',
+                        'superuser',
+                      ]}
                       redirectPath="/"
                     >
                       <Dashboard content={<DashboardDownloadRecord />} />
@@ -566,7 +579,7 @@ function App() {
                   path="/dashboard/download"
                   element={
                     <PrivateRoute
-                      roles={['superuser', 'staff']}
+                      roles={['superuser', 'social_project_staff', 'staff']}
                       redirectPath="/dashboard/about"
                     >
                       <Dashboard content={<DashboardDownload />} />
@@ -600,6 +613,39 @@ function App() {
                       <Dashboard
                         content={<DashboardSocialInterviewDataEdit />}
                       />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/visitors"
+                  element={
+                    <PrivateRoute
+                      roles={['social_project_staff', 'superuser']}
+                      redirectPath="/"
+                    >
+                      <Dashboard content={<DashboardVisitorContent />} />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/visitors/add"
+                  element={
+                    <PrivateRoute
+                      roles={['social_project_staff', 'superuser']}
+                      redirectPath="/"
+                    >
+                      <Dashboard content={<DashboardVisitorAdd />} />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/dashboard/visitors/edit/:visitorId"
+                  element={
+                    <PrivateRoute
+                      roles={['social_project_staff', 'superuser']}
+                      redirectPath="/"
+                    >
+                      <Dashboard content={<DashboardVisitorEdit />} />
                     </PrivateRoute>
                   }
                 />

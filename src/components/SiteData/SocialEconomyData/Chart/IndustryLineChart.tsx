@@ -81,14 +81,10 @@ const IndustryLineChart = ({
 
   useEffect(() => {
     if (isTourism) {
-      const data = raw
-        .map((o: any) => {
-          const match = o['年度'].match(/\(((?!Total)[^)]+)\)/);
-          return match !== null
-            ? [`${match[1]}年`, Number(o['綠島遊憩區'])]
-            : null;
-        })
-        .filter((o: any) => o !== null);
+      const data = raw.map((o: any) => {
+        return [`${Number(o['年度']) + 1911}年`, Number(o['綠島遊憩區'])];
+      });
+
       setXAxis(data.map((a: any) => a[0]));
       setSeries([
         {

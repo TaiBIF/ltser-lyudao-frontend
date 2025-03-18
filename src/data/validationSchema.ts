@@ -138,3 +138,8 @@ export const userValidationSchema = Yup.object().shape({
 });
 
 export const socialInterviewDataSchema = Yup.object().shape({});
+
+export const visitorValidationSchema = Yup.object().shape({
+  year: Yup.string().required('此欄位為必填'),
+  visitors: Yup.string().required('此欄位為必填'),
+});

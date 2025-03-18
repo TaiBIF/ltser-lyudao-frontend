@@ -11,17 +11,17 @@ export const tabList: TabItem[] = [
   {
     id: 'user/edit',
     title: '個人帳號管理',
-    auth: ['superuser', 'staff', 'none'],
+    auth: ['superuser', 'social_project_staff', 'staff', 'none'],
   },
   {
     id: 'about',
     title: '計畫介紹',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'social_project_staff', 'staff'],
   },
   {
     id: 'about-attachment',
     title: '計畫介紹補充資訊',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'social_project_staff', 'staff'],
   },
   {
     id: 'contact',
@@ -41,17 +41,17 @@ export const tabList: TabItem[] = [
   {
     id: 'news',
     title: '最新消息',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'social_project_staff', 'staff'],
   },
   {
     id: 'news-type',
     title: '最新消息類型',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'social_project_staff', 'staff'],
   },
   {
     id: 'related-literature',
     title: '相關文獻',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'social_project_staff', 'staff'],
   },
   {
     id: 'form-link',
@@ -61,18 +61,18 @@ export const tabList: TabItem[] = [
   {
     id: 'download-record',
     title: '下載資料紀錄',
-    auth: ['superuser', 'staff', 'none'],
+    auth: ['superuser', 'social_project_staff', 'staff', 'none'],
   },
   {
     id: 'download',
     title: '資料下載申請資訊',
-    auth: ['superuser', 'staff'],
+    auth: ['superuser', 'social_project_staff', 'staff'],
   },
-  // {
-  //   id: 'social-interview-data',
-  //   title: '社會面訪談資料',
-  //   auth: ['superuser'],
-  // },
+  {
+    id: 'visitors',
+    title: '社會經濟資料觀光人次',
+    auth: ['superuser', 'social_project_staff'],
+  },
 ];
 
 // Types 類型
@@ -1226,3 +1226,52 @@ export const socialInterviewDataColList: ColItem[] = [
 ];
 
 export const socialInterviewDataFieldList: FieldItem[] = [];
+
+// 社會經濟資料 - 旅遊人數
+export const VisitorColList: ColItem[] = [
+  {
+    id: 'id',
+    title: '資料id',
+    show: true,
+    param: true,
+  },
+  {
+    id: 'year',
+    title: '民國年份',
+    show: true,
+  },
+  {
+    id: 'visitors',
+    title: '旅遊人數',
+    show: true,
+  },
+  {
+    id: 'created_by_name',
+    title: '資料建立者',
+    show: true,
+  },
+  {
+    id: 'updated_at',
+    title: '更新日期',
+    show: true,
+  },
+];
+
+export const visitorFieldList: FieldItem[] = [
+  {
+    id: 1,
+    type: 'text',
+    title: 'year',
+    label: '民國年份',
+    readonly: false,
+    required: true,
+  },
+  {
+    id: 2,
+    type: 'text',
+    title: 'visitors',
+    label: '旅遊人數',
+    readonly: false,
+    required: true,
+  },
+];

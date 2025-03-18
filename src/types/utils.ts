@@ -10,6 +10,7 @@ import { RawItemTypes } from 'types/rawData';
 import { RawFieldItem } from 'types/field';
 import { SeriesItemTypes } from 'types/series';
 import { UserItem } from './user';
+import { VisitorItem } from 'types/visitors';
 
 export type TypeItem = {
   [key: string]: any;
@@ -112,7 +113,8 @@ export type ItemTypes =
   | LiteratureItem
   | FormLinkItem
   | DownloadItem
-  | UserItem;
+  | UserItem
+  | VisitorItem;
 
 export type PaginationDataItem = {
   currentPage: number;

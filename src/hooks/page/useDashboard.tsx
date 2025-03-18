@@ -70,7 +70,7 @@ const useDashboard = () => {
       method: 'get',
       url: `/users/${url}/`,
       params: { id },
-      headers: langHeader,
+      headers: { ...headers, ...langHeader },
     });
     if (result?.status === 'success') {
       setData({ ...result.response.data });
@@ -113,7 +113,7 @@ const useDashboard = () => {
       method: 'post',
       data,
       url: `/users/${url}/`,
-      headers: langHeader,
+      headers: { ...headers, ...langHeader },
     });
     handleActions({
       result,
@@ -164,7 +164,7 @@ const useDashboard = () => {
       url: `/users/${url}/`,
       data,
       params: { id },
-      headers: langHeader,
+      headers: { ...headers, ...langHeader },
     });
     handleActions({
       result,
@@ -194,7 +194,7 @@ const useDashboard = () => {
       method: 'delete',
       url: `/users/${url}/`,
       params: { id },
-      headers: langHeader,
+      headers: { ...headers, ...langHeader },
     });
     handleActions({
       result,

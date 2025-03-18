@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useRender from 'hooks/page/useRender';
 
 const regionMapping: Record<
