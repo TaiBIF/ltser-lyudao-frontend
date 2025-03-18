@@ -200,17 +200,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                         const hasItem = matchPlan !== undefined;
                         if (hasItem && !isFetchingAllDetail) {
                           let data;
-                          const formatPlan = (plan: string) =>
-                            plan.replace(/-([a-z])/g, (match, letter) =>
-                              letter.toUpperCase()
-                            );
                           switch (plan) {
-                            case 'weather':
-                            case 'sea-temperature':
-                              data = allDetail[formatPlan(plan)]?.annual[col];
-                              break;
-                            case 'coral-div':
-                            case 'coral-rec':
                             case 'fish-div':
                               data = allDetail[id]?.count;
                               break;
