@@ -72,15 +72,17 @@ import Placeholder from 'components/Placeholder';
 import { LangProvider } from 'context/LangContext';
 import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Fishing from 'pages/SiteData/SocialObservation/Fishing';
-import Industry from 'components/SiteData/SocialEconomyData/Page/Industry';
-import Books from 'components/SiteData/SocialEconomyData/Page/Books';
-import Researches from 'components/SiteData/SocialEconomyData/Page/Researches';
-import { PopulationProvider } from 'context/SocialEconomyData/PopulationContext';
-import Memorabilia from 'components/SiteData/SocialEconomyData/Page/Memorabilia';
-import LandUsage from 'components/SiteData/SocialEconomyData/Page/LandUsage';
-import OceanUsage from 'components/SiteData/SocialEconomyData/Page/OceanUsage';
-import TemporalVariation from 'components/SiteData/SocialEconomyData/Page/TemporalVariation';
-import Government from 'components/SiteData/SocialEconomyData/Page/Government';
+import { FilterProvider } from 'context/SocialEconomyData/FilterContext';
+// import Industry from 'components/SiteData/SocialEconomyData/Page/Industry';
+// import Books from 'components/SiteData/SocialEconomyData/Page/Books';
+// import Researches from 'components/SiteData/SocialEconomyData/Page/Researches';
+// import { PopulationProvider } from 'context/SocialEconomyData/PopulationContext';
+
+// import Memorabilia from 'components/SiteData/SocialEconomyData/Page/Memorabilia';
+// import LandUsage from 'components/SiteData/SocialEconomyData/Page/LandUsage';
+// import OceanUsage from 'components/SiteData/SocialEconomyData/Page/OceanUsage';
+// import TemporalVariation from 'components/SiteData/SocialEconomyData/Page/TemporalVariation';
+// import Government from 'components/SiteData/SocialEconomyData/Page/Government';
 
 function App() {
   return (
@@ -171,11 +173,19 @@ function App() {
                 />
                 <Route
                   path="/site-data/social-observation/social-interview-data"
-                  element={<InterviewContent />}
+                  element={
+                    <FilterProvider>
+                      <InterviewContent />
+                    </FilterProvider>
+                  }
                 />
                 <Route
                   path="/site-data/social-observation/social-interview-data/:interviewId"
-                  element={<InterviewDetail />}
+                  element={
+                    <FilterProvider>
+                      <InterviewDetail />
+                    </FilterProvider>
+                  }
                 />
                 <Route
                   path="/site-data/social-observation/:dataId"

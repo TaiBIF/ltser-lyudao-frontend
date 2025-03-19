@@ -537,6 +537,7 @@
         }
         &:hover {
           @include bg_change(0.3s);
+          cursor: pointer;
           background: $col-green;
           color: #fff;
           p {

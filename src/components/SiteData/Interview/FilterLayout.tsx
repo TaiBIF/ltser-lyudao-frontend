@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { interviewTargetList, interviewTypeList } from 'data/siteData';
 import { Field, useFormikContext } from 'formik';
-import useRender from 'hooks/page/useRender';
+import { useFilterContext } from 'context/SocialEconomyData/FilterContext';
+
+interface FormValues {
+  content: string;
+  target: string;
+  capTypes: string[];
+  localTypes: string[];
+}
 
 const FilterLayout = ({
   isSubmitting,
@@ -11,28 +17,19 @@ const FilterLayout = ({
   participantType,
   capIssueType,
   localIssueType,
-  setSelectedKeyword,
-  selectedKeyword,
+
   scrollTargetRef,
-  selectedLocalIssueTypeTitle,
-  selectedCapIssueTypeTitle,
-  selectedParticipantType,
 }: {
   isSubmitting: boolean;
   I18N_KEY_PREFIX: string;
   participantType: { id: number; title: string }[];
   capIssueType: { id: number; title: string; value: string }[];
   localIssueType: { id: number; title: string }[];
-  setSelectedKeyword: (keyword: string) => void;
-  selectedKeyword: string;
   scrollTargetRef?: any;
-  selectedLocalIssueTypeTitle: string[];
-  selectedCapIssueTypeTitle: string[];
-  selectedParticipantType: string | null;
 }) => {
   const { t } = useTranslation();
 
-  const { values, setFieldValue } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext<FormValues>();
 
   const handlePageScroll = () => {
     const navbar = document.querySelector('.header') as HTMLElement;
@@ -50,31 +47,58 @@ const FilterLayout = ({
     }
   };
 
-  const clearKeyword = () => {
-    setSelectedKeyword('');
+  const {
+    selectedParticipantType,
+    selectedCapIssueTypeTitle,
+    selectedLocalIssueTypeTitle,
+    selectedKeyword,
+    setFilters,
+  } = useFilterContext();
+
+  const clearAll = () => {
+    // 移除所有篩選條件
+    setFilters({
+      selectedParticipantType: null,
+      selectedCapIssueType: [],
+      selectedCapIssueTypeTitle: [],
+      selectedLocalIssueType: [],
+      selectedLocalIssueTypeTitle: [],
+      selectedKeyword: '',
+      selectedContent: '',
+    });
+  };
+
+  const syncFormikToFilters = () => {
+    // 同步當前的手動選擇的篩選條件
+    setFilters({
+      selectedKeyword: values.content,
+      selectedParticipantType: values.target || null,
+      selectedCapIssueTypeTitle: values.capTypes || [],
+      selectedLocalIssueTypeTitle: values.localTypes || [],
+    });
   };
 
   useEffect(() => {
     // 點擊議題列表中的關鍵字後，呈現到搜尋內文的搜索框中
     setFieldValue('content', selectedKeyword);
-  }, [selectedKeyword]);
+  }, [selectedKeyword, setFieldValue]);
 
   useEffect(() => {
     // 點擊議題列表中的在地議題後，打勾搜索框中對應的選項
     setFieldValue('localTypes', selectedLocalIssueTypeTitle);
-  }, [selectedLocalIssueTypeTitle]);
+  }, [selectedLocalIssueTypeTitle, setFieldValue]);
 
   useEffect(() => {
     // 點擊議題列表中的 CAP 議題後，打勾搜索框中對應的選項
     setFieldValue('capTypes', selectedCapIssueTypeTitle);
-  }, [selectedCapIssueTypeTitle]);
+  }, [selectedCapIssueTypeTitle, setFieldValue]);
 
   useEffect(() => {
     // 點擊議題列表中的受訪對象後，打勾搜索框中對應的選項
     if (selectedParticipantType) {
       setFieldValue('target', String(selectedParticipantType));
     }
-  }, [selectedParticipantType]);
+  }, [selectedParticipantType, setFieldValue]);
 
   return (
     <>
@@ -149,10 +173,17 @@ const FilterLayout = ({
         </div>
       </div>
       <div className="send-btnarea">
-        <button className="clearall" type="reset" onClick={clearKeyword}>
+        <button className="clearall" type="reset" onClick={clearAll}>
           {t(`${I18N_KEY_PREFIX}.clearBtn`)}
         </button>
-        <button className="searchall" type="submit" onClick={handlePageScroll}>
+        <button
+          className="searchall"
+          type="submit"
+          onClick={() => {
+            syncFormikToFilters();
+            handlePageScroll();
+          }}
+        >
           {t(`${I18N_KEY_PREFIX}.submitBtn`)}
         </button>
       </div>

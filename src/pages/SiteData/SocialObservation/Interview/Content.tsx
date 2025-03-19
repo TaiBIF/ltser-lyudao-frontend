@@ -21,6 +21,7 @@ import { InterviewItem } from 'types/siteData';
 import FilterLayout from 'components/SiteData/Interview/FilterLayout';
 import Pagination from 'components/Pagination/Content';
 import usePage from 'hooks/utils/usePage';
+import { useFilterContext } from 'context/SocialEconomyData/FilterContext';
 
 interface ParticipantType {
   id: number;
@@ -34,6 +35,15 @@ interface IssueType {
 }
 
 const Content = () => {
+  const {
+    selectedParticipantType,
+    selectedCapIssueType,
+    selectedLocalIssueType,
+    selectedKeyword,
+    selectedContent,
+    setFilters,
+  } = useFilterContext();
+  const { getSocialObservationContent } = useRender();
   const { currentPage, setCurrentPage, paginationData, setPaginationData } =
     usePage();
   const location = useLocation();
@@ -66,25 +76,8 @@ const Content = () => {
 
   const [interviews, setInterviews] = useState<InterviewItem[]>([]);
   const [participantType, setParticipantType] = useState<ParticipantType[]>([]);
-  const [selectedParticipantType, setSelectedParticipantType] = useState<
-    string | null
-  >(null);
   const [capIssueType, setCapIssueType] = useState<IssueType[]>([]);
   const [localIssueType, setLocalIssueType] = useState<IssueType[]>([]);
-  const [selectedCapIssueType, setSelectedCapIssueType] = useState<string[]>(
-    []
-  );
-  const [selectedLocalIssueType, setSelectedLocalIssueType] = useState<
-    string[]
-  >([]);
-  const [selectedLocalIssueTypeTitle, setSelectedLocalIssueTypeTitle] =
-    useState<string[]>([]);
-  const [selectedCapIssueTypeTitle, setSelectedCapIssueTypeTitle] = useState<
-    string[]
-  >([]);
-  const [selectedKeyword, setSelectedKeyword] = useState<string>('');
-  const [selectedContent, setSelectedContent] = useState<string>('');
-  const { getSocialObservationContent } = useRender();
 
   const handleSubmit = (
     values: Record<string, any>,
@@ -101,13 +94,14 @@ const Content = () => {
       (type: string) =>
         localIssueType.find((issue) => type === issue.title)?.title
     );
-    console.log(selectedLocalIssue);
 
-    setSelectedParticipantType(selectedParticipant?.title || null);
-    setSelectedCapIssueType(selectedCapIssue || null);
-    setSelectedLocalIssueType(selectedLocalIssue || null);
-    // setSelectedKeyword(values.keyword);
-    setSelectedContent(values.content);
+    setFilters({
+      selectedParticipantType: selectedParticipant?.title || null,
+      selectedCapIssueType: selectedCapIssue,
+      selectedLocalIssueType: selectedLocalIssue,
+      selectedKeyword: values.keyword,
+      selectedContent: values.content,
+    });
     setSubmitting(false);
   };
 
@@ -176,21 +170,29 @@ const Content = () => {
   }, [pathname]);
 
   const handleKeywordClick = (keyword: string) => {
-    setSelectedKeyword(keyword); // 觸發 getSocialObservationContent
+    setFilters({
+      selectedKeyword: keyword,
+    });
   };
 
   const handleLocalIssueBtnClick = (issue: string) => {
-    setSelectedLocalIssueType([issue]); // 觸發 getSocialObservationContent
-    setSelectedLocalIssueTypeTitle([issue]); // 傳遞給 FilterLayout 渲染搜尋框
+    setFilters({
+      selectedLocalIssueType: [issue],
+      selectedLocalIssueTypeTitle: [issue],
+    });
   };
 
   const handleCapIssueBtnClick = (issue: string, title: string) => {
-    setSelectedCapIssueType([issue]); // 觸發 getSocialObservationContent
-    setSelectedCapIssueTypeTitle([title]); // 傳遞給 FilterLayout 渲染搜尋框
+    setFilters({
+      selectedCapIssueType: [issue],
+      selectedCapIssueTypeTitle: [title],
+    });
   };
 
   const handleParticipantBtnClick = (participant: string) => {
-    setSelectedParticipantType(participant); // 觸發 getSocialObservationContent
+    setFilters({
+      selectedParticipantType: participant,
+    });
   };
 
   return (
@@ -215,12 +217,7 @@ const Content = () => {
                       participantType={participantType}
                       capIssueType={capIssueType}
                       localIssueType={localIssueType}
-                      setSelectedKeyword={setSelectedKeyword}
-                      selectedKeyword={selectedKeyword}
                       scrollTargetRef={sociListRef}
-                      selectedLocalIssueTypeTitle={selectedLocalIssueTypeTitle}
-                      selectedCapIssueTypeTitle={selectedCapIssueTypeTitle}
-                      selectedParticipantType={selectedParticipantType}
                     />
                   </Form>
                 )}
