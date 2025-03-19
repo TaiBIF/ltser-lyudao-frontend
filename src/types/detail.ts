@@ -45,7 +45,6 @@ export type AllDeatilItem = {
   weather: WeatherItem;
   seaTemperature: SeaTemperatureItem;
   coralDiv: CountItem;
-  coralRec: CountItem;
   plant: SeasonalItem;
   birdNetSound: SeasonalItem;
   fishDiv: SeasonalItem;

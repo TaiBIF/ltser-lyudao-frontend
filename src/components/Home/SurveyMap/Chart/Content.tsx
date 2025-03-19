@@ -126,10 +126,15 @@ const Content = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
     if (!isFetchingItems && !isFetchingAllDetail) {
       const formatPlan = (plan: string) =>
         plan.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+
       const series = chartSeriesList
         .map((v: ObservationItem) => {
           const { id, plan, title, col, unit } = v;
-          if (plan && items.includes(plan)) {
+          if (
+            plan &&
+            items.includes(plan) &&
+            allDetail[formatPlan(plan)]?.seasonal?.length
+          ) {
             return {
               type: 'line',
               data: allDetail[formatPlan(plan)].seasonal.map(

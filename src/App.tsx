@@ -73,16 +73,6 @@ import { LangProvider } from 'context/LangContext';
 import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Fishing from 'pages/SiteData/SocialObservation/Fishing';
 import { FilterProvider } from 'context/SocialEconomyData/FilterContext';
-// import Industry from 'components/SiteData/SocialEconomyData/Page/Industry';
-// import Books from 'components/SiteData/SocialEconomyData/Page/Books';
-// import Researches from 'components/SiteData/SocialEconomyData/Page/Researches';
-// import { PopulationProvider } from 'context/SocialEconomyData/PopulationContext';
-
-// import Memorabilia from 'components/SiteData/SocialEconomyData/Page/Memorabilia';
-// import LandUsage from 'components/SiteData/SocialEconomyData/Page/LandUsage';
-// import OceanUsage from 'components/SiteData/SocialEconomyData/Page/OceanUsage';
-// import TemporalVariation from 'components/SiteData/SocialEconomyData/Page/TemporalVariation';
-// import Government from 'components/SiteData/SocialEconomyData/Page/Government';
 
 function App() {
   return (
@@ -201,20 +191,6 @@ function App() {
                     </SiteDataProvider>
                   }
                 />
-                {/* <Route
-                  path="/site-data/social-observation/fishing"
-                  element={
-                    <SiteDataProvider>
-                      <SurveyMapProvider>
-                        <DataProvider>
-                          <EcoProvider>
-                            <Fishing />
-                          </EcoProvider>
-                        </DataProvider>
-                      </SurveyMapProvider>
-                    </SiteDataProvider>
-                  }
-                /> */}
                 <Route
                   path="/site-data/social-observation/socioeconomic-data/"
                   element={<SocialObservation />}
