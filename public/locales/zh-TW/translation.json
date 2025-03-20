@@ -407,7 +407,10 @@
       "emailForm": "請輸入有效的Email格式",
       "passwordForm": "密碼須為8-12位含英文與數字",
       "arrayMin": "至少需要選擇一項",
-      "confirmPassword": "密碼與確認密碼不一致"
+      "confirmPassword": "密碼與確認密碼不一致",
+      "minPasswordLength": "密碼長度至少8位",
+      "passwordLetterLimiation": "密碼至少包含一個英文字母",
+      "passwordNumberLimiation": "密碼至少包含一個數字"
     }
   },
   "others": {

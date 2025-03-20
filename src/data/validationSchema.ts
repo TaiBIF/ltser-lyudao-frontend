@@ -97,9 +97,9 @@ export const signupValidationSchema = Yup.object().shape({
     .email(i18n.t(`${I18N_KEY_PREFIX}.emailForm`))
     .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
   password: Yup.string()
-    .min(8, '密碼長度至少8位')
-    .matches(/[a-zA-Z]/, '密碼至少包含一個英文字母')
-    .matches(/[0-9]/, '密碼至少包含一個數字')
+    .min(8, i18n.t(`${I18N_KEY_PREFIX}.minPasswordLength`))
+    .matches(/[a-zA-Z]/, i18n.t(`${I18N_KEY_PREFIX}.passwordLetterLimiation`))
+    .matches(/[0-9]/, i18n.t(`${I18N_KEY_PREFIX}.passwordNumberLimiation`))
     .required(i18n.t(`${I18N_KEY_PREFIX}.required`)),
   password2: Yup.string()
     .oneOf([Yup.ref('password')], i18n.t(`${I18N_KEY_PREFIX}.confirmPassword`))
