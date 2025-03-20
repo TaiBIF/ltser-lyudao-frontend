@@ -23,6 +23,10 @@ interface AuthTokens {
   refresh: string;
 }
 
+interface Errors {
+  [key: string]: string[];
+}
+
 export type GroupItem = {
   group: string;
 };
@@ -311,6 +315,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       data: { username: values.email, ...values },
       url: `/signUp/`,
     });
+
+    let errorMessage = t(`${I18N_KEY_PREFIX}.signup.fail`);
+    if (result?.response?.data?.errors) {
+      const errors: Errors = result.response.data.errors;
+      errorMessage = Object.entries(errors)
+        .filter(([field]) => field !== 'username') // 不需要顯示 username 的錯誤訊息
+        .map(([, messages]) => messages.join(','))
+        .join(' | ');
+    }
+
     const handleSuccessAction = () => {
       localStorage.setItem('email', values.email);
       navigate('/verify-email');
@@ -329,7 +343,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         action: handleSuccessAction,
       },
       error: {
-        title: t(`${I18N_KEY_PREFIX}.signup.fail`),
+        title: errorMessage,
       },
     });
   };
