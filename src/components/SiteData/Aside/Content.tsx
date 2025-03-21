@@ -23,6 +23,19 @@ const Content = (props: ContentProps) => {
     setActive(!active);
   };
 
+  useEffect(() => {
+    const target = targetRef.current;
+    if (target) {
+      if (active) {
+        target.style.display = 'block';
+        gsapSlideToggle('auto', target, active);
+      } else {
+        // target.style.display = 'none';
+        gsapSlideToggle('auto', target, active);
+      }
+    }
+  }, [active]);
+
   return (
     <>
       <div className="left-mainmenu" style={{ overflow: 'visible' }}>
