@@ -69,6 +69,7 @@ const Main = (props: MainProps) => {
           paths={paths}
           url={contextData.depositarUrl}
           PAGE_NAME={PAGE_NAME}
+          category={category}
         />
         {category === 'third-party' ? (
           <></>

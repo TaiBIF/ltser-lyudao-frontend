@@ -12,10 +12,12 @@ const Title = ({
   paths,
   url,
   PAGE_NAME,
+  category,
 }: {
   paths: string[];
   url: string;
   PAGE_NAME: string;
+  category?: string;
 }) => {
   const I18N_KEY_PREFIX = PAGE_NAME;
 
@@ -33,10 +35,10 @@ const Title = ({
 
   switch (observation) {
     case 'ecological':
-      asideList = ecoAsideList;
-      const category = paths[3];
-      if (category) {
+      if (category === 'third-party') {
         asideList = ecoThirdPartyAsideList;
+      } else {
+        asideList = ecoAsideList;
       }
       break;
     case 'social':
