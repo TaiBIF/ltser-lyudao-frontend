@@ -406,6 +406,14 @@ $transition: (
         box-shadow: none !important;
       }
     }
+    &:first-child:last-child {
+      #{$_}__item {
+        border-radius: 20px 20px 0 0;
+        @media only screen and (max-width: 999px) {
+          border-radius: 0;
+        }
+      }
+    }
   }
 }
 

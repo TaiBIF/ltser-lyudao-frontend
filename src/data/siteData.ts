@@ -134,6 +134,20 @@ export const generateEcoAsideList = (): AsideItem[] => [
   },
 ];
 
+export const generateEcoThirdPartyAsideList = (): AsideItem[] => [
+  {
+    id: 1,
+    title: i18n.t(`${I18N_KEY_PREFIX}.ecoThirdParty.title.1`),
+    list: [
+      {
+        id: 1,
+        title: i18n.t(`${I18N_KEY_PREFIX}.ecoThirdParty.title.1_1`),
+        link: 'tbia',
+      },
+    ],
+  },
+];
+
 // envAsideList
 // AsideItem[]
 export const generateEnvAsideList = (): AsideItem[] => [

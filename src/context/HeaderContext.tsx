@@ -23,6 +23,7 @@ interface HeaderProviderProps {
 export const HeaderProvider = ({ children }: HeaderProviderProps) => {
   const initialState = {
     menu3: false,
+    menu3Map: {},
     mainMenu: false,
     mobile: false,
     loginPopup: false,
@@ -36,13 +37,15 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
   const [about, setAbout] = useState<any>({});
   const { pathname } = useLocation();
 
-  const menu3Ref = useRef<HTMLDivElement>(null);
+  const menu3Refs = useRef<Record<string, HTMLDivElement | null>>({});
   const mainMenuRef = useRef<HTMLDivElement>(null);
   const loginPopupRef = useRef<HTMLDivElement>(null);
   const menuMegaRef = useRef<HTMLDivElement>(null);
   const itemboxRefs = useRef<{ [key: string]: HTMLDivElement }>({});
   const secMenuRef = useRef<HTMLDivElement>(null);
   const langMenuRef = useRef<HTMLDivElement>(null);
+
+  const [lastMenu3Key, setLastMenu3Key] = useState<string | null>(null);
 
   const { width } = useWindowDimensions();
 
@@ -60,6 +63,19 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
         setShow({ ...show, [targetKey]: !show[targetKey], mobile: false });
       }
     }
+  };
+
+  const handleMenu3Click = (elementID: string) => {
+    // 單純管理 menu_3 開關
+    setShow((prev) => ({
+      ...prev,
+      menu3Map: {
+        // 這裡單獨管理不同 elementID 的開關
+        ...prev.menu3Map,
+        [elementID]: !prev.menu3Map[elementID],
+      },
+    }));
+    setLastMenu3Key(elementID); // 紀錄當前是操作哪一個 element
   };
 
   const handleMenuMouseLeave = () => {
@@ -89,7 +105,8 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
   const contextData = {
     show,
     setShow,
-    menu3Ref,
+    menu3Refs,
+    lastMenu3Key,
     mainMenuRef,
     loginPopupRef,
     menuMegaRef,
@@ -97,6 +114,7 @@ export const HeaderProvider = ({ children }: HeaderProviderProps) => {
     secMenuRef,
     langMenuRef,
     handleMenuClick,
+    handleMenu3Click,
     handleMenuMouseLeave,
     handleLoginClick,
     handleItemboxRef,

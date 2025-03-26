@@ -122,6 +122,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }) => {
     setShow({
       menu3: false,
+      menu3Map: {},
       mainMenu: false,
       mobile: false,
       loginPopup: false,
@@ -330,6 +331,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       navigate('/verify-email');
       setShow({
         menu3: false,
+        menu3Map: {},
         mainMenu: false,
         mobile: false,
         loginPopup: false,

@@ -5,6 +5,7 @@ export const defaultPaginationData = {
   recordsPerPage: 0,
   totalPages: 0,
   totalRecords: 0,
+  nextCursor: '',
 };
 
 export const languageList: LangItem[] = [

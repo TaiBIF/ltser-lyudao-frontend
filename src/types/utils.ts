@@ -121,6 +121,7 @@ export type PaginationDataItem = {
   recordsPerPage: number;
   totalPages: number;
   totalRecords: number;
+  nextCursor: string | null;
 };
 
 export type AttachmentsItem = {

@@ -7,6 +7,7 @@ import { defaultPaginationData } from 'data/utils';
 
 const usePage = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentCursor, setCurrentCursor] = useState<string>('*');
   const [paginationData, setPaginationData] = useState<PaginationDataItem>({
     ...defaultPaginationData,
   });
@@ -26,6 +27,8 @@ const usePage = () => {
     setPaginationData,
     currentRecordsPerPage,
     setCurrentRecordsPerPage,
+    currentCursor,
+    setCurrentCursor,
   };
 };
 

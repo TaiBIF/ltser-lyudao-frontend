@@ -10,15 +10,15 @@ import DownloadPopup from 'components/SiteData/DownloadPopup';
 
 import { BannerData } from 'types/common';
 
-import { generateEcoAsideList } from 'data/siteData';
+import { generateEcoThirdPartyAsideList } from 'data/siteData';
 import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 
-const EcologicalObservation = ({}) => {
+const ThirdPartyObservation = () => {
   const PAGE_NAME = 'SiteData';
   const mainBoxRef = useRef<HTMLDivElement>(null);
 
   const { list: asideList, isFetchingList: isFetchingAsideList } =
-    useRerenderTranslation({ generateList: generateEcoAsideList });
+    useRerenderTranslation({ generateList: generateEcoThirdPartyAsideList });
 
   const { dataId } = useParams();
   const navigate = useNavigate();
@@ -28,13 +28,13 @@ const EcologicalObservation = ({}) => {
 
   const bannerData: BannerData = {
     title: '生態觀測',
-    en: ['ecological-observation', 'native'],
+    en: ['ecological-observation', 'third-party'],
     maskImg: true,
     bgImg: bannerImg,
   };
 
   const page = bannerData.en.map((v) => v.toLowerCase()).join('/');
-  const category = 'native';
+  const category = 'third-party';
 
   useEffect(() => {
     if (!dataId && !isFetchingAsideList) {
@@ -78,4 +78,4 @@ const EcologicalObservation = ({}) => {
   );
 };
 
-export default EcologicalObservation;
+export default ThirdPartyObservation;

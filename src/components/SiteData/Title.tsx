@@ -5,6 +5,7 @@ import {
   generateEcoAsideList,
   generateEconomyFishingAsideList,
   generateEnvAsideList,
+  generateEcoThirdPartyAsideList,
 } from 'data/siteData';
 
 const Title = ({
@@ -23,15 +24,20 @@ const Title = ({
   const ecoAsideList = generateEcoAsideList();
   const envAsideList = generateEnvAsideList();
   const economyFishingAsideList = generateEconomyFishingAsideList();
+  const ecoThirdPartyAsideList = generateEcoThirdPartyAsideList();
 
   let asideList;
   let title;
-  const observation = paths[paths.length - 2].split('-')[0];
+  const observation = paths[2].split('-')[0];
   const item = paths[paths.length - 1];
 
   switch (observation) {
     case 'ecological':
       asideList = ecoAsideList;
+      const category = paths[3];
+      if (category) {
+        asideList = ecoThirdPartyAsideList;
+      }
       break;
     case 'social':
       asideList = economyFishingAsideList;

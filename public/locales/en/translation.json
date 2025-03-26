@@ -216,7 +216,9 @@
           "news": "News",
           "relatedLiterature": "Related Literature",
           "qa": "Q&A",
-          "formLink": "Common Forms and Links"
+          "formLink": "Common Forms and Links",
+          "native": "Internal Data",
+          "thirdParty": "External Source"
         }
       },
       "route": {
@@ -346,6 +348,12 @@
           "7_1": "Ocean Soundscape",
           "8": "Stream Fauna Survey",
           "8_1": "Stream Fauna"
+        }
+      },
+      "ecoThirdParty": {
+        "title": {
+          "1": "Occurrence",
+          "1_1": "TBIA"
         }
       },
       "env": {

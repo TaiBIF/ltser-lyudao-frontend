@@ -10,6 +10,7 @@ import Contact from 'pages/Contact';
 import RelatedLiterature from 'pages/RelatedLiterature';
 import FormLink from 'pages/FormLink';
 import EcologicalObservation from 'pages/SiteData/EcologicalObservation';
+import ThirdPartyObservation from 'pages/SiteData/ThirdPartyObservation';
 import EnvironmentalObservation from 'pages/SiteData/EnvironmentalObservation';
 import ResetPsw from 'pages/Auth/ResetPsw';
 import VerifyEmailSuccess from 'pages/Auth/VerifyEmailSuccess';
@@ -106,7 +107,7 @@ function App() {
                 <Route path="/news/:newsId" element={<NewsDetail />} />
                 <Route path="/qa" element={<QA />} />
                 <Route
-                  path="/site-data/ecological-observation/"
+                  path="/site-data/ecological-observation/native"
                   element={
                     <SiteDataProvider>
                       <SurveyMapProvider>
@@ -120,13 +121,41 @@ function App() {
                   }
                 />
                 <Route
-                  path="/site-data/ecological-observation/:dataId"
+                  path="/site-data/ecological-observation/native/:dataId"
                   element={
                     <SiteDataProvider>
                       <SurveyMapProvider>
                         <DataProvider>
                           <EcoProvider>
                             <EcologicalObservation />
+                          </EcoProvider>
+                        </DataProvider>
+                      </SurveyMapProvider>
+                    </SiteDataProvider>
+                  }
+                />
+                <Route
+                  path="/site-data/ecological-observation/third-party"
+                  element={
+                    <SiteDataProvider>
+                      <SurveyMapProvider>
+                        <DataProvider>
+                          <EcoProvider>
+                            <ThirdPartyObservation />
+                          </EcoProvider>
+                        </DataProvider>
+                      </SurveyMapProvider>
+                    </SiteDataProvider>
+                  }
+                />
+                <Route
+                  path="/site-data/ecological-observation/third-party/:dataId"
+                  element={
+                    <SiteDataProvider>
+                      <SurveyMapProvider>
+                        <DataProvider>
+                          <EcoProvider>
+                            <ThirdPartyObservation />
                           </EcoProvider>
                         </DataProvider>
                       </SurveyMapProvider>

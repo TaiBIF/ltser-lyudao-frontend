@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Pagination from 'components/Pagination/Content';
+import CursorPagination from 'components/CursorPagination/Content';
 
 import { useEcoContext } from 'context/EcoContext';
 import { useDataContext } from 'context/DataContext';
@@ -29,6 +30,9 @@ interface ResultProps {
   I18N_KEY_PREFIX: string;
   currentRecordsPerPage: number;
   setCurrentRecordsPerPage: Dispatch<SetStateAction<number>>;
+  currentCursor?: string;
+  setCurrentCursor?: Dispatch<SetStateAction<string>>;
+  category?: string;
 }
 
 const Result = (props: ResultProps) => {
@@ -42,6 +46,9 @@ const Result = (props: ResultProps) => {
     currentRecordsPerPage,
     setCurrentRecordsPerPage,
     I18N_KEY_PREFIX,
+    currentCursor,
+    setCurrentCursor,
+    category,
   } = props;
 
   const { t } = useTranslation();
@@ -106,15 +113,16 @@ const Result = (props: ResultProps) => {
             ...query,
             page: currentPage,
             page_size: currentRecordsPerPage,
+            cursor: currentCursor,
           },
           setPaginationData,
         });
       }
     }
-  }, [currentPage, pathname, currentRecordsPerPage]);
+  }, [currentPage, pathname, currentRecordsPerPage, currentCursor]);
 
   const hasScientificName = contextData.fields.some(
-    (field:any) => field.id === 'scientificName'
+    (field: any) => field.id === 'scientificName'
   );
 
   return (
@@ -135,25 +143,29 @@ const Result = (props: ResultProps) => {
                   setCurrentRecordsPerPage={setCurrentRecordsPerPage}
                 />
               </div>
-              <div className="btnr-box">
-                <button
-                  type="button"
-                  className="dowapply"
-                  onClick={handleDownloadClick}
-                  data-target="all"
-                >
-                  {t(`${I18N_KEY_PREFIX}.dataDownloadBtn`)}
-                </button>
-                {hasScientificName && (
+              {category === 'third-party' ? (
+                <></>
+              ) : (
+                <div className="btnr-box">
                   <button
                     type="button"
+                    className="dowapply"
                     onClick={handleDownloadClick}
-                    data-target="species"
+                    data-target="all"
                   >
-                    {t(`${I18N_KEY_PREFIX}.speciesDownloadBtn`)}
+                    {t(`${I18N_KEY_PREFIX}.dataDownloadBtn`)}
                   </button>
-                )}
-              </div>
+                  {hasScientificName && (
+                    <button
+                      type="button"
+                      onClick={handleDownloadClick}
+                      data-target="species"
+                    >
+                      {t(`${I18N_KEY_PREFIX}.speciesDownloadBtn`)}
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </>
         ) : (
@@ -215,12 +227,20 @@ const Result = (props: ResultProps) => {
                 </tbody>
               </table>
             </div>
-            <Pagination
-              scrollTargetRef={scrollTargetRef}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              paginationData={paginationData}
-            />
+            {item === 'tbia' ? (
+              <CursorPagination
+                scrollTargetRef={scrollTargetRef}
+                paginationData={paginationData}
+                setCurrentCursor={setCurrentCursor}
+              />
+            ) : (
+              <Pagination
+                scrollTargetRef={scrollTargetRef}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                paginationData={paginationData}
+              />
+            )}
           </>
         ) : (
           <>

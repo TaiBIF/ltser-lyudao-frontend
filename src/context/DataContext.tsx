@@ -21,6 +21,7 @@ import useHabitat from 'hooks/items/useHabitat';
 import useFishing from 'hooks/items/useFishing';
 import useAquaticfauna from 'hooks/items/useAquaticfauna';
 import useStream from 'hooks/items/useStream';
+import useTBIA from 'hooks/items/useTBIA';
 
 interface DataProviderProps {
   children?: ReactNode;
@@ -250,6 +251,13 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     fields: streamFields,
     getDataFields: getStreamFields,
   } = useStream();
+
+  const {
+    raws: TBIARaws,
+    getDataRaws: getTBIARaws,
+    fields: TBIAFields,
+    getDataFields: getTBIAFields,
+  } = useTBIA();
 
   const contextData: ContextItem[] = [
     {
@@ -496,7 +504,19 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       getSeries: getStreamSeries,
       fields: streamFields,
       getFields: getStreamFields,
-    }
+    },
+    {
+      id: 'tbia',
+      // key 名稱在其他組件有綁定，先不修改
+      depositarUrl:
+        'https://tbiadata.tw/zh-hant/search/occurrence?record_type=occ&geo_type=circle&circle_radius=10&center_lon=121.488&center_lat=22.661&page=1&from=search&limit=10',
+      sites: [],
+      getSites: null,
+      raws: TBIARaws,
+      getRaws: getTBIARaws,
+      fields: TBIAFields,
+      getFields: getTBIAFields,
+    },
   ];
 
   return (

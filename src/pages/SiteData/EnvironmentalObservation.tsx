@@ -34,6 +34,7 @@ const EnvironmentalObservation = () => {
   };
 
   const page = bannerData.en.map((v) => v.toLowerCase()).join('-');
+  const category = 'native';
 
   useEffect(() => {
     if (!dataId && !isFetchingAsideList) {
@@ -54,7 +55,7 @@ const EnvironmentalObservation = () => {
     <>
       <div className="innbox">
         <Banner data={bannerData} />
-        <Breadcrumb ref={mainBoxRef}/>
+        <Breadcrumb ref={mainBoxRef} />
         <div className="contentbox">
           <div className="main-box">
             <div className="observation-box">
@@ -65,6 +66,7 @@ const EnvironmentalObservation = () => {
                   paths={paths}
                   pathname={pathname}
                   PAGE_NAME={PAGE_NAME}
+                  category={category}
                 />
               )}
             </div>

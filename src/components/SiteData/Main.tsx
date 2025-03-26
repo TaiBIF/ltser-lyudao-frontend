@@ -23,10 +23,11 @@ interface MainProps {
   item: string;
   pathname: string;
   PAGE_NAME: string;
+  category: string;
 }
 
 const Main = (props: MainProps) => {
-  const { paths, item, pathname, PAGE_NAME } = props;
+  const { paths, item, pathname, PAGE_NAME, category } = props;
 
   const I18N_KEY_PREFIX = `${PAGE_NAME}`;
 
@@ -43,6 +44,8 @@ const Main = (props: MainProps) => {
     setPaginationData,
     currentRecordsPerPage,
     setCurrentRecordsPerPage,
+    currentCursor,
+    setCurrentCursor,
   } = usePage();
   const isFetchingSites = contextData.sites === null;
   const hasNoSites = !isFetchingSites && contextData.sites.length === 0;
@@ -52,7 +55,11 @@ const Main = (props: MainProps) => {
 
   useEffect(() => {
     contextData.getFields();
-    contextData.getSites();
+    if (hasNoSites) {
+      return;
+    } else {
+      contextData.getSites();
+    }
   }, [pathname, lang]);
 
   return (
@@ -63,26 +70,34 @@ const Main = (props: MainProps) => {
           url={contextData.depositarUrl}
           PAGE_NAME={PAGE_NAME}
         />
-        <div className="u-section">
-          {!isFetchingSites ? (
-            !hasNoSites ? (
-              <SiteSelect
-                title={t(`${I18N_KEY_PREFIX}.siteLabel1`)}
-                options={contextData.sites}
-                filter={filter}
-                setFilter={setFilter}
-                I18N_KEY_PREFIX={I18N_KEY_PREFIX}
-              />
+        {category === 'third-party' ? (
+          <></>
+        ) : (
+          <div className="u-section">
+            {!isFetchingSites ? (
+              !hasNoSites ? (
+                <SiteSelect
+                  title={t(`${I18N_KEY_PREFIX}.siteLabel1`)}
+                  options={contextData.sites}
+                  filter={filter}
+                  setFilter={setFilter}
+                  I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+                />
+              ) : (
+                <>{t(`${I18N_KEY_PREFIX}.siteEmptyStateText`)}</>
+              )
             ) : (
-              <>{t(`${I18N_KEY_PREFIX}.siteEmptyStateText`)}</>
-            )
-          ) : (
-            <Placeholder layout="inline" />
-          )}
-          {contextData.sites && contextData.sites.length > 0 &&
-            <EchartsChart item={item} I18N_KEY_PREFIX={I18N_KEY_PREFIX} sites={contextData.sites}/>
-          }
-        </div>
+              <Placeholder layout="inline" />
+            )}
+            {contextData.sites && contextData.sites.length > 0 && (
+              <EchartsChart
+                item={item}
+                I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+                sites={contextData.sites}
+              />
+            )}
+          </div>
+        )}
         <div className="data-searchbox">
           <Search
             item={item}
@@ -90,6 +105,7 @@ const Main = (props: MainProps) => {
             setPaginationData={setPaginationData}
             I18N_KEY_PREFIX={I18N_KEY_PREFIX}
           />
+
           <Result
             item={item}
             isDoneFetching={isDoneFetching}
@@ -100,6 +116,9 @@ const Main = (props: MainProps) => {
             currentRecordsPerPage={currentRecordsPerPage}
             setCurrentRecordsPerPage={setCurrentRecordsPerPage}
             I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+            currentCursor={currentCursor}
+            setCurrentCursor={setCurrentCursor}
+            category={category}
           />
         </div>
       </div>

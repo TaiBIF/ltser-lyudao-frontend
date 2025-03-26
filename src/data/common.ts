@@ -177,6 +177,18 @@ export const generateHeaderMenuList = (): HeaderMenuItem[] => [
         id: 1,
         title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.ecologicalObservation`),
         link: 'ecological-observation',
+        list: [
+          {
+            id: 10,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.native`),
+            link: 'native',
+          },
+          {
+            id: 20,
+            title: i18n.t(`${I18N_KEY_PREFIX}.menu.title.thirdParty`),
+            link: 'third-party',
+          },
+        ],
       },
       {
         id: 2,

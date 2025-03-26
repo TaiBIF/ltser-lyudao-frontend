@@ -1,6 +1,7 @@
 export type HeaderShowState = {
   [key: string]: any;
   menu3: boolean;
+  menu3Map: { [key: string]: boolean };
   mainMenu: boolean;
   mobile: boolean;
   loginPopup: boolean;
