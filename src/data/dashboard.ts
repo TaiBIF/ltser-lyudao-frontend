@@ -59,6 +59,11 @@ export const tabList: TabItem[] = [
     auth: ['superuser'],
   },
   {
+    id: 'visitors',
+    title: '社會經濟資料觀光人次',
+    auth: ['superuser', 'social_project_staff'],
+  },
+  {
     id: 'download-record',
     title: '下載資料紀錄',
     auth: ['superuser', 'social_project_staff', 'staff', 'none'],
@@ -67,11 +72,6 @@ export const tabList: TabItem[] = [
     id: 'download',
     title: '資料下載申請資訊',
     auth: ['superuser', 'social_project_staff', 'staff'],
-  },
-  {
-    id: 'visitors',
-    title: '社會經濟資料觀光人次',
-    auth: ['superuser', 'social_project_staff'],
   },
 ];
 
