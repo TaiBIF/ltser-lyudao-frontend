@@ -33,6 +33,11 @@ const Title = ({
   const observation = paths[2].split('-')[0];
   const item = paths[paths.length - 1];
 
+  const metadataBtnKey =
+    category === 'third-party'
+      ? `${I18N_KEY_PREFIX}.viewMetadataThirdPartyBtn`
+      : `${I18N_KEY_PREFIX}.viewMetadataBtn`;
+
   switch (observation) {
     case 'ecological':
       if (category === 'third-party') {
@@ -89,7 +94,7 @@ const Title = ({
           <div className="line" />
         </div>
         <a href={url} className="meta" target="_blank" rel="noreferrer">
-          {t(`${I18N_KEY_PREFIX}.viewMetadataBtn`)}
+          {t(metadataBtnKey)}
         </a>
       </div>
     </>

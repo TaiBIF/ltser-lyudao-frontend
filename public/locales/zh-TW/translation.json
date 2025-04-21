@@ -98,6 +98,7 @@
   },
   "SiteData": {
     "viewMetadataBtn": "查看資料集與研究方法",
+    "viewMetadataThirdPartyBtn": "查看網站",
     "siteLabel1": "測站/樣區",
     "siteLabel2": "請選擇{{title}}",
     "siteLabel3": "請選擇深度",
