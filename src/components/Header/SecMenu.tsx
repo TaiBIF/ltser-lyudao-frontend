@@ -56,6 +56,7 @@ const SecMenu = (props: SecMenuProps) => {
                 />
               ) : (
                 <Link
+                  className="single-menu"
                   key={`${data.id}-${subItem.id}`}
                   to={`/${data.link}/${subItem.link}`}
                 >
