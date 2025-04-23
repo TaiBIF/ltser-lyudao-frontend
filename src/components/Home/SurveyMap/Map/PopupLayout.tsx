@@ -116,6 +116,8 @@ const PopupLayout = (props: PopupLayoutProps) => {
           };
         });
         setItems([...matchResult]);
+      } else {
+        setItems([]);
       }
     }
   }, [filter.id, surveyMapItemList]);
