@@ -204,18 +204,17 @@ export const generateEconomyFishingAsideList = (): AsideItem[] => [
       },
     ],
   },
-  {
-    id: 2,
-    title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.3`),
-    // link: 'social-interview-data',
-    list: [
-      {
-        id: 1,
-        title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.3_1`),
-        link: 'social-interview-data',
-      },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.3`),
+  //   list: [
+  //     {
+  //       id: 1,
+  //       title: i18n.t(`${I18N_KEY_PREFIX}.economy.title.3_1`),
+  //       link: 'fishing-interview',
+  //     },
+  //   ],
+  // },
 ];
 
 // economyAsideList
