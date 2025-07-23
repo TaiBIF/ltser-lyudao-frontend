@@ -104,6 +104,7 @@
     "siteLabel3": "Select verbatimDepth",
     "siteDefaultOption": "Select an {{title}}",
     "siteEmptyStateText": "There is no data available.",
+    "seriesDataUnavailable": "There is no series data available to display.",
     "searchTitle": "Data Search",
     "clearBtn": "Clear",
     "searchBtn": "Search",
@@ -365,7 +366,10 @@
           "2_1": "Meteorological Observations",
           "2_2": "Oceanographic Observations",
           "2_3": "Habitat Assessment",
-          "2_4": "Stream Water Quality"
+          "2_4": "Stream Water Quality",
+          "3": "Buoy Data",
+          "3_1": "Real-time Data",
+          "3_2": "Historical Data"
         }
       },
       "economy": {

@@ -102,8 +102,11 @@
     "siteLabel1": "測站/樣區",
     "siteLabel2": "請選擇{{title}}",
     "siteLabel3": "請選擇深度",
+    "siteLabel4": "年份",
+    "siteLabel5": "圖表資訊",
     "siteDefaultOption": "請選擇{{title}}",
     "siteEmptyStateText": "觀測資料鑑定中。",
+    "seriesDataUnavailable": "尚無可用資料",
     "searchTitle": "資料列表搜尋",
     "clearBtn": "清除",
     "searchBtn": "搜尋",
@@ -373,7 +376,10 @@
           "2_1": "氣象觀測",
           "2_2": "海洋觀測",
           "2_3": "棲地評估",
-          "2_4": "溪流水質"
+          "2_4": "溪流水質",
+          "3": "浮球資料",
+          "3_1": "即時資料",
+          "3_2": "歷史資料"
         }
       },
       "economy": {

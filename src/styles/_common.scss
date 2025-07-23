@@ -513,3 +513,77 @@ $transition: (
   font-size: 1.5rem;
   color: map-get($map: $color, $key: primary);
 }
+
+.u-section-duo {
+  display: flex;
+  gap: 1.5rem;
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+.u-section-duo > * {
+  flex: 1;
+}
+
+.buoy-realtime {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  .__time {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+    font-size: 1rem;
+  }
+  .__container {
+    margin-top: 1.5rem;
+  }
+  .__title {
+    font-weight: normal !important;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    @media only screen and (max-width: 767px) {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .__title_1 {
+    color: #fff;
+    background: #79a5ff;
+  }
+  .__title_2 {
+    color: #fff;
+    background: #005acd;
+  }
+  .__content {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    .__unit {
+      font-size: 1rem;
+      color: #555;
+    }
+    .__highlight-value {
+      font-size: 2.25rem;
+      font-weight: bold;
+      color: #005acd;
+    }
+    .__value {
+      font-weight: bold;
+      @media only screen and (max-width: 767px) {
+        font-size: 1.25rem;
+      }
+    }
+    .__item {
+      @media only screen and (max-width: 767px) {
+        margin-bottom: 1.25rem;
+      }
+    }
+    .__stack {
+      .__stack-item {
+        margin-bottom: 1.25rem;
+      }
+    }
+  }
+}

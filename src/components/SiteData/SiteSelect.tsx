@@ -13,10 +13,12 @@ interface SiteSelectProps {
   filter: FilterItem;
   setFilter: Dispatch<SetStateAction<FilterItem>>;
   I18N_KEY_PREFIX: string;
+  selectValue: string;
 }
 
 const SiteSelect = (props: SiteSelectProps) => {
-  const { title, options, filter, setFilter, I18N_KEY_PREFIX } = props;
+  const { title, options, filter, setFilter, I18N_KEY_PREFIX, selectValue } =
+    props;
 
   const { t } = useTranslation();
 
@@ -24,12 +26,22 @@ const SiteSelect = (props: SiteSelectProps) => {
   const site = new URLSearchParams(search).get('site');
 
   useEffect(() => {
-    if (site) {
-      setFilter({ ...filter, site: site, depth: '20 m' });
-    } else {
-      setFilter({ ...filter, site: String(options[0].id), depth: '20 m' });
-    }
-  }, [pathname]);
+    setFilter((prev) => {
+      // 如果該欄位已經有值，不動它
+      if (prev[selectValue as keyof FilterItem]) return prev;
+
+      // mount site select 時先從 URL 取得 site，
+      // URL 沒有的話從選項中拿出第一個來用
+      const initialValue =
+        site && selectValue === 'site' ? site : String(options[0]?.id || '');
+
+      return {
+        ...prev,
+        [selectValue]: initialValue,
+        ...(selectValue === 'site' && { depth: '20 m' }), // mount site select 時一起補上 depth
+      };
+    });
+  }, [pathname, options]);
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilter({ ...filter, [e.currentTarget.name]: e.currentTarget.value });
@@ -44,11 +56,11 @@ const SiteSelect = (props: SiteSelectProps) => {
           </label>
           <div className="c-select__wrapper">
             <select
-              id="site"
-              name="site"
+              id={selectValue}
+              name={selectValue}
               className="c-select__select"
               onChange={handleSelectChange}
-              value={filter.site}
+              value={filter[selectValue as keyof FilterItem] || ''}
             >
               <option value="" disabled>
                 {t(`${I18N_KEY_PREFIX}.siteDefaultOption`, { title })}

@@ -9,6 +9,7 @@ interface FilterContextType {
   selectedKeyword: string;
   selectedContent: string;
   setFilters: (filters: Partial<FilterContextType>) => void;
+  interviewIdList: string[];
 }
 
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
@@ -23,6 +24,7 @@ export const FilterProvider = ({ children }: { children: React.ReactNode }) => {
     selectedKeyword: '',
     selectedContent: '',
     setFilters: () => {},
+    interviewIdList: [],
   });
 
   const setFilters = (newFilters: Partial<FilterContextType>) => {

@@ -24,18 +24,22 @@ type SeriesItem = {
 const Content = ({
   item,
   I18N_KEY_PREFIX,
-  sites
+  sites,
+  chart_type,
+  series,
 }: {
   item: string;
   I18N_KEY_PREFIX: string;
   sites: SelectItem[];
+  chart_type: string;
+  series?: [];
 }) => {
   const { t } = useTranslation();
   const [xAxisList, setXAxisList] = useState<string[]>([]);
   const [seriesList, setSeriesList] = useState<SeriesItem[]>([]);
   const [dateWindowTik, setDateWindowTik] = useState<string>();
   const [yAxisUnit, setYAxisUnit] = useState<string>();
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
   const contextData = useDataContext().find((v: ContextItem) => v.id === item);
   const { filter } = useSiteDataContext();
   const { lang } = useLangContext();
@@ -50,8 +54,7 @@ const Content = ({
 
   useEffect(() => {
     if (contextData.series !== undefined && !hasNoSite) {
-      setIsLoading(true); 
-
+      setIsLoading(true);
       // 因為觸發 state 改變時有時間跟順序差，在 filter.site 還沒改變前 API 就會發出去
       // 新增一個判斷式檢查 filter.site 是否存在當下的子計畫
       // 避免 API 參數錯誤導致渲染頁面的狀態也顯示錯誤
@@ -60,10 +63,10 @@ const Content = ({
       if (exsitingSite) {
         contextData.getSeries();
       } else {
-        return
+        return;
       }
     }
-  }, [pathname, filter.site, filter.depth, lang]);
+  }, [pathname, filter.site, filter.depth, filter.year, filter.type, lang]);
 
   useEffect(() => {
     if (!isFetchingSeries) {
@@ -118,7 +121,10 @@ const Content = ({
             '0'
           )} ${String(lastDate.getHours()).padStart(2, '0')}:${String(
             lastDate.getMinutes()
-          ).padStart(2, '0')}:${String(lastDate.getSeconds()).padStart(2, '0')}`;
+          ).padStart(2, '0')}:${String(lastDate.getSeconds()).padStart(
+            2,
+            '0'
+          )}`;
           setDateWindowTik(formattedLastDate);
         }
       }
@@ -127,7 +133,7 @@ const Content = ({
         { yAxisName: '', unit: '' },
       ];
       setYAxisUnit(yAxisConfig[0]?.unit || '');
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   }, [contextData.series]);
 
@@ -183,21 +189,143 @@ const Content = ({
     },
   };
 
+  const lineBarOption = {
+    ...commonOptions,
+    dataZoom: null,
+    grid: {
+      left: 70,
+      right: 50,
+      top: 60,
+      bottom: 80,
+    },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        crossStyle: {
+          color: '#999',
+        },
+      },
+    },
+    legend: {
+      data: ['降雨量', '月均溫'],
+      bottom: '2.5%',
+      left: 'center',
+      align: 'right',
+      type: 'scroll',
+      orient: 'horizontal',
+      itemGap: 20,
+    },
+    xAxis: [
+      {
+        type: 'category',
+        data: [
+          '一月',
+          '二月',
+          '三月',
+          '四月',
+          '五月',
+          '六月',
+          '七月',
+          '八月',
+          '九月',
+          '十月',
+          '十一月',
+          '十二月',
+        ],
+        axisPointer: {
+          type: 'shadow',
+        },
+      },
+    ],
+    yAxis: [
+      {
+        type: 'value',
+        name: '降雨量（mm）',
+        min: 0,
+        interval: 5000,
+        axisLabel: {
+          formatter: '{value}',
+        },
+      },
+      {
+        type: 'value',
+        name: '月均溫（°C）',
+        min: 0,
+        interval: 5,
+        axisLabel: {
+          formatter: '{value}',
+        },
+      },
+    ],
+    series: series,
+  };
+
+  const windRoseOption = {
+    ...commonOptions,
+    dataZoom: null,
+    legend: {
+      show: true,
+      bottom: 6,
+      left: 'center',
+      orient: 'horizontal',
+      type: 'scroll',
+      itemGap: 50,
+    },
+    grid: {
+      bottom: 80,
+    },
+    angleAxis: {
+      type: 'category',
+      data: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
+      startAngle: 111,
+    },
+    radiusAxis: {},
+    polar: {
+      center: ['50%', '45%'],
+    },
+    series: series,
+  };
+
   return (
     <>
       {isLoading ? (
         <div>{t(`${I18N_KEY_PREFIX}.fetchingStateData`)}</div>
       ) : !hasNoSite && !hasNoSeries ? (
-        <ReactECharts
-          option={option}
-          notMerge={true}
-          lazyUpdate={true}
-          opts={{ renderer: 'canvas', height: chartsHeight.default }}
-          style={{
-            height: '100%',
-            width: '100%',
-          }}
-        />
+        chart_type === 'mix-line-bar' ? (
+          <ReactECharts
+            option={lineBarOption}
+            notMerge={true}
+            lazyUpdate={true}
+            opts={{ renderer: 'canvas', height: chartsHeight.default }}
+            style={{
+              height: '100%',
+              width: '100%',
+            }}
+          />
+        ) : chart_type === 'rose' ? (
+          <ReactECharts
+            option={windRoseOption}
+            notMerge={true}
+            lazyUpdate={true}
+            opts={{ renderer: 'canvas', height: chartsHeight.default }}
+            style={{
+              height: '100%',
+              width: '100%',
+            }}
+          />
+        ) : (
+          <ReactECharts
+            option={option}
+            notMerge={true}
+            lazyUpdate={true}
+            opts={{ renderer: 'canvas', height: chartsHeight.default }}
+            style={{
+              height: '100%',
+              width: '100%',
+            }}
+          />
+        )
       ) : (
         <div>{t(`${I18N_KEY_PREFIX}.graphEmptyStateText`)}</div>
       )}

@@ -10,6 +10,8 @@ import { PaginationDataItem } from 'types/utils';
 interface useSiteDataProps {
   id: string;
   depth?: string;
+  year?: string;
+  type?: string;
   url: string;
   defaultRaws?: RawItemTypes[];
   defaultFields?: RawFieldItem[];
@@ -18,12 +20,17 @@ interface useSiteDataProps {
   setFields?: Dispatch<SetStateAction<RawFieldItem[]>>;
   setSeries?: Dispatch<SetStateAction<SeriesItemTypes[] | null>>;
   setPageData?: Dispatch<SetStateAction<PaginationDataItem[]>>;
+  setRoseSeries?: Dispatch<SetStateAction<any[]>>;
+  setTempPrecipSeries?: Dispatch<SetStateAction<any[]>>;
+  setRecords?: Dispatch<SetStateAction<any>>;
 }
 
 const useSiteData = (props: useSiteDataProps) => {
   const {
     id,
     depth,
+    year,
+    type,
     url,
     defaultRaws,
     defaultFields,
@@ -31,6 +38,9 @@ const useSiteData = (props: useSiteDataProps) => {
     setRaws,
     setFields,
     setSeries,
+    setRoseSeries,
+    setTempPrecipSeries,
+    setRecords,
   } = props;
   const { getRaws, getFields, getSeries } = useSiteDataApi();
 
@@ -62,9 +72,14 @@ const useSiteData = (props: useSiteDataProps) => {
     getSeries({
       id,
       depth,
+      year,
+      type,
       url,
       setList: setSeries,
       defaultList: defaultSeries || [],
+      setRoseSeries,
+      setTempPrecipSeries,
+      setRecords,
     });
   };
 

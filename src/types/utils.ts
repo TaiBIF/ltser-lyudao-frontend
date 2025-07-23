@@ -102,6 +102,9 @@ export type ContextItem = {
   getFields?: any;
   series?: SeriesItemTypes[] | null;
   getSeries?: any;
+  roseSeries?: any;
+  tempPrecipSeries?: any;
+  records?: any;
 };
 
 export type ItemTypes =

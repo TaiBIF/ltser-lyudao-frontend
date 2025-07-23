@@ -20,9 +20,11 @@ const useSiteDataApi = () => {
     params: any;
     setPaginationData: any;
   }) => {
+    const backendUrl =
+      url === 'buoy-realtime' ? '/data/buoy-realtime/' : `/data/${url}/raws/`;
     const result = await handleApi({
       method: 'get',
-      url: `/data/${url}/raws/`,
+      url: backendUrl,
       params,
     });
     if (result?.status === 'success') {
@@ -72,31 +74,74 @@ const useSiteDataApi = () => {
   const getSeries = async ({
     id,
     depth,
+    year,
+    type,
     url,
     setList,
     defaultList,
+    setRoseSeries,
+    setTempPrecipSeries,
+    setRecords,
   }: {
     id: string;
     depth?: string;
+    year?: string;
+    type?: string;
     url: string;
     setList: any;
     defaultList: SeriesItemTypes[];
+    setRoseSeries: any;
+    setTempPrecipSeries: any;
+    setRecords: any;
   }) => {
-    const result = await handleApi({
-      method: 'get',
-      url: `/data/${url}/series/`,
-      params: {
-        locationID: id,
-        depth: depth,
-      },
-    });
-    if (result?.status === 'success') {
-      setList([...result.response.data]);
-    } else {
-      if (defaultList) {
-        setList([...defaultList]);
+    if (url !== 'buoy-realtime') {
+      const result = await handleApi({
+        method: 'get',
+        url: `/data/${url}/series/`,
+        params: {
+          locationID: id,
+          depth: depth,
+        },
+      });
+      if (result?.status === 'success') {
+        setList([...result.response.data]);
       } else {
-        setList([]);
+        if (defaultList) {
+          setList([...defaultList]);
+        } else {
+          setList([]);
+        }
+      }
+    }
+
+    if (url === 'buoy-historical') {
+      const chartResult = await handleApi({
+        method: 'get',
+        url: `/data/${url}/chart/`,
+        params: {
+          locationID: id,
+          year: year,
+          type: type,
+        },
+      });
+
+      if (chartResult?.status === 'success') {
+        setRoseSeries([...chartResult.response.data.rose_series]);
+        setTempPrecipSeries([...chartResult.response.data.temp_precip_series]);
+      }
+    }
+
+    if (url === 'buoy-realtime') {
+      const realtimeResult = await handleApi({
+        method: 'get',
+        url: '/data/buoy-realtime/',
+        params: {
+          locationID: id,
+        },
+      });
+
+      if (realtimeResult?.status === 'success') {
+        setRecords(realtimeResult.response.data.all_records);
       }
     }
   };

@@ -13,6 +13,8 @@ export const SiteDataProvider = ({ children }: SiteDataProviderProps) => {
   const [filter, setFilter] = useState<FilterItem>({
     site: '',
     depth: '',
+    year: '',
+    type: '',
   });
   const [query, setQuery] = useState<any>({});
   const contextData = { filter, setFilter, query, setQuery };

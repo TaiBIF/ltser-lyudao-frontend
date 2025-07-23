@@ -22,6 +22,8 @@ import useFishing from 'hooks/items/useFishing';
 import useAquaticfauna from 'hooks/items/useAquaticfauna';
 import useStream from 'hooks/items/useStream';
 import useTBIA from 'hooks/items/useTBIA';
+import useBuoy from 'hooks/items/useBuoy';
+import useBuoyRealtime from 'hooks/items/useBuoyRealtime';
 
 interface DataProviderProps {
   children?: ReactNode;
@@ -258,6 +260,35 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     fields: TBIAFields,
     getDataFields: getTBIAFields,
   } = useTBIA();
+
+  const {
+    sites: buoySites,
+    getDataSites: getBuoySites,
+    detail: buoyDetail,
+    getDataDetail: getBuoyDetail,
+    raws: buoyRaws,
+    getDataRaws: getBuoyRaws,
+    fields: buoyFields,
+    getDataFields: getBuoyFields,
+    series: buoySeries,
+    getDataSeries: getBuoySeries,
+    roseSeries: buoyRoseSeires,
+    tempPrecipSeries: buoyTempPrecipSeries,
+  } = useBuoy();
+
+  const {
+    sites: buoyRealtimeSites,
+    getDataSites: getBuoyRealtimeSites,
+    detail: buoyRealtimeDetail,
+    getDataDetail: getBuoyRealtimeDetail,
+    raws: buoyRealtimeRaws,
+    getDataRaws: getBuoyRealtimeRaws,
+    fields: buoyRealtimeFields,
+    getDataFields: getBuoyRealtimeFields,
+    series: buoyRealtimeSeries,
+    getDataSeries: getBuoyRealtimeSeries,
+    records: buoyRealtimeRecords,
+  } = useBuoyRealtime();
 
   const contextData: ContextItem[] = [
     {
@@ -516,6 +547,37 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       getRaws: getTBIARaws,
       fields: TBIAFields,
       getFields: getTBIAFields,
+    },
+    {
+      id: 'buoy-historical',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-buoy',
+      sites: buoySites,
+      getSites: getBuoySites,
+      detail: buoyDetail,
+      getDetail: getBuoyDetail,
+      raws: buoyRaws,
+      getRaws: getBuoyRaws,
+      fields: buoyFields,
+      getFields: getBuoyFields,
+      series: buoySeries,
+      getSeries: getBuoySeries,
+      roseSeries: buoyRoseSeires,
+      tempPrecipSeries: buoyTempPrecipSeries,
+    },
+    {
+      id: 'buoy-realtime',
+      depositarUrl: 'https://data.depositar.io/dataset/ltser-lyudao-buoy',
+      sites: buoyRealtimeSites,
+      getSites: getBuoyRealtimeSites,
+      detail: buoyRealtimeDetail,
+      getDetail: getBuoyRealtimeDetail,
+      raws: buoyRealtimeRaws,
+      getRaws: getBuoyRealtimeRaws,
+      fields: buoyRealtimeFields,
+      getFields: getBuoyRealtimeFields,
+      series: buoyRealtimeSeries,
+      getSeries: getBuoyRealtimeSeries,
+      records: buoyRealtimeRecords,
     },
   ];
 

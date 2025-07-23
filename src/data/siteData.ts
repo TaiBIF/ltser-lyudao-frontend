@@ -188,6 +188,22 @@ export const generateEnvAsideList = (): AsideItem[] => [
       },
     ],
   },
+  {
+    id: 3,
+    title: i18n.t(`${I18N_KEY_PREFIX}.env.title.3`),
+    list: [
+      {
+        id: 1,
+        title: i18n.t(`${I18N_KEY_PREFIX}.env.title.3_1`),
+        link: 'buoy-realtime',
+      },
+      {
+        id: 2,
+        title: i18n.t(`${I18N_KEY_PREFIX}.env.title.3_2`),
+        link: 'buoy-historical',
+      },
+    ],
+  },
 ];
 
 // economyFishingAsideList

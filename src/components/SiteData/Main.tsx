@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import queryString from 'query-string';
+import { useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
-
-import Title from 'components/SiteData/Title';
-import Search from 'components/SiteData/Search';
-import Result from 'components/SiteData/Result';
-import SiteSelect from 'components/SiteData/SiteSelect';
-import EchartsChart from 'components/SiteData/EchartsChart/Content';
-import Placeholder from 'components/Placeholder';
-
-import { ContextItem } from 'types/utils';
-
 import { useDataContext } from 'context/DataContext';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import usePage from 'hooks/utils/usePage';
 import { useLangContext } from 'context/LangContext';
+
+import { ContextItem } from 'types/utils';
+
+import Title from 'components/SiteData/Title';
+import Search from 'components/SiteData/Search';
+import Result from 'components/SiteData/Result';
+import EchartsChart from 'components/SiteData/EchartsChart/Content';
+import RenderSiteSelect from './RenderSiteSelect';
+import RenderChart from './RenderChart';
+import BuoyRealtimeChart from './BuoyRealtimeChart';
 
 interface MainProps {
   paths: string[];
@@ -53,6 +51,31 @@ const Main = (props: MainProps) => {
   const isFetchingRaws = contextData.raws === null;
   const isDoneFetching = !isFetchingFields && !isFetchingRaws;
 
+  const currentYear = new Date().getFullYear();
+  const startYear = 2025;
+
+  const yearOption = Array.from(
+    { length: currentYear - startYear + 1 },
+    (_, index) => {
+      const year = startYear + index;
+      return { id: year, title: `${year}年` };
+    }
+  );
+
+  const typeOption = [
+    { id: 'wind', title: '風玫瑰圖' },
+    { id: 'current2.8', title: '海流玫瑰圖（深度 2.8 公尺）' },
+    { id: 'current7.8', title: '海流玫瑰圖（深度 7.8 公尺）' },
+    { id: 'current12.8', title: '海流玫瑰圖（深度 12.8 公尺）' },
+    { id: 'current17.8', title: '海流玫瑰圖（深度 17.8 公尺）' },
+    { id: 'current22.8', title: '海流玫瑰圖（深度 22.8 公尺）' },
+    { id: 'current27.8', title: '海流玫瑰圖（深度 27.8 公尺）' },
+    { id: 'current32.8', title: '海流玫瑰圖（深度 32.8 公尺）' },
+    { id: 'current37.8', title: '海流玫瑰圖（深度 37.8 公尺）' },
+    { id: 'current42.8', title: '海流玫瑰圖（深度 42.8 公尺）' },
+    { id: 'current47.8', title: '海流玫瑰圖（深度 47.8 公尺）' },
+  ];
+
   useEffect(() => {
     contextData.getFields();
     if (hasNoSites) {
@@ -62,68 +85,139 @@ const Main = (props: MainProps) => {
     }
   }, [pathname, lang]);
 
-  return (
+  const renderBuoyHistoricalView = () => (
     <>
-      <div className="right-infbox">
-        <Title
-          paths={paths}
-          url={contextData.depositarUrl}
-          PAGE_NAME={PAGE_NAME}
-          category={category}
+      <div className="u-section">
+        <RenderSiteSelect
+          titleKey="siteLabel1"
+          options={contextData.sites}
+          filter={filter}
+          setFilter={setFilter}
+          I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+          selectValue="site"
         />
-        {category === 'third-party' ? (
-          <></>
-        ) : (
-          <div className="u-section">
-            {!isFetchingSites ? (
-              !hasNoSites ? (
-                <SiteSelect
-                  title={t(`${I18N_KEY_PREFIX}.siteLabel1`)}
-                  options={contextData.sites}
-                  filter={filter}
-                  setFilter={setFilter}
-                  I18N_KEY_PREFIX={I18N_KEY_PREFIX}
-                />
-              ) : (
-                <>{t(`${I18N_KEY_PREFIX}.siteEmptyStateText`)}</>
-              )
-            ) : (
-              <Placeholder layout="inline" />
-            )}
-            {contextData.sites && contextData.sites.length > 0 && (
-              <EchartsChart
-                item={item}
-                I18N_KEY_PREFIX={I18N_KEY_PREFIX}
-                sites={contextData.sites}
-              />
-            )}
-          </div>
-        )}
-        <div className="data-searchbox">
+        <EchartsChart
+          item={item}
+          I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+          sites={contextData.sites}
+          chart_type="line"
+        />
+      </div>
+      <div className="u-section-duo">
+        <div className="u-section">
+          <RenderSiteSelect
+            titleKey="siteLabel4"
+            options={yearOption}
+            filter={filter}
+            setFilter={setFilter}
+            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+            selectValue="year"
+          />
+          <RenderChart
+            item={item}
+            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+            series={contextData.tempPrecipSeries}
+            sites={contextData.sites}
+            chart_type="mix-line-bar"
+          />
+        </div>
+        <div className="u-section">
+          <RenderSiteSelect
+            titleKey="siteLabel5"
+            options={typeOption}
+            filter={filter}
+            setFilter={setFilter}
+            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+            selectValue="type"
+          />
+          <RenderChart
+            item={item}
+            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+            series={contextData.roseSeries}
+            sites={contextData.sites}
+            chart_type="rose"
+          />
+        </div>
+      </div>
+    </>
+  );
+
+  const renderBuoyRealtimeView = () => (
+    <div className="u-section">
+      <RenderSiteSelect
+        titleKey="siteLabel1"
+        options={contextData.sites}
+        filter={filter}
+        setFilter={setFilter}
+        I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+        selectValue="site"
+      />
+      <BuoyRealtimeChart I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
+    </div>
+  );
+
+  const renderDefaultView = () => (
+    <div className="u-section">
+      <RenderSiteSelect
+        titleKey="siteLabel1"
+        options={contextData.sites}
+        filter={filter}
+        setFilter={setFilter}
+        I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+        selectValue="site"
+      />
+      <RenderChart
+        item={item}
+        I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+        series={contextData.roseSeries}
+        sites={contextData.sites}
+        chart_type="line"
+      />
+    </div>
+  );
+
+  return (
+    <div className="right-infbox">
+      <Title
+        paths={paths}
+        url={contextData.depositarUrl}
+        PAGE_NAME={PAGE_NAME}
+        category={category}
+      />
+      {category !== 'third-party' &&
+        (item === 'buoy-historical'
+          ? renderBuoyHistoricalView()
+          : item === 'buoy-realtime'
+          ? renderBuoyRealtimeView()
+          : renderDefaultView())}
+      <div className="data-searchbox">
+        {item !== 'buoy-realtime' ? (
           <Search
             item={item}
             isDoneFetching={isDoneFetching}
             setPaginationData={setPaginationData}
             I18N_KEY_PREFIX={I18N_KEY_PREFIX}
           />
-
-          <Result
-            item={item}
-            isDoneFetching={isDoneFetching}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            paginationData={paginationData}
-            setPaginationData={setPaginationData}
-            currentRecordsPerPage={currentRecordsPerPage}
-            setCurrentRecordsPerPage={setCurrentRecordsPerPage}
-            I18N_KEY_PREFIX={I18N_KEY_PREFIX}
-            currentCursor={currentCursor}
-            setCurrentCursor={setCurrentCursor}
-            category={category}
-          />
-        </div>
+        ) : (
+          <></>
+        )}
+        <Result
+          item={item}
+          isDoneFetching={isDoneFetching}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          paginationData={paginationData}
+          setPaginationData={setPaginationData}
+          currentRecordsPerPage={currentRecordsPerPage}
+          setCurrentRecordsPerPage={setCurrentRecordsPerPage}
+          currentCursor={currentCursor}
+          setCurrentCursor={setCurrentCursor}
+          category={category}
+          I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+          filter={filter}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

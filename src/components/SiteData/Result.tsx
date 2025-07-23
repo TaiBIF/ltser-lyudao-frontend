@@ -19,6 +19,7 @@ import { useLocation } from 'react-router-dom';
 import { useDownload } from 'hooks/api/useDownload';
 import { useAuthContext } from 'context/AuthContext';
 import RecordSelect from './RecordSelect';
+import { FilterItem } from 'types/siteData';
 
 interface ResultProps {
   item: string;
@@ -33,6 +34,7 @@ interface ResultProps {
   currentCursor?: string;
   setCurrentCursor?: Dispatch<SetStateAction<string>>;
   category?: string;
+  filter?: FilterItem;
 }
 
 const Result = (props: ResultProps) => {
@@ -49,6 +51,7 @@ const Result = (props: ResultProps) => {
     currentCursor,
     setCurrentCursor,
     category,
+    filter,
   } = props;
 
   const { t } = useTranslation();
@@ -75,20 +78,7 @@ const Result = (props: ResultProps) => {
   const handleDownloadClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.currentTarget.dataset.target;
     setDownloadTarget(target);
-    // if (auth) {
-    //   const { url, fileName } = handleDownloadParams({
-    //     item,
-    //     target,
-    //   });
-    //   handleDownload({
-    //     url,
-    //     fileName,
-    //     params: { ...query },
-    //     withHeaders: true,
-    //   });
-    // } else {
     handleDownloadPopup('show');
-    // }
   };
 
   useEffect(() => {
@@ -98,10 +88,10 @@ const Result = (props: ResultProps) => {
 
   useEffect(() => {
     if (contextData.raws !== undefined) {
-      if (locationID) {
+      if (filter?.site) {
         contextData.getRaws({
           params: {
-            locationID,
+            locationID: filter?.site,
             page: currentPage,
             page_size: currentRecordsPerPage,
           },
@@ -119,7 +109,13 @@ const Result = (props: ResultProps) => {
         });
       }
     }
-  }, [currentPage, pathname, currentRecordsPerPage, currentCursor]);
+  }, [
+    currentPage,
+    pathname,
+    currentRecordsPerPage,
+    currentCursor,
+    filter?.site,
+  ]);
 
   const hasScientificName = contextData.fields.some(
     (field: any) => field.id === 'scientificName'
@@ -131,19 +127,24 @@ const Result = (props: ResultProps) => {
         {isDoneFetching ? (
           <>
             <div className="toptool">
-              <div className="d-flex flex-column">
-                <div className="data-num">
-                  {t(`${I18N_KEY_PREFIX}.recordsText`, {
-                    records: paginationData?.totalRecords,
-                  })}
+              {item !== 'buoy-realtime' ? (
+                <div className="d-flex flex-column">
+                  <div className="data-num">
+                    {t(`${I18N_KEY_PREFIX}.recordsText`, {
+                      records: paginationData?.totalRecords,
+                    })}
+                  </div>
+                  <RecordSelect
+                    paginationData={paginationData}
+                    currentRecordsPerPage={currentRecordsPerPage}
+                    setCurrentRecordsPerPage={setCurrentRecordsPerPage}
+                  />
                 </div>
-                <RecordSelect
-                  paginationData={paginationData}
-                  currentRecordsPerPage={currentRecordsPerPage}
-                  setCurrentRecordsPerPage={setCurrentRecordsPerPage}
-                />
-              </div>
-              {category === 'third-party' ? (
+              ) : (
+                <></>
+              )}
+
+              {category === 'third-party' || item === 'buoy-realtime' ? (
                 <></>
               ) : (
                 <div className="btnr-box">
