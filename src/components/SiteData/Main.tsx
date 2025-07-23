@@ -101,6 +101,7 @@ const Main = (props: MainProps) => {
           I18N_KEY_PREFIX={I18N_KEY_PREFIX}
           sites={contextData.sites}
           chart_type="line"
+          setFilter={setFilter}
         />
       </div>
       <div className="u-section-duo">
@@ -119,6 +120,7 @@ const Main = (props: MainProps) => {
             series={contextData.tempPrecipSeries}
             sites={contextData.sites}
             chart_type="mix-line-bar"
+            setFilter={setFilter}
           />
         </div>
         <div className="u-section">
@@ -136,6 +138,7 @@ const Main = (props: MainProps) => {
             series={contextData.roseSeries}
             sites={contextData.sites}
             chart_type="rose"
+            setFilter={setFilter}
           />
         </div>
       </div>
@@ -172,6 +175,7 @@ const Main = (props: MainProps) => {
         series={contextData.roseSeries}
         sites={contextData.sites}
         chart_type="line"
+        setFilter={setFilter}
       />
     </div>
   );

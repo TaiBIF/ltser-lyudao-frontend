@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import EchartsChart from 'components/SiteData/EchartsChart/Content';
 import { useTranslation } from 'react-i18next';
+import { FilterItem } from 'types/siteData';
 
 interface RenderChartProps {
   item: string;
@@ -8,6 +9,7 @@ interface RenderChartProps {
   series: [];
   chart_type: 'line' | 'mix-line-bar' | 'rose';
   sites: any[];
+  setFilter: Dispatch<SetStateAction<FilterItem>>;
 }
 
 const RenderChart: React.FC<RenderChartProps> = ({
@@ -16,6 +18,7 @@ const RenderChart: React.FC<RenderChartProps> = ({
   series,
   chart_type,
   sites,
+  setFilter,
 }) => {
   const { t } = useTranslation();
 
@@ -34,6 +37,7 @@ const RenderChart: React.FC<RenderChartProps> = ({
       sites={sites}
       series={series}
       chart_type={chart_type}
+      setFilter={setFilter}
     />
   );
 };

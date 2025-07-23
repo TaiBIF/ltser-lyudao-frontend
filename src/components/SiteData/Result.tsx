@@ -87,7 +87,7 @@ const Result = (props: ResultProps) => {
   }, [pathname]);
 
   useEffect(() => {
-    if (contextData.raws !== undefined) {
+    if (contextData.raws === null || contextData.raws.length === 0) {
       if (filter?.site) {
         contextData.getRaws({
           params: {

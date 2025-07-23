@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactECharts from 'echarts-for-react';
 import { ContextItem } from 'types/utils';
@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 import { SeriesItemTypes } from 'types/series';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import { useLangContext } from 'context/LangContext';
-import { SelectItem } from 'types/siteData';
+import { SelectItem, FilterItem } from 'types/siteData';
 
 type SeriesItem = {
   name?: string;
@@ -27,12 +27,14 @@ const Content = ({
   sites,
   chart_type,
   series,
+  setFilter,
 }: {
   item: string;
   I18N_KEY_PREFIX: string;
   sites: SelectItem[];
   chart_type: string;
   series?: [];
+  setFilter: Dispatch<SetStateAction<FilterItem>>;
 }) => {
   const { t } = useTranslation();
   const [xAxisList, setXAxisList] = useState<string[]>([]);
@@ -53,20 +55,33 @@ const Content = ({
     contextData.series.length === 0;
 
   useEffect(() => {
-    if (contextData.series !== undefined && !hasNoSite) {
-      setIsLoading(true);
-      // 因為觸發 state 改變時有時間跟順序差，在 filter.site 還沒改變前 API 就會發出去
-      // 新增一個判斷式檢查 filter.site 是否存在當下的子計畫
-      // 避免 API 參數錯誤導致渲染頁面的狀態也顯示錯誤
-      const exsitingSite = sites.some((site) => site.id === filter.site);
+    if (!Array.isArray(sites) || sites.length === 0) return;
 
-      if (exsitingSite) {
-        contextData.getSeries();
-      } else {
-        return;
-      }
+    const matchedSite = sites.find((s) => s.id === filter.site);
+    const fallbackSite = String(sites[0].id);
+
+    if (!matchedSite) {
+      setFilter((prev) => ({
+        ...prev,
+        site: fallbackSite,
+      }));
+      return; // 處理非同步狀態更新同步依賴的問題
     }
-  }, [pathname, filter.site, filter.depth, filter.year, filter.type, lang]);
+
+    // 確定 filter.site 是在 sites 裡的才向後端 request
+    if (contextData.series !== undefined) {
+      setIsLoading(true);
+      contextData.getSeries();
+    }
+  }, [
+    filter.site,
+    sites,
+    pathname,
+    filter.depth,
+    filter.year,
+    filter.type,
+    lang,
+  ]);
 
   useEffect(() => {
     if (!isFetchingSeries) {
