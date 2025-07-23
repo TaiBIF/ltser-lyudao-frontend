@@ -87,27 +87,25 @@ const Result = (props: ResultProps) => {
   }, [pathname]);
 
   useEffect(() => {
-    if (contextData.raws === null || contextData.raws.length === 0) {
-      if (filter?.site) {
-        contextData.getRaws({
-          params: {
-            locationID: filter?.site,
-            page: currentPage,
-            page_size: currentRecordsPerPage,
-          },
-          setPaginationData,
-        });
-      } else {
-        contextData.getRaws({
-          params: {
-            ...query,
-            page: currentPage,
-            page_size: currentRecordsPerPage,
-            cursor: currentCursor,
-          },
-          setPaginationData,
-        });
-      }
+    if (filter?.site) {
+      contextData.getRaws({
+        params: {
+          locationID: filter?.site,
+          page: currentPage,
+          page_size: currentRecordsPerPage,
+        },
+        setPaginationData,
+      });
+    } else {
+      contextData.getRaws({
+        params: {
+          ...query,
+          page: currentPage,
+          page_size: currentRecordsPerPage,
+          cursor: currentCursor,
+        },
+        setPaginationData,
+      });
     }
   }, [
     currentPage,
