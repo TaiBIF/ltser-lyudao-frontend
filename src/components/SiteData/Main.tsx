@@ -155,7 +155,11 @@ const Main = (props: MainProps) => {
         I18N_KEY_PREFIX={I18N_KEY_PREFIX}
         selectValue="site"
       />
-      <BuoyRealtimeChart I18N_KEY_PREFIX={I18N_KEY_PREFIX} />
+      <BuoyRealtimeChart
+        I18N_KEY_PREFIX={I18N_KEY_PREFIX}
+        sites={contextData.sites}
+        setFilter={setFilter}
+      />
     </div>
   );
 

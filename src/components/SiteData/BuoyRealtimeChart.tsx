@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDataContext } from 'context/DataContext';
 import { useSiteDataContext } from 'context/SiteDataContext';
 import { useLangContext } from 'context/LangContext';
 import { useLocation } from 'react-router-dom';
 import { ContextItem } from 'types/utils';
+import { SelectItem, FilterItem } from 'types/siteData';
 
 const BuoyRealtimeChart = ({
   I18N_KEY_PREFIX,
+  sites,
+  setFilter,
 }: {
   I18N_KEY_PREFIX: string;
+  sites: SelectItem[];
+  setFilter: Dispatch<SetStateAction<FilterItem>>;
 }) => {
   const contextData = useDataContext().find(
     (v: ContextItem) => v.id === 'buoy-realtime'
@@ -32,11 +37,25 @@ const BuoyRealtimeChart = ({
 
   // 執行 getSeries
   useEffect(() => {
-    if (contextData?.getSeries && !hasNoSite) {
+    if (!Array.isArray(sites) || sites.length === 0) return;
+
+    const matchedSite = sites.find((s) => s.id === filter.site);
+    const fallbackSite = String(sites[0].id);
+
+    if (!matchedSite) {
+      setFilter((prev) => ({
+        ...prev,
+        site: fallbackSite,
+      }));
+      return; // 處理非同步狀態更新同步依賴的問題
+    }
+
+    // 確定 filter.site 是在 sites 裡的才向後端 request
+    if (contextData.series !== undefined) {
       setIsLoading(true);
       contextData.getSeries();
     }
-  }, [pathname, filter.site, filter.year, filter.type, lang]);
+  }, [pathname, filter.site, filter.year, filter.type, lang, sites]);
 
   // 處理資料更新完成後的狀態
   useEffect(() => {
