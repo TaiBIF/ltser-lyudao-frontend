@@ -659,6 +659,25 @@
         line-height: 25px;
         text-align: justify;
       }
+      .l-tag {
+        background: #e29292 !important;
+        border: 1px solid #e29292 !important;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 16px;
+        padding: 5px 10px;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+      }
+      .l-right-text {
+        text-align: right;
+        font-size: 0.8rem;
+      }
+      svg {
+        margin-left: 0.3rem;
+        width: 14px;
+        position: absolute;
+      }
     }
   }
   .qa-tab {

@@ -1,44 +1,24 @@
-import { LiteratureItem } from 'types/literature';
+import { TypeItem } from 'types/utils';
 
-export const literatureList: LiteratureItem[] = [
+export const literaturCatergoryList: TypeItem[] = [
   {
-    id: 1,
-    name: 'McDaniel, J. E., & Miskel, C. G. (2002). The effect of groups and individuals on national decisionmaking: Influence and domination in the reading policymaking environment (CIERA Report 3-025).',
+    id: 'RESEARCH',
+    title: '研究報告',
   },
   {
-    id: 2,
-    name: '吳清山、林天祐、黃三吉(民89)。國民中小學教師專業能力的評鑑與教師遴選之研究。行政院國家科學委員會專題研究成果報告(編號：NSC88-2418-H-133-001-F19)，未出版。',
+    id: 'JOURNAL',
+    title: '期刊論文',
   },
   {
-    id: 3,
-    name: 'McDaniel, J. E., & Miskel, C. G. (2002). The effect of groups and individuals on national decisionmaking: Influence and domination in the reading policymaking environment (CIERA Report 3-025).',
+    id: 'THESIS',
+    title: '學術論文',
   },
   {
-    id: 4,
-    name: '吳清山、林天祐、黃三吉(民89)。國民中小學教師專業能力的評鑑與教師遴選之研究。行政院國家科學委員會專題研究成果報告(編號：NSC88-2418-H-133-001-F19)，未出版。',
+    id: 'BOOK',
+    title: '書籍',
   },
   {
-    id: 5,
-    name: 'McDaniel, J. E., & Miskel, C. G. (2002). The effect of groups and individuals on national decisionmaking: Influence and domination in the reading policymaking environment (CIERA Report 3-025).',
-  },
-  {
-    id: 6,
-    name: '吳清山、林天祐、黃三吉(民89)。國民中小學教師專業能力的評鑑與教師遴選之研究。行政院國家科學委員會專題研究成果報告(編號：NSC88-2418-H-133-001-F19)，未出版。',
-  },
-  {
-    id: 7,
-    name: 'McDaniel, J. E., & Miskel, C. G. (2002). The effect of groups and individuals on national decisionmaking: Influence and domination in the reading policymaking environment (CIERA Report 3-025).',
-  },
-  {
-    id: 8,
-    name: '吳清山、林天祐、黃三吉(民89)。國民中小學教師專業能力的評鑑與教師遴選之研究。行政院國家科學委員會專題研究成果報告(編號：NSC88-2418-H-133-001-F19)，未出版。',
-  },
-  {
-    id: 9,
-    name: 'McDaniel, J. E., & Miskel, C. G. (2002). The effect of groups and individuals on national decisionmaking: Influence and domination in the reading policymaking environment (CIERA Report 3-025).',
-  },
-  {
-    id: 10,
-    name: '吳清山、林天祐、黃三吉(民89)。國民中小學教師專業能力的評鑑與教師遴選之研究。行政院國家科學委員會專題研究成果報告(編號：NSC88-2418-H-133-001-F19)，未出版。',
+    id: 'EIA',
+    title: '環評報告',
   },
 ];

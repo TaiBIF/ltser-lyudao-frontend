@@ -15,6 +15,12 @@ import useDashboard from 'hooks/page/useDashboard';
 const Add = () => {
   const initialValues: LiteratureItem = {
     name: '',
+    title: '',
+    year: '',
+    author: '',
+    unit: '',
+    url: '',
+    category: '',
   };
   const { loading, handleAdd } = useDashboard();
 

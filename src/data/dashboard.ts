@@ -3,7 +3,7 @@ import { TabItem, DownloadItem } from 'types/dashboard';
 import { newsTypeList, newsAttachmentList } from 'data/news';
 import { contactTypeList } from 'data/contact';
 import { aboutTypeList } from 'data/about';
-import { qaTypeList } from 'data/qa';
+import { literaturCatergoryList } from 'data/literature';
 
 // Tabs 左側邊欄頁籤
 // 調整權限的話，記得 App route 權限也要調整
@@ -915,7 +915,7 @@ export const literatureColList: ColItem[] = [
     param: true,
   },
   {
-    id: 'name',
+    id: 'title',
     title: '文獻名稱',
     show: true,
   },
@@ -930,8 +930,8 @@ export const literatureFieldList: FieldItem[] = [
   {
     id: 1,
     type: 'text',
-    title: 'name',
-    label: '文獻名稱',
+    title: 'title',
+    label: '文獻標題',
     readonly: false,
     required: true,
   },
@@ -942,6 +942,39 @@ export const literatureFieldList: FieldItem[] = [
     label: '文獻發布年份',
     readonly: false,
     required: true,
+  },
+  {
+    id: 3,
+    type: 'select',
+    title: 'category',
+    label: '文獻屬性',
+    readonly: false,
+    required: true,
+    options: literaturCatergoryList,
+  },
+  {
+    id: 4,
+    type: 'text',
+    title: 'author',
+    label: '作者',
+    readonly: false,
+    required: false,
+  },
+  {
+    id: 5,
+    type: 'text',
+    title: 'unit',
+    label: '執行單位',
+    readonly: false,
+    required: false,
+  },
+  {
+    id: 6,
+    type: 'text',
+    title: 'url',
+    label: '連結',
+    readonly: false,
+    required: false,
   },
 ];
 

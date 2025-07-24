@@ -1,7 +1,7 @@
-export const FE_URL = `https://ltsertwlyudao.org`;
-export const BE_URL = `https://ltsertwlyudao.org`;
-// export const FE_URL = `http://127.0.0.1:8005`;
-// export const BE_URL = `http://127.0.0.1:8005`;
+// export const FE_URL = `https://ltsertwlyudao.org`;
+// export const BE_URL = `https://ltsertwlyudao.org`;
+export const FE_URL = `http://127.0.0.1:8005`;
+export const BE_URL = `http://127.0.0.1:8005`;
 export const API_URL = `${BE_URL}/api/`;
 export const AUTH_URL = `${BE_URL}/api/auth/`;
 
