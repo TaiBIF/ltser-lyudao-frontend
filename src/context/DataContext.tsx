@@ -44,6 +44,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     getDataFields: getWeatherFields,
     series: weatherSeries,
     getDataSeries: getWeatherSeries,
+    roseSeries: weatherRoseSeires,
+    tempPrecipSeries: weatherTempPrecipSeries,
   } = useWeather();
 
   const {
@@ -304,6 +306,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       getFields: getWeatherFields,
       series: weatherSeries,
       getSeries: getWeatherSeries,
+      roseSeries: weatherRoseSeires,
+      tempPrecipSeries: weatherTempPrecipSeries,
     },
     {
       id: 'sea-temperature',

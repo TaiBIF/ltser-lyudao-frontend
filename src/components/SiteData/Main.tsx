@@ -52,7 +52,7 @@ const Main = (props: MainProps) => {
   const isDoneFetching = !isFetchingFields && !isFetchingRaws;
 
   const currentYear = new Date().getFullYear();
-  const startYear = 2025;
+  const startYear = 2023;
 
   const yearOption = Array.from(
     { length: currentYear - startYear + 1 },
@@ -62,7 +62,7 @@ const Main = (props: MainProps) => {
     }
   );
 
-  const typeOption = [
+  const buoyTypeOption = [
     { id: 'wind', title: '風玫瑰圖' },
     { id: 'current2.8', title: '海流玫瑰圖（深度 2.8 公尺）' },
     { id: 'current7.8', title: '海流玫瑰圖（深度 7.8 公尺）' },
@@ -76,6 +76,8 @@ const Main = (props: MainProps) => {
     { id: 'current47.8', title: '海流玫瑰圖（深度 47.8 公尺）' },
   ];
 
+  const weatherTypeOption = [{ id: 'weather-wind', title: '風玫瑰圖' }];
+
   useEffect(() => {
     contextData.getFields();
     if (hasNoSites) {
@@ -85,7 +87,14 @@ const Main = (props: MainProps) => {
     }
   }, [pathname, lang]);
 
-  const renderBuoyHistoricalView = () => (
+  const renderMixedLinelView = (
+    typeOption: any[],
+    item: string,
+    I18N_KEY_PREFIX: string,
+    contextData: any,
+    filter: any,
+    setFilter: any
+  ) => (
     <>
       <div className="u-section">
         <RenderSiteSelect
@@ -145,6 +154,26 @@ const Main = (props: MainProps) => {
     </>
   );
 
+  const renderBuoyHistoricalView = () =>
+    renderMixedLinelView(
+      buoyTypeOption,
+      item,
+      I18N_KEY_PREFIX,
+      contextData,
+      filter,
+      setFilter
+    );
+
+  const renderWeatherHistoricalView = () =>
+    renderMixedLinelView(
+      weatherTypeOption,
+      item,
+      I18N_KEY_PREFIX,
+      contextData,
+      filter,
+      setFilter
+    );
+
   const renderBuoyRealtimeView = () => (
     <div className="u-section">
       <RenderSiteSelect
@@ -184,6 +213,14 @@ const Main = (props: MainProps) => {
     </div>
   );
 
+  const renderViewsMap: Record<string, () => JSX.Element> = {
+    'buoy-historical': renderBuoyHistoricalView,
+    'buoy-realtime': renderBuoyRealtimeView,
+    weather: renderWeatherHistoricalView,
+  };
+
+  const renderSelectedView = renderViewsMap[item] ?? renderDefaultView;
+
   return (
     <div className="right-infbox">
       <Title
@@ -192,12 +229,7 @@ const Main = (props: MainProps) => {
         PAGE_NAME={PAGE_NAME}
         category={category}
       />
-      {category !== 'third-party' &&
-        (item === 'buoy-historical'
-          ? renderBuoyHistoricalView()
-          : item === 'buoy-realtime'
-          ? renderBuoyRealtimeView()
-          : renderDefaultView())}
+      {category !== 'third-party' && renderSelectedView()}
       <div className="data-searchbox">
         {item !== 'buoy-realtime' ? (
           <Search

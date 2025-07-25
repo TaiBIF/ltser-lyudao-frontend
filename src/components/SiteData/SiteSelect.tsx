@@ -27,13 +27,16 @@ const SiteSelect = (props: SiteSelectProps) => {
 
   useEffect(() => {
     setFilter((prev) => {
-      // 如果該欄位已經有值，不動它
-      if (prev[selectValue as keyof FilterItem]) return prev;
+      const currentValue = prev[selectValue as keyof FilterItem];
+      const isValid = options.some(
+        (opt) => String(opt.id) === String(currentValue)
+      );
 
-      // mount site select 時先從 URL 取得 site，
-      // URL 沒有的話從選項中拿出第一個來用
-      const initialValue =
-        site && selectValue === 'site' ? site : String(options[0]?.id || '');
+      // 如果有值且在 options 中保留不動
+      if (currentValue && isValid) return prev;
+
+      // 否則從 options 中選第一個
+      const initialValue = String(options[0]?.id || '');
 
       return {
         ...prev,

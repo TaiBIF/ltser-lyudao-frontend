@@ -114,14 +114,15 @@ const useSiteDataApi = () => {
       }
     }
 
-    if (url === 'buoy-historical') {
+    if (url === 'buoy-historical' || url === 'weather') {
       const chartResult = await handleApi({
         method: 'get',
-        url: `/data/${url}/chart/`,
+        url: `/data/mixed-chart/`,
         params: {
           locationID: id,
           year: year,
           type: type,
+          url: url,
         },
       });
 

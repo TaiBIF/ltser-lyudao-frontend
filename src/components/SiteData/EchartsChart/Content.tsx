@@ -15,11 +15,14 @@ import { useSiteDataContext } from 'context/SiteDataContext';
 import { useLangContext } from 'context/LangContext';
 import { SelectItem, FilterItem } from 'types/siteData';
 
-type SeriesItem = {
-  name?: string;
-  data: number[];
+interface SeriesItem {
+  name: string;
   type: string;
-};
+  yAxisIndex: number;
+  data?: (number | null)[];
+  itemStyle?: object;
+  tooltip?: object;
+}
 
 const Content = ({
   item,
@@ -33,7 +36,7 @@ const Content = ({
   I18N_KEY_PREFIX: string;
   sites: SelectItem[];
   chart_type: string;
-  series?: [];
+  series?: SeriesItem[];
   setFilter: Dispatch<SetStateAction<FilterItem>>;
 }) => {
   const { t } = useTranslation();

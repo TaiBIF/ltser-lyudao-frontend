@@ -30,6 +30,8 @@ const useWeather = () => {
   const [raws, setRaws] = useState<RawItemTypes[] | null>(null);
   const [fields, setFields] = useState<RawFieldItem[]>([]);
   const [series, setSeries] = useState<SeriesItemTypes[] | null>(null);
+  const [roseSeries, setRoseSeries] = useState<any[]>([]);
+  const [tempPrecipSeries, setTempPrecipSeries] = useState<any[]>([]);
   const { filter } = useSiteDataContext();
 
   const URL = `weather`;
@@ -42,6 +44,8 @@ const useWeather = () => {
 
   const { getDataRaws, getDataFields, getDataSeries } = useSiteData({
     id: filter.site,
+    year: filter.year,
+    type: filter.type,
     url: URL,
     defaultRaws: weatherRaws,
     setRaws,
@@ -49,6 +53,8 @@ const useWeather = () => {
     setFields,
     defaultSeries: weatherSeries,
     setSeries,
+    setRoseSeries,
+    setTempPrecipSeries,
   });
 
   return {
@@ -57,6 +63,8 @@ const useWeather = () => {
     raws,
     fields,
     series,
+    roseSeries,
+    tempPrecipSeries,
     getDataSites,
     getDataDetail,
     getDataRaws,
