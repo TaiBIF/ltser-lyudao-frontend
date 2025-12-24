@@ -210,30 +210,30 @@ export const generateSurveyMapItemList = (): SelectItem[] => [
 // ObservationItem[]
 export const generateSurveyMapColList = (): ObservationItem[] => [
   {
-    id: 'items',
-    col: 'items',
-    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.items`),
-  },
-  {
     id: 'year',
     col: 'eventDate',
     title: i18n.t(`${I18N_KEY_PREFIX}.col.title.year`),
   },
   {
-    id: 'locality',
-    col: 'verbatimLocality',
-    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.locality`),
+    id: 'items',
+    col: 'items',
+    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.items`),
   },
-  {
-    id: 'latitude',
-    col: 'decimalLatitude',
-    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.latitude`),
-  },
-  {
-    id: 'longitude',
-    col: 'decimalLongitude',
-    title: i18n.t(`${I18N_KEY_PREFIX}.col.title.longitude`),
-  },
+  // {
+  //   id: 'locality',
+  //   col: 'verbatimLocality',
+  //   title: i18n.t(`${I18N_KEY_PREFIX}.col.title.locality`),
+  // },
+  // {
+  //   id: 'latitude',
+  //   col: 'decimalLatitude',
+  //   title: i18n.t(`${I18N_KEY_PREFIX}.col.title.latitude`),
+  // },
+  // {
+  //   id: 'longitude',
+  //   col: 'decimalLongitude',
+  //   title: i18n.t(`${I18N_KEY_PREFIX}.col.title.longitude`),
+  // },
   {
     id: 'annualAirTemperature',
     category: 'environmental',

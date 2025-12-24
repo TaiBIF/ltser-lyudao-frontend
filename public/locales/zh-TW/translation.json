@@ -86,7 +86,7 @@
         "itemLabel": "觀測項目"
       },
       "Map": {
-        "title": "{{siteName}} - 實時觀測資料",
+        "title": "{{siteName}}",
         "viewChartBtn": "查看圖表",
         "downloadBtn": "下載樣區資料"
       },
@@ -264,7 +264,7 @@
       "col": {
         "title": {
           "items": "觀測項目",
-          "year": "年份",
+          "year": "調查年份",
           "locality": "地點名稱",
           "latitude": "地點經度",
           "longitude": "地點緯度",

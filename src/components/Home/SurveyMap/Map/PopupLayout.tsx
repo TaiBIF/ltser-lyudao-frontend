@@ -160,14 +160,7 @@ const PopupLayout = (props: PopupLayoutProps) => {
                               }, [])
                               .map((item) => {
                                 return (
-                                  <div key={item.id}>
-                                    <Link
-                                      to={`/site-data/${item.type}-observation/${item.plan}?site=${filter.id}`}
-                                      className="e-link e-link--light"
-                                    >
-                                      {item.planTitle}
-                                    </Link>
-                                  </div>
+                                  <div key={item.id}>{item.planTitle}</div>
                                 );
                               })}
                           </td>
