@@ -134,7 +134,7 @@ const Signup = ({ I18N_KEY_PREFIX }: { I18N_KEY_PREFIX: string }) => {
                   <span className="col-red">
                     *{t(`${I18N_KEY_PREFIX}.${PREFIX}.hintText`)}
                   </span>{' '}
-                  <a href="/">
+                  <a href="/terms">
                     {t(`${I18N_KEY_PREFIX}.${PREFIX}.hintTermLink`)}
                   </a>
                 </div>
