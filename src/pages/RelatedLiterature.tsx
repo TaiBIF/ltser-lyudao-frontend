@@ -23,8 +23,16 @@ const RelatedLiterature = () => {
 
   const { t } = useTranslation();
 
-  const [filter, setFilter] = useState({
+  const [filter, setFilter] = useState<{
+    keyword: string;
+    category: string;
+    relate: string;
+    year: string;
+  }>({
     keyword: '',
+    category: '',
+    relate: '',
+    year: '',
   });
   const [literatures, setLiteratures] = useState<LiteratureItem[]>([]);
   const { getList } = useRender();
@@ -44,24 +52,94 @@ const RelatedLiterature = () => {
     setFilter({ ...filter, keyword: e.currentTarget.value });
   };
 
-  const handleSearchClick = () => {
+  const categoryOptions = [
+    { value: '', label: t(`${I18N_KEY_PREFIX}.allOption`) },
+    {
+      value: 'RESEARCH',
+      label: t(`${I18N_KEY_PREFIX}.categories.RESEARCH`),
+    },
+    {
+      value: 'JOURNAL',
+      label: t(`${I18N_KEY_PREFIX}.categories.JOURNAL`),
+    },
+    {
+      value: 'THESIS',
+      label: t(`${I18N_KEY_PREFIX}.categories.THESIS`),
+    },
+    { value: 'BOOK', label: t(`${I18N_KEY_PREFIX}.categories.BOOK`) },
+    { value: 'EIA', label: t(`${I18N_KEY_PREFIX}.categories.EIA`) },
+  ];
+
+  const relateOptions = [
+    { value: '', label: t(`${I18N_KEY_PREFIX}.allOption`) },
+    { value: 'NATURE', label: t(`${I18N_KEY_PREFIX}.relates.NATURE`) },
+    { value: 'SOCIAL', label: t(`${I18N_KEY_PREFIX}.relates.SOCIAL`) },
+    { value: 'HYDROLOGY', label: t(`${I18N_KEY_PREFIX}.relates.HYDROLOGY`) },
+    { value: 'LITERATURE', label: t(`${I18N_KEY_PREFIX}.relates.LITERATURE`) },
+    { value: 'ENERGY', label: t(`${I18N_KEY_PREFIX}.relates.ENERGY`) },
+  ];
+
+  const currentYear = new Date().getFullYear();
+  const yearOptions = Array.from({ length: currentYear - 1954 }, (_, idx) => {
+    const year = String(currentYear - idx);
+    return { value: year, label: year };
+  });
+
+  const fetchLiterature = (page = currentPage, nextFilter = filter) => {
+    const params: Record<string, string | number> = { page };
+
+    if (nextFilter.keyword) {
+      params.keyword = nextFilter.keyword;
+    }
+
+    if (nextFilter.category) {
+      params.category = nextFilter.category;
+    }
+
+    if (nextFilter.relate) {
+      params.relate = nextFilter.relate;
+    }
+
+    if (nextFilter.year) {
+      params.year = nextFilter.year;
+    }
+
     getList({
       url: LITERATURE_API_URL,
       setList: setLiteratures,
-      // defaultList: literatureList,
-      params: { keyword: filter.keyword },
+      params,
       setPaginationData,
     });
   };
 
+  const handleSearchClick = () => {
+    setCurrentPage(1);
+    fetchLiterature(1);
+  };
+
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const nextFilter = { ...filter, category: e.currentTarget.value };
+    setFilter(nextFilter);
+    setCurrentPage(1);
+    fetchLiterature(1, nextFilter);
+  };
+
+  const handleRelateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const nextFilter = { ...filter, relate: e.currentTarget.value };
+    setFilter(nextFilter);
+    setCurrentPage(1);
+    fetchLiterature(1, nextFilter);
+  };
+
+  const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const nextFilter = { ...filter, year: e.currentTarget.value };
+    setFilter(nextFilter);
+    setCurrentPage(1);
+    fetchLiterature(1, nextFilter);
+  };
+
   useEffect(() => {
-    getList({
-      url: LITERATURE_API_URL,
-      setList: setLiteratures,
-      // defaultList: literatureList,
-      params: { page: currentPage },
-      setPaginationData,
-    });
+    fetchLiterature(currentPage);
   }, [currentPage]);
 
   return (
@@ -71,24 +149,80 @@ const RelatedLiterature = () => {
         <Breadcrumb />
         <div className="contentbox">
           <div className="main-box">
-            <div className="search-centerbox">
-              <div className="searchbox">
-                <input
-                  type="text"
-                  placeholder={t(`${I18N_KEY_PREFIX}.keywordText`)}
-                  value={filter.keyword}
-                  onChange={handleSearchChange}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter') {
-                      handleSearchClick();
-                    }
-                  }}
-                />
-                <button type="button" onClick={handleSearchClick}>
-                  <SearchIcon />
-                </button>
+            <div className="literature-filter">
+              <div className="filter-item">
+                <div className="literature-title">
+                  {t(`${I18N_KEY_PREFIX}.keywordLabel`)}
+                </div>
+                <div className="searchbox-inline">
+                  <input
+                    type="text"
+                    placeholder={t(`${I18N_KEY_PREFIX}.keywordText`)}
+                    value={filter.keyword}
+                    onChange={handleSearchChange}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter') {
+                        handleSearchClick();
+                      }
+                    }}
+                  />
+                  <button type="button" onClick={handleSearchClick}>
+                    <SearchIcon />
+                  </button>
+                </div>
+              </div>
+              <div className="filter-item">
+                <div className="literature-title">
+                  {t(`${I18N_KEY_PREFIX}.yearLabel`)}
+                </div>
+                <select
+                  id="literature-year"
+                  value={filter.year}
+                  onChange={handleYearChange}
+                >
+                  <option value="">{t(`${I18N_KEY_PREFIX}.allOption`)}</option>
+                  {yearOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="filter-item">
+                <div className="literature-title">
+                  {t(`${I18N_KEY_PREFIX}.categoryLabel`)}
+                </div>
+                <select
+                  id="literature-category"
+                  value={filter.category}
+                  onChange={handleCategoryChange}
+                >
+                  {categoryOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="filter-item">
+                <div className="literature-title">
+                  {t(`${I18N_KEY_PREFIX}.relateLabel`)}
+                </div>
+
+                <select
+                  id="literature-relate"
+                  value={filter.relate}
+                  onChange={handleRelateChange}
+                >
+                  {relateOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
+
             {!isFetchingList && (
               <ul className="literature-list">
                 {literatures.map((v) => {
@@ -96,6 +230,7 @@ const RelatedLiterature = () => {
                     id,
                     title,
                     category_display,
+                    relate_display,
                     url,
                     unit,
                     author,
@@ -106,6 +241,7 @@ const RelatedLiterature = () => {
                       <div>
                         <div>
                           <span className="l-tag">{category_display}</span>
+                          <span className="l-tag">{relate_display}</span>
                         </div>
 
                         {url ? (
