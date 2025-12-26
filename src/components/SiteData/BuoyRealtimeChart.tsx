@@ -89,13 +89,27 @@ const BuoyRealtimeChart = ({
             </div>
             <div className="__unit">氣溫 °C</div>
           </div>
-          <div className="col-md-4 text-center __item">
-            <div className="__highlight-value">
-              {data['Corrected Wind Speed']?.value ?? '—'}
+          <div className="col-md-4 text-center __stack_column">
+            <div className="__stack-item">
+              <div className="__highlight-value">
+                {data['Corrected Wind Speed']?.value ?? '—'}
+              </div>
+              <div className="__unit">風速 m/s</div>
             </div>
-            <div className="__unit">風速 m/s</div>
+            <div className="__stack-item">
+              <div className="__highlight-value">
+                {data['Beaufort Scale']?.value ?? '—'}
+              </div>
+              <div className="__unit">蒲福風級</div>
+            </div>
           </div>
           <div className="col-md-4 text-center __stack">
+            <div className="__stack-item">
+              <div className="__value">
+                {data['Precipitation Total']?.value ?? '—'}
+              </div>
+              <div className="__unit">累積降雨量 mm</div>
+            </div>
             <div className="__stack-item">
               <div className="__value">
                 {data['Corrected Wind Direction']?.value ?? '—'}
