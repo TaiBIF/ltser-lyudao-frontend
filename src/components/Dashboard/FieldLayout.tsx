@@ -35,44 +35,32 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
   const [fileName, setFileName] = useState('');
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = e.currentTarget.files;
+    const selectedFile = e.currentTarget.files?.[0];
     setFileName(e.currentTarget.name);
-    if (selectedFiles) {
-      for (let i = 0; i < selectedFiles.length; i++) {
-        const file = selectedFiles[i];
-        if (file.type.includes('image/')) {
-          const reader = new FileReader();
-          reader.onload = () => {
-            const result = reader.result;
-            if (result instanceof ArrayBuffer) {
-              setFiles((prev) => [
-                ...prev,
-                { id: i, file, result: '', cover: false },
-              ]);
-            } else {
-              setFiles((prev) => [
-                ...prev,
-                { id: i, file, result: result as string, cover: false },
-              ]);
-            }
-          };
-          reader.readAsDataURL(file);
-        } else {
-          setFiles((prev) => [
-            ...prev,
-            { id: i, file, result: file.name, cover: false },
-          ]);
-        }
-      }
+
+    e.target.value = '';
+
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = typeof reader.result === 'string' ? reader.result : '';
+        setFiles((prev) => [
+          ...prev,
+          {
+            id: Date.now(),
+            file: selectedFile,
+            result,
+            cover: false,
+            order: prev.length,
+          },
+        ]);
+      };
+      reader.readAsDataURL(selectedFile);
     }
   };
 
   const handleFileRemove = (index: number) => {
     setFiles((prevState) => prevState.filter((_, i) => i !== index));
-  };
-
-  const handleFileClick = () => {
-    setFiles([]);
   };
 
   const renderRequiredText = () => {
@@ -130,9 +118,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
             required={required}
             multiple={multiple}
           >
-            <option value={0} disabled>
-              請選擇{label}
-            </option>
+            <option value={0}>請選擇{label}</option>
             {options?.map((v) => {
               const { id, title, name } = v;
               return (
@@ -158,7 +144,7 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
               {renderRequiredText()}
             </label>
             <label htmlFor={title} className="c-form__file">
-              <span>{files.length === 0 ? '選擇檔案' : '重新選擇檔案'}</span>
+              <span>{files.length === 0 ? '選擇檔案' : '繼續加入檔案'}</span>
             </label>
             <input
               type="file"
@@ -166,8 +152,6 @@ const FieldLayout = ({ data }: { data: FieldItem }) => {
               name={title}
               className="d-none"
               onChange={handleFileChange}
-              onClick={handleFileClick}
-              multiple={multiple}
               accept={`${fileType}/*`}
             />
             {hints &&

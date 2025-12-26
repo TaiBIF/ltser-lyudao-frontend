@@ -3,7 +3,7 @@ import { TabItem, DownloadItem } from 'types/dashboard';
 import { newsTypeList, newsAttachmentList } from 'data/news';
 import { contactTypeList } from 'data/contact';
 import { aboutTypeList } from 'data/about';
-import { literaturCatergoryList } from 'data/literature';
+import { literaturCatergoryList, literaturRelateList } from 'data/literature';
 
 // Tabs 左側邊欄頁籤
 // 調整權限的話，記得 App route 權限也要調整
@@ -947,13 +947,22 @@ export const literatureFieldList: FieldItem[] = [
     id: 3,
     type: 'select',
     title: 'category',
-    label: '文獻屬性',
+    label: '文獻類別',
     readonly: false,
     required: true,
     options: literaturCatergoryList,
   },
   {
     id: 4,
+    type: 'select',
+    title: 'relate',
+    label: '相關主題',
+    readonly: false,
+    required: true,
+    options: literaturRelateList,
+  },
+  {
+    id: 5,
     type: 'text',
     title: 'author',
     label: '作者',
@@ -961,7 +970,7 @@ export const literatureFieldList: FieldItem[] = [
     required: false,
   },
   {
-    id: 5,
+    id: 6,
     type: 'text',
     title: 'unit',
     label: '執行單位',
@@ -969,7 +978,7 @@ export const literatureFieldList: FieldItem[] = [
     required: false,
   },
   {
-    id: 6,
+    id: 7,
     type: 'text',
     title: 'url',
     label: '連結',

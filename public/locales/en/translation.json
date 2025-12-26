@@ -140,7 +140,26 @@
     }
   },
   "RelatedLiterature": {
-    "keywordText": "Search"
+    "keywordText": "Search",
+    "keywordLabel": "Search title",
+    "yearLabel": "Year",
+    "categoryLabel": "Category",
+    "relateLabel": "Topic",
+    "allOption": "All",
+    "categories": {
+      "RESEARCH": "Research Report",
+      "JOURNAL": "Journal Article",
+      "THESIS": "Thesis",
+      "BOOK": "Book",
+      "EIA": "EIA Report"
+    },
+    "relates": {
+      "NATURE": "Nature",
+      "SOCIAL": "Society",
+      "HYDROLOGY": "Hydrology",
+      "LITERATURE": "Literature",
+      "ENERGY": "Energy"
+    }
   },
   "Contact": {
     "contactSubtitle": "Contact Information"

@@ -21,6 +21,7 @@ const Add = () => {
     unit: '',
     url: '',
     category: '',
+    relate: '',
   };
   const { loading, handleAdd } = useDashboard();
 

@@ -144,7 +144,26 @@
     "allTabBtn": "全部"
   },
   "RelatedLiterature": {
-    "keywordText": "關鍵字查詢"
+    "keywordText": "關鍵字查詢",
+    "keywordLabel": "搜尋文獻標題",
+    "yearLabel": "發表年份",
+    "categoryLabel": "文獻類別",
+    "relateLabel": "相關主題",
+    "allOption": "全部",
+    "categories": {
+      "RESEARCH": "研究報告",
+      "JOURNAL": "期刊論文",
+      "THESIS": "學術論文",
+      "BOOK": "書籍",
+      "EIA": "環評報告"
+    },
+    "relates": {
+      "NATURE": "自然相關",
+      "SOCIAL": "社會相關",
+      "HYDROLOGY": "水文相關",
+      "LITERATURE": "文學相關",
+      "ENERGY": "能源建設相關"
+    }
   },
   "Contact": {
     "contactSubtitle": "聯絡方式"
