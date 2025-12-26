@@ -18,14 +18,13 @@ import {
   generateSurveyMapItemList,
   generatePlanList,
 } from 'data/home/content';
-import itemList from 'data/home/items.json';
 
 import { useSurveyMapContext } from 'context/SurveyMapContext';
-import { useDownload } from 'hooks/api/useDownload';
 import { useAuthContext } from 'context/AuthContext';
 import useRerenderTranslation from 'hooks/utils/useRerenderTranslation';
 import { useLangContext } from 'context/LangContext';
 import { SiteYearItem } from 'types/home';
+import { swalToast } from 'helpers/customSwal';
 
 type PopupLayoutProps = {
   data: Dictionary<number | string>;
@@ -57,29 +56,20 @@ const PopupLayout = (props: PopupLayoutProps) => {
     isFetchingAllDetail,
     handleDownloadPopup,
   } = useSurveyMapContext();
-  const { handleDownload, progress } = useDownload();
   const { auth } = useAuthContext();
 
-  const [downloading, setDownloading] = useState(false);
   const [items, setItems] = useState<SelectItem[]>([]);
   const isEn = lang === 'en';
 
   const handleDownloadClick = () => {
-    // if (auth) {
-    //   const fileName = `${filter.id}_${filter.year}`;
-    //   setDownloading(true);
-    //   handleDownload({
-    //     url: 'site',
-    //     fileName,
-    //     params: {
-    //       locationID: filter.id,
-    //       year: filter.year,
-    //     },
-    //     withHeaders: true,
-    //   });
-    // } else {
-    handleDownloadPopup('show');
-    // }
+    if (auth) {
+      handleDownloadPopup('show');
+    } else {
+      swalToast.fire({
+        icon: 'warning',
+        title: '請登入帳號以取得下載觀測資料權限',
+      });
+    }
   };
 
   const handleCloseClick = () => {

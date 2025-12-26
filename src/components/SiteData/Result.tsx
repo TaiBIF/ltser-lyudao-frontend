@@ -20,6 +20,7 @@ import { useDownload } from 'hooks/api/useDownload';
 import { useAuthContext } from 'context/AuthContext';
 import RecordSelect from './RecordSelect';
 import { FilterItem } from 'types/siteData';
+import { swalToast } from 'helpers/customSwal';
 
 interface ResultProps {
   item: string;
@@ -76,9 +77,16 @@ const Result = (props: ResultProps) => {
     contextData.raws[0] !== undefined;
 
   const handleDownloadClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const target = e.currentTarget.dataset.target;
-    setDownloadTarget(target);
-    handleDownloadPopup('show');
+    if (auth) {
+      const target = e.currentTarget.dataset.target;
+      setDownloadTarget(target);
+      handleDownloadPopup('show');
+    } else {
+      swalToast.fire({
+        icon: 'warning',
+        title: '請登入帳號以取得下載觀測資料權限',
+      });
+    }
   };
 
   useEffect(() => {
