@@ -29,7 +29,7 @@ export const generateAboutTabList = (): TabItem[] => [
       i18n.t(`${I18N_KEY_PREFIX}.aboutTab.ecologicalObservation.subtitle1`),
       i18n.t(`${I18N_KEY_PREFIX}.aboutTab.ecologicalObservation.subtitle2`),
     ],
-    link: 'ecological-observation',
+    link: 'ecological-observation/native',
   },
   {
     id: 'environmentalObservation',
