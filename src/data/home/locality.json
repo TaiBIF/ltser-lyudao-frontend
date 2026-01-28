@@ -1871,6 +1871,114 @@
       "Taiwan",
       "Taitung",
       "Lyudao"
+    ],
+    [
+      156,
+      "159",
+      "forest",
+      "Chaikou Outlet",
+      "柴口大排水口",
+      22.6750875,
+      121.4804371,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
+      157,
+      "160",
+      "forest",
+      "Dam Outlet Fresh",
+      "水庫排水口淡水",
+      22.6758927,
+      121.5014252,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
+      158,
+      "161",
+      "forest",
+      "Lighthouse - intertidal zone",
+      "燈塔潮間帶",
+      22.67738678,
+      121.4665535,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
+      159,
+      "162",
+      "forest",
+      "Nanliao Outlet 1",
+      "南寮排水口1",
+      22.6676615,
+      121.4684821,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
+      160,
+      "163",
+      "forest",
+      "Nanliao Outlet 2",
+      "南寮排水口2",
+      22.6676832,
+      121.4684681,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
+      161,
+      "164",
+      "forest",
+      "Nanliao Outlet 3",
+      "南寮排水口3",
+      22.6676486,
+      121.4686028,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
+      162,
+      "165",
+      "forest",
+      "Nanliao Outlet 4",
+      "南寮排水口4",
+      22.6677698,
+      121.4688375,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
+      164,
+      "167",
+      "forest",
+      "Shilang Outlet Ocean",
+      "石朗排水口海水",
+      22.6566326,
+      121.4744767,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
+      165,
+      "168",
+      "forest",
+      "Wenquangang Outlet",
+      "溫泉港排水口",
+      22.6458771,
+      121.498563,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
     ]
   ]
 }
