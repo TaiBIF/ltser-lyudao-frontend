@@ -1874,7 +1874,7 @@
     ],
     [
       156,
-      "159",
+      "CKOL",
       "forest",
       "Chaikou Outlet",
       "柴口大排水口",
@@ -1886,7 +1886,7 @@
     ],
     [
       157,
-      "160",
+      "DMOF",
       "forest",
       "Dam Outlet Fresh",
       "水庫排水口淡水",
@@ -1898,7 +1898,7 @@
     ],
     [
       158,
-      "161",
+      "LHI",
       "forest",
       "Lighthouse - intertidal zone",
       "燈塔潮間帶",
@@ -1910,7 +1910,7 @@
     ],
     [
       159,
-      "162",
+      "NLOL1",
       "forest",
       "Nanliao Outlet 1",
       "南寮排水口1",
@@ -1922,7 +1922,7 @@
     ],
     [
       160,
-      "163",
+      "NLOL2",
       "forest",
       "Nanliao Outlet 2",
       "南寮排水口2",
@@ -1934,7 +1934,7 @@
     ],
     [
       161,
-      "164",
+      "NLOL3",
       "forest",
       "Nanliao Outlet 3",
       "南寮排水口3",
@@ -1946,7 +1946,7 @@
     ],
     [
       162,
-      "165",
+      "NLOL4",
       "forest",
       "Nanliao Outlet 4",
       "南寮排水口4",
@@ -1957,8 +1957,20 @@
       "Lyudao"
     ],
     [
+      163,
+      "SLOL",
+      "forest",
+      "Shilang Outlet",
+      "石朗排水口",
+      22.6563202,
+      121.4746198,
+      "Taiwan",
+      "Taitung",
+      "Lyudao"
+    ],
+    [
       164,
-      "167",
+      "SLOLO",
       "forest",
       "Shilang Outlet Ocean",
       "石朗排水口海水",
@@ -1970,7 +1982,7 @@
     ],
     [
       165,
-      "168",
+      "WQGOL",
       "forest",
       "Wenquangang Outlet",
       "溫泉港排水口",
