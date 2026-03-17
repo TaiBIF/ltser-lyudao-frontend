@@ -75,6 +75,8 @@ import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Fishing from 'pages/SiteData/SocialObservation/Fishing';
 import { FilterProvider } from 'context/SocialEconomyData/FilterContext';
 
+import DataCatalog from 'components/SiteData/DataCatalog';
+
 function App() {
   return (
     <>
@@ -106,6 +108,10 @@ function App() {
                 <Route path="/news" element={<NewsContent />} />
                 <Route path="/news/:newsId" element={<NewsDetail />} />
                 <Route path="/qa" element={<QA />} />
+                <Route
+                  path='/site-data/data-catalog'
+                  element={<DataCatalog/>}
+                />
                 <Route
                   path="/site-data/ecological-observation/native"
                   element={

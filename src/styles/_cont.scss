@@ -3192,3 +3192,28 @@
     }
   }
 }
+
+.data-catalog-table-area {
+  margin-top: 20px;
+  background: #f7f7f7;
+  border-radius: 30px;
+  padding: 30px 20px;
+  .table-style1 {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  tr:first-child td {
+    background: #529a81;
+    border-bottom: 0;
+    color: #fff;
+  }
+  td {
+    border-bottom: 1px solid #eee;
+    color: #555;
+    font-size: 16px;
+    padding: 10px;
+    text-align: start;
+  }
+}
