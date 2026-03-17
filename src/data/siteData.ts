@@ -809,12 +809,12 @@ export const GovernmentLiteratureItemList: LiteratureItem[] = [
     id: 1,
     theme: '',
     title: '台東縣議會議案',
-    url: 'https://www.taitungcc.gov.tw/Search.aspx',
+    url: 'https://www.taitungcc.gov.tw/1/bill/list/1/1',
   },
   {
     id: 2,
     theme: '',
     title: '綠島鄉民代表會議案以及陳情案',
-    url: 'https://www.ldrc.gov.tw/WebMaster/?section=34',
+    url: 'https://www.ldrc.gov.tw/?section=1',
   },
 ];
