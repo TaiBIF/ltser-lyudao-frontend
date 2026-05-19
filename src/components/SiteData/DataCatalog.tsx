@@ -39,7 +39,7 @@ const DataCatalog = () => {
     {
       type: '生態觀測',
       name: '珊瑚入添',
-      link: '/site-data/ecological-observation/native/rec-div',
+      link: '/site-data/ecological-observation/native/coral-rec',
       description:
         '藉由本計畫的長期監測珊瑚礁的群聚及白化的觀測，了解珊瑚礁群聚的變化，作為未來綠島海域經營管理的參考依據。',
     },
